@@ -124,7 +124,7 @@ body {
                         <a href="change_password_student.php"><i class="fa-solid fa-circle"></i> Change Password</a>
                         <a tabindex="-1" href="avatar_modal_student.php"><i class="fa-solid fa-image-portrait"></i>
                             Change Avatar</a>
-                        <a tabindex="-1" href="index.php"><i class="fa-solid fa-sign-out"></i>&nbsp;Logout</a>
+                        <a tabindex="-1" href="index.php"><i class="fa-solid fa-sign-out"></i> Logout</a>
                     </li>
                 </ul>
             </li>
