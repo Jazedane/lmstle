@@ -121,7 +121,8 @@ body {
             <ul class="dropdown-menu">
                 <li>
                     <a href="change_password_teacher.php"><i class="fa-solid fa-circle"></i> Change Password</a>
-                    <a tabindex="-1" href="#myModal" data-toggle="modal"><i class="fa-solid fa-image-portrait"></i>
+                    <a tabindex="-1" href="avatar_modal_student" data-toggle="modal"><i
+                            class="fa-solid fa-image-portrait"></i>
                         Change Avatar</a>
                     <a tabindex="-1" href="profile_teacher.php"><i class="fa-solid fa-user"></i> Profile</a>
                     <a tabindex="-1" href="logout.php"><i class="fa-solid fa-sign-out"></i> Logout</a>

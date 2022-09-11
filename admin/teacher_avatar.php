@@ -16,9 +16,9 @@
 								mysqli_query($conn,"update  teacher set location = '$location' where teacher_id  = '$session_id' ")or die(mysqli_error());
 								
 								?>
- 
-								<script>
-								window.location = "dashboard_teacher.php";  
-								</script>
 
-                       <?php     }  ?>
+ <script>
+window.location = "dashboard_teacher.php";
+ </script>
+
+ <?php     }  ?>
