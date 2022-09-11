@@ -38,7 +38,7 @@ jQuery(document).ready(function() {
     });
 });
 </script>
-<div id="button_form" class="form-signin">
+<div id="button_form" class="form-signin text-center">
     Welcome to BNHS TLE Subject
     <hr>
     <h3 class="form-signin-heading"><i class="fa-solid fa-edit"></i> Login </h3>
