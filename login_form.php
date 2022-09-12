@@ -3,14 +3,15 @@
     width: 100%;
 }
 
-.card {
+.card-login-form {
     width: 40%;
     margin: auto;
-    border: 2px solid black;
     font-family: 'Georgia';
+    margin-top: 50px;
 }
 </style>
-<div class="card">
+
+<div class="card card-login-form">
     <div id="button_form" class="form-signin text-center">
         Welcome to BNHS TLE Subject
         <hr>
@@ -23,6 +24,7 @@
             type="submit">Teacher</button>
     </div>
 </div>
+
 <script>
 jQuery(document).ready(function() {
     jQuery("#login_form").submit(function(e) {

@@ -3,15 +3,15 @@
     width: 100%;
 }
 
-.card {
+.card-student-signin-form {
     width: 40%;
-    margin: auto;
-    border: 2px solid black;
+    margin: 0 auto;
     font-family: 'Georgia';
 }
 </style>
-<form method="post" id="signin_student">
-    <div class="card">
+
+<div class="card card-student-signin-form">
+    <form method="post" id="signin_student">
         <div class="card-body text-center">
             <div class="user-index-form-size">
                 <form id="signin_student" class="form-signin" method="post">
@@ -32,8 +32,8 @@
                         type="submit"><i class="fa-solid fa-rotate-backward"></i> Back </button>
                 </form>
             </div>
-        </div>
-</form>
+    </form>
+</div>
 
 
 
@@ -53,7 +53,7 @@ jQuery(document).ready(function() {
                 success: function(html) {
                     if (html == 'true') {
                         alert("Welcome to Learning Management System for TLE-Agriculture")
-                        // $.jGrowl("Welcome to Learning Management System for TLE", { header: 'Login Success' });
+                        $.jGrowl("Welcome to Learning Management System for TLE", { header: 'Login Success' });
                         var delay = 2000;
                         setTimeout(function() {
                             window.location = 'dashboard_student.php'

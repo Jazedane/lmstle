@@ -93,7 +93,7 @@ body {
     height: 100%;
 }
 </style>
-<?php  include('header.php'); ?>
+<?php include('header.php'); ?>
 
 <div class="top_navbar">
     <div class="logo"> TEACHER </div>

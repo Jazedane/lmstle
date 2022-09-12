@@ -14,7 +14,7 @@
 	$.HoverDir.defaults 	= {
 		hoverDelay	: 0,
 		reverse		: false
-	};s
+	};
 	
 	$.HoverDir.prototype 	= {
 		_init 				: function( options ) {

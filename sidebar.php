@@ -104,52 +104,58 @@ body {
     height: 100%;
 }
 </style>
-<?php  include('header.php'); ?>
 
-<body>
-    <div class="top_navbar">
-        <div class="logo"> STUDENT </div>
-        <div class="menu">
-            <div class="pull-right"></div>
-            <?php $query= mysqli_query($conn,"select * from student where student_id = '$session_id'")or die(mysqli_error());
-								  $row = mysqli_fetch_array($query);
-						?>
-            <li class="dropdown">
-                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i
-                        class="fa-solid fa-user-circle fa-xl"></i>
-                    <?php echo $row['firstname']." ".$row['lastname'];  ?> <i class="caret"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="change_password_student.php"><i class="fa-solid fa-circle"></i> Change Password</a>
-                        <a tabindex="-1" href="avatar_modal_student.php"><i class="fa-solid fa-image-portrait"></i>
-                            Change Avatar</a>
-                        <a tabindex="-1" href="index.php"><i class="fa-solid fa-sign-out"></i> Logout</a>
-                    </li>
-                </ul>
-            </li>
-        </div>
+<?php include 'header.php'; ?>
+
+<div class="top_navbar">
+    <div class="logo"> STUDENT </div>
+    <div class="menu">
+        <div class="pull-right"></div>
+        <?php
+        ($query = mysqli_query(
+            $conn,
+            "select * from student where student_id = '$session_id'"
+        )) or die(mysqli_error());
+        $row = mysqli_fetch_array($query);
+        ?>
+        <li class="dropdown">
+            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa-solid fa-user-circle fa-xl"></i>
+                <?php echo $row['firstname'] . ' ' . $row['lastname']; ?> <i class="caret"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="change_password_student.php"><i class="fa-solid fa-circle"></i> Change Password</a>
+                    <a tabindex="-1" href="avatar_modal_student.php"><i class="fa-solid fa-image-portrait"></i>
+                        Change Avatar</a>
+                    <a tabindex="-1" href="index.php"><i class="fa-solid fa-sign-out"></i> Logout</a>
+                </li>
+            </ul>
+        </li>
     </div>
-    <div class="sidebar">
-        <img id="avatar" src="admin/<?php echo $row['location']; ?>" class="img-fluid img-thumbnail">
-        <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
-            widget="treeview">
-            <li class="nav-item">
-                <a href="dashboard_student.php">
-                    <i class="fa-solid fa-school"></i> My Class</a>
-            </li>
-            <li class="nav-item">
-                <a href="student_notification.php">
-                    <i class="fa-solid fa-info-circle"></i> Notification</a>
-            </li>
-            <li class="nav-item">
-                <a href="student_message.php">
-                    <i class="fa-solid fa-envelope"></i> Message</a>
-            </li>
-            <li class="">
-                <a href="plants_info.php">
-                    <i class="fa-solid fa-info-circle"></i> Plants Information</a>
-            </li>
-        </ul>
-    </div>
-</body>
+</div>
+
+<div class="sidebar">
+    <img id="avatar" src="admin/<?php echo $row[
+        'location'
+    ]; ?>" class="img-fluid img-thumbnail">
+    <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
+        widget="treeview">
+        <li class="nav-item">
+            <a href="dashboard_student.php">
+                <i class="fa-solid fa-school"></i> My Class</a>
+        </li>
+        <li class="nav-item">
+            <a href="student_notification.php">
+                <i class="fa-solid fa-info-circle"></i> Notification</a>
+        </li>
+        <li class="nav-item">
+            <a href="student_message.php">
+                <i class="fa-solid fa-envelope"></i> Message</a>
+        </li>
+        <li class="">
+            <a href="plants_info.php">
+                <i class="fa-solid fa-info-circle"></i> Plants Information</a>
+        </li>
+    </ul>
+</div>
