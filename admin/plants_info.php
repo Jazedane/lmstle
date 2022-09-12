@@ -4,7 +4,7 @@
 <?php include('sidebar.php'); ?>
 
 <div class="container-fluid main-content">
-    <div class="row-fluid">
+    <div class="row-fluid text-center">
         <div class="span9" id="content">
             <div class="row-fluid">
                 <div id="block_bg" class="block">
@@ -13,7 +13,7 @@
                     </div>
                     <div class="block-content collapse in">
                         <div class="card" style="width: 18rem;">
-                            <img src="plant.php" class="card-img-top" alt="">
+                            <img src="..." class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Plant 1</h5>
                                 <p class="card-text">This is a plant.</p>
@@ -26,7 +26,4 @@
         </div>
     </div>
 </div>
-</div>
 <?php include('script.php'); ?>
-
-<?php include('footer.php'); ?>
