@@ -3,12 +3,10 @@
 
 <body>
     <?php include('sidebar.php'); ?>
-    <div class="container-fluid">
-        <div class="row-fluid">
+    <div class="container">
+        <div class="row">
             <div class="span9" id="content">
                 <div class="row-fluid">
-                    <!-- breadcrumb -->
-
 
                     <ul class="breadcrumb">
                         <?php
@@ -19,11 +17,7 @@
                         <li><a href="#"><b>My Class</b></a><span class="divider">/</span></li>
                         <li><a href="#">School Year: <?php echo $school_year_query_row['school_year']; ?></a></li>
                     </ul>
-                    <!-- end breadcrumb -->
 
-
-
-                    <!-- block -->
                     <div class="block">
                         <div class="navbar navbar-inner block-header">
                             <div id="" class="muted pull-right">
@@ -62,8 +56,7 @@
 
 
                                     </li>
-
-
+                                    
                                     <?php }}else{ ?>
                                     <div class="alert alert-info"><i class="fa-solid fa-info-circle"></i> You are
                                         currently not enroll to your class</div>
@@ -73,16 +66,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /block -->
                 </div>
-
-
             </div>
-
         </div>
         <?php include('footer.php'); ?>
     </div>
     <?php include('script.php'); ?>
 </body>
-
-</html>
