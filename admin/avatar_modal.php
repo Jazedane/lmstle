@@ -1,6 +1,7 @@
 <?php  include('header.php'); ?>
 <?php  include('session.php'); ?>
 <?php  include('sidebar.php'); ?>
+
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> X </button>
     <h3 id="myModalLabel">Change Avatar</h3>

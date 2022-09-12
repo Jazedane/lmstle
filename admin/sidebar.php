@@ -121,7 +121,7 @@ body {
             <ul class="dropdown-menu">
                 <li>
                     <a href="change_password_teacher.php"><i class="fa-solid fa-circle"></i> Change Password</a>
-                    <a tabindex="-1" href="avatar_modal.php" data-toggle="modal"><i
+                    <a tabindex="-1" href="avatar_modal.php"><i
                             class="fa-solid fa-image-portrait"></i>
                         Change Avatar</a>
                     <a tabindex="-1" href="profile_teacher.php"><i class="fa-solid fa-user"></i> Profile</a>
@@ -132,7 +132,7 @@ body {
     </div>
 </div>
 <div class="sidebar">
-    <img id="avatar" src="admin/<?php echo $row['location']; ?>" class="img-polaroid">
+    <img id="avatar" src="/lmstle/admin/uploads/<?php echo $row['location']; ?>" class="img-polaroid">
     <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
         widget="treeview">
         <li class="nav-item">
