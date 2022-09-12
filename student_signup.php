@@ -3,11 +3,8 @@ include('dbcon.php');
 session_start();
 $username = $_POST['username'];
 $password = $_POST['password'];
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
-$class_id = $_POST['class_id'];
 
-$query = mysqli_query($conn,"select * from student where username='$username' and firstname='$firstname' and lastname='$lastname' and class_id = '$class_id'")or die(mysqli_error());
+$query = mysqli_query($conn,"select * from student where username='$username'")or die(mysqli_error());
 $row = mysqli_fetch_array($query);
 $id = $row['student_id'];
 

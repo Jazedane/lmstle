@@ -18,7 +18,7 @@
 								?>
 
  <script>
-window.location = "dashboard_teacher.php";
+window.location = "admin_dashboard.php";
  </script>
 
  <?php     }  ?>

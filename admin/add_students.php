@@ -26,21 +26,21 @@
 
                        <div class="control-group">
                            <div class="controls">
-                               <input name="uname" class="input focused" id="focusedInput" type="text"
+                               <input name="username" class="input focused" id="focusedInput" type="text"
                                    placeholder="ID Number" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
-                               <input name="fname" class="input focused" id="focusedInput" type="text"
+                               <input name="firstname" class="input focused" id="focusedInput" type="text"
                                    placeholder="Firstname" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
-                               <input name="lname" class="input focused" id="focusedInput" type="text"
+                               <input name="lastname" class="input focused" id="focusedInput" type="text"
                                    placeholder="Lastname" required>
                            </div>
                        </div>

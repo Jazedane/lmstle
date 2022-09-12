@@ -40,10 +40,8 @@ jQuery(document).ready(function() {
         e.preventDefault();
 
         var password = jQuery('#password').val();
-        var cpassword = jQuery('#cpassword').val();
 
-
-        if (password == cpassword) {
+        if (password = password) {
             var formData = jQuery(this).serialize();
             $.ajax({
                 type: "POST",
