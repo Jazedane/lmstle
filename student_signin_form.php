@@ -1,30 +1,40 @@
-			<form method="post" id="signin_student">
-			    <div class="card ">
-			        <div class="card-body text-center">
-			            <form id="signin_student" class="form-signin" method="post">
-			                <h3 class="form-signin-heading"><i class="fa-solid fa-lock"></i> Login as Student</h3>
-			                <div class="form-group">
-			                    <input type="text" class="input-block-level" id="student_id" name="username"
-			                        placeholder="ID Number" required>
-			                </div>
+<style>
+.user-index-form-size {
+    width: 100%;
+}
+.card {
+    width: 75%;
+    margin: auto;
+}
+</style>
+<form method="post" id="signin_student">
+    <div class="card">
+        <div class="card-body text-center">
+            <div class="user-index-form-size">
+                <form id="signin_student" class="form-signin" method="post">
+                    <h3 class="form-signin-heading"><i class="fa-solid fa-lock"></i> Login as Student</h3>
+                    <div class="form-group">
+                        <input type="text" class="input-block-level" id="student_id" name="username"
+                            placeholder="ID Number" required>
+                    </div>
 
-			                <div class="form-group">
-			                    <input type="password" class="input-block-level" id="password" name="password"
-			                        placeholder="Password" required>
-			                </div>
+                    <div class="form-group">
+                        <input type="password" class="input-block-level" id="password" name="password"
+                            placeholder="Password" required>
+                    </div>
 
-			                <button id="signin" name="login" class="btn btn-info" type="submit"><i
-			                        class="fa-solid fa-sign-in"></i> Login </button>
-			                <button onclick="window.location='index.php'" id="btn_login" name="back" class="btn" type="submit"><i
-			                        class="fa-solid fa-rotate-backward"></i> Back </button>
-			            </form>
-			        </div>
-			    </div>
-			</form>
+                    <button id="signin" name="login" class="btn btn-info" type="submit"><i
+                            class="fa-solid fa-sign-in"></i> Login </button>
+                    <button onclick="window.location='index.php'" id="btn_login" name="back" class="btn"
+                        type="submit"><i class="fa-solid fa-rotate-backward"></i> Back </button>
+                </form>
+            </div>
+        </div>
+</form>
 
 
 
-			<script>
+<script>
 jQuery(document).ready(function() {
     jQuery("#signin_student").submit(function(e) {
         e.preventDefault();
@@ -62,4 +72,4 @@ jQuery(document).ready(function() {
         }
     });
 });
-			</script>
+</script>

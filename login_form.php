@@ -38,15 +38,18 @@ jQuery(document).ready(function() {
     });
 });
 </script>
-<div id="button_form" class="form-signin text-center">
-    Welcome to BNHS TLE Subject
-    <hr>
-    <h3 class="form-signin-heading"><i class="fa-solid fa-edit"></i> Login </h3>
-    <button data-placement="top" title="Login as Student" id="signin_student"
-        onclick="window.location='signup_student.php'" id="btn_student" name="login" class="btn btn-info"
-        type="submit">Student</button>
-    <button data-placement="top" title="Login as Teacher" id="signin_teacher"
-        onclick="window.location='signup_teacher.php'" name="login" class="btn btn-info" type="submit">Teacher</button>
+<div class="card">
+    <div id="button_form" class="form-signin text-center">
+        Welcome to BNHS TLE Subject
+        <hr>
+        <h3 class="form-signin-heading"><i class="fa-solid fa-edit"></i> Login </h3>
+        <button data-placement="top" title="Login as Student" id="signin_student"
+            onclick="window.location='signup_student.php'" id="btn_student" name="login" class="btn btn-info"
+            type="submit">Student</button>
+        <button data-placement="top" title="Login as Teacher" id="signin_teacher"
+            onclick="window.location='signup_teacher.php'" name="login" class="btn btn-info"
+            type="submit">Teacher</button>
+    </div>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {

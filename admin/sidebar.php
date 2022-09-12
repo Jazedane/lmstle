@@ -121,7 +121,7 @@ body {
             <ul class="dropdown-menu">
                 <li>
                     <a href="change_password_teacher.php"><i class="fa-solid fa-circle"></i> Change Password</a>
-                    <a tabindex="-1" href="avatar_modal_student" data-toggle="modal"><i
+                    <a tabindex="-1" href="avatar_modal.php" data-toggle="modal"><i
                             class="fa-solid fa-image-portrait"></i>
                         Change Avatar</a>
                     <a tabindex="-1" href="profile_teacher.php"><i class="fa-solid fa-user"></i> Profile</a>
@@ -151,7 +151,7 @@ body {
             <a href="teacher_message.php"><i class="fa-solid fa-envelope"></i> Message</a>
         </li>
         <li class="">
-            <a href="plants.php">
+            <a href="plants_info.php">
                 <i class="fa-solid fa-info-circle"></i> Plants Information</a>
         </li>
         <li class="dropdown">

@@ -1,6 +1,6 @@
 <?php include('header.php'); ?>
   <body id="login">
-    <div class="container">
+    <div class="container text-center">
 	<div class="row-fluid">
 	<div class="span6">
 		<div class="title_index">
