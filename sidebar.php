@@ -147,7 +147,7 @@ body {
                     <i class="fa-solid fa-envelope"></i> Message</a>
             </li>
             <li class="">
-                <a href="plants.php">
+                <a href="plants_info.php">
                     <i class="fa-solid fa-info-circle"></i> Plants Information</a>
             </li>
         </ul>

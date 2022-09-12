@@ -1,67 +1,40 @@
    <div class="row-fluid">
-       <a href="teachers.php" class="btn btn-info"><i class="icon-plus-sign icon-large"></i> Add Teacher</a>
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Edit Teacher</div>
+                                <div class="muted pull-left">Edit User</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
+								<?php
+								$query = mysqli_query($conn,"select * from users where user_id = '$get_id'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
+								?>
 								<form method="post">
-								<!--
-										<label>Photo:</label>
 										<div class="control-group">
                                           <div class="controls">
-                                               <input class="input-file uniform_on" id="fileInput" type="file" required>
-                                          </div>
-                                        </div>
-									-->	
-									<?php
-									$query = mysqli_query($conn,"select * from teacher where teacher_id = '$get_id' ")or die(mysqli_error());
-									$row = mysqli_fetch_array($query);
-									?>
-										
-										  <div class="control-group">
-											<label>Department:</label>
-                                          <div class="controls">
-                                            <select name="department"  class="chzn-select"required>
-											<?php
-											$query_teacher = mysqli_query($conn,"select * from teacher join  department")or die(mysqli_error());
-											$row_teacher = mysqli_fetch_array($query_teacher);
-											
-											?>
-											
-                                             	<option value="<?php echo $row_teacher['department_id']; ?>">
-												<?php echo $row_teacher['department_name']; ?>
-												</option>
-											<?php
-											$department = mysqli_query($conn,"select * from department order by department_name");
-											while($department_row = mysqli_fetch_array($department)){
-											
-											?>
-											<option value="<?php echo $department_row['department_id']; ?>"><?php echo $department_row['department_name']; ?></option>
-											<?php } ?>
-                                            </select>
+                                            <input class="input focused" value="<?php echo $row['firstname']; ?>" name="firstname" id="focusedInput" type="text" placeholder = "Firstname" required>
                                           </div>
                                         </div>
 										
 										<div class="control-group">
                                           <div class="controls">
-                                            <input class="input focused" value="<?php echo $row['firstname']; ?>" name="firstname" id="focusedInput" type="text" placeholder = "Firstname">
+                                            <input class="input focused" value="<?php echo $row['lastname']; ?>"  name="lastname" id="focusedInput" type="text" placeholder = "Lastname" required>
                                           </div>
                                         </div>
 										
-										<div class="control-group">
-                                          <div class="controls">
-                                            <input class="input focused" value="<?php echo $row['lastname']; ?>"  name="lastname" id="focusedInput" type="text" placeholder = "Lastname">
-                                          </div>
-                                        </div>
-										
-										
-									
 											<div class="control-group">
                                           <div class="controls">
-												<button name="update" class="btn btn-success"><i class="icon-save icon-large"></i></button>
+                                            <input class="input focused" value="<?php echo $row['username']; ?>"  name="username" id="focusedInput" type="text" placeholder = "Username" required>
+                                          </div>
+                                        </div>
+										
+								
+										
+											<div class="control-group">
+                                          <div class="controls">
+												<button name="update" class="btn btn-success"><i class="fa-solid fa-save"></i></button>
+                        <a href="admin_user.php" class="btn btn-info"><i class="fa-solid fa-add"></i> Add user</a>
 
                                           </div>
                                         </div>
@@ -71,32 +44,21 @@
                         </div>
                         <!-- /block -->
                     </div>
-					
-					
-				   <?php
-                            if (isset($_POST['update'])) {
-                       
-                                $firstname = $_POST['firstname'];
-                                $lastname = $_POST['lastname'];
-                                $department_id = $_POST['department'];
-								
-								
-								$query = mysqli_query($conn,"select * from teacher where firstname = '$firstname' and lastname = '$lastname' ")or die(mysqli_error());
-								$count = mysqli_num_rows($query);
-								
-								if ($count > 1){ ?>
-								<script>
-								alert('Data Already Exist');
-								</script>
-								<?php
-								}else{
-								
-								mysqli_query($conn,"update teacher set firstname = '$firstname' , lastname = '$lastname' , department_id = '$department_id' where teacher_id = '$get_id' ")or die(mysqli_error());	
-								
-								?>
-								<script>
-							 	window.location = "teachers.php"; 
-								</script>
-								<?php   }} ?>
-						 
-						 
+			<?php		
+if (isset($_POST['update'])){
+
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$username = $_POST['username'];
+
+
+mysqli_query($conn,"update users set username = '$username'  , firstname = '$firstname' , lastname = '$lastname' where user_id = '$get_id' ")or die(mysqli_error());
+
+mysqli_query($conn,"insert into activity_log (date,username,action) values(NOW(),'$user_username','Edit User $username')")or die(mysqli_error());
+?>
+<script>
+  window.location = "admin_user.php"; 
+</script>
+<?php
+}
+?>

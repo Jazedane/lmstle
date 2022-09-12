@@ -1,13 +1,12 @@
 <?php include('header.php'); ?>
 <?php include('session.php'); ?>
     <body>
-		<?php include('navbar.php'); ?>
+		<?php include('sidebar.php'); ?>
         <div class="container-fluid">
             <div class="row-fluid">
-				<?php include('content_sidebar.php'); ?>
                 <div class="span9" id="content">
                      <div class="row-fluid">
-					 <a href="add_content.php" class="btn btn-info"><i class="icon-plus-sign icon-large"></i> Add Content</a>
+					 <a href="add_content.php" class="btn btn-info"><i class="fa solid fa-plus-circle"></i> Add Content</a>
                         <!-- block -->
                         <div id="block_bg" class="block">
                             <div class="navbar navbar-inner block-header">
@@ -17,7 +16,7 @@
                                 <div class="span12">
 									<form action="delete_content.php" method="post">
   									<table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
-									<a data-toggle="modal" href="#content_delete" id="delete"  class="btn btn-danger" name=""><i class="icon-trash icon-large"></i></a>
+									<a data-toggle="modal" href="#content_delete" id="delete"  class="btn btn-danger" name=""><i class="fa-solid fa-trash-can"></i></a>
 									<?php include('modal_delete.php'); ?>									
 									<thead>
 										        <tr>
@@ -42,7 +41,7 @@
 										<input id="optionsCheckbox" class="uniform_on" name="selector[]" type="checkbox" value="<?php echo $id; ?>">
 										</td>
                                          <td><?php echo $row['title']; ?></td>
-                                         <td width="30"><a href="edit_content.php<?php echo '?id='.$id; ?>" class="btn btn-success"><i class="icon-pencil icon-large"></i></a></td>
+                                         <td width="30"><a href="edit_content.php<?php echo '?id='.$id; ?>" class="btn btn-success"><i class="fa solid fa-pencil"></i></a></td>
                                      
                                
                                 </tr>
