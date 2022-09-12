@@ -1,4 +1,4 @@
-<div class="row-fluid">
+<div class="row-fluid" style="margin-top: 50px">
 		<img class="rounded mx-auto d-block " src="images/logo.jpeg"  style="width: 10rem;">
 	<div class="">
 		<div class="title text-center">
