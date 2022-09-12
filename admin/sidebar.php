@@ -48,15 +48,6 @@ body {
     color: white;
 }
 
-/* Now I have determined what the sidebar will look like for a responsive device */
-.hover_collapse .sidebar {
-    width: 70px;
-}
-
-.hover_collapse .sidebar ul li a .text {
-    display: none;
-}
-
 .sidebar {
     position: fixed;
     top: 60px;
@@ -72,8 +63,6 @@ body {
     border-bottom: 1px solid #03374e;
     width: 180px;
     color: white;
-
-
 }
 
 .sidebar ul li a .icon {
@@ -121,8 +110,7 @@ body {
             <ul class="dropdown-menu">
                 <li>
                     <a href="change_password_teacher.php"><i class="fa-solid fa-circle"></i> Change Password</a>
-                    <a tabindex="-1" href="avatar_modal.php"><i
-                            class="fa-solid fa-image-portrait"></i>
+                    <a tabindex="-1" href="avatar_modal.php"><i class="fa-solid fa-image-portrait"></i>
                         Change Avatar</a>
                     <a tabindex="-1" href="profile_teacher.php"><i class="fa-solid fa-user"></i> Profile</a>
                     <a tabindex="-1" href="logout.php"><i class="fa-solid fa-sign-out"></i> Logout</a>
@@ -165,11 +153,11 @@ body {
                 <li>
                     <a href="students.php"><i class="fa-solid fa-plus-circle"></i> Students</a>
                 </li>
+                <li class="">
+                    <a href="admin_user.php">
+                        <i class="fa-solid fa-user-gear"></i> Admin</a>
+                </li>
             </ul>
-        </li>
-        <li class="">
-            <a href="admin_user.php">
-                <i class="fa-solid fa-user-gear"></i> Admin</a>
         </li>
         <li class="dropdown">
             <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa-solid fa-history">

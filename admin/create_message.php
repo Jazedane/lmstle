@@ -1,5 +1,5 @@
 <div class="span3" id="">
-	<div class="row-fluid">
+	<div class="row-fluid" style="margin-top: 50px">
 	
                         <div class="block">
                             <div class="navbar navbar-inner block-header">

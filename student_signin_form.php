@@ -2,9 +2,12 @@
 .user-index-form-size {
     width: 100%;
 }
+
 .card {
-    width: 75%;
+    width: 40%;
     margin: auto;
+    border: 2px solid black;
+    font-family: 'Georgia';
 }
 </style>
 <form method="post" id="signin_student">
@@ -23,9 +26,9 @@
                             placeholder="Password" required>
                     </div>
 
-                    <button id="signin" name="login" class="btn btn-info" type="submit"><i
+                    <button id="signin" name="login" class="btn btn-success" type="submit"><i
                             class="fa-solid fa-sign-in"></i> Login </button>
-                    <button onclick="window.location='index.php'" id="btn_login" name="back" class="btn"
+                    <button onclick="window.location='index.php'" id="btn_login" name="back" class="btn btn-danger"
                         type="submit"><i class="fa-solid fa-rotate-backward"></i> Back </button>
                 </form>
             </div>
@@ -49,24 +52,21 @@ jQuery(document).ready(function() {
                 data: formData,
                 success: function(html) {
                     if (html == 'true') {
-                        alert("Welcome to Learning Management System")
+                        alert("Welcome to Learning Management System for TLE-Agriculture")
                         // $.jGrowl("Welcome to Learning Management System for TLE", { header: 'Login Success' });
                         var delay = 2000;
                         setTimeout(function() {
                             window.location = 'dashboard_student.php'
                         }, delay);
                     } else if (html == 'false') {
+                        alert("Login Failed")
                         // $.jGrowl("Student does not found in the database Please Make Sure to Check Your ID Number or Firstname, Lastname and the Section You Belong. ", { header: 'Login Failed' });
                     }
                 }
-
-
             });
 
         } else {
-            $.jGrowl("Student Not found", {
-                header: 'Login Failed'
-            });
+            //$.jGrowl("Student Not found", {header: 'Login Failed'});
         }
     });
 });

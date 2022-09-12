@@ -48,19 +48,10 @@ body {
     color: white;
 }
 
-/* Now I have determined what the sidebar will look like for a responsive device */
-.hover_collapse .sidebar {
-    width: 70px;
-}
-
-.hover_collapse .sidebar ul li a .text {
-    display: none;
-}
-
 .sidebar {
     position: fixed;
     top: 60px;
-    left: 0;
+
     width: 180px;
     height: 100%;
     background: #042331;
@@ -132,7 +123,7 @@ body {
         </div>
     </div>
     <div class="sidebar">
-        <img id="avatar" src="admin/<?php echo $row['location']; ?>" class="img-polaroid">
+        <img id="avatar" src="/lmstle/admin/uploads/<?php echo $row['location']; ?>" class="img-polaroid">
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
             widget="treeview">
             <li class=""><a href="dashboard_teacher.php"><i class="fa-solid fa-arrow-left"></i> Back</a></li>
@@ -147,6 +138,5 @@ body {
             <li class=""><a href="add_task.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-plus-circle"></i> Add
                     Task</a></li>
         </ul>
-        <?php include('search_other_class.php'); ?>
     </div>
 </body>

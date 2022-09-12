@@ -2,7 +2,6 @@
 <?php include('session.php'); ?>
     <body>
 		<?php include('sidebar.php'); ?>
-		<?php include('sidebar2.php'); ?>
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span6" id="content">
@@ -45,8 +44,6 @@
 													</span>
 													</div>
 												</a>
-												<p class="class"><?php echo $row['class_name']; ?></p>
-												<p class="subject"><?php echo $row['subject_code']; ?></p>
 												<a  href="#<?php echo $id; ?>" data-toggle="modal"><i class="fa-solid fa-trash-can"></i> Remove</a>	
 											
 											</li>

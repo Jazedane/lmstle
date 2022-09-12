@@ -11,7 +11,7 @@
 										?>
     <li id="del<?php echo $id; ?>">
         <a href="my_students.php<?php echo '?id='.$id; ?>">
-            <img src="<?php echo $class_row['thumbnails'] ?>" width="124" height="140" class="img-polaroid" alt="">
+            <img src="<?php echo $row['thumbnails'] ?>" width="124" height="140" class="img-polaroid" alt="">
 
         </a>
         <p class="class"><?php echo $row['class_name']; ?></p>

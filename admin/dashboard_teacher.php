@@ -5,7 +5,7 @@
     <?php include('sidebar.php'); ?>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span6" id="content">
+            <div class="span6" id="content" style="margin-right: 50px">
                 <div class="row-fluid">
 
                     <ul class="breadcrumb">
