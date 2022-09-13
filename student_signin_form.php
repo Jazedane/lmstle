@@ -32,7 +32,7 @@
                     <button id="signin" name="login" class="btn btn-success" type="submit"><i
                             class="fa-solid fa-sign-in"></i> Login </button>
                     <button onclick="window.location='index.php'" id="btn_login" name="back" class="btn btn-danger"
-                        type="submit"><i class="fa-solid fa-rotate-backward"></i> Back </button>
+                        type="button"><i class="fa-solid fa-rotate-backward"></i> Back </button>
 
                 </form>
             </div>

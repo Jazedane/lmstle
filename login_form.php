@@ -1,11 +1,7 @@
 <style>
-.user-index-form-size {
-    width: 100%;
-}
-
 .card-login-form {
-    width: 40%;
-    margin: auto;
+    width: 30%;
+    margin: 0 auto;
     font-family: 'Georgia';
     margin-top: 50px;
 }
