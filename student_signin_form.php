@@ -1,6 +1,7 @@
 <style>
 .user-index-form-size {
-    width: 100%;
+    width: 70%;
+    margin: auto;
 }
 
 .card-student-login-form {
@@ -13,17 +14,17 @@
 
 <div class="card-student-login-form">
     <form method="post" id="signin_student">
-        <div class="card-body text-center">
+        <div class="card-body">
             <div class="user-index-form-size">
                 <h3 class="form-signin-heading"><i class="fa-solid fa-lock"></i> Login as Student</h3>
                 <form id="signin_student" class="form-signin" method="post">
 
-                    <div class="md-3">
+                    <div class="mb-3">
                         <input type="text" class="input-block-level" id="student_id" name="username"
                             placeholder="ID Number" required>
                     </div>
 
-                    <div class="md-3">
+                    <div class="mb-3">
                         <input type="password" class="input-block-level" id="password" name="password"
                             placeholder="Password" required>
                     </div>
@@ -55,7 +56,7 @@ jQuery(document).ready(function() {
                 url: "student_signup.php",
                 data: formData,
                 success: function(html) {
-                    if (html = 'true') {
+                    if (html == 'true') {
                         alert("Welcome to Learning Management System for TLE-Agriculture")
                         $.jGrowl("Welcome to Learning Management System for TLE", {
                             header: 'Login Success'

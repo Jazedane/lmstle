@@ -127,7 +127,7 @@ body {
 </div>
 
 <div class="sidebar">
-    <img id="avatar" src="admin/<?php echo $row[
+    <img id="avatar" src="/lmstle/admin/<?php echo $row[
         'location'
     ]; ?>" class="img-fluid img-thumbnail">
     <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data

@@ -67,11 +67,6 @@
                                                 </span>
                                             </div>
                                         </a>
-                                        <p class="class"><?php echo $row[
-                                            'class_name'
-                                        ]; ?></p>
-
-
                                     </li>
 
                                     <?php
