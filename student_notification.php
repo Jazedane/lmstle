@@ -29,7 +29,7 @@
                                 <form action="read.php" method="post">
                                     <?php if($not_read == '0'){
 								}else{ ?>
-                                    <button id="delete" class="btn btn-info" name="read"><i
+                                    <button id="delete" class="btn btn-success" name="read"><i
                                             class="fa-solid fa-check"></i> Read</button>
                                     <div class="pull-right">
                                         Check All <input type="checkbox" name="selectAll" id="checkAll" />
