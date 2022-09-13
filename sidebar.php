@@ -48,15 +48,6 @@ body {
     color: white;
 }
 
-/* Now I have determined what the sidebar will look like for a responsive device */
-.hover_collapse .sidebar {
-    width: 70px;
-}
-
-.hover_collapse .sidebar ul li a .text {
-    display: none;
-}
-
 .sidebar {
     position: fixed;
     top: 60px;

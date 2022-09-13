@@ -13,6 +13,7 @@ $hashedPassword = hash('sha256', $password);
 $count = mysqli_num_rows($query);
 
 if ($count > 0) {
+    echo 'true';
 	$row = mysqli_fetch_array($query);
 	$id = $row['student_id'];
 	
@@ -21,7 +22,6 @@ if ($count > 0) {
         "update student set status = 'Registered' where student_id = '$id'"
     ) or die(mysqli_error());
     $_SESSION['id'] = $id;
-    echo 'true';
 } else {
     echo 'false';
 }

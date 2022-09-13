@@ -1,8 +1,8 @@
 <div class="span3" id="">
-	<div class="row-fluid">
+	<div class="row-fluid" >
 
 				      <!-- block -->
-                        <div class="block">
+                        <div class="block" style="margin-top: 65px">
                             <div class="navbar navbar-inner block-header">
                                 <div id="" class="muted pull-left"><h4><i class="fa-solid fa-pencil"></i> Create Message</h4></div>
                             </div>

@@ -2,6 +2,7 @@
 .admin-index-form-size {
     width: 100%;
 }
+
 .card {
     width: 40%;
     margin: auto;
@@ -9,8 +10,9 @@
     font-family: 'Georgia';
 }
 </style>
-<form method="post" id="login_form">
-    <div class="card">
+
+<div class="card">
+    <form method="post" id="login_form">
         <div class="card-body text-center">
             <div class="admin-index-form-size">
                 <h3 class="form-signin-heading"><i class="fa-solid fa-lock"></i> Login as Teacher </h3>
@@ -30,12 +32,13 @@
                     </button>
                     <button onclick="window.location='index.php'" id="btn_login" name="login" class="btn btn-danger"
                         type="submit"><i class="fa-solid fa-arrow-rotate-backward"></i> Back </button>
-
+                        
                 </form>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
+
 <script>
 jQuery(document).ready(function() {
     jQuery("#login_form").submit(function(e) {
