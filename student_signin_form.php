@@ -45,7 +45,7 @@ jQuery(document).ready(function() {
 
         var password = jQuery('#password').val();
 
-        if (password == password) {
+        if (password = password) {
             var formData = jQuery(this).serialize();
             $.ajax({
                 type: "POST",
@@ -54,7 +54,7 @@ jQuery(document).ready(function() {
                 success: function(html) {
                     if (html == 'true') {
                         alert("Welcome to Learning Management System for TLE-Agriculture")
-                        //$.jGrowl("Welcome to Learning Management System for TLE", { header: 'Login Success' });
+                        $.jGrowl("Welcome to Learning Management System for TLE", { header: 'Login Success' });
                         var delay = 2000;
                         setTimeout(function() {
                             window.location = 'dashboard_student.php'
