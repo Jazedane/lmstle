@@ -136,7 +136,7 @@ body {
                 <i class="fa-solid fa-info-circle"></i> Notification</a>
         </li>
         <li class="">
-            <a href="teacher_message_teacher.php"><i class="fa-solid fa-envelope"></i> Message</a>
+            <a href="teacher_message.php"><i class="fa-solid fa-envelope"></i> Message</a>
         </li>
         <li class="">
             <a href="plants_info.php">
