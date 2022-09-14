@@ -1,7 +1,7 @@
 	<?php include('dbcon.php'); ?>
 	<form action="delete_student.php" method="post">
 	<table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
-	<a data-toggle="modal" href="#student_delete" id="delete"  class="btn btn-danger" name=""><i class="fa-solid fa-trach-can"></i></a>
+	<a data-toggle="modal" href="#student_delete" id="delete"  class="btn btn-danger" name=""><i class="fa-solid fa-trash-can"></i></a>
 	<div class="pull-right">
 			    <ul class="nav nav-pills">
 				<li class="">

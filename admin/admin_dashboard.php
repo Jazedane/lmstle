@@ -5,10 +5,8 @@
 
 <div class="container-fluid main-content">
     <div class="row-fluid">
-        <!--/span-->
         <div class="span9" id="content">
             <div class="row-fluid">
-                <!-- block -->
                 <div id="block_bg" class="block">
                     <div class="navbar navbar-inner block-header">
                         <div class="muted pull-left">Data Numbers</div>
@@ -24,7 +22,7 @@
                             <div class="span4">
                                 <div class="chart" data-percent="<?php echo $count_student ?>">
                                     <?php echo $count_student ?></div>
-                                <div class="chart-bottom-heading"><strong>Registered Students</strong></div>
+                                <div class="chart-bottom-heading"><a href="reg_students.php"><strong>Registered Students</strong></a></div>
                             </div>
 
                             <?php 
@@ -35,7 +33,7 @@
                             <div class="span4">
                                 <div class="chart" data-percent="<?php echo $count_student ?>">
                                     <?php echo $count_student ?></div>
-                                <div class="chart-bottom-heading"><strong>Students</strong></div>
+                                <div class="chart-bottom-heading"><a href="students.php"><strong>Students</strong></a></div>
                             </div>
 
                             <?php 
@@ -46,12 +44,11 @@
                             <div class="span4">
                                 <div class="chart" data-percent="<?php echo $count_class; ?>">
                                     <?php echo $count_class; ?></div>
-                                <div class="chart-bottom-heading"><strong>Section</strong></div>
+                                <div class="chart-bottom-heading"><a href="class.php"><strong>Section</strong></a></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /block -->
             </div>
         </div>
     </div>

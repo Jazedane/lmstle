@@ -113,7 +113,8 @@ body {
                 <ul class="dropdown-menu">
                     <li>
                         <a href="change_password_teacher.php"><i class="fa-solid fa-circle"></i> Change Password</a>
-                        <a tabindex="-1" href="teacher_avatar.php" data-toggle="modal"><i class="fa-solid fa-image-portrait"></i>
+                        <a tabindex="-1" href="teacher_avatar.php" data-toggle="modal"><i
+                                class="fa-solid fa-image-portrait"></i>
                             Change Avatar</a>
                         <a tabindex="-1" href="profile_teacher.php"><i class="fa-solid fa-user"></i> Profile</a>
                         <a tabindex="-1" href="logout.php"><i class="fa-solid fa-sign-out"></i> Logout</a>
@@ -131,12 +132,12 @@ body {
                     My Students</a></li>
             <li class=""><a href="progress.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-bars-progress"></i>
                     Students Progress</a></li>
-            <li class=""><a href="downloadable.php<?php echo '?id='.$get_id; ?>"><i
-                        class="fa-solid fa-file-upload"></i> Task Uploaded</a></li>
             <li class=""><a href="task.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-tasks"></i>
                     Tasks</a></li>
             <li class=""><a href="add_task.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-plus-circle"></i> Add
                     Task</a></li>
+            <li class=""><a href="downloadable.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-file-upload"></i>
+                    Uploaded Task</a></li>
         </ul>
     </div>
 </body>
