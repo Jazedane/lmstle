@@ -122,25 +122,27 @@
                 });
                 </script>
                 <script>
-                /* 			jQuery(document).ready(function(){
-			jQuery("#reply").submit(function(e){
-					e.preventDefault();
-					var id = $('.reply').attr("id");
-					var _this = $(e.target);
-					var formData = jQuery(this).serialize();
-					$.ajax({
-						type: "POST",
-						url: "reply.php",
-						data: formData,
-						success: function(html){
-						$.jGrowl("Message Successfully Sent", { header: 'Message Sent' });
-						$('#reply'+id).modal('hide');
-						}
-						
-					});
-					return false;
-				});
-			}); */
+                jQuery(document).ready(function() {
+                    jQuery("#reply").submit(function(e) {
+                        e.preventDefault();
+                        var id = $('.reply').attr("id");
+                        var _this = $(e.target);
+                        var formData = jQuery(this).serialize();
+                        $.ajax({
+                            type: "POST",
+                            url: "reply.php",
+                            data: formData,
+                            success: function(html) {
+                                $.jGrowl("Message Successfully Sent", {
+                                    header: 'Message Sent'
+                                });
+                                $('#reply' + id).modal('hide');
+                            }
+
+                        });
+                        return false;
+                    });
+                });
                 </script>
 
 

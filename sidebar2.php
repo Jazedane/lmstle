@@ -130,10 +130,10 @@ body {
                     My Classmates</a></li>
             <li class=""><a href="progress.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-bars-progress"></i>
                     My Progress</a></li>
-            <li class=""><a href="downloadable_student.php<?php echo '?id='.$get_id; ?>"><i
-                        class="fa-solid fa-file-upload"></i> Uploaded Task</a></li>
             <li class=""><a href="task_student.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-tasks"></i> Task
                     Update</a></li>
+            <li class=""><a href="downloadable_student.php<?php echo '?id='.$get_id; ?>"><i
+                        class="fa-solid fa-file-upload"></i> Uploaded Task</a></li>
         </ul>
     </div>
 </body>

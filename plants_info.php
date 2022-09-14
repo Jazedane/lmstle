@@ -13,7 +13,15 @@
                     </div>
                     <div class="block-content collapse in">
                         <div class="card" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
+                            <img src="/lmstle/images/index.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Plant 1</h5>
+                                <p class="card-text">This is a plant.</p>
+                                <a href="#" class="btn btn-primary"> Check Information</a>
+                            </div>
+                        </div>
+                        <div class="card" style="width: 18rem;">
+                            <img src="/lmstle/images/index.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Plant 1</h5>
                                 <p class="card-text">This is a plant.</p>
@@ -25,7 +33,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <?php include('script.php'); ?>
 

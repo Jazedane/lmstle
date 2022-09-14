@@ -1,48 +1,52 @@
 <?php include('header.php'); ?>
 <?php include('session.php'); ?>
-<body>
-		<?php include('sidebar.php'); ?>
-        <div class="container-fluid">
-            <div class="row-fluid">
-               <div class="span6" id="content">
-                     <div class="row-fluid">
 
-					     <ul class="breadcrumb">
-								<?php
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span6" id="content">
+                <div class="row-fluid">
+
+                    <ul class="breadcrumb">
+                        <?php
 								$school_year_query = mysqli_query($conn,"select * from school_year order by school_year DESC")or die(mysqli_error());
 								$school_year_query_row = mysqli_fetch_array($school_year_query);
 								$school_year = $school_year_query_row['school_year'];
 								?>
-								<li><a href="#">Message</a><span class="divider">/</span></li>
-								<li><a href="#"><b>Inbox</b></a><span class="divider">/</span></li>
-								<li><a href="#">School Year: <?php echo $school_year_query_row['school_year']; ?></a></li>
-						</ul>
+                        <li><a href="#">Message</a><span class="divider">/</span></li>
+                        <li><a href="#"><b>Inbox</b></a><span class="divider">/</span></li>
+                        <li><a href="#">School Year: <?php echo $school_year_query_row['school_year']; ?></a></li>
+                    </ul>
 
-                        <div id="block_bg" class="block">
-                            <div class="navbar navbar-inner block-header">
-                                <div id="" class="muted pull-left"></div>
-                            </div>
-                            <div class="block-content collapse in">
-                                <div class="span12">
-			<form action="read_message.php" method="post">
-										<div class="pull-right">
-											<button class="btn btn-info" name="read"><i class="fa-solid fa-check"></i> Read</button>
-													
-							Check All <input type="checkbox"  name="selectAll" id="checkAll" />
-								<script>
-								$("#checkAll").click(function () {
-									$('input:checkbox').not(this).prop('checked', this.checked);
-								});
-								</script>					
-							
-										</div>
-										
-										<ul class="nav nav-pills">
-										<li class="active"><a href="student_message.php"><i class="fa-solid fa-envelope"></i>Inbox</a></li>
-										<li class=""><a href="sent_message_student.php"><i class="fa-solid fa-envelope"></i>Send messages</a></li>
-										</ul>
-									
-									<?php
+                    <div id="block_bg" class="block">
+                        <div class="navbar navbar-inner block-header">
+                            <div id="" class="muted pull-left"></div>
+                        </div>
+                        <div class="block-content collapse in">
+                            <div class="span12">
+                                <form action="read_message.php" method="post">
+                                    <div class="pull-right">
+                                        <button class="btn btn-info" name="read"><i class="fa-solid fa-check"></i>
+                                            Read</button>
+
+                                        Check All <input type="checkbox" name="selectAll" id="checkAll" />
+                                        <script>
+                                        $("#checkAll").click(function() {
+                                            $('input:checkbox').not(this).prop('checked', this.checked);
+                                        });
+                                        </script>
+
+                                    </div>
+
+                                    <ul class="nav nav-pills">
+                                        <li class="active"><a href="student_message.php"><i
+                                                    class="fa-solid fa-envelope"></i>Inbox</a></li>
+                                        <li class=""><a href="sent_message_student.php"><i
+                                                    class="fa-solid fa-envelope"></i>Send messages</a></li>
+                                    </ul>
+
+                                    <?php
 								 $query_announcement = mysqli_query($conn,"select * from message
 																	LEFT JOIN student ON student.student_id = message.sender_id
 																	where  message.reciever_id = '$session_id' order by date_sended DESC
@@ -57,62 +61,73 @@
 								 $sender_name = $row['sender_name'];
 								 $reciever_name = $row['reciever_name'];
 								 ?>
-											<div class="post"  id="del<?php echo $id; ?>">
-											<div class="message_content">
-											<?php echo $row['content']; ?>
-											</div>
-											<div class="pull-right">
-											<?php if ($status == 'read'){
+                                    <div class="post" id="del<?php echo $id; ?>">
+                                        <div class="message_content">
+                                            <?php echo $row['content']; ?>
+                                        </div>
+                                        <div class="pull-right">
+                                            <?php if ($status == 'read'){
 											}else{ ?>
-											<input id="" class="" name="selector[]" type="checkbox" value="<?php echo $id; ?>">
-											<?php } ?>
-											</div>
-													<hr>
-											Send by: <strong><?php echo $row['sender_name']; ?></strong>
-											<i class="icon-calendar"></i> <?php echo $row['date_sended']; ?>
-														<div class="pull-right">
-															<a class="btn btn-link"  href="#reply<?php echo $id; ?>" data-toggle="modal" ><i class="fa-solid fa-reply"></i> Reply </a>
-														</div>
-													<div class="pull-right">
-													<a class="btn btn-link"  href="#<?php echo $id; ?>" data-toggle="modal" ><i class="fa-solid fa-remove"></i> Remove </a>
-													<?php include("remove_inbox_message_modal.php"); ?>
-													<?php include("reply_inbox_message_modal_student.php"); ?>
-													</div>
-											</div>
-											
-								<?php }}else{ ?>
-								<div class="alert alert-info"><i class="fa-solid fa-info-circle"></i> No Message Inbox</div>
-								<?php } ?>		
-								</form>		
-                                </div>
+                                            <input id="" class="" name="selector[]" type="checkbox"
+                                                value="<?php echo $id; ?>">
+                                            <?php } ?>
+                                        </div>
+                                        <hr>
+                                        Send by: <strong><?php echo $row['sender_name']; ?></strong>
+                                        <i class="icon-calendar"></i> <?php echo $row['date_sended']; ?>
+                                        <div class="pull-right">
+                                            <a class="btn btn-link" href="#reply<?php echo $id; ?>"
+                                                data-toggle="modal"><i class="fa-solid fa-reply"></i> Reply </a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a class="btn btn-link" href="#<?php echo $id; ?>" data-toggle="modal"><i
+                                                    class="fa-solid fa-remove"></i> Remove </a>
+                                            <?php include("remove_inbox_message_modal.php"); ?>
+                                            <?php include("reply_inbox_message_modal_student.php"); ?>
+                                        </div>
+                                    </div>
+
+                                    <?php }}else{ ?>
+                                    <div class="alert alert-info"><i class="fa-solid fa-info-circle"></i> No Message
+                                        Inbox</div>
+                                    <?php } ?>
+                                </form>
                             </div>
                         </div>
                     </div>
-					
-<script type="text/javascript">
-	$(document).ready( function() {
-		$('.remove').click( function() {
-		var id = $(this).attr("id");
-			$.ajax({
-			type: "POST",
-			url: "remove_inbox_message.php",
-			data: ({id: id}),
-			cache: false,
-			success: function(html){
-			$("#del"+id).fadeOut('slow', function(){ $(this).remove();}); 
-			$('#'+id).modal('hide');
-			$.jGrowl("Your Sent message is Successfully Deleted", { header: 'Data Delete' });	
-			}
-			}); 		
-			return false;
-		});				
-	});
-</script>
                 </div>
-				<?php include('create_message_student_student.php') ?>
+
+                <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.remove').click(function() {
+                        var id = $(this).attr("id");
+                        $.ajax({
+                            type: "POST",
+                            url: "remove_inbox_message.php",
+                            data: ({
+                                id: id
+                            }),
+                            cache: false,
+                            success: function(html) {
+                                $("#del" + id).fadeOut('slow', function() {
+                                    $(this).remove();
+                                });
+                                $('#' + id).modal('hide');
+                                $.jGrowl("Your Sent message is Successfully Deleted", {
+                                    header: 'Data Delete'
+                                });
+                            }
+                        });
+                        return false;
+                    });
+                });
+                </script>
             </div>
-		<?php include('footer.php'); ?>
+            <?php include('create_message_student.php') ?>
         </div>
-		<?php include('script.php'); ?>
-    </body>
+        <?php include('footer.php'); ?>
+    </div>
+    <?php include('script.php'); ?>
+</body>
+
 </html>
