@@ -26,7 +26,7 @@
                     </ul>
 
                     <div class="block">
-                        <div class="navbar navbar-inner block-header">
+                        <div class="navbar navbar-inner block-header"> Your Class
                             <div id="" class="muted pull-right">
                                 <?php
                                 ($query = mysqli_query(
@@ -74,7 +74,7 @@
                                     } else {
                                          ?>
                                     <div class="alert alert-info">
-                                        <i class="fa-solid fa-info-circle"></i> 
+                                        <i class="fa-solid fa-info-circle"></i>
                                         You are currently not enrolled in a class
                                     </div>
                                     <?php

@@ -20,7 +20,7 @@
 
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left"></div>
+                            <div id="" class="muted pull-left"> Notification </div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">

@@ -20,7 +20,7 @@
 
                     <div class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="count_class" class="muted pull-right"> Section List </div>
+                            <div id="count_class" class="muted pull-left"> Section List </div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">

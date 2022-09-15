@@ -21,7 +21,7 @@
 
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left"></div>
+                            <div id="" class="muted pull-left"> Messages </div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">
@@ -50,7 +50,7 @@
                                     <?php echo $row['content']; ?>
                                     <hr>
                                     Sent to: <strong><?php echo $row['reciever_name']; ?></strong>
-                                    <i class="icon-calendar"></i> <?php echo $row['date_sended']; ?>
+                                    <i class="fa-solid fa-calendar"></i> <?php echo $row['date_sended']; ?>
                                     <div class="pull-right">
                                         <a class="btn btn-link" href="#<?php echo $id; ?>" data-toggle="modal"><i
                                                 class="fa-solid fa-remove"></i> Remove </a>
