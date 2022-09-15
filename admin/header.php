@@ -2,6 +2,18 @@
 <html class="no-js">
 
 <head>
+    <style>
+    body {
+        background-image: url(/lmstle/admin/images/index.jpg);
+        background-repeat: no-repeat;
+        -webkit-background-size: cover !important;
+        -moz-background-size: cover !important;
+        -o-background-size: cover !important;
+        background-size: cover !important;
+    }
+    </style>
+
+<body>
     <title> LMSTLE </title>
     <!-- Bootstrap -->
     <!-- <link href="images/logo.png" rel="icon" type="image"> -->
@@ -23,4 +35,5 @@
 
     <script src="vendors/jGrowl/jquery.jgrowl.js"></script>
 </head>
+</body>
 <?php include 'dbcon.php'; ?>

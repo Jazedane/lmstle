@@ -3,7 +3,7 @@
     width: 30%;
     margin: 0 auto;
     font-family: 'Georgia';
-    margin-top: 50px;
+    margin-top: 20px;
 }
 </style>
 

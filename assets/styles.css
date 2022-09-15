@@ -1,9 +1,11 @@
 /** Home Page **/
 
 body {
-    padding-top: 70px;
-    padding-bottom: 40px;
-    background-color: #f5f5f5;
+    background-image: url(/lmstle/admin/images/index.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    background-size: cover !important;
 }
 
 
@@ -16,10 +18,10 @@ body {
 
 #login .form-signin {
     max-width: 250px;
-    padding: 20px 30px 30px;
+    padding: 20px 10px 30px;
     margin: 20px;
     background-color: #fff;
-    border: 1px solid black;
+    border: 2px solid black;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;

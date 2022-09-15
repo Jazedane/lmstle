@@ -1,5 +1,5 @@
 body {
-    background: url(/lmstle/admin/images/index.jpg) no-repeat center center fixed;
+    background-image: url(/lmstle/admin/images/index.jpg) no-repeat center center fixed;
     -webkit-background-size: cover !important;
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
@@ -31,9 +31,6 @@ body {
     .title {
         margin: -146px auto !important;
         position: absolute;
-    }
-    .chmsc {
-        display: none;
     }
     .title h3 {
         color: #fff;
