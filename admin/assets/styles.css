@@ -106,7 +106,7 @@ body {
     border-top: none;
     -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 6, 0.75);
     -moz-box-shadow: 2px 2px 5px rgba(0, 0, 6, 0.75);
-    box-shadow: 2px 2px 5px rgba(0, 0, 6, 0.75);
+    box-shadow: 2px 2px 5px rgba(0, 0, 6, 0.75);    
 }
 
 .block-content {
@@ -238,4 +238,16 @@ body {
 
 .main-content {
     margin-left: 200px;
+    margin-right: 20px;
+}
+
+footer {
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    color: black;
+    padding: 10px;
+    margin: 0 10px 10px 0;
+    background-color: #f5f5f5;
+    border-radius: 5px;
 }

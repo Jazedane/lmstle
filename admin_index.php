@@ -30,8 +30,10 @@
 
                     <button name="login" class="btn btn-success" type="submit"><i class="fa-solid fa-sign-in"></i> Login
                     </button>
-                    <button onclick="window.location='index.php'" id="btn_login" name="login" class="btn btn-danger"
-                        type="submit"><i class="fa-solid fa-arrow-rotate-backward"></i> Back </button>
+
+                    <button id="back" type="button" class="btn btn-danger">
+                        <i class="fa-solid fa-arrow-rotate-backward"></i> Back
+                    </button>
                         
                 </form>
             </div>
@@ -40,7 +42,13 @@
 </div>
 
 <script>
+function handleBackNavigation() {
+    window.location.href='/lmstle/index.php'
+}
+
 jQuery(document).ready(function() {
+    jQuery("#back").click(handleBackNavigation)
+
     jQuery("#login_form").submit(function(e) {
         e.preventDefault();
         var formData = jQuery(this).serialize();
