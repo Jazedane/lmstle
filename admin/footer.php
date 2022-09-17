@@ -1,3 +1,3 @@
 <footer>
-    Learning Management System for TLE-Agriculture
+    Learning Management System for TLE-Agricultural
 </footer>

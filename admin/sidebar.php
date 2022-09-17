@@ -165,7 +165,7 @@ body {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="user_log.php"><i class="fa-solid fa-user-check"></i> User Log</a>
+                    <a href="user_log.php"><i class="fa-solid fa-user-check"></i> Teacher Log</a>
                 </li>
                 <li>
                     <a href="activity_log.php"><i class="fa-solid fa-list-check"></i> Activity Log</a>

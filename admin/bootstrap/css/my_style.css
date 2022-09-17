@@ -78,7 +78,7 @@
 }
 
 .navbar-inner {
-    background-image: none;
+    background-image: linear-gradient(to bottom, yellowgreen, green);
     line-height: 2px;
     margin-top: 20px;
 }
