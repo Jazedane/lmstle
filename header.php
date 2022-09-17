@@ -37,6 +37,7 @@
     <link href="vendors/chosen.min.css" rel="stylesheet" media="screen">    
 
     <script src="vendors/jquery-1.9.1.min.js"></script>
+    <script src="vendors/jGrowl/jquery.jgrowl.js"></script>
 </head>
 
 <?php include 'dbcon.php'; ?>
