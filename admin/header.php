@@ -33,6 +33,9 @@
     
     <link href="assets/styles.css" rel="stylesheet" media="screen">
     <link href="bootstrap/css/my_style.css" rel="stylesheet" media="screen">
+
+    <script src="vendors/jquery-1.9.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </head> 
 
 <?php include 'dbcon.php'; ?>
