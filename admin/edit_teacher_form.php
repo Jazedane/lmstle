@@ -1,5 +1,4 @@
    <div class="row-fluid">
-                        <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">Edit User</div>
@@ -7,7 +6,7 @@
                             <div class="block-content collapse in">
                                 <div class="span12">
 								<?php
-								$query = mysqli_query($conn,"select * from users where user_id = '$get_id'")or die(mysqli_error());
+								$query = mysqli_query($conn,"select * from teacher where teacher_id = '$get_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 								?>
 								<form method="post">
@@ -34,7 +33,7 @@
 											<div class="control-group">
                                           <div class="controls">
 												<button name="update" class="btn btn-success"><i class="fa-solid fa-save"></i></button>
-                        <a href="admin_user.php" class="btn btn-info"><i class="fa-solid fa-add"></i> Add user</a>
+                        <a href="admin_user.php" class="btn btn-info"><i class="fa-solid fa-add"></i> Add Teacher</a>
 
                                           </div>
                                         </div>
@@ -42,7 +41,6 @@
 								</div>
                             </div>
                         </div>
-                        <!-- /block -->
                     </div>
 			<?php		
 if (isset($_POST['update'])){
@@ -52,9 +50,9 @@ $lastname = $_POST['lastname'];
 $username = $_POST['username'];
 
 
-mysqli_query($conn,"update users set username = '$username'  , firstname = '$firstname' , lastname = '$lastname' where user_id = '$get_id' ")or die(mysqli_error());
+mysqli_query($conn,"update teacher set username = '$username'  , firstname = '$firstname' , lastname = '$lastname' where teacher_id = '$get_id' ")or die(mysqli_error());
 
-mysqli_query($conn,"insert into activity_log (date,username,action) values(NOW(),'$user_username','Edit User $username')")or die(mysqli_error());
+mysqli_query($conn,"insert into activity_log (date,username,action) values(NOW(),'$teacher_username','Edit Teacher $username')")or die(mysqli_error());
 ?>
 <script>
   window.location = "admin_user.php"; 

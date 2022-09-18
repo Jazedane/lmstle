@@ -9,16 +9,15 @@
 				</div>
                 <div class="span6" id="">
                      <div class="row-fluid">
-                        <!-- block -->
                         <div id="block_bg" class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">Teacher List</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-								<form action="delete_users.php" method="post">
+								<form action="delete_teacher.php" method="post">
   									<table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
-									<a data-toggle="modal" href="#user_delete" id="delete"  class="btn btn-danger" name=""><i class="fa-solid fa-trash-can"></i></a>
+									<a data-toggle="modal" href="#teacher_delete" id="delete"  class="btn btn-danger" name=""><i class="fa-solid fa-trash-can"></i></a>
 									<?php include('modal_delete.php'); ?>
 										<thead>
 										  <tr>
@@ -45,7 +44,7 @@
 												<td><?php echo $row['username']; ?></td>
 											
 												<td width="40">
-												<a href="edit_user.php<?php echo '?id='.$id; ?>"  data-toggle="modal" class="btn btn-success"><i class="fa-solid fa-edit"></i></a>
+												<a href="edit_teacher.php<?php echo '?id='.$id; ?>"  data-toggle="modal" class="btn btn-success"><i class="fa-solid fa-edit"></i></a>
 												</td>
 		
 									
@@ -57,10 +56,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /block -->
                     </div>
-
-
                 </div>
             </div>
 		<?php include('footer.php'); ?>

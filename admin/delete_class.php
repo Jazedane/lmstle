@@ -1,9 +1,12 @@
 <?php
 include('dbcon.php');
-$get_id = $_POST['id'];
-mysqli_query($conn,"delete from teacher_class  where  teacher_class_id = '$get_id' ")or die(mysqli_error());
-mysqli_query($conn,"delete from teacher_class_student  where  teacher_class_id = '$get_id' ")or die(mysqli_error());
-mysqli_query($conn,"delete from teacher_notification  where  teacher_class_id = '$get_id' ")or die(mysqli_error());
-mysqli_query($conn,"delete from class_subject_overview where  teacher_class_id = '$get_id' ")or die(mysqli_error());
-header('location:dashboard_teacher.php');
+if (isset($_POST['delete_class'])){
+$id=$_POST['selector'];
+$N = count($id);
+for($i=0; $i < $N; $i++)
+{
+	$result = mysqli_query($conn,"DELETE FROM class where class_id='$id[$i]'");
+}
+header("location: class.php");
+}
 ?>
