@@ -1,4 +1,5 @@
 <script src="vendors/jquery-1.9.1.min.js"></script>
+<script src="vendors/jGrowl/jquery.jgrowl.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="vendors/jquery.uniform.min.js"></script>
 
@@ -16,7 +17,6 @@
 <script src="vendors/easypiechart/jquery.easy-pie-chart.js"></script>
 <script src="vendors/fullcalendar/fullcalendar.js"></script>
 <script src="vendors/fullcalendar/gcal.js"></script>
-<script src="vendors/jGrowl/jquery.jgrowl.js"></script>
 <script src="vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 <script type="text/javascript" src="vendors/tinymce/js/tinymce/tinymce.min.js"></script>
 
