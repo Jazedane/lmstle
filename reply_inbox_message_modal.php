@@ -1,7 +1,6 @@
-		<!-- Modal -->
 <div id="reply<?php echo $id; ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> X </button>
 		<h3 id="myModalLabel">Reply</h3>
 	</div>
 		<div class="modal-body">
@@ -11,7 +10,7 @@
 			<div class="controls">
 				<input type="hidden" name="sender_id" id="inputEmail" value="<?php echo $sender_id; ?>" readonly>
 				<input type="hidden" name="my_name" value="<?php echo $reciever_name; ?>" readonly>
-				<input type="text" name="name_of_sender"  id="inputEmail" value="<?php echo $sender_name; ?>" readonly>
+				<input type="text" name="sender_name"  id="inputEmail" value="<?php echo $sender_name; ?>" readonly>
 			</div>
 		</div>
 		<div class="control-group">

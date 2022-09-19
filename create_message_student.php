@@ -1,7 +1,7 @@
 <div class="span3" id="">
     <div class="row-fluid">
 
-        <div class="block" style="margin-top: 65px">
+        <div class="block" style="margin-top: 150px">
             <div class="navbar navbar-inner block-header">
                 <div id="" class="muted pull-left">
                     <h4><i class="fa-solid fa-pencil"></i> Create Message</h4>
@@ -40,7 +40,7 @@
                         <div class="control-group">
                             <label>Content:</label>
                             <div class="controls">
-                                <textarea name="my_message" class="my_message" required></textarea>
+                                <textarea name="my_message" class="my_message" style="height:120px; width: 100%" required></textarea>
                             </div>
                         </div>
                         <div class="control-group">
@@ -58,7 +58,7 @@
                             var formData = jQuery(this).serialize();
                             $.ajax({
                                 type: "POST",
-                                url: "sent_message.php",
+                                url: "send_message.php",
                                 data: formData,
                                 success: function(html) {
 

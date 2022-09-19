@@ -1,13 +1,11 @@
-<?php include('header_dashboard.php'); ?>
+<?php include('header.php'); ?>
 <?php include('session.php'); ?>
     <body>
-		<?php include('navbar_teacher.php'); ?>
+		<?php include('sidebar.php'); ?>
         <div class="container-fluid">
             <div class="row-fluid">
-				<?php include('teacher_message_sidebar.php'); ?>
                 <div class="span6" id="content">
                      <div class="row-fluid">
-					    <!-- breadcrumb -->	
 					     <ul class="breadcrumb">
 								<?php
 								$school_year_query = mysqli_query($conn,"select * from school_year order by school_year DESC")or die(mysqli_error());
@@ -18,9 +16,6 @@
 								<li><a href="#"><b>Sent Messages</b></a><span class="divider">/</span></li>
 								<li><a href="#">School Year: <?php echo $school_year_query_row['school_year']; ?></a></li>
 						</ul>
-						 <!-- end breadcrumb -->
-					 
-                        <!-- block -->
                         <div id="block_bg" class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div id="" class="muted pull-left"></div>
@@ -30,10 +25,10 @@
   								
 										<ul class="nav nav-pills">
 										<li class="">
-										<a href="teacher_message.php"><i class="fa-solid fa-envelope"></i>inbox</a>
+										<a href="student_message.php"><i class="fa-solid fa-envelope"></i> Inbox</a>
 										</li>
 										<li class="active">
-										<a href="sent_message.php"><i class="fa-solid fa-envelopes"></i>Sent messages</a>
+										<a href="sent_message.php"><i class="fa-solid fa-envelopes"></i> Sent messages</a>
 										</li>
 										</ul>
 									
@@ -63,7 +58,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /block -->
                     </div>
 					
 <script type="text/javascript">
@@ -94,7 +88,7 @@
 	
 
                 </div>
-				<?php include('create_message.php') ?>
+				<?php include('create_message_student.php') ?>
             </div>
 		<?php include('footer.php'); ?>
         </div>

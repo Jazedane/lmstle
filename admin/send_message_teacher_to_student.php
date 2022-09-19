@@ -2,6 +2,7 @@
 include('dbcon.php');
 include('session.php');
 $student_id = $_POST['student_id'];
+$sender_name = $_POST['sender_name'];
 $my_message = $_POST['my_message'];
 
 

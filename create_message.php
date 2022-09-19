@@ -11,7 +11,7 @@
                 <div class="span12">
                     <ul class="nav nav-tabs">
                         <li class="active">
-                            <a href="teacher_message.php">For Teacher</a>
+                            <a href="student_message.php">For Teacher</a>
                         </li>
                     </ul>
 
@@ -66,7 +66,7 @@
                                     });
                                     var delay = 2000;
                                     setTimeout(function() {
-                                        window.location = 'teacher_message.php'
+                                        window.location = 'student_message.php'
                                     }, delay);
 
 

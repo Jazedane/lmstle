@@ -54,7 +54,7 @@
 								if ($count_my_message != '0'){
 								 while($row = mysqli_fetch_array($query_announcement)){	
 								 $id = $row['message_id'];
-								 								 $id_2 = $row['message_id'];
+								 $id_2 = $row['message_id'];
 								 $status = $row['message_status'];
 								 $sender_id = $row['sender_id'];
 								 $sender_name = $row['sender_name'];
@@ -142,7 +142,7 @@
                         });
                         return false;
                     });
-                });
+                }); 
                 </script>
 
 

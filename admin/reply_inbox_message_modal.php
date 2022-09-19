@@ -28,7 +28,7 @@
 		</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa-solid fa-remove"></i> Close</button>
-		<button   id="<?php echo $id; ?>" class="btn btn-danger remove" data-dismiss="modal" aria-hidden="true"><i class="fa-solid fa-check></i> Yes</button>
+		<button   id="<?php echo $id; ?>" class="btn btn-danger remove" data-dismiss="modal" aria-hidden="true"><i class="fa-solid fa-check"></i> Yes </button>
 	</div>
 </div>
 				

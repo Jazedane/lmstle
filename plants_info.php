@@ -4,9 +4,8 @@
 <?php include('sidebar.php'); ?>
 
 <div class="container-fluid main-content">
-    <div class="row-fluid">
+    <div class="row-fluid" style="margin-top:80px">
         <div class="span9" id="content">
-            <div class="row-fluid">
                 <div id="block_bg" class="block">
                     <div class="navbar navbar-inner block-header">
                         <div class="muted pull-left">Available Plants in School Garden</div>
@@ -30,7 +29,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>
