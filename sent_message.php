@@ -28,7 +28,7 @@
 										<a href="student_message.php"><i class="fa-solid fa-envelope"></i> Inbox</a>
 										</li>
 										<li class="active">
-										<a href="sent_message.php"><i class="fa-solid fa-envelopes"></i> Sent messages</a>
+										<a href="sent_message.php"><i class="fa-solid fa-envelope"></i> Sent messages</a>
 										</li>
 										</ul>
 									
@@ -46,7 +46,7 @@
 											<?php echo $row['content']; ?>
 													<hr>
 											Sent to: <strong><?php echo $row['reciever_name']; ?></strong>
-											<i class="icon-calendar"></i> <?php echo $row['date_sended']; ?>
+											<i class="fa-solid fa-calendar"></i> <?php echo $row['date_sended']; ?>
 													<div class="pull-right">
 													<a class="btn btn-link"  href="#<?php echo $id; ?>" data-toggle="modal" ><i class="fa-solid fa-remove"></i> Remove </a>
 													<?php include("remove_sent_message_modal.php"); ?>
