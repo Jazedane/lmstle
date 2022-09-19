@@ -95,7 +95,7 @@ body {
 }
 
 .breadcrumb {
-    margin: 0 0 0px;
+    margin-top: 60px;
     padding: 10px 0px;
     background-color: transparent;
 }
@@ -240,5 +240,4 @@ body {
 
 .main-content {
     margin-left: 200px;
-    margin-top: 60px;
 }
