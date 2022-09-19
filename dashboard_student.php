@@ -8,7 +8,7 @@
             <div class="span9" id="content">
                 <div class="row-fluid">
 
-                    <ul class="breadcrumb" style="margin-top: 80px">
+                    <ul class="breadcrumb">
                         <?php
                         ($school_year_query = mysqli_query(
                             $conn,
