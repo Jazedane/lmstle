@@ -10,7 +10,7 @@
                 <?php include 'student_signin_form.php'; ?>
             </div>
         </div>
-    </div> <!-- /container -->
+    </div>
 </body>
 
 </html>

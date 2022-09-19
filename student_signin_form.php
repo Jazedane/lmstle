@@ -57,23 +57,23 @@ jQuery(document).ready(function() {
                 data: formData,
                 success: function(html) {
                     if (html == 'true') {
-                        alert("Welcome to Learning Management System for TLE-Agriculture")
-                        $.jGrowl("Welcome to Learning Management System for TLE", {
+                        alert("Welcome to Learning Management System for TLE-Agricultural")
+                        $.jGrowl("Welcome to Learning Management System for TLE-Agricultural", {
                             header: 'Login Success'
                         });
                         var delay = 2000;
                         setTimeout(function() {
                             window.location = 'dashboard_student.php'
                         }, delay);
-                    } else if (html = 'false') {
+                    } else if (html == 'false') {
                         alert("Login Failed")
-                        // $.jGrowl("Student does not found in the database Please Make Sure to Check Your ID Number or Firstname, Lastname and the Section You Belong. ", { header: 'Login Failed' });
+                        $.jGrowl("Student Not Found, Please Check Your Username and Password ", { header: 'Login Failed' });
                     }
                 }
             });
 
         } else {
-            $.jGrowl("Student Not found", {header: 'Login Failed'});
+            $.jGrowl("Student Not Found", {header: 'Login Failed'});
         }
     });
 });

@@ -58,14 +58,15 @@ jQuery(document).ready(function() {
             data: formData,
             success: function(html) {
                 if (html == 'true') {
-                    alert("Welcome to Learning Management System for TLE-Agriculture")
-                    // $.jGrowl("Welcome to Learning Management System for TLE-Agriculture", { header: 'Access Granted' });
+                    alert("Welcome to Learning Management System for TLE-Agricultural")
+                    //$.jGrowl("Welcome to Learning Management System for TLE-Agricultural", { header: 'Access Granted' });
                     var delay = 2000;
                     setTimeout(function() {
                         window.location = 'admin/admin_dashboard.php'
                     }, delay);
                 } else {
-                    // $.jGrowl("Please Check Your Username and Password", { header: 'Login Failed' });
+                    alert("Login Failed")
+                    //$.jGrowl("Please Check Your Username and Password", { header: 'Login Failed' });
                 }
             }
 
