@@ -42,24 +42,24 @@
                                     <ul class="nav nav-pills">
                                         <li class="active"><a href="student_message.php"><i
                                                     class="fa-solid fa-envelope"></i> Inbox</a></li>
-                                        <li class=""><a href="sent_message.php"><i
-                                                    class="fa-solid fa-envelope"></i> Send messages</a></li>
+                                        <li class=""><a href="sent_message.php"><i class="fa-solid fa-envelope"></i>
+                                                Send messages</a></li>
                                     </ul>
 
                                     <?php
 								 $query_announcement = mysqli_query($conn,"select * from message
 																	LEFT JOIN student ON student.student_id = message.sender_id
-																	where  message.reciever_id = '$session_id' order by date_sended DESC
+																	where  message.receiver_id = '$session_id' order by date_sended DESC
 																	")or die(mysqli_error());
 								$count_my_message = mysqli_num_rows($query_announcement);	
 								if ($count_my_message != '0'){
 								 while($row = mysqli_fetch_array($query_announcement)){	
 								 $id = $row['message_id'];
-								 								 $id_2 = $row['message_id'];
+						         $id_2 = $row['message_id'];
 								 $status = $row['message_status'];
 								 $sender_id = $row['sender_id'];
 								 $sender_name = $row['sender_name'];
-								 $reciever_name = $row['reciever_name'];
+								 $receiver_name = $row['receiver_name'];
 								 ?>
                                     <div class="post" id="del<?php echo $id; ?>">
                                         <div class="message_content">

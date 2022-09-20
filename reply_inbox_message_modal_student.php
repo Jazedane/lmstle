@@ -10,7 +10,7 @@
 			<label class="control-label" for="inputEmail">To:</label>
 			<div class="controls">
 				<input type="hidden" name="sender_id" id="inputEmail" value="<?php echo $sender_id; ?>" readonly>
-				<input type="hidden" name="my_name" value="<?php echo $reciever_name; ?>" readonly>
+				<input type="hidden" name="receiver_name" value="<?php echo $receiver_name; ?>" readonly>
 				<input type="text" name="sender_name"  id="inputEmail" value="<?php echo $sender_name; ?>" readonly>
 			</div>
 		</div>

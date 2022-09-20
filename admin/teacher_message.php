@@ -38,7 +38,7 @@
                                 <?php
 								 $query_announcement = mysqli_query($conn,"select * from message
 																	LEFT JOIN teacher ON teacher.teacher_id = message.sender_id
-																	where  message.reciever_id = '$session_id' order by date_sended DESC
+																	where  message.receiver_id = '$session_id' order by date_sended DESC
 																	")or die();
 								$count_my_message = mysqli_num_rows($query_announcement);	
 								if ($count_my_message != '0'){
@@ -46,7 +46,7 @@
 								 $id = $row['message_id'];
 								 $sender_id = $row['sender_id'];
 								 $sender_name = $row['sender_name'];
-								 $reciever_name = $row['reciever_name'];
+								 $receiver_name = $row['receiver_name'];
 								 ?>
                                 <div class="post" id="del<?php echo $id; ?>">
 

@@ -34,7 +34,7 @@
 									
 								<?php
 								 $query_announcement = mysqli_query($conn,"select * from message_sent
-																	LEFT JOIN teacher ON teacher.teacher_id = message_sent.reciever_id
+																	LEFT JOIN teacher ON teacher.teacher_id = message_sent.receiver_id
 																	where  sender_id = '$session_id'  order by date_sended DESC
 																	")or die(mysqli_error());					
 								 $count_my_message = mysqli_num_rows($query_announcement);
@@ -45,7 +45,7 @@
 											<div class="post"  id="del<?php echo $id; ?>">
 											<?php echo $row['content']; ?>
 													<hr>
-											Sent to: <strong><?php echo $row['reciever_name']; ?></strong>
+											Sent to: <strong><?php echo $row['receiver_name']; ?></strong>
 											<i class="fa-solid fa-calendar"></i> <?php echo $row['date_sended']; ?>
 													<div class="pull-right">
 													<a class="btn btn-link"  href="#<?php echo $id; ?>" data-toggle="modal" ><i class="fa-solid fa-remove"></i> Remove </a>

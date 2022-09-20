@@ -61,7 +61,7 @@
                                 url: "send_message.php",
                                 data: formData,
                                 success: function(html) {
-
+                                    alert("Message Successfully Sended")
                                     $.jGrowl("Message Successfully Sended", {
                                         header: 'Message Sent'
                                     });
