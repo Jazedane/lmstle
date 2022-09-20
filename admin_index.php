@@ -8,6 +8,7 @@
     margin: auto;
     border: 2px solid black;
     font-family: 'Georgia';
+    background-color: burlywood;
 }
 </style>
 
@@ -59,7 +60,7 @@ jQuery(document).ready(function() {
             success: function(html) {
                 if (html == 'true') {
                     alert("Welcome to Learning Management System for TLE-Agricultural")
-                    //$.jGrowl("Welcome to Learning Management System for TLE-Agricultural", { header: 'Access Granted' });
+                    $.jGrowl("Welcome to Learning Management System for TLE-Agricultural", { header: 'Access Granted' });
                     var delay = 2000;
                     setTimeout(function() {
                         window.location = 'admin/admin_dashboard.php'

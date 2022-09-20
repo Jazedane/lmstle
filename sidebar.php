@@ -128,7 +128,7 @@ body {
 <div class="sidebar">
     <img id="avatar" src="/lmstle/admin/<?php echo $row[
         'location'
-    ]; ?>" class="img-fluid img-thumbnail">
+    ]; ?>" class="img-polaroid" style="width:140px;height:140;margin-left:20px">
     <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
         widget="treeview">
         <li class="nav-item">

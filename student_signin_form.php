@@ -9,6 +9,7 @@
     margin: auto;
     font-family: 'Georgia';
     border: 2px solid black;
+    background-color: burlywood;
 }
 </style>
 

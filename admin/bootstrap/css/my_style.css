@@ -5,6 +5,7 @@
         background-color: #F5F5F5;
         padding-bottom: 40px;
         padding-top: 0px !important;
+        height: 100%;
     }
     #avatar {
         box-shadow: 2px 2px 5px rgba(0, 0, 6, 0.75);

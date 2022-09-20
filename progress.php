@@ -24,7 +24,7 @@
 							<li><a href="#"><b>Progress</b></a></li>
 						</ul>
 
-                        <div id="block_bg" class="block">
+                        <div id="block_bg" class="block" style="width:200%">
                             <div class="navbar navbar-inner block-header">
 							    <div id="" class="muted pull-left"><h4> Task Grade Progress</h4></div>
 							</div>

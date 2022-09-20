@@ -24,7 +24,7 @@
                         </li>
                         <li><a href="#">School Year: <?php echo $class_row['school_year']; ?></a> <span
                                 class="divider">/</span></li>
-                        <li><a href="#"><b>Downloadable Materials</b></a></li>
+                        <li><a href="#"><b>Task Materials</b></a></li>
                     </ul>
 
                     <div id="block_bg" class="block">

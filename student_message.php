@@ -60,7 +60,7 @@
 								 $sender_name = $row['sender_name'];
 								 $receiver_name = $row['receiver_name'];
 								 ?>
-                                    <div class="post" id="del<?php echo $id; ?>">
+                                    <div class="post" id="del<?php echo $id; ?>" style="border:1px solid black">
                                         <div class="message_content">
                                             <?php echo $row['content']; ?>
                                         </div>
@@ -71,7 +71,7 @@
                                                 value="<?php echo $id; ?>">
                                             <?php } ?>
                                         </div>
-                                        <hr>
+                                        
                                         Send by: <strong><?php echo $row['sender_name']; ?></strong>
                                         <i class="fa-solid fa-calendar"></i> <?php echo $row['date_sended']; ?>
                                         <div class="pull-right">
