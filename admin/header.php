@@ -17,7 +17,7 @@
         height: 100%;
     }
     </style>
-<body>
+
     <title> LMSTLE </title>
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -37,5 +37,5 @@
     <script src="vendors/jquery-1.9.1.min.js"></script>
     <script src="vendors/jGrowl/jquery.jgrowl.js"></script>
 </head> 
-</body>
+
 <?php include 'dbcon.php'; ?>

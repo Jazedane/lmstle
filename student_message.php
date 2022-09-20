@@ -1,21 +1,28 @@
-<?php include('header.php'); ?>
-<?php include('session.php'); ?>
+<?php include 'header.php'; ?>
+<?php include 'session.php'; ?>
 
 <body>
-    <?php include('sidebar.php'); ?>
+    <?php include 'sidebar.php'; ?>
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span6" id="content">
                 <div class="row-fluid">
                     <ul class="breadcrumb">
                         <?php
-								$school_year_query = mysqli_query($conn,"select * from school_year order by school_year DESC")or die(mysqli_error());
-								$school_year_query_row = mysqli_fetch_array($school_year_query);
-								$school_year = $school_year_query_row['school_year'];
-								?>
+                        ($school_year_query = mysqli_query(
+                            $conn,
+                            'select * from school_year order by school_year DESC'
+                        )) or die(mysqli_error());
+                        $school_year_query_row = mysqli_fetch_array(
+                            $school_year_query
+                        );
+                        $school_year = $school_year_query_row['school_year'];
+                        ?>
                         <li><a href="#">Message</a><span class="divider">/</span></li>
                         <li><a href="#"><b>Inbox</b></a><span class="divider">/</span></li>
-                        <li><a href="#">School Year: <?php echo $school_year_query_row['school_year']; ?></a></li>
+                        <li><a href="#">School Year: <?php echo $school_year_query_row[
+                            'school_year'
+                        ]; ?></a></li>
                     </ul>
 
                     <div id="block_bg" class="block">
@@ -46,34 +53,52 @@
                                     </ul>
 
                                     <?php
-								 $query_announcement = mysqli_query($conn,"select * from message
-																	LEFT JOIN student ON student.student_id = message.sender_id
-																	where  message.receiver_id = '$session_id' order by date_sended DESC
-																	")or die(mysqli_error());
-								$count_my_message = mysqli_num_rows($query_announcement);	
-								if ($count_my_message != '0'){
-								 while($row = mysqli_fetch_array($query_announcement)){	
-								 $id = $row['message_id'];
-								 $id_2 = $row['message_id'];
-								 $status = $row['message_status'];
-								 $sender_id = $row['sender_id'];
-								 $sender_name = $row['sender_name'];
-								 $receiver_name = $row['receiver_name'];
-								 ?>
+                                    ($query_announcement = mysqli_query(
+                                        $conn,
+                                        "SELECT * FROM message 
+                                        LEFT JOIN teacher ON teacher.teacher_id = message.sender_id 
+                                        WHERE message.receiver_id = '$session_id' 
+                                        ORDER BY date_sended DESC"
+                                    )) or die(mysqli_error());
+                                    $count_my_message = mysqli_num_rows(
+                                        $query_announcement
+                                    );
+                                    if ($count_my_message != '0') {
+                                        while (
+                                            $row = mysqli_fetch_array(
+                                                $query_announcement
+                                            )
+                                        ) {
+
+                                            $id = $row['message_id'];
+                                            $id_2 = $row['message_id'];
+                                            $status = $row['message_status'];
+                                            $sender_id = $row['sender_id'];
+                                            $sender_name =
+                                                $row['firstname'] .
+                                                ' ' .
+                                                $row['lastname'];
+                                            $receiver_name =
+                                                $row['receiver_name'];
+                                            ?>
                                     <div class="post" id="del<?php echo $id; ?>" style="border:1px solid black">
                                         <div class="message_content">
                                             <?php echo $row['content']; ?>
                                         </div>
                                         <div class="pull-right">
-                                            <?php if ($status == 'read'){
-											}else{ ?>
+                                            <?php if ($status == 'read') {
+                                            } else {
+                                                 ?>
                                             <input id="" class="" name="selector[]" type="checkbox"
                                                 value="<?php echo $id; ?>">
-                                            <?php } ?>
+                                            <?php
+                                            } ?>
                                         </div>
-                                        
-                                        Send by: <strong><?php echo $row['sender_name']; ?></strong>
-                                        <i class="fa-solid fa-calendar"></i> <?php echo $row['date_sended']; ?>
+
+                                        Sent by: <strong><?php echo $sender_name; ?></strong>
+                                        <i class="fa-solid fa-calendar"></i> <?php echo $row[
+                                            'date_sended'
+                                        ]; ?>
                                         <div class="pull-right">
                                             <a class="btn btn-link" href="#reply<?php echo $id; ?>"
                                                 data-toggle="modal"><i class="fa-solid fa-reply"></i> Reply </a>
@@ -81,15 +106,20 @@
                                         <div class="pull-right">
                                             <a class="btn btn-link" href="#<?php echo $id; ?>" data-toggle="modal"><i
                                                     class="fa-solid fa-remove"></i> Remove </a>
-                                            <?php include("remove_inbox_message_modal.php"); ?>
-                                            <?php include("reply_inbox_message_modal_student.php"); ?>
+                                            <?php include 'remove_inbox_message_modal.php'; ?>
+                                            <?php include 'reply_inbox_message_modal_student.php'; ?>
                                         </div>
                                     </div>
 
-                                    <?php }}else{ ?>
+                                    <?php
+                                        }
+                                    } else {
+                                         ?>
                                     <div class="alert alert-info"><i class="fa-solid fa-info-circle"></i> No Message
                                         Inbox</div>
-                                    <?php } ?>
+                                    <?php
+                                    }
+                                    ?>
                                 </form>
                             </div>
                         </div>
@@ -142,16 +172,16 @@
                         });
                         return false;
                     });
-                }); 
+                });
                 </script>
 
 
             </div>
-            <?php include('create_message_student.php') ?>
+            <?php include 'create_message_student.php'; ?>
         </div>
-        <?php include('footer.php'); ?>
+        <?php include 'footer.php'; ?>
     </div>
-    <?php include('script.php'); ?>
+    <?php include 'script.php'; ?>
 </body>
 
 </html>
