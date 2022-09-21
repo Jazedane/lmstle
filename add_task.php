@@ -52,7 +52,7 @@
 
                                     <script>
                                     jQuery(document).ready(function($) {
-                                        $("#add_downloadable").submit(function(e) {
+                                        $("#add_task").submit(function(e) {
                                             $.jGrowl("Uploading File Please Wait......", {
                                                 sticky: true
                                             });

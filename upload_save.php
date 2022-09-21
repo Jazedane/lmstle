@@ -3,20 +3,25 @@
 include('session.php');
 //Include database connection details
 require("opener_db.php");
-$conn= $connector->DbConnector();
 $errmsg_arr = array();
 //Validation error flag
 $errflag = false;
 
+$conn = $connector->DbConnector();
+$uploaded_by_query = mysqli_query($conn,"select * from teacher where teacher_id = '$session_id'")or die(mysqli_error());
+$uploaded_by_query_row = mysqli_fetch_array($uploaded_by_query);
+$uploaded_by = $uploaded_by_query_row['firstname']."".$uploaded_by_query_row['lastname'];
 
-$task_id  = $_POST['id'];
-$name  = $_POST['name'];
-$get_id = $_POST['get_id'];
+$id_class=$_POST['id_class'];
+$get_id=$id_class;
+$name=$_POST['name'];
+
+
 //Function to sanitize values received from the form. Prevents SQL injection
 function clean($str) {
   global $conn;
     $str = @trim($str);
-        $str = stripslashes($str);
+    $str = stripslashes($str);
     return mysqli_real_escape_string($conn,$str);
 }
 
@@ -29,10 +34,10 @@ if ($filedesc == '') {
     $errflag = true;
 }
 
-if ($_FILES['uploaded_file']['size'] >= 1048576 * 5) {
-    $errmsg_arr[] = 'file selected exceeds 5MB size limit';
-    $errflag = true;
-}
+// if ($_FILES['uploaded_file']['size'] >= 1048576 * 5) {
+//     $errmsg_arr[] = 'file selected exceeds 5MB size limit';
+//     $errflag = true;
+// }
 
 
 //If there are input validations, redirect back to the registration form
@@ -59,16 +64,18 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
     if (($ext != "exe") && ($_FILES["uploaded_file"]["type"] != "application/x-msdownload")) {
         //Determine the path to which we want to save this file      
         //$newname = dirname(__FILE__).'/upload/'.$filename;
-        $newname = "/admin/uploads/" . $rd2 . "_" . $filename;
-	$name_notification  = 'Submit Task file name'." ".'<b>'.$name.'</b>'; 
+        $newname = "admin/uploads/" . $rd2 . "_" . $filename;
+		$name_notification  = 'Add Downloadable Materials file name'." ".'<b>'.$name.'</b>';
         //Check if the file with the same name is already exists on the server
         if (!file_exists($newname)) {
             //Attempt to move the uploaded file to it's new place
             if ((move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $newname))) {
                 //successful upload
-                // echo "It's done! The file has been saved as: ".$newname;		   
-                $qry2 = ("INSERT INTO student_assignment (fdesc,floc,assignment_fdatein,fname,assignment_id,student_id) VALUES ('$filedesc','$newname',NOW(),'$name','$assignment_id','$session_id')")or die(mysqli_error());
-				mysqli_query($conn,"insert into teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id,assignment_id) value('$get_id','$name_notification',NOW(),'view_submit_assignment.php','$session_id','$assignment_id')")or die(mysqli_error());
+                // echo "It's done! The file has been saved as: ".$newname;		  
+                // echo "INSERT INTO files (fdesc,floc,fdatein,teacher_id,class_id,fname,uploaded_by) VALUES ('$filedesc','$newname',NOW(),'$session_id','$id_class','$name','$uploaded_by')"; 
+                // exit;
+                $qry2 = "INSERT INTO files (fdesc,floc,fdatein,teacher_id,class_id,fname,uploaded_by) VALUES ('$filedesc','$newname',NOW(),'$session_id','$id_class','$name','$uploaded_by')";
+				mysqli_query($conn,"insert into notification (teacher_class_id,notification,date_of_notification,link) value('$get_id','$name_notification',NOW(),'downloadable_student.php')")or die(mysqli_error());
 			   //$result = @mysqli_query($conn,$qry);
                 $result2 = $connector->query($qry2);
                 if ($result2) {
@@ -77,6 +84,13 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
                     if ($errflag) {
                         $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
                         session_write_close();
+                        ?>
+
+                     <script>
+			/* 		window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>'; */
+					</script>
+                        <?php
+
                         exit();
                     }
                 } else {
@@ -158,7 +172,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
 }
 
 
-mysqli_close();
+mysqli_close($conn);
 ?>
 
 

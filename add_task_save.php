@@ -20,7 +20,7 @@ if ($input_name == ""){
 			$rd2 = mt_rand(1000, 9999) . "_File";
 			$filename = basename($_FILES['uploaded_file']['name']);
 			$ext = substr($filename, strrpos($filename, '.') + 1);
-		$newname = "admin/uploads/" . $rd2 . "_" . $filename;
+		$newname = "/admin/uploads/" . $rd2 . "_" . $filename;
 		$name_notification  = 'Add TAsk file name'." ".'<b>'.$name.'</b>';
             (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $newname));
 				$id=$_POST['selector'];

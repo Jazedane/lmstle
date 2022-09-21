@@ -19,12 +19,11 @@
 				
 					     <ul class="breadcrumb">
 							<li><a href="#"><?php echo $class_row['class_name']; ?></a> <span class="divider">/</span></li>
-							<li><a href="#"><?php echo $class_row['subject_code']; ?></a> <span class="divider">/</span></li>
 							<li><a href="#">School Year: <?php echo $class_row['school_year']; ?></a> <span class="divider">/</span></li>
 							<li><a href="#"><b>Progress</b></a></li>
 						</ul>
 
-                        <div id="block_bg" class="block">
+                        <div id="block_bg" class="block" style="width: 200%">
                             <div class="navbar navbar-inner block-header">
 							    <div id="" class="muted pull-left"><h4> Task Grade Progress</h4></div>
 							</div>

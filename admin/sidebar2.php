@@ -134,8 +134,6 @@ body {
                     Students Progress</a></li>
             <li class=""><a href="task.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-tasks"></i>
                     Tasks</a></li>
-            <li class=""><a href="add_task.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-plus-circle"></i> Add
-                    Task</a></li>
             <li class=""><a href="downloadable.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-file-upload"></i>
                     Uploaded Task</a></li>
         </ul>

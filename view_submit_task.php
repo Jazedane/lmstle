@@ -6,18 +6,19 @@
 	  if($post_id == ''){
 	  ?>
 <script>
-window.location = "student_task.php<?php echo '?id='.$get_id; ?>";
+window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
 </script>
 <?php
 	  }
 	
  ?>
 
+
 <body id="studentTableDiv">
     <?php include('sidebar2.php'); ?>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span6" id="content">
+            <div class="span9" id="content">
                 <div class="row-fluid">
 
                     <?php $class_query = mysqli_query($conn,"select * from teacher_class
@@ -26,6 +27,7 @@ window.location = "student_task.php<?php echo '?id='.$get_id; ?>";
 										where teacher_class_id = '$get_id'")or die(mysqli_error());
 										$class_row = mysqli_fetch_array($class_query);
 										?>
+
                     <ul class="breadcrumb">
                         <li><a href="#"><?php echo $class_row['class_name']; ?></a> <span class="divider">/</span></li>
                         <li><a href="#"><?php echo $class_row['subject_code']; ?></a> <span class="divider">/</span>
@@ -37,7 +39,8 @@ window.location = "student_task.php<?php echo '?id='.$get_id; ?>";
 
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left"></div>
+                            <div id="" class="muted pull-right"><a href="task.php<?php echo '?id='.$get_id; ?>"><i
+                                        class="fa-solid fa-arrow-left"></i> Back</a></div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">
@@ -59,7 +62,8 @@ window.location = "student_task.php<?php echo '?id='.$get_id; ?>";
                                                 <th>File Name</th>
                                                 <th>Description</th>
                                                 <th>Submitted by:</th>
-                                                <th>Grade</th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
 
                                         </thead>
@@ -71,21 +75,28 @@ window.location = "student_task.php<?php echo '?id='.$get_id; ?>";
 										where task_id = '$post_id'  order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
-										$student_id = $row['student_id'];
 									?>
                                             <tr>
                                                 <td><?php echo $row['task_fdatein']; ?></td>
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
-                                                <?php if ($session_id == $student_id){ ?>
-                                                <td>
-                                                    <span
-                                                        class="badge badge-success"><?php echo $row['grade']; ?></span>
+                                                <td><a href="<?php echo $row['floc']; ?>"><i
+                                                            class="fa-solid fa-download"></i></a></td>
+                                                <td width="140">
+                                                    <form method="post" action="save_grade.php">
+                                                        <input type="hidden" class="span4" name="id"
+                                                            value="<?php echo $id; ?>">
+                                                        <input type="hidden" class="span4" name="post_id"
+                                                            value="<?php echo $post_id; ?>">
+                                                        <input type="hidden" class="span4" name="get_id"
+                                                            value="<?php echo $get_id; ?>">
+                                                        <input type="text" class="span4" name="grade"
+                                                            value="<?php echo $row['grade']; ?>">
+                                                        <button name="save" class="btn btn-success" id="btn_s"><i
+                                                                class="fa-solid fa-save"></i> Save</button>
+                                                    </form>
                                                 </td>
-                                                <?php }else{ ?>
-                                                <td></td>
-                                                <?php } ?>
                                             </tr>
 
                                             <?php } ?>
@@ -94,12 +105,12 @@ window.location = "student_task.php<?php echo '?id='.$get_id; ?>";
                                         </tbody>
                                     </table>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php include('submit_task_sidebar.php') ?>
         </div>
         <?php include('footer.php'); ?>
     </div>

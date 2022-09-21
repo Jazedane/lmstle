@@ -153,9 +153,11 @@ body {
                 <li>
                     <a href="students.php"><i class="fa-solid fa-plus-circle"></i> Students</a>
                 </li>
+                <li>
+                    <a href="add_task.php"><i class="fa-solid fa-plus-circle"></i> Task</a>
+                </li>
                 <li class="">
-                    <a href="admin_user.php">
-                        <i class="fa-solid fa-user-gear"></i> Admin</a>
+                    <a href="admin_user.php"><i class="fa-solid fa-user-gear"></i> Admin</a>
                 </li>
             </ul>
         </li>

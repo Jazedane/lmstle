@@ -27,7 +27,7 @@
 
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <?php $query = mysqli_query($conn,"select * FROM task_update where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error()); 
+                            <?php $query = mysqli_query($conn,"select * FROM task where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error()); 
 									  $count  = mysqli_num_rows($query);
 								?>
                             <div id="" class="muted pull-right"><span
@@ -36,7 +36,7 @@
                         <div class="block-content collapse in">
                             <div class="span12">
                                 <?php
-									$query = mysqli_query($conn,"select * FROM task_update where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error());
+									$query = mysqli_query($conn,"select * FROM task where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error());
 									$count = mysqli_num_rows($query);
 									if ($count == '0'){?>
                                 <div class="alert alert-info">No Task Currently Uploaded</div>
@@ -57,7 +57,7 @@
                                     <tbody>
 
                                         <?php
-										$query = mysqli_query($conn,"select * FROM task_update where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error());
+										$query = mysqli_query($conn,"select * FROM task where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['task_id'];
 										$floc = $row['floc'];
@@ -76,7 +76,7 @@
 										 ?>
                                                     <a data-placement="bottom" title="Download"
                                                         id="<?php echo $id; ?>download" class="btn btn-info"
-                                                        href="<?php echo $row['floc']; ?>"><i
+                                                        href="/lmstle/admin/<?php echo $row['floc']; ?>"><i
                                                             class="fa-solid fa-download"> Download</i></a>
                                                     <?php } ?>
                                                     <button data-placement="bottom" title="Submit Task"
