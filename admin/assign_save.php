@@ -29,8 +29,10 @@ if ($input_name == ""){
 
 			$name_notification  = 'Add Task file name'." ".'<b>'.$name.'</b>';
 	   
-                mysqli_query($conn,"INSERT INTO task (fdesc,fdatein,teacher_id,class_id,fname) VALUES ('$filedesc',NOW(),'$session_id','$id_class','$name')")or die(mysqli_error());
-				 mysqli_query($conn,"insert into notification (teacher_class_id,notification,date_of_notification,link) value('$get_id','$name_notification',NOW(),'task_student.php')")or die(mysqli_error());               
+                mysqli_query($conn,"INSERT INTO task (fdesc,fdatein,teacher_id,class_id,fname) 
+                VALUES ('$filedesc',NOW(),'$session_id','$id_class','$name')")or die(mysqli_error());
+				 mysqli_query($conn,"insert into notification (teacher_class_id,notification,date_of_notification,link) 
+                 value('$get_id','$name_notification',NOW(),'task_student.php')")or die(mysqli_error());               
 ?>            
 			<script>
 				window.location = 'task.php<?php echo '?id='.$get_id;  ?>';
@@ -47,7 +49,7 @@ if ($input_name == ""){
 	  $newname = "";
 	  $rd2 = ""
    } */ 
-   $newname = "uploads/" . $rd2 . "_" . $filename;
+   $newname = "admin/uploads/" . $rd2 . "_" . $filename;
    
 		$name_notification  = 'Add Task file name'." ".'<b>'.$name.'</b>';
         //Check if the file with the same name is already exists on the server
@@ -56,8 +58,10 @@ if ($input_name == ""){
             (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $newname));
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;		   
-                $qry2 = "INSERT INTO task (fdesc,floc,fdatein,teacher_id,class_id,fname) VALUES ('$filedesc','$newname',NOW(),'$session_id','$id_class','$name')";
-				$query = mysqli_query($conn,"insert into notification (teacher_class_id,notification,date_of_notification,link) value('$get_id','$name_notification',NOW(),'task_student.php')")or die(mysqli_error());               
+                $qry2 = "INSERT INTO task (fdesc,floc,fdatein,teacher_id,class_id,fname) 
+                VALUES ('$filedesc','$newname',NOW(),'$session_id','$id_class','$name')";
+				$query = mysqli_query($conn,"insert into notification (teacher_class_id,notification,date_of_notification,link) 
+                value('$get_id','$name_notification',NOW(),'task_student.php')")or die(mysqli_error());               
 			   //$result = @mysqli_query($conn,$qry);
                 $result2 = $connector->query($qry2);
                 if ($result2) {

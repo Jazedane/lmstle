@@ -11,7 +11,6 @@
 
                     <?php $class_query = mysqli_query($conn,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
-										LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
 										where teacher_class_id = '$get_id'")or die(mysqli_error());
 										$class_row = mysqli_fetch_array($class_query);
 										$class_id = $class_row['class_id'];
@@ -19,8 +18,6 @@
 										?>
                     <ul class="breadcrumb">
                         <li><a href="#"><?php echo $class_row['class_name']; ?></a> <span class="divider">/</span></li>
-                        <li><a href="#"><?php echo $class_row['subject_code']; ?></a> <span class="divider">/</span>
-                        </li>
                         <li><a href="#">School Year: <?php echo $class_row['school_year']; ?></a> <span
                                 class="divider">/</span></li>
                         <li><a href="#"><b>Task Materials</b></a></li>
@@ -52,7 +49,7 @@
 									?>
                                 <form action="copy_file.php" method="post">
 
-                                    <a data-toggle="modal" href="#user_delete" id="delete" class="btn btn-info"
+                                    <a data-toggle="modal" href="#student_delete" id="delete" class="btn btn-info"
                                         name=""><i class="fa-solid fa-file"></i> Copy Check item</a>
                                     <table cellpadding="0" cellspacing="0" border="0" class="table" id="">
                                         <?php include('move_to_school_year.php'); ?>
@@ -154,7 +151,7 @@
                 </script>
 
             </div>
-            <?php include('downloadable_sidebar.php') ?>
+            <?php include('downloadable_sidebar_student.php') ?>
         </div>
         <?php include('footer.php'); ?>
     </div>

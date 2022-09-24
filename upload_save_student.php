@@ -46,7 +46,7 @@ if ($errflag) {
 	?>
 
    <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php exit();
 }
@@ -97,7 +97,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
                         $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
                         session_write_close(); ?>
                            <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php
                         exit();
@@ -112,7 +112,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
                     $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
                     session_write_close(); ?>
        <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    
    
@@ -129,7 +129,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
                 $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
                 session_write_close(); ?>
        <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php
    
@@ -145,7 +145,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
             $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
             session_write_close(); ?>
             <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php
             exit();
@@ -161,7 +161,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
         $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
         session_write_close(); ?>
        <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php
         exit();
