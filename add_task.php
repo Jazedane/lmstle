@@ -61,13 +61,13 @@
                                             var formData = new FormData($(this)[0]);
                                             $.ajax({
                                                 type: "POST",
-                                                url: "add_task_save.php",
+                                                url: "admin/add_task_save.php",
                                                 data: formData,
                                                 success: function(html) {
                                                     $.jGrowl("Task Successfully Added", {
                                                         header: 'Task Added'
                                                     });
-                                                    window.location = 'add_task.php';
+                                                    window.location = 'admin/add_task.php';
                                                 },
                                                 cache: false,
                                                 contentType: false,

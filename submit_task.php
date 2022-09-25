@@ -6,7 +6,7 @@
 	  if($post_id == ''){
 	  ?>
 <script>
-window.location = "student_task.php<?php echo '?id='.$get_id; ?>";
+window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
 </script>
 <?php
 	  }
@@ -65,7 +65,7 @@ window.location = "student_task.php<?php echo '?id='.$get_id; ?>";
                                             <?php
 										$query = mysqli_query($conn,"select * FROM student_task
 										LEFT JOIN student on student.student_id  = student_task.student_id
-										where student_task_id = '$post_id'  order by task_fdatein DESC")or die(mysqli_error());
+										where task_id = '$post_id'  order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];

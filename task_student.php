@@ -64,7 +64,7 @@
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
                                             <td width="220">
-                                                <form id="task" method="post"
+                                                <form id="assign" method="post"
                                                     action="submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">
                                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                     <?php

@@ -77,14 +77,10 @@
                                             <?php echo $row['subject_code']; ?>
 
                                         </a>
-                                        <hr>
                                         <div class="pull-right">
-                                            <i
-                                                class="fa-solid fa-calendar"></i>&nbsp;<?php echo $row['date_of_notification']; ?>
+                                            <i class="fa-solid fa-calendar"></i>
+                                            <?php echo $row['date_of_notification']; ?>
                                         </div>
-
-
-
                                     </div>
                                     <?php
 					} }else{
@@ -96,7 +92,6 @@
 					?>
 
                                 </form>
-
                             </div>
                         </div>
                     </div>

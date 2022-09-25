@@ -32,7 +32,6 @@
 
                             <div class="controls">
                                 <textarea id="assigntextare" placeholder="Description" name="desc" required></textarea>
-                                <!--   <input type="text" name="desc" Placeholder="Description"  class="input" required> -->
                             </div>
                         </div>
                         <div class="control-group">

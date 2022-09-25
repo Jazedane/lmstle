@@ -67,8 +67,10 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
             if ((move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $newname))) {
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;		   
-                $qry2 = ("INSERT INTO student_assignment (fdesc,floc,assignment_fdatein,fname,assignment_id,student_id) VALUES ('$filedesc','$newname',NOW(),'$name','$assignment_id','$session_id')")or die(mysqli_error());
-				mysqli_query($conn,"insert into teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id,assignment_id) value('$get_id','$name_notification',NOW(),'view_submit_assignment.php','$session_id','$assignment_id')")or die(mysqli_error());
+                $qry2 = ("INSERT INTO student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) 
+                VALUES ('$filedesc','$newname',NOW(),'$name','$task_id','$session_id')")or die(mysqli_error());
+				mysqli_query($conn,"insert into teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id,task_id) 
+                value('$get_id','$name_notification',NOW(),'view_submit_task.php','$session_id','$task_id')")or die(mysqli_error());
 			   //$result = @mysqli_query($conn,$qry);
                 $result2 = $connector->query($qry2);
                 if ($result2) {

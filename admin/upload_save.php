@@ -74,8 +74,10 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
                 // echo "It's done! The file has been saved as: ".$newname;		  
                 // echo "INSERT INTO files (fdesc,floc,fdatein,teacher_id,class_id,fname,uploaded_by) VALUES ('$filedesc','$newname',NOW(),'$session_id','$id_class','$name','$uploaded_by')"; 
                 // exit;
-                $qry2 = "INSERT INTO files (fdesc,floc,fdatein,teacher_id,class_id,fname,uploaded_by) VALUES ('$filedesc','$newname',NOW(),'$session_id','$id_class','$name','$uploaded_by')";
-				mysqli_query($conn,"insert into notification (teacher_class_id,notification,date_of_notification,link) value('$get_id','$name_notification',NOW(),'downloadable_student.php')")or die(mysqli_error());
+                $qry2 = "INSERT INTO files (fdesc,floc,fdatein,teacher_id,class_id,fname,uploaded_by) 
+                VALUES ('$filedesc','$newname',NOW(),'$session_id','$id_class','$name','$uploaded_by')";
+				mysqli_query($conn,"insert into notification (teacher_class_id,notification,date_of_notification,link) 
+                value('$get_id','$name_notification',NOW(),'downloadable_student.php')")or die(mysqli_error());
 			   //$result = @mysqli_query($conn,$qry);
                 $result2 = $connector->query($qry2);
                 if ($result2) {
