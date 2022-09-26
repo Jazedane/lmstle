@@ -45,7 +45,7 @@
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
-                                            <th>Task Name</th>
+                                            <th>File Name</th>
                                             <th>Description</th>
                                             <th></th>
                                         </tr>
@@ -73,7 +73,7 @@
 										 ?>
                                                     <a data-placement="bottom" title="Download"
                                                         id="<?php echo $id; ?>download" class="btn btn-info"
-                                                        href="admin/<?php echo $row['floc']; ?>"><i
+                                                        href="/lmstle/admin/<?php echo $row['floc']; ?>"><i
                                                             class="fa-solid fa-download"> Download</i></a>
                                                     <?php } ?>
                                                     <button data-placement="bottom" title="Submit Task"

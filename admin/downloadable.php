@@ -19,7 +19,7 @@
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
-                                            <th>File Name</th>
+                                            <th>Task Name</th>
                                             <th>Description</th>
                                             <th>Upload By</th>
                                             <th>Class</th>

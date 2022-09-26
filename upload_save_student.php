@@ -34,7 +34,7 @@ if ($filedesc == '') {
 }
 
 if ($_FILES['uploaded_file']['size'] >= 1048576 * 5) {
-    $errmsg_arr[] = 'file selected exceeds 5MB size limit';
+    $errmsg_arr[] = 'file selected exceeds 25MB size limit';
     $errflag = true;
 }
 
@@ -51,7 +51,7 @@ if ($errflag) {
    <?php exit();
 }
 //upload random name/number
-$rd2 = mt_rand(1000, 9999) . "_File";
+$rd = mt_rand(1000, 9999) . "_File";
 
 //Check that we have a file
 if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 0)) {
@@ -63,19 +63,21 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
     if (($ext != "exe") && ($_FILES["uploaded_file"]["type"] != "application/x-msdownload")) {
         //Determine the path to which we want to save this file      
         //$newname = dirname(__FILE__).'/upload/'.$filename;
-        $newname = "admin/uploads/" . $rd2 . "_" . $filename;
-		$name_notification  = 'Add Downloadable Materials file name'." ".'<b>'.$name.'</b>';
+        $newname = "admin/uploads/" . $rd . "_" . $filename;
+		$name_notification  = 'Add Task Materials file name'." ".'<b>'.$name.'</b>';
         //Check if the file with the same name is already exists on the server
         if (!file_exists($newname)) {
             //Attempt to move the uploaded file to it's new place
             if ((move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $newname))) {
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;		   
-                $qry2 = "INSERT INTO files (fdesc,floc,fdatein,class_id,fname,uploaded_by) VALUES ('$filedesc','$newname',NOW(),'$id_class','$name','$uploaded_by')";
-					mysqli_query($conn,"insert into teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id) value('$get_id','$name_notification',NOW(),'downloadable.php','$session_id')")or die(mysqli_error());
+                $qry = "INSERT INTO files (fdesc,floc,fdatein,class_id,fname,uploaded_by) 
+                VALUES ('$filedesc','$newname',NOW(),'$id_class','$name','$uploaded_by')";
+					mysqli_query($conn,"insert into teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id) 
+                    value('$get_id','$name_notification',NOW(),'admin/downloadable.php','$session_id')")or die(mysqli_error());
 			   //$result = @mysqli_query($conn,$qry);
-                $result2 = $connector->query($qry2);
-                if ($result2) {
+                $result = $connector->query($qry);
+                if ($result) {
                     $errmsg_arr[] = 'record was saved in the database and the file was uploaded';
                     $errflag = true;
                     if ($errflag) {
@@ -139,7 +141,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
     } else {
         //wrong file upload
         //echo "Error: Only .jpg images under 350Kb are accepted for upload";
-        $errmsg_arr[] = 'Error: All file types except .exe file under 5 Mb are not accepted for upload';
+        $errmsg_arr[] = 'Error: All file types except .exe file under 25 Mb are not accepted for upload';
         $errflag = true;
         if ($errflag) {
             $_SESSION['ERRMSG_ARR'] = $errmsg_arr;

@@ -54,7 +54,7 @@
 					")or die();
 					$count = mysqli_num_rows($query);
 					while($row = mysqli_fetch_array($query)){
-					$assignment_id = $row['task_id'];
+					$task_id = $row['task_id'];
 					$get_id = $row['teacher_class_id'];
 					$id = $row['teacher_notification_id'];
 					
@@ -70,7 +70,6 @@
 										}else{ 
 										?>
 
-
                                         <input id="" name="selector[]" type="checkbox" value="<?php echo $id; ?>">
                                         <?php  } ?>
                                         <strong><?php echo $row['firstname']." ".$row['lastname'];  ?></strong>
@@ -83,27 +82,20 @@
                                         </a>
                                         <hr>
                                         <div class="pull-right">
-                                            <i
-                                                class="fa-solid fa-calendar"></i>&nbsp;<?php echo $row['date_of_notification']; ?>
+                                            <i class="fa-solid fa-calendar"></i>
+                                            <?php echo $row['date_of_notification']; ?>
                                         </div>
-
-
-
                                     </div>
                                     <?php
 					}
 					?>
 
                                 </form>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
         <?php include('footer.php'); ?>
     </div>

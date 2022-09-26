@@ -6,7 +6,7 @@
 	  if($post_id == ''){
 	  ?>
 <script>
-window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
+window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
 </script>
 <?php
 	  }
@@ -42,11 +42,11 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                         <div class="block-content collapse in">
                             <div class="span12">
                                 <?php
-										$query1 = mysqli_query($conn,"select * FROM task where task_id = '$post_id'")or die(mysqli_error());
-										$row1 = mysqli_fetch_array($query1);
+										$query = mysqli_query($conn,"select * FROM task where task_id = '$post_id'")or die(mysqli_error());
+										$row = mysqli_fetch_array($query);
 									
 									?>
-                                <div class="alert alert-info">Submit Task in : <?php echo $row1['fname']; ?></div>
+                                <div class="alert alert-info">Submit Task in : <?php echo $row['fname']; ?></div>
 
                                 <div id="">
 
@@ -102,7 +102,6 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div>
                     </div>

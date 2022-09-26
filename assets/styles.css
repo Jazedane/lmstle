@@ -4,7 +4,7 @@ body {
     background-image: url("/lmstle/admin/images/index3.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    position: relative;
+    position: fixed;
     background-size: cover !important;
 }
 

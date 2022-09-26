@@ -32,7 +32,7 @@
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
-                                            <th>File Name</th>
+                                            <th>Task Name</th>
                                             <th>Description</th>
                                             <th></th>
                                         </tr>

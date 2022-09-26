@@ -4,7 +4,7 @@
         <div id="block_bg" class="block">
             <div class="navbar navbar-inner block-header">
                 <div id="" class="muted pull-left">
-                    <h4><i class="fa-solid fa-plus-circle"></i> Add Downloadable</h4>
+                    <h4><i class="fa-solid fa-plus-circle"></i> Submit Task</h4>
                 </div>
             </div>
             <div class="block-content collapse in">
@@ -16,33 +16,31 @@
 
                                 <div class="mb-3">
                                     <label for="formFileMultiple" class="form-label">
-                                    <input class="form-control" type="file" id="formFileMultiple" multiple>
+                                        <input name="upload_file" class="form-control" type="file" id="formFileMultiple" multiple></input>
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                                        <input type="hidden" name="id" value="<?php echo $session_id ?>" />
+                                        <input type="hidden" name="id_class" value="<?php echo $get_id; ?>">
                                 </div>
-
-                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-                                <input type="hidden" name="id" value="<?php echo $session_id ?>" />
-                                <input type="hidden" name="id_class" value="<?php echo $get_id; ?>">
                             </div>
-                        </div>
-                        <div class="control-group">
+                            <div class="control-group">
 
-                            <div class="controls">
-                                <input type="text" name="name" Placeholder="File Name" class="input" required>
+                                <div class="controls">
+                                    <input type="text" name="name" Placeholder="File Name" class="input" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
+                            <div class="control-group">
 
-                            <div class="controls">
-                                <input type="text" name="desc" Placeholder="Description" class="input" required>
+                                <div class="controls">
+                                    <input type="text" name="desc" Placeholder="Description" class="input" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls">
+                            <div class="control-group">
+                                <div class="controls">
 
-                                <button name="Upload" type="submit" value="Upload" class="btn btn-info" /><i
-                                    class="fa-solid fa-upload"></i> Upload</button>
+                                    <button name="Upload" type="submit" value="Upload" class="btn btn-info" /><i
+                                        class="fa-solid fa-upload"></i> Upload</button>
+                                </div>
                             </div>
-                        </div>
                     </form>
 
                     <script>

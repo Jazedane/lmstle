@@ -1,4 +1,4 @@
 <?php
-include("/lmstle/admin/dbConnector.php"); 
+include("admin/dbConnector.php"); 
 $connector = new DbConnector();
 ?>

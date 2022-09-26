@@ -11,15 +11,12 @@
                     <form id="add_task" method="post" enctype="multipart/form-data">
                         <div class="control-group">
                             <label class="control-label" for="inputEmail">Task</label>
-                            <div class="controls">
-
-
-                                <input name="uploaded_file" class="input-file uniform_on" id="fileInput" type="file"
-                                    required>
-
-                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-                                <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
-                                <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
+                            <div class="mb-3">
+                                <label for="formFileMultiple" class="form-label">
+                                    <input  name="upload_file" class="form-control" type="file" id="formFileMultiple" multiple></input>
+                                    <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                                    <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
+                                    <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
                             </div>
                         </div>
                         <div class="control-group">
@@ -31,7 +28,8 @@
                         <div class="control-group">
 
                             <div class="controls">
-                                <textarea type="text" name="desc" Placeholder="Description" class="input" required></textarea>
+                                <textarea type="text" name="desc" Placeholder="Description" class="input" required
+                                    style="height:100px;width:100%"></textarea>
                             </div>
                         </div>
                         <div class="control-group">
@@ -53,7 +51,7 @@
                 var formData = new FormData($(this)[0]);
                 $.ajax({
                     type: "POST",
-                    url: "upload_task.php",
+                    url: "admin/upload_task.php",
                     data: formData,
                     success: function(html) {
                         $.jGrowl("Student Successfully  Added", {

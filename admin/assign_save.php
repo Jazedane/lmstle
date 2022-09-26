@@ -49,7 +49,7 @@ if ($input_name == ""){
 	  $newname = "";
 	  $rd2 = ""
    } */ 
-   $newname = "admin/uploads/" . $rd2 . "_" . $filename;
+   $newname = "uploads/" . $rd2 . "_" . $filename;
    
 		$name_notification  = 'Add Task file name'." ".'<b>'.$name.'</b>';
         //Check if the file with the same name is already exists on the server
