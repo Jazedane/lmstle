@@ -15,8 +15,8 @@
                         <!-- block -->
                         <div id="block_bg" class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div id="" class="muted pull-right">
-					
+                                <div id="" class="muted pull-right"><a href="my_students.php<?php echo '?id='.$get_id; ?>">
+                                    <i class="fa-solid fa-arrow-left"></i> Back</a>
 								</div>
                             </div>
                             <div class="block-content collapse in">

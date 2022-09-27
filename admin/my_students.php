@@ -9,7 +9,7 @@
             <div class="span9" id="content">
                 <div class="row-fluid">
                     <div class="pull-right">
-                        <a onclick="window.open('print_student.php<?php echo '?id='.$get_id; ?>')"
+                        <a href="print_student.php<?php echo '?id='.$get_id; ?>"
                             class="btn btn-success"><i class="fa-solid fa-list"></i> Student List</a>
                     </div>
                     <?php include('my_students_breadcrumb.php'); ?>
