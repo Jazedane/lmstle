@@ -8,7 +8,7 @@
                 <div class="control-group">
                     <label>School Year:</label>
                     <div class="controls">
-                        <select name="school_year" class="span2" required>
+                        <select name="school_year" class="span2" required style="width:120px">
                             <option></option>
                             <?php
 											      $query = mysqli_query($conn,"select * from school_year order by school_year DESC");
