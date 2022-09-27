@@ -122,7 +122,8 @@ body {
         </div>
     </div>
     <div class="sidebar">
-        <img id="avatar" src="admin/<?php echo $row['location']; ?>" class="img-polaroid" style="width:140px;height:140;margin-left:20px">
+        <img id="avatar" src="admin/<?php echo $row['location']; ?>" class="img-polaroid"
+            style="width:140px;height:140;margin-left:20px">
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
             widget="treeview">
             <li class=""><a href="dashboard_student.php"><i class="fa-solid fa-arrow-left"></i> Back</a></li>
@@ -132,8 +133,6 @@ body {
                     My Progress</a></li>
             <li class=""><a href="task_student.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-tasks"></i> Task
                     Update</a></li>
-            <li class=""><a href="downloadable_student.php<?php echo '?id='.$get_id; ?>"><i
-                        class="fa-solid fa-file-upload"></i> Uploaded Task</a></li>
         </ul>
     </div>
 </body>

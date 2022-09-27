@@ -11,7 +11,7 @@
 <script src="vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
 <script src="vendors/chosen.jquery.min.js"></script>
 
-<script src="vendors/ckeditor/adapters/jquery.js"></script>
+<script href="vendors/ckeditor/adapters/jquery.js"></script>
 
 <script src="vendors/ckeditor/ckeditor.js"></script>
 <script src="vendors/datatables/js/jquery.dataTables.min.js"></script>

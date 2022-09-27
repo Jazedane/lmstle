@@ -64,7 +64,7 @@
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
                                             <td width="220">
-                                                <form id="assign" method="post"
+                                                <form id="assign_save" method="post"
                                                     action="submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">
                                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                     <?php
@@ -74,13 +74,12 @@
                                                     <a data-placement="bottom" title="Download"
                                                         id="<?php echo $id; ?>download" class="btn btn-info"
                                                         href="admin/<?php echo $row['floc']; ?>"><i
-                                                            class="fa-solid fa-download"> Download</i></a>
+                                                            class="fa-solid fa-download"></i></a>
                                                     <?php } ?>
                                                     <button data-placement="bottom" title="Submit Task"
                                                         id="<?php echo $id; ?>submit" class="btn btn-success"
                                                         name="btn_task"><i class="fa-solid fa-upload"></i> Submit
                                                         Task</button>
-                                                </form>
                                             </td>
                                             <script type="text/javascript">
                                             $(document).ready(function() {

@@ -6,7 +6,7 @@
 	  if($post_id == ''){
 	  ?>
 <script>
-window.location = "admin/task_student.php<?php echo '?id='.$get_id; ?>";
+window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
 </script>
 <?php
 	  }

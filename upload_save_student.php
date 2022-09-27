@@ -2,7 +2,7 @@
 
 include('session.php');
 //Include database connection details
-require("opener_db.php");
+require("admin/opener_db.php");
 $conn= $connector->DbConnector();
 $errmsg_arr = array();
 //Validation error flag

@@ -33,7 +33,7 @@ if ($input_name == ""){
 				 mysqli_query($conn,"insert into notification (teacher_class_id,notification,date_of_notification,link) value('$get_id','$name_notification',NOW(),'task_student.php')")or die(mysqli_error());               
 ?>            
 			<script>
-				window.location = 'task.php<?php echo '?id='.$get_id;  ?>';
+				window.location = 'admin/task.php<?php echo '?id='.$get_id;  ?>';
 			</script>
 <?php
 }else{
@@ -69,7 +69,7 @@ if ($input_name == ""){
                         ?>
 
                      <script>
-window.location = 'task.php<?php echo '?id='.$get_id;  ?>';
+window.location = 'admin/task.php<?php echo '?id='.$get_id;  ?>';
 					</script>
                         <?php
 
