@@ -57,8 +57,10 @@ window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
                                         <thead>
                                             <tr>
                                                 <th>Date Upload</th>
-                                                <th>File Name</th>
+                                                <th>Task Name</th>
                                                 <th>Description</th>
+                                                <th>Due Date</th>
+                                                <th>Status</th>
                                                 <th>Submitted by:</th>
                                                 <th></th>
                                                 <th></th>

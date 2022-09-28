@@ -34,6 +34,7 @@
                                             <th>Date Upload</th>
                                             <th>Task Name</th>
                                             <th>Description</th>
+                                            <th>Due Date</th>
                                             <th></th>
                                         </tr>
                                     </thead>

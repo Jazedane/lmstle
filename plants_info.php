@@ -22,7 +22,7 @@
                         <div class="card" style="width: 18rem;">
                             <img src="/lmstle/images/index.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Plant 1</h5>
+                                <h5 class="card-title">Plant 2</h5>
                                 <p class="card-text">This is a plant.</p>
                                 <a href="#" class="btn btn-primary"> Check Information</a>
                             </div>

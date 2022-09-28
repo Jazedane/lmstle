@@ -24,7 +24,7 @@
 
                         <div id="block_bg" class="block" style="width:200%">
                             <div class="navbar navbar-inner block-header">
-							    <div id="" class="muted pull-left"><h4> Task Grade Progress</h4></div>
+							    <div id="" class="muted pull-left"><h4> Task Progress</h4></div>
 							</div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -34,6 +34,8 @@
 										        <tr>
 												<th>Date Upload</th>
 												<th>Task</th>
+												<th>Status</th>
+												<th>Due Date</th>
 												<th>Grade</th>
 												</tr>
 												
