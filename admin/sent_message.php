@@ -48,7 +48,7 @@
 								 ?>
                                 <div class="post" id="del<?php echo $id; ?>">
                                     <?php echo $row['content']; ?>
-                                    <hr>
+                                    <br>
                                     Sent to: <strong><?php echo $row['receiver_name']; ?></strong>
                                     <i class="fa-solid fa-calendar"></i> <?php echo $row['date_sended']; ?>
                                     <div class="pull-right">

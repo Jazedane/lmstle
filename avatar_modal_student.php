@@ -33,26 +33,25 @@
                                 <div class="row-fluid">
                                     <form method="post" action="student_avatar.php" enctype="multipart/form-data">
                                         <center>
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <input name="image" class="input-file uniform_on" id="fileInput"
-                                                        type="file" required>
-                                                </div>
+                                            <div class="mb-3">
+                                                <label for="formFileMultiple" class="form-label">
+                                                    <input name="image" class="form-control" id="formFileMultiple"
+                                                        type="file" required></input>
                                             </div>
                                         </center>
-
                                 </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-info" name="change"><i class="fa-solid fa-save"></i>
-                                        Save</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-info" name="change"><i class="fa-solid fa-save"></i>
+                                    Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <?php include('footer.php'); ?>
+    </div>
+    <?php include('footer.php'); ?>
     </div>
     <?php include('script.php'); ?>
 </body>

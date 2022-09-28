@@ -57,6 +57,7 @@ window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <th>Date Upload</th>
                                                 <th>Task Name</th>
                                                 <th>Description</th>
+                                                <th>Status</th>
                                                 <th>Submitted by:</th>
                                                 <th>Grade</th>
                                             </tr>
@@ -76,6 +77,7 @@ window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td><?php echo $row['task_fdatein']; ?></td>
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
+                                                <td></td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <?php if ($session_id == $student_id){ ?>
                                                 <td>

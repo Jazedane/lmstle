@@ -47,6 +47,7 @@
                                             <th>Date Upload</th>
                                             <th>Task Name</th>
                                             <th>Description</th>
+                                            <th>Due Date</th>
                                             <th></th>
                                         </tr>
 
@@ -63,6 +64,7 @@
                                             <td><?php echo $row['fdatein']; ?></td>
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
+                                            <td></td>
                                             <td width="220">
                                                 <form id="assign_save" method="post"
                                                     action="submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">

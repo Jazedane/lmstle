@@ -43,7 +43,7 @@
 								 ?>
                                 <div class="post" id="del<?php echo $id; ?>" style="border:1px solid black">
                                     <?php echo $row['content']; ?>
-                                    <hr>
+                                    <br>
                                     Send to: <strong><?php echo $row['receiver_name']; ?></strong>
                                     <i class="fa-solid fa-calendar"></i> <?php echo $row['date_sended']; ?>
                                     <div class="pull-right">
