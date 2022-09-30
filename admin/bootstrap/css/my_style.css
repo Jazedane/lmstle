@@ -65,9 +65,9 @@
     text-align: left;
 }
 
-#assigntextare {
-    height: 219px;
-    width: 248px;
+#assigntextarea {
+    height: 120px;
+    width: 100%;
 }
 
 #assign {

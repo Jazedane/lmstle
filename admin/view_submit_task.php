@@ -13,7 +13,6 @@ window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
 	
  ?>
 
-
 <body id="studentTableDiv">
     <?php include('sidebar2.php'); ?>
     <div class="container-fluid">

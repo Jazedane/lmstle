@@ -35,8 +35,8 @@
 										        <tr>
 												<th>Date Upload</th>
 												<th>Task</th>
-												<th>Status</th>
 												<th>Due Date</th>
+												<th>Status</th>
 												<th>Grade</th>
 												</tr>
 												
