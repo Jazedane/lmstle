@@ -6,7 +6,7 @@
 	  if($post_id == ''){
 	  ?>
 <script>
-window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
+window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
 </script>
 <?php
 	  }
@@ -79,8 +79,8 @@ window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td><?php echo $row['task_fdatein']; ?></td>
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td><?php echo $row['end_date']; ?></td>
+                                                <td><?php echo $row['task_status']; ?></td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td><a href="<?php echo $row['floc']; ?>"><i
                                                             class="fa-solid fa-download"></i></a></td>

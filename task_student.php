@@ -64,6 +64,7 @@
                                             <td><?php echo $row['fdatein']; ?></td>
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
+                                            <td><?php echo $row['end_date']; ?></td>
                                             <td></td>
                                             <td width="220">
                                                 <form id="assign_save" method="post"

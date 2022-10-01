@@ -6,7 +6,7 @@
 	  if($post_id == ''){
 	  ?>
 <script>
-window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
+window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
 </script>
 <?php
 	  }
@@ -77,6 +77,7 @@ window.location = "task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td><?php echo $row['task_fdatein']; ?></td>
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
+                                                <td><?php echo $row['status']; ?></td>
                                                 <td></td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <?php if ($session_id == $student_id){ ?>

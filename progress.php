@@ -34,8 +34,8 @@
 										        <tr>
 												<th>Date Upload</th>
 												<th>Task</th>
-												<th>Status</th>
 												<th>Due Date</th>
+												<th>Status</th>
 												<th>Grade</th>
 												</tr>
 												
@@ -55,7 +55,9 @@
 										<tr>
 										 <td><?php echo $row['fdatein']; ?></td>
                                          <td><?php  echo $row['fname']; ?></td>
-                                      
+										 <td><?php  echo $row['end_date']; ?></td>
+										 <td><?php  echo $row['task_status']; ?></td>
+										
 										 <?php if ($session_id == $student_id){ ?>
                                          <td>
 										 <span class="badge badge-success"><?php echo $row['grade']; ?></span>
