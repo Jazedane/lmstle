@@ -13,7 +13,8 @@
                             <label class="control-label" for="inputEmail">Task</label>
                             <div class="mb-3">
                                 <label for="formFileMultiple" class="form-label">
-                                    <input  name="upload_file" class="form-control" type="file" id="formFileMultiple" multiple></input>
+                                    <input name="uploaded_file" class="form-control" type="file" id="formFileMultiple"
+                                        multiple></input>
                                     <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                                     <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
                                     <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
@@ -57,8 +58,7 @@
                         $.jGrowl("Student Successfully  Added", {
                             header: 'Student Added'
                         });
-                        window.location =
-                            'submit_task.php<?php echo '?id='.$get_id.'&'.'post_id='.$post_id; ?>';
+                        window.location.reload()
                     },
                     cache: false,
                     contentType: false,
