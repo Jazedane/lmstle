@@ -31,25 +31,48 @@
 
                        <div class="control-group">
                            <div class="controls">
-                               <input name="un" value="<?php echo $row['username']; ?>" class="input focused"
+                               <input name="username" value="<?php echo $row['username']; ?>" class="input focused"
                                    id="focusedInput" type="text" placeholder="ID Number" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
-                               <input name="fn" value="<?php echo $row['firstname']; ?>" class="input focused"
+                               <input name="firstname" value="<?php echo $row['firstname']; ?>" class="input focused"
                                    id="focusedInput" type="text" placeholder="Firstname" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
-                               <input name="ln" value="<?php echo $row['lastname']; ?>" class="input focused"
+                               <input name="lastname" value="<?php echo $row['lastname']; ?>" class="input focused"
                                    id="focusedInput" type="text" placeholder="Lastname" required>
                            </div>
                        </div>
 
+                       <div class="control-group">
+                           <div class="controls">
+                               <select name="gender" class="" required>
+                                   <option><?php echo $row['gender']; ?></option>
+                                   <option>Male</option>
+                                   <option>Female</option>
+                               </select>
+                           </div>
+                       </div>
+
+                       <div class="control-group">
+                           <div class="controls">
+                               <select name="age" class="" required>
+                                   <option><?php echo $row['age']; ?></option>
+                                   <option>15</option>
+                                   <option>16</option>
+                                   <option>17</option>
+                                   <option>18</option>
+                                   <option>19</option>
+                                   <option>20</option>
+                               </select>
+                           </div>
+                       </div>
 
                        <div class="control-group">
                            <div class="controls">
@@ -71,9 +94,11 @@
       $username = $_POST['username'];
       $firstname = $_POST['firstname'];
       $lastname = $_POST['lastname'];
+      $gender = $_POST['gender'];
+      $age = $_POST['age'];
       $cys = $_POST['cys'];
                     
-mysqli_query($conn,"update student set username = '$username' , firstname ='$firstname' , lastname = '$lastname' , class_id = '$cys' where student_id = '$get_id' ") or die(mysqli_error());
+mysqli_query($conn,"update student set username = '$username' , firstname ='$firstname' , lastname = '$lastname' , gender = '$gender', age = '$age', class_id = '$cys' where student_id = '$get_id' ") or die(mysqli_error());
 
 		?>
 

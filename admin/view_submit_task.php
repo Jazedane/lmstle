@@ -20,11 +20,13 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
             <div class="span9" id="content">
                 <div class="row-fluid">
 
-                    <?php $class_query = mysqli_query($conn,"select * from teacher_class
-										LEFT JOIN class ON class.class_id = teacher_class.class_id
-										where teacher_class_id = '$get_id'")or die(mysqli_error());
-										$class_row = mysqli_fetch_array($class_query);
-										?>
+                    <?php 
+                    $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                    $class_query = mysqli_query($conn,"select * from teacher_class
+									LEFT JOIN class ON class.class_id = teacher_class.class_id
+									where teacher_class_id = '$get_id'")or die(mysqli_error());
+									$class_row = mysqli_fetch_array($class_query);
+									?>
 
                     <ul class="breadcrumb">
                         <li><a href="#"><?php echo $class_row['class_name']; ?></a> <span class="divider">/</span></li>
@@ -59,6 +61,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <th>Task Name</th>
                                                 <th>Description</th>
                                                 <th>Due Date</th>
+                                                <th>Progress</th>
                                                 <th>Status</th>
                                                 <th>Submitted by:</th>
                                                 <th></th>
@@ -80,7 +83,34 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
                                                 <td><?php echo $row['end_date']; ?></td>
-                                                <td><?php echo $row['task_status']; ?></td>
+                                                <td class="project_progress">
+                                                    <div class="progress progress-sm">
+                                                        <div class="progress-bar bg-green" role="progressbar"
+                                                            aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
+                                                            style="width: %">
+                                                        </div>
+                                                    </div>
+                                                    <small>
+                                                        % Complete
+                                                    </small>
+                                                </td>
+                                                <td class="project-state">
+                                                    <?php
+                            					if($task_status[$row['task_status']] =='Pending'){
+                              						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['task_status']] =='Started'){
+                              						echo "<span class='badge badge-primary'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['stask_status']] =='On-Progress'){
+                              						echo "<span class='badge badge-info'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['task_status']] =='On-Hold'){
+                              						echo "<span class='badge badge-warning'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['task_status']] =='Over Due'){
+                              						echo "<span class='badge badge-danger'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['task_status']] =='Done'){
+                              						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
+                            					}
+                          						?>
+                                                </td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td><a href="<?php echo $row['floc']; ?>"><i
                                                             class="fa-solid fa-download"></i></a></td>

@@ -23,7 +23,8 @@
 
 	                <th>Name</th>
 	                <th>ID Number</th>
-
+	                <th>Gender</th>
+	                <th>Age</th>
 	                <th>Year & Section</th>
 	                <th></th>
 	            </tr>
@@ -48,12 +49,12 @@
                      ' ' .
                      $row['lastname']; ?></td>
 	                <td><?php echo $row['username']; ?></td>
-
+	                <td><?php echo $row['gender']; ?></td>
+	                <td><?php echo $row['age']; ?></td>
 	                <td width="100"><?php echo $row['class_name']; ?></td>
 
 	                <td width="30"><a href="edit_student.php<?php echo '?id=' .
-                     $id; ?>" class="btn btn-success"><i
-	                            class="fa-solid fa-edit"></i> </a></td>
+                     $id; ?>" class="btn btn-success"><i class="fa-solid fa-edit"></i> </a></td>
 
 	            </tr>
 	            <?php

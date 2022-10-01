@@ -24,7 +24,7 @@
                         <div class="control-group">
 
                             <div class="controls">
-                                <input type="text" name="name" Placeholder="Task Name" class="input">
+                                <input type="text" name="name" Placeholder="Task Name" class="input" required>
                             </div>
                         </div>
                         <div class="control-group">
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group" required>
                                 <label for="">Status</label>
                                 <select name="status" id="status" class="custom-select custom-select-sm">
                                     <option value="1"
@@ -54,24 +54,16 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="control-label">Start Date</label>
-                                <input type="date" class="form-control form-control-sm" autocomplete="off"
-                                    name="start_date"
-                                    value="<?php echo isset($start_date) ? datetime("Y-m-d",strtotime($start_date)) : '' ?>">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="" class="control-label">End Date</label>
+                                <label for="" class="control-label">Due Date</label>
                                 <input type="date" class="form-control form-control-sm" autocomplete="off"
                                     name="end_date"
-                                    value="<?php echo isset($end_date) ? datetime("Y-m-d",strtotime($end_date)) : '' ?>">
+                                    value="<?php echo isset($end_date) ? datetime("Y-m-d-min",strtotime($end_date)) : '' ?>" required>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="controls">
                                 <button name="Upload" type="submit" value="Upload" class="btn btn-success" /><i
-                                    class="fa-solid fa-upload"></i> Upload</button>
+                                    class="fa-solid fa-upload" ></i> Upload</button>
                             </div>
                         </div>
                     </form>

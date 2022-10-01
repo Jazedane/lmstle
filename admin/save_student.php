@@ -8,6 +8,8 @@ $class_id = $_POST['class_id'];
 $username = $_POST['username'];
 $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
+$gender = $_POST['gender'];
+$age = $_POST['age'];
 $teacher_id = $_POST['teacher_id'];
 $hashedPassword = hash('sha256', $lastname . $username);
 
@@ -26,9 +28,9 @@ mysqli_query(
     $conn,
     "INSERT INTO 
     student 
-    (username,firstname,lastname,location,class_id,status,password) 
+    (username,firstname,lastname,gender,age,location,class_id,status,password) 
     VALUES 
-    ('$username','$firstname','$lastname','uploads/NO-IMAGE-AVAILABLE.jpg','$class_id','Unregistered','$hashedPassword');"
+    ('$username','$firstname','$lastname','$gender','$age','uploads/NO-IMAGE-AVAILABLE.jpg','$class_id','Unregistered','$hashedPassword');"
 ) or die(mysqli_error());
 
 /**
