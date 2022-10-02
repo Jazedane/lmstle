@@ -89,10 +89,10 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                             aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
                                                             style="width: %">
                                                         </div>
+                                                        <small>
+                                                            % Complete
+                                                        </small>
                                                     </div>
-                                                    <small>
-                                                        % Complete
-                                                    </small>
                                                 </td>
                                                 <td class="project-state">
                                                     <?php

@@ -31,7 +31,7 @@
                     <div id="block_bg" class="block" style="width: 200%">
                         <div class="navbar navbar-inner block-header">
                             <div id="" class="muted pull-left">
-                                <h4> Task Progress</h4>
+                                <h4> Student Task Progress</h4>
                             </div>
                         </div>
                         <div class="block-content collapse in">
@@ -41,6 +41,7 @@
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
+                                            <th>Student Name</th>
                                             <th>Task</th>
                                             <th>Due Date</th>
                                             <th>Progress</th>
@@ -62,6 +63,7 @@
 										?>
                                         <tr>
                                             <td><?php echo $row['fdatein']; ?></td>
+                                            <td><?php echo $row['firstname']; ?>" "<?php echo $row['lastname']; ?></td>
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php  echo $row['end_date']; ?></td>
                                             <td class="project_progress">

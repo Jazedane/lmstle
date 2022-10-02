@@ -70,12 +70,12 @@
                                                         aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
                                                         style="width: %">
                                                     </div>
+                                                    <small>
+                                                        % Complete
+                                                    </small>
                                                 </div>
-                                                <small>
-                                                    % Complete
-                                                </small>
                                             </td>
-											<td class="project-state">
+                                            <td class="project-state">
                                                 <?php
                             					if($task_status[$row['task_status']] =='Pending'){
                               						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
