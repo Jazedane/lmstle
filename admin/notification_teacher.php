@@ -73,8 +73,8 @@
                                         <input id="" name="selector[]" type="checkbox" value="<?php echo $id; ?>">
                                         <?php  } ?>
                                         <strong><?php echo $row['firstname']." ".$row['lastname'];  ?></strong>
-                                        <?php echo $row['notification']; ?> In <b><?php echo $row['fname']; ?></b>
-                                        <a
+                                        <?php echo $row['notification']; ?> in <b><?php echo $row['fname']; ?></b>
+                                        <a class="btn-link"
                                             href="<?php echo $row['link']; ?><?php echo '?id='.$get_id; ?>&<?php echo 'post_id='.$task_id; ?>">
                                             <?php echo $row['class_name']; ?>
                                             <?php echo $row['class_id']; ?>

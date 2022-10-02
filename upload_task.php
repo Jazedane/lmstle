@@ -42,7 +42,7 @@ if ($errflag) {
 	?>
 
    <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php exit();
 }
@@ -59,8 +59,8 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
     if (($ext != "exe") && ($_FILES["uploaded_file"]["type"] != "application/x-msdownload")) {
         //Determine the path to which we want to save this file      
         //$newname = dirname(__FILE__).'/upload/'.$filename;
-        $newname = "uploads/" . $rd2 . "_" . $filename;
-	$name_notification  = 'Submit Task name'." ".'<b>'.$name.'</b>'; 
+        $newname = "admin/uploads/" . $rd2 . "_" . $filename;
+	$name_notification  = 'submit task name'." ".'<b>'.$name.'</b>'; 
         //Check if the file with the same name is already exists on the server
         if (!file_exists($newname)) {
             //Attempt to move the uploaded file to it's new place
@@ -88,7 +88,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
                         $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
                         session_write_close(); ?>
                            <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php
                         exit();
@@ -103,7 +103,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
                     $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
                     session_write_close(); ?>
        <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    
    
@@ -120,7 +120,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
                 $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
                 session_write_close(); ?>
        <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php
    
@@ -136,7 +136,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
             $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
             session_write_close(); ?>
             <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php
             exit();
@@ -152,7 +152,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
         $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
         session_write_close(); ?>
        <script>
-   window.location = 'downloadable.php<?php echo '?id='.$get_id;  ?>';
+   window.location = 'admin/downloadable.php<?php echo '?id='.$get_id;  ?>';
    </script>
    <?php
         exit();

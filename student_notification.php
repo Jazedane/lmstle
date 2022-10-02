@@ -71,11 +71,10 @@
                                             value="<?php echo $id; ?>">
                                         <?php } ?>
                                         <strong><?php echo $row['firstname']." ".$row['lastname'];  ?></strong>
-                                        <?php echo $row['notification']; ?> In
-                                        <a href="<?php echo $row['link']; ?><?php echo '?id='.$get_id; ?>">
+                                        <?php echo $row['notification']; ?> in
+                                        <a class="btn-link" href="<?php echo $row['link']; ?><?php echo '?id='.$get_id; ?>">
                                             <?php echo $row['class_name']; ?>
-                                            <?php echo $row['subject_code']; ?>
-
+                                            <?php echo $row['class_id']; ?>
                                         </a>
                                         <div class="pull-right"><b>Date of Submission: </b>
                                             <?php echo $row['date_of_notification']; ?>

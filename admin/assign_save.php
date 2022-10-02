@@ -27,7 +27,7 @@ echo $input_name ;
 
 if ($input_name == ""){
 
-			$name_notification  = 'Add Task file name'." ".'<b>'.$name.'</b>';
+			$name_notification  = 'add task name'." ".'<b>'.$name.'</b>';
 	   
                 mysqli_query($conn,"INSERT INTO task (fdesc,fdatein,teacher_id,class_id,fname) 
                 VALUES ('$filedesc',NOW(),'$session_id','$id_class','$name')")or die(mysqli_error());
@@ -51,7 +51,7 @@ if ($input_name == ""){
    } */ 
    $newname = "uploads/" . $rd2 . "_" . $filename;
    
-		$name_notification  = 'Add Task file name'." ".'<b>'.$name.'</b>';
+		$name_notification  = 'add task name'." ".'<b>'.$name.'</b>';
         //Check if the file with the same name is already exists on the server
 
             //Attempt to move the uploaded file to it's new place
