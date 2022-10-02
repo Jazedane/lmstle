@@ -13,7 +13,7 @@ if (isset($_POST['read'])) {
     }
     ?>
 <script>
-window.location = 'student_notification.php';
+window.location = 'notification_teacher.php';
 </script>
 <?php
 }

@@ -39,6 +39,7 @@ if (
 
 //If there are input validations, redirect back to the registration form
 if ($errflag) {
+
     $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
     session_write_close();
     ?>
@@ -53,7 +54,8 @@ $rd2 = mt_rand(1000, 9999) . '_File';
 
 //Check that we have a file
 if (
-    !empty($_FILES['uploaded_file']) && $_FILES['uploaded_file']['error'] == 0
+    !empty($_FILES['uploaded_file']) &&
+    $_FILES['uploaded_file']['error'] == 0
 ) {
     //Check if the file is JPEG image and it's size is less than 350Kb
     $filename = basename($_FILES['uploaded_file']['name']);
@@ -66,7 +68,12 @@ if (
     ) {
         //Determine the path to which we want to save this file
         //$newname = dirname(__FILE__).'/upload/'.$filename;
-        $newname = $_SERVER['DOCUMENT_ROOT'] . '/lmstle/admin/uploads/' . $rd2 . '_' . $filename;
+        $newname =
+            $_SERVER['DOCUMENT_ROOT'] .
+            '/lmstle/admin/uploads/' .
+            $rd2 .
+            '_' .
+            $filename;
         $name_notification =
             'Submit Task file name' . ' ' . '<b>' . $name . '</b>';
         //Check if the file with the same name is already exists on the server
@@ -83,12 +90,24 @@ if (
                 ($qry2 = "INSERT INTO student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) 
                 VALUES ('$filedesc','$newname',NOW(),'$name','$task_id','$session_id')") or
                     die(mysqli_error());
-                mysqli_query(
+
+                ($teacher_class_query = mysqli_query(
                     $conn,
-                    "insert into teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id,task_id) 
-                value('$get_id','$name_notification',NOW(),'view_submit_task.php','$session_id','$task_id')"
-                ) or die(mysqli_error());
-                //$result = @mysqli_query($conn,$qry);
+                    "SELECT * FROM teacher_class WHERE teacher_class_id='$get_id'"
+                )) or die(mysqli_error());
+
+                $teacher_class_row = mysqli_fetch_array(
+                    $teacher_class_query, 1
+                );
+                
+                $teacher_id = $teacher_class_row['teacher_id'];
+
+                ($query = mysqli_query(
+                    $conn,
+                    "INSERT INTO notification 
+                    (broadcaster_id,receiver_id,message,link) VALUES ('$session_id','$teacher_id','$name_notification','view_submit_task.php?id=" .$get_id."&post_id=" .$task_id."')"
+                )) or die(mysqli_error());
+                
                 $result2 = $connector->query($qry2);
                 if ($result2) {
                     $errmsg_arr[] =

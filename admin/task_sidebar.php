@@ -18,7 +18,8 @@
                                         multiple></input>
                                     <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                                     <input type="hidden" name="id" value="<?php echo $session_id ?>" />
-                                    <input type="hidden" name="id_class" value="<?php echo $get_id; ?>">
+                                    <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
+                                    <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                             </div>
                         </div>
                         <div class="control-group">

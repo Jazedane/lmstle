@@ -1,8 +1,8 @@
-<?php include('header.php'); ?>
-<?php include('session.php'); ?>
+<?php include 'header.php'; ?>
+<?php include 'session.php'; ?>
 
 <body>
-    <?php include('sidebar.php'); ?>
+    <?php include 'sidebar.php'; ?>
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span9" id="content">
@@ -10,95 +10,186 @@
 
                     <ul class="breadcrumb">
                         <?php
-						$school_year_query = mysqli_query($conn,"select * from school_year order by school_year DESC")or die(mysqli_error());
-						$school_year_query_row = mysqli_fetch_array($school_year_query);
-						$school_year = $school_year_query_row['school_year'];
-						?>
+                        ($school_year_query = mysqli_query(
+                            $conn,
+                            'select * from school_year order by school_year DESC'
+                        )) or die(mysqli_error());
+                        $school_year_query_row = mysqli_fetch_array(
+                            $school_year_query
+                        );
+                        $school_year = $school_year_query_row['school_year'];
+                        ?>
                         <li><a href="#"><b>My Class</b></a><span class="divider">/</span></li>
-                        <li><a href="#">School Year: <?php echo $school_year_query_row['school_year']; ?></a></li>
+                        <li><a href="#">School Year: <?php echo $school_year_query_row[
+                            'school_year'
+                        ]; ?></a></li>
                     </ul>
 
                     <div id="block_bg" class="block">
+
+                        <!-- Block title start -->
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left"> Notification </div>
+                            <div id="" class="muted pull-left"> New Notifications </div>
                         </div>
+                        <!-- Block title end -->
+
+                        <!-- Block content start -->
                         <div class="block-content collapse in">
+
+                            <!-- Block content wrapper start -->
                             <div class="span12">
-
-
                                 <form action="read.php" method="post">
-                                    <?php if($not_read == '0'){
-								}else{ ?>
-                                    <button id="delete" class="btn btn-success" name="read"><i
-                                            class="fa-solid fa-check"></i> Read</button>
-                                    <div class="pull-right">
-                                        Check All <input type="checkbox" name="selectAll" id="checkAll" />
+
+                                    <!-- Interactive controls start -->
+                                    <div>
+                                        <button id="delete" class="btn btn-success" name="read"><i
+                                                class="fa-solid fa-check"></i> Mark as Read</button>
+
+                                        <div style="margin-bottom: 10px;">
+                                            <input type="checkbox" name="selectAll" id="checkAll" /> Select All
+                                        </div>
+
                                         <script>
                                         $("#checkAll").click(function() {
                                             $('input:checkbox').not(this).prop('checked', this.checked);
                                         });
                                         </script>
                                     </div>
+                                    <!-- Interactive controls end -->
 
-                                    <?php } ?>
+                                    <?php
+                                    ($query = mysqli_query(
+                                        $conn,
+                                        "SELECT * FROM notification 
+                                        LEFT JOIN teacher ON broadcaster_id=teacher.teacher_id
+                                        WHERE receiver_id = '$session_id' AND is_read = false"
+                                    )) or die(mysqli_error());
+                                    $count = mysqli_num_rows($query);
+                                    if ($count > 0) {
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) {
 
-                                    <?php $query = mysqli_query($conn,"select * from teacher_class_student
-					LEFT JOIN teacher_class ON teacher_class.teacher_class_id = teacher_class_student.teacher_class_id 
-					LEFT JOIN class ON class.class_id = teacher_class.class_id 
-					LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
-					LEFT JOIN teacher ON teacher.teacher_id = teacher_class_student.teacher_id 
-					JOIN notification ON notification.teacher_class_id = teacher_class.teacher_class_id 	
-					where teacher_class_student.student_id = '$session_id' and school_year = '$school_year'  order by notification.date_of_notification DESC
-					")or die(mysqli_error());
-					$count = mysqli_num_rows($query);
-					if ($count  > 0){
-					while($row = mysqli_fetch_array($query)){
-					$get_id = $row['teacher_class_id'];
-					$id = $row['notification_id'];
-					
-					
-					$query_yes_read = mysqli_query($conn,"select * from notification_read where notification_id = '$id' and student_id = '$session_id'")or die(mysqli_error());
-					$read_row = mysqli_fetch_array($query_yes_read);
-					
-					$yes = $read_row['student_read'];
-				
-					?>
+                                            $get_id = $row['broadcaster_id'];
+                                            $id = $row['notification_id'];
+                                            $is_read = $row['is_read'];
+                                            ?>
+
+                                    <!-- Notifications display start -->
                                     <div class="post" id="del<?php echo $id; ?>">
-                                        <?php if ($yes == 'yes'){
-										}else{
-										?>
                                         <input id="" class="" name="selector[]" type="checkbox"
                                             value="<?php echo $id; ?>">
-                                        <?php } ?>
-                                        <strong><?php echo $row['firstname']." ".$row['lastname'];  ?></strong>
-                                        <?php echo $row['notification']; ?> in
-                                        <a class="btn-link" href="<?php echo $row['link']; ?><?php echo '?id='.$get_id; ?>">
-                                            <?php echo $row['class_name']; ?>
-                                            <?php echo $row['class_id']; ?>
+
+                                        <strong><?php echo $row['firstname'] .
+                                            ' ' .
+                                            $row['lastname']; ?></strong>
+
+                                        <a class="btn-link" href="<?php echo $row['link']; ?>">
+                                            <?php echo $row['message']; ?>
                                         </a>
-                                        <div class="pull-right"><b>Date of Submission: </b>
-                                            <?php echo $row['date_of_notification']; ?>
+
+                                        <div class="pull-right"><b>Notification date: </b>
+                                            <?php
+                                        $date = date_create($row['date']);
+                                        echo date_format(
+                                            $date,
+                                            'M/d/Y h:i:s a'
+                                        );
+                                        ?>
                                         </div>
                                     </div>
+                                    <!-- Notifications display end -->
+
                                     <?php
-					} }else{
-					?>
+                                        }
+                                    } else {
+                                         ?>
                                     <div class="alert alert-info"><strong><i class="fa-solid fa-info-circle"></i> No
                                             Notifications Found</strong></div>
                                     <?php
-					}
-					?>
+                                    }
+                                    ?>
 
                                 </form>
                             </div>
+                            <!-- Block content wrapper end -->
                         </div>
+                        <!-- Block content end -->
+                    </div>
+
+                    <div id="" class="block">
+
+                        <!-- Block title start -->
+                        <div class="navbar navbar-inner block-header">
+                            <div id="" class="muted pull-left"> Notification History </div>
+                        </div>
+                        <!-- Block title end -->
+
+                        <!-- Block content start -->
+                        <div class="block-content collapse in">
+
+                            <!-- Block content wrapper start -->
+                            <div class="span12">
+                                <?php
+                                ($query = mysqli_query(
+                                    $conn,
+                                    "SELECT * FROM notification 
+                                        LEFT JOIN teacher ON broadcaster_id=teacher.teacher_id
+                                        WHERE receiver_id = '$session_id' AND is_read = true"
+                                )) or die(mysqli_error());
+                                $count = mysqli_num_rows($query);
+                                if ($count > 0) {
+                                    while ($row = mysqli_fetch_array($query)) {
+
+                                        $get_id = $row['broadcaster_id'];
+                                        $id = $row['notification_id'];
+                                        $is_read = $row['is_read'];
+                                        ?>
+
+                                <!-- Notifications display start -->
+                                <div>
+                                    <strong><?php echo $row['firstname'] .
+                                        ' ' .
+                                        $row['lastname']; ?></strong>
+
+                                    <a class="btn-link" href="<?php echo $row[
+                                        'link'
+                                    ]; ?>">
+                                        <?php echo $row['message']; ?>
+                                    </a>
+
+                                    <div class="pull-right"><b>Notification date: </b>
+                                        <?php
+                                        $date = date_create($row['date']);
+                                        echo date_format(
+                                            $date,
+                                            'M/d/Y h:i:s a'
+                                        );
+                                        ?>
+                                    </div>
+                                </div>
+                                <!-- Notifications display end -->
+
+                                <?php
+                                    }
+                                } else {
+                                     ?>
+                                <div class="alert alert-info"><strong><i class="fa-solid fa-info-circle"></i> No
+                                        Notifications Found</strong></div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <!-- Block content wrapper end -->
+                        </div>
+                        <!-- Block content end -->
                     </div>
                 </div>
             </div>
         </div>
-        <?php include('footer.php'); ?>
+        <?php include 'footer.php'; ?>
     </div>
-    <?php include('script.php'); ?>
+    <?php include 'script.php'; ?>
 </body>
 
 </html>

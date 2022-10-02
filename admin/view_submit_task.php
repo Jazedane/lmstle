@@ -77,6 +77,8 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
 										where task_id = '$post_id'  order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
+                                        $student_id = $row['student_id'];
+                                        $task_name = $row['fname'];
 									?>
                                             <tr>
                                                 <td><?php echo $row['task_fdatein']; ?></td>
@@ -122,6 +124,12 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                             value="<?php echo $post_id; ?>">
                                                         <input type="hidden" class="span4" name="get_id"
                                                             value="<?php echo $get_id; ?>">
+
+                                                        <input type="hidden" class="span4" name="student_id"
+                                                            value="<?php echo $student_id; ?>">
+                                                        <input type="hidden" class="span4" name="task_name"
+                                                            value="<?php echo $task_name; ?>">
+                                                        
                                                         <input type="text" class="span4" name="grade"
                                                             value="<?php echo $row['grade']; ?>">
                                                         <button name="save" class="btn btn-success" id="btn_s"><i

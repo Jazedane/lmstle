@@ -1,8 +1,8 @@
-<?php include('header.php'); ?>
-<?php include('session.php'); ?>
+<?php include 'header.php'; ?>
+<?php include 'session.php'; ?>
 
 <body>
-    <?php include('sidebar.php'); ?>
+    <?php include 'sidebar.php'; ?>
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span9" id="content">
@@ -10,93 +10,200 @@
 
                     <ul class="breadcrumb">
                         <?php
-						$school_year_query = mysqli_query($conn,"select * from school_year order by school_year DESC")or die(mysqli_error());
-						$school_year_query_row = mysqli_fetch_array($school_year_query);
-						$school_year = $school_year_query_row['school_year'];
-						?>
+                        ($school_year_query = mysqli_query(
+                            $conn,
+                            'select * from school_year order by school_year DESC'
+                        )) or die(mysqli_error());
+                        $school_year_query_row = mysqli_fetch_array(
+                            $school_year_query
+                        );
+                        $school_year = $school_year_query_row['school_year'];
+                        ?>
                         <li><a href="#"><b>My Class</b></a><span class="divider">/</span></li>
-                        <li><a href="#">School Year: <?php echo $school_year_query_row['school_year']; ?></a><span
-                                class="divider">/</span></li>
+                        <li><a href="#">School Year: <?php echo $school_year_query_row[
+                            'school_year'
+                        ]; ?></a><span class="divider">/</span></li>
                         <li><a href="#"><b>Notification</b></a></li>
                     </ul>
 
                     <div id="block_bg" class="block">
+
+                        <!-- Block title start -->
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left"> Notification </div>
+                            <div id="" class="muted pull-left"> New Notifications </div>
                         </div>
+                        <!-- Block title end -->
+
+                        <!-- Block content start -->
                         <div class="block-content collapse in">
+
+                            <!-- Block content wrapper start -->
                             <div class="span12">
+                                <form action="read.php" method="post">
 
-                                <div class="pull-right">
-                                    Check All <input type="checkbox" name="selectAll" id="checkAll" />
-                                    <script>
-                                    $("#checkAll").click(function() {
-                                        $('input:checkbox').not(this).prop('checked', this.checked);
-                                    });
-                                    </script>
-                                </div>
+                                    <!-- Interactive controls start -->
+                                    <div>
+                                        <button id="delete" class="btn btn-success" name="read"><i
+                                                class="fa-solid fa-check"></i> Mark as Read</button>
 
-                                <form id="domainTable" action="read_teacher.php" method="post">
-                                    <?php  if($not_read == '0'){
-								}else{  ?>
-                                    <button id="delete" class="btn btn-info" name="read"><i
-                                            class="fa-solid fa-check"></i> Read</button>
+                                        <div style="margin-bottom: 10px;">
+                                            <input type="checkbox" name="selectAll" id="checkAll" /> Select All
+                                        </div>
 
-                                    <?php  }  ?>
+                                        <script>
+                                        $("#checkAll").click(function() {
+                                            $('input:checkbox').not(this).prop('checked', this.checked);
+                                        });
+                                        </script>
+                                    </div>
+                                    <!-- Interactive controls end -->
 
-                                    <?php $query = mysqli_query($conn,"select * from teacher_notification
-					LEFT JOIN teacher_class on teacher_class.teacher_class_id = teacher_notification.teacher_class_id
-					LEFT JOIN student on student.student_id = teacher_notification.student_id
-					LEFT JOIN task on task.task_id = teacher_notification.task_id 
-					LEFT JOIN class on teacher_class.class_id = class.class_id
-					LEFT JOIN subject on teacher_class.subject_id = subject.subject_id
-					where teacher_class.teacher_id = '$session_id'  order by  teacher_notification.date_of_notification DESC
-					")or die();
-					$count = mysqli_num_rows($query);
-					while($row = mysqli_fetch_array($query)){
-					$task_id = $row['task_id'];
-					$get_id = $row['teacher_class_id'];
-					$id = $row['teacher_notification_id'];
-					
-					
-					$query_yes_read = mysqli_query($conn,"select * from notification_read_teacher where notification_id = '$id' and teacher_id = '$session_id'")or die(mysqli_error());
-					$read_row = mysqli_fetch_array($query_yes_read);
-					
-					$yes = $read_row['student_read']; 
-				
-					?>
-                                    <div class="post" id="del<?php echo $id; ?>" style="margin-bottom: 10px">
-                                        <?php  if ($yes == 'yes'){
-										}else{ 
-										?>
+                                    <?php
+                                    ($query = mysqli_query(
+                                        $conn,
+                                        "SELECT * FROM notification 
+                                        LEFT JOIN student ON broadcaster_id=student.student_id
+                                        LEFT JOIN class ON class.class_id=student.class_id
+                                        WHERE receiver_id = '$session_id' AND is_read = false"
+                                    )) or die(mysqli_error($conn));
 
-                                        <input id="" name="selector[]" type="checkbox" value="<?php echo $id; ?>">
-                                        <?php  } ?>
-                                        <strong><?php echo $row['firstname']." ".$row['lastname'];  ?></strong>
-                                        <?php echo $row['notification']; ?> in <b><?php echo $row['fname']; ?></b>
-                                        <a class="btn-link"
-                                            href="<?php echo $row['link']; ?><?php echo '?id='.$get_id; ?>&<?php echo 'post_id='.$task_id; ?>">
+                                    $count = mysqli_num_rows($query);
+                                    if ($count > 0) {
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) {
+
+                                            $get_id = $row['broadcaster_id'];
+                                            $id = $row['notification_id'];
+                                            $is_read = $row['is_read'];
+                                            ?>
+
+                                    <!-- Notifications display start -->
+                                    <div class="post" id="del<?php echo $id; ?>">
+                                        <?php if ($is_read == true) {
+                                        } else {
+                                             ?>
+                                        <input id="" class="" name="selector[]" type="checkbox"
+                                            value="<?php echo $id; ?>">
+                                        <?php
+                                        } ?>
+
+                                        <strong><?php echo $row['firstname'] .
+                                            ' ' .
+                                            $row['lastname']; ?></strong>
+
+                                        <?php echo $row['message']; ?> in
+                                        <a class="btn-link" href="<?php echo $row[
+                                            'link'
+                                        ]; ?>">
                                             <?php echo $row['class_name']; ?>
-                                            <?php echo $row['class_id']; ?>
                                         </a>
-                                        <div class="pull-right"> <b>Date of Submission: </b>
-                                            <?php echo $row['date_of_notification']; ?>
+
+                                        <div class="pull-right"><b>Notification date: </b>
+                                            <?php
+                                        $date = date_create($row['date']);
+                                        echo date_format(
+                                            $date,
+                                            'M/d/Y h:i:s a'
+                                        );
+                                        ?>
                                         </div>
                                     </div>
+                                    <!-- Notifications display end -->
+
                                     <?php
-					}
-					?>
+                                        }
+                                    } else {
+                                         ?>
+                                    <div class="alert alert-info"><strong><i class="fa-solid fa-info-circle"></i> No
+                                            Notifications Found</strong></div>
+                                    <?php
+                                    }
+                                    ?>
 
                                 </form>
                             </div>
+                            <!-- Block content wrapper end -->
                         </div>
+                        <!-- Block content end -->
                     </div>
+
+                    <div id="" class="block">
+
+                        <!-- Block title start -->
+                        <div class="navbar navbar-inner block-header">
+                            <div id="" class="muted pull-left"> Notification History </div>
+                        </div>
+                        <!-- Block title end -->
+
+                        <!-- Block content start -->
+                        <div class="block-content collapse in">
+
+                            <!-- Block content wrapper start -->
+                            <div class="span12">
+                                <?php
+                                ($query = mysqli_query(
+                                    $conn,
+                                    "SELECT * FROM notification 
+                                        LEFT JOIN student ON broadcaster_id=student.student_id
+                                        LEFT JOIN class ON class.class_id=student.class_id
+                                        WHERE receiver_id = '$session_id' AND is_read = true"
+                                )) or die(mysqli_error());
+                                $count = mysqli_num_rows($query);
+                                if ($count > 0) {
+                                    while ($row = mysqli_fetch_array($query)) {
+
+                                        $get_id = $row['broadcaster_id'];
+                                        $id = $row['notification_id'];
+                                        $is_read = $row['is_read'];
+                                        ?>
+
+                                <!-- Notifications display start -->
+                                <div>
+                                    <strong><?php echo $row['firstname'] .
+                                        ' ' .
+                                        $row['lastname']; ?></strong>
+
+                                    <?php echo $row['message']; ?> in
+                                    <a class="btn-link" href="<?php echo $row[
+                                        'link'
+                                    ]; ?>">
+                                        <?php echo $row['class_name']; ?>
+                                    </a>
+
+                                    <div class="pull-right"><b>Notification date: </b>
+                                        <?php
+                                        $date = date_create($row['date']);
+                                        echo date_format(
+                                            $date,
+                                            'M/d/Y h:i:s a'
+                                        );
+                                        ?>
+                                    </div>
+                                </div>
+                                <!-- Notifications display end -->
+
+                                <?php
+                                    }
+                                } else {
+                                     ?>
+                                <div class="alert alert-info"><strong><i class="fa-solid fa-info-circle"></i> No
+                                        Notifications Found</strong></div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <!-- Block content wrapper end -->
+                        </div>
+                        <!-- Block content end -->
+                    </div>
+
                 </div>
             </div>
         </div>
-        <?php include('footer.php'); ?>
+        <?php include 'footer.php'; ?>
     </div>
-    <?php include('script.php'); ?>
+    <?php include 'script.php'; ?>
 </body>
 
 </html>
