@@ -55,18 +55,9 @@
                                     <li>
                                         <a href="my_classmates.php<?php echo '?id=' .
                                             $id; ?>">
-                                            <img src="<?php echo $row[
-                                                'thumbnails'
-                                            ]; ?>" width="124" height="100" class="img-polaroid">
-                                            <div>
-                                                <span>
-                                                    <p><?php echo $row[
-                                                        'class_name'
-                                                    ]; ?></p>
-
-                                                </span>
-                                            </div>
+                                            <img src="<?php echo $row['thumbnails']; ?>" width="124" height="100" class="img-polaroid">
                                         </a>
+                                        <p class="class"><?php echo $row['class_name']; ?></p>
                                     </li>
 
                                     <?php

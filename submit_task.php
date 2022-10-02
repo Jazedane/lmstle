@@ -20,7 +20,9 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
             <div class="span6" id="content">
                 <div class="row-fluid">
 
-                    <?php $class_query = mysqli_query($conn,"select * from teacher_class
+                    <?php 
+                    $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                    $class_query = mysqli_query($conn,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
 										where teacher_class_id = '$get_id'")or die(mysqli_error());
 										$class_row = mysqli_fetch_array($class_query);
@@ -77,8 +79,23 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
                                                 <td><?php echo $row['task_fdatein']; ?></td>
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
-                                                <td><?php echo $row['status']; ?></td>
-                                                <td></td>
+                                                <td class="project-state">
+                                                <?php
+                            					if($task_status[$row['task_status']] =='Pending'){
+                              						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['task_status']] =='Started'){
+                              						echo "<span class='badge badge-primary'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['stask_status']] =='On-Progress'){
+                              						echo "<span class='badge badge-info'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['task_status']] =='On-Hold'){
+                              						echo "<span class='badge badge-warning'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['task_status']] =='Over Due'){
+                              						echo "<span class='badge badge-danger'>{$task_status[$row['task_status']]}</span>";
+                            					}elseif($task_status[$row['task_status']] =='Done'){
+                              						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
+                            					}
+                          						?>
+                                            </td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <?php if ($session_id == $student_id){ ?>
                                                 <td>

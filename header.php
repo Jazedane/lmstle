@@ -24,8 +24,10 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
     <link href="fontawesome/css/all.css" rel="stylesheet" media="screen" type="text/css">
+    <link href="bootstrap/css/my_style.css" rel="stylesheet" media="screen">
     <link href="vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
     <link href="assets/styles.css" rel="stylesheet" media="screen">
+    <link href="assets/style.css" rel="stylesheet" media="screen">
 
     <link href="vendors/fullcalendar/fullcalendar.css" rel="stylesheet" media="screen">
     <!-- data table -->

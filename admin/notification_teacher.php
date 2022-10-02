@@ -65,7 +65,7 @@
 					$yes = $read_row['student_read']; 
 				
 					?>
-                                    <div class="post" id="del<?php echo $id; ?>">
+                                    <div class="post" id="del<?php echo $id; ?>" style="margin-bottom: 10px">
                                         <?php  if ($yes == 'yes'){
 										}else{ 
 										?>
@@ -78,11 +78,8 @@
                                             href="<?php echo $row['link']; ?><?php echo '?id='.$get_id; ?>&<?php echo 'post_id='.$task_id; ?>">
                                             <?php echo $row['class_name']; ?>
                                             <?php echo $row['class_id']; ?>
-
                                         </a>
-                                        <hr>
-                                        <div class="pull-right">
-                                            <i class="fa-solid fa-calendar"></i>
+                                        <div class="pull-right"> <b>Date of Submission: </b>
                                             <?php echo $row['date_of_notification']; ?>
                                         </div>
                                     </div>

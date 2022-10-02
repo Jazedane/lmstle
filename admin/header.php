@@ -30,7 +30,7 @@
     <link href="vendors/uniform.default.css" rel="stylesheet" media="screen">
     <link href="vendors/fullcalendar/fullcalendar.css" rel="stylesheet" media="screen">
     <link href="vendors/jGrowl/jquery.jgrowl.css" rel="stylesheet" media="screen">
-    
+    <link href="assets/style.css" rel="stylesheet" media="screen">
     <link href="assets/styles.css" rel="stylesheet" media="screen">
     <link href="bootstrap/css/my_style.css" rel="stylesheet" media="screen">
     <link href="assets/DT_bootstrap.css" rel="stylesheet" media="screen">

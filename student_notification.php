@@ -77,8 +77,7 @@
                                             <?php echo $row['subject_code']; ?>
 
                                         </a>
-                                        <div class="pull-right">
-                                            <i class="fa-solid fa-calendar"></i>
+                                        <div class="pull-right"><b>Date of Submission: </b>
                                             <?php echo $row['date_of_notification']; ?>
                                         </div>
                                     </div>

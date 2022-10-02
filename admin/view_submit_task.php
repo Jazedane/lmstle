@@ -84,7 +84,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td><?php echo $row['fdesc']; ?></td>
                                                 <td><?php echo $row['end_date']; ?></td>
                                                 <td class="project_progress">
-                                                    <div class="progress progress-sm">
+                                                    <div class="progress progress-sm" style="border:1px solid black">
                                                         <div class="progress-bar bg-green" role="progressbar"
                                                             aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
                                                             style="width: %">

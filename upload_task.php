@@ -59,16 +59,18 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
     if (($ext != "exe") && ($_FILES["uploaded_file"]["type"] != "application/x-msdownload")) {
         //Determine the path to which we want to save this file      
         //$newname = dirname(__FILE__).'/upload/'.$filename;
-        $newname = "/admin/uploads/" . $rd2 . "_" . $filename;
-	$name_notification  = 'Submit Task file name'." ".'<b>'.$name.'</b>'; 
+        $newname = "uploads/" . $rd2 . "_" . $filename;
+	$name_notification  = 'Submit Task name'." ".'<b>'.$name.'</b>'; 
         //Check if the file with the same name is already exists on the server
         if (!file_exists($newname)) {
             //Attempt to move the uploaded file to it's new place
             if ((move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $newname))) {
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;		   
-                $qry2 = ("INSERT INTO student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) VALUES ('$filedesc','$newname',NOW(),'$name','$task_id','$session_id')")or die(mysqli_error());
-				mysqli_query($conn,"insert into teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id,task_id) value('$get_id','$name_notification',NOW(),'view_submit_task.php','$session_id','$task_id')")or die(mysqli_error());
+                $qry2 = ("INSERT INTO student_task (fdesc,floc,task_fdatein,fname,task_status,end_date,task_id,student_id) 
+                VALUES ('$filedesc','$newname',NOW(),'$name','$task_id','$session_id')")or die(mysqli_error());
+				mysqli_query($conn,"insert into teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id,task_id) 
+                value('$get_id','$name_notification',NOW(),'view_submit_task.php','$session_id','$task_id')")or die(mysqli_error());
 			   //$result = @mysqli_query($conn,$qry);
                 $result2 = $connector->query($qry2);
                 if ($result2) {
