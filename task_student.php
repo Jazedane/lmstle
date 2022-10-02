@@ -83,6 +83,7 @@
                                                         id="<?php echo $id; ?>submit" class="btn btn-success"
                                                         name="btn_task"><i class="fa-solid fa-upload"></i> Submit
                                                         Task</button>
+                                            </form>
                                             </td>
                                             <script type="text/javascript">
                                             $(document).ready(function() {
