@@ -137,11 +137,25 @@ body {
         </li>
         <li class="nav-item">
             <a href="student_notification.php">
-                <i class="fa-solid fa-info-circle"></i> Notification</a>
+                <i class="fa-solid fa-info-circle"></i> Notification
+                <?php if($not_read == '0'){
+				}else{ ?>
+                <span class="badge badge-important"><?php echo $not_read; ?></span>
+                <?php } ?>
+            </a>
         </li>
+        <?php
+			$message_query = mysqli_query($conn,"select * from message where receiver_id = '$session_id' and message_status != 'read' ")or die(mysqli_error());
+			$count_message = mysqli_num_rows($message_query);
+		?>
         <li class="nav-item">
             <a href="student_message.php">
-                <i class="fa-solid fa-envelope"></i> Message</a>
+                <i class="fa-solid fa-envelope"></i> Message
+                <?php if($count_message == '0'){
+				}else{ ?>
+                <span class="badge badge-important"><?php echo $count_message; ?></span>
+                <?php } ?>
+            </a>
         </li>
         <li class="">
             <a href="plants_info.php">

@@ -81,7 +81,7 @@
                                     ]; ?>
                                     <div class="pull-right">
                                         <a class="btn btn-link" href="#reply<?php echo $id; ?>" data-toggle="modal"><i
-                                                class="fa-solid fas-reply"></i> Reply </a>
+                                                class="fa-solid fa-reply"></i> Reply </a>
                                     </div>
                                     <div class="pull-right">
                                         <a class="btn btn-link" href="#<?php echo $id; ?>" data-toggle="modal"><i

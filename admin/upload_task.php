@@ -75,7 +75,7 @@ if (
             '_' .
             $filename;
         $name_notification =
-            'Submit Task file name' . ' ' . '<b>' . $name . '</b>';
+            'submit task name' . ' ' . '<b>' . $name . '</b>';
         //Check if the file with the same name is already exists on the server
         if (!file_exists($newname)) {
             //Attempt to move the uploaded file to it's new place
