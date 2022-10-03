@@ -111,7 +111,21 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                             					}elseif($task_status[$row['task_status']] =='Done'){
                               						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
                             					}
-                          						?>
+                                                ?>
+                                                    <li class="dropdown">
+                                                        <button name="action" href="#" class="btn btn-info"
+                                                            data-toggle="dropdown"></i>Action<i class="caret"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="#reply<?php echo $id; ?>" data-toggle="modal"><i class="fa-solid fa-edit"></i>
+                                                                    Edit </a></li>
+                                                            <li><a href="#<?php echo $id; ?>" data-toggle="modal"><i
+                                                                        class="fa-solid fa-trash-can"></i>
+                                                                    Delete </a></li>
+                                                            <?php include 'reply_inbox_message_modal.php'; ?>
+                                                            <?php include 'remove_inbox_message_modal.php'; ?>
+                                                        </ul>
+                                                    </li>
                                                 </td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td><a href="<?php echo $row['floc']; ?>"><i
@@ -124,12 +138,10 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                             value="<?php echo $post_id; ?>">
                                                         <input type="hidden" class="span4" name="get_id"
                                                             value="<?php echo $get_id; ?>">
-
                                                         <input type="hidden" class="span4" name="student_id"
                                                             value="<?php echo $student_id; ?>">
                                                         <input type="hidden" class="span4" name="task_name"
                                                             value="<?php echo $task_name; ?>">
-
                                                         <input type="text" class="span4" name="grade"
                                                             value="<?php echo $row['grade']; ?>">
                                                         <button name="save" class="btn btn-success" id="btn_s"><i

@@ -1,5 +1,5 @@
-<?php include('header.php'); ?>
-<?php include('session.php'); ?>
+<?php include 'header.php'; ?>
+<?php include 'session.php'; ?>
 
 <body id="class_div">
     <?php include('sidebar.php'); ?>
@@ -55,9 +55,9 @@
                 });
                 </script>
             </div>
-            <?php include('teacher_right_sidebar.php') ?>
+            <?php include 'teacher_right_sidebar.php' ?>
         </div>
-        <?php include('footer.php'); ?>
+        <?php include'footer.php'; ?>
     </div>
-    <?php include('script.php'); ?>
+    <?php include 'script.php' ; ?>
 </body>
