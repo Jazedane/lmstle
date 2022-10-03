@@ -35,7 +35,7 @@
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">
-                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="">
+                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
 
                                     <thead>
                                         <tr>

@@ -27,7 +27,7 @@
                             <?php $query = mysqli_query($conn,"select * FROM task where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error()); 
 									  $count  = mysqli_num_rows($query);
 								?>
-                            <div id="" class="muted pull-right"><span
+                            <div id="" class="muted pull-right">Number of Task: <span
                                     class="badge badge-info"><?php echo $count; ?></span></div>
                         </div>
                         <div class="block-content collapse in">
@@ -40,7 +40,8 @@
                                 <?php
 									}else{
 								?>
-                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="">
+
+                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
 
                                     <thead>
                                         <tr>
@@ -59,7 +60,7 @@
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['task_id'];
 										$floc = $row['floc'];
-									?>
+									    ?>
                                         <tr>
                                             <td><?php echo $row['fdatein']; ?></td>
                                             <td><?php  echo $row['fname']; ?></td>
@@ -83,7 +84,7 @@
                                                         id="<?php echo $id; ?>submit" class="btn btn-success"
                                                         name="btn_task"><i class="fa-solid fa-upload"></i> Submit
                                                         Task</button>
-                                            </form>
+                                                </form>
                                             </td>
                                             <script type="text/javascript">
                                             $(document).ready(function() {
@@ -98,11 +99,9 @@
                                             });
                                             </script>
 
-
                                         </tr>
 
                                         <?php } ?>
-
 
                                     </tbody>
                                 </table>

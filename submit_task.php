@@ -52,8 +52,7 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
 
                                 <div id="">
 
-
-                                    <table cellpadding="0" cellspacing="0" border="0" class="table" id="">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
 
                                         <thead>
                                             <tr>
@@ -75,13 +74,13 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];
-									?>
+									    ?>
                                             <tr>
                                                 <td><?php echo $row['task_fdatein']; ?></td>
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
                                                 <td class="project-state">
-                                                <?php
+                                                    <?php
                             					if($task_status[$row['task_status']] =='Pending'){
                               						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='Started'){
@@ -96,7 +95,7 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
                               						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
                             					}
                           						?>
-                                            </td>
+                                                </td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <?php if ($session_id == $student_id){ ?>
                                                 <td>
@@ -109,7 +108,6 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
                                             </tr>
 
                                             <?php } ?>
-
 
                                         </tbody>
                                     </table>

@@ -10,7 +10,7 @@
                 <div class="row-fluid">
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div class="muted pull-left">File Uploaded List</div>
+                            <div class="muted pull-left">Task Uploaded List</div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">
@@ -21,6 +21,7 @@
                                             <th>Date Upload</th>
                                             <th>Task Name</th>
                                             <th>Description</th>
+                                            <th>Due Date</th>
                                             <th>Upload By</th>
                                             <th>Class</th>
 
@@ -30,8 +31,8 @@
                                     <tbody>
 
                                         <?php
-										$query = mysqli_query($conn,"select * FROM files LEFT JOIN teacher ON teacher.teacher_id = files.teacher_id 
-																				  LEFT JOIN teacher_class ON teacher_class.teacher_class_id = files.class_id 
+										$query = mysqli_query($conn,"select * FROM task LEFT JOIN teacher ON teacher.teacher_id = task.teacher_id 
+																				  LEFT JOIN teacher_class ON teacher_class.teacher_class_id = task.class_id 
 																				  INNER JOIN class ON class.class_id = teacher_class.class_id  ")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 									?>
@@ -39,6 +40,7 @@
                                             <td><?php echo $row['fdatein']; ?></td>
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
+                                            <td><?php echo $row['end_date']; ?></td>
                                             <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                             <td><?php echo $row['class_name']; ?></td>
 

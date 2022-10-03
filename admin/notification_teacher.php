@@ -40,9 +40,7 @@
                             <!-- Block content wrapper start -->
                             <div class="span12">
                                 <form action="read_teacher.php" method="post">
-                                    <?php  if($not_read == '0'){
-								    }else{  
-                                    ?>
+
                                     <!-- Interactive controls start -->
                                     <div>
                                         <button id="delete" class="btn btn-success" name="read"><i
@@ -58,7 +56,6 @@
                                         });
                                         </script>
                                     </div>
-                                    <?php } ?>
                                     <!-- Interactive controls end -->
 
                                     <?php
@@ -80,11 +77,7 @@
                                             $id = $row['notification_id'];
                                             $is_read = $row['is_read'];
 
-                                            $query_is_read = mysqli_query($conn,"select * from notification_read_teacher where notification_id = '$id' and teacher_id = '$session_id'")or die(mysqli_error());
-					                        $read_row = mysqli_fetch_array($query_is_read);
-					
-					                        $yes = $read_row['student_read']; 
-                                            ?>
+                                    ?>
 
                                     <!-- Notifications display start -->
                                     <div class="post" id="del<?php echo $id; ?>">

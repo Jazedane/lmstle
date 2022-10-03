@@ -31,7 +31,6 @@
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">
-
                                 <ul class="nav nav-pills">
                                     <li class="active">
                                         <a href="teacher_message.php"><i class="fa-solid fa-envelope"></i> Inbox</a>
@@ -75,27 +74,27 @@
                                     </div>
 
                                     <tr>
-                                    Sent by: <strong><?php echo $sender_name; ?></strong>
-                                    <i class="fa solid fa-calendar"></i> <?php echo $row[
+                                        Sent by: <strong><?php echo $sender_name; ?></strong>
+                                        <i class="fa solid fa-calendar"></i> <?php echo $row[
                                         'date_sended'
                                     ]; ?>
-                                    <div class="pull-right">
-                                        <a class="btn btn-link" href="#reply<?php echo $id; ?>" data-toggle="modal"><i
-                                                class="fa-solid fa-reply"></i> Reply </a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="btn btn-link" href="#<?php echo $id; ?>" data-toggle="modal"><i
-                                                class="fa-solid fa-remove"></i> Remove </a>
-                                        <?php include 'remove_inbox_message_modal.php'; ?>
-                                        <?php include 'reply_inbox_message_modal.php'; ?>
-                                    </div>
+                                        <div class="pull-right">
+                                            <a class="btn btn-link" href="#reply<?php echo $id; ?>"
+                                                data-toggle="modal"><i class="fa-solid fa-reply"></i> Reply </a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a class="btn btn-link" href="#<?php echo $id; ?>" data-toggle="modal"><i
+                                                    class="fa-solid fa-remove"></i> Remove </a>
+                                            <?php include 'remove_inbox_message_modal.php'; ?>
+                                            <?php include 'reply_inbox_message_modal.php'; ?>
+                                        </div>
                                 </div>
-
                                 <?php
                                     }
                                 } else {
                                      ?>
-                                <div class="alert alert-info"><i class="fa-solid fa-info-circle"></i> No Inbox Messages
+                                <div class="alert alert-info"><i class="fa-solid fa-info-circle"></i> No Inbox
+                                    Messages
                                 </div>
                                 <?php
                                 }

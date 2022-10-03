@@ -29,7 +29,7 @@
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">
-                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="">
+                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
@@ -59,8 +59,6 @@
                                                     <button data-placement="bottom" title="View Student Who Submit Task"
                                                         id="<?php echo $id; ?>view" class="btn btn-success"><i
                                                             class="fa-solid fa-folder"></i></button>
-
-                                                </form>
                                                 <?php 
 										if ($floc == ""){
 										}else{

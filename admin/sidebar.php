@@ -134,10 +134,6 @@ body {
         <li class="">
             <a href="notification_teacher.php">
                 <i class="fa-solid fa-info-circle"></i> Notification
-                <?php if($not_read == '0'){
-				}else{ ?>
-                <span class="badge badge-important"><?php echo $not_read; ?></span>
-                <?php } ?>
             </a>
         </li>
         <?php

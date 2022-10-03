@@ -126,9 +126,7 @@ body {
 </div>
 
 <div class="sidebar">
-    <img id="avatar" src="/lmstle/admin/<?php echo $row[
-        'location'
-    ]; ?>" class="img-polaroid" style="width:140px;height:140;margin-left:20px">
+    <img id="avatar" src="/lmstle/admin/<?php echo $row['location']; ?>" class="img-polaroid" style="width:140px;height:140;margin-left:20px">
     <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
         widget="treeview">
         <li class="nav-item">
@@ -138,10 +136,6 @@ body {
         <li class="nav-item">
             <a href="student_notification.php">
                 <i class="fa-solid fa-info-circle"></i> Notification
-                <?php if($not_read == '0'){
-				}else{ ?>
-                <span class="badge badge-important"><?php echo $not_read; ?></span>
-                <?php } ?>
             </a>
         </li>
         <?php

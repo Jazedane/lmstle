@@ -53,7 +53,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                 <div id="">
 
 
-                                    <table cellpadding="0" cellspacing="0" border="0" class="table" id="">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
 
                                         <thead>
                                             <tr>
@@ -72,14 +72,14 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                         <tbody>
 
                                             <?php
-										$query = mysqli_query($conn,"select * FROM student_task
-										LEFT JOIN student on student.student_id  = student_task.student_id
-										where task_id = '$post_id'  order by task_fdatein DESC")or die(mysqli_error());
-										while($row = mysqli_fetch_array($query)){
-										$id  = $row['student_task_id'];
-                                        $student_id = $row['student_id'];
-                                        $task_name = $row['fname'];
-									?>
+										    $query = mysqli_query($conn,"select * FROM student_task
+										    LEFT JOIN student on student.student_id  = student_task.student_id
+										    where task_id = '$post_id'  order by task_fdatein DESC")or die(mysqli_error());
+										    while($row = mysqli_fetch_array($query)){
+										    $id  = $row['student_task_id'];
+                                            $student_id = $row['student_id'];
+                                            $task_name = $row['fname'];
+									        ?>
                                             <tr>
                                                 <td><?php echo $row['task_fdatein']; ?></td>
                                                 <td><?php  echo $row['fname']; ?></td>
@@ -129,7 +129,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                             value="<?php echo $student_id; ?>">
                                                         <input type="hidden" class="span4" name="task_name"
                                                             value="<?php echo $task_name; ?>">
-                                                        
+
                                                         <input type="text" class="span4" name="grade"
                                                             value="<?php echo $row['grade']; ?>">
                                                         <button name="save" class="btn btn-success" id="btn_s"><i
