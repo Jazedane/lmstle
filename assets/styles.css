@@ -1,11 +1,15 @@
 /** Home Page **/
 
 body {
-    background-image: url("/lmstle/admin/images/index3.jpg");
+    background-image: url("/lmstle/admin/images/index4.jpg");
     background-repeat: no-repeat;
     background-position: center;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
     position: relative;
     background-size: cover !important;
+    width: max-content;
 }
 
 

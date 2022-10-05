@@ -12,7 +12,7 @@
                         <div class="muted pull-left">Available Plants in School Garden</div>
                     </div>
                     <div class="block-content collapse in">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 10rem;">
                             <img src="/lmstle/images/index.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Plant 1</h5>
@@ -20,7 +20,7 @@
                                 <a href="#" class="btn btn-primary"> Check Information</a>
                             </div>
                         </div>
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 10rem;">
                             <img src="/lmstle/images/index.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Plant 1</h5>
@@ -34,4 +34,5 @@
         </div>
     </div>
 </div>
+<?php include('footer.php'); ?>
 <?php include('script.php'); ?>

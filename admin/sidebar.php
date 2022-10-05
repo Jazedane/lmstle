@@ -133,7 +133,7 @@ body {
         </li>
         <li class="">
             <a href="notification_teacher.php">
-                <i class="fa-solid fa-info-circle"></i> Notification
+                <i class="fa-solid fa-bell"></i> Notification
             </a>
         </li>
         <?php

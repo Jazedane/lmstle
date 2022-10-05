@@ -135,7 +135,7 @@ body {
         </li>
         <li class="nav-item">
             <a href="student_notification.php">
-                <i class="fa-solid fa-info-circle"></i> Notification
+                <i class="fa-solid fa-bell"></i> Notification
             </a>
         </li>
         <?php

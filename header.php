@@ -9,7 +9,7 @@
     }
 
     body {
-        background-image: url("/lmstle/admin/images/index3.jpg");
+        background-image: url("/lmstle/admin/images/index4.jpg");
         height: 100%;
         background-repeat: no-repeat;
         -webkit-background-size: cover !important;

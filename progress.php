@@ -6,7 +6,7 @@
     <?php include('sidebar2.php'); ?>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span4" id="content">
+            <div class="span5" id="content">
                 <div class="row-fluid">
 
                     <?php 

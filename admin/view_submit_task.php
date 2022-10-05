@@ -17,7 +17,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
     <?php include('sidebar2.php'); ?>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span9" id="content">
+            <div class="span11" id="content">
                 <div class="row-fluid">
 
                     <?php 
