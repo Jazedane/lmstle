@@ -73,9 +73,9 @@
                                                         style="width: <?php echo $prog ?>%">
                                                     </div>
                                                 </div>
-                                                <small>
+                                                <center>
                                                     <?php echo $prog ?>% Complete
-                                                </small>
+                                                </center>
                                             </td>
                                             <td class="project-state">
                                                 <?php

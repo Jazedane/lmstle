@@ -70,9 +70,9 @@
                                                         aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
                                                         style="width: %">
                                                     </div>
-                                                    <small>
+                                                    <center>
                                                         % Complete
-                                                    </small>
+                                                    </center>
                                                 </div>
                                             </td>
                                             <td class="project-state">
