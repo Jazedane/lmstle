@@ -73,7 +73,7 @@
                                             <label for="" class="control-label">End Date</label>
                                             <input type="date" class="form-control form-control-sm" autocomplete="off"
                                                 name="end_date"
-                                                value="<?php echo isset($end_date) ? datetime("Y-m-d",strtotime($end_date)) : '' ?>">
+                                                value="<?php echo isset($end_date) ? datetime("Y-m-d",strtotime($end_date)) : '' ?>" required>
                                         </div>
                                     </div>
 

@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="control-label">Due Date</label>
+                                <label for="due_date" class="control-label">Due Date</label>
                                 <input type="date" class="form-control form-control-sm" autocomplete="off"
                                     name="end_date"
                                     value="<?php echo isset($end_date) ? datetime("Y-m-d-min",strtotime($end_date)) : '' ?>" required>

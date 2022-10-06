@@ -93,8 +93,8 @@
                                                 $('#<?php echo $id; ?>view').tooltip('hide');
                                             });
                                             </script>
+                                            <?php } ?>
                                         </tr>
-                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
