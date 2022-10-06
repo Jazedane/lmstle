@@ -29,7 +29,7 @@ $filedesc = clean($_POST['desc']);
 //$subject= clean($_POST['upname']);
 
 if ($filedesc == '') {
-    $errmsg_arr[] = ' file discription is missing';
+    $errmsg_arr[] = ' file description is missing';
     $errflag = true;
 }
 

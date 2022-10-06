@@ -34,27 +34,8 @@
                                 <textarea id="assigntextarea" placeholder="Description" name="desc" required></textarea>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group" required>
-                                <label for="">Status</label>
-                                <select name="status" id="status" class="custom-select custom-select-sm">
-                                    <option value="1"
-                                        <?php echo isset($task_status) && $task_status == 1 ? 'selected' : '' ?>>
-                                        Pending
-                                    </option>
-                                    <option value="3"
-                                        <?php echo isset($task_status) && $task_status == 3 ? 'selected' : '' ?>>
-                                        On-Hold
-                                    </option>
-                                    <option value="5"
-                                        <?php echo isset($task_status) && $task_status == 5 ? 'selected' : '' ?>>
-                                        Done
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
+                        <div class="control-group">
+                            <div class="controls">
                                 <label for="" class="control-label">Due Date</label>
                                 <input type="date" class="form-control form-control-sm" autocomplete="off"
                                     name="end_date"
