@@ -59,10 +59,12 @@
                                                     <button data-placement="bottom" title="View Student Who Submit Task"
                                                         id="<?php echo $id; ?>view" class="btn btn-success"><i
                                                             class="fa-solid fa-folder"></i></button>
+
+                                                </form>
                                                 <?php 
-										if ($floc == ""){
-										}else{
-										?>
+										            if ($floc == ""){
+										            }else{
+										        ?>
                                                 <a data-placement="bottom" title="Download"
                                                     id="<?php echo $id; ?>download" class="btn btn-info"
                                                     href="<?php echo $row['floc']; ?>"><i

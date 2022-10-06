@@ -129,7 +129,7 @@ body {
         </li>
         <li class="">
             <a href="dashboard_teacher.php">
-                <i class="fa-solid fa-school"></i> Class</a>
+                <i class="fa-solid fa-home"></i> Class</a>
         </li>
         <li class="">
             <a href="notification_teacher.php">

@@ -131,7 +131,7 @@ body {
         widget="treeview">
         <li class="nav-item">
             <a href="dashboard_student.php">
-                <i class="fa-solid fa-school"></i> My Class</a>
+                <i class="fa-solid fa-home"></i> My Class</a>
         </li>
         <li class="nav-item">
             <a href="student_notification.php">
