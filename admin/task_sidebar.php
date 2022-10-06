@@ -34,8 +34,8 @@
                                 <textarea id="assigntextarea" placeholder="Description" name="desc" required></textarea>
                             </div>
                         </div>
-                        <div class="control-group">
-                            <div class="controls">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="" class="control-label">Due Date</label>
                                 <input type="date" class="form-control form-control-sm" autocomplete="off"
                                     name="end_date"
