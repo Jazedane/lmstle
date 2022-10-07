@@ -6,28 +6,30 @@
     </div>
     <div class="modal-body">
         <center>
-
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">To:</label>
-                <div class="controls">
-                    <input type="hidden" name="sender_id" id="inputEmail" value="<?php echo $sender_id; ?>" readonly>
-                    <input type="hidden" name="receiver_name" value="<?php echo $receiver_name; ?>" readonly>
-                    <input type="text" name="sender_name" id="inputEmail" value="<?php echo $sender_name; ?>" readonly>
+            <form id="reply" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="inputEmail">To:</label>
+                    <div class="controls">
+                        <input type="hidden" name="sender_id" id="inputEmail" value="<?php echo $sender_id; ?>"
+                            readonly>
+                        <input type="hidden" name="receiver_name" value="<?php echo $receiver_name; ?>" readonly>
+                        <input type="text" name="sender_name" id="inputEmail" value="<?php echo $sender_name; ?>"
+                            readonly>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputPassword">Content:</label>
-                <div class="controls">
-                    <textarea name="my_message" style="height:120px; width: 60%"></textarea>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">Content:</label>
+                    <div class="controls">
+                        <textarea name="my_message" style="height:120px; width: 60%"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <button type="submit" name="reply" id="<?php echo $id; ?>" class="btn btn-success reply"><i
-                            class="fa-solid fa-reply"></i> Reply</button>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" name="reply" id="<?php echo $id; ?>" class="btn btn-success reply"><i
+                                class="fa-solid fa-reply"></i> Reply</button>
+                    </div>
                 </div>
-            </div>
-
+            </form>
         </center>
     </div>
     <div class="modal-footer">
