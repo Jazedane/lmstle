@@ -100,12 +100,14 @@
                                             'date_sended'
                                         ]; ?>
                                         <div class="pull-right">
+                                            <a class="btn btn-link" href="#reply<?php echo $id; ?>"
+                                                data-toggle="modal"><i class="fa-solid fa-reply"></i> Reply </a>
+                                        </div>
+                                        <div class="pull-right">
                                             <a class="btn btn-link" href="#<?php echo $id; ?>" data-toggle="modal"><i
                                                     class="fa-solid fa-remove"></i> Remove </a>
                                             <?php include 'remove_inbox_message_modal.php'; ?>
                                             <?php include 'reply_inbox_message_modal_student.php'; ?>
-                                            <a class="btn btn-link" href="#reply<?php echo $id; ?>"
-                                                data-toggle="modal"><i class="fa-solid fa-reply"></i> Reply </a>
                                         </div>
                                     </div>
 

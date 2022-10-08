@@ -5,7 +5,7 @@
     <?php include('sidebar.php'); ?>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span9" id="content">
+            <div class="span10" id="content">
                 <div class="row-fluid">
 
                     <ul class="breadcrumb">
@@ -73,7 +73,8 @@
                                             <label for="" class="control-label">End Date</label>
                                             <input type="date" class="form-control form-control-sm" autocomplete="off"
                                                 name="end_date"
-                                                value="<?php echo isset($end_date) ? datetime("Y-m-d",strtotime($end_date)) : '' ?>" required>
+                                                value="<?php echo isset($end_date) ? datetime("Y-m-d",strtotime($end_date)) : '' ?>"
+                                                required>
                                         </div>
                                     </div>
 
@@ -108,10 +109,8 @@
 
                             </div>
                             <div class="span8">
-
                                 <div class="alert alert-info">Check The Class you want to put this file.</div>
-
-                                <div class="pull-left">
+                                <div class="">
                                     Check All <input type="checkbox" name="selectAll" id="checkAll" />
                                     <script>
                                     $("#checkAll").click(function() {
@@ -119,19 +118,18 @@
                                     });
                                     </script>
                                 </div>
-                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Class Name</th>
+                                                <th>Class Code</th>
+                                            </tr>
 
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Class Name</th>
-                                            <th>Class Code</th>
-                                        </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    </thead>
-                                    <tbody>
-
-                                        <?php $query = mysqli_query($conn,"select * from teacher_class
+                                            <?php $query = mysqli_query($conn,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
 										LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
 										where teacher_id = '$session_id' and school_year = '$school_year' ")or die(mysqli_error());
@@ -142,22 +140,21 @@
 										$id = $row['teacher_class_id'];
 				
 										?>
-                                        <tr id="del<?php echo $id; ?>">
-                                            <td width="30">
-                                                <input id="" class="" name="selector[]" type="checkbox"
-                                                    value="<?php echo $id; ?>">
-                                            </td>
-                                            <td><?php echo $row['class_name']; ?></td>
-                                            <td><?php echo $row['class_id']; ?></td>
-                                        </tr>
+                                            <tr id="del<?php echo $id; ?>">
+                                                <td width="30">
+                                                    <input id="" class="" name="selector[]" type="checkbox"
+                                                        value="<?php echo $id; ?>">
+                                                </td>
+                                                <td><?php echo $row['class_name']; ?></td>
+                                                <td><?php echo $row['class_id']; ?></td>
+                                            </tr>
 
-                                        <?php } ?>
+                                            <?php } ?>
 
 
 
-                                    </tbody>
-                                </table>
-
+                                        </tbody>
+                                    </table>
 
                             </div>
                             <div class="span10">

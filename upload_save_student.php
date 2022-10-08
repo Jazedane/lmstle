@@ -34,7 +34,7 @@ if ($filedesc == '') {
 }
 
 if ($_FILES['uploaded_file']['size'] >= 1048576 * 5) {
-    $errmsg_arr[] = 'file selected exceeds 25MB size limit';
+    $errmsg_arr[] = 'file selected exceeds 5MB size limit';
     $errflag = true;
 }
 
@@ -141,7 +141,7 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
     } else {
         //wrong file upload
         //echo "Error: Only .jpg images under 350Kb are accepted for upload";
-        $errmsg_arr[] = 'Error: All file types except .exe file under 25 Mb are not accepted for upload';
+        $errmsg_arr[] = 'Error: All file types except .exe file under 5 Mb are not accepted for upload';
         $errflag = true;
         if ($errflag) {
             $_SESSION['ERRMSG_ARR'] = $errmsg_arr;

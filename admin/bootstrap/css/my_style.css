@@ -108,7 +108,7 @@
     border: 1px solid;
     border-radius: 10px 10px 10px 1ss0px;
     margin-bottom: 5px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .row-fluid [class*="span"]:nth-child(5) {

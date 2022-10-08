@@ -60,10 +60,10 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <th>Date Upload</th>
                                                 <th>Task Name</th>
                                                 <th>Description</th>
-                                                <th>Due Date</th>
+                                                <th>Submitted by:</th>
                                                 <th>Progress</th>
                                                 <th>Status</th>
-                                                <th>Submitted by:</th>
+                                                <th>Action</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -84,16 +84,16 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td><?php echo $row['task_fdatein']; ?></td>
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
-                                                <td><?php echo $row['end_date']; ?></td>
+                                                <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td class="project_progress">
                                                     <div class="progress progress-sm" style="border:1px solid black">
                                                         <div class="progress-bar bg-green" role="progressbar"
                                                             aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
                                                             style="width: %">
                                                         </div>
-                                                        <small>
+                                                        <center>
                                                             % Complete
-                                                        </small>
+                                                        </center>
                                                     </div>
                                                 </td>
                                                 <td class="project-state">
@@ -112,22 +112,25 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                               						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
                             					}
                                                 ?>
-                                                    <li class="dropdown">
+                                                </td>
+                                                <td>
+                                                    <div class="dropdown">
                                                         <button name="action" href="#" class="btn btn-info"
                                                             data-toggle="dropdown"></i>Action<i class="caret"></i>
                                                         </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="#reply<?php echo $id; ?>" data-toggle="modal"><i class="fa-solid fa-edit"></i>
+                                                        <ul class="dropdown-menu text-center"
+                                                            style="width:20px; height:60px">
+                                                            <li><a href="#edit-task<?php echo $id; ?>"
+                                                                    data-toggle="modal"><i class="fa-solid fa-edit"></i>
                                                                     Edit </a></li>
                                                             <li><a href="#<?php echo $id; ?>" data-toggle="modal"><i
                                                                         class="fa-solid fa-trash-can"></i>
                                                                     Delete </a></li>
-                                                            <?php include 'reply_inbox_message_modal.php'; ?>
-                                                            <?php include 'remove_inbox_message_modal.php'; ?>
+                                                            <?php include 'edit_task_modal.php'; ?>
+                                                            <?php include 'remove_task_modal.php'; ?>
                                                         </ul>
-                                                    </li>
+                                                    </div>
                                                 </td>
-                                                <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td><a href="<?php echo $row['floc']; ?>"><i
                                                             class="fa-solid fa-download"></i></a></td>
                                                 <td width="140">
@@ -144,14 +147,13 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                             value="<?php echo $task_name; ?>">
                                                         <input type="text" class="span4" name="grade"
                                                             value="<?php echo $row['grade']; ?>">
-                                                        <button name="save" class="btn btn-success" id="btn_s"><i
+                                                        <button name="save" class="btn btn-success" id="btn"><i
                                                                 class="fa-solid fa-save"></i> Save</button>
                                                     </form>
                                                 </td>
                                             </tr>
 
                                             <?php } ?>
-
 
                                         </tbody>
                                     </table>
@@ -160,6 +162,30 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                         </div>
                     </div>
                 </div>
+                <script>
+                jQuery(document).ready(function() {
+                    jQuery("#edit-task").submit(function(e) {
+                        e.preventDefault();
+                        var id = $('.edit').attr("id");
+                        var _this = $(e.target);
+                        var formData = jQuery(this).serialize();
+                        $.ajax({
+                            type: "POST",
+                            url: "edit.php",
+                            data: formData,
+                            success: function(html) {
+                                $.jGrowl(
+                                    "Edited Task Successfully", {
+                                        header: 'Edited'
+                                    });
+                                $('#edit-task' + id).modal('hide');
+                            }
+
+                        });
+                        return false;
+                    });
+                });
+                </script>
             </div>
         </div>
         <?php include('footer.php'); ?>
