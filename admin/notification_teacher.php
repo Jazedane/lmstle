@@ -39,7 +39,7 @@
 
                             <!-- Block content wrapper start -->
                             <div class="span12">
-                                <form action="read_teacher.php" method="post">
+                                <form action="read.php" method="post">
 
                                     <!-- Interactive controls start -->
                                     <div>

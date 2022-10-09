@@ -61,7 +61,6 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <th>Task Name</th>
                                                 <th>Description</th>
                                                 <th>Submitted by:</th>
-                                                <th>Progress</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                                 <th></th>
@@ -85,17 +84,6 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
-                                                <td class="project_progress">
-                                                    <div class="progress progress-sm" style="border:1px solid black">
-                                                        <div class="progress-bar bg-green" role="progressbar"
-                                                            aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
-                                                            style="width: %">
-                                                        </div>
-                                                        <center>
-                                                            % Complete
-                                                        </center>
-                                                    </div>
-                                                </td>
                                                 <td class="project-state">
                                                     <?php
                             					if($task_status[$row['task_status']] =='Pending'){
@@ -116,14 +104,14 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td>
                                                     <div class="dropdown">
                                                         <button name="action" href="#" class="btn btn-info"
-                                                            data-toggle="dropdown"></i>Action<i class="caret"></i>
+                                                            data-toggle="dropdown"></i>Action <i class="caret"></i>
                                                         </button>
                                                         <ul class="dropdown-menu text-center"
                                                             style="width:20px; height:60px">
-                                                            <li><a href="#edit-task<?php echo $id; ?>"
+                                                            <li><a href="#edit<?php echo $id; ?>"
                                                                     data-toggle="modal"><i class="fa-solid fa-edit"></i>
                                                                     Edit </a></li>
-                                                            <li><a href="#<?php echo $id; ?>" data-toggle="modal"><i
+                                                            <li><a href="#remove<?php echo $id; ?>" data-toggle="modal"><i
                                                                         class="fa-solid fa-trash-can"></i>
                                                                     Delete </a></li>
                                                             <?php include 'edit_task_modal.php'; ?>
@@ -162,9 +150,34 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                         </div>
                     </div>
                 </div>
+                <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.remove').click(function() {
+                        var id = $(this).attr("id");
+                        $.ajax({
+                            type: "POST",
+                            url: "remove_task.php",
+                            data: ({
+                                id: id
+                            }),
+                            cache: false,
+                            success: function(html) {
+                                $("#del" + id).fadeOut('slow', function() {
+                                    $(this).remove();
+                                });
+                                $('#' + id).modal('hide');
+                                $.jGrowl("The Student Task is Successfully Deleted", {
+                                    header: 'Data Delete'
+                                });
+                            }
+                        });
+                        return false;
+                    });
+                });
+                </script>
                 <script>
                 jQuery(document).ready(function() {
-                    jQuery("#edit-task").submit(function(e) {
+                    jQuery("#edit").submit(function(e) {
                         e.preventDefault();
                         var id = $('.edit').attr("id");
                         var _this = $(e.target);
@@ -178,7 +191,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                     "Edited Task Successfully", {
                                         header: 'Edited'
                                     });
-                                $('#edit-task' + id).modal('hide');
+                                $('#edit' + id).modal('hide');
                             }
 
                         });
@@ -186,6 +199,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                     });
                 });
                 </script>
+                
             </div>
         </div>
         <?php include('footer.php'); ?>

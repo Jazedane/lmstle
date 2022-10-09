@@ -12,15 +12,9 @@
                         enctype="multipart/form-data" name="upload">
                         <div class="control-group"></div>
                             <label class="control-label" for="inputEmail">Task</label>
-                            <div class="mb-3">
-                                <label for="formFileMultiple" class="form-label">
-                                    <input name="uploaded_file" class="form-control" type="file" id="formFileMultiple"
-                                        multiple></input>
-                                    <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                                     <input type="hidden" name="id" value="<?php echo $session_id ?>" />
                                     <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
                                     <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
-                            </div>
                         </div>
                         <div class="control-group">
 

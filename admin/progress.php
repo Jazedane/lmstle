@@ -44,7 +44,6 @@
                                             <th>Student Name</th>
                                             <th>Task</th>
                                             <th>Due Date</th>
-                                            <th>Progress</th>
                                             <th>Status</th>
                                             <th>Grade</th>
                                         </tr>
@@ -66,17 +65,6 @@
                                             <td><?php echo $row['firstname']; ?>" "<?php echo $row['lastname']; ?></td>
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php  echo $row['end_date']; ?></td>
-                                            <td class="project_progress">
-                                                <div class="progress progress-sm" style="border:1px solid black">
-                                                    <div class="progress-bar bg-green" role="progressbar"
-                                                        aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
-                                                        style="width: <?php echo $prog ?>%">
-                                                    </div>
-                                                </div>
-                                                <center>
-                                                    <?php echo $prog ?>% Complete
-                                                </center>
-                                            </td>
                                             <td class="project-state">
                                                 <?php
                             					if($task_status[$row['task_status']] =='Pending'){

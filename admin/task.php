@@ -52,7 +52,7 @@
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
                                             <td><?php echo $row['end_date']; ?></td>
-                                            <td width="150">
+                                            <td width="10">
                                                 <form method="post"
                                                     action="view_submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">
 
@@ -61,26 +61,18 @@
                                                             class="fa-solid fa-folder"></i></button>
 
                                                 </form>
+                                            </td>
+                                            <td>
                                                 <?php 
 										            if ($floc == ""){
 										            }else{
 										        ?>
-                                                <a data-placement="bottom" title="Download"
-                                                    id="<?php echo $id; ?>download" class="btn btn-info"
-                                                    href="<?php echo $row['floc']; ?>"><i
-                                                        class="fa-solid fa-download"></i></a>
                                                 <?php } ?>
                                                 <a data-placement="bottom" title="Remove" id="<?php echo $id; ?>remove"
                                                     class="btn btn-danger" href="#<?php echo $id; ?>"
                                                     data-toggle="modal"><i class="fa-solid fa-remove"></i></a>
                                                 <?php include('delete_task_modal.php'); ?>
                                             </td>
-                                            <script type="text/javascript">
-                                            $(document).ready(function() {
-                                                $('#<?php echo $id; ?>download').tooltip('show');
-                                                $('#<?php echo $id; ?>download').tooltip('hide');
-                                            });
-                                            </script>
                                             <script type="text/javascript">
                                             $(document).ready(function() {
                                                 $('#<?php echo $id; ?>remove').tooltip('show');
