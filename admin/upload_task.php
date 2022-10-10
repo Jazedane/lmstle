@@ -76,6 +76,9 @@ if (
             $filename;
         $name_notification =
             'submit task name' . ' ' . '<b>' . $name . '</b>';
+
+        $relative_file_path = '/lmstle/admin/uploads/' . $rd2 . '_' . $filename;
+
         //Check if the file with the same name is already exists on the server
         if (!file_exists($newname)) {
             //Attempt to move the uploaded file to it's new place
@@ -88,7 +91,7 @@ if (
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;
                 ($qry2 = "INSERT INTO student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) 
-                VALUES ('$filedesc','$newname',NOW(),'$name','$task_id','$session_id')") or
+                VALUES ('$filedesc','$relative_file_path',NOW(),'$name','$task_id','$session_id')") or
                     die(mysqli_error());
 
                 ($teacher_class_query = mysqli_query(
