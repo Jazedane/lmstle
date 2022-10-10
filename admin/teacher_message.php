@@ -73,7 +73,6 @@
                                         <?php echo $row['content']; ?>
                                     </div>
 
-                                    <tr>
                                         Sent by: <strong><?php echo $sender_name; ?></strong>
                                         <i class="fa solid fa-calendar"></i> <?php echo $row[
                                         'date_sended'

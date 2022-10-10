@@ -150,7 +150,7 @@ body {
         </li>
         <li class="">
             <a href="plants_info.php">
-                <i class="fa-solid fa-info-circle"></i> Plants Information</a>
+                <i class="fa-solid fa-plant-wilt"></i> Plants Information</a>
         </li>
         <li class="dropdown">
             <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i

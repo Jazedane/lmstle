@@ -66,7 +66,6 @@
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
                                             <td><?php echo $row['end_date']; ?></td>
-                                            <td></td>
                                             <td width="220">
                                                 <form id="assign_save" method="post"
                                                     action="submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">
@@ -75,10 +74,6 @@
 											if ($floc == ""){
 											}else{
 										 ?>
-                                                    <a data-placement="bottom" title="Download"
-                                                        id="<?php echo $id; ?>download" class="btn btn-info"
-                                                        href="admin/<?php echo $row['floc']; ?>"><i
-                                                            class="fa-solid fa-download"></i></a>
                                                     <?php } ?>
                                                     <button data-placement="bottom" title="Submit Task"
                                                         id="<?php echo $id; ?>submit" class="btn btn-success"

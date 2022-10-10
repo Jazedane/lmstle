@@ -13,8 +13,7 @@
                             <div id="" class="muted pull-left">
                                 <h4><i class="fa-solid fa-plus-circle"></i> Edit Task</h4>
                             </div>
-                            <div id="" class="muted pull-right"><a
-                                    href="view_submit_task.php?id=$get_id">
+                            <div id="" class="muted pull-right"><a href="./view_submit_task.php<?php echo '?id='.$get_id; ?>">
                                     <i class="fa-solid fa-arrow-left"></i> Back</a>
                             </div>
                         </div>
@@ -26,9 +25,8 @@
                                         <label class="control-label" for="inputEmail">Edit Task</label>
                                         <div class="control-group">
                                             <input type="hidden" name="id" value="<?php echo $id ?>" />
-                                            <input type="hidden" name="get_id" value="<?php echo $get_id ?>" />
                                             <input type="text" name="task_name" id="inputEmail"
-                                                value="<?php echo $task_name; ?>" readonly>
+                                                value="<?php echo $task_id; ?>" readonly>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -60,9 +58,11 @@
                                     </div>
                                     <div class="control-group">
                                         <div class="controls">
-                                            <button name="Upload" type="submit" value="Upload"
-                                                class="btn btn-success" /><i class="fa-solid fa-upload"></i> Change
-                                            </button>
+                                            <center>
+                                                <button name="Upload" type="submit" value="Upload"
+                                                    class="btn btn-success" /><i class="fa-solid fa-upload"></i> Change
+                                                </button>
+                                            </center>
                                         </div>
                                     </div>
                                 </form>

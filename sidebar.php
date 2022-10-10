@@ -153,7 +153,7 @@ body {
         </li>
         <li class="">
             <a href="plants_info.php">
-                <i class="fa-solid fa-info-circle"></i> Plants Information</a>
+                <i class="fa-solid fa-plant-wilt"></i> Plants Information</a>
         </li>
     </ul>
 </div>
