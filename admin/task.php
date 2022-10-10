@@ -37,6 +37,7 @@
                                             <th>Description</th>
                                             <th>Due Date</th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>

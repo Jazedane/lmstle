@@ -1,7 +1,7 @@
 <?php
 include('dbcon.php');
 include('session.php');
-$task_id = $_POST['task_id'];
+$task_id = $_POST['id'];
 $fname = $_POST['fname'];
 $fdesc = $_POST['fdesc'];
 $task_status = $_POST['task_status'];

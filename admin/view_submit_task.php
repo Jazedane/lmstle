@@ -108,14 +108,11 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                         </button>
                                                         <ul class="dropdown-menu text-center"
                                                             style="width:20px; height:60px">
-                                                            <li><a href="#edit<?php echo $id; ?>"
-                                                                    data-toggle="modal"><i class="fa-solid fa-edit"></i>
+                                                            <li><a href="/edit_task_modal.php?task_id=$id"><i class="fa-solid fa-edit"></i>
                                                                     Edit </a></li>
-                                                            <li><a href="#remove<?php echo $id; ?>" data-toggle="modal"><i
+                                                            <li><a href="/remove_task_modal.php?task_id=$id" ><i
                                                                         class="fa-solid fa-trash-can"></i>
                                                                     Delete </a></li>
-                                                            <?php include 'edit_task_modal.php'; ?>
-                                                            <?php include 'remove_task_modal.php'; ?>
                                                         </ul>
                                                     </div>
                                                 </td>
