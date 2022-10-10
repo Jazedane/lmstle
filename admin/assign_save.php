@@ -8,6 +8,7 @@ $class_id = $_POST['class_id'];
 
 $name = $_POST['name'];
 $filedesc = $_POST['desc'];
+$end_date = $_POST['end_date'];
 $get_id = $_GET['id'];
 
 $name_notification = 'New Task Added: <b>' . $name . '</b>';
@@ -30,8 +31,8 @@ while ($row = mysqli_fetch_array($student_query)) {
 
 mysqli_query(
     $conn,
-    "INSERT INTO task (fdesc,fdatein,teacher_id,class_id,fname) 
-                VALUES ('$filedesc',NOW(),'$session_id','$teacher_class_id','$name')"
+    "INSERT INTO task (fdesc,fdatein,teacher_id,class_id,fname,end_date) 
+                VALUES ('$filedesc',NOW(),'$session_id','$teacher_class_id','$name','$end_date')"
 ) or die(mysqli_error());
 ?>
 <script>
