@@ -37,21 +37,21 @@
                     <div class="control-group">
                         <div class="controls">
                             <input name="username" class="input focused" id="focusedInput" type="text"
-                                placeholder="ID Number" required>
+                                placeholder="ID Number" style="text-transform: uppercase" required>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <div class="controls">
                             <input name="firstname" class="input focused" id="focusedInput" type="text"
-                                placeholder="Firstname" required>
+                                placeholder="Firstname" style="text-transform: uppercase" required>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <div class="controls">
                             <input name="lastname" class="input focused" id="focusedInput" type="text"
-                                placeholder="Lastname" required>
+                                placeholder="Lastname" style="text-transform: uppercase" required>
                         </div>
                     </div>
 
@@ -59,14 +59,16 @@
                         <div class="controls">
                             <select name="gender" class="" placeholder="Gender" required>
                                 <option>Select Gender</option>
-                                <option>Male</option>
-                                <option>Female</option>
+                                <option>MALE</option>
+                                <option>FEMALE</option>
+                                <option>GAY</option>
+                                <option>LESBIAN</option>
                             </select>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <select name="age" class="" placeholder="Age" required>
+                            <select name="age" class="" placeholder="Age" type="number" required>
                                 <option>Select Age</option>
                                 <option>15</option>
                                 <option>16</option>

@@ -45,13 +45,19 @@
 	                        value="<?php echo $id; ?>">
 	                </td>
 
-	                <td><?php echo $row['firstname'] .
-                     ' ' .
-                     $row['lastname']; ?></td>
+	                <td><?php $firstname = $row['firstname'];
+						$lastname = $row['lastname'];
+						$firstname = strtoupper ($firstname);
+						$lastname = strtoupper($lastname);
+						echo $firstname .' '. $lastname; ?></td>
 	                <td><?php echo $row['username']; ?></td>
-	                <td><?php echo $row['gender']; ?></td>
+	                <td><?php $gender = $row['gender'];
+					$gender = strtoupper ($gender);
+					echo $gender ?></td>
 	                <td><?php echo $row['age']; ?></td>
-	                <td width="100"><?php echo $row['class_name']; ?></td>
+	                <td width="100"><?php $class_name = $row['class_name'];
+					$class_name = strtoupper ($class_name);
+					echo $class_name ?></td>
 
 	                <td width="30"><a href="edit_student.php<?php echo '?id=' .
                      $id; ?>" class="btn btn-success"><i class="fa-solid fa-edit"></i> </a></td>

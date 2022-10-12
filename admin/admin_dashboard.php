@@ -22,7 +22,7 @@
                 <div class="chart" data-percent="<?php echo $count_student; ?>">
                     <?php echo $count_student; ?></div>
                 <div class="chart-bottom-heading"><a class="btn-link" href="reg_students.php">
-                        <strong>Registered Students</strong></a>
+                        <h4><strong>Registered Students</strong></h4></a>
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
             <div class="span4">
                 <div class="chart" data-percent="<?php echo $count_student; ?>">
                     <?php echo $count_student; ?></div>
-                <div class="chart-bottom-heading"><a class="btn-link" href="students.php"><strong>Students</strong></a>
+                <div class="chart-bottom-heading"><a class="btn-link" href="students.php"><h4><strong>Students</strong></h4></a>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
             <div class="span4">
                 <div class="chart" data-percent="<?php echo $count_class; ?>">
                     <?php echo $count_class; ?></div>
-                <div class="chart-bottom-heading"><a class="btn-link" href="class.php"><strong>Section</strong></a>
+                <div class="chart-bottom-heading"><a class="btn-link" href="class.php"><h4><strong>Section</strong></h4></a>
                 </div>
             </div>
         </div>

@@ -22,6 +22,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
 
                     <?php 
                     $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                    $p_condition = array("Alive","Withered","Dead");
                     $class_query = mysqli_query($conn,"select * from teacher_class
 									LEFT JOIN class ON class.class_id = teacher_class.class_id
 									where teacher_class_id = '$get_id'")or die(mysqli_error());
@@ -62,6 +63,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <th>Description</th>
                                                 <th>Submitted by:</th>
                                                 <th>Status</th>
+                                                <th>Condition</th>
                                                 <th>Action</th>
                                                 <th></th>
                                                 <th></th>
@@ -101,6 +103,17 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                             					}
                                                 ?>
                                                 </td>
+                                                <td class="project-state">
+                                                    <?php
+                            					if($p_condition[$row['p_condition']] =='Alive'){
+                              						echo "<span class='badge badge-secondary'>{$p_condition[$row['p_condition']]}</span>";
+                            					}elseif($p_condition[$row['p_condition']] =='Withered'){
+                              						echo "<span class='badge badge-primary'>{$p_condition[$row['p_condition']]}</span>";
+                            					}elseif($p_condition[$row['p_condition']] =='Dead'){
+                              						echo "<span class='badge badge-info'>{$p_condition[$row['p_condition']]}</span>";
+                                                }
+                                                ?>
+                                                </td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button name="action" href="#" class="btn btn-info"
@@ -130,7 +143,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                             value="<?php echo $student_id; ?>">
                                                         <input type="hidden" class="span4" name="task_name"
                                                             value="<?php echo $task_name; ?>">
-                                                        <input type="text" class="span4" name="grade"
+                                                        <input type="number" class="span4" name="grade"
                                                             value="<?php echo $row['grade']; ?>">
                                                         <button name="save" class="btn btn-success" id="btn"><i
                                                                 class="fa-solid fa-save"></i> Save</button>

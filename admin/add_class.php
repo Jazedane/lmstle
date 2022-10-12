@@ -9,7 +9,7 @@
                        <div class="control-group">
                            <div class="controls">
                                <input name="class_name" class="input focused" id="focusedInput" type="text"
-                                   placeholder="Class Name" required>
+                                   placeholder="Class Name" style="text-transform: uppercase" required>
                            </div>
                        </div>
 

@@ -12,6 +12,7 @@
                     <?php 
 					$i = 1;
                 	$task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                    $p_condition = array("Alive","Withered","Dead");
 					$class_query = mysqli_query($conn,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
 										where teacher_class_id = '$get_id'")or die(mysqli_error());
@@ -43,6 +44,7 @@
                                             <th>Task</th>
                                             <th>Due Date</th>
                                             <th>Status</th>
+                                            <th>Condition</th>
                                             <th>Grade</th>
                                         </tr>
 
@@ -79,6 +81,17 @@
                               						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
                             					}
                           						?>
+                                            </td>
+                                            <td class="project-state">
+                                                    <?php
+                            					if($p_condition[$row['p_condition']] =='Alive'){
+                              						echo "<span class='badge badge-secondary'>{$p_condition[$row['p_condition']]}</span>";
+                            					}elseif($p_condition[$row['p_condition']] =='Withered'){
+                              						echo "<span class='badge badge-primary'>{$p_condition[$row['p_condition']]}</span>";
+                            					}elseif($p_condition[$row['p_condition']] =='Dead'){
+                              						echo "<span class='badge badge-info'>{$p_condition[$row['p_condition']]}</span>";
+                                                }
+                                                ?>
                                             </td>
 
                                             <?php if ($session_id == $student_id){ ?>

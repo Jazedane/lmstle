@@ -8,29 +8,29 @@
                    <form method="post">
                        <div class="control-group">
                            <div class="controls">
-                               <input class="input focused" name="firstname" id="focusedInput" type="text"
-                                   placeholder="Firstname" required>
+                               <input class="input focused" name="firstname" id="focusedInput" type="text" 
+                                   placeholder="Firstname" style="text-transform: uppercase" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
-                               <input class="input focused" name="lastname" id="focusedInput" type="text"
-                                   placeholder="Lastname" required>
+                               <input class="input focused" name="lastname" id="focusedInput" type="text" 
+                                   placeholder="Lastname" style="text-transform: uppercase" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
-                               <input class="input focused" name="username" id="focusedInput" type="text"
-                                   placeholder="Username" required>
+                               <input class="input focused" name="username" id="focusedInput" type="text" 
+                                   placeholder="Username" style="text-transform: uppercase" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
-                               <input class="input focused" name="password" id="focusedInput" type="text"
-                                   placeholder="Password" required>
+                               <input class="input focused" name="password" id="password" type="password" 
+                                   placeholder="Password" style="text-transform: uppercase" required>
                            </div>
                        </div>
 
@@ -49,8 +49,11 @@
    <?php
 if (isset($_POST['save'])){
 $firstname = $_POST['firstname'];
+$_POST['firstname'] = strtoupper ($_POST['firstname']);
 $lastname = $_POST['lastname'];
+$_POST['lastname'] = strtoupper ($_POST['lastname']);
 $username = $_POST['username'];
+$_POST['username'] = strtoupper ($_POST['username']);
 $password = $_POST['password'];
 $hashedPassword = hash('sha256', $password);
 
@@ -66,7 +69,7 @@ alert('Data Already Exist');
 }else{
 mysqli_query($conn,"insert into teacher (username,password,firstname,lastname) values('$username','$hashedPassword','$firstname','$lastname')")or die(mysqli_error());
 
-mysqli_query($conn,"insert into activity_log (date,username,action) values(NOW(),'$teacher_username','Add User $username')")or die(mysqli_error());
+mysqli_query($conn,"insert into activity_log (date,username,action) values(NOW(),'$username','Add User $username')")or die(mysqli_error());
 ?>
    <script>
 window.location = "admin_user.php";

@@ -54,8 +54,10 @@
                            <div class="controls">
                                <select name="gender" class="" required>
                                    <option><?php echo $row['gender']; ?></option>
-                                   <option>Male</option>
-                                   <option>Female</option>
+                                   <option>MALE</option>
+                                   <option>FEMALE</option>
+                                   <option>GAY</option>
+                                   <option>LESBIAN</option>
                                </select>
                            </div>
                        </div>

@@ -5,6 +5,7 @@
 
 .card {
     width: 40%;
+    height: 250px;
     margin: auto;
     border: 2px solid black;
     font-family: 'Georgia';

@@ -8,7 +8,7 @@
             <div class="span3" id="adduser">
                 <?php include('add_students.php'); ?>
             </div>
-            <div class="span6" id="">
+            <div class="span7" id="">
                 <div class="row-fluid">
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">

@@ -40,7 +40,9 @@
                                                     <input id="optionsCheckbox" class="uniform_on" name="selector[]"
                                                         type="checkbox" value="<?php echo $id; ?>">
                                                 </td>
-                                                <td><?php echo $class_row['class_name']; ?></td>
+                                                <td><?php $class_name = $class_row['class_name'];
+                                                $class_name = strtoupper ($class_name);
+					                            echo $class_name ?></td>
                                                 <td width="40"><a href="edit_class.php<?php echo '?id='.$id; ?>"
                                                         class="btn btn-success"><i class="fa-solid fa-edit"></i> </a>
                                                 </td>
