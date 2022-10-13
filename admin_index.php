@@ -56,7 +56,7 @@ jQuery(document).ready(function() {
         var formData = jQuery(this).serialize();
         $.ajax({
             type: "POST",
-            url: "admin/login.php",
+            url: "/lmstle/admin/login.php",
             data: formData,
             success: function(html) {
                 if (html == 'true') {
@@ -68,7 +68,7 @@ jQuery(document).ready(function() {
                     }, delay);
                 } else {
                     alert("Login Failed")
-                    //$.jGrowl("Please Check Your Username and Password", { header: 'Login Failed' });
+                    $.jGrowl("Please Check Your Username and Password", { header: 'Login Failed' });
                 }
             }
 

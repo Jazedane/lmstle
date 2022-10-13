@@ -49,13 +49,9 @@
    <?php
 if (isset($_POST['save'])){
 $firstname = $_POST['firstname'];
-$_POST['firstname'] = strtoupper ($_POST['firstname']);
 $lastname = $_POST['lastname'];
-$_POST['lastname'] = strtoupper ($_POST['lastname']);
 $username = $_POST['username'];
-$_POST['username'] = strtoupper ($_POST['username']);
 $password = $_POST['password'];
-$hashedPassword = hash('sha256', $password);
 
 
 $query = mysqli_query($conn,"select * from teacher where username = '$username'")or die(mysqli_error());
@@ -67,7 +63,7 @@ alert('Data Already Exist');
    </script>
    <?php
 }else{
-mysqli_query($conn,"insert into teacher (username,password,firstname,lastname) values('$username','$hashedPassword','$firstname','$lastname')")or die(mysqli_error());
+mysqli_query($conn,"insert into teacher (username,password,firstname,lastname,location) values('$username','$password','$firstname','$lastname','uploads/NO-IMAGE-AVAILABLE.jpg')")or die(mysqli_error());
 
 mysqli_query($conn,"insert into activity_log (date,username,action) values(NOW(),'$username','Add User $username')")or die(mysqli_error());
 ?>

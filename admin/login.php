@@ -8,7 +8,6 @@
 		$count = mysqli_num_rows($query);
 		$row = mysqli_fetch_array($query);
 
-
 		if ($count > 0){
 		
 		$_SESSION['id']=$row['teacher_id'];

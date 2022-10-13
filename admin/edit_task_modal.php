@@ -43,15 +43,35 @@
                                                 class="custom-select custom-select-sm">
                                                 <option value="1"
                                                     <?php echo isset($task_status) && $task_status == 1 ? 'selected' : '' ?>>
-                                                    Pending
+                                                    On-progress
                                                 </option>
                                                 <option value="2"
                                                     <?php echo isset($task_status) && $task_status == 2 ? 'selected' : '' ?>>
-                                                    On-Progress
+                                                    Done
                                                 </option>
                                                 <option value="3"
                                                     <?php echo isset($task_status) && $task_status == 3 ? 'selected' : '' ?>>
-                                                    Done
+                                                    Done Late
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <label for="p_condition">Plants Condition</label>
+                                            <select name="p_condition" id="<?php echo $id; ?>"
+                                                class="custom-select custom-select-sm">
+                                                <option value="1"
+                                                    <?php echo isset($p_condition) && $p_condition == 1 ? 'selected' : '' ?>>
+                                                    Alive
+                                                </option>
+                                                <option value="2"
+                                                    <?php echo isset($p_condition) && $p_condition == 2 ? 'selected' : '' ?>>
+                                                    Withered
+                                                </option>
+                                                <option value="3"
+                                                    <?php echo isset($p_condition) && $p_condition == 3 ? 'selected' : '' ?>>
+                                                    Dead
                                                 </option>
                                             </select>
                                         </div>
