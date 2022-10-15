@@ -26,7 +26,7 @@ body {
 }
 
 .top_navbar .logo {
-    width: 220px;
+    width: 180px;
     font-size: 25px;
     font-weight: 700;
     padding: 0 25px;
