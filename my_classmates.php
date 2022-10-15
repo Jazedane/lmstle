@@ -24,7 +24,15 @@
 						
                         <div id="block_bg" class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div id="" class="muted pull-left"> Classmates </div>
+                                <div id="" class="muted pull-left">
+                                <?php 
+								$my_student = mysqli_query($conn,"SELECT * FROM teacher_class_student
+														LEFT JOIN student ON student.student_id = teacher_class_student.student_id 
+														INNER JOIN class ON class.class_id = student.class_id where teacher_class_id = '$get_id' order by lastname ")or die(mysqli_error());
+								$count_my_student = mysqli_num_rows($my_student);?>
+                                Classmates: <span
+                                    class="badge badge-info"><?php echo $count_my_student; ?></span>
+                            </div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">

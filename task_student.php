@@ -27,7 +27,7 @@
                             <?php $query = mysqli_query($conn,"select * FROM task where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error()); 
 									  $count  = mysqli_num_rows($query);
 								?>
-                            <div id="" class="muted pull-right">Number of Task: <span
+                            <div id="" class="muted pull-left">Number of Task: <span
                                     class="badge badge-info"><?php echo $count; ?></span></div>
                         </div>
                         <div class="block-content collapse in">
@@ -49,6 +49,7 @@
                                             <th>Task Name</th>
                                             <th>Description</th>
                                             <th>Due Date</th>
+                                            <th>Day/s Left</th>
                                             <th></th>
                                         </tr>
 
@@ -66,6 +67,11 @@
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
                                             <td><?php echo $row['end_date']; ?></td>
+                                            <td><?php 
+                                            $end_date = time(); strtotime("end_date");
+                                            $fdatein = strtotime("fdatein");
+                                            $day_diff = $end_date - $fdatein;
+                                            echo floor($day_diff/86400) ?> Day/s</td>
                                             <td width="220">
                                                 <form id="assign_save" method="post"
                                                     action="submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">

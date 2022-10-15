@@ -13,7 +13,7 @@
                             <div id="" class="muted pull-left">
                                 <h4><i class="fa-solid fa-plus-circle"></i> Edit Task</h4>
                             </div>
-                            <div id="" class="muted pull-right"><a href="./view_submit_task.php<?php echo '?id='.$get_id; ?>">
+                            <div id="" class="muted pull-right"><a href="./view_submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">
                                     <i class="fa-solid fa-arrow-left"></i> Back</a>
                             </div>
                         </div>

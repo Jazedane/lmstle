@@ -54,22 +54,19 @@
                                         <div class="form-group">
                                             <label for="">Status</label>
                                             <select name="status" id="status" class="custom-select custom-select-sm">
-                                                <option value="0"
-                                                    <?php echo isset($status) &&
+                                                <option value="0" <?php echo isset($status) &&
                                                     $status == 0
                                                         ? 'selected'
                                                         : ''; ?>>
                                                     Pending
                                                 </option>
-                                                <option value="3"
-                                                    <?php echo isset($status) &&
+                                                <option value="3" <?php echo isset($status) &&
                                                     $status == 3
                                                         ? 'selected'
                                                         : ''; ?>>
                                                     On-Hold
                                                 </option>
-                                                <option value="5"
-                                                    <?php echo isset($status) &&
+                                                <option value="5" <?php echo isset($status) &&
                                                     $status == 5
                                                         ? 'selected'
                                                         : ''; ?>>
@@ -82,16 +79,14 @@
                                         <div class="form-group">
                                             <label for="" class="control-label">End Date</label>
                                             <input type="date" class="form-control form-control-sm" autocomplete="off"
-                                                name="end_date"
-                                                value="<?php echo isset(
+                                                name="end_date" value="<?php echo isset(
                                                     $end_date
                                                 )
                                                     ? datetime(
-                                                        'Y-m-d',
+                                                        'Y-m-d h:i:sa',
                                                         strtotime($end_date)
                                                     )
-                                                    : ''; ?>"
-                                                required>
+                                                    : ''; ?>" required>
                                         </div>
                                     </div>
                                 </div>
