@@ -38,6 +38,7 @@
                                             <th>Due Date</th>
                                             <th></th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,6 +60,16 @@
 
                                                     <button data-placement="bottom" title="View Student Who Submit Task"
                                                         id="<?php echo $id; ?>view" class="btn btn-success"><i
+                                                            class="fa-solid fa-folder"></i></button>
+
+                                                </form>
+                                            </td>
+                                            <td width="10">
+                                                <form method="post"
+                                                    action="view_notsubmit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">
+
+                                                    <button data-placement="bottom" title="View Student Who Did Not Submit Task"
+                                                        id="<?php echo $id; ?>viewnot" class="btn btn-info"><i
                                                             class="fa-solid fa-folder"></i></button>
 
                                                 </form>
@@ -86,6 +97,12 @@
                                                 $('#<?php echo $id; ?>view').tooltip('hide');
                                             });
                                             </script>
+                                            <script type="text/javascript">
+                                            $(document).ready(function() {
+                                                $('#<?php echo $id; ?>viewnot').tooltip('show');
+                                                $('#<?php echo $id; ?>viewnot').tooltip('hide');
+                                            });
+                                            </script>
                                             <?php } ?>
                                         </tr>
                                     </tbody>
@@ -97,7 +114,8 @@
             </div>
             <?php include('task_sidebar.php') ?>
         </div>
-        <?php include('footer.php'); ?>
+    </div>
+    <?php include('footer.php'); ?>
     </div>
     <?php include('script.php'); ?>
 </body>

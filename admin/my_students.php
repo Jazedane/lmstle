@@ -8,14 +8,10 @@
         <div class="row-fluid">
             <div class="span9" id="content">
                 <div class="row-fluid">
-                    <div class="pull-right">
-                        <a href="print_student.php<?php echo '?id='.$get_id; ?>" class="btn btn-success"><i
-                                class="fa-solid fa-list"></i> Student List</a>
-                    </div>
                     <?php include('my_students_breadcrumb.php'); ?>
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-right">
+                            <div id="" class="muted pull-left">
                                 <?php 
 								$my_student = mysqli_query($conn,"SELECT * FROM teacher_class_student
 														LEFT JOIN student ON student.student_id = teacher_class_student.student_id 
@@ -24,6 +20,10 @@
                                 Number of Students: <span
                                     class="badge badge-info"><?php echo $count_my_student; ?></span>
                             </div>
+                            <div class="pull-right">
+                                    <a href="print_student.php<?php echo '?id='.$get_id; ?>" class="btn btn-info"><i
+                                            class="fa-solid fa-list"></i> Student List</a>
+                                </div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">
@@ -91,7 +91,7 @@
             <?php include('footer.php'); ?>
         </div>
         <?php include('script.php'); ?>
-    <div>
+        <div>
 </body>
 
 </html>

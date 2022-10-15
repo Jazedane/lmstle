@@ -51,7 +51,6 @@ body {
 .sidebar {
     position: fixed;
     top: 60px;
-
     width: 180px;
     height: 100%;
     background: #042331;
@@ -99,7 +98,8 @@ body {
 
 <body>
     <div class="top_navbar">
-        <div class="logo"> TEACHER </div>
+        <div class="logo"> TEACHER </div> <img class="rounded mx-auto d-block" src="images/logo.png"
+            style="width: 3rem">
         <div class="menu">
             <div class="pull-right"></div>
             <?php $query= mysqli_query($conn,"select * from teacher where teacher_id = '$session_id'")or die(mysqli_error());
@@ -124,7 +124,10 @@ body {
         </div>
     </div>
     <div class="sidebar">
-        <img id="avatar" src="/lmstle/admin/uploads/<?php echo $row['location']; ?>" class="img-polaroid">
+        <center><img id="avatar" src="/lmstle/admin/uploads/<?php echo $row['location']; ?>"
+                class="rounded mx-auto d-block">
+            <div class="" style="color:white"><?php echo $row['firstname']." ".$row['lastname'];  ?></div>
+        </center>
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
             widget="treeview">
             <li class=""><a href="dashboard_teacher.php"><i class="fa-solid fa-arrow-left"></i> Back</a></li>

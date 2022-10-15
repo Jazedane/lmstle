@@ -8,16 +8,15 @@
         <div class="row-fluid">
             <div class="span9" id="content">
                 <div class="row-fluid">
-                    <?php include('my_students_breadcrumb.php'); ?>
                     <!-- block -->
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left"><a href="my_students.php<?php echo '?id='.$get_id; ?>">
+                            <div id="" class="muted pull-left"><a
+                                    href="view_submit_task.php<?php echo '?id='.$get_id; ?>">
                                     <i class="fa-solid fa-arrow-left"></i> Back</a>
                             </div>
                             <div class="pull-right">
-
-                                <a id="print" onclick="window.print()" class="btn btn-info"><i
+                                <a id="print" onclick="window.print()" class="btn btn-success"><i
                                         class="fa-solid fa-print"></i> Print Student List</a>
                             </div>
                         </div>

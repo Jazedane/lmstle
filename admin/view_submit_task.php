@@ -38,8 +38,12 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
 
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-right"><a href="task.php<?php echo '?id='.$get_id; ?>">
+                            <div id="" class="muted pull-left"><a href="task.php<?php echo '?id='.$get_id; ?>">
                                     <i class="fa-solid fa-arrow-left"></i> Back</a>
+                            </div>
+                            <div id="" class="pull-right">
+                                <a href="print_student_task.php<?php echo '?id='.$get_id; ?>" class="btn btn-info"><i
+                                        class="fa-solid fa-list"></i> Student Task List</a>
                             </div>
                         </div>
                         <div class="block-content collapse in">
@@ -121,9 +125,10 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                         </button>
                                                         <ul class="dropdown-menu text-center"
                                                             style="width:20px; height:60px">
-                                                            <li><a href="./edit_task_modal.php?task_id=$id"><i class="fa-solid fa-edit"></i>
+                                                            <li><a href="./edit_task_modal.php?task_id=$id"><i
+                                                                        class="fa-solid fa-edit"></i>
                                                                     Edit </a></li>
-                                                            <li><a href="/remove_task_modal.php?task_id=$id" ><i
+                                                            <li><a href="/remove_task_modal.php?task_id=$id"><i
                                                                         class="fa-solid fa-trash-can"></i>
                                                                     Delete </a></li>
                                                         </ul>
@@ -143,7 +148,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                             value="<?php echo $student_id; ?>">
                                                         <input type="hidden" class="span4" name="task_name"
                                                             value="<?php echo $task_name; ?>">
-                                                        <input type="number" class="span4" name="grade"
+                                                        <input type="varchar" class="span4" name="grade"
                                                             value="<?php echo $row['grade']; ?>">
                                                         <button name="save" class="btn btn-success" id="btn"><i
                                                                 class="fa-solid fa-save"></i> Save</button>
@@ -209,7 +214,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                     });
                 });
                 </script>
-                
+
             </div>
         </div>
         <?php include('footer.php'); ?>

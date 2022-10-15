@@ -10,7 +10,6 @@
                 <div class="row-fluid">
 
                     <?php 
-					$i = 1;
                 	$task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
 					$class_query = mysqli_query($conn,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
@@ -53,12 +52,12 @@
                                         <?php
 										$query = mysqli_query($conn,"select * FROM student_task 
 										LEFT JOIN student on student.student_id  = student_task.student_id
-										RIGHT JOIN task on student_task.task_id  = task.task_id
 										WHERE student_task.student_id = '$session_id'
 										order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];
+                                        $task_name = $row['fname'];
 										?>
                                         <tr>
                                             <td><?php echo $row['fdatein']; ?></td>

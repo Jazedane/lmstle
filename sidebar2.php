@@ -99,7 +99,8 @@ body {
 
 <body>
     <div class="top_navbar">
-        <div class="logo"> STUDENT </div>
+        <div class="logo"> STUDENT </div> <img class="rounded mx-auto d-block" src="images/logo.png"
+            style="width: 3rem">
         <div class="menu">
             <div class="pull-right"></div>
             <?php $query= mysqli_query($conn,"select * from student where student_id = '$session_id'")or die(mysqli_error());
@@ -122,8 +123,9 @@ body {
         </div>
     </div>
     <div class="sidebar">
-        <img id="avatar" src="admin/<?php echo $row['location']; ?>" class="img-polaroid"
-            style="width:140px;height:140;margin-left:20px">
+        <center><img id="avatar" src="admin/<?php echo $row['location']; ?>" class="rounded mx-auto d-block">
+            <div class="" style="color:white"><?php echo $row['firstname']." ".$row['lastname'];  ?></div>
+        </center>
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
             widget="treeview">
             <li class=""><a href="dashboard_student.php"><i class="fa-solid fa-arrow-left"></i> Back</a></li>

@@ -98,7 +98,7 @@ body {
 <?php include 'header.php'; ?>
 
 <div class="top_navbar">
-    <div class="logo"> STUDENT </div>
+    <div class="logo"> STUDENT </div> <img class="rounded mx-auto d-block" src="images/logo.png" style="width: 3rem">
     <div class="menu">
         <div class="pull-right"></div>
         <?php
@@ -126,7 +126,9 @@ body {
 </div>
 
 <div class="sidebar">
-    <img id="avatar" src="/lmstle/admin/<?php echo $row['location']; ?>" class="img-polaroid" style="width:140px;height:140;margin-left:20px">
+    <center><img id="avatar" src="/lmstle/admin/<?php echo $row['location']; ?>" class="rounded mx-auto d-block">
+        <div class="" style="color:white"><?php echo $row['firstname']." ".$row['lastname'];  ?></div>
+    </center>
     <ul class="nav nav-pills nav-sidebar flex-column nav-flat" role="menu" data-accordion="false" data
         widget="treeview">
         <li class="nav-item">
