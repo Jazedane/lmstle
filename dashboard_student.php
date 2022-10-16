@@ -31,12 +31,11 @@
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,
-                                    "select * from teacher_class_student
-														LEFT JOIN teacher_class ON teacher_class.teacher_class_id = teacher_class_student.teacher_class_id 
-														LEFT JOIN class ON class.class_id = teacher_class.class_id 
-														LEFT JOIN teacher ON teacher.teacher_id = teacher_class.teacher_id
-														where student_id = '$session_id' and school_year = '$school_year'
-														"
+                                    "SELECT * FROM teacher_class_student
+                                    LEFT JOIN teacher_class ON teacher_class.teacher_class_id = teacher_class_student.teacher_class_id 
+                                    LEFT JOIN class ON class.class_id = teacher_class.class_id 
+                                    LEFT JOIN teacher ON teacher.teacher_id = teacher_class.teacher_id
+                                    WHERE student_id = '$session_id' and school_year = '$school_year' AND class.isDeleted = false"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 ?>
@@ -55,9 +54,13 @@
                                     <li>
                                         <a href="my_classmates.php<?php echo '?id=' .
                                             $id; ?>">
-                                            <img src="<?php echo $row['thumbnails']; ?>" width="124" height="100" class="img-polaroid">
+                                            <img src="<?php echo $row[
+                                                'thumbnails'
+                                            ]; ?>" width="124" height="100" class="img-polaroid">
                                         </a>
-                                        <p class="class"><?php echo $row['class_name']; ?></p>
+                                        <p class="class"><?php echo $row[
+                                            'class_name'
+                                        ]; ?></p>
                                     </li>
 
                                     <?php

@@ -11,10 +11,10 @@
 		</div>
 	<div class="modal-footer">
 		<form method="post" action="delete_task.php">
-		<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa-solid fa-remove"></i> Close</button>
-		<input type="hidden" name="id" value="<?php echo $id; ?>">
-		<input type="hidden" name="get_id" value="<?php echo $get_id; ?>">
-		<button class="btn btn-danger" name="change"><i class="fa-solid fa-check"></i> Yes</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa-solid fa-remove"></i> Close</button>
+			<input type="hidden" name="id" value="<?php echo $id; ?>">
+			<input type="hidden" name="get_id" value="<?php echo $get_id; ?>">
+			<button class="btn btn-danger" name="change"><i class="fa-solid fa-check"></i> Yes</button>
 		</form>
 	</div>
 </div>

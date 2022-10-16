@@ -1,45 +1,58 @@
-<?php include('header.php'); ?>
-<?php include('session.php'); ?>
+<?php include 'header.php'; ?>
+<?php include 'session.php'; ?>
 <?php $get_id = $_GET['id']; ?>
 
 <body>
-    <?php include('sidebar2.php'); ?>
+    <?php include 'sidebar2.php'; ?>
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span9" id="content">
                 <div class="row-fluid">
 
-                    <?php $class_query = mysqli_query($conn,"select * from teacher_class
-										LEFT JOIN class ON class.class_id = teacher_class.class_id
-										where teacher_class_id = '$get_id'")or die(mysqli_error());
-										$class_row = mysqli_fetch_array($class_query);
-										?>
+                    <?php
+                    ($class_query = mysqli_query(
+                        $conn,
+                        "select * from teacher_class
+							LEFT JOIN class ON class.class_id = teacher_class.class_id
+						    where teacher_class_id = '$get_id'"
+                    )) or die(mysqli_error());
+                    $class_row = mysqli_fetch_array($class_query);
+                    ?>
 
                     <ul class="breadcrumb">
-                        <li><a href="#"><?php echo $class_row['class_name']; ?></a> <span class="divider">/</span></li>
-                        <li><a href="#">School Year: <?php echo $class_row['school_year']; ?></a> <span
+                        <li><a href="#"><?php echo $class_row[
+                            'class_name'
+                        ]; ?></a> <span class="divider">/</span></li>
+                        <li><a href="#">School Year: <?php echo $class_row[
+                            'school_year'
+                        ]; ?></a> <span
                                 class="divider">/</span></li>
                         <li><a href="#"><b>Uploaded Tasks</b></a></li>
                     </ul>
 
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <?php $query = mysqli_query($conn,"select * FROM task where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error()); 
-									  $count  = mysqli_num_rows($query);
-								?>
+                            <?php
+                            ($query = mysqli_query(
+                                $conn,
+                                "select * FROM task where class_id = '$get_id'  order by fdatein DESC"
+                            )) or die(mysqli_error());
+                            $count = mysqli_num_rows($query);
+                            ?>
                             <div id="" class="muted pull-left">Number of Task: <span
                                     class="badge badge-info"><?php echo $count; ?></span></div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">
                                 <?php
-									$query = mysqli_query($conn,"select * FROM task where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error());
-									$count = mysqli_num_rows($query);
-									if ($count == '0'){?>
+                                ($query = mysqli_query(
+                                    $conn,
+                                    "select * FROM task where class_id = '$get_id'  order by fdatein DESC"
+                                )) or die(mysqli_error());
+                                $count = mysqli_num_rows($query);
+                                if ($count == '0') { ?>
                                 <div class="alert alert-info">No Task Currently Uploaded</div>
-                                <?php
-									}else{
-								?>
+                                <?php } else { ?>
 
                                 <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
 
@@ -57,30 +70,50 @@
                                     <tbody>
 
                                         <?php
-										$query = mysqli_query($conn,"select * FROM task where class_id = '$get_id'  order by fdatein DESC")or die(mysqli_error());
-										while($row = mysqli_fetch_array($query)){
-										$id  = $row['task_id'];
-										$floc = $row['floc'];
-									    ?>
+                                        ($query = mysqli_query(
+                                            $conn,
+                                            "SELECT * FROM task 
+                                            WHERE class_id = '$get_id' AND isDeleted = false
+                                            ORDER BY fdatein DESC"
+                                        )) or die(mysqli_error());
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) {
+
+                                            $id = $row['task_id'];
+                                            $floc = $row['floc'];
+                                            ?>
                                         <tr>
-                                            <td><?php echo $row['fdatein']; ?></td>
-                                            <td><?php  echo $row['fname']; ?></td>
-                                            <td><?php echo $row['fdesc']; ?></td>
-                                            <td><?php echo $row['end_date']; ?></td>
-                                            <td><?php 
-                                            $end_date = time(); strtotime("end_date");
-                                            $fdatein = strtotime("fdatein");
+                                            <td><?php echo $row[
+                                                'fdatein'
+                                            ]; ?></td>
+                                            <td><?php echo $row[
+                                                'fname'
+                                            ]; ?></td>
+                                            <td><?php echo $row[
+                                                'fdesc'
+                                            ]; ?></td>
+                                            <td><?php echo $row[
+                                                'end_date'
+                                            ]; ?></td>
+                                            <td><?php
+                                            $end_date = time();
+                                            strtotime('end_date');
+                                            $fdatein = strtotime('fdatein');
                                             $day_diff = $end_date - $fdatein;
-                                            echo floor($day_diff/86400) ?> Day/s</td>
+                                            echo floor($day_diff / 86400);
+                                            ?> Day/s</td>
                                             <td width="220">
                                                 <form id="assign_save" method="post"
-                                                    action="submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">
+                                                    action="submit_task.php<?php echo '?id=' .
+                                                        $get_id; ?>&<?php echo 'post_id=' .
+    $id; ?>">
                                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                                    <?php if ($floc == '') {
+                                                    } else {
+                                                         ?>
                                                     <?php
-											if ($floc == ""){
-											}else{
-										 ?>
-                                                    <?php } ?>
+                                                    } ?>
                                                     <button data-placement="bottom" title="Submit Task"
                                                         id="<?php echo $id; ?>submit" class="btn btn-success"
                                                         name="btn_task"><i class="fa-solid fa-upload"></i> Submit
@@ -102,20 +135,23 @@
 
                                         </tr>
 
-                                        <?php } ?>
+                                        <?php
+                                        }
+                                        ?>
 
                                     </tbody>
                                 </table>
-                                <?php } ?>
+                                <?php }
+                                ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <?php include('footer.php'); ?>
+        <?php include 'footer.php'; ?>
     </div>
-    <?php include('script.php'); ?>
+    <?php include 'script.php'; ?>
 </body>
 
 </html>

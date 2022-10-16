@@ -59,7 +59,6 @@
 	            <?php
   }
   ?>
-
 	        </tbody>
 	    </table>
 	</form>
