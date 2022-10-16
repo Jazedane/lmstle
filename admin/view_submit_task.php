@@ -125,7 +125,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                         </button>
                                                         <ul class="dropdown-menu text-center"
                                                             style="width:20px; height:60px">
-                                                            <li><a href="./edit_task_modal.php?<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>"><i
+                                                            <li><a href="./edit_task_modal.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>"><i
                                                                         class="fa-solid fa-edit"></i>
                                                                     Edit </a></li>
                                                             <li><a href="/remove_task_modal.php?task_id=$id"><i
@@ -148,8 +148,8 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                             value="<?php echo $student_id; ?>">
                                                         <input type="hidden" class="span4" name="task_name"
                                                             value="<?php echo $task_name; ?>">
-                                                        <input type="varchar" class="span4" name="grade"
-                                                            value="<?php echo $row['grade']; ?>">
+                                                        <input type="number" maxlength="3" min="75" max="100" class="span4" name="grade"
+                                                            value="<?php echo $row['grade']; ?>%" style="width:60px">
                                                         <button name="save" class="btn btn-success" id="btn"><i
                                                                 class="fa-solid fa-save"></i> Save</button>
                                                     </form>

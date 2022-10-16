@@ -55,7 +55,7 @@
                 });
                 </script>
             </div>
-            <?php include 'teacher_right_sidebar.php' ?>
+            <?php include 'add_classes.php' ?>
         </div>
         <?php include'footer.php'; ?>
     </div>
