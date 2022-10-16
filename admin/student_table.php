@@ -14,7 +14,7 @@
 	                        <?php
                                    $class_query = mysqli_query(
                                        $conn,
-                                       'select * from class order by class_name'
+                                       'SELECT * FROM class WHERE isDeleted=false ORDER BY class_name'
                                    );
                                    while (
                                        $class_row = mysqli_fetch_array(
@@ -53,8 +53,11 @@
 	            <?php
              ($query = mysqli_query(
                  $conn,
-                 'select * from student LEFT JOIN class ON student.class_id = class.class_id ORDER BY student.student_id DESC'
-             )) or die(mysqli_error());
+                 "SELECT * FROM student 
+				 LEFT JOIN class ON student.class_id = class.class_id 
+				 WHERE student.isDeleted=false
+				 ORDER BY student.student_id DESC"
+             )) or die(mysqli_error($conn));
              while ($row = mysqli_fetch_array($query)) {
                  $id = $row['student_id']; ?>
 
