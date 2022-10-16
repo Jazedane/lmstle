@@ -21,7 +21,7 @@
                 <form id="signin_student" class="form-signin" method="post">
 
                     <div class="mb-3">
-                        <input type="text" class="input-block-level" id="student_id" name="username"
+                        <input type="varchar" maxlength="7" class="input-block-level" id="student_id" name="username"
                             placeholder="ID Number" required>
                     </div>
 

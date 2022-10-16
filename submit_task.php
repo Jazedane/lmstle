@@ -100,7 +100,7 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
                                                 <?php if ($session_id == $student_id){ ?>
                                                 <td>
                                                     <span
-                                                        class="badge badge-success"><?php echo $row['grade']; ?></span>
+                                                        class="badge badge-success"><?php echo $row['grade']; ?>%</span>
                                                 </td>
                                                 <?php }else{ ?>
                                                 <td></td>

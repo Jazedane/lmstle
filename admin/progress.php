@@ -11,6 +11,7 @@
 
                     <?php 
                 	$task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                    $p_condition = array("Alive","Withered","Dead");
 					$class_query = mysqli_query($conn,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
 										LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
@@ -44,6 +45,7 @@
                                             <th>Task</th>
                                             <th>Due Date</th>
                                             <th>Status</th>
+                                            <th>Condition</th>
                                             <th>Grade</th>
                                         </tr>
 
@@ -81,6 +83,7 @@
                             					}
                           						?>
                                             </td>
+                                            <td><?php  echo $row['p_condition']; ?></td>
 
                                             <?php if ($session_id == $student_id){ ?>
                                             <td>

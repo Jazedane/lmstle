@@ -96,7 +96,7 @@
 
                                             <?php if ($session_id == $student_id){ ?>
                                             <td>
-                                                <span class="badge badge-success"><?php echo $row['grade']; ?></span>
+                                                <span class="badge badge-success"><?php echo $row['grade']; ?>%</span>
                                             </td>
                                             <?php }else{ ?>
                                             <td></td>
