@@ -33,6 +33,7 @@
                 $(document).ready(function() {
                     $('.remove').click(function() {
                         var id = $(this).attr("id");
+                        var name = $(this).attr("name");
                         $.ajax({
                             type: "POST",
                             url: "delete_class.php",
@@ -41,7 +42,7 @@
                             }),
                             cache: false,
                             success: function(html) {
-                                $("#del" + id).fadeOut('slow', function() {
+                                $("#del" + name).fadeOut('slow', function() {
                                     $(this).remove();
                                 });
                                 $('#' + id).modal('hide');
