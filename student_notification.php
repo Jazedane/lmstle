@@ -39,7 +39,7 @@
                             <!-- Block content wrapper start -->
                             <div class="span12">
                                 <form action="read.php" method="post">
-                                    
+
                                     <!-- Interactive controls start -->
                                     <div>
                                         <button id="delete" class="btn btn-success" name="read"><i
@@ -127,58 +127,66 @@
 
                         <!-- Block content start -->
                         <div class="block-content collapse in">
-
-                            <!-- Block content wrapper start -->
                             <div class="span12">
-                                <?php
-                                ($query = mysqli_query(
-                                    $conn,
-                                    "SELECT * FROM notification 
-                                        LEFT JOIN teacher ON broadcaster_id=teacher.teacher_id
-                                        WHERE receiver_id = '$session_id' AND is_read = true"
-                                )) or die(mysqli_error());
-                                $count = mysqli_num_rows($query);
-                                if ($count > 0) {
-                                    while ($row = mysqli_fetch_array($query)) {
-
-                                        $get_id = $row['broadcaster_id'];
-                                        $id = $row['notification_id'];
-                                        $is_read = $row['is_read'];
-                                        ?>
-
-                                <!-- Notifications display start -->
-                                <div>
-                                    <strong><?php echo $row['firstname'] .
-                                        ' ' .
-                                        $row['lastname']; ?></strong>
-
-                                    <a class="btn-link" href="<?php echo $row[
-                                        'link'
-                                    ]; ?>">
-                                        <?php echo $row['message']; ?>
-                                    </a>
-
-                                    <div class="pull-right"><b>Notification date: </b>
+                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
+                                    <thead>
+                                        <tr>
+                                            <th>Notification</th>
+                                            <th>Notification Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         <?php
-                                        $date = date_create($row['date']);
-                                        echo date_format(
-                                            $date,
-                                            'M/d/Y h:i:s a'
-                                        );
-                                        ?>
-                                    </div>
-                                </div>
-                                <!-- Notifications display end -->
+                                         ($query = mysqli_query(
+                                            $conn,
+                                        "SELECT * FROM notification 
+                                            LEFT JOIN teacher ON broadcaster_id=teacher.teacher_id
+                                            WHERE receiver_id = '$session_id' AND is_read = true"
+                                        )) or die(mysqli_error());
+                                        $count = mysqli_num_rows($query);
+                                            if ($count > 0) {
+                                                while ($row = mysqli_fetch_array($query)) {
 
-                                <?php
-                                    }
-                                } else {
-                                     ?>
-                                <div class="alert alert-info"><strong><i class="fa-solid fa-info-circle"></i> No
-                                        Notifications Found</strong></div>
-                                <?php
-                                }
-                                ?>
+                                            $get_id = $row['broadcaster_id'];
+                                            $id = $row['notification_id'];
+                                            $is_read = $row['is_read'];
+                                        ?>
+
+                                        <!-- Notifications display start -->
+                                        <tr>
+                                            <td><strong><?php echo $row['firstname'] .
+                                                ' ' .
+                                                $row['lastname']; ?></strong>
+
+                                                <a class="btn-link" href="<?php echo $row[
+                                                'link'
+                                                ]; ?>">
+                                                    <?php echo $row['message']; ?>
+                                                </a>
+                                            </td>
+                                            <td>
+                                            <?php
+                                                $date = date_create($row['date']);
+                                                echo date_format(
+                                                $date,
+                                                'M/d/Y h:i:s a'
+                                                );
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <!-- Notifications display end -->
+
+                                        <?php
+                                        }
+                                        } else {
+                                        ?>
+                                        <div class="alert alert-info"><strong><i class="fa-solid fa-info-circle"></i> No
+                                                Notifications Found</strong></div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                             <!-- Block content wrapper end -->
                         </div>

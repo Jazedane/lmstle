@@ -44,7 +44,7 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
                         <div class="block-content collapse in">
                             <div class="span12">
                                 <?php
-										$query = mysqli_query($conn,"select * FROM task where task_id = '$post_id'")or die(mysqli_error());
+										$query = mysqli_query($conn,"select * FROM task where task_id = '$post_id' ")or die(mysqli_error());
 										$row = mysqli_fetch_array($query);
 									
 									?>
@@ -70,7 +70,7 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
                                             <?php
 										$query = mysqli_query($conn,"select * FROM student_task
 										LEFT JOIN student on student.student_id  = student_task.student_id
-										where task_id = '$post_id'  order by task_fdatein DESC")or die(mysqli_error());
+										where task_id = '$post_id' AND isDeleted=false order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];
