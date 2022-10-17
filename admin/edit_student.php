@@ -37,7 +37,9 @@
                                         <tbody>
 
                                             <?php
-                                    $query = mysqli_query($conn,"select * from student LEFT JOIN class ON class.class_id = student.class_id ORDER BY student.student_id DESC") or die(mysqli_error());
+                                    $query = mysqli_query($conn,"select * from student LEFT JOIN class ON class.class_id = student.class_id 
+                                    WHERE student.isDeleted=false
+                                    ORDER BY student.student_id DESC") or die(mysqli_error());
                                     while ($row = mysqli_fetch_array($query)) {
                                         $id = $row['student_id'];
                                         ?>

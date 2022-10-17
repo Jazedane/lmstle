@@ -41,10 +41,10 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                             <div id="" class="muted pull-left"><a href="task.php<?php echo '?id='.$get_id; ?>">
                                     <i class="fa-solid fa-arrow-left"></i> Back</a>
                             </div>
-                            <div class="muted pull-right">
+                            <li class="muted pull-right">
                                 <a href="print_student_task.php<?php echo '?id='.$get_id; ?>" class="btn btn-info"><i
                                         class="fa-solid fa-list"></i> Student Task List</a>
-                            </div>
+                            </li>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">

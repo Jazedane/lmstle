@@ -26,8 +26,8 @@
                     </ul>
 
                     <div class="block">
-                        <div class="navbar navbar-inner block-header"> Your Class
-                            <div id="" class="muted pull-right">
+                        <div class="navbar navbar-inner block-header">
+                            <div id="" class="muted pull-left">Your Class: 
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,

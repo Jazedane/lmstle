@@ -31,15 +31,15 @@
 	        <tbody>
 
 	            <?php
-  ($query = mysqli_query(
-      $conn,
-      "SELECT * FROM student 
-	  LEFT JOIN class ON student.class_id = class.class_id 
-	  WHERE status = 'Registered' AND student.isDeleted=false
-	  ORDER BY student.student_id DESC"
-  )) or die(mysqli_error());
-  while ($row = mysqli_fetch_array($query)) {
-      $id = $row['student_id']; ?>
+  				($query = mysqli_query(
+      			$conn,
+      			"SELECT * FROM student 
+	  			LEFT JOIN class ON student.class_id = class.class_id 
+	 			WHERE status = 'Registered' AND student.isDeleted=false
+	  			ORDER BY student.student_id DESC"
+  				)) or die(mysqli_error());
+  				while ($row = mysqli_fetch_array($query)) {
+      			$id = $row['student_id']; ?>
 
 	            <tr>
 	                <td width="30">
@@ -47,24 +47,24 @@
 	                        value="<?php echo $id; ?>">
 	                </td>
 
-	                <td><?php
-  $firstname = $row['firstname'];
-  $lastname = $row['lastname'];
-  $firstname = strtoupper($firstname);
-  $lastname = strtoupper($lastname);
-  echo $firstname . ' ' . $lastname;
-  ?></td>
+	                <td><?php $firstname = $row['firstname'];
+							  $lastname = $row['lastname'];
+  							  $firstname = strtoupper($firstname);
+  							  $lastname = strtoupper($lastname);
+  											echo $firstname . ' ' . $lastname;
+  						?></td>
 	                <td><?php echo $row['username']; ?></td>
 
 	                <td width="100"><?php echo $row['class_name']; ?></td>
 
-	                <td width="30"><a href="edit_student.php<?php echo '?id=' .
-      $id; ?>" class="btn btn-success"><i class="fa-solid fa-pencil"></i> </a></td>
+	                <td width="30"><a href="edit_student.php<?php echo '?id=' .$id; ?>" class="btn btn-success">
+	                        <i class="fa-solid fa-pencil"></i> </a>
+	                </td>
 
 	            </tr>
 	            <?php
-  }
-  ?>
+  				}
+  				?>
 	        </tbody>
 	    </table>
 	</form>

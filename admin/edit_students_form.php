@@ -5,7 +5,8 @@
            </div>
            <div class="block-content collapse in">
                <?php
-							$query = mysqli_query($conn,"select * from student LEFT JOIN class ON class.class_id = student.class_id where student_id = '$get_id'")or die(mysqli_error());
+							$query = mysqli_query($conn,"select * from student LEFT JOIN class ON class.class_id = student.class_id 
+                            where student_id = '$get_id' and student.isDeleted=false")or die(mysqli_error());
 							$row = mysqli_fetch_array($query);
 							?>
                <div class="span12">
@@ -14,7 +15,7 @@
                        <div class="control-group">
 
                            <div class="controls">
-                               <select name="cys" class="" required>
+                               <select name="cys" class="" style="width:205px" required>
                                    <option value="<?php echo $row['class_id']; ?>"><?php echo $row['class_name']; ?>
                                    </option>
                                    <?php
@@ -32,47 +33,38 @@
                        <div class="control-group">
                            <div class="controls">
                                <input name="username" value="<?php echo $row['username']; ?>" class="input focused"
-                                   id="focusedInput" type="text" placeholder="ID Number" required>
+                                   id="focusedInput" type="number" maxlength="7" placeholder="ID NUMBER" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
                                <input name="firstname" value="<?php echo $row['firstname']; ?>" class="input focused"
-                                   id="focusedInput" type="text" placeholder="Firstname" required>
+                                   id="focusedInput" type="text" placeholder="FIRSTNAME" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
                                <input name="lastname" value="<?php echo $row['lastname']; ?>" class="input focused"
-                                   id="focusedInput" type="text" placeholder="Lastname" required>
+                                   id="focusedInput" type="text" placeholder="LASTNAME" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
-                               <select name="gender" class="" required>
+                               <select name="gender" class="" style="width:205px" required>
                                    <option><?php echo $row['gender']; ?></option>
                                    <option>MALE</option>
                                    <option>FEMALE</option>
-                                   <option>GAY</option>
-                                   <option>LESBIAN</option>
                                </select>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
-                               <select name="age" class="" required>
-                                   <option><?php echo $row['age']; ?></option>
-                                   <option>15</option>
-                                   <option>16</option>
-                                   <option>17</option>
-                                   <option>18</option>
-                                   <option>19</option>
-                                   <option>20</option>
-                               </select>
+                               <input name="age" value="<?php echo $row['age']; ?> class="" id="focusedInput"
+                                   type="number" maxlength="2" min="1" max="100" placeholder="AGE" required>
                            </div>
                        </div>
 

@@ -20,10 +20,10 @@
                                 Number of Students: <span
                                     class="badge badge-info"><?php echo $count_my_student; ?></span>
                             </div>
-                            <div class="pull-right">
+                            <li class="pull-right">
                                 <a href="print_student.php<?php echo '?id='.$get_id; ?>" class="btn btn-info"><i
                                         class="fa-solid fa-list"></i> Student List</a>
-                            </div>
+                            </li>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">

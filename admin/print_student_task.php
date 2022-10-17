@@ -15,10 +15,10 @@
                                     href="view_submit_task.php<?php echo '?id='.$get_id; ?>">
                                     <i class="fa-solid fa-arrow-left"></i> Back</a>
                             </div>
-                            <div class="pull-right">
+                            <li class="pull-right">
                                 <a id="print" onclick="window.print()" class="btn btn-success"><i
                                         class="fa-solid fa-print"></i> Print Student List</a>
-                            </div>
+                            </li>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">

@@ -10,8 +10,8 @@
                     <div class="control-group">
 
                         <div class="controls">
-                            <select name="class_id" class="" required>
-                                <option>Select Section</option>
+                            <select name="class_id" class="" style="width:205px"required>
+                                <option>SELECT SECTION</option>
                                 <?php
                                    $class_query = mysqli_query(
                                        $conn,
@@ -36,7 +36,7 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            <input name="username" maxlength="7" class="input focused" id="focusedInput" type="number"
+                            <input type="number" maxlength="7" name="username" class="input focused" id="focusedInput" 
                                 placeholder="ID Number" style="text-transform: uppercase" required>
                         </div>
                     </div>
@@ -57,26 +57,17 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            <select name="gender" class="" placeholder="Gender" required>
-                                <option>Select Gender</option>
+                            <select name="gender" class="" placeholder="Gender" style="width:205px" required>
+                                <option>SELECT GENDER</option>
                                 <option>MALE</option>
                                 <option>FEMALE</option>
-                                <option>GAY</option>
-                                <option>LESBIAN</option>
                             </select>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <select name="age" class="" placeholder="Age" type="number" required>
-                                <option>Select Age</option>
-                                <option>15</option>
-                                <option>16</option>
-                                <option>17</option>
-                                <option>18</option>
-                                <option>19</option>
-                                <option>20</option>
-                            </select>
+                            <input type="number" maxlength="2" min="10" max="100" class="" name="age" id="focusedInput" 
+                                placeholder="AGE" required>
                         </div>
                     </div>
 
