@@ -24,7 +24,7 @@
                 <form id="login_form" class="form-signin" method="post">
 
                     <div class="md-3">
-                        <input type="text" maxlength="7" class="form-control" id="username" name="username"
+                        <input type="text" class="form-control" id="username" name="username"
                             placeholder="Username" required>
                     </div>
 
