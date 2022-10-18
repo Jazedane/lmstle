@@ -26,7 +26,7 @@
                             <div class="span12">
                                 <ul class="nav nav-pills">
                                     <li class=""><a href="student_message.php"><i
-                                                class="fa-solid fa-info-circle"></i>Inbox</a></li>
+                                                class="fa-solid fa-envelope"></i>Inbox</a></li>
                                     <li class="active"><a href="sent_message_student.php"><i
                                                 class="fa-solid fa-envelope"></i>Send messages</a></li>
                                 </ul>
@@ -48,7 +48,7 @@
                                     <i class="fa-solid fa-calendar"></i> <?php echo $row['date_sended']; ?>
                                     <div class="pull-right">
                                         <a class="btn btn-link" href="#<?php echo $id; ?>" data-toggle="modal"><i
-                                                class="fa-solid fa-remove"></i> Remove </a>
+                                                class="fa-solid fa-remove"></i> Delete </a>
                                         <?php include("remove_sent_message_modal.php"); ?>
                                     </div>
                                 </div>

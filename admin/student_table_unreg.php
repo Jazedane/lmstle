@@ -47,7 +47,12 @@
 	                        value="<?php echo $id; ?>">
 	                </td>
 
-	                <td><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></td>
+	                <td><?php $firstname = $row['firstname'];
+							  $lastname = $row['lastname'];
+  							  $firstname = strtoupper($firstname);
+  							  $lastname = strtoupper($lastname);
+  										echo $firstname . ' ' . $lastname;?>
+	                </td>
 	                <td><?php echo $row['username']; ?></td>
 
 	                <td width="100"><?php echo $row['class_name']; ?></td>

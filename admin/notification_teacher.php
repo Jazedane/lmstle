@@ -5,7 +5,7 @@
     <?php include 'sidebar.php'; ?>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span9" id="content">
+            <div class="span8" id="content">
                 <div class="row-fluid">
 
                     <ul class="breadcrumb">
@@ -27,21 +27,14 @@
                     </ul>
 
                     <div id="block_bg" class="block">
-
-                        <!-- Block title start -->
                         <div class="navbar navbar-inner block-header">
                             <div id="" class="muted pull-left"> New Notifications </div>
                         </div>
-                        <!-- Block title end -->
 
-                        <!-- Block content start -->
                         <div class="block-content collapse in">
-
-                            <!-- Block content wrapper start -->
                             <div class="span12">
                                 <form action="read.php" method="post">
 
-                                    <!-- Interactive controls start -->
                                     <div>
                                         <button id="delete" class="btn btn-success" name="read"><i
                                                 class="fa-solid fa-check"></i> Mark as Read</button>
@@ -56,7 +49,6 @@
                                         });
                                         </script>
                                     </div>
-                                    <!-- Interactive controls end -->
 
                                     <?php
                                     ($query = mysqli_query(
@@ -79,7 +71,6 @@
 
                                     ?>
 
-                                    <!-- Notifications display start -->
                                     <div class="post" id="del<?php echo $id; ?>">
                                         <?php if ($is_read == true) {
                                         } else {
@@ -110,13 +101,12 @@
                                         ?>
                                         </div>
                                     </div>
-                                    <!-- Notifications display end -->
 
                                     <?php
                                         }
                                     } else {
                                          ?>
-                                    <div class="alert alert-info"><strong><i class="fa-solid fa-info-circle"></i> No
+                                    <div class="alert alert-info"><strong><i class="fa-solid fa-bell"></i> No
                                             Notifications Found</strong></div>
                                     <?php
                                     }
@@ -124,20 +114,13 @@
 
                                 </form>
                             </div>
-                            <!-- Block content wrapper end -->
                         </div>
-                        <!-- Block content end -->
                     </div>
-
                     <div id="" class="block">
-
-                        <!-- Block title start -->
                         <div class="navbar navbar-inner block-header">
                             <div id="" class="muted pull-left"> Notification History </div>
                         </div>
-                        <!-- Block title end -->
 
-                        <!-- Block content start -->
                         <div class="block-content collapse in">
                             <div class="span12">
                                 <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
@@ -165,7 +148,6 @@
                                         $is_read = $row['is_read'];
                                         ?>
 
-                                        <!-- Notifications display start -->
                                         <tr>
                                             <td><strong><?php echo $row['firstname'] .
                                         ' ' .
@@ -179,7 +161,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                    <?php
+                                                <?php
                                         $date = date_create($row['date']);
                                         echo date_format(
                                             $date,
@@ -188,7 +170,6 @@
                                         ?>
                                             </td>
                                         </tr>
-                                        <!-- Notifications display end -->
 
                                         <?php
                                         }
@@ -202,15 +183,13 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- Block content wrapper end -->
                         </div>
-                        <!-- Block content end -->
                     </div>
-
                 </div>
             </div>
         </div>
-        <?php include 'footer.php'; ?>
+    </div>
+    <?php include 'footer.php'; ?>
     </div>
     <?php include 'script.php'; ?>
 </body>

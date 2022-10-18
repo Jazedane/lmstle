@@ -31,8 +31,8 @@
                                     <tbody>
 
                                         <?php
-										$query = mysqli_query($conn,"select * FROM task LEFT JOIN teacher ON teacher.teacher_id = task.teacher_id 
-																				  LEFT JOIN teacher_class ON teacher_class.teacher_class_id = task.class_id 
+										$query = mysqli_query($conn,"select * FROM task LEFT JOIN teacher ON teacher.teacher_id = task.teacher_id
+																				  LEFT JOIN teacher_class ON teacher_class.teacher_class_id = task.class_id and task.isDeleted=false
 																				  INNER JOIN class ON class.class_id = teacher_class.class_id  ")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 									?>

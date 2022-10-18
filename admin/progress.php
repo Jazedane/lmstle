@@ -54,12 +54,11 @@
                                         <?php
 										$query = mysqli_query($conn,"select * FROM student_task 
 										LEFT JOIN student on student.student_id  = student_task.student_id
-										WHERE student_task.student_id = '$session_id'
+										WHERE task_id = '$session_id'
 										order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];
-                                        $task_name = $row['fname'];
 										?>
                                         <tr>
                                             <td><?php echo $row['fdatein']; ?></td>

@@ -37,7 +37,7 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
 
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-right"><a href="task_student.php<?php echo '?id='.$get_id; ?>">
+                            <div id="" class="muted pull-left"><a href="task_student.php<?php echo '?id='.$get_id; ?>">
                                     <i class="fa-solid fa-arrow-left"></i> Back</a>
                             </div>
                         </div>
@@ -70,7 +70,7 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
                                             <?php
 										$query = mysqli_query($conn,"select * FROM student_task
 										LEFT JOIN student on student.student_id  = student_task.student_id
-										where task_id = '$post_id' AND isDeleted=false order by task_fdatein DESC")or die(mysqli_error());
+										where task_id = '$post_id' order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];

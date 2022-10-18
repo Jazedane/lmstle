@@ -22,7 +22,7 @@
                                     <option></option>
                                     <?php
 											$query = mysqli_query($conn,"select * from teacher_class_student
-																  LEFT JOIN student ON student.student_id = teacher_class_student.student_id
+																  LEFT JOIN student ON student.student_id = teacher_class_student.student_id and isDeleted=false
 											 group by teacher_class_student.student_id order by firstname ASC");
 											while($row = mysqli_fetch_array($query)){
 											

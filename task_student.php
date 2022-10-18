@@ -14,7 +14,7 @@
                         $conn,
                         "select * from teacher_class
 							LEFT JOIN class ON class.class_id = teacher_class.class_id
-						    where teacher_class_id = '$get_id'"
+						    where teacher_class_id = '$get_id' AND isDeleted = false"
                     )) or die(mysqli_error());
                     $class_row = mysqli_fetch_array($class_query);
                     ?>
@@ -35,7 +35,7 @@
                             <?php
                             ($query = mysqli_query(
                                 $conn,
-                                "select * FROM task where class_id = '$get_id'  order by fdatein DESC"
+                                "select * FROM task where class_id = '$get_id' AND isDeleted = false order by fdatein DESC"
                             )) or die(mysqli_error());
                             $count = mysqli_num_rows($query);
                             ?>
@@ -47,7 +47,7 @@
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,
-                                    "select * FROM task where class_id = '$get_id'  order by fdatein DESC"
+                                    "select * FROM task where class_id = '$get_id' order by fdatein DESC"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 if ($count == '0') { ?>

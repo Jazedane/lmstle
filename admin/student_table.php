@@ -9,25 +9,6 @@
 	                    <a href="students.php">All</a>
 	                </li>
 	                <li class="">
-	                    <select name="class_id" style="width:100px" required>
-	                        <option>Sections</option>
-	                        <?php
-                                   $class_query = mysqli_query(
-                                       $conn,
-                                       'SELECT * FROM class WHERE isDeleted=false ORDER BY class_name'
-                                   );
-                                   while (
-                                       $class_row = mysqli_fetch_array(
-                                           $class_query
-                                       )
-                                   ) { ?>
-	                        <option value="students.php<?php echo $class_row['class_id']; ?>">
-	                            <?php echo $class_row['class_name']; ?></option>
-	                        <?php }
-                                   ?>
-	                    </select>
-	                </li>
-	                <li class="">
 	                    <a href="unreg_students.php">Unregistered</a>
 	                </li>
 	                <li class="">

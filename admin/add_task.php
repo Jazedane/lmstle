@@ -34,26 +34,26 @@
                             <div class="block-content collapse in">
                                 <div class="span4">
                                     <div class="control-group">
-                                        <label class="control-label" for="inputEmail">Task</label>
+                                        <label class="control-label" for="inputEmail">Add Task</label>
                                         <div class="mb-3">
                                             <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <div class="controls">
-                                            <input type="text" name="name" Placeholder="Task Name" class="input">
+                                            <input type="text" name="name" Placeholder="Task Name" class="input" style="width:260px" required>
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <div class="controls">
-                                            <textarea id="assigntextare" placeholder="Description" name="desc"
+                                            <textarea id="assigntextare" placeholder="Description" name="desc" style="width:260px;height:100px"
                                                 required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Status</label>
-                                            <select name="status" id="status" class="custom-select custom-select-sm">
+                                            <select name="status" id="status" class="custom-select custom-select-sm" style="width:260px">
                                                 <option value="0" <?php echo isset($status) &&
                                                     $status == 0
                                                         ? 'selected'
@@ -86,7 +86,7 @@
                                                         'Y-m-d h:i:sa',
                                                         strtotime($end_date)
                                                     )
-                                                    : ''; ?>" required>
+                                                    : ''; ?>" style="width:260px" required>
                                         </div>
                                     </div>
                                 </div>

@@ -10,7 +10,7 @@
 <div class="card card-login-form">
     <div id="button_form" class="form-signin text-center">
         Welcome to BNHS TLE Subject
-        <hr>
+        <br>
         <h3 class="form-signin-heading"><i class="fa-solid fa-edit"></i> Login </h3>
         <button data-placement="top" title="Login as Student" id="signin_student"
             onclick="window.location='signup_student.php'" id="btn_student" name="login" class="btn btn-primary"

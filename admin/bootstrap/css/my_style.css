@@ -28,7 +28,7 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     #content {
-        margin-left: 10px !important;
+        margin-right: 50px !important;
     }
     .title h3 {
         color: #fff;
@@ -155,7 +155,7 @@ th {
 }
 
 #adduser {
-    margin-left: 0;
+    margin-right: 20px !important;
 }
 
 .modal-header {

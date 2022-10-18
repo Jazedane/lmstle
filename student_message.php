@@ -47,7 +47,7 @@
 
                                     <ul class="nav nav-pills">
                                         <li class="active"><a href="student_message.php"><i
-                                                    class="fa-solid fa-info-circle"></i> Inbox</a></li>
+                                                    class="fa-solid fa-envelope"></i> Inbox</a></li>
                                         <li class=""><a href="sent_message_student.php"><i
                                                     class="fa-solid fa-envelope"></i> Send messages</a></li>
                                     </ul>
@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="pull-right">
                                             <a class="btn btn-link" href="#<?php echo $id; ?>" data-toggle="modal"><i
-                                                    class="fa-solid fa-remove"></i> Remove </a>
+                                                    class="fa-solid fa-remove"></i> Delete </a>
                                             <?php include 'remove_inbox_message_modal.php'; ?>
                                             <?php include 'reply_inbox_message_modal_student.php'; ?>
                                         </div>

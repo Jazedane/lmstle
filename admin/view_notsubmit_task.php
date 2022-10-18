@@ -56,8 +56,6 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <th>Student Name</th>
                                                 <th>Task Name</th>
                                                 <th>Description</th>
-                                                <th></th>
-                                                <th></th>
                                             </tr>
 
                                         </thead>
@@ -112,31 +110,6 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                     });
                 });
                 </script>
-                <script>
-                jQuery(document).ready(function() {
-                    jQuery("#edit").submit(function(e) {
-                        e.preventDefault();
-                        var id = $('.edit').attr("id");
-                        var _this = $(e.target);
-                        var formData = jQuery(this).serialize();
-                        $.ajax({
-                            type: "POST",
-                            url: "edit.php",
-                            data: formData,
-                            success: function(html) {s
-                                $.jGrowl(
-                                    "Edited Task Successfully", {
-                                        header: 'Edited'
-                                    });
-                                $('#edit' + id).modal('hide');
-                            }
-
-                        });
-                        return false;
-                    });
-                });
-                </script>
-
             </div>
         </div>
         <?php include('footer.php'); ?>

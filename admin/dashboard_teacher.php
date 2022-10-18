@@ -25,10 +25,9 @@
                                 ($query = mysqli_query(
                                     $conn,
                                     "SELECT * FROM teacher_class_student
-                                    LEFT JOIN teacher_class ON teacher_class.teacher_class_id = teacher_class_student.teacher_class_id 
+                                    LEFT JOIN teacher_class ON teacher_class_student.teacher_class_id = teacher_class.teacher_class_id 
                                     LEFT JOIN class ON class.class_id = teacher_class.class_id 
-                                    LEFT JOIN teacher ON teacher.teacher_id = teacher_class.teacher_id
-                                    WHERE student_id = '$session_id' and school_year = '$school_year' AND class.isDeleted = false"
+                                    WHERE teacher_class_student_id = '$session_id' and school_year = '$school_year' AND class.isDeleted = false"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 ?>
