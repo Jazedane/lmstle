@@ -3,6 +3,8 @@
 	    <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
 	        <a data-toggle="modal" href="#student_delete" id="delete" class="btn btn-danger" name=""><i
 	                class="fa-solid fa-trash-can"></i></a>
+	        <ul data-toggle="modal" href="#student_restore" id="delete" class="btn btn-primary" name=""><i
+	                class="fa-solid fa-recycle"></i> Restore Data</ul>
 	        <div class="pull-right">
 	            <ul class="nav nav-pills">
 	                <li class="active">
@@ -52,7 +54,9 @@
 						$lastname = $row['lastname'];
 						$firstname = strtoupper ($firstname);
 						$lastname = strtoupper($lastname);
-						echo $firstname .' '. $lastname; ?></td>
+						echo $lastname .', '. $firstname; 
+						$firstname = array($firstname);
+						sort($firstname); ?></td>
 	                <td><?php echo $row['username']; ?></td>
 	                <td><?php $gender = $row['gender'];
 					$gender = strtoupper ($gender);
@@ -67,8 +71,8 @@
 
 	            </tr>
 	            <?php
-             }
-             ?>
+             	}
+             	?>
 
 	        </tbody>
 	    </table>

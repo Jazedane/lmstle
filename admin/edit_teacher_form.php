@@ -13,21 +13,21 @@
                        <div class="control-group">
                            <div class="controls">
                                <input class="input focused" value="<?php echo $row['firstname']; ?>" name="firstname"
-                                   id="focusedInput" type="text" placeholder="Firstname" required>
+                                   id="focusedInput" type="text" placeholder="FIRSTNAME" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
                                <input class="input focused" value="<?php echo $row['lastname']; ?>" name="lastname"
-                                   id="focusedInput" type="text" placeholder="Lastname" required>
+                                   id="focusedInput" type="text" placeholder="LASTNAME" required>
                            </div>
                        </div>
 
                        <div class="control-group">
                            <div class="controls">
                                <input class="input focused" value="<?php echo $row['username']; ?>" name="username"
-                                   id="focusedInput" type="text" placeholder="Username" required>
+                                   id="focusedInput" type="text" placeholder="USERNAME" required>
                            </div>
                        </div>
 

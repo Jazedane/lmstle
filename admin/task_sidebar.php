@@ -11,40 +11,43 @@
                     <form class="" action="assign_save.php<?php echo '?id='.$get_id; ?>" method="post"
                         enctype="multipart/form-data" name="upload">
                         <div class="control-group"></div>
-                            <label class="control-label" for="inputEmail">Task</label>
-                                    <input type="hidden" name="id" value="<?php echo $session_id ?>" />
-                                    <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
-                                    <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
-                        </div>
-                        <div class="control-group">
-
-                            <div class="controls">
-                                <input type="text" name="name" Placeholder="Task Name" class="input" required>
-                            </div>
-                        </div>
-                        <div class="control-group">
-
-                            <div class="controls">
-                                <textarea id="assigntextarea" placeholder="Description" name="desc" required></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="due_date" class="control-label">Due Date</label>
-                                <input type="date" class="form-control form-control-sm" autocomplete="off"
-                                    name="end_date"
-                                    value="<?php echo isset($end_date) ? datetime("Y-m-d-min",strtotime($end_date)) : '' ?>" required>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls">
-                                <button name="Upload" type="submit" value="Upload" class="btn btn-success" /><i
-                                    class="fa-solid fa-upload" ></i> Upload</button>
-                            </div>
-                        </div>
-                    </form>
+                        <label class="control-label" for="inputEmail">Task</label>
+                        <input type="hidden" name="id" value="<?php echo $session_id ?>" />
+                        <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
+                        <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                 </div>
+                <div class="control-group">
+
+                    <div class="controls">
+                        <input type="text" name="name" Placeholder="Task Name" class="input" style="width:100%"
+                            required>
+                    </div>
+                </div>
+                <div class="control-group">
+
+                    <div class="controls">
+                        <textarea id="assigntextarea" placeholder="Description" name="desc" required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="due_date" class="control-label">Due Date</label>
+                        <input type="date" class="form-control form-control-sm" autocomplete="off" name="end_date"
+                            value="<?php echo isset($end_date) ? datetime("Y-m-d-min",strtotime($end_date)) : '' ?>"
+                            required>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <center>
+                        <div class="controls">
+                            <button name="Upload" type="submit" value="Upload" class="btn btn-success" /><i
+                                class="fa-solid fa-upload"></i> Upload</button>
+                        </div>
+                    </center>
+                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>

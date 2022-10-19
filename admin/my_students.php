@@ -14,7 +14,7 @@
                             <div id="" class="muted pull-left">
                                 <?php 
 								$my_student = mysqli_query($conn,"SELECT * FROM teacher_class_student
-														LEFT JOIN student ON student.student_id = teacher_class_student.student_id 
+														LEFT JOIN student ON student.student_id = teacher_class_student.student_id and student.isDeleted=false
 														INNER JOIN class ON class.class_id = student.class_id where teacher_class_id = '$get_id' order by lastname ")or die(mysqli_error());
 								$count_my_student = mysqli_num_rows($my_student);?>
                                 Number of Students: <span
@@ -31,26 +31,29 @@
                                     <ul id="da-thumbs" class="da-thumbs">
                                         <?php
 														$my_student = mysqli_query($conn,"SELECT * FROM teacher_class_student
-														LEFT JOIN student ON student.student_id = teacher_class_student.student_id 
+														LEFT JOIN student ON student.student_id = teacher_class_student.student_id and student.isDeleted=false
 														INNER JOIN class ON class.class_id = student.class_id where teacher_class_id = '$get_id' order by lastname ")or die(mysqli_error());
 														while($row = mysqli_fetch_array($my_student)){
 														$id = $row['teacher_class_student_id'];
 														?>
                                         <li id="del<?php echo $id; ?>">
-                                            <a href="#">
-                                                <img id="student_avatar_class"
-                                                    src="/lmstle/admin/<?php echo $row['location'] ?>" width="124"
-                                                    height="140" class="img-polaroid">
-                                                <div>
-                                                    <span>
-                                                        <p><?php ?></p>
+                                            <center><a href="#">
+                                                    <img id="student_avatar_class"
+                                                        src="/lmstle/admin/<?php echo $row['location'] ?>" width="124"
+                                                        height="140" class="img-polaroid">
+                                                    <div>
+                                                        <span>
+                                                            <p><?php ?></p>
 
-                                                    </span>
-                                                </div>
-                                            </a>
-                                            <p class="student"><?php echo $row['firstname']." ".$row['lastname']?></p>
-                                            <a href="#<?php echo $id; ?>" data-toggle="modal"><i
-                                                    class="fa-solid fa-trash-can"></i> Remove</a>
+                                                        </span>
+                                                    </div>
+                                                </a>
+
+                                                <p class="student">
+                                                    <?php echo $row['firstname']." <br> ".$row['lastname']?></p>
+                                                <a href="#<?php echo $id; ?>" data-toggle="modal"><i
+                                                        class="fa-solid fa-trash-can"></i> Remove</a>
+                                            </center>
                                         </li>
                                         <?php include("remove_student_modal.php"); ?>
                                         <?php } ?>

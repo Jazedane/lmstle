@@ -36,7 +36,7 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            <input type="number" maxlength="7" name="username" class="input focused" id="focusedInput" 
+                            <input type="text" maxlength="7" name="username" class="input focused" id="focusedInput" 
                                 placeholder="ID Number" style="text-transform: uppercase" required>
                         </div>
                     </div>

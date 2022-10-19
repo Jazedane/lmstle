@@ -10,9 +10,9 @@
 
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left">
+                            <li id="" class="muted pull-left">
                                 <h4><i class="fa-solid fa-plus-circle"></i> Edit Task</h4>
-                            </div>
+                            </li>
                             <div id="" class="muted pull-right"><a href="./view_submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>">
                                     <i class="fa-solid fa-arrow-left"></i> Back</a>
                             </div>
@@ -22,11 +22,10 @@
                                 <form class="" action="edit.php<?php echo '?id='.$get_id; ?>" method="post"
                                     enctype="multipart/form-data" name="upload">
                                     <div class="control-group">
-                                        <label class="control-label" for="inputEmail">Edit Task</label>
+                                        <label class="control-label" for="inputtask">Edit Task</label>
                                         <div class="control-group">
-                                            <input type="hidden" name="id" value="<?php echo $id ?>" />
-                                            <input type="text" name="task_name" id="inputEmail"
-                                                value="<?php echo $task_id; ?>" readonly>
+                                            <input type="text" name="id" id="inputtask"
+                                                value="<?php echo '?id='.$get_id ?>&<?php echo 'id='.$post_id ?>" readonly>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -39,8 +38,8 @@
                                     <div class="control-group">
                                         <div class="controls">
                                             <label for="task_status">Status</label>
-                                            <select name="status" id="<?php echo $id; ?>"
-                                                class="custom-select custom-select-sm">
+                                            <select name="status" id="<?php echo $get_id; ?>&<?php echo 'id='.$post_id ?>"
+                                                class="custom-select custom-select-sm" required>
                                                 <option value="1"
                                                     <?php echo isset($task_status) && $task_status == 1 ? 'selected' : '' ?>>
                                                     On-progress
@@ -59,7 +58,7 @@
                                     <div class="control-group">
                                         <div class="controls">
                                             <label for="p_condition">Plants Condition</label>
-                                            <select name="p_condition" id="<?php echo $id; ?>"
+                                            <select name="p_condition" id="<?php echo $id; ?>&<?php echo 'id='.$post_id ?>"
                                                 class="custom-select custom-select-sm">
                                                 <option value="1"
                                                     <?php echo isset($p_condition) && $p_condition == 1 ? 'selected' : '' ?>>

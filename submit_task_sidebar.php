@@ -23,7 +23,8 @@
                         <div class="control-group">
 
                             <div class="controls">
-                                <input type="text" name="name" Placeholder="Task Name" class="input" required>
+                                <input type="text" name="name" Placeholder="Task Name" class="input" style="width:100%"
+                                    required>
                             </div>
                         </div>
                         <div class="control-group">
@@ -34,11 +35,12 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <div class="controls">
-
-                                <button name="Upload" type="submit" value="Upload" class="btn btn-success" /><i
-                                    class="fa-solid fa-upload"></i> Upload</button>
-                            </div>
+                            <center>
+                                <div class="controls">
+                                    <button name="Upload" type="submit" value="Upload" class="btn btn-success" /><i
+                                        class="fa-solid fa-upload"></i> Upload</button>
+                                </div>
+                            </center>
                         </div>
                     </form>
                 </div>

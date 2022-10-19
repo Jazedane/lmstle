@@ -7,7 +7,7 @@
 					    </div>
 					    <div class="modal-body">
 					        <div class="alert alert-danger">
-					            <p>Are you sure you want to delete the class you check?.</p>
+					            <p>Are you sure you want to delete the class you check?</p>
 					        </div>
 					    </div>
 					    <div class="modal-footer">
@@ -17,7 +17,7 @@
 					    </div>
 					</div>
 
-					<!-- student delete modal -->
+					<!-- Student delete modal -->
 					<div id="student_delete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 					    aria-hidden="true">
 					    <div class="modal-header">
@@ -26,7 +26,7 @@
 					    </div>
 					    <div class="modal-body">
 					        <div class="alert alert-danger">
-					            <p>Are you sure you want to delete the student you check?.</p>
+					            <p>Are you sure you want to delete the student you check?</p>
 					        </div>
 					    </div>
 					    <div class="modal-footer">
@@ -37,7 +37,7 @@
 					</div>
 
 
-					<!-- student delete modal -->
+					<!-- Teacher delete modal -->
 					<div id="teacher_delete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 					    aria-hidden="true">
 					    <div class="modal-header">
@@ -46,7 +46,7 @@
 					    </div>
 					    <div class="modal-body">
 					        <div class="alert alert-danger">
-					            <p>Are you sure you want to delete the teacher you check?.</p>
+					            <p>Are you sure you want to delete the teacher you check?</p>
 					        </div>
 					    </div>
 					    <div class="modal-footer">
@@ -66,7 +66,7 @@
 					    </div>
 					    <div class="modal-body">
 					        <div class="alert alert-danger">
-					            <p>Are you sure you want to delete the Content you check?.</p>
+					            <p>Are you sure you want to delete the Content you check?</p>
 					        </div>
 					    </div>
 					    <div class="modal-footer">
@@ -77,7 +77,7 @@
 					</div>
 
 
-					<!-- Content delete modal -->
+					<!-- Subject delete modal -->
 					<div id="subject_delete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 					    aria-hidden="true">
 					    <div class="modal-header">

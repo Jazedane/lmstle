@@ -21,6 +21,9 @@
                                         <a data-toggle="modal" href="#teacher_delete" id="delete" class="btn btn-danger"
                                             name=""><i class="fa-solid fa-trash-can"></i></a>
                                         <?php include 'modal_delete.php'; ?>
+                                        <ul data-toggle="modal" href="#teacher_restore" id="delete"
+                                            class="btn btn-primary" name=""><i class="fa-solid fa-recycle"></i> Restore
+                                            Data</ul>
                                         <thead>
                                             <tr>
                                                 <th></th>
@@ -57,9 +60,9 @@
                                                 $lastname = strtoupper(
                                                     $lastname
                                                 );
-                                                echo $firstname .
-                                                    ' ' .
-                                                    $lastname;
+                                                echo $lastname .
+                                                    ', ' .
+                                                    $firstname;
                                                 ?></td>
                                                 <td><?php
                                                 $username = $row['username'];
@@ -71,8 +74,7 @@
 
                                                 <td width="40">
                                                     <a href="edit_teacher.php<?php echo '?id=' .
-                                                        $id; ?>"
-                                                        data-toggle="modal" class="btn btn-success"><i
+                                                        $id; ?>" data-toggle="modal" class="btn btn-success"><i
                                                             class="fa-solid fa-edit"></i></a>
                                                 </td>
                                             </tr>

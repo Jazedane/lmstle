@@ -8,27 +8,21 @@
         <div class="span9" id="content">
                 <div id="block_bg" class="block">
                     <div class="navbar navbar-inner block-header">
-                        <div class="muted pull-left">Available Plants in School Garden</div>
+                        <div class="muted pull-left">Plants in School Garden</div>
                     </div>
                     <div class="block-content collapse in">
-                        <div class="card" style="width: 10rem;">
-                            <img src="/lmstle/images/index.jpg" class="card-img-top" alt="...">
+                        <div class="card" style="width: 10rem;border:2px solid black;padding:5px">
+                            <center><img src="/lmstle/images/index.jpg" class="card-img-top" alt="..." style="width:100%;height:100px">
                             <div class="card-body">
                                 <h5 class="card-title">Plant 1</h5>
-                                <p class="card-text">This is a plant.</p>
-                                <a href="#" class="btn btn-primary"> Check Information</a>
+                                <a href="#" class="btn btn-primary"> Learn More </a>
                             </div>
+                            <center>
                         </div>
-                        <div class="card" style="width: 10rem;">
-                            <img src="/lmstle/images/index.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Plant 2</h5>
-                                <p class="card-text">This is a plant.</p>
-                                <a href="#" class="btn btn-primary"> Check Information</a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>

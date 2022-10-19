@@ -17,14 +17,15 @@
             ?>
 
     <li id="del<?php echo $id; ?>">
-        <a href="my_students.php<?php echo '?id=' . $id; ?>">
-            <img src="<?php echo $row[
+        <center><a href="my_students.php<?php echo '?id=' . $id; ?>">
+                <img src="<?php echo $row[
                 'thumbnails'
             ]; ?>" width="124" height="140" class="img-polaroid" alt="">
 
-        </a>
-        <p class="class"><?php echo $row['class_name']; ?></p>
-        <a href="#<?php echo $class_id; ?>" data-toggle="modal"><i class="fa-solid fa-trash-can"></i> Remove</a>
+            </a>
+            <p class="class"><?php echo $row['class_name']; ?></p>
+            <a href="#<?php echo $class_id; ?>" data-toggle="modal"><i class="fa-solid fa-trash-can"></i> Remove</a>
+        </center>
         <?php include 'delete_class_modal.php'; ?>
     </li>
 

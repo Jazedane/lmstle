@@ -3,7 +3,7 @@
 			        <div id="block_bg" class="block" style="margin-top:70px">
 			            <div class="navbar navbar-inner block-header">
 			                <div id="" class="muted pull-left">
-			                    <h4><i class="fa-solid fa-plus-circle"></i> Add class</h4>
+			                    <h4><i class="fa-solid fa-plus-circle"></i> Add Class</h4>
 			                </div>
 			            </div>
 			            <div class="block-content collapse in">

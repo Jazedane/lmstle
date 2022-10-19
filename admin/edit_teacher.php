@@ -44,10 +44,17 @@
                                                     <input id="optionsCheckbox" class="uniform_on" name="selector[]"
                                                         type="checkbox" value="<?php echo $id; ?>">
                                                 </td>
-                                                <td><?php echo $row['firstname']; ?> <?php echo $row['lastname']; ?>
+                                                <td><?php $firstname = $row['firstname'];
+							                            $lastname = $row['lastname'];
+  							                            $firstname = strtoupper($firstname);
+  							                            $lastname = strtoupper($lastname);
+  											            echo $lastname . ', ' . $firstname;
+  						                                ?>
                                                 </td>
 
-                                                <td><?php echo $row['username']; ?></td>
+                                                <td><?php $username = $row['username'];
+                                                            $username = strtoupper($username);
+  											                echo $username; ?></td>
 
                                                 <td width="40">
                                                     <a href="edit_teacher.php<?php echo '?id='.$id; ?>"

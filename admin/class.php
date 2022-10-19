@@ -21,6 +21,9 @@
                                         <a data-toggle="modal" href="#class_delete" id="delete" class="btn btn-danger"
                                             name=""><i class="fa-solid fa-trash-can"></i></a>
                                         <?php include 'modal_delete.php'; ?>
+                                        <ul data-toggle="modal" href="#student_restore" id="delete"
+                                            class="btn btn-primary" name=""><i class="fa-solid fa-recycle"></i> Restore
+                                            Data</ul>
                                         <thead>
                                             <tr>
                                                 <th></th>
@@ -55,8 +58,8 @@
                                                 echo $class_name;
                                                 ?></td>
                                                 <td width="40"><a href="edit_class.php<?php echo '?id=' .
-                                                    $id; ?>"
-                                                        class="btn btn-success"><i class="fa-solid fa-edit"></i> </a>
+                                                    $id; ?>" class="btn btn-success"><i class="fa-solid fa-edit"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <?php

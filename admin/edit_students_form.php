@@ -33,7 +33,7 @@
                        <div class="control-group">
                            <div class="controls">
                                <input name="username" value="<?php echo $row['username']; ?>" class="input focused"
-                                   id="focusedInput" type="number" maxlength="7" placeholder="ID NUMBER" required>
+                                   id="focusedInput" type="text" maxlength="7" placeholder="ID NUMBER" required>
                            </div>
                        </div>
 

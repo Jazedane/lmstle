@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="block-content collapse in">
-                            <div class="span12">
+                            <div class="span12" style="width:100%">
                                 <?php include('teacher_class.php'); ?>
                             </div>
                         </div>

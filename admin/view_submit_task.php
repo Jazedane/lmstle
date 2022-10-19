@@ -125,7 +125,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                         </button>
                                                         <ul class="dropdown-menu text-center"
                                                             style="width:20px; height:60px">
-                                                            <li><a href="./edit_task_modal.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$id ?>"><i
+                                                            <li><a href="./edit_task_modal.php<?php echo '?id='.$get_id ?>&<?php echo 'id='.$post_id ?>"><i
                                                                         class="fa-solid fa-edit"></i>
                                                                     Edit </a></li>
                                                             <li><a href="/remove_task_modal.php?task_id=$id"><i
@@ -192,7 +192,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                 </script>
                 <script>
                 jQuery(document).ready(function() {
-                    jQuery("#edit").submit(function(e) {
+                    jQuery("#edit_task").submit(function(e) {
                         e.preventDefault();
                         var id = $('.edit').attr("id");
                         var _this = $(e.target);
@@ -206,7 +206,7 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                     "Edited Task Successfully", {
                                         header: 'Edited'
                                     });
-                                $('#edit' + id).modal('hide');
+                                $('#edit_task' + id).modal('hide');
                             }
 
                         });

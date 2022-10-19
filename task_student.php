@@ -14,7 +14,7 @@
                         $conn,
                         "select * from teacher_class
 							LEFT JOIN class ON class.class_id = teacher_class.class_id
-						    where teacher_class_id = '$get_id' AND isDeleted = false"
+						    where teacher_class_id = '$get_id'"
                     )) or die(mysqli_error());
                     $class_row = mysqli_fetch_array($class_query);
                     ?>

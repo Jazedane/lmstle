@@ -53,21 +53,21 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Status</label>
-                                            <select name="status" id="status" class="custom-select custom-select-sm" style="width:260px">
-                                                <option value="0" <?php echo isset($status) &&
-                                                    $status == 0
+                                            <select name="task_status" id="status" class="custom-select custom-select-sm" style="width:260px">
+                                                <option value="0" <?php echo isset($task_status) &&
+                                                    $task_status == 0
                                                         ? 'selected'
                                                         : ''; ?>>
                                                     Pending
                                                 </option>
-                                                <option value="3" <?php echo isset($status) &&
-                                                    $status == 3
+                                                <option value="3" <?php echo isset($task_status) &&
+                                                    $task_status == 3
                                                         ? 'selected'
                                                         : ''; ?>>
                                                     On-Hold
                                                 </option>
-                                                <option value="5" <?php echo isset($status) &&
-                                                    $status == 5
+                                                <option value="5" <?php echo isset($task_status) &&
+                                                    $task_status == 5
                                                         ? 'selected'
                                                         : ''; ?>>
                                                     Done
@@ -115,9 +115,9 @@
                                             ($query = mysqli_query(
                                                 $conn,
                                                 "select * from teacher_class
-										LEFT JOIN class ON class.class_id = teacher_class.class_id
+										LEFT JOIN class ON class.class_id = teacher_class.class_id and class.isDeleted=false
 										LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
-										where teacher_id = '$session_id' and school_year = '$school_year' "
+										where teacher_id = '$session_id' and school_year = '$school_year'"
                                             )) or die(mysqli_error());
                                             $count = mysqli_num_rows($query);
                                             while (

@@ -37,6 +37,9 @@
                         <div class="block-content collapse in">
                             <div class="span12">
                                 <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
+                                    <a data-toggle="modal" href="#task_restore" id="delete" class="btn btn-primary"
+                                        name=""><i class="fa-solid fa-recycle"></i> Restore
+                                        Data</a>
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
