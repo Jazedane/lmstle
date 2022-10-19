@@ -70,7 +70,35 @@
         </div>
     </form>
 </div>
+<?php
+if (isset($_POST['save'])){
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$password = $_POST['password'];
 
+
+$query = mysqli_query($conn,"select * from teacher where username = '$username'")or die(mysqli_error());
+$count = mysqli_num_rows($query);
+
+if ($count > 0){ ?>
+   <script>
+alert('Data Already Exist');
+   </script>
+   <?php
+}else{
+mysqli_query($conn,"insert into teacher (username,password,firstname,lastname,location) values('$username','$password','$firstname','$lastname','uploads/NO-IMAGE-AVAILABLE.jpg')")or die(mysqli_error());
+
+mysqli_query($conn,"insert into activity_log (date,username,action) values(NOW(),'$username','Add User $username')")or die(mysqli_error());
+?>
+   <script>
+window.location = "admin/admin_user.php";
+   </script>
+   <?php
+}
+}
+?>
 <script>
 function handleBackNavigation() {
     window.location.href = '/lmstle/signup_teacher.php'

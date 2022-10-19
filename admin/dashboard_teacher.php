@@ -20,18 +20,7 @@
 
                     <div class="block">
                         <div class="navbar navbar-inner block-header">
-                            <div id="count_class" class="muted pull-left"> Section List:
-                                <?php
-                                ($query = mysqli_query(
-                                    $conn,
-                                    "SELECT * FROM teacher_class_student
-                                    LEFT JOIN teacher_class ON teacher_class_student.teacher_class_id = teacher_class.teacher_class_id 
-                                    LEFT JOIN class ON class.class_id = teacher_class.class_id 
-                                    WHERE teacher_class_student_id = '$session_id' and school_year = '$school_year' AND class.isDeleted = false"
-                                )) or die(mysqli_error());
-                                $count = mysqli_num_rows($query);
-                                ?>
-                                <span class="badge badge-info"><?php echo $count; ?></span>
+                            <div id="count_class" class="muted pull-left"> Section List
                             </div>
                         </div>
                         <div class="block-content collapse in">

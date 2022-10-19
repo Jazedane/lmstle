@@ -8,6 +8,28 @@
         <div class="row-fluid">
             <div class="span9" id="content">
                 <div class="row-fluid">
+
+                    <ul class="breadcrumb">
+                        <?php
+                        ($class_query = mysqli_query(
+                            $conn,
+                            "SELECT * FROM teacher_class
+							LEFT JOIN class ON class.class_id = teacher_class.class_id
+							WHERE teacher_class_id = '$get_id'"
+                        )) or die(mysqli_error());
+                        $class_row = mysqli_fetch_array($class_query);
+                        $class_id = $class_row['class_id'];
+                        ?>
+
+                        <li><a href="#"><?php echo $class_row[
+                            'class_name'
+                        ]; ?></a> <span class="divider">/</span></li>
+                        <li><a href="#">School Year: <?php echo $class_row[
+                            'school_year'
+                        ]; ?></a> <span class="divider">/</span></li>
+                        <li><a href="#"><b>Tasks Uploaded List</b></a></li>
+                    </ul>
+
                     <div id="block_bg" class="block">
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">Task Uploaded List</div>
