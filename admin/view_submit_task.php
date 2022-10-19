@@ -92,29 +92,29 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td class="project-state">
                                                     <?php
-                            					if($task_status[$row['task_status']] =='Pending'){
-                              						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['task_status']] =='Started'){
-                              						echo "<span class='badge badge-primary'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['stask_status']] =='On-Progress'){
-                              						echo "<span class='badge badge-info'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['task_status']] =='On-Hold'){
-                              						echo "<span class='badge badge-warning'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['task_status']] =='Over Due'){
-                              						echo "<span class='badge badge-danger'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['task_status']] =='Done'){
-                              						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
+                            					if($row['task_status'] =='1') {
+                              						echo "<span class='badge badge-secondary'>Pending</span>";
+                            					}elseif($row['task_status'] =='2'){
+                              						echo "<span class='badge badge-primary'>Started</span>";
+                            					}elseif($row['task_status'] =='3'){
+                              						echo "<span class='badge badge-info'>On-Progress</span>";
+                            					}elseif($row['task_status'] =='4'){
+                              						echo "<span class='badge badge-warning'>On-Hold</span>";
+                            					}elseif($row['task_status'] =='5'){
+                              						echo "<span class='badge badge-danger'>Overdue</span>";
+                            					}elseif($row['task_status'] =='6'){
+                              						echo "<span class='badge badge-success'>Done</span>";
                             					}
                                                 ?>
                                                 </td>
                                                 <td class="project-state">
                                                     <?php
-                            					if($p_condition[$row['p_condition']] =='Alive'){
-                              						echo "<span class='badge badge-secondary'>{$p_condition[$row['p_condition']]}</span>";
-                            					}elseif($p_condition[$row['p_condition']] =='Withered'){
-                              						echo "<span class='badge badge-primary'>{$p_condition[$row['p_condition']]}</span>";
-                            					}elseif($p_condition[$row['p_condition']] =='Dead'){
-                              						echo "<span class='badge badge-info'>{$p_condition[$row['p_condition']]}</span>";
+                            					if($row['p_condition'] =='1'){
+                              						echo "<span class='badge badge-secondary'>Alive</span>";
+                            					}elseif($row['p_condition'] =='2'){
+                              						echo "<span class='badge badge-primary'>Withered</span>";
+                            					}elseif($row['p_condition'] =='3'){
+                              						echo "<span class='badge badge-info'>Dead</span>";
                                                 }
                                                 ?>
                                                 </td>
