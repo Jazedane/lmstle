@@ -3,8 +3,8 @@
 
 <body>
     <?php include 'sidebar.php'; ?>
-    <div class="container main-content">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row-fluid">
             <div class="span9" id="content">
                 <div class="row-fluid">
 

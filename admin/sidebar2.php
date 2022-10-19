@@ -133,8 +133,6 @@ body {
             <li class=""><a href="dashboard_teacher.php"><i class="fa-solid fa-arrow-left"></i> Back</a></li>
             <li class=""><a href="my_students.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-user-group"></i>
                     My Students</a></li>
-            <li class=""><a href="progress.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-bars-progress"></i>
-                    Students Progress</a></li>
             <li class=""><a href="task.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-tasks"></i>
                     Tasks</a></li>
             <li class=""><a href="downloadable.php<?php echo '?id='.$get_id; ?>"><i class="fa-solid fa-file-upload"></i>
