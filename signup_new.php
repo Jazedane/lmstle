@@ -119,10 +119,15 @@ jQuery(document).ready(function() {
         var formData = jQuery(this).serialize();
         $.ajax({
             type: "POST",
-            url: "/lmstle/signup_teacher.php",
+            url: "/lmstle/signup_new.php",
             data: formData,
             success: function(html) {
-                if (html == 'true') {
+                if (html == 'false') {
+                    alert("Signup Failed")
+                    $.jGrowl("Please Check Your Username and Password", {
+                        header: 'Signup Failed'
+                    });
+                } else {
                     alert("You Have Been Successfully Signup!")
                     $.jGrowl(
                         "Please Proceed to Login", {
@@ -132,11 +137,6 @@ jQuery(document).ready(function() {
                     setTimeout(function() {
                         window.location = '/lmstle/signup_teacher.php'
                     }, delay);
-                } else {
-                    alert("Signup Failed")
-                    $.jGrowl("Please Check Your Username and Password", {
-                        header: 'Signup Failed'
-                    });
                 }
             }
 
