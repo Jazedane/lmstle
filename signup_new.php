@@ -92,7 +92,7 @@ alert('Data Already Exist');
 <?php } else {
         mysqli_query(
             $conn,
-            "insert into teacher (username,password,firstname,lastname,location) values('$username','$password','$firstname','$lastname','uploads/NO-IMAGE-AVAILABLE.jpg')"
+            "insert into teacher (username,password,firstname,lastname,location) values('$username','$password','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg')"
         ) or die(mysqli_error());
 
         mysqli_query(
@@ -114,7 +114,7 @@ function handleBackNavigation() {
 jQuery(document).ready(function() {
     jQuery("#back").click(handleBackNavigation)
 
-    jQuery("#signup_form").submit(function(e) {
+    jQuery("#login_form").submit(function(e) {
         e.preventDefault();
         var formData = jQuery(this).serialize();
         $.ajax({

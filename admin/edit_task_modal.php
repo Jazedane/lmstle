@@ -69,13 +69,13 @@ $p_condition = $result['p_condition'];
                                                 <option value="3" <?php echo $task_status == 3 ? 'selected' : '' ?>>
                                                     On-Progress
                                                 </option>
-                                                <option value="3" <?php echo $task_status == 4 ? 'selected' : '' ?>>
+                                                <option value="4" <?php echo $task_status == 4 ? 'selected' : '' ?>>
                                                     On-Hold
                                                 </option>
-                                                <option value="3" <?php echo $task_status == 5 ? 'selected' : '' ?>>
+                                                <option value="5" <?php echo $task_status == 5 ? 'selected' : '' ?>>
                                                     Overdue
                                                 </option>
-                                                <option value="3" <?php echo $task_status == 6 ? 'selected' : '' ?>>
+                                                <option value="6" <?php echo $task_status == 6 ? 'selected' : '' ?>>
                                                     Done
                                                 </option>
                                             </select>

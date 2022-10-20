@@ -10,7 +10,6 @@
                 <div class="row-fluid">
 
                     <?php 
-					$i = 1;
                 	$task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
                     $p_condition = array("Alive","Withered","Dead");
 					$class_query = mysqli_query($conn,"select * from teacher_class
@@ -71,7 +70,7 @@
                               						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='Started'){
                               						echo "<span class='badge badge-primary'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['stask_status']] =='On-Progress'){
+                            					}elseif($task_status[$row['task_status']] =='On-Progress'){
                               						echo "<span class='badge badge-info'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='On-Hold'){
                               						echo "<span class='badge badge-warning'>{$task_status[$row['task_status']]}</span>";
@@ -85,11 +84,11 @@
                                             <td class="project-state">
                                                     <?php
                             					if($p_condition[$row['p_condition']] =='Alive'){
-                              						echo "<span class='badge badge-secondary'>{$p_condition[$row['p_condition']]}</span>";
+                              						echo "<span class='badge badge-success'>{$p_condition[$row['p_condition']]}</span>";
                             					}elseif($p_condition[$row['p_condition']] =='Withered'){
                               						echo "<span class='badge badge-primary'>{$p_condition[$row['p_condition']]}</span>";
                             					}elseif($p_condition[$row['p_condition']] =='Dead'){
-                              						echo "<span class='badge badge-info'>{$p_condition[$row['p_condition']]}</span>";
+                              						echo "<span class='badge badge-danger'>{$p_condition[$row['p_condition']]}</span>";
                                                 }
                                                 ?>
                                             </td>

@@ -99,9 +99,9 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                             					}elseif($row['task_status'] =='3'){
                               						echo "<span class='badge badge-info'>On-Progress</span>";
                             					}elseif($row['task_status'] =='4'){
-                              						echo "<span class='badge badge-warning'>On-Hold</span>";
+                              						echo "<span class='badge badge-secondary'>On-Hold</span>";
                             					}elseif($row['task_status'] =='5'){
-                              						echo "<span class='badge badge-danger'>Overdue</span>";
+                              						echo "<span class='badge badge-warning'>Overdue</span>";
                             					}elseif($row['task_status'] =='6'){
                               						echo "<span class='badge badge-success'>Done</span>";
                             					}
@@ -110,11 +110,11 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 <td class="project-state">
                                                     <?php
                             					if($row['p_condition'] =='1'){
-                              						echo "<span class='badge badge-secondary'>Alive</span>";
+                              						echo "<span class='badge badge-success'>Alive</span>";
                             					}elseif($row['p_condition'] =='2'){
                               						echo "<span class='badge badge-primary'>Withered</span>";
                             					}elseif($row['p_condition'] =='3'){
-                              						echo "<span class='badge badge-info'>Dead</span>";
+                              						echo "<span class='badge badge-warning'>Dead</span>";
                                                 }
                                                 ?>
                                                 </td>
