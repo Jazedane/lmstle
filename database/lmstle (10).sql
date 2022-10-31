@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `activity_log`
 --
 
-CREATE TABLE `activity_log` (
+CREATE TABLE `tbl_activity_log` (
   `activity_log_id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `date` varchar(100) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `activity_log` (
 -- Dumping data for table `activity_log`
 --
 
-INSERT INTO `activity_log` (`activity_log_id`, `username`, `date`, `action`) VALUES
+INSERT INTO `tbl_activity_log` (`activity_log_id`, `username`, `date`, `action`) VALUES
 (1, 'admin', '2022-08-15 10:00:01', 'Add Student 22-0001'),
 (3, '', '2022-09-18 20:23:40', 'Edit Teacher Admin'),
 (4, '', '2022-09-18 20:25:00', 'Add User 111-1111'),
@@ -64,7 +64,7 @@ INSERT INTO `activity_log` (`activity_log_id`, `username`, `date`, `action`) VAL
 -- Table structure for table `class`
 --
 
-CREATE TABLE `class` (
+CREATE TABLE `tbl_class` (
   `class_id` int(11) NOT NULL,
   `class_name` varchar(100) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL
@@ -74,7 +74,7 @@ CREATE TABLE `class` (
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`class_id`, `class_name`, `isDeleted`) VALUES
+INSERT INTO `tbl_class` (`class_id`, `class_name`, `isDeleted`) VALUES
 (2223, 'Grade 10 - Hope', 0),
 (2230, 'Grade 10 - Love', 0);
 
@@ -84,7 +84,7 @@ INSERT INTO `class` (`class_id`, `class_name`, `isDeleted`) VALUES
 -- Table structure for table `message`
 --
 
-CREATE TABLE `message` (
+CREATE TABLE `tbl_message` (
   `message_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
   `content` varchar(200) NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE `message` (
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`message_id`, `receiver_id`, `content`, `date_sended`, `sender_id`, `receiver_name`, `sender_name`, `message_status`) VALUES
+INSERT INTO `tbl_message` (`message_id`, `receiver_id`, `content`, `date_sended`, `sender_id`, `receiver_name`, `sender_name`, `message_status`) VALUES
 (121, 22, 'hey', '2022-09-15 19:37:50', 1234, 'Aurelia Hackett', 'Admin Admin', ''),
 (123, 22, 'Hello student', '2022-09-19 09:09:18', 1234, 'Aurelia Hackett', '', ''),
 (302, 36, 'hey', '2022-10-10 21:54:55', 1234, 'Maria Luz', 'Admin Admin', 'read'),
@@ -111,7 +111,7 @@ INSERT INTO `message` (`message_id`, `receiver_id`, `content`, `date_sended`, `s
 -- Table structure for table `message_sent`
 --
 
-CREATE TABLE `message_sent` (
+CREATE TABLE `tbl_message_sent` (
   `message_sent_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
   `content` varchar(200) NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE `message_sent` (
 -- Dumping data for table `message_sent`
 --
 
-INSERT INTO `message_sent` (`message_sent_id`, `receiver_id`, `content`, `date_sended`, `sender_id`, `receiver_name`, `sender_name`) VALUES
+INSERT INTO `tbl_message_sent` (`message_sent_id`, `receiver_id`, `content`, `date_sended`, `sender_id`, `receiver_name`, `sender_name`) VALUES
 (2, 22, 'hi', '2022-09-14 22:39:43', 22, 'Admin Admin', 'Aurelia Hackett'),
 (183, 36, 'hey maria', '2022-10-10 21:42:53', 1234, 'Maria Luz', ''),
 (185, 1234, 'hey ad', '2022-10-10 21:55:23', 36, 'Admin Admin', 'Maria Luz'),
@@ -138,7 +138,7 @@ INSERT INTO `message_sent` (`message_sent_id`, `receiver_id`, `content`, `date_s
 -- Table structure for table `notification`
 --
 
-CREATE TABLE `notification` (
+CREATE TABLE `tbl_notification` (
   `notification_id` int(11) NOT NULL,
   `message` varchar(100) NOT NULL,
   `link` varchar(100) NOT NULL,
@@ -152,7 +152,7 @@ CREATE TABLE `notification` (
 -- Dumping data for table `notification`
 --
 
-INSERT INTO `notification` (`notification_id`, `message`, `link`, `date`, `broadcaster_id`, `receiver_id`, `is_read`) VALUES
+INSERT INTO `tbl_notification` (`notification_id`, `message`, `link`, `date`, `broadcaster_id`, `receiver_id`, `is_read`) VALUES
 (378, 'New Task Added: <b>Sample</b>', 'task_student.php?id=15', '2022-10-10 22:24:38', 1234, 22, 0),
 (379, 'New Task Added: <b>Sample</b>', 'task_student.php?id=15', '2022-10-10 22:24:38', 1234, 36, 1),
 (380, 'submit task name <b>MariaLuz.jpg</b>', 'view_submit_task.php?id=15&post_id=156', '2022-10-10 22:25:36', 36, 1234, 1),
@@ -176,7 +176,7 @@ INSERT INTO `notification` (`notification_id`, `message`, `link`, `date`, `broad
 -- Table structure for table `notification_read`
 --
 
-CREATE TABLE `notification_read` (
+CREATE TABLE `tbl_notification_read` (
   `notification_read_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `student_read` varchar(50) NOT NULL,
@@ -187,7 +187,7 @@ CREATE TABLE `notification_read` (
 -- Dumping data for table `notification_read`
 --
 
-INSERT INTO `notification_read` (`notification_read_id`, `student_id`, `student_read`, `notification_id`) VALUES
+INSERT INTO `tbl_notification_read` (`notification_read_id`, `student_id`, `student_read`, `notification_id`) VALUES
 (131, 22, 'yes', 121),
 (132, 36, 'yes', 124),
 (133, 36, 'yes', 121),
@@ -210,7 +210,7 @@ INSERT INTO `notification_read` (`notification_read_id`, `student_id`, `student_
 -- Table structure for table `notification_read_teacher`
 --
 
-CREATE TABLE `notification_read_teacher` (
+CREATE TABLE `tbl_notification_read_teacher` (
   `notification_read_teacher_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `student_read` varchar(100) NOT NULL,
@@ -221,7 +221,7 @@ CREATE TABLE `notification_read_teacher` (
 -- Dumping data for table `notification_read_teacher`
 --
 
-INSERT INTO `notification_read_teacher` (`notification_read_teacher_id`, `teacher_id`, `student_read`, `notification_id`) VALUES
+INSERT INTO `tbl_notification_read_teacher` (`notification_read_teacher_id`, `teacher_id`, `student_read`, `notification_id`) VALUES
 (41, 1234, 'yes', 121),
 (42, 1234, 'yes', 40),
 (43, 1234, 'yes', 41),
@@ -258,7 +258,7 @@ INSERT INTO `notification_read_teacher` (`notification_read_teacher_id`, `teache
 -- Table structure for table `school_year`
 --
 
-CREATE TABLE `school_year` (
+CREATE TABLE `tbl_school_year` (
   `school_year_id` int(11) NOT NULL,
   `school_year` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -267,7 +267,7 @@ CREATE TABLE `school_year` (
 -- Dumping data for table `school_year`
 --
 
-INSERT INTO `school_year` (`school_year_id`, `school_year`) VALUES
+INSERT INTO `tbl_school_year` (`school_year_id`, `school_year`) VALUES
 (1, '2022-2023');
 
 -- --------------------------------------------------------
@@ -276,7 +276,7 @@ INSERT INTO `school_year` (`school_year_id`, `school_year`) VALUES
 -- Table structure for table `student`
 --
 
-CREATE TABLE `student` (
+CREATE TABLE `tbl_student` (
   `student_id` int(11) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
@@ -294,7 +294,7 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `firstname`, `lastname`, `gender`, `age`, `class_id`, `username`, `password`, `location`, `status`, `isDeleted`) VALUES
+INSERT INTO `tbl_student` (`student_id`, `firstname`, `lastname`, `gender`, `age`, `class_id`, `username`, `password`, `location`, `status`, `isDeleted`) VALUES
 (47, 'JADE RICK', 'CASUYON', 'MALE', 17, 2230, '22-0039', 'c9f7f85910ab95a7e4970db249426b6a2bd927605885858f21c2c454bee94c7e', 'uploads/NO-IMAGE-AVAILABLE.jpg', 'Unregistered', 0),
 (36, 'ANJIE', 'ALEGARBES', 'MALE', 17, 2223, '22-0001', 'e0d6f8e94087836656f29a7bcbc40f16607ed71c38d407f6102d9e4148b77244', 'uploads/NO-IMAGE-AVAILABLE.jpg', 'Registered', 0),
 (43, 'MATTHEW VENICE', 'BALAOD', 'MALE', 17, 2223, '22-0002', 'f8eb9ae4f219cb97dee1ced7897f9e9351f99d1dc82e777f78cb2ce7e80296e2', 'uploads/NO-IMAGE-AVAILABLE.jpg', 'Unregistered', 1),
@@ -315,7 +315,7 @@ INSERT INTO `student` (`student_id`, `firstname`, `lastname`, `gender`, `age`, `
 -- Table structure for table `student_task`
 --
 
-CREATE TABLE `student_task` (
+CREATE TABLE `tbl_student_task` (
   `student_task_id` int(11) NOT NULL,
   `task_id` int(11) NOT NULL,
   `floc` varchar(100) NOT NULL,
@@ -334,7 +334,7 @@ CREATE TABLE `student_task` (
 -- Dumping data for table `student_task`
 --
 
-INSERT INTO `student_task` (`student_task_id`, `task_id`, `floc`, `task_fdatein`, `fdesc`, `fname`, `task_status`, `p_condition`, `end_date`, `student_id`, `grade`, `isDeleted`) VALUES
+INSERT INTO `tbl_student_task` (`student_task_id`, `task_id`, `floc`, `task_fdatein`, `fdesc`, `fname`, `task_status`, `p_condition`, `end_date`, `student_id`, `grade`, `isDeleted`) VALUES
 (11, 81, 'uploads/sample.pdf', '2022-08-15 10:12:04', 'abcd', 'efghij', 1, 0, '2022-10-01 11:13:49', 22, '90', 0),
 (12, 92, 'uploads/2961_File_FB_IMG_15752133919503719.jpg', '2022-10-02 18:14:21', 'This is my task', 'Maria-Sample1', 0, 0, '0000-00-00 00:00:00', 36, '95%', 0),
 (14, 88, 'uploads/1484_File_FB_IMG_15752133842884300.jpg', '2022-10-02 22:50:55', 'This is picture', 'Luz', 0, 0, '0000-00-00 00:00:00', 36, '80%', 0),
@@ -354,7 +354,7 @@ INSERT INTO `student_task` (`student_task_id`, `task_id`, `floc`, `task_fdatein`
 -- Table structure for table `student_uploaded_task`
 --
 
-CREATE TABLE `student_uploaded_task` (
+CREATE TABLE `tbl_student_uploaded_task` (
   `file_id` int(11) NOT NULL,
   `floc` varchar(100) NOT NULL,
   `fdatein` varchar(100) NOT NULL,
@@ -367,7 +367,7 @@ CREATE TABLE `student_uploaded_task` (
 -- Dumping data for table `student_uploaded_task`
 --
 
-INSERT INTO `student_uploaded_task` (`file_id`, `floc`, `fdatein`, `fdesc`, `student_id`, `fname`) VALUES
+INSERT INTO `tbl_student_uploaded_task` (`file_id`, `floc`, `fdatein`, `fdesc`, `student_id`, `fname`) VALUES
 (100, 'admin/sample.docx', '2022-08-15 11:00:00', 'file', 22, 'task');
 
 -- --------------------------------------------------------
@@ -376,7 +376,7 @@ INSERT INTO `student_uploaded_task` (`file_id`, `floc`, `fdatein`, `fdesc`, `stu
 -- Table structure for table `subject`
 --
 
-CREATE TABLE `subject` (
+CREATE TABLE `tbl_subject` (
   `subject_id` int(11) NOT NULL,
   `subject_code` varchar(100) NOT NULL,
   `subject_title` varchar(100) NOT NULL
@@ -386,7 +386,7 @@ CREATE TABLE `subject` (
 -- Dumping data for table `subject`
 --
 
-INSERT INTO `subject` (`subject_id`, `subject_code`, `subject_title`) VALUES
+INSERT INTO `tbl_subject` (`subject_id`, `subject_code`, `subject_title`) VALUES
 (123, 'TLE10', 'Technology, Livelihood and Education');
 
 -- --------------------------------------------------------
@@ -395,7 +395,7 @@ INSERT INTO `subject` (`subject_id`, `subject_code`, `subject_title`) VALUES
 -- Table structure for table `task`
 --
 
-CREATE TABLE `task` (
+CREATE TABLE `tbl_task` (
   `task_id` int(11) NOT NULL,
   `floc` varchar(300) NOT NULL,
   `fdatein` varchar(100) NOT NULL,
@@ -413,7 +413,7 @@ CREATE TABLE `task` (
 -- Dumping data for table `task`
 --
 
-INSERT INTO `task` (`task_id`, `floc`, `fdatein`, `fdesc`, `task_status`, `p_condition`, `end_date`, `teacher_id`, `class_id`, `fname`, `isDeleted`) VALUES
+INSERT INTO `tbl_task` (`task_id`, `floc`, `fdatein`, `fdesc`, `task_status`, `p_condition`, `end_date`, `teacher_id`, `class_id`, `fname`, `isDeleted`) VALUES
 (81, 'uploads/sample.docx', '2022-08-15 01:24:32', 'Task1', 1, 0, '2022-10-01 00:00:00', 123, 2223, 'Task number 1', 0),
 (159, '', '2022-10-10 23:38:01', 'This is task', 0, 0, '2022-10-15 00:00:00', 1234, 15, 'Task', 0),
 (160, '', '2022-10-15 22:17:00', 'Please send your task 2', 0, 0, '2022-10-22 00:00:00', 1234, 15, 'Task 2', 0),
@@ -425,7 +425,7 @@ INSERT INTO `task` (`task_id`, `floc`, `fdatein`, `fdesc`, `task_status`, `p_con
 -- Table structure for table `teacher`
 --
 
-CREATE TABLE `teacher` (
+CREATE TABLE `tbl_teacher` (
   `teacher_id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
@@ -441,7 +441,7 @@ CREATE TABLE `teacher` (
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`teacher_id`, `username`, `password`, `firstname`, `lastname`, `location`, `about`, `teacher_stat`, `isDeleted`) VALUES
+INSERT INTO `tbl_teacher` (`teacher_id`, `username`, `password`, `firstname`, `lastname`, `location`, `about`, `teacher_stat`, `isDeleted`) VALUES
 (1234, 'ADMIN', 'jazedane27', 'ROSALIE', 'JAENA', 'received_472195831476549.webp', '', 'Activated', 0),
 (1242, 'Jazedane', 'jaze', 'Jaze', 'Dane', 'haikyu.jpg', '', '', 0);
 
@@ -451,7 +451,7 @@ INSERT INTO `teacher` (`teacher_id`, `username`, `password`, `firstname`, `lastn
 -- Table structure for table `teacher_class`
 --
 
-CREATE TABLE `teacher_class` (
+CREATE TABLE `tbl_teacher_class` (
   `teacher_class_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
@@ -465,7 +465,7 @@ CREATE TABLE `teacher_class` (
 -- Dumping data for table `teacher_class`
 --
 
-INSERT INTO `teacher_class` (`teacher_class_id`, `teacher_id`, `class_id`, `subject_id`, `thumbnails`, `school_year`, `isDeleted`) VALUES
+INSERT INTO `tbl_teacher_class` (`teacher_class_id`, `teacher_id`, `class_id`, `subject_id`, `thumbnails`, `school_year`, `isDeleted`) VALUES
 (15, 1234, 2223, 123, '/lmstle/admin/uploads/thumbnails.png', '2022-2023', 0),
 (16, 1234, 2224, 123, '/lmstle/admin/uploads/thumbnails.png', '2022-2023', 0),
 (27, 1234, 2229, 123, '/lmstle/admin/uploads/thumbnails.png', '2022-2023', 0),
@@ -477,7 +477,7 @@ INSERT INTO `teacher_class` (`teacher_class_id`, `teacher_id`, `class_id`, `subj
 -- Table structure for table `teacher_class_student`
 --
 
-CREATE TABLE `teacher_class_student` (
+CREATE TABLE `tbl_teacher_class_student` (
   `teacher_class_student_id` int(11) NOT NULL,
   `teacher_class_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
@@ -489,7 +489,7 @@ CREATE TABLE `teacher_class_student` (
 -- Dumping data for table `teacher_class_student`
 --
 
-INSERT INTO `teacher_class_student` (`teacher_class_student_id`, `teacher_class_id`, `student_id`, `teacher_id`, `isDeleted`) VALUES
+INSERT INTO `tbl_teacher_class_student` (`teacher_class_student_id`, `teacher_class_id`, `student_id`, `teacher_id`, `isDeleted`) VALUES
 (30, 15, 22, 1234, 0),
 (34, 15, 0, 1234, 0),
 (35, 15, 36, 1234, 0),
@@ -518,7 +518,7 @@ INSERT INTO `teacher_class_student` (`teacher_class_student_id`, `teacher_class_
 -- Table structure for table `teacher_notification`
 --
 
-CREATE TABLE `teacher_notification` (
+CREATE TABLE `tbl_teacher_notification` (
   `teacher_notification_id` int(11) NOT NULL,
   `teacher_class_id` int(11) NOT NULL,
   `notification` varchar(200) NOT NULL,
@@ -532,7 +532,7 @@ CREATE TABLE `teacher_notification` (
 -- Dumping data for table `teacher_notification`
 --
 
-INSERT INTO `teacher_notification` (`teacher_notification_id`, `teacher_class_id`, `notification`, `date_of_notification`, `link`, `student_id`, `task_id`) VALUES
+INSERT INTO `tbl_teacher_notification` (`teacher_notification_id`, `teacher_class_id`, `notification`, `date_of_notification`, `link`, `student_id`, `task_id`) VALUES
 (40, 15, 'Submit Assignment file name <b>my_assignment</b>', '2022-08-31 12:00:50', 'view_submit_task.php', 22, 81),
 (41, 15, 'Submit Task file name <b>Maria-Sample1</b>', '2022-10-02 18:14:21', 'view_submit_task.php', 36, 92),
 (43, 15, 'Submit Task file name <b>Luz</b>', '2022-10-02 22:50:55', 'view_submit_task.php', 36, 88);
@@ -543,8 +543,8 @@ INSERT INTO `teacher_notification` (`teacher_notification_id`, `teacher_class_id
 -- Table structure for table `user_log`
 --
 
-CREATE TABLE `user_log` (
-  `user_log_id` int(11) NOT NULL,
+CREATE TABLE `tbl_teacher_log` (
+  `teacher_log_id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
   `login_date` varchar(30) NOT NULL,
   `logout_date` varchar(30) NOT NULL,
@@ -555,7 +555,7 @@ CREATE TABLE `user_log` (
 -- Dumping data for table `user_log`
 --
 
-INSERT INTO `user_log` (`user_log_id`, `username`, `login_date`, `logout_date`, `teacher_id`) VALUES
+INSERT INTO `tbl_teacher_log` (`teacher_log_id`, `username`, `login_date`, `logout_date`, `teacher_id`) VALUES
 (115, 'admin', '2022-09-17 18:07:55', '2022-10-20 00:59:59', 1234),
 (116, 'admin', '2022-09-17 18:26:07', '2022-10-20 00:59:59', 1234),
 (117, 'admin', '2022-09-17 20:40:45', '2022-10-20 00:59:59', 1234),
@@ -668,104 +668,104 @@ INSERT INTO `user_log` (`user_log_id`, `username`, `login_date`, `logout_date`, 
 --
 -- Indexes for table `activity_log`
 --
-ALTER TABLE `activity_log`
+ALTER TABLE `tbl_activity_log`
   ADD PRIMARY KEY (`activity_log_id`);
 
 --
 -- Indexes for table `class`
 --
-ALTER TABLE `class`
+ALTER TABLE `tbl_class`
   ADD PRIMARY KEY (`class_id`);
 
 --
 -- Indexes for table `message`
 --
-ALTER TABLE `message`
+ALTER TABLE `tbl_message`
   ADD PRIMARY KEY (`message_id`);
 
 --
 -- Indexes for table `message_sent`
 --
-ALTER TABLE `message_sent`
+ALTER TABLE `tbl_message_sent`
   ADD PRIMARY KEY (`message_sent_id`);
 
 --
 -- Indexes for table `notification`
 --
-ALTER TABLE `notification`
+ALTER TABLE `tbl_notification`
   ADD PRIMARY KEY (`notification_id`);
 
 --
 -- Indexes for table `notification_read`
 --
-ALTER TABLE `notification_read`
+ALTER TABLE `tbl_notification_read`
   ADD PRIMARY KEY (`notification_read_id`);
 
 --
 -- Indexes for table `notification_read_teacher`
 --
-ALTER TABLE `notification_read_teacher`
+ALTER TABLE `tbl_notification_read_teacher`
   ADD PRIMARY KEY (`notification_read_teacher_id`);
 
 --
 -- Indexes for table `school_year`
 --
-ALTER TABLE `school_year`
+ALTER TABLE `tbl_school_year`
   ADD PRIMARY KEY (`school_year_id`);
 
 --
 -- Indexes for table `student`
 --
-ALTER TABLE `student`
+ALTER TABLE `tbl_student`
   ADD PRIMARY KEY (`student_id`);
 
 --
 -- Indexes for table `student_task`
 --
-ALTER TABLE `student_task`
+ALTER TABLE `tbl_student_task`
   ADD PRIMARY KEY (`student_task_id`);
 
 --
 -- Indexes for table `student_uploaded_task`
 --
-ALTER TABLE `student_uploaded_task`
+ALTER TABLE `tbl_student_uploaded_task`
   ADD PRIMARY KEY (`file_id`);
 
 --
 -- Indexes for table `task`
 --
-ALTER TABLE `task`
+ALTER TABLE `tbl_task`
   ADD PRIMARY KEY (`task_id`);
 
 --
 -- Indexes for table `teacher`
 --
-ALTER TABLE `teacher`
+ALTER TABLE `tbl_teacher`
   ADD PRIMARY KEY (`teacher_id`);
 
 --
 -- Indexes for table `teacher_class`
 --
-ALTER TABLE `teacher_class`
+ALTER TABLE `tbl_teacher_class`
   ADD PRIMARY KEY (`teacher_class_id`);
 
 --
 -- Indexes for table `teacher_class_student`
 --
-ALTER TABLE `teacher_class_student`
+ALTER TABLE `tbl_teacher_class_student`
   ADD PRIMARY KEY (`teacher_class_student_id`);
 
 --
 -- Indexes for table `teacher_notification`
 --
-ALTER TABLE `teacher_notification`
+ALTER TABLE `tbl_teacher_notification`
   ADD PRIMARY KEY (`teacher_notification_id`);
 
 --
 -- Indexes for table `user_log`
 --
-ALTER TABLE `user_log`
-  ADD PRIMARY KEY (`user_log_id`);
+ALTER TABLE `tbl_teacher_log`
+  ADD PRIMARY KEY (`teacher_log_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -774,104 +774,104 @@ ALTER TABLE `user_log`
 --
 -- AUTO_INCREMENT for table `activity_log`
 --
-ALTER TABLE `activity_log`
+ALTER TABLE `tbl_activity_log`
   MODIFY `activity_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `class`
 --
-ALTER TABLE `class`
+ALTER TABLE `tbl_class`
   MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2231;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
-ALTER TABLE `message`
+ALTER TABLE `tbl_message`
   MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=307;
 
 --
 -- AUTO_INCREMENT for table `message_sent`
 --
-ALTER TABLE `message_sent`
+ALTER TABLE `tbl_message_sent`
   MODIFY `message_sent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
-ALTER TABLE `notification`
+ALTER TABLE `tbl_notification`
   MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400;
 
 --
 -- AUTO_INCREMENT for table `notification_read`
 --
-ALTER TABLE `notification_read`
+ALTER TABLE `tbl_notification_read`
   MODIFY `notification_read_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT for table `notification_read_teacher`
 --
-ALTER TABLE `notification_read_teacher`
+ALTER TABLE `tbl_notification_read_teacher`
   MODIFY `notification_read_teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `school_year`
 --
-ALTER TABLE `school_year`
+ALTER TABLE `tbl_school_year`
   MODIFY `school_year_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
-ALTER TABLE `student`
+ALTER TABLE `tbl_student`
   MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `student_task`
 --
-ALTER TABLE `student_task`
+ALTER TABLE `tbl_student_task`
   MODIFY `student_task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `student_uploaded_task`
 --
-ALTER TABLE `student_uploaded_task`
+ALTER TABLE `tbl_student_uploaded_task`
   MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `task`
 --
-ALTER TABLE `task`
+ALTER TABLE `tbl_task`
   MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT for table `teacher`
 --
-ALTER TABLE `teacher`
+ALTER TABLE `tbl_teacher`
   MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1243;
 
 --
 -- AUTO_INCREMENT for table `teacher_class`
 --
-ALTER TABLE `teacher_class`
+ALTER TABLE `tbl_teacher_class`
   MODIFY `teacher_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `teacher_class_student`
 --
-ALTER TABLE `teacher_class_student`
+ALTER TABLE `tbl_teacher_class_student`
   MODIFY `teacher_class_student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `teacher_notification`
 --
-ALTER TABLE `teacher_notification`
+ALTER TABLE `tbl_teacher_notification`
   MODIFY `teacher_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `user_log`
 --
-ALTER TABLE `user_log`
-  MODIFY `user_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
+ALTER TABLE `tbl_teacher_log`
+  MODIFY `teacher_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
