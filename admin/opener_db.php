@@ -1,4 +1,4 @@
 <?php
-include("dbConnector.php"); 
-$connector = new DbConnector();
+include("databaseConnector.php"); 
+$connector = new databaseConnector();
 ?>

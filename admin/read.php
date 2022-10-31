@@ -1,5 +1,5 @@
 <?php
-include 'dbcon.php';
+include 'database.php';
 include 'session.php';
 if (isset($_POST['read'])) {
 
@@ -8,12 +8,12 @@ if (isset($_POST['read'])) {
     for ($i = 0; $i < $N; $i++) {
         mysqli_query(
             $conn,
-            "UPDATE notification SET is_read=true WHERE notification_id='$id[$i]'"
+            "UPDATE tbl_notification SET is_read=true WHERE notification_id='$id[$i]'"
         ) or die(mysqli_error());
     }
     ?>
 <script>
-window.location = 'notification_teacher.php';
+window.location = 'notification.php';
 </script>
 <?php
 }

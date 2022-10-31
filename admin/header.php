@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html class="no-js">
+<style>
+body {
+    background-image: url("/lmstlee4/dist/img/index4.jpg");
+    height: 100%;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+}
+</style>
 
 <head>
-    <style>
-    html {
-        height: 100%;
-        width: 100%;
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LMSTLE | Dashboard</title>
 
-    body {
-        background-image: url("/lmstle/admin/images/index3.jpg");
-        background-repeat: no-repeat;
-        -webkit-background-size: cover !important;
-        -moz-background-size: cover !important;
-        -o-background-size: cover !important;
-        background-size: cover !important;
-        height: 100%;
-    }
-    </style>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <!-- fullCalendar -->
+    <link rel="stylesheet" href="plugins/fullcalendar/main.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="plugins/bs-stepper/css/bs-stepper.min.css">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
+    <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+</head>
 
-    <title> LMSTLE </title>
-    <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-    <link href="fontawesome/css/all.css" rel="stylesheet" media="screen" type="text/css">
-    <link href="vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
-    <link href="vendors/chosen.min.css" rel="stylesheet" media="screen">
-    <link href="vendors/datepicker.css" rel="stylesheet" media="screen">
-    <link href="vendors/uniform.default.css" rel="stylesheet" media="screen">
-    <link href="vendors/fullcalendar/fullcalendar.css" rel="stylesheet" media="screen">
-    <link href="vendors/jGrowl/jquery.jgrowl.css" rel="stylesheet" media="screen">
-    <link href="assets/style.css" rel="stylesheet" media="screen">
-    <link href="assets/styles.css" rel="stylesheet" media="screen">
-    <link href="bootstrap/css/my_style.css" rel="stylesheet" media="screen">
-    <link href="assets/DT_bootstrap.css" rel="stylesheet" media="screen">
-
-    <script src="vendors/jquery-1.9.1.min.js"></script>
-    <script src="vendors/jGrowl/jquery.jgrowl.js"></script>
-</head> 
-
-<?php include 'dbcon.php'; ?>
+<?php include 'database.php'; ?>

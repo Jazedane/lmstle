@@ -1,22 +1,22 @@
 					<?php
-						$school_year_query = mysqli_query($conn,"select * from school_year order by school_year DESC")or die(mysqli_error());
+						$school_year_query = mysqli_query($conn,"select * from tbl_school_year order by school_year DESC")or die(mysqli_error());
 						$school_year_query_row = mysqli_fetch_array($school_year_query);
 						$school_year = $school_year_query_row['school_year'];
 						?>
 				
-					<?php $query_yes = mysqli_query($conn,"select * from teacher_notification
-					LEFT JOIN notification_read_teacher on teacher_notification.teacher_notification_id =  notification_read_teacher.notification_id
+					<?php $query_yes = mysqli_query($conn,"select * from tbl_teacher_notification
+					LEFT JOIN tbl_notification_read_teacher on tbl_teacher_notification.teacher_notification_id =  tbl_notification_read_teacher.notification_id
 					where teacher_id = '$session_id' 
 					")or die(mysqli_error());
 					$count_no = mysqli_num_rows($query_yes);
 		            ?>
-					<?php $query = mysqli_query($conn,"select * from teacher_notification
-					LEFT JOIN teacher_class on teacher_class.teacher_class_id = teacher_notification.teacher_class_id
-					LEFT JOIN student on student.student_id = teacher_notification.student_id
-					LEFT JOIN assignment on assignment.assignment_id = teacher_notification.assignment_id 
-					LEFT JOIN class on teacher_class.class_id = class.class_id
-					LEFT JOIN subject on teacher_class.subject_id = subject.subject_id
-					where teacher_class.teacher_id = '$session_id' 
+					<?php $query = mysqli_query($conn,"select * from tbl_teacher_notification
+					LEFT JOIN tbl_teacher_class on tbl_teacher_class.teacher_class_id = tbl_teacher_notification.teacher_class_id
+					LEFT JOIN tbl_student on tbl_student.student_id = tbl_teacher_notification.student_id
+					LEFT JOIN tbl_task on tbl_task.task_id = tbl_teacher_notification.task_id 
+					LEFT JOIN tbl_class on tbl_teacher_class.class_id = tbl_class.class_id
+					LEFT JOIN tbl_subject on tbl_teacher_class.subject_id = tbl_subject.subject_id
+					where tbl_teacher_class.teacher_id = '$session_id' 
 					")or die(mysqli_error());
 					$count = mysqli_num_rows($query);
 		            ?>

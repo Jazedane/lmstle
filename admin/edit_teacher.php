@@ -1,28 +1,108 @@
-<?php include('header.php'); ?>
-<?php include('session.php'); ?>
-<?php $get_id = $_GET['id']; ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LMSTLE | Teacher</title>
+
+    <?php include 'header.php'; ?>
+    <?php include 'session.php'; ?>
+    <?php $get_id = $_GET['id']; ?>
+</head>
 
 <body>
-    <?php include('sidebar.php'); ?>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span3" id="adduser">
-                <?php include('edit_teacher_form.php'); ?>
+    <?php include 'index.php'; ?>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Masterlist</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Edit Teacher</li>
+                        </ol>
+                    </div>
+                </div>
             </div>
-            <div class="span6" id="">
-                <div class="row-fluid">
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3" id="adduser">
+                        <form method="post">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-edit"> Edit Teacher</i></h3>
+                                </div>
+                                <?php
+								$query = mysqli_query($conn,"select * from tbl_teacher where teacher_id = '$get_id'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
+								?>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" name="firstname" value="<?php echo $row['firstname']; ?>"
+                                            class="form-control" placeholder="Enter Firstname">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" name="lastname" value="<?php echo $row['lastname']; ?>"
+                                            class="form-control" placeholder="Enter Lastname">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" name="username" value="<?php echo $row['username']; ?>"
+                                            class="form-control" placeholder="Enter Username">
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <center><button name="update" type="submit" class="btn btn-success"
+                                            href="teacher.php"><i class="fas fa-edit">
+                                                Edit</i></button>
+                                        <a href="teacher.php" class="btn btn-info"><i
+                                                class="fas fa-arrow-left"></i> Back </a>
+                                    </center>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <?php		
+                    if (isset($_POST['update'])){
 
-                    <div id="block_bg" class="block">
-                        <div class="navbar navbar-inner block-header">
-                            <div class="muted pull-left">Teacher List</div>
-                        </div>
-                        <div class="block-content collapse in">
-                            <div class="span12">
+                    $firstname = $_POST['firstname'];
+                    $lastname = $_POST['lastname'];
+                    $username = $_POST['username'];
+
+                    mysqli_query($conn,"update tbl_teacher set username = '$username'  , firstname = '$firstname' , lastname = '$lastname' where teacher_id = '$get_id' ")
+                    or die(mysqli_error());
+
+                    mysqli_query($conn,"insert into tbl_activity_log (date,username,action) values(NOW(),'$teacher_username','Edit Teacher $username')")
+                    or die(mysqli_error());
+                    ?>
+                    <script>
+                    window.location = "teacher.php";
+                    </script>
+                    <?php
+                    }
+                    ?>
+                    <div class="col-md-9">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Teacher List</h3>
+                            </div>
+                            <div class="card-body">
                                 <form action="delete_teacher.php" method="post">
-                                    <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
-                                        <a data-toggle="modal" href="#teacher_delete" id="delete" class="btn btn-danger"
-                                            name=""><i class="fa-solid fa-trash-can"></i></a>
-                                        <?php include('modal_delete.php'); ?>
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <ul data-toggle="modal" href="#teacher_delete" id="delete"
+                                            class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
+                                        <?php include 'modal_delete.php'; ?>
+                                        <ul data-toggle="modal" href="#teacher_restore" id="delete"
+                                            class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore
+                                            Data</ul>
                                         <thead>
                                             <tr>
                                                 <th></th>
@@ -33,38 +113,43 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-													$teacher_query = mysqli_query($conn,"select * from teacher")or die(mysqli_error());
+                                           <?php
+													$teacher_query = mysqli_query($conn,"select * from tbl_teacher where tbl_teacher.isDeleted=false")or die(mysqli_error());
 													while($row = mysqli_fetch_array($teacher_query)){
 													$id = $row['teacher_id'];
 													?>
+
 
                                             <tr>
                                                 <td width="30">
                                                     <input id="optionsCheckbox" class="uniform_on" name="selector[]"
                                                         type="checkbox" value="<?php echo $id; ?>">
                                                 </td>
-                                                <td><?php $firstname = $row['firstname'];
-							                            $lastname = $row['lastname'];
-  							                            $firstname = strtoupper($firstname);
-  							                            $lastname = strtoupper($lastname);
-  											            echo $lastname . ', ' . $firstname;
-  						                                ?>
-                                                </td>
-
-                                                <td><?php $username = $row['username'];
-                                                            $username = strtoupper($username);
-  											                echo $username; ?></td>
-
-                                                <td width="40">
-                                                    <a href="edit_teacher.php<?php echo '?id='.$id; ?>"
-                                                        data-toggle="modal" class="btn btn-success"><i
-                                                            class="fa-solid fa-edit"></i></a>
-                                                </td>
-
+                                                <td><?php
+                                                $firstname = $row['firstname'];
+                                                $lastname = $row['lastname'];
+                                                $firstname = strtoupper(
+                                                    $firstname
+                                                );
+                                                $lastname = strtoupper(
+                                                    $lastname
+                                                );
+                                                echo $lastname .
+                                                    ', ' .
+                                                    $firstname;
+                                                ?></td>
+                                                <td><?php
+                                                $username = $row['username'];
+                                                $username = strtoupper(
+                                                    $username
+                                                );
+                                                echo $username;
+                                                ?></td>
 
                                             </tr>
-                                            <?php } ?>
+                                            <?php
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </form>
@@ -73,11 +158,29 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <?php include('footer.php'); ?>
+        </section>
     </div>
-    <?php include('script.php'); ?>
+    <?php include 'footer.php'; ?>
+    <?php include 'script.php'; ?>
+    <script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+    </script>
 </body>
 
 </html>

@@ -1,65 +1,74 @@
-<?php include('header.php'); ?>
-<?php include('session.php'); ?>
-<?php $get_id = $_GET['id']; ?>
-<?php 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LMSTLE | Task</title>
+
+    <?php include 'header.php'; ?>
+    <?php include 'session.php'; ?>
+    <?php $get_id = $_GET['id']; ?>
+    <?php 
 	  $post_id = $_GET['post_id'];
 	  if($post_id == ''){
 	  ?>
-<script>
-window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
-</script>
-<?php
+    <script>
+    window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
+    </script>
+    <?php
 	  }
-	
  ?>
+</head>
 
-<body id="studentTableDiv">
-    <?php include('sidebar2.php'); ?>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span11" id="content">
-                <div class="row-fluid">
-
-                    <?php 
-                    $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
-                    $p_condition = array("Alive","Withered","Dead");
-                    $class_query = mysqli_query($conn,"select * from teacher_class
-									LEFT JOIN class ON class.class_id = teacher_class.class_id
-									where teacher_class_id = '$get_id'")or die(mysqli_error());
-									$class_row = mysqli_fetch_array($class_query);
-									?>
-
-                    <ul class="breadcrumb">
-                        <li><a href="#"><?php echo $class_row['class_name']; ?></a> <span class="divider">/</span></li>
-                        <li><a href="#">School Year: <?php echo $class_row['school_year']; ?></a> <span
-                                class="divider">/</span></li>
-                        <li><a href="#"><b>Uploaded Tasks</b></a></li>
-                    </ul>
-
-                    <div id="block_bg" class="block">
-                        <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left"><a href="task.php<?php echo '?id='.$get_id; ?>">
-                                    <i class="fa-solid fa-arrow-left"></i> Back</a>
+<body>
+    <?php include 'homepage2.php'; ?>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tasks</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <?php 
+                         $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                        $p_condition = array("Alive","Withered","Dead");
+                        $class_query = mysqli_query($conn,"select * from tbl_teacher_class
+										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
+										where teacher_class_id = '$get_id'")or die(mysqli_error());
+										$class_row = mysqli_fetch_array($class_query);
+										?>
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#"><?php echo $class_row['class_name']; ?></a> <span
+                                    class="divider"></span></li>
+                            <li class="breadcrumb-item"><a href="#">School Year:
+                                    <?php echo $class_row['school_year']; ?></a> <span class="divider"></span></li>
+                            <li class="breadcrumb-item active"><a href="#"><b>View Submitted Task</b></a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <div id="" class="float-sm-right"><a href="task.php<?php echo '?id='.$get_id; ?>"><i
+                                            class="fas fa-arrow-left"></i> Back</a></div>
                             </div>
-                            <li id="" class="pull-right">
-                                <a href="print_student_task.php<?php echo '?id='.$get_id; ?>" class="btn btn-info"><i
-                                        class="fa-solid fa-list"></i> Student Task List</a>
-                            </li>
-                        </div>
-                        <div class="block-content collapse in">
-                            <div class="span12">
+                            <div class="card-body">
                                 <?php
-										$query = mysqli_query($conn,"select * FROM task where task_id = '$post_id'")or die(mysqli_error());
-										$row = mysqli_fetch_array($query);
+										$query1 = mysqli_query($conn,"select * FROM tbl_task where task_id = '$post_id'")or die(mysqli_error());
+										$row1 = mysqli_fetch_array($query1);
 									
 									?>
-                                <div class="alert alert-info">Submit Task in : <?php echo $row['fname']; ?></div>
+                                <div class="alert alert-info">Submit Task in : <?php echo $row1['fname']; ?></div>
 
                                 <div id="">
-
-
-                                    <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
-
+                                    <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Date Upload</th>
@@ -77,8 +86,8 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                         <tbody>
 
                                             <?php
-										    $query = mysqli_query($conn,"select * FROM student_task
-										    LEFT JOIN student on student.student_id  = student_task.student_id
+										    $query = mysqli_query($conn,"select * FROM tbl_student_task
+										    LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
 										    where task_id = '$post_id'  order by task_fdatein DESC")or die(mysqli_error());
 										    while($row = mysqli_fetch_array($query)){
 										    $id  = $row['student_task_id'];
@@ -119,24 +128,14 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                 ?>
                                                 </td>
                                                 <td>
-                                                    <div class="dropdown">
-                                                        <button name="action" href="#" class="btn btn-info"
-                                                            data-toggle="dropdown"></i>Action <i class="caret"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu text-center"
-                                                            style="width:20px; height:60px">
-                                                            <li><a href="./edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
-                                                                        class="fa-solid fa-edit"></i>
-                                                                    Edit </a></li>
-                                                            <li><a href="/remove_task_modal.php?task_id=$id"><i
-                                                                        class="fa-solid fa-trash-can"></i>
-                                                                    Delete </a></li>
-                                                        </ul>
-                                                    </div>
+                                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                                        data-target="#modal-default"
+                                                        href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
+                                                            class="fas fa-edit"></i> Edit</button>
                                                 </td>
                                                 <td><a href="<?php echo $row['floc']; ?>"><i
-                                                            class="fa-solid fa-download"></i></a></td>
-                                                <td width="140">
+                                                            class="fas fa-download"></i></a></td>
+                                                <td width="160">
                                                     <form method="post" action="save_grade.php">
                                                         <input type="hidden" class="span4" name="id"
                                                             value="<?php echo $id; ?>">
@@ -148,10 +147,11 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                                                             value="<?php echo $student_id; ?>">
                                                         <input type="hidden" class="span4" name="task_name"
                                                             value="<?php echo $task_name; ?>">
-                                                        <input type="number" maxlength="3" min="75" max="100" class="span4" name="grade"
+                                                        <input type="number" maxlength="3" min="75" max="100"
+                                                            class="span4" name="grade"
                                                             value="<?php echo $row['grade']; ?>%" style="width:60px">
                                                         <button name="save" class="btn btn-success" id="btn"><i
-                                                                class="fa-solid fa-save"></i> Save</button>
+                                                                class="fas fa-save"></i> Save</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -165,61 +165,184 @@ window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
                         </div>
                     </div>
                 </div>
-                <script type="text/javascript">
-                $(document).ready(function() {
-                    $('.remove').click(function() {
-                        var id = $(this).attr("id");
-                        $.ajax({
-                            type: "POST",
-                            url: "remove_task.php",
-                            data: ({
-                                id: id
-                            }),
-                            cache: false,
-                            success: function(html) {
-                                $("#del" + id).fadeOut('slow', function() {
-                                    $(this).remove();
-                                });
-                                $('#' + id).modal('hide');
-                                $.jGrowl("The Student Task is Successfully Deleted", {
-                                    header: 'Data Delete'
-                                });
-                            }
-                        });
-                        return false;
-                    });
-                });
-                </script>
-                <script>
-                jQuery(document).ready(function() {
-                    jQuery("#edit_task").submit(function(e) {
-                        e.preventDefault();
-                        var id = $('.edit').attr("id");
-                        var _this = $(e.target);
-                        var formData = jQuery(this).serialize();
-                        $.ajax({
-                            type: "POST",
-                            url: "edit.php",
-                            data: formData,
-                            success: function(html) {
-                                $.jGrowl(
-                                    "Edited Task Successfully", {
-                                        header: 'Edited'
-                                    });
-                                $('#edit_task' + id).modal('hide');
-                            }
-
-                        });
-                        return false;
-                    });
-                });
-                </script>
-
             </div>
-        </div>
-        <?php include('footer.php'); ?>
+        </section>
     </div>
-    <?php include('script.php'); ?>
+    <?php include 'footer.php'; ?>
+    <?php include 'script.php'; ?>
+    <script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+    </script>
+    <script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $('.swalDefaultSuccess').click(function() {
+            Toast.fire({
+                icon: 'success',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultInfo').click(function() {
+            Toast.fire({
+                icon: 'info',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultError').click(function() {
+            Toast.fire({
+                icon: 'error',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultWarning').click(function() {
+            Toast.fire({
+                icon: 'warning',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultQuestion').click(function() {
+            Toast.fire({
+                icon: 'question',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+
+        $('.toastrDefaultSuccess').click(function() {
+            toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+        $('.toastrDefaultInfo').click(function() {
+            toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+        $('.toastrDefaultError').click(function() {
+            toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+        $('.toastrDefaultWarning').click(function() {
+            toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+
+        $('.toastsDefaultDefault').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultTopLeft').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                position: 'topLeft',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultBottomRight').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                position: 'bottomRight',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultBottomLeft').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                position: 'bottomLeft',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultAutohide').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                autohide: true,
+                delay: 750,
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultNotFixed').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                fixed: false,
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultFull').click(function() {
+            $(document).Toasts('create', {
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                icon: 'fas fa-envelope fa-lg',
+            })
+        });
+        $('.toastsDefaultFullImage').click(function() {
+            $(document).Toasts('create', {
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                image: '../../dist/img/user3-128x128.jpg',
+                imageAlt: 'User Picture',
+            })
+        });
+        $('.toastsDefaultSuccess').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-success',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultInfo').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-info',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultWarning').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-warning',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultDanger').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-danger',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultMaroon').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-maroon',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+    });
+    </script>
 </body>
 
 </html>

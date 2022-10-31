@@ -1,50 +1,27 @@
-   <div class="row-fluid">
-       <div class="block">
-           <div class="navbar navbar-inner block-header">
-               <div class="muted pull-left">Add Class</div>
-           </div>
-           <div class="block-content collapse in">
-               <div class="span12">
-                   <form method="post">
-                       <div class="control-group">
-                           <div class="controls">
-                               <input name="class_name" class="input focused" id="focusedInput" type="text"
-                                   placeholder="Class Name" style="text-transform: uppercase" required>
-                           </div>
-                       </div>
-
-
-                       <div class="control-group">
-                           <div class="controls">
-                               <button name="save" class="btn btn-info"><i class="fa-solid fa-add"></i></button>
-
-                           </div>
-                       </div>
-                   </form>
-               </div>
-           </div>
-       </div>
-   </div>
-   <?php
-if (isset($_POST['save'])){
-$class_name = $_POST['class_name'];
-
-
-$query = mysqli_query($conn,"select * from class where class_name  =  '$class_name' ")or die(mysqli_error());
+<?php
+include('database.php');
+$session_id = $_POST['session_id'];
+$subject_id = $_POST['subject_id'];
+$class_id = $_POST['class_id'];
+$school_year = $_POST['school_year'];
+$query = mysqli_query($conn,"select * from tbl_teacher_class where subject_id = '$subject_id' and class_id = '$class_id' and teacher_id = '$session_id' and school_year = '$school_year'")or die(mysqli_error());
 $count = mysqli_num_rows($query);
-
-if ($count > 0){ ?>
-   <script>
-alert('Date Already Exist');
-   </script>
-   <?php
+if ($count > 0){ 
+echo "true";
 }else{
-mysqli_query($conn,"insert into class (class_name) values('$class_name')")or die(mysqli_error());
-?>
-   <script>
-window.location = "class.php";
-   </script>
-   <?php
+
+mysqli_query($conn,"insert into tbl_teacher_class (teacher_id,subject_id,class_id,thumbnails,school_year) values('$session_id','$subject_id','$class_id','/lmstle/admin/uploads/thumbnails.png','$school_year')")or die(mysqli_error());
+
+$teacher_class = mysqli_query($conn,"select * from tbl_teacher_class order by teacher_class_id DESC")or die(mysqli_error());
+$teacher_row = mysqli_fetch_array($tbl_teacher_class);
+$teacher_id = $teacher_row['teacher_class_id'];
+
+
+$insert_query = mysqli_query($conn,"select * from tbl_student where class_id = '$class_id'")or die(mysqli_error());
+while($row = mysqli_fetch_array($insert_query)){
+$id = $row['student_id'];
+mysqli_query($conn,"insert into tbl_teacher_class_student (teacher_id,student_id,teacher_class_id) value('$session_id','$id','$teacher_id')")or die(mysqli_error());
+echo "yes";
 }
 }
 ?>

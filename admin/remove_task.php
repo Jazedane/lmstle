@@ -1,5 +1,5 @@
-<?php include('dbcon.php'); ?>
+<?php include('database.php'); ?>
 <?php
 $id = $_POST['id'];
-mysqli_query($conn,"delete from task where task_id = '$id'")or die(mysqli_error());
+mysqli_query($conn,"delete from tbl_task where task_id = '$id'")or die(mysqli_error());
 ?>

@@ -3,12 +3,12 @@
 include('session.php');
 //Include database connection details
 require("admin/opener_db.php");
-$conn= $connector->DbConnector();
+$conn= $connector->databaseConnector();
 $errmsg_arr = array();
 //Validation error flag
 $errflag = false;
 
-$uploaded_by_query = mysqli_query($conn,"select * from student where student_id = '$session_id'")or die(mysqli_error());
+$uploaded_by_query = mysqli_query($conn,"select * from tbl_student where student_id = '$session_id'")or die(mysqli_error());
 $uploaded_by_query_row = mysqli_fetch_array($uploaded_by_query);
 $uploaded_by = $uploaded_by_query_row['firstname']."".$uploaded_by_query_row['lastname'];
 
@@ -71,9 +71,9 @@ if ((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 
             if ((move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $newname))) {
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;		   
-                $qry = "INSERT INTO files (fdesc,floc,fdatein,class_id,fname,uploaded_by) 
+                $qry = "INSERT INTO tbl_files (fdesc,floc,fdatein,class_id,fname,uploaded_by) 
                 VALUES ('$filedesc','$newname',NOW(),'$id_class','$name','$uploaded_by')";
-					mysqli_query($conn,"insert into teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id) 
+					mysqli_query($conn,"insert into tbl_teacher_notification (teacher_class_id,notification,date_of_notification,link,student_id) 
                     value('$get_id','$name_notification',NOW(),'admin/downloadable.php','$session_id')")or die(mysqli_error());
 			   //$result = @mysqli_query($conn,$qry);
                 $result = $connector->query($qry);

@@ -3,7 +3,7 @@
 include 'session.php';
 //Include database connection details
 require 'opener_db.php';
-$conn = $connector->DbConnector();
+$conn = $connector->databaseConnector();
 $errmsg_arr = [];
 //Validation error flag
 $errflag = false;
@@ -90,13 +90,13 @@ if (
             ) {
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;
-                ($qry2 = "INSERT INTO student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) 
+                ($qry2 = "INSERT INTO tbl_student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) 
                 VALUES ('$filedesc','$relative_file_path',NOW(),'$name','$task_id','$session_id')") or
                     die(mysqli_error());
 
                 ($teacher_class_query = mysqli_query(
                     $conn,
-                    "SELECT * FROM teacher_class WHERE teacher_class_id='$get_id'"
+                    "SELECT * FROM tbl_teacher_class WHERE teacher_class_id='$get_id'"
                 )) or die(mysqli_error());
 
                 $teacher_class_row = mysqli_fetch_array(
@@ -107,7 +107,7 @@ if (
 
                 ($query = mysqli_query(
                     $conn,
-                    "INSERT INTO notification 
+                    "INSERT INTO tbl_notification 
                     (broadcaster_id,receiver_id,message,link) VALUES ('$session_id','$teacher_id','$name_notification','view_submit_task.php?id=" .$get_id."&post_id=" .$task_id."')"
                 )) or die(mysqli_error());
                 

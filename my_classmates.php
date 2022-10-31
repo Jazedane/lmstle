@@ -1,81 +1,117 @@
-<?php include('header.php'); ?>
-<?php include('session.php'); ?>
-<?php $get_id = $_GET['id']; ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LMSTLE | Class</title>
+
+    <?php include 'header.php'; ?>
+    <?php include 'session.php'; ?>
+    <?php $get_id = $_GET['id']; ?>
+</head>
 
 <body>
-    <?php include('sidebar2.php'); ?>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span9" id="content">
-                <div class="row-fluid">
-
-                    <?php $query = mysqli_query($conn,"select * from teacher_class_student
-					LEFT JOIN teacher_class ON teacher_class.teacher_class_id = teacher_class_student.teacher_class_id 
-					JOIN class ON class.class_id = teacher_class.class_id 
+    <?php include 'homepage2.php'; ?>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Class</h1>
+                    </div>
+                    <div class="col-sm-6">
+                            <?php $query = mysqli_query($conn,"select * from tbl_teacher_class_student
+					LEFT JOIN tbl_teacher_class ON tbl_teacher_class.teacher_class_id = tbl_teacher_class_student.teacher_class_id 
+					JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
 					where student_id = '$session_id'
 					")or die(mysqli_error());
 					$row = mysqli_fetch_array($query);
 					$id = $row['teacher_class_student_id'];	
 					?>
-                    <ul class="breadcrumb">
-                        <li><a href="#"><?php echo $row['class_name']; ?></a> <span class="divider">/</span></li>
-                        <li><a href="#">School Year: <?php echo $row['school_year']; ?></a> <span
-                                class="divider">/</span></li>
-                        <li><a href="#"><b>My Classmates</b></a></li>
-                    </ul>
-
-                    <div id="block_bg" class="block">
-                        <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left">
+                    <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#"><?php echo $row['class_name']; ?></a> <span
+                                    class="divider"></span></li>
+                            <li class="breadcrumb-item">School Year: <?php echo $row['school_year']; ?></a> <span
+                                    class="divider"></span></li>
+                            <li class="breadcrumb-item"><a href="#"><b>My Classmates</b></a></li>
+                    </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-success">
+                            <div class="card-header">
                                 <?php 
-								$my_student = mysqli_query($conn,"SELECT * FROM teacher_class_student
-														LEFT JOIN student ON student.student_id = teacher_class_student.student_id 
-														INNER JOIN class ON class.class_id = student.class_id where teacher_class_id = '$get_id' order by lastname ")or die(mysqli_error());
+								$my_student = mysqli_query($conn,"SELECT * FROM tbl_teacher_class_student
+														LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id 
+														INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id where teacher_class_id = '$get_id' order by lastname ")or die(mysqli_error());
 								$count_my_student = mysqli_num_rows($my_student);?>
                                 Classmates: <span class="badge badge-info"><?php echo $count_my_student; ?></span>
                             </div>
-                        </div>
-                        <div class="block-content collapse in">
-                            <div class="span12">
-                                <ul id="da-thumbs" class="da-thumbs">
-                                    <?php
-										 
-										 
-														$my_student = mysqli_query($conn,"SELECT *
-														FROM teacher_class_student
-														LEFT JOIN student ON student.student_id = teacher_class_student.student_id
-														INNER JOIN class ON class.class_id = student.class_id where teacher_class_id = '$get_id' order by lastname ")or die(mysqli_error());
+                            <div class="card-body">
+                                <ul class="row">
+                                     <?php
+										$my_student = mysqli_query($conn,"SELECT *
+										FROM tbl_teacher_class_student
+										LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id
+										INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id where teacher_class_id = '$get_id' order by lastname ")or die(mysqli_error());
 														
-														while($row = mysqli_fetch_array($my_student)){
-														$id = $row['teacher_class_student_id'];
-														?>
+										while($row = mysqli_fetch_array($my_student)){
+										$id = $row['teacher_class_student_id'];
+									?>
 
-                                    <li id="del<?php echo $id; ?>">
-                                        <center><a class="classmate_cursor" href="#">
+                                    <div id="del<?php echo $id; ?>">
+                                        <center><a href="#">
                                                 <img id="student_avatar_class"
-                                                    src="admin/<?php echo $row['location'] ?>" width="124" height="140"
+                                                    src="admin/<?php echo $row['location'] ?>" width="80" height="80"
                                                     class="img-polaroid">
                                             </a>
-                                            <a class="class"><?php echo $row['firstname']."<br> ".$row['lastname']?></a>
+                                            <p class="class"><?php echo $row['firstname']."<br> ".$row['lastname']?></p>
                                         </center>
-                                    </li>
+                                    </div>
                                     <?php } ?>
                                 </ul>
-                                </tbody>
-                                </table>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
-        </div>
-        <?php include('footer.php'); ?>
+        </section>
     </div>
-    <?php include('script.php'); ?>
+    <?php include 'footer.php'; ?>
+    <?php include 'script.php'; ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.remove').click(function() {
+            var id = $(this).attr("id");
+            $.ajax({
+                type: "POST",
+                url: "remove_student.php",
+                data: ({
+                    id: id
+                }),
+                cache: false,
+                success: function(html) {
+                    $("#del" + id).fadeOut('slow',
+                        function() {
+                            $(this).remove();
+                        });
+                    $('#' + id).modal('hide');
+                    $.jGrowl(
+                        "Your Student is Successfully Remove", {
+                            header: 'Student Remove'
+                        });
+                }
+            });
+            return false;
+        });
+    });
+    </script>
 </body>
 
 </html>

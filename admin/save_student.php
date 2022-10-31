@@ -1,5 +1,5 @@
 <?php
-include 'dbcon.php';
+include 'database.php';
 
 /**
  * Prepare POST values.
@@ -16,7 +16,7 @@ $hashedPassword = hash('sha256', $lastname . $username);
 /**
  * Query teacher_class to get the teacher_class_id.
  */
-$query = "SELECT * FROM teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
+$query = "SELECT * FROM tbl_teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
 $result = mysqli_query($conn, $query);
 $row   = mysqli_fetch_assoc($result);
 $teacher_class_id = $row['teacher_class_id'];
@@ -27,7 +27,7 @@ $teacher_class_id = $row['teacher_class_id'];
 mysqli_query(
     $conn,
     "INSERT INTO 
-    student 
+    tbl_student 
     (username,firstname,lastname,gender,age,location,class_id,status,password) 
     VALUES 
     ('$username','$firstname','$lastname','$gender','$age','uploads/NO-IMAGE-AVAILABLE.jpg','$class_id','Unregistered','$hashedPassword');"
@@ -45,7 +45,7 @@ $student_id = mysqli_insert_id($conn);
 mysqli_query(
     $conn,
     "INSERT INTO 
-    teacher_class_student 
+    tbl_teacher_class_student 
     (teacher_class_id,student_id,teacher_id) 
     VALUES 
     ('$teacher_class_id','$student_id','$teacher_id');"

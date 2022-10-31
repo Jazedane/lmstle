@@ -1,61 +1,76 @@
-<?php include 'header.php'; ?>
-<?php include 'session.php'; ?>
-<?php $get_id = $_GET['id']; ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LMSTLE | Students</title>
+
+    <?php include 'header.php'; ?>
+    <?php include 'session.php'; ?>
+    <?php $get_id = $_GET['id']; ?>
+</head>
 
 <body>
-    <?php include 'sidebar2.php'; ?>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span9" id="content">
-                <div class="row-fluid">
-
+    <?php include 'homepage2.php'; ?>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
                     <?php
                     ($class_query = mysqli_query(
                         $conn,
-                        "select * from teacher_class
-							LEFT JOIN class ON class.class_id = teacher_class.class_id
+                        "select * from tbl_teacher_class
+							LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
 						    where teacher_class_id = '$get_id'"
                     )) or die(mysqli_error());
                     $class_row = mysqli_fetch_array($class_query);
                     ?>
+                    <div class="col-sm-6">
+                        <h1>Uploaded Task</h1>
+                    </div>
 
-                    <ul class="breadcrumb">
-                        <li><a href="#"><?php echo $class_row[
-                            'class_name'
-                        ]; ?></a> <span class="divider">/</span></li>
-                        <li><a href="#">School Year: <?php echo $class_row[
-                            'school_year'
-                        ]; ?></a> <span
-                                class="divider">/</span></li>
-                        <li><a href="#"><b>Uploaded Tasks</b></a></li>
-                    </ul>
-
-                    <div id="block_bg" class="block">
-                        <div class="navbar navbar-inner block-header">
-                            <?php
-                            ($query = mysqli_query(
-                                $conn,
-                                "select * FROM task where class_id = '$get_id' AND isDeleted = false order by fdatein DESC"
-                            )) or die(mysqli_error());
-                            $count = mysqli_num_rows($query);
-                            ?>
-                            <div id="" class="muted pull-left">Number of Task: <span
-                                    class="badge badge-info"><?php echo $count; ?></span></div>
-                        </div>
-                        <div class="block-content collapse in">
-                            <div class="span12">
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="#"><?php echo $class_row['class_name']; ?></a> <span class="divider"></span>
+                            </li>
+                            <li class="breadcrumb-item"><a href="#">School Year:
+                                    <?php echo $class_row['school_year']; ?></a> <span class="divider"></span></li>
+                            <li class="breadcrumb-item active"><a href="#"><b>Uploaded Tasks</b></a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Task Progress</h3>
+                                <?php
+                                    ($query = mysqli_query(
+                                    $conn,
+                                    "select * FROM tbl_task where class_id = '$get_id' AND isDeleted = false order by fdatein DESC"
+                                    )) or die(mysqli_error());
+                                    $count = mysqli_num_rows($query);
+                                ?>
+                                <div id="" class="float-sm-right">Number of Task: <span
+                                        class="badge badge-info"><?php echo $count; ?></span></div>
+                            </div>
+                            <div class="card-body">
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,
-                                    "select * FROM task where class_id = '$get_id' order by fdatein DESC"
+                                    "select * FROM tbl_task where class_id = '$get_id' order by fdatein DESC"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 if ($count == '0') { ?>
                                 <div class="alert alert-info">No Task Currently Uploaded</div>
                                 <?php } else { ?>
-
-                                <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
-
+                                <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
@@ -68,11 +83,10 @@
 
                                     </thead>
                                     <tbody>
-
                                         <?php
                                         ($query = mysqli_query(
                                             $conn,
-                                            "SELECT * FROM task 
+                                            "SELECT * FROM tbl_task 
                                             WHERE class_id = '$get_id' AND isDeleted = false
                                             ORDER BY fdatein DESC"
                                         )) or die(mysqli_error());
@@ -104,10 +118,8 @@
                                             echo floor($day_diff / 86400);
                                             ?> Day/s</td>
                                             <td width="220">
-                                                <form id="assign_save" method="post"
-                                                    action="submit_task.php<?php echo '?id=' .
-                                                        $get_id; ?>&<?php echo 'post_id=' .
-    $id; ?>">
+                                                <form id="assign_save" method="post" action="submit_task.php<?php echo '?id=' .
+                                                        $get_id; ?>&<?php echo 'post_id=' .$id; ?>">
                                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                     <?php if ($floc == '') {
                                                     } else {
@@ -116,7 +128,7 @@
                                                     } ?>
                                                     <button data-placement="bottom" title="Submit Task"
                                                         id="<?php echo $id; ?>submit" class="btn btn-success"
-                                                        name="btn_task"><i class="fa-solid fa-upload"></i> Submit
+                                                        name="btn_task"><i class="fas fa-upload"></i> Submit
                                                         Task</button>
                                                 </form>
                                             </td>
@@ -137,8 +149,7 @@
 
                                         <?php
                                         }
-                                        ?>
-
+                                    ?>
                                     </tbody>
                                 </table>
                                 <?php }
@@ -148,10 +159,29 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <?php include 'footer.php'; ?>
+        </section>
     </div>
+    <?php include 'footer.php'; ?>
     <?php include 'script.php'; ?>
+    <script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+    </script>
 </body>
 
 </html>

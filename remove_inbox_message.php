@@ -1,6 +1,6 @@
-<?php include('admin/dbcon.php'); ?>
+<?php include('admin/database.php'); ?>
 <?php
 $id = $_POST['id'];
-mysqli_query($conn,"delete from message where message_id = '$id'")or die(mysqli_error());
+mysqli_query($conn,"delete from tbl_message where message_id = '$id'")or die(mysqli_error());
 ?>
 

@@ -20,7 +20,7 @@
         <center><a href="my_students.php<?php echo '?id=' . $id; ?>">
                 <img src="<?php echo $row[
                 'thumbnails'
-            ]; ?>" width="124" height="140" class="img-polaroid" alt="">
+            ]; ?>" width="124" height="140" class="img-thumbnail" alt="">
 
             </a>
             <p class="class"><?php echo $row['class_name']; ?></p>

@@ -1,59 +1,115 @@
-<?php include('header.php'); ?>
-<?php include('session.php'); ?>
-<?php $get_id = $_GET['id']; ?>
-<?php 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LMSTLE | Task</title>
+
+    <?php include 'header.php'; ?>
+    <?php include 'session.php'; ?>
+    <?php $get_id = $_GET['id']; ?>
+    <?php 
 	  $post_id = $_GET['post_id'];
 	  if($post_id == ''){
 	  ?>
-<script>
-window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
-</script>
-<?php
+    <script>
+    window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
+    </script>
+    <?php
 	  }
 	
  ?>
 
-<body id="studentTableDiv">
-    <?php include('sidebar2.php'); ?>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span7" id="content">
-                <div class="row-fluid">
+</head>
 
-                    <?php 
-                    $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
-                    $class_query = mysqli_query($conn,"select * from teacher_class
-										LEFT JOIN class ON class.class_id = teacher_class.class_id
+<body>
+    <?php include 'homepage2.php'; ?>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tasks</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <?php 
+                            $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                            $class_query = mysqli_query($conn,"select * from tbl_teacher_class
+										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
 										where teacher_class_id = '$get_id'")or die(mysqli_error());
 										$class_row = mysqli_fetch_array($class_query);
                                         $teacher_id = $class_row['teacher_id'];
 										?>
-                    <ul class="breadcrumb">
-                        <li><a href="#"><?php echo $class_row['class_name']; ?></a> <span class="divider">/</span></li>
-                        <li><a href="#">School Year: <?php echo $class_row['school_year']; ?></a> <span
-                                class="divider">/</span></li>
-                        <li><a href="#"><b>Uploaded Tasks</b></a></li>
-                    </ul>
 
-                    <div id="block_bg" class="block">
-                        <div class="navbar navbar-inner block-header">
-                            <div id="" class="muted pull-left"><a href="task_student.php<?php echo '?id='.$get_id; ?>">
-                                    <i class="fa-solid fa-arrow-left"></i> Back</a>
+                            <li class="breadcrumb-item"><a href="#"><?php echo $class_row['class_name']; ?></a> <span
+                                    class="divider"></span></li>
+                            <li class="breadcrumb-item"><a href="#">School Year:
+                                    <?php echo $class_row['school_year']; ?></a> <span class="divider"></span></li>
+                            <li class="breadcrumb-item active"><a href="#"><b>Tasks</b></a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Add Task</h3>
                             </div>
+                            <form id="add_task" method="post" enctype="multipart/form-data">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="control-label" for="inputEmail">Activity</label>
+                                        <div class="mb-3">
+                                            <label for="formFileMultiple" class="form-label">
+                                                <input name="uploaded_file" class="form-control" type="file"
+                                                    id="formFileMultiple" multiple></input>
+                                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                                                <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
+                                                <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Activity Name</label>
+                                        <input type="text" name="name" class="form-control"
+                                            placeholder="Enter activity name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" name="desc" rows="3"
+                                            placeholder="Enter description" required></textarea>
+                                    </div>
+                                    <div class="card-footer">
+                                        <center><button name="Upload" type="submit" value="Upload"
+                                                class="btn btn-success">Submit</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="block-content collapse in">
-                            <div class="span12">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <div id="" class="float-sm-left"><a
+                                        href="task_student.php<?php echo '?id='.$get_id; ?>">
+                                        <i class="fas fa-arrow-left"></i> Back</a>
+                                </div>
+                            </div>
+                            <div class="card-body">
                                 <?php
-										$query = mysqli_query($conn,"select * FROM task where task_id = '$post_id' ")or die(mysqli_error());
+										$query = mysqli_query($conn,"select * FROM tbl_task where task_id = '$post_id' ")or die(mysqli_error());
 										$row = mysqli_fetch_array($query);
 									
 									?>
                                 <div class="alert alert-info">Submit Task in : <?php echo $row['fname']; ?></div>
-
                                 <div id="">
-
-                                    <table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
-
+                                    <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Date Upload</th>
@@ -68,8 +124,8 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
                                         <tbody>
 
                                             <?php
-										$query = mysqli_query($conn,"select * FROM student_task
-										LEFT JOIN student on student.student_id  = student_task.student_id
+										$query = mysqli_query($conn,"select * FROM tbl_student_task
+										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
 										where task_id = '$post_id' order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
@@ -116,12 +172,52 @@ window.location = "admin/task.php<?php echo '?id='.$get_id; ?>";
                         </div>
                     </div>
                 </div>
-            </div>
-            <?php include('submit_task_sidebar.php') ?>
-        </div>
-        <?php include('footer.php'); ?>
+        </section>
     </div>
-    <?php include('script.php'); ?>
+    <?php include 'footer.php'; ?>
+    <?php include 'script.php'; ?>
+    <script>
+    jQuery(document).ready(function($) {
+        $("#add_task").submit(function(e) {
+            e.preventDefault();
+            var _this = $(e.target);
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                type: "POST",
+                url: "admin/upload_task.php",
+                data: formData,
+                success: function(html) {
+                    alert("Activity Successfully Uploaded", {
+                        header: 'Activity Uploaded'
+                    });
+                    window.location.reload()
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+    });
+    </script>
+    <script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+    </script>
 </body>
 
 </html>
