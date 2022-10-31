@@ -3,8 +3,9 @@
 		session_start();
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		$hashedPassword = hash('sha256',$password);
 
-		$query = mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE username='$username' AND password='$password'")or die(mysqli_error());
+		$query = mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE username='$username' AND password='$hashedPassword'")or die(mysqli_error());
 		$count = mysqli_num_rows($query);
 		$row = mysqli_fetch_array($query);
 

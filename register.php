@@ -86,6 +86,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
         $password = $_POST['password'];
+        $hashedPassword = hash('sha256', $password);
 
         ($query = mysqli_query(
             $conn,
@@ -104,7 +105,7 @@
     <?php } else {
             mysqli_query(
                 $conn,
-                "insert into tbl_teacher (username,password,firstname,lastname,location,teacher_stat) values('$username','$password','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg','Unactivated')"
+                "insert into tbl_teacher (username,password,firstname,lastname,location,teacher_stat) values('$username','$hashedPassword','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg','Unactivated')"
             ) or die(mysqli_error());
 
             mysqli_query(
