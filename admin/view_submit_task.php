@@ -101,35 +101,35 @@
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td class="project-state">
                                                     <?php
-                            					if($row['task_status'] =='1') {
+                            					if($row['task_status'] =='0') {
                               						echo "<span class='badge badge-secondary'>Pending</span>";
-                            					}elseif($row['task_status'] =='2'){
+                            					}elseif($row['task_status'] =='1'){
                               						echo "<span class='badge badge-primary'>Started</span>";
-                            					}elseif($row['task_status'] =='3'){
+                            					}elseif($row['task_status'] =='2'){
                               						echo "<span class='badge badge-info'>On-Progress</span>";
-                            					}elseif($row['task_status'] =='4'){
+                            					}elseif($row['task_status'] =='3'){
                               						echo "<span class='badge badge-secondary'>On-Hold</span>";
-                            					}elseif($row['task_status'] =='5'){
+                            					}elseif($row['task_status'] =='4'){
                               						echo "<span class='badge badge-warning'>Overdue</span>";
-                            					}elseif($row['task_status'] =='6'){
+                            					}elseif($row['task_status'] =='5'){
                               						echo "<span class='badge badge-success'>Done</span>";
                             					}
                                                 ?>
                                                 </td>
                                                 <td class="project-state">
                                                     <?php
-                            					if($row['p_condition'] =='1'){
+                            					if($row['p_condition'] =='0'){
                               						echo "<span class='badge badge-success'>Alive</span>";
-                            					}elseif($row['p_condition'] =='2'){
+                            					}elseif($row['p_condition'] =='1'){
                               						echo "<span class='badge badge-primary'>Withered</span>";
-                            					}elseif($row['p_condition'] =='3'){
+                            					}elseif($row['p_condition'] =='2'){
                               						echo "<span class='badge badge-warning'>Dead</span>";
                                                 }
                                                 ?>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-success" data-toggle="modal"
-                                                        data-target="#modal-default"
+                                                        data-target="#modal-default<?php echo $id?>"
                                                         href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
                                                             class="fas fa-edit"></i> Edit</button>
                                                 </td>

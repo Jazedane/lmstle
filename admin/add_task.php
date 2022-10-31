@@ -128,7 +128,7 @@
                                                 "select * from tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
 										LEFT JOIN tbl_subject ON tbl_subject.subject_id = tbl_teacher_class.subject_id
-										where teacher_id = '$session_id' and school_year = '$school_year'"
+										where teacher_id = '$session_id' and school_year = '$school_year' and tbl_class.isDeleted='false'"
                                             )) or die(mysqli_error());
                                             $count = mysqli_num_rows($query);
                                             while (

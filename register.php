@@ -7,6 +7,7 @@
     <title>LMSTLE | Registration Page</title>
 
     <?php include 'header.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body class="hold-transition register-page" id="signup">

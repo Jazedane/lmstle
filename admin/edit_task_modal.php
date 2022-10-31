@@ -12,7 +12,7 @@ $result = mysqli_fetch_assoc($query);
 $task_status = $result['task_status'];
 $p_condition = $result['p_condition'];
 ?>
-<div class="modal fade" id="modal-default<?php echo $id; ?>">
+<div class="modal fade" id="modal-default<?php echo $student_task_id; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -39,22 +39,22 @@ $p_condition = $result['p_condition'];
                 <div class="form-control">
                     <label for="task_status">Status</label>
                     <select name="task_status" class="custom-select custom-select-sm" required>
-                        <option value="1" <?php echo $task_status == 1 ? 'selected' : '' ?>>
+                        <option value="0" <?php echo $task_status == 0 ? 'selected' : '' ?>>
                             Pending
                         </option>
-                        <option value="2" <?php echo $task_status == 2 ? 'selected' : '' ?>>
+                        <option value="1" <?php echo $task_status == 1 ? 'selected' : '' ?>>
                             Started
                         </option>
-                        <option value="3" <?php echo $task_status == 3 ? 'selected' : '' ?>>
+                        <option value="2" <?php echo $task_status == 2 ? 'selected' : '' ?>>
                             On-Progress
                         </option>
-                        <option value="4" <?php echo $task_status == 4 ? 'selected' : '' ?>>
+                        <option value="3" <?php echo $task_status == 3 ? 'selected' : '' ?>>
                             On-Hold
                         </option>
-                        <option value="5" <?php echo $task_status == 5 ? 'selected' : '' ?>>
+                        <option value="4" <?php echo $task_status == 4 ? 'selected' : '' ?>>
                             Overdue
                         </option>
-                        <option value="6" <?php echo $task_status == 6 ? 'selected' : '' ?>>
+                        <option value="5" <?php echo $task_status == 5 ? 'selected' : '' ?>>
                             Done
                         </option>
                     </select>
@@ -62,13 +62,13 @@ $p_condition = $result['p_condition'];
                 <div class="form-control">
                     <label for="p_condition">Plants Condition</label>
                     <select name="p_condition" class="custom-select custom-select-sm">
-                        <option value="1" <?php echo $p_condition == 1 ? 'selected' : '' ?>>
+                        <option value="0" <?php echo $p_condition == 0 ? 'selected' : '' ?>>
                             Alive
                         </option>
-                        <option value="2" <?php echo $p_condition == 2 ? 'selected' : '' ?>>
+                        <option value="1" <?php echo $p_condition == 1 ? 'selected' : '' ?>>
                             Withered
                         </option>
-                        <option value="3" <?php echo $p_condition == 3 ? 'selected' : '' ?>>
+                        <option value="2" <?php echo $p_condition == 2 ? 'selected' : '' ?>>
                             Dead
                         </option>
                     </select>

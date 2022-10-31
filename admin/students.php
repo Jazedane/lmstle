@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -229,7 +230,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         $("#example1").DataTable({

@@ -58,3 +58,6 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <!-- dropzonejs -->
 <script src="plugins/dropzone/min/dropzone.min.js"></script>
+    <script>
+        $ = jQuery;
+    </script>

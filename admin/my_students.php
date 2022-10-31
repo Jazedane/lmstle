@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
     <?php $get_id = $_GET['id']; ?>
 </head>
 
@@ -119,7 +120,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
 
 </body>
 
