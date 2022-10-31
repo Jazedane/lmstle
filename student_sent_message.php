@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include('session.php'); ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <a href="student_message.php" class="btn btn-primary btn-block mb-3">Back to Inbox</a>
 
                         <div class="card">
@@ -69,54 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Send New Message</h3>
-                            </div>
-                            <div class="card-body">
-                                <form method="post" id="send_message">
-                                    <div class="form-group">
-                                        <label>To:</label>
-                                        <select name="teacher_id" class="form-control" required>
-                                            <option></option>
-                                            <?php
-											$query = mysqli_query($conn,"select * from tbl_teacher order by firstname");
-											while($row = mysqli_fetch_array($query)){
-											?>
-                                            <option value="<?php echo $row['teacher_id']; ?>">
-                                                <?php echo $row['firstname']; ?>
-                                                <?php echo $row['lastname']; ?> </option>
-
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="my_message" class="my_message" id="compose-textarea"
-                                            class="form-control" style="height: 300px" required>
-                                        <h1><u> </u></h1>
-                                        <h4> </h4>
-                                        <p> </p>
-                                    </textarea>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="float-right">
-                                            <button type="submit" class="btn btn-primary"><i
-                                                    class="far fa-envelope"></i>
-                                                Send</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Send Messages</h3>
@@ -241,10 +195,75 @@
                 </div>
             </div>
         </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Send New Message</h3>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" id="send_message">
+                                    <div class="form-group">
+                                        <label>To:</label>
+                                        <select name="teacher_id" class="form-control" required>
+                                            <option></option>
+                                            <?php
+											$query = mysqli_query($conn,"select * from tbl_teacher order by firstname");
+											while($row = mysqli_fetch_array($query)){
+											?>
+                                            <option value="<?php echo $row['teacher_id']; ?>">
+                                                <?php echo $row['firstname']; ?>
+                                                <?php echo $row['lastname']; ?> </option>
+
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="my_message" class="my_message" style="height: 100px; width:100%"
+                                            required>
+                                    </textarea>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="float-right">
+                                            <button type="submit" class="btn btn-primary"><i
+                                                    class="far fa-envelope"></i>
+                                                Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <script>
+                                jQuery(document).ready(function() {
+                                    jQuery("#send_message").submit(function(e) {
+                                        e.preventDefault();
+                                        var formData = jQuery(this).serialize();
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "send_message.php",
+                                            data: formData,
+                                            success: function(html) {
+                                                alert("Message Successfully Sended")
+                                                var delay = 1000;
+                                                setTimeout(function() {
+                                                    window.location =
+                                                        'student_sent_message.php'
+                                                }, delay);
+                                            }
+                                        });
+                                        return false;
+                                    });
+                                });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         //Enable check and uncheck all functionality

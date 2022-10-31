@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include('session.php'); ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <a href="message.php" class="btn btn-primary btn-block mb-3">Back to Inbox</a>
 
                         <div class="card">
@@ -69,53 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Send New Message</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label>To:</label>
-                                    <select name="student_id" class="form-control" required>
-                                        <option>Select Student</option>
-                                        <?php
-											$query = mysqli_query($conn,"select * from tbl_teacher_class_student
-																  LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id
-											 group by tbl_teacher_class_student.student_id order by firstname DESC");
-											while($row = mysqli_fetch_array($query)){
-											
-											?>
-                                        <option value="<?php echo $row['student_id']; ?>">
-                                            <?php echo $row['firstname']; ?>
-                                            <?php echo $row['lastname']; ?> </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <textarea name="my_message" class="my_message" id="compose-textarea"
-                                        class="form-control" style="height: 300px" required>
-                                        <h1><u> </u></h1>
-                                        <h4> </h4>
-                                        <p> </p>
-                                    </textarea>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="float-right">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i>
-                                            Send</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Send Messages</h3>
@@ -205,34 +160,6 @@
                                         });
                                     });
                                     </script>
-                                    <script>
-                                    jQuery(document).ready(function() {
-                                        jQuery("#send_message_student").submit(function(e) {
-                                            e.preventDefault();
-                                            var formData = jQuery(this).serialize();
-                                            $.ajax({
-                                                type: "POST",
-                                                url: "send_message_teacher_to_student.php",
-                                                data: formData,
-                                                success: function(html) {
-
-                                                    alert("Message Successfully Sended", {
-                                                        header: 'Message Sent'
-                                                    });
-                                                    var delay = 2000;
-                                                    setTimeout(function() {
-                                                        window.location =
-                                                            'message.php'
-                                                    }, delay);
-
-
-                                                }
-
-                                            });
-                                            return false;
-                                        });
-                                    });
-                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -240,10 +167,77 @@
                 </div>
             </div>
         </section>
-    </div>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Send New Message</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" id="send_message_student">
+                                <div class="form-group">
+                                    <label>To:</label>
+                                    <select name="student_id" class="form-control" required>
+                                        <option>Select Student</option>
+                                        <?php
+											$query = mysqli_query($conn,"select * from tbl_teacher_class_student
+																  LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id
+											 group by tbl_teacher_class_student.student_id order by firstname ASC");
+											while($row = mysqli_fetch_array($query)){
+											
+											?>
+                                        <option value="<?php echo $row['student_id']; ?>">
+                                            <?php echo $row['firstname']; ?>
+                                            <?php echo $row['lastname']; ?> </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Content:</label>
+                                    <textarea name="my_message" class="my_message" style="height: 100px; width:100%"
+                                        required>
+                                    </textarea>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="float-right">
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i>
+                                            Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <script>
+                            jQuery(document).ready(function() {
+                                jQuery("#send_message_student").submit(function(e) {
+                                    e.preventDefault();
+                                    var formData = jQuery(this).serialize();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "send_message_teacher_to_student.php",
+                                        data: formData,
+                                        success: function(html) {
+                                            alert("Message Successfully Sended");
+                                            var delay = 1000;
+                                            setTimeout(function() {
+                                                window.location =
+                                                    'message.php'
+                                            }, delay);
 
+
+                                        }
+
+                                    });
+                                    return false;
+                                });
+                            });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         //Enable check and uncheck all functionality

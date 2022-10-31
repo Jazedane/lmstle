@@ -41,22 +41,22 @@
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input type="text" name="firstname" class="form-control"
-                                            placeholder="Enter Firstname">
+                                            placeholder="Enter Firstname" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
                                         <input type="text" name="lastname" class="form-control"
-                                            placeholder="Enter Lastname">
+                                            placeholder="Enter Lastname" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input type="text" name="username" class="form-control"
-                                            placeholder="Enter Username">
+                                            placeholder="Enter Username" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
                                         <input type="password" name="password" class="form-control"
-                                            placeholder="Enter Password">
+                                            placeholder="Enter Password" required>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -73,6 +73,7 @@
                         $lastname = $_POST['lastname'];
                         $username = $_POST['username'];
                         $password = $_POST['password'];
+                        $hashedPassword = hash('sha256',$password);
 
                         $query = mysqli_query($conn,"select * from tbl_teacher where username = '$username'")or die(mysqli_error());
                         $count = mysqli_num_rows($query);
@@ -84,7 +85,7 @@
                     <?php
                         }else{
                         mysqli_query($conn,"insert into tbl_teacher (username,password,firstname,lastname,location) 
-                        values('$username','$password','$firstname','$lastname','uploads/NO-IMAGE-AVAILABLE.jpg')")or die(mysqli_error());
+                        values('$username','$hashedPassword','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg')")or die(mysqli_error());
                         mysqli_query($conn,"insert into tbl_activity_log (date,username,action) 
                         values(NOW(),'$username','Add User $username')")or die(mysqli_error());
                     ?>
@@ -158,8 +159,7 @@
 
                                                 <td width="40">
                                                     <a href="edit_teacher.php<?php echo '?id=' .$id; ?>"
-                                                        data-toggle="modal" class="btn btn-success"><i
-                                                            class="fas fa-edit"></i></a>
+                                                        class="btn btn-success"><i class="fas fa-edit"></i></a>
                                                 </td>
                                             </tr>
                                             <?php

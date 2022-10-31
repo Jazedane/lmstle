@@ -30,6 +30,10 @@
                             <i class="fas fa-edit"> Change Password</i>
                         </a>
                         <div class="dropdown-divider"></div>
+                        <a href="change-avatar-teacher.php" class="dropdown-item">
+                            <i class="fas fa-users-circle"> Change Avatar</i>
+                        </a>
+                        <div class="dropdown-divider"></div>
                         <a href="developer.php" class="dropdown-item">
                             <i class="fas fa-users"></i> Developer
                         </a>
@@ -48,7 +52,7 @@
         </nav>
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="index.html" class="brand-link">
+            <a class="brand-link">
                 <img src="dist/img/logo.png" alt="BNHS Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light">Admin/Teacher</span>

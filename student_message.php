@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -41,10 +42,9 @@
                 </div>
             </div>
         </section>
-
         <section class="content">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <a href="student_sent_message.php" class="btn btn-primary btn-block mb-3">Send Message</a>
 
                     <div class="card">
@@ -74,76 +74,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Send New Message</h3>
+                            <h3 class="card-title">Send Messages</h3>
                         </div>
-                        <div class="card-body">
-                            <form method="post" id="send_message">
-                                <div class="form-group">
-                                    <label>To:</label>
-                                    <select name="teacher_id" class="form-control" required>
-                                        <option></option>
-                                        <?php
-											$query = mysqli_query($conn,"select * from tbl_teacher order by firstname");
-											while($row = mysqli_fetch_array($query)){
-											?>
-                                        <option value="<?php echo $row['teacher_id']; ?>">
-                                            <?php echo $row['firstname']; ?>
-                                            <?php echo $row['lastname']; ?> </option>
-
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Content:</label>
-                                    <textarea name="my_message" class="my_message" id="my_message" class="form-control"
-                                        style="height: 300px" required>
-                                        <h1><u> </u></h1>
-                                        <h4> </h4>
-                                        <p> </p>
-                                    </textarea>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="float-right">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i>
-                                            Send</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Send Messages</h3>
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="mailbox-controls">
-                                    <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i
-                                            class="far fa-square"></i>
+                        <div class="card-body p-0">
+                            <div class="mailbox-controls">
+                                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i
+                                        class="far fa-square"></i>
+                                </button>
+                                <div class="btn-group">
+                                    <button href="#<?php echo $id; ?>" data-toggle="modal" type="button"
+                                        class="btn btn-danger btn-sm">
+                                        <i class="far fa-trash-alt"></i>
                                     </button>
-                                    <div class="btn-group">
-                                        <button href="#<?php echo $id; ?>" data-toggle="modal" type="button"
-                                            class="btn btn-danger btn-sm">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm">
-                                            <i class="fas fa-reply"></i>
-                                        </button>
-                                    </div>
+                                    <button type="button" class="btn btn-success btn-sm">
+                                        <i class="fas fa-reply"></i>
+                                    </button>
                                 </div>
-                                <div class="table-responsive mailbox-messages">
-                                    <table class="table table-hover table-striped">
-                                        <tbody>
-                                            <?php
+                            </div>
+                            <div class="table-responsive mailbox-messages">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                        <?php
                                                 ($query_announcement = mysqli_query(
                                                 $conn,
                                                 "SELECT * FROM tbl_message 
@@ -172,39 +126,155 @@
                                             $receiver_name =
                                                 $row['receiver_name'];
                                             ?>
-                                            <tr>
-                                                <td class="post" id="del<?php echo $id; ?>">
-                                                    <div class="icheck-primary">
-                                                        <input type="checkbox" value="" id="check1">
-                                                        <label for="check1"></label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    Send by: <strong><?php echo $sender_name; ?></strong>
-                                                </td>
-                                                <td class="message_content">
-                                                    <?php echo $row['content']; ?>
-                                                </td>
-                                                <td class="mailbox-date"><i class="fas fa-calendar"></i>
-                                                    <?php echo $row['date_sended']; ?></td>
-                                                <td>
-                                                    <a class="btn btn-link" href="#reply<?php echo $id; ?>"
-                                                        data-toggle="modal"><i class="fas fa-reply"></i> Reply </a>
-                                                    <a class="btn btn-link" href="#<?php echo $id; ?>"
-                                                        data-toggle="modal"><i class="fas fa-trash"></i> Remove
-                                                    </a>
-                                                    <?php include("remove_sent_message_modal.php"); ?>
-                                                    <?php include 'reply_inbox_message_modal_student.php'; ?>
-                                                </td>
-                                            </tr>
-                                            <?php }}else{ ?>
-                                            <div class="alert alert-info"><i class="fas fa-info-circle"></i> No Inbox
-                                                Messages</div>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        <tr>
+                                            <td class="post" id="del<?php echo $id; ?>">
+                                                <div class="icheck-primary">
+                                                    <input type="checkbox" value="" id="check1">
+                                                    <label for="check1"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Send by: <strong><?php echo $sender_name; ?></strong>
+                                            </td>
+                                            <td class="message_content">
+                                                <?php echo $row['content']; ?>
+                                            </td>
+                                            <td class="mailbox-date"><i class="fas fa-calendar"></i>
+                                                <?php echo $row['date_sended']; ?></td>
+                                            <td>
+                                                <a class="btn btn-link" href="#reply<?php echo $id; ?>"
+                                                    data-toggle="modal"><i class="fas fa-reply"></i> Reply </a>
+                                                <a class="btn btn-link" href="#<?php echo $id; ?>"
+                                                    data-toggle="modal"><i class="fas fa-trash"></i> Remove
+                                                </a>
+                                                <?php include("remove_sent_message_modal.php"); ?>
+                                                <?php include 'reply_inbox_message_modal_student.php'; ?>
+                                            </td>
+                                        </tr>
+                                        <?php }}else{ ?>
+                                        <div class="alert alert-info"><i class="fas fa-info-circle"></i> No
+                                            Inbox
+                                            Messages</div>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                                <script type="text/javascript">
+                                $(document).ready(function() {
+                                    $('.remove').click(function() {
+                                        var id = $(this).attr("id");
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "remove_inbox_message.php",
+                                            data: ({
+                                                id: id
+                                            }),
+                                            cache: false,
+                                            success: function(html) {
+                                                $("#del" + id).fadeOut('slow',
+                                                    function() {
+                                                        $(this).remove();
+                                                    });
+                                                $('#' + id).modal('hide');
+                                                $.jGrowl(
+                                                    "Your Sent message is Successfully Deleted", {
+                                                        header: 'Data Delete'
+                                                    });
+                                            }
+                                        });
+                                        return false;
+                                    });
+                                });
+                                </script>
+                                <script>
+                                jQuery(document).ready(function() {
+                                    jQuery("#reply").submit(function(e) {
+                                        e.preventDefault();
+                                        var id = $('.reply').attr("id");
+                                        var _this = $(e.target);
+                                        var formData = jQuery(this).serialize();
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "reply.php",
+                                            data: formData,
+                                            success: function(html) {
+                                                $.jGrowl(
+                                                    "Message Successfully Sent", {
+                                                        header: 'Message Sent'
+                                                    });
+                                                $('#reply' + id).modal('hide');
+                                            }
+
+                                        });
+                                        return false;
+                                    });
+                                });
+                                </script>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Send New Message</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" id="send_message">
+                                <div class="form-group">
+                                    <label>To:</label>
+                                    <select name="teacher_id" class="form-control" required>
+                                        <option></option>
+                                        <?php
+											$query = mysqli_query($conn,"select * from tbl_teacher order by firstname");
+											while($row = mysqli_fetch_array($query)){
+											?>
+                                        <option value="<?php echo $row['teacher_id']; ?>">
+                                            <?php echo $row['firstname']; ?>
+                                            <?php echo $row['lastname']; ?> </option>
+
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Content:</label>
+                                    <textarea name="my_message" class="my_message" style="height: 100px; width: 100%"
+                                        required>
+                                    </textarea>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="float-right">
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i>
+                                            Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <script>
+                            jQuery(document).ready(function() {
+                                jQuery("#send_message").submit(function(e) {
+                                    e.preventDefault();
+                                    var formData = jQuery(this).serialize();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "send_message.php",
+                                        data: formData,
+                                        success: function(html) {
+                                            alert("Message Successfully Sended")
+                                            var delay = 1000;
+                                            setTimeout(function() {
+                                                window.location =
+                                                    'student_message.php'
+                                            }, delay);
+                                        }
+                                    });
+                                    return false;
+                                });
+                            });
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -212,55 +282,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('.remove').click(function() {
-            var id = $(this).attr("id");
-            $.ajax({
-                type: "POST",
-                url: "remove_inbox_message.php",
-                data: ({
-                    id: id
-                }),
-                cache: false,
-                success: function(html) {
-                    $("#del" + id).fadeOut('slow', function() {
-                        $(this).remove();
-                    });
-                    $('#' + id).modal('hide');
-                    $.jGrowl("Your Sent message is Successfully Deleted", {
-                        header: 'Data Delete'
-                    });
-                }
-            });
-            return false;
-        });
-    });
-    </script>
-    <script>
-    jQuery(document).ready(function() {
-        jQuery("#reply").submit(function(e) {
-            e.preventDefault();
-            var id = $('.reply').attr("id");
-            var _this = $(e.target);
-            var formData = jQuery(this).serialize();
-            $.ajax({
-                type: "POST",
-                url: "reply.php",
-                data: formData,
-                success: function(html) {
-                    $.jGrowl("Message Successfully Sent", {
-                        header: 'Message Sent'
-                    });
-                    $('#reply' + id).modal('hide');
-                }
-
-            });
-            return false;
-        });
-    });
-    </script>
     <script>
     $(function() {
         //Enable check and uncheck all functionality
@@ -269,8 +290,9 @@
             if (clicks) {
                 //Uncheck all checkboxes
                 $('.mailbox-messages input[type=\'checkbox\']').prop('checked', false)
-                $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass(
-                    'fa-square')
+                $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square')
+                    .addClass(
+                        'fa-square')
             } else {
                 //Check all checkboxes
                 $('.mailbox-messages input[type=\'checkbox\']').prop('checked', true)

@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
     <?php $get_id = $_GET['id']; ?>
 </head>
 
@@ -108,8 +109,6 @@
                                                 <th></th>
                                                 <th>Name</th>
                                                 <th>Username</th>
-
-                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -161,7 +160,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         $("#example1").DataTable({

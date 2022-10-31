@@ -13,7 +13,6 @@
 <body>
     <?php include 'homepage.php'; ?>
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -47,7 +46,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-5">
-                        <div class="card">
+                        <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title"> New Notifications </h3>
                             </div>
@@ -136,7 +135,7 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <div class="card">
+                        <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Notification History</h3>
                             </div>
@@ -192,8 +191,6 @@
                                         }
                                         } else {
                                         ?>
-                                        <div class="alert alert-info"><strong><i class="fa-solid fa-info-circle"></i> No
-                                                Notifications Found</strong></div>
                                         <?php
                                         }
                                         ?>

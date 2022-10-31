@@ -13,7 +13,6 @@
 <body>
     <?php include 'index.php'; ?>
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -27,7 +26,7 @@
                         </ol>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
         <section class="content">
             <div class="container-fluid">
@@ -62,23 +61,22 @@
                             $count = mysqli_num_rows($query);
 
                             if ($count > 0){ ?>
-                    <script>
-                    alert('Date Already Exist');
-                    </script>
-                    <?php
+                                <script>
+                                alert('Date Already Exist');
+                                </script>
+                            <?php
                             }else{
                             mysqli_query($conn,"insert into tbl_class (class_name) values('$class_name')")or die(mysqli_error());
                             ?>
-                    <?php
+                            <?php
                             }
                             }
-                        ?>
+                            ?>
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Class List</h3>
                             </div>
-                            <!-- /.card-header -->
                             <div class="card-body">
                                 <form action="delete_class.php" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
