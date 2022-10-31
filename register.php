@@ -22,7 +22,8 @@
                     <input type="hidden" name="action" value="signup" />
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="firstname" placeholder="Firstname" required>
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -30,7 +31,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="lastname" placeholder="Lastname" required>
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -38,7 +40,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="Username" class="form-control" id="username" placeholder="Username" required>
+                        <input type="Username" class="form-control" id="username" name="username" placeholder="Username"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user-circle"></span>
@@ -46,7 +49,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -54,8 +58,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="cpassword" placeholder="Retype password"
-                            required>
+                        <input type="password" class="form-control" id="cpassword" name="cpassword"
+                            placeholder="Retype password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -76,40 +80,47 @@
             </div>
         </div>
     </div>
-    <?php 
-    if (isset($_POST['action'])) {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $password = $_POST['password'];
+    <?php if (isset($_POST['action'])) {
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $password = $_POST['password'];
 
-    ($query = mysqli_query(
-        $conn,
-        "select * from tbl_teacher where username = '$username'"
-    )) or die(mysqli_error());
-    $count = mysqli_num_rows($query);
-    if ($count > 0) { 
-    ?>
+        ($query = mysqli_query(
+            $conn,
+            "select * from tbl_teacher where username = '$username'"
+        )) or die(mysqli_error());
+        $count = mysqli_num_rows($query);
+        if ($count > 0) { 
+            
+            ?>
+
+    <div>Username is already taken.</div>
     <script>
-    alert('Data Already Exist');
+    alert('Username is already taken.');
     </script>
 
     <?php } else {
-        mysqli_query(
-            $conn,
-            "insert into tbl_teacher (username,password,firstname,lastname,location,teacher_stat) values('$username','$password','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg','Unactivated')"
-        ) or die(mysqli_error());
+            mysqli_query(
+                $conn,
+                "insert into tbl_teacher (username,password,firstname,lastname,location,teacher_stat) values('$username','$password','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg','Unactivated')"
+            ) or die(mysqli_error());
 
-        mysqli_query(
-            $conn,
-            "insert into tbl_activity_log (date,username,action) values(NOW(),'$username','Add User $username')"
-        ) or die(mysqli_error());
-        ?>
+            mysqli_query(
+                $conn,
+                "insert into tbl_activity_log (date,username,action) values(NOW(),'$username','Add User $username')"
+            ) or die(mysqli_error());
+            ?>
+
     <script>
-    window.location = '/lmstlee4/teacher-login.php';
+    alert("You Have Been Successfully Signup!")
+    var delay = 1000;
+    setTimeout(function() {
+        window.location = '/lmstlee4/teacher-login.php'
+    }, delay);
     </script>
-    
+
     <?php }
     } ?>
     <script>
@@ -119,33 +130,8 @@
 
     jQuery(document).ready(function() {
         jQuery("#back").click(handleBackNavigation)
-
-        jQuery("#login_form").submit(function(e) {
-            e.preventDefault();
-            var formData = jQuery(this).serialize();
-            $.ajax({
-                type: "POST",
-                url: "/lmstlee4/register.php",
-                data: formData,
-                success: function(html) {
-                    if (html == 'false') {
-                        alert("Signup Failed")
-                        $.jGrowl("Please Check Your Username and Password", {
-                            header: 'Signup Failed'
-                        });
-                    } else {
-                        alert("You Have Been Successfully Signup!")
-                        var delay = 1000;
-                        setTimeout(function() {
-                            window.location = '/lmstlee4/teacher-login.php'
-                        }, delay);
-                    }
-                }
-
-            });
-            return false;
-        });
     });
     </script>
 </body>
+
 </html>

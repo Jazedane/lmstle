@@ -17,6 +17,11 @@ body {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LMSTLE | Login Page</title>
 
+    <script
+        src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous"></script>
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -55,6 +60,10 @@ body {
     <link rel="stylesheet" href="plugins/bs-stepper/css/bs-stepper.min.css">
     <!-- dropzonejs -->
     <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
+
+    <script>
+        $ = jQuery;
+    </script>
 </head>
 
 <?php include 'database.php'; ?>
