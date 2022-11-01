@@ -30,11 +30,14 @@
                             $school_year_query_row = mysqli_fetch_array(
                                 $school_year_query
                             );
-                            $school_year = $school_year_query_row['school_year'];
+                            $school_year =
+                                $school_year_query_row['school_year'];
                             ?>
                             <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
                             <li class="breadcrumb-item"><a href="#">School Year:
-                                    <?php echo $school_year_query_row['school_year']; ?></a></li>
+                                    <?php echo $school_year_query_row[
+                                        'school_year'
+                                    ]; ?></a></li>
                             <li class="breadcrumb-item active"><a href="#"><b>Change Password</b></a></li>
                         </ol>
                     </div>
@@ -50,15 +53,16 @@
                                 <h3 class="card-title">Change Password</h3>
                             </div>
                             <?php
-								$query = mysqli_query($conn,"select * from tbl_teacher where teacher_id = '$session_id'")or die(mysqli_error());
-								$row = mysqli_fetch_array($query);
-							?>
+                            ($query = mysqli_query(
+                                $conn,
+                                "select * from tbl_teacher where teacher_id = '$session_id'"
+                            )) or die(mysqli_error());
+                            $row = mysqli_fetch_array($query);
+                            ?>
                             <form method="post" id="change_password" class="form-horizontal">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="inputCurrentPassword">Current Password</label>
-                                        <input type="hidden" id="password" name="password"
-                                            value="<?php echo $row['password']; ?>" placeholder="Current Password">
                                         <input type="password" class="form-control" id="current_password"
                                             name="current_password" placeholder="Current Password" required>
                                     </div>
@@ -83,38 +87,42 @@
                                 jQuery("#change_password").submit(function(e) {
                                     e.preventDefault();
 
-                                    var password = jQuery('#password').val();
                                     var current_password = jQuery('#current_password').val();
                                     var new_password = jQuery('#new_password').val();
                                     var retype_password = jQuery('#retype_password').val();
-                                    if (password != current_password) {
+                                    if (new_password != retype_password) {
                                         alert(
-                                            "Password does not match with your current password  ", {
+                                            "New Password does not match with your retyped password", {
                                                 header: 'Change Password Failed'
                                             });
-                                    } else if (new_password != retype_password) {
-                                        alert(
-                                            "New Password does not match with your retype password  ", {
-                                                header: 'Change Password Failed'
-                                            });
-                                    } else if ((password == current_password) && (new_password ==
-                                            retype_password)) {
+                                    } else {
                                         var formData = jQuery(this).serialize();
                                         $.ajax({
                                             type: "POST",
                                             url: "update_password.php",
                                             data: formData,
-                                            success: function(html) {
-
-                                                alert(
-                                                    "Your password is successfully change", {
-                                                        header: 'Change Password Success'
-                                                    });
-                                                var delay = 2000;
-                                                setTimeout(function() {
-                                                    window.location =
-                                                        'dashboard.php'
-                                                }, delay);
+                                            success: function(_html) {
+                                                /**
+                                                 * HTML echo response is returning unintended whitespaces.
+                                                 * Trimming here so that conditionals execute nicely.
+                                                 */
+                                                const html = _html.trim()
+                                                if (html === 'Success') {
+                                                    alert(
+                                                        "Your password is successfully change", {
+                                                            header: 'Change Password Success'
+                                                        });
+                                                    var delay = 2000;
+                                                    setTimeout(function() {
+                                                        window.location =
+                                                            'dashboard.php'
+                                                    }, delay);
+                                                } else {
+                                                    alert(
+                                                        html, {
+                                                            header: 'Change Password Failed'
+                                                        });
+                                                }
                                             }
                                         });
                                     }
