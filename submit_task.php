@@ -117,13 +117,14 @@
                                                 <th>Description</th>
                                                 <th>Status</th>
                                                 <th>Submitted by:</th>
-                                                <th>Grade</th>
+                                                <th>Feedback</th>
+                                                <th>Points</th>
                                             </tr>
 
                                         </thead>
                                         <tbody>
 
-                                            <?php
+                                        <?php
 										$query = mysqli_query($conn,"select * FROM tbl_student_task
 										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
 										where task_id = '$post_id' order by task_fdatein DESC")or die(mysqli_error());
@@ -141,7 +142,7 @@
                               						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='Started'){
                               						echo "<span class='badge badge-primary'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['stask_status']] =='On-Progress'){
+                            					}elseif($task_status[$row['task_status']] =='On-Progress'){
                               						echo "<span class='badge badge-info'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='On-Hold'){
                               						echo "<span class='badge badge-warning'>{$task_status[$row['task_status']]}</span>";
@@ -153,10 +154,10 @@
                           						?>
                                                 </td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
+                                                <td><?php echo $row['feedback']; ?></td>
                                                 <?php if ($session_id == $student_id){ ?>
                                                 <td>
-                                                    <span
-                                                        class="badge badge-success"><?php echo $row['grade']; ?>%</span>
+                                                    <span class="badge badge-success"><?php echo $row['grade']; ?> points</span>
                                                 </td>
                                                 <?php }else{ ?>
                                                 <td></td>

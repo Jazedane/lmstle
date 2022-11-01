@@ -3,7 +3,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-
         <nav class="main-header navbar navbar-expand navbar-success navbar-dark">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -31,7 +30,7 @@
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="change-avatar-teacher.php" class="dropdown-item">
-                            <i class="fas fa-users-circle"> Change Avatar</i>
+                            <i class="fas fa-edit"> Change Avatar</i>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="developer.php" class="dropdown-item">

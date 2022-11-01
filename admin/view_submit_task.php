@@ -14,7 +14,7 @@
 	  if($post_id == ''){
 	  ?>
     <script>
-    window.location = "/lmstle/task_student.php<?php echo '?id='.$get_id; ?>";
+    window.location = "/lmstlee4/task_student.php<?php echo '?id='.$get_id; ?>";
     </script>
     <?php
 	  }
@@ -78,8 +78,8 @@
                                                 <th>Status</th>
                                                 <th>Condition</th>
                                                 <th>Action</th>
-                                                <th></th>
-                                                <th></th>
+                                                <th>Attachment</th>
+                                                <th>Points</th>
                                             </tr>
 
                                         </thead>
@@ -119,22 +119,23 @@
                                                 <td class="project-state">
                                                     <?php
                             					if($row['p_condition'] =='0'){
-                              						echo "<span class='badge badge-success'>Alive</span>";
+                              						echo "<span class='badge badge-secondary'>Pending</span>";
                             					}elseif($row['p_condition'] =='1'){
-                              						echo "<span class='badge badge-primary'>Withered</span>";
+                              						echo "<span class='badge badge-success'>Alive</span>";
                             					}elseif($row['p_condition'] =='2'){
+                              						echo "<span class='badge badge-danger'>Withered</span>";
+                                                }elseif($row['p_condition'] =='3'){
                               						echo "<span class='badge badge-warning'>Dead</span>";
                                                 }
                                                 ?>
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-success" data-toggle="modal"
-                                                        data-target="#modal-default<?php echo $id?>"
+                                                    <a class="btn btn-success" 
                                                         href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
-                                                            class="fas fa-edit"></i> Edit</button>
+                                                            class="fas fa-edit"></i> Edit</a>
                                                 </td>
-                                                <td><a href="<?php echo $row['floc']; ?>"><i
-                                                            class="fas fa-download"></i></a></td>
+                                                <td><a href="<?php echo $row['floc']; ?>">Attachment <i
+                                                            class="fas fa-paperclip"></i></a></td>
                                                 <td width="160">
                                                     <form method="post" action="save_grade.php">
                                                         <input type="hidden" class="span4" name="id"

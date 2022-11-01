@@ -3,10 +3,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/logo.png" alt="BNHS Logo" height="60" width="60">
-        </div>
-
         <nav class="main-header navbar navbar-expand navbar-success navbar-dark">
             <ul class="navbar-nav">
                 <li class="nav-item">

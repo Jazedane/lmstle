@@ -9,6 +9,7 @@
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
     <?php $get_id = $_GET['id']; ?>
+
 </head>
 
 <body>
@@ -19,7 +20,7 @@
                 <div class="row mb-2">
                     <?php 
                 	$task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
-                    $p_condition = array("Alive","Withered","Dead");
+                    $p_condition = array("Pending","Alive","Withered","Dead");
 					$class_query = mysqli_query($conn,"select * from tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
 										where teacher_class_id = '$get_id'")or die(mysqli_error());
@@ -60,7 +61,8 @@
                                             <th>Due Date</th>
                                             <th>Status</th>
                                             <th>Condition</th>
-                                            <th>Grade</th>
+                                            <th>Feedback</th>
+                                            <th>Points</th>
                                         </tr>
 
                                     </thead>
@@ -97,21 +99,24 @@
                             					}
                           						?>
                                             </td>
+                                            
                                             <td class="project-state">
                                                 <?php
-                            					if($p_condition[$row['p_condition']] =='Alive'){
+                            					if($p_condition[$row['p_condition']] =='Pending'){
+                              						echo "<span class='badge badge-secondary'>{$p_condition[$row['p_condition']]}</span>";
+                            					}elseif($p_condition[$row['p_condition']] =='Alive'){
                               						echo "<span class='badge badge-success'>{$p_condition[$row['p_condition']]}</span>";
-                            					}elseif($p_condition[$row['p_condition']] =='Withered'){
+                                                    }elseif($p_condition[$row['p_condition']] =='Withered'){
                               						echo "<span class='badge badge-primary'>{$p_condition[$row['p_condition']]}</span>";
                             					}elseif($p_condition[$row['p_condition']] =='Dead'){
                               						echo "<span class='badge badge-danger'>{$p_condition[$row['p_condition']]}</span>";
                                                 }
                                                 ?>
                                             </td>
-
+                                            <td><?php  echo $row['feedback']; ?></td>
                                             <?php if ($session_id == $student_id){ ?>
                                             <td>
-                                                <span class="badge badge-success"><?php echo $row['grade']; ?>%</span>
+                                                <span class="badge badge-success"><?php echo $row['grade']; ?> points</span>
                                             </td>
                                             <?php }else{ ?>
                                             <td></td>
