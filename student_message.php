@@ -144,11 +144,11 @@
                                             <td>
                                                 <a class="btn btn-link" href="#reply<?php echo $id; ?>"
                                                     data-toggle="modal"><i class="fas fa-reply"></i> Reply </a>
-                                                <a class="btn btn-link" href="#<?php echo $id; ?>"
+                                                <a class="btn btn-link" href="#del<?php echo $id; ?>"
                                                     data-toggle="modal"><i class="fas fa-trash"></i> Remove
                                                 </a>
-                                                <?php include("remove_sent_message_modal.php"); ?>
                                                 <?php include 'reply_inbox_message_modal_student.php'; ?>
+                                                <?php include("remove_sent_message_modal.php"); ?>
                                             </td>
                                         </tr>
                                         <?php }}else{ ?>

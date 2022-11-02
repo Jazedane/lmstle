@@ -117,6 +117,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="grading.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                                <i class="nav-icon fas fa-percent"></i>
+                                <p>
+                                    Grading
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

@@ -18,6 +18,7 @@
 							WHERE student_task_id='$student_task_id'")or die(mysqli_error());
     $result = mysqli_fetch_assoc($query);
 
+    $grade = $result['grade'];
     $task_status = $result['task_status'];
     $p_condition = $result['p_condition'];
     ?>
@@ -80,6 +81,11 @@
                                         <textarea id="assigntextarea" placeholder="Description" name="feedback"
                                             class="form-control" value="<?php echo $result['feedback']; ?>"
                                             required><?php echo $result['feedback']; ?></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="grade">Points</label>
+                                        <input type="number" name="grade" maxlength="3" min="75" max="<?php echo $result['total_points']; ?>" id="inputtask" class="form-control"
+                                            value="<?php echo $result['grade']; ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="task_status">Status</label>

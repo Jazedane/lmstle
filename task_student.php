@@ -79,9 +79,10 @@
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
-                                            <th>Task Name</th>
+                                            <th>Activity Name</th>
                                             <th>Description</th>
                                             <th>Due Date</th>
+                                            <th>Points</th>
                                             <th>Time Left</th>
                                             <th></th>
                                         </tr>
@@ -103,28 +104,21 @@
                                             $floc = $row['floc'];
                                             ?>
                                         <tr>
-                                            <td><?php echo $row[
-                                                'fdatein'
-                                            ]; ?></td>
-                                            <td><?php echo $row[
-                                                'fname'
-                                            ]; ?></td>
-                                            <td><?php echo $row[
-                                                'fdesc'
-                                            ]; ?></td>
-                                            <td>
-                                                <?php echo $row['end_date']; ?>
-                                            </td>
+                                            <td><?php echo $row['fdatein']; ?></td>
+                                            <td><?php echo $row['fname']; ?></td>
+                                            <td><?php echo $row['fdesc']; ?></td>
+                                            <td><?php echo $row['end_date']; ?></td>
+                                            <td><?php echo $row['total_points']; ?></td>
                                             <td id="<?php echo $row['task_id'] ?>-running-due">
                                                 <script>
-                                                    $(document).ready(function() {
-                                                        setInterval(() => {
-                                                            calculateTimeLeft(
-                                                                '<?php echo $row['task_id'] ?>-running-due',
-                                                                '<?php echo $row['end_date'] ?>'
-                                                            );
-                                                        }, 1000)
-                                                    })
+                                                $(document).ready(function() {
+                                                    setInterval(() => {
+                                                        calculateTimeLeft(
+                                                            '<?php echo $row['task_id'] ?>-running-due',
+                                                            '<?php echo $row['end_date'] ?>'
+                                                        );
+                                                    }, 1000)
+                                                })
                                                 </script>
                                             </td>
                                             <td width="140">
@@ -173,54 +167,55 @@
     </div>
     <?php include 'footer.php'; ?>
     <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
         });
+    });
     </script>
 
     <script>
-        /**
-         * Calculates the time left for a task
-         * 
-         * @param {string} elementId - The id of the element to update
-         * @param {string} dueDate - The due date of the task
-         */
-        function calculateTimeLeft(targetElement, _dueDate) {
-            var now = new Date();
-            var dueDate = new Date(_dueDate);
-            var diff = dueDate.getTime() - now.getTime();
+    /**
+     * Calculates the time left for a task
+     * 
+     * @param {string} elementId - The id of the element to update
+     * @param {string} dueDate - The due date of the task
+     */
+    function calculateTimeLeft(targetElement, _dueDate) {
+        var now = new Date();
+        var dueDate = new Date(_dueDate);
+        var diff = dueDate.getTime() - now.getTime();
 
-            if (isNaN(diff)) {
-                $(`#${targetElement}`).html('Invalid Date');
-                return;
-            }
-
-            if (diff <= 0) {
-                $(`#${targetElement}`).html('Deadline has Passed');
-                return;
-            }
-
-            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            $(`#${targetElement}`).html(days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ");
+        if (isNaN(diff)) {
+            $(`#${targetElement}`).html('Invalid Date');
+            return;
         }
+
+        if (diff <= 0) {
+            $(`#${targetElement}`).html('Deadline has Passed');
+            return;
+        }
+
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        $(`#${targetElement}`).html(days + " days " + hours + " hours " + minutes + " minutes " + seconds +
+        " seconds ");
+    }
     </script>
 </body>
 

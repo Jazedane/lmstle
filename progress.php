@@ -50,14 +50,14 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Task Progress</h3>
+                                <h3 class="card-title">Activity Progress</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
-                                            <th>Task</th>
+                                            <th>Activity</th>
                                             <th>Due Date</th>
                                             <th>Status</th>
                                             <th>Condition</th>
@@ -116,7 +116,7 @@
                                             <td><?php  echo $row['feedback']; ?></td>
                                             <?php if ($session_id == $student_id){ ?>
                                             <td>
-                                                <span class="badge badge-success"><?php echo $row['grade']; ?> points</span>
+                                                <span class="badge badge-success"><?php echo $row['grade']; ?> / <?php echo $row['total_points']; ?></span>
                                             </td>
                                             <?php }else{ ?>
                                             <td></td>

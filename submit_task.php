@@ -120,13 +120,13 @@
                                         <thead>
                                             <tr>
                                                 <th>Date Upload</th>
-                                                <th>Task Name</th>
+                                                <th>Activity Name</th>
                                                 <th>Description</th>
                                                 <th>Status</th>
                                                 <th>Submitted by:</th>
                                                 <th>Feedback</th>
-                                                <th>Action</th>
                                                 <th>Points</th>
+                                                <th>Action</th>
                                             </tr>
 
                                         </thead>
@@ -163,19 +163,18 @@
                                                 </td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td><?php echo $row['feedback']; ?></td>
+                                                <?php if ($session_id == $student_id){ ?>
+                                                <td>
+                                                    <span class="badge badge-success"><?php echo $row['grade']; ?> / <?php echo $row['total_points']; ?></span>
+                                                </td>
+                                                <?php }else{ ?>
+                                                <td></td>
+                                                <?php } ?>
                                                 <td>
                                                     <a class="btn btn-success"
                                                         href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
                                                             class="fas fa-edit"></i> Edit</a>
                                                 </td>
-                                                <?php if ($session_id == $student_id){ ?>
-                                                <td>
-                                                    <span class="badge badge-success"><?php echo $row['grade']; ?>
-                                                        points</span>
-                                                </td>
-                                                <?php }else{ ?>
-                                                <td></td>
-                                                <?php } ?>
                                             </tr>
 
                                             <?php } ?>

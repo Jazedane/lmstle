@@ -139,7 +139,7 @@
                                             <td>
                                                 <a class="btn btn-link" href="#reply<?php echo $id; ?>"
                                                     data-toggle="modal"><i class="fas fa-reply"></i> Reply </a>
-                                                <a class="btn btn-link" href="#<?php echo $id; ?>"
+                                                <a class="btn btn-link" href="#del<?php echo $id; ?>"
                                                     data-toggle="modal"><i class="fas fa-trash"></i> Remove
                                                 </a>
                                                 <?php include("remove_sent_message_modal.php"); ?>
@@ -299,6 +299,114 @@
                                 });
                             });
                             </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card card-success direct-chat direct-chat-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Direct Chat</h3>
+
+                            <div class="card-tools">
+                                <span title="3 New Messages" class="badge bg-success">3</span>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" title="Contacts"
+                                    data-widget="chat-pane-toggle">
+                                    <i class="fas fa-comments"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <?php
+                                                ($query_announcement = mysqli_query(
+                                                $conn,
+                                                "SELECT * FROM tbl_message 
+                                                LEFT JOIN tbl_student ON tbl_student.student_id = tbl_message.sender_id 
+                                                WHERE tbl_message.receiver_id = '$session_id' 
+                                                ORDER BY date_sended DESC"
+                                                )) or die();
+                                                $count_my_message = mysqli_num_rows(
+                                                $query_announcement
+                                                );
+                                                if ($count_my_message != '0') {
+                                                while (
+                                                    $row = mysqli_fetch_array(
+                                                        $query_announcement
+                                                    )
+                                                ) {
+
+                                                $id = $row['message_id'];
+                                                $sender_id = $row['sender_id'];
+                                                $sender_name =
+                                                $row['firstname'] .' ' . $row['lastname'];
+                                                $receiver_name = $row['receiver_name'];
+                                            ?>
+                            <div class="direct-chat-messages">
+                                <div class="direct-chat-msg">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span
+                                            class="direct-chat-name float-left"><strong><?php echo $sender_name; ?></span>
+                                        <span
+                                            class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
+                                    </div>
+                                    <img class="direct-chat-img" src="<?php echo $row['location']; ?>"
+                                        alt="Message User Image">
+                                    <div class="direct-chat-text message-content">
+                                        <?php echo $row['content']; ?>
+                                    </div>
+                                </div>
+                                <div class="direct-chat-msg right">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span
+                                            class="direct-chat-name float-right"><strong><?php echo $receiver_name; ?></span>
+                                        <span
+                                            class="direct-chat-timestamp float-left"><?php echo $row['date_sended']; ?></span>
+                                    </div>
+                                    <img class="direct-chat-img" src="<?php echo $row['location']; ?>"
+                                        alt="Message User Image">
+                                    <div class="direct-chat-text">
+                                        <?php echo $row['content']; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php }}else{ ?>
+                            <div class="alert alert-info"><i class="fas fa-info-circle"></i> No Inbox
+                                Messages</div>
+                            <?php } ?>
+                            <div class="direct-chat-contacts">
+                                <ul class="contacts-list">
+                                    <li>
+                                        <a href="#">
+                                            <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg"
+                                                alt="User Avatar">
+
+                                            <div class="contacts-list-info">
+                                                <span class="contacts-list-name">
+                                                    Count Dracula
+                                                    <small class="contacts-list-date float-right">2/28/2015</small>
+                                                </span>
+                                                <span class="contacts-list-msg">How have you been? I was...</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <form action="#" method="post">
+                                <div class="input-group">
+                                    <input type="text" name="message" placeholder="Type Message ..."
+                                        class="form-control">
+                                    <span class="input-group-append">
+                                        <button type="submit" class="btn btn-success">Send</button>
+                                    </span>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

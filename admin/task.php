@@ -70,6 +70,11 @@
                                             placeholder="Enter description" required></textarea>
                                     </div>
                                     <div class="form-group">
+                                        <label>Points</label>
+                                        <input type="number" name="total_points" class="form-control"
+                                            placeholder="Enter points" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="due_date">Due Date:</label>
                                         <div class="input-group date" id="reservationdatetime"
                                             data-target-input="nearest">

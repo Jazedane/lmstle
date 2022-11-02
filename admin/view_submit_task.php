@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-sm-6">
                         <?php 
-                         $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                        $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
                         $p_condition = array("Alive","Withered","Dead");
                         $class_query = mysqli_query($conn,"select * from tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
@@ -72,14 +72,14 @@
                                         <thead>
                                             <tr>
                                                 <th>Date Upload</th>
-                                                <th>Task Name</th>
+                                                <th>Activity Name</th>
                                                 <th>Description</th>
                                                 <th>Submitted by:</th>
                                                 <th>Status</th>
                                                 <th>Condition</th>
-                                                <th>Action</th>
                                                 <th>Attachment</th>
                                                 <th>Points</th>
+                                                <th>Action</th>
                                             </tr>
 
                                         </thead>
@@ -129,31 +129,13 @@
                                                 }
                                                 ?>
                                                 </td>
+                                                <td><a href="<?php echo $row['floc']; ?>">Attachment <i
+                                                            class="fas fa-paperclip"></i></a></td>
+                                                <td><span class="badge badge-success"><?php  echo $row['grade']; ?> / <?php  echo $row['total_points']; ?></span></td>
                                                 <td>
                                                     <a class="btn btn-success" 
                                                         href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
                                                             class="fas fa-edit"></i> Edit</a>
-                                                </td>
-                                                <td><a href="<?php echo $row['floc']; ?>">Attachment <i
-                                                            class="fas fa-paperclip"></i></a></td>
-                                                <td width="160">
-                                                    <form method="post" action="save_grade.php">
-                                                        <input type="hidden" class="span4" name="id"
-                                                            value="<?php echo $id; ?>">
-                                                        <input type="hidden" class="span4" name="post_id"
-                                                            value="<?php echo $post_id; ?>">
-                                                        <input type="hidden" class="span4" name="get_id"
-                                                            value="<?php echo $get_id; ?>">
-                                                        <input type="hidden" class="span4" name="student_id"
-                                                            value="<?php echo $student_id; ?>">
-                                                        <input type="hidden" class="span4" name="task_name"
-                                                            value="<?php echo $task_name; ?>">
-                                                        <input type="number" maxlength="3" min="75" max="100"
-                                                            class="span4" name="grade"
-                                                            value="<?php echo $row['grade']; ?>%" style="width:60px">
-                                                        <button name="save" class="btn btn-success" id="btn"><i
-                                                                class="fas fa-save"></i> Save</button>
-                                                    </form>
                                                 </td>
                                             </tr>
 
@@ -198,126 +180,9 @@
             showConfirmButton: false,
             timer: 3000
         });
-
-        $('.swalDefaultSuccess').click(function() {
-            Toast.fire({
-                icon: 'success',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.swalDefaultInfo').click(function() {
-            Toast.fire({
-                icon: 'info',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.swalDefaultError').click(function() {
-            Toast.fire({
-                icon: 'error',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.swalDefaultWarning').click(function() {
-            Toast.fire({
-                icon: 'warning',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.swalDefaultQuestion').click(function() {
-            Toast.fire({
-                icon: 'question',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-
         $('.toastrDefaultSuccess').click(function() {
             toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-        });
-        $('.toastrDefaultInfo').click(function() {
-            toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-        });
-        $('.toastrDefaultError').click(function() {
-            toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-        });
-        $('.toastrDefaultWarning').click(function() {
-            toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-        });
 
-        $('.toastsDefaultDefault').click(function() {
-            $(document).Toasts('create', {
-                title: 'Toast Title',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.toastsDefaultTopLeft').click(function() {
-            $(document).Toasts('create', {
-                title: 'Toast Title',
-                position: 'topLeft',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.toastsDefaultBottomRight').click(function() {
-            $(document).Toasts('create', {
-                title: 'Toast Title',
-                position: 'bottomRight',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.toastsDefaultBottomLeft').click(function() {
-            $(document).Toasts('create', {
-                title: 'Toast Title',
-                position: 'bottomLeft',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.toastsDefaultAutohide').click(function() {
-            $(document).Toasts('create', {
-                title: 'Toast Title',
-                autohide: true,
-                delay: 750,
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.toastsDefaultNotFixed').click(function() {
-            $(document).Toasts('create', {
-                title: 'Toast Title',
-                fixed: false,
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.toastsDefaultFull').click(function() {
-            $(document).Toasts('create', {
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-                title: 'Toast Title',
-                subtitle: 'Subtitle',
-                icon: 'fas fa-envelope fa-lg',
-            })
-        });
-        $('.toastsDefaultFullImage').click(function() {
-            $(document).Toasts('create', {
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-                title: 'Toast Title',
-                subtitle: 'Subtitle',
-                image: '../../dist/img/user3-128x128.jpg',
-                imageAlt: 'User Picture',
-            })
-        });
-        $('.toastsDefaultSuccess').click(function() {
-            $(document).Toasts('create', {
-                class: 'bg-success',
-                title: 'Toast Title',
-                subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.toastsDefaultInfo').click(function() {
-            $(document).Toasts('create', {
-                class: 'bg-info',
-                title: 'Toast Title',
-                subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
         $('.toastsDefaultWarning').click(function() {
             $(document).Toasts('create', {
                 class: 'bg-warning',
@@ -334,13 +199,6 @@
                 body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
             })
         });
-        $('.toastsDefaultMaroon').click(function() {
-            $(document).Toasts('create', {
-                class: 'bg-maroon',
-                title: 'Toast Title',
-                subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
         });
     });
     </script>
