@@ -1,5 +1,5 @@
 <?php
-include 'dbcon.php';
+include 'database.php';
 if (isset($_POST['delete_student']) && isset($_POST['selector'])) {
     $id = $_POST['selector'];
     $N = count($id);

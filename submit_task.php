@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
     <?php $get_id = $_GET['id']; ?>
     <?php 
 	  $post_id = $_GET['post_id'];
@@ -56,7 +57,7 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Add Task</h3>
@@ -66,8 +67,8 @@
                                     <div class="form-group">
                                         <label class="control-label" for="inputEmail">Activity</label>
                                         <div class="mb-3">
-                                            <label for="formFileMultiple" class="form-label">
-                                                <input name="uploaded_file" class="form-control" type="file"
+                                            <label for="formFileMultiple" class="form-control">
+                                                <input name="uploaded_file" type="file"
                                                     id="formFileMultiple" multiple></input>
                                                 <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                                                 <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
@@ -93,7 +94,13 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-9">
+                </div>
+            </div>
+        </section>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
                                 <div id="" class="float-sm-left"><a
@@ -118,13 +125,14 @@
                                                 <th>Status</th>
                                                 <th>Submitted by:</th>
                                                 <th>Feedback</th>
+                                                <th>Action</th>
                                                 <th>Points</th>
                                             </tr>
 
                                         </thead>
                                         <tbody>
 
-                                        <?php
+                                            <?php
 										$query = mysqli_query($conn,"select * FROM tbl_student_task
 										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
 										where task_id = '$post_id' order by task_fdatein DESC")or die(mysqli_error());
@@ -155,9 +163,15 @@
                                                 </td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td><?php echo $row['feedback']; ?></td>
+                                                <td>
+                                                    <a class="btn btn-success"
+                                                        href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
+                                                            class="fas fa-edit"></i> Edit</a>
+                                                </td>
                                                 <?php if ($session_id == $student_id){ ?>
                                                 <td>
-                                                    <span class="badge badge-success"><?php echo $row['grade']; ?> points</span>
+                                                    <span class="badge badge-success"><?php echo $row['grade']; ?>
+                                                        points</span>
                                                 </td>
                                                 <?php }else{ ?>
                                                 <td></td>
@@ -173,10 +187,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     jQuery(document).ready(function($) {
         $("#add_task").submit(function(e) {

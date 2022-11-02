@@ -150,7 +150,7 @@
                                             class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <ul data-toggle="modal" href="#student_restore" id="delete"
-                                            class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore Data
+                                            class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Recycle Bin
                                         </ul>
                                         <div class="float-right">
                                             <ul class="nav nav-pills">
@@ -191,8 +191,10 @@
 
                                             <tr>
                                                 <td width="30">
-                                                    <input id="optionsCheckbox" class="uniform_on" name="selector[]"
-                                                        type="checkbox" value="<?php echo $id; ?>">
+                                                    <input id="optionsCheckbox" type="checkbox" value=id="check1"
+                                                        class="uniform_on" name="selector[]">
+                                                    <label for="check1"></label>
+                                                </td>
                                                 </td>
 
                                                 <td><?php $firstname = $row['firstname'];
@@ -246,6 +248,19 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+        });
+    });
+    </script>
+    <script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('.toastrDefaultSuccess').click(function() {
+            toastr.success('Student Has Been Deleted.')
         });
     });
     </script>

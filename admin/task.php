@@ -73,13 +73,13 @@
                                         <label for="due_date">Due Date:</label>
                                         <div class="input-group date" id="reservationdatetime"
                                             data-target-input="nearest">
-                                            <input type="text" name="end_date" class="datetimepicker-input"
+                                            <input type="text" name="end_date" class="datetimepicker-input form-control"
                                                 data-target="#reservationdatetime"
                                                 value="<?php echo isset($end_date)? datetime('Y-m-d h:i:sa',strtotime($end_date)): ''; ?>"
                                                 required>
                                             <div class="input-group-append" data-target="#reservationdatetime"
                                                 data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
                                     </div>

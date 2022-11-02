@@ -51,7 +51,7 @@
                                     <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
                                 </div>
                             </div>
-                            <form class="" id="add_downloadable" method="post" enctype="multipart/form-data"
+                            <form class="" id="add_task" method="post" enctype="multipart/form-data"
                                 name="upload">
                                 <div class="card-body">
                                     <div class="form-group">
@@ -167,7 +167,7 @@
     <?php include 'script.php'; ?>
     <script>
     jQuery(document).ready(function($) {
-        $("#add_downloadable").submit(function(e) {
+        $("#add_task").submit(function(e) {
             e.preventDefault();
             $.jGrowl("Uploading File Please Wait......", {
                 sticky: true
