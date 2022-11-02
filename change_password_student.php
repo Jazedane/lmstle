@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <?php include 'index.php'; ?>
+    <?php include 'homepage.php'; ?>
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -55,7 +55,7 @@
                             <?php
                             ($query = mysqli_query(
                                 $conn,
-                                "select * from tbl_teacher where teacher_id = '$session_id'"
+                                "select * from tbl_student where student_id = '$session_id'"
                             )) or die(mysqli_error());
                             $row = mysqli_fetch_array($query);
                             ?>
@@ -99,7 +99,7 @@
                                         var formData = jQuery(this).serialize();
                                         $.ajax({
                                             type: "POST",
-                                            url: "update_password.php",
+                                            url: "update_password_student.php",
                                             data: formData,
                                             success: function(_html) {
                                                 const html = _html.trim()
@@ -111,7 +111,7 @@
                                                     var delay = 2000;
                                                     setTimeout(function() {
                                                         window.location =
-                                                            'dashboard.php'
+                                                            'class_main.php'
                                                     }, delay);
                                                 } else {
                                                     alert(

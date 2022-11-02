@@ -65,7 +65,7 @@
 										$id = $row['teacher_class_student_id'];
 									?>
 
-                                    <div id="del<?php echo $id; ?>">
+                                    <div id="del<?php echo $id; ?>" style="margin:10px">
                                         <center><a href="#">
                                                 <img id="student_avatar_class"
                                                     src="admin/<?php echo $row['location'] ?>" width="80" height="80"

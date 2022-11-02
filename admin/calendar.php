@@ -7,6 +7,8 @@
     <title>LMSTLE | Calendar</title>
 
     <?php include 'header.php'; ?>
+    <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -66,7 +68,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
 </body>
 
 </html>

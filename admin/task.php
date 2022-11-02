@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
     <?php $get_id = $_GET['id']; ?>
 </head>
 
@@ -72,7 +73,7 @@
                                         <label for="due_date">Due Date:</label>
                                         <div class="input-group date" id="reservationdatetime"
                                             data-target-input="nearest">
-                                            <input type="text" name="end_date" class="form-control datetimepicker-input"
+                                            <input type="text" name="end_date" class="datetimepicker-input"
                                                 data-target="#reservationdatetime"
                                                 value="<?php echo isset($end_date)? datetime('Y-m-d h:i:sa',strtotime($end_date)): ''; ?>"
                                                 required>
@@ -117,6 +118,7 @@
                                             <th>Activity Name</th>
                                             <th>Description</th>
                                             <th>Due Date</th>
+                                            <th>Time Left</th>
                                             <th></th>
                                             <th></th>
                                             <th></th>
@@ -150,6 +152,18 @@
                                             <td><?php echo $row[
                                                 'end_date'
                                             ]; ?></td>
+                                            <td id="<?php echo $row['task_id'] ?>-running-due">
+                                                <script>
+                                                    $(document).ready(function() {
+                                                        setInterval(() => {
+                                                            calculateTimeLeft(
+                                                                '<?php echo $row['task_id'] ?>-running-due',
+                                                                '<?php echo $row['end_date'] ?>'
+                                                            );
+                                                        }, 1000)
+                                                    })
+                                                </script>
+                                            </td>
                                             <td width="10">
                                                 <form method="post" action="view_submit_task.php<?php echo '?id=' .
                                                         $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
@@ -214,7 +228,7 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
+
     <script>
     $(function() {
         $("#example1").DataTable({
@@ -233,6 +247,36 @@
             "responsive": true,
         });
     });
+    </script>
+    <script>
+        /**
+         * Calculates the time left for a task
+         * 
+         * @param {string} elementId - The id of the element to update
+         * @param {string} dueDate - The due date of the task
+         */
+        function calculateTimeLeft(targetElement, _dueDate) {
+            var now = new Date();
+            var dueDate = new Date(_dueDate);
+            var diff = dueDate.getTime() - now.getTime();
+
+            if (isNaN(diff)) {
+                $(`#${targetElement}`).html('Invalid Date');
+                return;
+            }
+
+            if (diff <= 0) {
+                $(`#${targetElement}`).html('Deadline has Passed');
+                return;
+            }
+
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            $(`#${targetElement}`).html(days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ");
+        }
     </script>
 </body>
 

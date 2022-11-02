@@ -29,7 +29,7 @@
                             <i class="fas fa-user-circle"></i> Profile
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="change_password.php" class="dropdown-item">
+                        <a href="change_password_student.php" class="dropdown-item">
                             <i class="fas fa-edit"> Change Password</i>
                         </a>
                         <div class="dropdown-divider"></div>
