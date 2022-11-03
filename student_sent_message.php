@@ -77,11 +77,8 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="mailbox-controls">
-                                    <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i
-                                            class="far fa-square"></i>
-                                    </button>
                                     <div class="btn-group">
-                                        <button href="#<?php echo $id; ?>" data-toggle="modal" type="button"
+                                        <button href="#del<?php echo $id; ?>" data-toggle="modal" type="button"
                                             class="btn btn-danger btn-sm">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
@@ -104,12 +101,6 @@
 								                        $id = $row['message_sent_id'];
 								            ?>
                                             <tr>
-                                                <td class="post" id="del<?php echo $id; ?>">
-                                                    <div class="icheck-primary">
-                                                        <input type="checkbox" value="" id="check1">
-                                                        <label for="check1"></label>
-                                                    </div>
-                                                </td>
                                                 <td>
                                                     Send to: <strong><?php echo $row['receiver_name']; ?>
                                                 </td>
@@ -119,7 +110,7 @@
                                                 <td class="mailbox-date"><i class="fas fa-calendar"></i>
                                                     <?php echo $row['date_sended']; ?></td>
                                                 <td>
-                                                    <a class="btn btn-link" href="#<?php echo $id; ?>"
+                                                    <a class="btn btn-link" href="#del<?php echo $id; ?>"
                                                         data-toggle="modal"><i class="fas fa-trash"></i> Remove
                                                     </a>
                                                     <?php include("remove_sent_message_modal.php"); ?>
@@ -150,10 +141,10 @@
                                                             $(this).remove();
                                                         });
                                                     $('#' + id).modal('hide');
-                                                    $.jGrowl(
+                                                    alert(
                                                         "Your Sent message is Successfully Deleted", {
                                                             header: 'Data Delete'
-                                                        });
+                                                        }); window.location.reload()
                                                 }
                                             });
                                             return false;

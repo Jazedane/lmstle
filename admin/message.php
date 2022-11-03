@@ -75,160 +75,148 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="card card-success">
+                    <div class="card card-success direct-chat direct-chat-success">
                         <div class="card-header">
-                            <h3 class="card-title">Send Messages</h3>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="mailbox-controls">
-                                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i
-                                        class="far fa-square"></i>
+                            <h3 class="card-title">Inbox</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
                                 </button>
-                                <div class="btn-group">
-                                    <button href="#<?php echo $id; ?>" data-toggle="modal" type="button"
-                                        class="btn btn-danger btn-sm">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-sm">
-                                        <i class="fas fa-reply"></i>
-                                    </button>
+                                <button type="button" class="btn btn-tool" title="Contacts"
+                                    data-widget="chat-pane-toggle">
+                                    <i class="fas fa-comments"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <?php
+                                ($query_announcement = mysqli_query(
+                                $conn,
+                                "SELECT * FROM tbl_message 
+                                LEFT JOIN tbl_student ON tbl_student.student_id = tbl_message.sender_id 
+                                WHERE tbl_message.receiver_id = '$session_id' 
+                                ORDER BY date_sended DESC"
+                                )) or die();
+                                $count_my_message = mysqli_num_rows(
+                                $query_announcement
+                                );
+                                if ($count_my_message != '0') {
+                                while (
+                                    $row = mysqli_fetch_array(
+                                            $query_announcement
+                                            )
+                                ) {
+
+                                $id = $row['message_id'];
+                                $sender_id = $row['sender_id'];
+                                $sender_name =
+                                $row['firstname'] .' ' . $row['lastname'];
+                                $receiver_name = $row['receiver_name'];
+                            ?>
+                            <div class="direct-chat-msg">
+                                <div class="direct-chat-infos clearfix">
+                                    <span class="direct-chat-name float-left">
+                                        <strong>Send by: Student <?php echo $sender_name; ?> </strong></span>
+                                    <span
+                                        class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
+                                </div>
+                                <img class="direct-chat-img" src="<?php echo $row['location']; ?>"
+                                    alt="Message User Image">
+                                <div class="direct-chat-text" style="height:50px;background-color:success">
+                                    <?php echo $row['content']; ?>
+                                    <div class="float-sm-right">
+                                        <a class="btn btn-link" href="#reply<?php echo $id; ?>" data-toggle="modal"><i
+                                                class="fas fa-reply"></i></a>
+                                        <a class="btn btn-link" href="#del<?php echo $id; ?>" data-toggle="modal"><i
+                                                class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                    <?php include("remove_inbox_message_modal.php"); ?>
+                                    <?php include 'reply_inbox_message_modal.php'; ?>
                                 </div>
                             </div>
-                            <div class="table-responsive mailbox-messages">
-                                <table class="table table-hover table-striped">
-                                    <tbody>
-                                        <?php
-                                                ($query_announcement = mysqli_query(
-                                                $conn,
-                                                "SELECT * FROM tbl_message 
-                                                LEFT JOIN tbl_student ON tbl_student.student_id = tbl_message.sender_id 
-                                                WHERE tbl_message.receiver_id = '$session_id' 
-                                                ORDER BY date_sended DESC"
-                                                )) or die();
-                                                $count_my_message = mysqli_num_rows(
-                                                $query_announcement
-                                                );
-                                                if ($count_my_message != '0') {
-                                                while (
-                                                    $row = mysqli_fetch_array(
-                                                        $query_announcement
-                                                    )
-                                                ) {
+                            <?php }}else{ ?>
+                            <div class="alert alert-info"><i class="fas fa-info-circle"></i> No Inbox
+                                Messages</div>
+                            <?php } ?>
+                            <script type="text/javascript">
+                            $(document).ready(function() {
+                                $('.remove').click(function() {
 
-                                                $id = $row['message_id'];
-                                                $sender_id = $row['sender_id'];
-                                                $sender_name =
-                                                $row['firstname'] .' ' . $row['lastname'];
-                                                $receiver_name = $row['receiver_name'];
-                                            ?>
-                                        <tr>
-                                            <td class="post" id="del<?php echo $id; ?>">
-                                                <div class="icheck-primary">
-                                                    <input type="checkbox" value="" id="check1">
-                                                    <label for="check1"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                Send by: <strong><?php echo $sender_name; ?></strong>
-                                            </td>
-                                            <td class="message_content">
-                                                <?php echo $row['content']; ?>
-                                            </td>
-                                            <td class="mailbox-date"><i class="fas fa-calendar"></i>
-                                                <?php echo $row['date_sended']; ?></td>
-                                            <td>
-                                                <a class="btn btn-link" href="#reply<?php echo $id; ?>"
-                                                    data-toggle="modal"><i class="fas fa-reply"></i> Reply </a>
-                                                <a class="btn btn-link" href="#del<?php echo $id; ?>"
-                                                    data-toggle="modal"><i class="fas fa-trash"></i> Remove
-                                                </a>
-                                                <?php include("remove_sent_message_modal.php"); ?>
-                                                <?php include 'reply_inbox_message_modal.php'; ?>
-                                            </td>
-                                        </tr>
-                                        <?php }}else{ ?>
-                                        <div class="alert alert-info"><i class="fas fa-info-circle"></i> No Inbox
-                                            Messages</div>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                                <script type="text/javascript">
-                                $(document).ready(function() {
-                                    $('.remove').click(function() {
-
-                                        var id = $(this).attr("id");
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "remove_sent_message.php",
-                                            data: ({
-                                                id: id
-                                            }),
-                                            cache: false,
-                                            success: function(html) {
-                                                $("#del" + id).fadeOut('slow',
-                                                    function() {
-                                                        $(this).remove();
-                                                    });
-                                                $('#' + id).modal('hide');
-                                                $.jGrowl(
-                                                    "Your Sent message is Successfully Deleted", {
-                                                        header: 'Data Delete'
-                                                    });
-                                            }
-                                        });
-                                        return false;
-                                    });
-                                });
-                                </script>
-                                <script>
-                                jQuery(document).ready(function() {
-                                    jQuery("#reply").submit(function(e) {
-                                        e.preventDefault();
-                                        var id = $('.reply').attr("id");
-                                        var _this = $(e.target);
-                                        var formData = jQuery(this).serialize();
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "reply.php",
-                                            data: formData,
-                                            success: function(html) {
-                                                $.jGrowl("Message Successfully Sent", {
-                                                    header: 'Message Sent'
+                                    var id = $(this).attr("id");
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "remove_inbox_message.php",
+                                        data: ({
+                                            id: id
+                                        }),
+                                        cache: false,
+                                        success: function(html) {
+                                            $("#del" + id).fadeOut('slow',
+                                                function() {
+                                                    $(this).remove();
                                                 });
-                                                $('#reply' + id).modal('hide');
-                                            }
-
-                                        });
-                                        return false;
-                                    });
-                                });
-                                </script>
-                                <script>
-                                jQuery(document).ready(function() {
-                                    jQuery("#send_message_student").submit(function(e) {
-                                        e.preventDefault();
-                                        var formData = jQuery(this).serialize();
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "send_message_teacher_to_student.php",
-                                            data: formData,
-                                            success: function(html) {
-
-                                                alert("Message Successfully Sended", {
-                                                    header: 'Message Sent'
+                                            $('#' + id).modal('hide');
+                                            alert(
+                                                "Your Sent message is Successfully Deleted", {
+                                                    header: 'Data Delete'
                                                 });
-                                                var delay = 2000;
-                                                setTimeout(function() {
-                                                    window.location =
-                                                        'message.php'
-                                                }, delay);
-                                            }
-                                        });
-                                        return false;
+                                            window.location.reload()
+                                        }
                                     });
+                                    return false;
                                 });
-                                </script>
-                            </div>
+                            });
+                            </script>
+                            <script>
+                            jQuery(document).ready(function() {
+                                jQuery("#reply").submit(function(e) {
+                                    e.preventDefault();
+                                    var id = $('.reply').attr("id");
+                                    var _this = $(e.target);
+                                    var formData = jQuery(this).serialize();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "reply.php",
+                                        data: formData,
+                                        success: function(html) {
+                                            alert("Message Successfully Sent", {
+                                                header: 'Message Sent'
+                                            });
+                                            $('#reply' + id).modal('hide');
+                                        }
+
+                                    });
+                                    return false;
+                                });
+                            });
+                            </script>
+                            <script>
+                            jQuery(document).ready(function() {
+                                jQuery("#send_message_student").submit(function(e) {
+                                    e.preventDefault();
+                                    var formData = jQuery(this).serialize();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "send_message_teacher_to_student.php",
+                                        data: formData,
+                                        success: function(html) {
+
+                                            alert("Message Successfully Sended", {
+                                                header: 'Message Sent'
+                                            });
+                                            var delay = 2000;
+                                            setTimeout(function() {
+                                                window.location =
+                                                    'message.php'
+                                            }, delay);
+                                        }
+                                    });
+                                    return false;
+                                });
+                            });
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -299,114 +287,6 @@
                                 });
                             });
                             </script>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card card-success direct-chat direct-chat-success">
-                        <div class="card-header">
-                            <h3 class="card-title">Direct Chat</h3>
-
-                            <div class="card-tools">
-                                <span title="3 New Messages" class="badge bg-success">3</span>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" title="Contacts"
-                                    data-widget="chat-pane-toggle">
-                                    <i class="fas fa-comments"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <?php
-                                                ($query_announcement = mysqli_query(
-                                                $conn,
-                                                "SELECT * FROM tbl_message 
-                                                LEFT JOIN tbl_student ON tbl_student.student_id = tbl_message.sender_id 
-                                                WHERE tbl_message.receiver_id = '$session_id' 
-                                                ORDER BY date_sended DESC"
-                                                )) or die();
-                                                $count_my_message = mysqli_num_rows(
-                                                $query_announcement
-                                                );
-                                                if ($count_my_message != '0') {
-                                                while (
-                                                    $row = mysqli_fetch_array(
-                                                        $query_announcement
-                                                    )
-                                                ) {
-
-                                                $id = $row['message_id'];
-                                                $sender_id = $row['sender_id'];
-                                                $sender_name =
-                                                $row['firstname'] .' ' . $row['lastname'];
-                                                $receiver_name = $row['receiver_name'];
-                                            ?>
-                            <div class="direct-chat-messages">
-                                <div class="direct-chat-msg">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span
-                                            class="direct-chat-name float-left"><strong><?php echo $sender_name; ?></span>
-                                        <span
-                                            class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
-                                    </div>
-                                    <img class="direct-chat-img" src="<?php echo $row['location']; ?>"
-                                        alt="Message User Image">
-                                    <div class="direct-chat-text message-content">
-                                        <?php echo $row['content']; ?>
-                                    </div>
-                                </div>
-                                <div class="direct-chat-msg right">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span
-                                            class="direct-chat-name float-right"><strong><?php echo $receiver_name; ?></span>
-                                        <span
-                                            class="direct-chat-timestamp float-left"><?php echo $row['date_sended']; ?></span>
-                                    </div>
-                                    <img class="direct-chat-img" src="<?php echo $row['location']; ?>"
-                                        alt="Message User Image">
-                                    <div class="direct-chat-text">
-                                        <?php echo $row['content']; ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php }}else{ ?>
-                            <div class="alert alert-info"><i class="fas fa-info-circle"></i> No Inbox
-                                Messages</div>
-                            <?php } ?>
-                            <div class="direct-chat-contacts">
-                                <ul class="contacts-list">
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg"
-                                                alt="User Avatar">
-
-                                            <div class="contacts-list-info">
-                                                <span class="contacts-list-name">
-                                                    Count Dracula
-                                                    <small class="contacts-list-date float-right">2/28/2015</small>
-                                                </span>
-                                                <span class="contacts-list-msg">How have you been? I was...</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <form action="#" method="post">
-                                <div class="input-group">
-                                    <input type="text" name="message" placeholder="Type Message ..."
-                                        class="form-control">
-                                    <span class="input-group-append">
-                                        <button type="submit" class="btn btn-success">Send</button>
-                                    </span>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>

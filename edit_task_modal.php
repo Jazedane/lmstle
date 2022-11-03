@@ -76,14 +76,20 @@
                                             value="<?php echo $result['fname']; ?>" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label" for="inputEmail">Activity</label>
-                                        <div class="mb-3">
-                                            <label for="formFileMultiple" class="form-control">
-                                                <input name="uploaded_file" type="file"
-                                                    id="formFileMultiple" value="<?php echo $result['floc']; ?>" multiple required> <?php echo $result['floc']; ?></input>
+                                        <label class="control-label" for="exampleInputFile">Activity</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <label for="formFileMultiple" class="custom-file-label"
+                                                    for="exampleInputFile"> <?php echo $result['floc']; ?>
+                                                </label>
+                                                <input name="uploaded_file" class="custom-file-input" type="file"
+                                                    id="exampleInputFile" value="<?php echo $result['floc']; ?>"
+                                                    multiple required>
+                                                </input>
                                                 <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                                                 <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
                                                 <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -95,7 +101,8 @@
                                 </div>
                                 <div class="card-footer">
                                     <center>
-                                        <button class="btn btn-info" name="Upload" type="submit" value="Upload">Save
+                                        <button class="btn btn-success toastrDefaultSuccess" name="Upload" type="submit"
+                                            value="Upload">Save
                                             Changes</button>
                                     </center>
                                 </div>

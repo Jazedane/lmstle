@@ -59,10 +59,18 @@
                         </div>
                         <div class="card-body p-0">
                             <ul class="nav nav-pills flex-column">
+                                <?php
+			                        $message_query = mysqli_query($conn,"select * from tbl_message where receiver_id = '$session_id' 
+                                    and message_status != 'read' ")or die(mysqli_error());
+			                        $count_message = mysqli_num_rows($message_query);
+		                        ?>
                                 <li class="nav-item active">
                                     <a href="student_message.php" class="nav-link">
                                         <i class="fas fa-inbox"></i> Inbox
-                                        <span class="badge bg-primary float-right">12</span>
+                                        <?php if($count_message == '0'){
+				                        }else{ ?>
+                                        <span class="badge bg-primary float-right"><?php echo $count_message; ?></span>
+                                <?php } ?>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -81,9 +89,6 @@
                         </div>
                         <div class="card-body p-0">
                             <div class="mailbox-controls">
-                                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i
-                                        class="far fa-square"></i>
-                                </button>
                                 <div class="btn-group">
                                     <button href="#<?php echo $id; ?>" data-toggle="modal" type="button"
                                         class="btn btn-danger btn-sm">
@@ -127,12 +132,6 @@
                                                 $row['receiver_name'];
                                             ?>
                                         <tr>
-                                            <td class="post" id="del<?php echo $id; ?>">
-                                                <div class="icheck-primary">
-                                                    <input type="checkbox" value="" id="check1">
-                                                    <label for="check1"></label>
-                                                </div>
-                                            </td>
                                             <td>
                                                 Send by: <strong><?php echo $sender_name; ?></strong>
                                             </td>
@@ -148,7 +147,7 @@
                                                     data-toggle="modal"><i class="fas fa-trash"></i> Remove
                                                 </a>
                                                 <?php include 'reply_inbox_message_modal_student.php'; ?>
-                                                <?php include("remove_sent_message_modal.php"); ?>
+                                                <?php include("remove_inbox_message_modal.php"); ?>
                                             </td>
                                         </tr>
                                         <?php }}else{ ?>
@@ -175,10 +174,11 @@
                                                         $(this).remove();
                                                     });
                                                 $('#' + id).modal('hide');
-                                                $.jGrowl(
+                                                alert(
                                                     "Your Sent message is Successfully Deleted", {
                                                         header: 'Data Delete'
                                                     });
+                                                window.location.reload()
                                             }
                                         });
                                         return false;
@@ -197,7 +197,7 @@
                                             url: "reply.php",
                                             data: formData,
                                             success: function(html) {
-                                                $.jGrowl(
+                                                alert(
                                                     "Message Successfully Sent", {
                                                         header: 'Message Sent'
                                                     });

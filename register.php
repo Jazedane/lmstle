@@ -106,7 +106,8 @@
     <?php } else {
             mysqli_query(
                 $conn,
-                "insert into tbl_teacher (username,password,firstname,lastname,location,teacher_stat) values('$username','$hashedPassword','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg','Unactivated')"
+                "insert into tbl_teacher (username,password,firstname,lastname,location,teacher_stat) 
+                values('$username','$hashedPassword','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg','Activated')"
             ) or die(mysqli_error());
 
             mysqli_query(

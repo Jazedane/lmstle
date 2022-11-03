@@ -58,6 +58,12 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <!-- dropzonejs -->
 <script src="plugins/dropzone/min/dropzone.min.js"></script>
-    <script>
-        $ = jQuery;
-    </script>
+<script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script>
+$(function() {
+    bsCustomFileInput.init();
+});
+</script>
+<script>
+$ = jQuery;
+</script>

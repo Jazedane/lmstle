@@ -84,8 +84,8 @@
                     </script>
                     <?php
                         }else{
-                        mysqli_query($conn,"insert into tbl_teacher (username,password,firstname,lastname,location) 
-                        values('$username','$hashedPassword','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg')")or die(mysqli_error());
+                        mysqli_query($conn,"insert into tbl_teacher (username,password,firstname,lastname,location,teacher_stat) 
+                        values('$username','$hashedPassword','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg','Activated')")or die(mysqli_error());
                         mysqli_query($conn,"insert into tbl_activity_log (date,username,action) 
                         values(NOW(),'$username','Add User $username')")or die(mysqli_error());
                     ?>

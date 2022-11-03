@@ -117,7 +117,7 @@
                                 </p>
                                 <?php if($count_message == '0'){
 				                    }else{ ?>
-                                <span class="badge badge-important"><?php echo $count_message; ?></span>
+                                <span class="badge bg-primary float-right"><?php echo $count_message; ?></span>
                                 <?php } ?>
                             </a>
                         </li>

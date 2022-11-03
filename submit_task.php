@@ -65,14 +65,15 @@
                             <form id="add_task" method="post" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label class="control-label" for="inputEmail">Activity</label>
-                                        <div class="mb-3">
-                                            <label for="formFileMultiple" class="form-control">
-                                                <input name="uploaded_file" type="file"
-                                                    id="formFileMultiple" multiple></input>
-                                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-                                                <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
-                                                <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
+                                        <label class="control-label" for="exampleInputFile">Activity</label>
+                                        <div class="custom-file">
+                                            <input name="uploaded_file" type="file" class="custom-file-input"
+                                                id="formFileMultiple" multiple required></input>
+                                            <label for="formFileMultiple" class="custom-file-label">Choose File
+                                            </label>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                                            <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
+                                            <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -165,7 +166,8 @@
                                                 <td><?php echo $row['feedback']; ?></td>
                                                 <?php if ($session_id == $student_id){ ?>
                                                 <td>
-                                                    <span class="badge badge-success"><?php echo $row['grade']; ?> / <?php echo $row['total_points']; ?></span>
+                                                    <span class="badge badge-success"><?php echo $row['grade']; ?> /
+                                                        <?php echo $row['total_points']; ?></span>
                                                 </td>
                                                 <?php }else{ ?>
                                                 <td></td>

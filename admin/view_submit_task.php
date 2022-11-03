@@ -129,8 +129,8 @@
                                                 }
                                                 ?>
                                                 </td>
-                                                <td><a href="<?php echo $row['floc']; ?>">Attachment <i
-                                                            class="fas fa-paperclip"></i></a></td>
+                                                <td><a href="<?php echo $row['floc']; ?>"><i
+                                                            class="fas fa-paperclip"></i> Attachment</a></td>
                                                 <td><span class="badge badge-success"><?php  echo $row['grade']; ?> / <?php  echo $row['total_points']; ?></span></td>
                                                 <td>
                                                     <a class="btn btn-success" 
