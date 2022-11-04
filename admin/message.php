@@ -125,13 +125,10 @@
                                     alt="Message User Image">
                                 <div class="direct-chat-text" style="height:50px;background-color:success">
                                     <?php echo $row['content']; ?>
-                                    <div class="float-sm-right">
-                                        <a class="btn btn-link" href="#reply<?php echo $id; ?>" data-toggle="modal"><i
-                                                class="fas fa-reply"></i></a>
-                                        <a class="btn btn-link" href="#del<?php echo $id; ?>" data-toggle="modal"><i
-                                                class="fas fa-trash"></i>
-                                        </a>
-                                    </div>
+                                    <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
+                                        data-toggle="modal"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-success float-sm-right" href="#reply<?php echo $id; ?>"
+                                        data-toggle="modal"><i class="fas fa-reply"></i></a>
                                     <?php include("remove_inbox_message_modal.php"); ?>
                                     <?php include 'reply_inbox_message_modal.php'; ?>
                                 </div>
@@ -192,31 +189,6 @@
                                 });
                             });
                             </script>
-                            <script>
-                            jQuery(document).ready(function() {
-                                jQuery("#send_message_student").submit(function(e) {
-                                    e.preventDefault();
-                                    var formData = jQuery(this).serialize();
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "send_message_teacher_to_student.php",
-                                        data: formData,
-                                        success: function(html) {
-
-                                            alert("Message Successfully Sended", {
-                                                header: 'Message Sent'
-                                            });
-                                            var delay = 2000;
-                                            setTimeout(function() {
-                                                window.location =
-                                                    'message.php'
-                                            }, delay);
-                                        }
-                                    });
-                                    return false;
-                                });
-                            });
-                            </script>
                         </div>
                     </div>
                 </div>
@@ -239,7 +211,7 @@
                                         <?php
 											$query = mysqli_query($conn,"select * from tbl_teacher_class_student
 																  LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id
-											 group by tbl_teacher_class_student.student_id order by firstname ASC");
+											 group by tbl_teacher_class_student.student_id order by firstname");
 											while($row = mysqli_fetch_array($query)){
 											
 											?>

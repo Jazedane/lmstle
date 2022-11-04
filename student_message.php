@@ -70,7 +70,7 @@
                                         <?php if($count_message == '0'){
 				                        }else{ ?>
                                         <span class="badge bg-primary float-right"><?php echo $count_message; ?></span>
-                                <?php } ?>
+                                        <?php } ?>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -83,139 +83,131 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="card card-success">
+                    <div class="card card-success direct-chat direct-chat-success">
                         <div class="card-header">
-                            <h3 class="card-title">Send Messages</h3>
+                            <h3 class="card-title">Inbox</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" title="Contacts"
+                                    data-widget="chat-pane-toggle">
+                                    <i class="fas fa-comments"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="card-body p-0">
-                            <div class="mailbox-controls">
-                                <div class="btn-group">
-                                    <button href="#<?php echo $id; ?>" data-toggle="modal" type="button"
-                                        class="btn btn-danger btn-sm">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-sm">
-                                        <i class="fas fa-reply"></i>
-                                    </button>
+                        <div class="card-body">
+                            <?php
+                                ($query_announcement = mysqli_query(
+                                $conn,
+                                "SELECT * FROM tbl_message 
+                                LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_message.sender_id 
+                                WHERE tbl_message.receiver_id = '$session_id' 
+                                ORDER BY date_sended DESC"
+                                )) or die(mysqli_error());
+                                $count_my_message = mysqli_num_rows(
+                                    $query_announcement
+                                );
+                                if ($count_my_message != '0') {
+                                    while (
+                                    $row = mysqli_fetch_array(
+                                        $query_announcement
+                                    )
+                                ) {
+
+                            $id = $row['message_id'];
+                            $id_2 = $row['message_id'];
+                            $status = $row['message_status'];
+                            $sender_id = $row['sender_id'];
+                            $sender_name =
+                                $row['firstname'] .
+                                ' ' .
+                                $row['lastname'];
+                            $receiver_name =
+                                $row['receiver_name'];
+                            ?>
+                            <div class="direct-chat-msg">
+                                <div class="direct-chat-infos clearfix">
+                                    <span class="direct-chat-name float-left">
+                                        <strong>Send by: Teacher <?php echo $sender_name; ?> </strong></span>
+                                    <span
+                                        class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
+                                </div>
+                                <img class="direct-chat-img"
+                                    src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
+                                    alt="Message User Image">
+                                <div class="direct-chat-text" style="height:50px">
+                                    <?php echo $row['content']; ?>
+                                    <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
+                                        data-toggle="modal"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-success float-sm-right" href="#reply<?php echo $id; ?>"
+                                        data-toggle="modal"><i class="fas fa-reply"></i></a>
+                                    <?php include 'reply_inbox_message_modal_student.php'; ?>
+                                    <?php include("remove_inbox_message_modal.php"); ?>
                                 </div>
                             </div>
-                            <div class="table-responsive mailbox-messages">
-                                <table class="table table-hover table-striped">
-                                    <tbody>
-                                        <?php
-                                                ($query_announcement = mysqli_query(
-                                                $conn,
-                                                "SELECT * FROM tbl_message 
-                                                LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_message.sender_id 
-                                                WHERE tbl_message.receiver_id = '$session_id' 
-                                                ORDER BY date_sended DESC"
-                                                )) or die(mysqli_error());
-                                                $count_my_message = mysqli_num_rows(
-                                                    $query_announcement
-                                                );
-                                                if ($count_my_message != '0') {
-                                                    while (
-                                                    $row = mysqli_fetch_array(
-                                                        $query_announcement
-                                                    )
-                                                ) {
-
-                                            $id = $row['message_id'];
-                                            $id_2 = $row['message_id'];
-                                            $status = $row['message_status'];
-                                            $sender_id = $row['sender_id'];
-                                            $sender_name =
-                                                $row['firstname'] .
-                                                ' ' .
-                                                $row['lastname'];
-                                            $receiver_name =
-                                                $row['receiver_name'];
-                                            ?>
-                                        <tr>
-                                            <td>
-                                                Send by: <strong><?php echo $sender_name; ?></strong>
-                                            </td>
-                                            <td class="message_content">
-                                                <?php echo $row['content']; ?>
-                                            </td>
-                                            <td class="mailbox-date"><i class="fas fa-calendar"></i>
-                                                <?php echo $row['date_sended']; ?></td>
-                                            <td>
-                                                <a class="btn btn-link" href="#reply<?php echo $id; ?>"
-                                                    data-toggle="modal"><i class="fas fa-reply"></i> Reply </a>
-                                                <a class="btn btn-link" href="#del<?php echo $id; ?>"
-                                                    data-toggle="modal"><i class="fas fa-trash"></i> Remove
-                                                </a>
-                                                <?php include 'reply_inbox_message_modal_student.php'; ?>
-                                                <?php include("remove_inbox_message_modal.php"); ?>
-                                            </td>
-                                        </tr>
-                                        <?php }}else{ ?>
-                                        <div class="alert alert-info"><i class="fas fa-info-circle"></i> No
-                                            Inbox
-                                            Messages</div>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                                <script type="text/javascript">
-                                $(document).ready(function() {
-                                    $('.remove').click(function() {
-                                        var id = $(this).attr("id");
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "remove_inbox_message.php",
-                                            data: ({
-                                                id: id
-                                            }),
-                                            cache: false,
-                                            success: function(html) {
-                                                $("#del" + id).fadeOut('slow',
-                                                    function() {
-                                                        $(this).remove();
-                                                    });
-                                                $('#' + id).modal('hide');
-                                                alert(
-                                                    "Your Sent message is Successfully Deleted", {
-                                                        header: 'Data Delete'
-                                                    });
-                                                window.location.reload()
-                                            }
-                                        });
-                                        return false;
+                            <?php }}else{ ?>
+                            <div class="alert alert-info"><i class="fas fa-info-circle"></i> No Inbox
+                                Messages</div>
+                            <?php } ?>
+                            <script type="text/javascript">
+                            $(document).ready(function() {
+                                $('.remove').click(function() {
+                                    var id = $(this).attr("id");
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "remove_inbox_message.php",
+                                        data: ({
+                                            id: id
+                                        }),
+                                        cache: false,
+                                        success: function(html) {
+                                            $("#del" + id).fadeOut('slow',
+                                                function() {
+                                                    $(this).remove();
+                                                });
+                                            $('#' + id).modal('hide');
+                                            alert(
+                                                "Your Sent message is Successfully Deleted", {
+                                                    header: 'Data Delete'
+                                                });
+                                            window.location.reload()
+                                        }
                                     });
+                                    return false;
                                 });
-                                </script>
-                                <script>
-                                jQuery(document).ready(function() {
-                                    jQuery("#reply").submit(function(e) {
-                                        e.preventDefault();
-                                        var id = $('.reply').attr("id");
-                                        var _this = $(e.target);
-                                        var formData = jQuery(this).serialize();
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "reply.php",
-                                            data: formData,
-                                            success: function(html) {
-                                                alert(
-                                                    "Message Successfully Sent", {
-                                                        header: 'Message Sent'
-                                                    });
-                                                $('#reply' + id).modal('hide');
-                                            }
+                            });
+                            </script>
+                            <script>
+                            jQuery(document).ready(function() {
+                                jQuery("#reply").submit(function(e) {
+                                    e.preventDefault();
+                                    var id = $('.reply').attr("id");
+                                    var _this = $(e.target);
+                                    var formData = jQuery(this).serialize();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "reply.php",
+                                        data: formData,
+                                        success: function(html) {
+                                            alert(
+                                                "Message Successfully Sent", {
+                                                    header: 'Message Sent'
+                                                });
+                                            $('#reply' + id).modal('hide');
+                                        }
 
-                                        });
-                                        return false;
                                     });
+                                    return false;
                                 });
-                                </script>
-                            </div>
+                            });
+                            </script>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
         <section class="content">
             <div class="row">
                 <div class="col-md-4">
@@ -228,7 +220,9 @@
                                 <div class="form-group">
                                     <label>To:</label>
                                     <select name="teacher_id" class="form-control" required>
-                                        <option></option>
+                                        <option value="<?php echo $row['teacher_id']; ?>">
+                                            <?php echo $row['firstname']; ?>
+                                            <?php echo $row['lastname']; ?> </option>
                                         <?php
 											$query = mysqli_query($conn,"select * from tbl_teacher order by firstname");
 											while($row = mysqli_fetch_array($query)){

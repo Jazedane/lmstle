@@ -21,6 +21,7 @@
     $grade = $result['grade'];
     $task_status = $result['task_status'];
     $p_condition = $result['p_condition'];
+    $total_points = $result['total_points'];
     ?>
 
 </head>
@@ -84,7 +85,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="grade">Points</label>
-                                        <input type="number" name="grade" maxlength="3" min="75" max="<?php echo $result['total_points']; ?>" id="inputtask" class="form-control"
+                                        <input type="number" name="grade" maxlength="3" min="0" max="<?php echo $result['total_points']; ?>" id="inputtask" class="form-control"
                                             value="<?php echo $result['grade']; ?>" required>
                                     </div>
                                     <div class="form-group">

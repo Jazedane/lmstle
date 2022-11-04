@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
     <?php $get_id = $_GET['id']; ?>
 </head>
 
@@ -46,40 +47,82 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Uploaded Task</h3>
+                                <h3 class="card-title">Student Activity</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th><?php echo $class_row['class_name']; ?> Students</th>
-                                            <th><?php echo $row['fname']; ?></th>
-                                            <th>Description</th>
-
+                                            <th></th>
                                         </tr>
 
                                     </thead>
                                     <tbody>
-                                         <?php
+                                        <?php
 										$query = mysqli_query($conn,"select * FROM tbl_student_task 
 										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
-										RIGHT JOIN tbl_task on tbl_student_task.task_id  = tbl_task.task_id
-										WHERE tbl_student_task.student_id = '$session_id'
+										INNER JOIN tbl_task on tbl_student_task.task_id  = tbl_task.task_id
+										WHERE tbl_student_task.task_id = '$session_id'
 										order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];
 									    ?>
                                         <tr>
-                                            <th><i class="fas fa-users"> Class average</i></th>
+                                            <td><i class="fas fa-users"> Class Average</i></i></td>
                                             <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                             <td><?php  echo $row['grade']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
                                         </tr>
-
                                         <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Grade</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="example2" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo $class_row['class_name']; ?> Students</th>
+                                            <th>1st Quarter</th>
+                                            <th>2nd Quarter</th>
+                                            <th>3rd Quarter</th>
+                                            <th>4th Quarter</th>
+                                            <th>General Average</th>
 
+                                        </tr>
 
+                                    </thead>
+                                    <tbody>
+                                        <?php
+										$query = mysqli_query($conn,"select * FROM tbl_student_task 
+										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
+										WHERE task_id = '$session_id'
+										order by task_fdatein DESC")or die(mysqli_error());
+										while($row = mysqli_fetch_array($query)){
+										$id  = $row['student_task_id'];
+										$student_id = $row['student_id'];
+									    ?>
+                                        <tr>
+                                            <th><?php echo $row['firstname']." ".$row['lastname']; ?></th>
+                                            <td></td>
+                                            <td><?php  echo $row['grade']; ?></td>
+                                            <td><?php echo $row['fdesc']; ?></td>
+                                        </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -90,7 +133,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         $("#example1").DataTable({
@@ -100,6 +142,25 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+    </script>
+    <script>
+    $(function() {
+        $("#example2").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example3').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": false,

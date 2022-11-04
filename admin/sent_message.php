@@ -89,6 +89,7 @@
                                 <?php
 								    $query_announcement = mysqli_query($conn,"select * from tbl_message_sent
 														LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_message_sent.receiver_id
+                                                        RIGHT JOIN tbl_student ON tbl_student.student_id = tbl_message_sent.receiver_id
 														where sender_id = '$session_id'  order by date_sended DESC
 														")or die();					
 								    $count_my_message = mysqli_num_rows($query_announcement);
@@ -97,7 +98,6 @@
 								            $id = $row['message_sent_id'];
                                             $sender_id = $row['sender_id'];
                                             $sender_name =
-                                            $sender_name = $row['location'];
                                             $row['firstname'] .' ' . $row['lastname'];
                                             $receiver_name = $row['receiver_name'];
                                 ?>
@@ -109,15 +109,14 @@
                                         <span
                                             class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
                                     </div>
-                                    <img class="direct-chat-img" src="<?php echo $row['location']; ?>"
+                                    <img class="direct-chat-img"
+                                        src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
                                         alt="Message User Image">
                                     <div class="direct-chat-text" style="height:50px;background-color:success">
                                         <?php echo $row['content']; ?>
-                                        <div class="float-sm-right">
-                                            <a class="btn btn-link" href="#del<?php echo $id; ?>" data-toggle="modal"><i
-                                                    class="fas fa-trash"></i>
-                                            </a>
-                                        </div>
+                                        <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
+                                            data-toggle="modal"><i class="fas fa-trash"></i>
+                                        </a>
                                         <?php include("remove_sent_message_modal.php"); ?>
                                     </div>
                                 </div>

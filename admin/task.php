@@ -197,7 +197,7 @@
                                                 <?php
                                                 } ?>
                                                 <a data-placement="bottom" title="Remove" id="<?php echo $id; ?>remove"
-                                                    class="btn btn-danger" href="#<?php echo $id; ?>"
+                                                    class="btn btn-danger" href="#del<?php echo $id; ?>"
                                                     data-toggle="modal"><i class="fas fa-trash"></i></a>
                                                 <?php include 'delete_task_modal.php'; ?>
                                             </td>
