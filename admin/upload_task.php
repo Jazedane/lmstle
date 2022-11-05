@@ -70,14 +70,14 @@ if (
         //$newname = dirname(__FILE__).'/upload/'.$filename;
         $newname =
             $_SERVER['DOCUMENT_ROOT'] .
-            '/lmstle/admin/uploads/' .
+            '/lmstlee4/admin/uploads/' .
             $rd2 .
             '_' .
             $filename;
         $name_notification =
             'submit task name' . ' ' . '<b>' . $name . '</b>';
 
-        $relative_file_path = '/lmstle/admin/uploads/' . $rd2 . '_' . $filename;
+        $relative_file_path = '/lmstlee4/admin/uploads/' . $rd2 . '_' . $filename;
 
         //Check if the file with the same name is already exists on the server
         if (!file_exists($newname)) {

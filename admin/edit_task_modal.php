@@ -14,8 +14,14 @@
     $post_id = $_GET['post_id'];
     $student_task_id = $_GET['student_task_id'];
 
-    $query = mysqli_query($conn,"SELECT * FROM tbl_student_task
-							WHERE student_task_id='$student_task_id'")or die(mysqli_error());
+    echo "SELECT * FROM tbl_student_task
+    WHERE student_task_id='$student_task_id'";
+
+    ($query = mysqli_query(
+        $conn,
+        "SELECT * FROM tbl_student_task LEFT JOIN tbl_task ON tbl_task.task_id = tbl_student_task.task_id
+							WHERE student_task_id='$student_task_id'"
+    )) or die(mysqli_error());
     $result = mysqli_fetch_assoc($query);
 
     $grade = $result['grade'];
@@ -45,11 +51,14 @@
                             $school_year_query_row = mysqli_fetch_array(
                                 $school_year_query
                             );
-                            $school_year = $school_year_query_row['school_year'];
+                            $school_year =
+                                $school_year_query_row['school_year'];
                             ?>
                             <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
                             <li class="breadcrumb-item"><a href="#">School Year:
-                                    <?php echo $school_year_query_row['school_year']; ?></a></li>
+                                    <?php echo $school_year_query_row[
+                                        'school_year'
+                                    ]; ?></a></li>
                             <li class="breadcrumb-item active"><a href="#"><b>Edit Task</b></a></li>
                         </ol>
                     </div>
@@ -64,50 +73,81 @@
                             <div class="card-header">
                                 <h3 class="card-title">Edit Task</h3>
                                 <div id="" class="float-right"><a
-                                        href="./view_submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$post_id ?>">
+                                        href="./view_submit_task.php<?php echo '?id=' .
+                                            $get_id; ?>&<?php echo 'post_id=' .
+    $post_id; ?>">
                                         <i class="fas fa-arrow-left"></i> Back</a>
                                 </div>
                             </div>
-                            <form class="" id="edit_task" action="edit.php<?php echo '?id='.$get_id; ?>" method="post"
+                            <form class="" id="edit_task" action="edit.php<?php echo '?id=' .
+                                $get_id; ?>" method="post"
                                 enctype="multipart/form-data" name="upload">
                                 <input type="hidden" name="student_task_id" value="<?php echo $student_task_id; ?>" />
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="activity_name">Activity Name</label>
                                         <input type="text" name="fname" id="inputtask" class="form-control"
-                                            value="<?php echo $result['fname']; ?>" readonly>
+                                            value="<?php echo $result[
+                                                'fname'
+                                            ]; ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="feedback">Feedback</label>
                                         <textarea id="assigntextarea" placeholder="Description" name="feedback"
-                                            class="form-control" value="<?php echo $result['feedback']; ?>"
-                                            required><?php echo $result['feedback']; ?></textarea>
+                                            class="form-control" value="<?php echo $result[
+                                                'feedback'
+                                            ]; ?>"
+                                            required><?php echo $result[
+                                                'feedback'
+                                            ]; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="grade">Points</label>
-                                        <input type="number" name="grade" maxlength="3" min="0" max="<?php echo $result['total_points']; ?>" id="inputtask" class="form-control"
-                                            value="<?php echo $result['grade']; ?>" required>
+                                        <input type="number" name="grade" maxlength="3" min="0" max="<?php echo $result[
+                                            'total_points'
+                                        ]; ?>" id="inputtask" class="form-control"
+                                            value="<?php echo $result[
+                                                'grade'
+                                            ]; ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="task_status">Status</label>
                                         <select name="task_status" class="custom-select custom-select-sm form-control"
                                             required>
-                                            <option value="0" <?php echo $task_status == 0 ? 'selected' : '' ?>>
+                                            <option value="0" <?php echo $task_status ==
+                                            0
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 Pending
                                             </option>
-                                            <option value="1" <?php echo $task_status == 1 ? 'selected' : '' ?>>
+                                            <option value="1" <?php echo $task_status ==
+                                            1
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 Started
                                             </option>
-                                            <option value="2" <?php echo $task_status == 2 ? 'selected' : '' ?>>
+                                            <option value="2" <?php echo $task_status ==
+                                            2
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 On-Progress
                                             </option>
-                                            <option value="3" <?php echo $task_status == 3 ? 'selected' : '' ?>>
+                                            <option value="3" <?php echo $task_status ==
+                                            3
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 On-Hold
                                             </option>
-                                            <option value="4" <?php echo $task_status == 4 ? 'selected' : '' ?>>
+                                            <option value="4" <?php echo $task_status ==
+                                            4
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 Overdue
                                             </option>
-                                            <option value="5" <?php echo $task_status == 5 ? 'selected' : '' ?>>
+                                            <option value="5" <?php echo $task_status ==
+                                            5
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 Done
                                             </option>
                                         </select>
@@ -115,16 +155,28 @@
                                     <div class="form-group">
                                         <label for="p_condition">Plants Condition</label>
                                         <select name="p_condition" class="custom-select custom-select-sm form-control">
-                                            <option value="0" <?php echo $p_condition == 0 ? 'selected' : '' ?>>
+                                            <option value="0" <?php echo $p_condition ==
+                                            0
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 Pending
                                             </option>
-                                            <option value="1" <?php echo $p_condition == 1 ? 'selected' : '' ?>>
+                                            <option value="1" <?php echo $p_condition ==
+                                            1
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 Alive
                                             </option>
-                                            <option value="2" <?php echo $p_condition == 2 ? 'selected' : '' ?>>
+                                            <option value="2" <?php echo $p_condition ==
+                                            2
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 Withered
                                             </option>
-                                            <option value="3" <?php echo $p_condition == 3 ? 'selected' : '' ?>>
+                                            <option value="3" <?php echo $p_condition ==
+                                            3
+                                                ? 'selected'
+                                                : ''; ?>>
                                                 Dead
                                             </option>
                                         </select>

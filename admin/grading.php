@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LMSTLE | Task</title>
 
-    <?php include 'header.php'; ?>
-    <?php include 'session.php'; ?>
-    <?php include 'script.php'; ?>
-    <?php $get_id = $_GET['id']; ?>
+    <?php 
+        include 'header.php';
+        include 'session.php';
+        include 'script.php';
+        $get_id = $_GET['id']; 
+
+        $task_column_ids = array();
+    ?>
 </head>
 
 <body>
@@ -23,18 +27,24 @@
                     </div>
                     <div class="col-sm-6">
                         <?php
-                        $class_query = mysqli_query($conn,"select * from tbl_teacher_class
+                        ($class_query = mysqli_query(
+                            $conn,
+                            "select * from tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
-										where teacher_class_id = '$get_id'")or die(mysqli_error());
-										$class_row = mysqli_fetch_array($class_query);
-										$class_id = $class_row['class_id'];
-										$school_year = $class_row['school_year'];
-						?>
+										where teacher_class_id = '$get_id'"
+                        )) or die(mysqli_error());
+                        $class_row = mysqli_fetch_array($class_query);
+                        $class_id = $class_row['class_id'];
+                        $school_year = $class_row['school_year'];
+                        ?>
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#"><?php echo $class_row['class_name']; ?></a> <span
-                                    class="divider"></span></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo $class_row[
+                                'class_name'
+                            ]; ?></a> <span class="divider"></span></li>
                             <li class="breadcrumb-item"><a href="#">School Year:
-                                    <?php echo $class_row['school_year']; ?></a> <span class="divider"></span></li>
+                                    <?php echo $class_row[
+                                        'school_year'
+                                    ]; ?></a> <span class="divider"></span></li>
                             <li class="breadcrumb-item active"><a href="#"><b>Uploaded Task</b></a></li>
                         </ol>
                     </div>
@@ -53,29 +63,106 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th><?php echo $class_row['class_name']; ?> Students</th>
-                                            <th></th>
+                                            <th>
+                                                <?php echo $class_row[
+                                                    'class_name'
+                                                ]; ?> Students
+                                            </th>
+
+                                            <?php
+                                                ($header_query = mysqli_query(
+                                                    $conn,
+                                                    "SELECT * FROM tbl_task 
+                                                    WHERE class_id = '$get_id' AND teacher_id = '$session_id' AND isDeleted=false
+                                                    ORDER BY fname DESC "
+                                                )) or die(mysqli_error());
+                                                while (
+                                                    $header_row = mysqli_fetch_array(
+                                                        $header_query
+                                                    )
+                                                ) {
+                                                    $id = $header_row['task_id'];
+                                                    $floc = $header_row['floc'];
+                                                    array_push($task_column_ids, $id);
+                                            ?>
+                                                <th>
+                                                    <?php echo $header_row['fname']; ?>
+                                                </th>
+                                            <?php
+                                                }
+                                            ?>
                                         </tr>
 
                                     </thead>
                                     <tbody>
                                         <?php
-										$query = mysqli_query($conn,"select * FROM tbl_student_task 
-										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
-										INNER JOIN tbl_task on tbl_student_task.task_id  = tbl_task.task_id
-										WHERE tbl_student_task.task_id = '$session_id'
-										order by task_fdatein DESC")or die(mysqli_error());
-										while($row = mysqli_fetch_array($query)){
-										$id  = $row['student_task_id'];
-										$student_id = $row['student_id'];
-									    ?>
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                "SELECT
+                                                *
+                                                FROM
+                                                    tbl_teacher_class_student
+                                                LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id AND tbl_student.isDeleted = FALSE
+                                                INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id
+                                                WHERE
+                                                    teacher_class_id = '$get_id'
+                                                ORDER BY
+                                                    lastname"
+                                            )) or die(mysqli_error());
+
+                                            while (
+                                                $row = mysqli_fetch_array($query)
+                                            ) {
+                                                $student_id = $row['student_id']; 
+                                        ?>
+
                                         <tr>
-                                            <td><i class="fas fa-users"> Class Average</i></i></td>
-                                            <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
-                                            <td><?php  echo $row['grade']; ?></td>
-                                            <td><?php echo $row['fdesc']; ?></td>
+                                            <td>
+                                                <?php echo $row['firstname'] .
+                                                    ' ' .
+                                                    $row['lastname']; ?>
+                                            </td>
+
+                                            <?php
+                                                for ($i = 0; $i < count($task_column_ids); $i++) {
+                                                ($grade_query = mysqli_query(
+                                                    $conn,
+                                                    "SELECT
+                                                    *
+                                                    FROM
+                                                        tbl_student_task
+                                                    LEFT JOIN tbl_student ON tbl_student.student_id = tbl_student_task.student_id
+                                                    INNER JOIN tbl_task ON tbl_student_task.task_id = tbl_task.task_id
+                                                    WHERE
+                                                        tbl_task.class_id = '$get_id' AND tbl_student_task.task_id = '$task_column_ids[$i]' AND tbl_student.student_id = '$student_id'
+                                                    "
+                                                )) or die(mysqli_error());
+
+                                                    $grade_row_count = mysqli_num_rows($grade_query);
+
+                                                    if ($grade_row_count === 0) {
+                                                        ?>
+                                                            <td>0</td>
+                                                        <?php
+                                                    }
+    
+                                                    while (
+                                                        $grade_row = mysqli_fetch_array($grade_query)
+                                                    ) {
+                                                        $grade = $grade_row['grade']; 
+                                            ?>
+                                                    <td>                                                        
+                                                        <?php echo $grade; ?>
+                                                    </td>
+                                            <?php 
+                                                    }
+                                                }
+                                            ?>
                                         </tr>
-                                        <?php } ?>
+
+                                        <?php
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -96,7 +183,9 @@
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th><?php echo $class_row['class_name']; ?> Students</th>
+                                            <th><?php echo $class_row[
+                                                'class_name'
+                                            ]; ?> Students</th>
                                             <th>1st Quarter</th>
                                             <th>2nd Quarter</th>
                                             <th>3rd Quarter</th>
@@ -108,21 +197,35 @@
                                     </thead>
                                     <tbody>
                                         <?php
-										$query = mysqli_query($conn,"select * FROM tbl_student_task 
+                                        ($query = mysqli_query(
+                                            $conn,
+                                            "select * FROM tbl_student_task 
 										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
 										WHERE task_id = '$session_id'
-										order by task_fdatein DESC")or die(mysqli_error());
-										while($row = mysqli_fetch_array($query)){
-										$id  = $row['student_task_id'];
-										$student_id = $row['student_id'];
-									    ?>
+										order by task_fdatein DESC"
+                                        )) or die(mysqli_error());
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) {
+
+                                            $id = $row['student_task_id'];
+                                            $student_id = $row['student_id'];
+                                            ?>
                                         <tr>
-                                            <th><?php echo $row['firstname']." ".$row['lastname']; ?></th>
+                                            <th><?php echo $row['firstname'] .
+                                                ' ' .
+                                                $row['lastname']; ?></th>
                                             <td></td>
-                                            <td><?php  echo $row['grade']; ?></td>
-                                            <td><?php echo $row['fdesc']; ?></td>
+                                            <td><?php echo $row[
+                                                'grade'
+                                            ]; ?></td>
+                                            <td><?php echo $row[
+                                                'fdesc'
+                                            ]; ?></td>
                                         </tr>
-                                        <?php } ?>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -141,15 +244,6 @@
             "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
     });
     </script>
     <script>
@@ -159,16 +253,7 @@
             "lengthChange": false,
             "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example3').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
+        }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
     });
     </script>
 </body>
