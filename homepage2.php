@@ -113,7 +113,7 @@
                             <a href="task_student.php<?php echo '?id='.$get_id; ?>" class="nav-link">
                                 <i class="nav-icon fas fa-file-upload"></i>
                                 <p>
-                                    Task Update
+                                    Activity Update
                                 </p>
                             </a>
                         </li>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Task</title>
+    <title>LMSTLE | Activity</title>
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
@@ -60,7 +60,7 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Add Task</h3>
+                                <h3 class="card-title">Add Activity</h3>
                             </div>
                             <form id="add_task" method="post" enctype="multipart/form-data">
                                 <div class="card-body">
@@ -115,7 +115,7 @@
 										$row = mysqli_fetch_array($query);
 									
 									?>
-                                <div class="alert alert-info">Submit Task in : <?php echo $row['fname']; ?></div>
+                                <div class="alert alert-info">Submit Activity in : <?php echo $row['fname']; ?></div>
                                 <div id="">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
@@ -165,22 +165,37 @@
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td><?php echo $row['feedback']; ?></td>
                                                 <?php if ($session_id == $student_id){ ?>
-                                                <td>
-                                                    <span class="badge badge-success"><?php echo $row['grade']; ?> /
-                                                        <?php echo $row['total_points']; ?></span>
-                                                </td>
-                                                <?php }else{ ?>
-                                                <td></td>
-                                                <?php } ?>
+                                                <?php
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                 "SELECT
+                                                    *
+                                                    FROM
+                                                        tbl_student_task
+                                                    LEFT JOIN tbl_student ON tbl_student.student_id = tbl_student_task.student_id
+                                                    INNER JOIN tbl_task ON tbl_student_task.task_id = tbl_task.task_id
+                                                    WHERE
+                                                        tbl_task.class_id = '$get_id' AND tbl_student_task.task_id = '$post_id' AND tbl_student.student_id = '$student_id'
+                                                    "
+                                                )) or die(mysqli_error());
+                                            while (
+                                                $row = mysqli_fetch_array($query)
+                                            ) {
+                                                $student_id = $row['student_id']; 
+                                            ?>
+                                                <td><span class="badge badge-success"><?php  echo $row['grade']; ?> /
+                                                        <?php  echo $row['total_points']; ?></span></td>
+                                                <?php 
+                                                    }
+                                                }
+                                            ?>
                                                 <td>
                                                     <a class="btn btn-success"
                                                         href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
                                                             class="fas fa-edit"></i> Edit</a>
                                                 </td>
                                             </tr>
-
                                             <?php } ?>
-
                                         </tbody>
                                     </table>
                                 </div>

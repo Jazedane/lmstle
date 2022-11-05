@@ -131,15 +131,36 @@
                                                 </td>
                                                 <td><a href="<?php echo $row['floc']; ?>"><i
                                                             class="fas fa-paperclip"></i> Attachment</a></td>
-                                                <td><span class="badge badge-success"><?php  echo $row['grade']; ?> / <?php  echo $row['total_points']; ?></span></td>
+                                                <?php
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                 "SELECT
+                                                    *
+                                                    FROM
+                                                        tbl_student_task
+                                                    LEFT JOIN tbl_student ON tbl_student.student_id = tbl_student_task.student_id
+                                                    INNER JOIN tbl_task ON tbl_student_task.task_id = tbl_task.task_id
+                                                    WHERE
+                                                        tbl_task.class_id = '$get_id' AND tbl_student_task.task_id = '$post_id' AND tbl_student.student_id = '$student_id'
+                                                    "
+                                                )) or die(mysqli_error());
+                                            while (
+                                                $row = mysqli_fetch_array($query)
+                                            ) {
+                                                $student_id = $row['student_id']; 
+                                            ?>
+                                                <td><span class="badge badge-success"><?php  echo $row['grade']; ?> /
+                                                        <?php  echo $row['total_points']; ?></span></td>
                                                 <td>
-                                                    <a class="btn btn-success" 
+                                                    <a class="btn btn-success"
                                                         href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
                                                             class="fas fa-edit"></i> Edit</a>
                                                 </td>
                                             </tr>
-
-                                            <?php } ?>
+                                            <?php 
+                                                    }
+                                                }
+                                            ?>
 
                                         </tbody>
                                     </table>
@@ -183,22 +204,22 @@
         $('.toastrDefaultSuccess').click(function() {
             toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
 
-        $('.toastsDefaultWarning').click(function() {
-            $(document).Toasts('create', {
-                class: 'bg-warning',
-                title: 'Toast Title',
-                subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-        $('.toastsDefaultDanger').click(function() {
-            $(document).Toasts('create', {
-                class: 'bg-danger',
-                title: 'Toast Title',
-                subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
+            $('.toastsDefaultWarning').click(function() {
+                $(document).Toasts('create', {
+                    class: 'bg-warning',
+                    title: 'Toast Title',
+                    subtitle: 'Subtitle',
+                    body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                })
+            });
+            $('.toastsDefaultDanger').click(function() {
+                $(document).Toasts('create', {
+                    class: 'bg-danger',
+                    title: 'Toast Title',
+                    subtitle: 'Subtitle',
+                    body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                })
+            });
         });
     });
     </script>

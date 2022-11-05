@@ -89,7 +89,7 @@
                                 <?php
 								    $query_announcement = mysqli_query($conn,"select * from tbl_message_sent
 														LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_message_sent.receiver_id
-                                                        RIGHT JOIN tbl_student ON tbl_student.student_id = tbl_message_sent.receiver_id
+                                                        INNER JOIN tbl_student ON tbl_student.student_id = tbl_message_sent.receiver_id
 														where sender_id = '$session_id'  order by date_sended DESC
 														")or die();					
 								    $count_my_message = mysqli_num_rows($query_announcement);

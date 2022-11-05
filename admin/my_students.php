@@ -78,11 +78,8 @@
 
                                             <p class="student">
                                                 <?php echo $row['firstname']." <br> ".$row['lastname']?></p>
-                                            <a href="#<?php echo $id; ?>" data-toggle="modal"><i
-                                                    class="fas fa-trash"></i> Remove</a>
                                         </center>
                                     </div>
-                                    <?php include("remove_student_modal.php"); ?>
                                     <?php } ?>
                                 </ul>
                                 <script type="text/javascript">

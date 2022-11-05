@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Task</title>
+    <title>LMSTLE | Activity Grade</title>
 
     <?php 
         include 'header.php';
@@ -64,9 +64,7 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <?php echo $class_row[
-                                                    'class_name'
-                                                ]; ?> Students
+                                                <?php echo $class_row['class_name']; ?> Students
                                             </th>
 
                                             <?php
@@ -74,7 +72,7 @@
                                                     $conn,
                                                     "SELECT * FROM tbl_task 
                                                     WHERE class_id = '$get_id' AND teacher_id = '$session_id' AND isDeleted=false
-                                                    ORDER BY fname DESC "
+                                                    ORDER BY fname and total_points DESC "
                                                 )) or die(mysqli_error());
                                                 while (
                                                     $header_row = mysqli_fetch_array(
@@ -85,9 +83,9 @@
                                                     $floc = $header_row['floc'];
                                                     array_push($task_column_ids, $id);
                                             ?>
-                                                <th>
-                                                    <?php echo $header_row['fname']; ?>
-                                                </th>
+                                            <th>
+                                                <?php echo $header_row['fname']; ?> <br> out of <?php echo $header_row['total_points']; ?> points
+                                            </th>
                                             <?php
                                                 }
                                             ?>
@@ -117,10 +115,9 @@
                                         ?>
 
                                         <tr>
-                                            <td>
-                                                <?php echo $row['firstname'] .
-                                                    ' ' .
-                                                    $row['lastname']; ?>
+                                            <td> <img id="avatar" src="/lmstle/admin/<?php echo $row['location']; ?>"
+                                                    class="img-circle elevation" alt="User Image" height="30" width="30"> 
+                                                   <?php echo $row['firstname'] . ' ' . $row['lastname']; ?>
                                             </td>
 
                                             <?php
@@ -142,8 +139,8 @@
 
                                                     if ($grade_row_count === 0) {
                                                         ?>
-                                                            <td>0</td>
-                                                        <?php
+                                            <td>0</td>
+                                            <?php
                                                     }
     
                                                     while (
@@ -151,9 +148,9 @@
                                                     ) {
                                                         $grade = $grade_row['grade']; 
                                             ?>
-                                                    <td>                                                        
-                                                        <?php echo $grade; ?>
-                                                    </td>
+                                            <td>
+                                                <?php echo $grade; ?>
+                                            </td>
                                             <?php 
                                                     }
                                                 }
@@ -177,7 +174,7 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Grade</h3>
+                                <h3 class="card-title">Activity Grade</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-striped">
@@ -197,31 +194,35 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        ($query = mysqli_query(
-                                            $conn,
-                                            "select * FROM tbl_student_task 
-										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
-										WHERE task_id = '$session_id'
-										order by task_fdatein DESC"
-                                        )) or die(mysqli_error());
-                                        while (
-                                            $row = mysqli_fetch_array($query)
-                                        ) {
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                "SELECT
+                                                *
+                                                FROM
+                                                    tbl_teacher_class_student
+                                                LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id AND tbl_student.isDeleted = FALSE
+                                                INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id
+                                                WHERE
+                                                    teacher_class_id = '$get_id'
+                                                ORDER BY
+                                                    lastname"
+                                            )) or die(mysqli_error());
 
-                                            $id = $row['student_task_id'];
-                                            $student_id = $row['student_id'];
-                                            ?>
+                                            while (
+                                                $row = mysqli_fetch_array($query)
+                                            ) {
+                                                $student_id = $row['student_id']; 
+                                        ?>
                                         <tr>
-                                            <th><?php echo $row['firstname'] .
-                                                ' ' .
-                                                $row['lastname']; ?></th>
+                                            <td><img id="avatar" src="/lmstle/admin/<?php echo $row['location']; ?>"
+                                                    class="img-circle elevation" alt="User Image" height="30" width="30">
+                                                   <?php echo $row['firstname'] . ' ' . $row['lastname']; ?>
+                                            </td>
                                             <td></td>
-                                            <td><?php echo $row[
-                                                'grade'
-                                            ]; ?></td>
-                                            <td><?php echo $row[
-                                                'fdesc'
-                                            ]; ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                         <?php
                                         }

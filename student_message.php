@@ -220,9 +220,7 @@
                                 <div class="form-group">
                                     <label>To:</label>
                                     <select name="teacher_id" class="form-control" required>
-                                        <option value="<?php echo $row['teacher_id']; ?>">
-                                            <?php echo $row['firstname']; ?>
-                                            <?php echo $row['lastname']; ?> </option>
+                                        <option></option>
                                         <?php
 											$query = mysqli_query($conn,"select * from tbl_teacher order by firstname");
 											while($row = mysqli_fetch_array($query)){

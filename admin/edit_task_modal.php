@@ -14,9 +14,6 @@
     $post_id = $_GET['post_id'];
     $student_task_id = $_GET['student_task_id'];
 
-    echo "SELECT * FROM tbl_student_task
-    WHERE student_task_id='$student_task_id'";
-
     ($query = mysqli_query(
         $conn,
         "SELECT * FROM tbl_student_task LEFT JOIN tbl_task ON tbl_task.task_id = tbl_student_task.task_id
@@ -74,8 +71,7 @@
                                 <h3 class="card-title">Edit Task</h3>
                                 <div id="" class="float-right"><a
                                         href="./view_submit_task.php<?php echo '?id=' .
-                                            $get_id; ?>&<?php echo 'post_id=' .
-    $post_id; ?>">
+                                            $get_id; ?>&<?php echo 'post_id=' .$post_id; ?>">
                                         <i class="fas fa-arrow-left"></i> Back</a>
                                 </div>
                             </div>

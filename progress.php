@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Students</title>
+    <title>LMSTLE | Progress</title>
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
@@ -71,7 +71,7 @@
                                         <?php
 										$query = mysqli_query($conn,"select * FROM tbl_student_task 
 										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
-										RIGHT JOIN tbl_task on tbl_student_task.task_id  = tbl_task.task_id
+										INNER JOIN tbl_task on tbl_student_task.task_id  = tbl_task.task_id
 										WHERE tbl_student_task.student_id = '$session_id'
 										order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){

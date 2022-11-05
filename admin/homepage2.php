@@ -113,7 +113,7 @@
                             <a href="uploaded-task.php<?php echo '?id='.$get_id; ?>" class="nav-link">
                                 <i class="nav-icon fas fa-file-upload"></i>
                                 <p>
-                                    Uploaded Task
+                                    Uploaded Activity
                                 </p>
                             </a>
                         </li>
@@ -121,7 +121,7 @@
                             <a href="grading.php<?php echo '?id='.$get_id; ?>" class="nav-link">
                                 <i class="nav-icon fas fa-percent"></i>
                                 <p>
-                                    Grading
+                                    Check Grade
                                 </p>
                             </a>
                         </li>

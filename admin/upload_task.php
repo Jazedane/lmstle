@@ -75,7 +75,7 @@ if (
             '_' .
             $filename;
         $name_notification =
-            'submit task name' . ' ' . '<b>' . $name . '</b>';
+            'submit activity name' . ' ' . '<b>' . $name . '</b>';
 
         $relative_file_path = '/lmstlee4/admin/uploads/' . $rd2 . '_' . $filename;
 

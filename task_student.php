@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Students</title>
+    <title>LMSTLE | Progress</title>
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
@@ -54,7 +54,7 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Task Progress</h3>
+                                <h3 class="card-title">Activity Progress</h3>
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,
@@ -73,7 +73,7 @@
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 if ($count == '0') { ?>
-                                <div class="alert alert-info">No Task Currently Uploaded</div>
+                                <div class="alert alert-info">No Activity Currently Uploaded</div>
                                 <?php } else { ?>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
@@ -132,8 +132,7 @@
                                                     } ?>
                                                     <button data-placement="bottom" title="Submit Task"
                                                         id="<?php echo $id; ?>submit" class="btn btn-success"
-                                                        name="btn_task"><i class="fas fa-upload"></i> Submit
-                                                        Task</button>
+                                                        name="btn_task"><i class="fas fa-upload"></i> Submit </button>
                                                 </form>
                                             </td>
                                             <script type="text/javascript">
@@ -214,7 +213,7 @@
         var seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
         $(`#${targetElement}`).html(days + " days " + hours + " hours " + minutes + " minutes " + seconds +
-        " seconds ");
+            " seconds ");
     }
     </script>
 </body>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Task</title>
+    <title>LMSTLE | Activity</title>
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
@@ -173,7 +173,7 @@
                                                 <form method="post" action="view_submit_task.php<?php echo '?id=' .
                                                         $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
 
-                                                    <button data-placement="bottom" title="View Student Who Submit Task"
+                                                    <button data-placement="bottom" title="View Student Who Submit Activity"
                                                         id="<?php echo $id; ?>view" class="btn btn-success"><i
                                                             class="fas fa-folder"></i></button>
 
@@ -184,7 +184,7 @@
                                                         $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
 
                                                     <button data-placement="bottom"
-                                                        title="View Student Who Did Not Submit Task"
+                                                        title="View Student Who Did Not Submit Activity"
                                                         id="<?php echo $id; ?>viewnot" class="btn btn-info"><i
                                                             class="fas fa-folder"></i></button>
 
