@@ -45,7 +45,7 @@
                                     <?php echo $class_row[
                                         'school_year'
                                     ]; ?></a> <span class="divider"></span></li>
-                            <li class="breadcrumb-item active"><a href="#"><b>Uploaded Task</b></a></li>
+                            <li class="breadcrumb-item active"><a href="#"><b>Student Grade</b></a></li>
                         </ol>
                     </div>
                 </div>
@@ -65,6 +65,9 @@
                                         <tr>
                                             <th>
                                                 <?php echo $class_row['class_name']; ?> Students
+                                            </th>
+                                            <th>
+                                                Overall Grade
                                             </th>
 
                                             <?php
@@ -118,6 +121,8 @@
                                             <td> <img id="avatar" src="/lmstle/admin/<?php echo $row['location']; ?>"
                                                     class="img-circle elevation" alt="User Image" height="30" width="30"> 
                                                    <?php echo $row['firstname'] . ' ' . $row['lastname']; ?>
+                                            </td>
+                                            <td> 
                                             </td>
 
                                             <?php

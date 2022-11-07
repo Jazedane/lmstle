@@ -150,12 +150,6 @@
                         </li>
                         <li class="nav-header">TASKS</li>
                         <li class="nav-item">
-                            <a href="add_assignment.php" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>Add Assignment</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="add_task.php" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>Add Activity</p>
@@ -216,19 +210,18 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="recycle.php" class="nav-link">
+                                <i class="nav-icon fas fa-recycle"></i>
+                                <p>
+                                    Recycle Bin
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
-                <!-- /.content -->
             </div>
         </aside>
     </div>
-    <!-- /.content-wrapper -->
-    <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
     </aside>
-
-    <!-- /.control-sidebar -->
-    <!-- ./wrapper -->
-
-    <!-- jQuery -->

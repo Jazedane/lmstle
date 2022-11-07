@@ -102,10 +102,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="grade-category.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>
+                                    Grade Category
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="task.php<?php echo '?id='.$get_id; ?>" class="nav-link">
                                 <i class="nav-icon fas fa-tasks"></i>
                                 <p>
-                                    Tasks
+                                    Activity
                                 </p>
                             </a>
                         </li>
