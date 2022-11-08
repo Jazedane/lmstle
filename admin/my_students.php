@@ -68,14 +68,13 @@
                                         <center><a href="#">
                                                 <img id="student_avatar_class"
                                                     src="/lmstlee4/admin/<?php echo $row['location'] ?>" width="80"
-                                                    height="80" class="img-polaroid">
+                                                    height="80" class="img-circle elevation-2">
                                                 <div>
                                                     <span>
                                                         <p><?php ?></p>
                                                     </span>
                                                 </div>
                                             </a>
-
                                             <p class="student">
                                                 <?php echo $row['firstname']." <br> ".$row['lastname']?></p>
                                         </center>

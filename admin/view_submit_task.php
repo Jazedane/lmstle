@@ -71,7 +71,7 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Date Upload</th>
+                                                <th>Date Submitted</th>
                                                 <th>Activity Name</th>
                                                 <th>Description</th>
                                                 <th>Submitted by:</th>
@@ -108,9 +108,9 @@
                             					}elseif($row['task_status'] =='2'){
                               						echo "<span class='badge badge-info'>On-Progress</span>";
                             					}elseif($row['task_status'] =='3'){
-                              						echo "<span class='badge badge-secondary'>On-Hold</span>";
+                              						echo "<span class='badge badge-warning'>On-Hold</span>";
                             					}elseif($row['task_status'] =='4'){
-                              						echo "<span class='badge badge-warning'>Overdue</span>";
+                              						echo "<span class='badge badge-danger'>Overdue</span>";
                             					}elseif($row['task_status'] =='5'){
                               						echo "<span class='badge badge-success'>Done</span>";
                             					}
@@ -130,7 +130,7 @@
                                                 ?>
                                                 </td>
                                                 <td><a href="<?php echo $row['floc']; ?>"><i
-                                                            class="fas fa-paperclip"></i> Attachment</a></td>
+                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></td>
                                                 <?php
                                             ($query = mysqli_query(
                                                 $conn,

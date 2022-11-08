@@ -56,9 +56,8 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Date Upload</th>
-                                            <th>Activity</th>
-                                            <th>Due Date</th>
+                                            <th>Date Submitted</th>
+                                            <th>Activity Name</th>
                                             <th>Status</th>
                                             <th>Condition</th>
                                             <th>Feedback</th>
@@ -71,7 +70,6 @@
                                         <?php
 										$query = mysqli_query($conn,"select * FROM tbl_student_task 
 										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
-										INNER JOIN tbl_task on tbl_student_task.task_id  = tbl_task.task_id
 										WHERE tbl_student_task.student_id = '$session_id'
 										order by task_fdatein DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
@@ -79,9 +77,8 @@
 										$student_id = $row['student_id'];
 									?>
                                         <tr>
-                                            <td><?php echo $row['fdatein']; ?></td>
+                                            <td><?php echo $row['task_fdatein']; ?></td>
                                             <td><?php  echo $row['fname']; ?></td>
-                                            <td><?php  echo $row['end_date']; ?></td>
                                             <td class="project-state">
                                                 <?php
                             					if($task_status[$row['task_status']] =='Pending'){
@@ -116,7 +113,7 @@
                                             <td><?php  echo $row['feedback']; ?></td>
                                             <?php if ($session_id == $student_id){ ?>
                                             <td>
-                                                <span class="badge badge-success"><?php echo $row['grade']; ?> / <?php echo $row['total_points']; ?></span>
+                                                <span class="badge badge-success"><?php echo $row['grade']; ?></span>
                                             </td>
                                             <?php }else{ ?>
                                             <td></td>

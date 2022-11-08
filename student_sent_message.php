@@ -88,31 +88,40 @@
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <button type="button" class="btn btn-tool" title="Contacts"
-                                        data-widget="chat-pane-toggle">
-                                        <i class="fas fa-comments"></i>
-                                    </button>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <?php
-								    $query_announcement = mysqli_query($conn,"select * from tbl_message_sent
-												LEFT JOIN tbl_student ON tbl_student.student_id = tbl_message_sent.receiver_id
-												where sender_id = '$session_id' order by date_sended DESC
-												")or die(mysqli_error());
-								    $count_my_message = mysqli_num_rows($query_announcement);
-								        if ($count_my_message != '0'){
-								            while($row = mysqli_fetch_array($query_announcement)){
-								            $id = $row['message_sent_id'];
-                                            $sender_id = $row['sender_id'];
-                                            $student_id = $row['location'];
-                                            $sender_name = $row['firstname'] .' ' . $row['lastname'];
-                                            $receiver_name = $row['receiver_name'];
-								            ?>
+                                ($query_announcement = mysqli_query(
+                                $conn,
+                                "SELECT * FROM tbl_message_sent 
+                                LEFT JOIN tbl_student ON tbl_student.student_id = tbl_message_sent.sender_id 
+                                WHERE tbl_message_sent.sender_id = '$session_id' 
+                                ORDER BY date_sended DESC"
+                                )) or die(mysqli_error());
+                                $count_my_message = mysqli_num_rows(
+                                    $query_announcement
+                                );
+                                if ($count_my_message != '0') {
+                                    while (
+                                    $row = mysqli_fetch_array(
+                                        $query_announcement
+                                    )
+                                ) {
+
+                            $id = $row['message_sent_id'];
+                            $sender_id = $row['sender_id'];
+                            $sender_name =
+                                $row['firstname'] .
+                                ' ' .
+                                $row['lastname'];
+                            $receiver_name =
+                                $row['receiver_name'];
+                            ?>
                                 <div class="direct-chat-msg">
                                     <div class="direct-chat-infos clearfix">
                                         <span class="direct-chat-name float-left">
-                                            <strong>Send by: Student <?php echo $row['sender_name']; ?> to Teacher
+                                            <strong>Send by: You to Teacher
                                                 <?php echo $row['receiver_name']; ?></strong></span>
                                         <span
                                             class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
@@ -192,7 +201,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="my_message" class="my_message" style="height: 100px; width:100%"
+                                        <label>Content:</label>
+                                        <textarea name="my_message" class="my_message form-control"
                                             required>
                                     </textarea>
                                     </div>

@@ -21,7 +21,7 @@
                         <h1>Class</h1>
                     </div>
                     <div class="col-sm-6">
-                            <?php $query = mysqli_query($conn,"select * from tbl_teacher_class_student
+                        <?php $query = mysqli_query($conn,"select * from tbl_teacher_class_student
 					LEFT JOIN tbl_teacher_class ON tbl_teacher_class.teacher_class_id = tbl_teacher_class_student.teacher_class_id 
 					JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
 					where student_id = '$session_id'
@@ -29,13 +29,13 @@
 					$row = mysqli_fetch_array($query);
 					$id = $row['teacher_class_student_id'];	
 					?>
-                    <ol class="breadcrumb float-sm-right">
+                        <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#"><?php echo $row['class_name']; ?></a> <span
                                     class="divider"></span></li>
                             <li class="breadcrumb-item">School Year: <?php echo $row['school_year']; ?></a> <span
                                     class="divider"></span></li>
                             <li class="breadcrumb-item"><a href="#"><b>My Classmates</b></a></li>
-                    </ol>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="card-body">
                                 <ul class="row">
-                                     <?php
+                                    <?php
 										$my_student = mysqli_query($conn,"SELECT *
 										FROM tbl_teacher_class_student
 										LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id
@@ -69,7 +69,7 @@
                                         <center><a href="#">
                                                 <img id="student_avatar_class"
                                                     src="admin/<?php echo $row['location'] ?>" width="80" height="80"
-                                                    class="img-polaroid">
+                                                    class="img-circle elevation-2">
                                             </a>
                                             <p class="class"><?php echo $row['firstname']."<br> ".$row['lastname']?></p>
                                         </center>

@@ -91,10 +91,6 @@
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                                <button type="button" class="btn btn-tool" title="Contacts"
-                                    data-widget="chat-pane-toggle">
-                                    <i class="fas fa-comments"></i>
-                                </button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -234,7 +230,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Content:</label>
-                                    <textarea name="my_message" class="my_message" style="height: 100px; width: 100%"
+                                    <textarea name="my_message" class="my_message form-control"
                                         required>
                                     </textarea>
                                 </div>
