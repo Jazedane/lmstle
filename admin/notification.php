@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -82,7 +83,7 @@
                                         <?php if ($is_read == true) {
                                         } else {
                                              ?>
-                                        <input id="" class="" name="selector[]" type="checkbox"
+                                        <input id="checkAll" class="uniform_on" name="selector[]" type="checkbox"
                                             value="<?php echo $id; ?>">
                                         <?php
                                         } ?>
@@ -192,7 +193,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
 
     <script>
     $(function() {

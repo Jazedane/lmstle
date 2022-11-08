@@ -64,8 +64,8 @@
                                     <center><button name="update" type="submit" class="btn btn-success"
                                             href="teacher.php"><i class="fas fa-edit">
                                                 Edit</i></button>
-                                        <a href="teacher.php" class="btn btn-info"><i
-                                                class="fas fa-arrow-left"></i> Back </a>
+                                        <a href="teacher.php" class="btn btn-info"><i class="fas fa-arrow-left"></i>
+                                            Back </a>
                                     </center>
                                 </div>
                             </div>
@@ -106,22 +106,27 @@
                                             Data</ul>
                                         <thead>
                                             <tr>
-                                                <th></th>
+                                                <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                                    <script>
+                                                    $("#checkAll").click(function() {
+                                                        $('input:checkbox').not(this).prop('checked', this
+                                                            .checked);
+                                                    });
+                                                    </script>
+                                                </th>
                                                 <th>Name</th>
                                                 <th>Username</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <?php
+                                            <?php
 													$teacher_query = mysqli_query($conn,"select * from tbl_teacher where tbl_teacher.isDeleted=false")or die(mysqli_error());
 													while($row = mysqli_fetch_array($teacher_query)){
 													$id = $row['teacher_id'];
 													?>
-
-
                                             <tr>
                                                 <td width="30">
-                                                    <input id="optionsCheckbox" class="uniform_on" name="selector[]"
+                                                    <input id="checkAll" class="uniform_on" name="selector[]"
                                                         type="checkbox" value="<?php echo $id; ?>">
                                                 </td>
                                                 <td><?php

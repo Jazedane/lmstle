@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -102,7 +103,7 @@
                                 <h3 class="card-title">Teacher List</h3>
                             </div>
                             <div class="card-body">
-                                <form method="post">
+                                <form action="delete_teacher.php" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
                                             class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
@@ -112,7 +113,14 @@
                                             Data</ul>
                                         <thead>
                                             <tr>
-                                                <th></th>
+                                                <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                                    <script>
+                                                    $("#checkAll").click(function() {
+                                                        $('input:checkbox').not(this).prop('checked', this
+                                                            .checked);
+                                                    });
+                                                    </script>
+                                                </th>
                                                 <th>Name</th>
                                                 <th>Username</th>
                                                 <th></th>
@@ -133,7 +141,7 @@
 
                                             <tr>
                                                 <td width="30">
-                                                    <input id="optionsCheckbox" class="uniform_on" name="selector[]"
+                                                    <input id="checkAll" class="uniform_on" name="selector[]"
                                                         type="checkbox" value="<?php echo $id; ?>">
                                                 </td>
                                                 <td><?php
@@ -176,7 +184,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         $("#example1").DataTable({

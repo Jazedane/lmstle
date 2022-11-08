@@ -5,7 +5,10 @@ $conn = $connector->databaseConnector();
 
 $name = $_POST['name'];
 $filedesc = $_POST['desc'];
-
+$total_points = $_POST['total_points'];
+$end_date = $_POST['end_date'];
+$get_id = $_GET['id'];
+$parse_end_date=date('Y-m-d h:i:sa',strtotime($end_date));
 $id = $_POST['selector'];
 $N = count($id);
 
@@ -14,7 +17,7 @@ $name_notification = 'New Activity Added: ' . $name;
 for ($i = 0; $i < $N; $i++) {
     mysqli_query(
         $conn,
-        "INSERT INTO tbl_task (fdesc,fdatein,fname,teacher_id,class_id) VALUES ('$filedesc',NOW(),'$name','$session_id','$id[$i]')"
+        "INSERT INTO tbl_task (fdesc,fdatein,fname,end_date,teacher_id,class_id) VALUES ('$filedesc',NOW(),'$session_id','$name','$total_points','$parse_end_date','$id[$i]')"
     ) or die(mysqli_error());
 
     ($teacher_class_query = mysqli_query(

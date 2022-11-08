@@ -167,7 +167,14 @@
                                         </div>
                                         <thead>
                                             <tr>
-                                                <th></th>
+                                                <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                                    <script>
+                                                    $("#checkAll").click(function() {
+                                                        $('input:checkbox').not(this).prop('checked', this
+                                                            .checked);
+                                                    });
+                                                    </script>
+                                                </th>
                                                 <th>Name</th>
                                                 <th>ID Number</th>
                                                 <th>Gender</th>
@@ -191,7 +198,7 @@
 
                                             <tr>
                                                 <td width="30">
-                                                    <input id="optionsCheckbox" type="checkbox" value=id="check1"
+                                                    <input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
                                                         class="uniform_on" name="selector[]">
                                                     <label for="check1"></label>
                                                 </td>
@@ -257,7 +264,7 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 1000
+            timer: 2000
         });
         $('.toastrDefaultSuccess').click(function() {
             toastr.success('Student Has Been Deleted.')

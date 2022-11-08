@@ -8,17 +8,17 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
     <?php include 'index.php'; ?>
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add Task</h1>
+                        <h1>Create Activity</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -46,13 +46,13 @@
                     <div class="col-md-4">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Add Activity</h3>
-                                <div class="mb-3">
-                                    <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
-                                </div>
+                                <h3 class="card-title">Create Activity</h3>
                             </div>
-                            <form class="" id="add_task" method="post" enctype="multipart/form-data"
-                                name="upload">
+                            <form class="" id="add_task" method="post" enctype="multipart/form-data" name="upload">
+                                <div class="control-group"></div>
+                                <input type="hidden" name="id" value="<?php echo $session_id ?>" />
+                                <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
+                                <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Activity Name</label>
@@ -61,8 +61,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" name="desc" rows="3"
+                                        <textarea id="assigntextare" class="form-control" name="desc" rows="3"
                                             placeholder="Enter description" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Points</label>
+                                        <input type="number" name="total_points" class="form-control"
+                                            placeholder="Enter points" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Due Date:</label>
@@ -79,7 +84,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <center><button name="Upload" type="submit" value="Upload"
-                                                class="btn btn-success">Submit</button>
+                                                class="btn btn-success">Create</button>
                                         </center>
                                     </div>
                                 </div>
@@ -96,25 +101,20 @@
                                         title="Collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
                                 </div>
                             </div>
                             <div class="card-body p-0">
-                                <div class="alert alert-info">Check The Class you want to put this file.</div>
-                                <div class="">
-                                    Check All <input type="checkbox" name="selectAll" id="checkAll" />
-                                    <script>
-                                    $("#checkAll").click(function() {
-                                        $('input:checkbox').not(this).prop('checked', this.checked);
-                                    });
-                                    </script>
-                                </div>
+                                <div class="alert alert-primary">Check The Class you want to put this file.</div>
                                 <table class="table table-striped projects">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                                <script>
+                                                $("#checkAll").click(function() {
+                                                    $('input:checkbox').not(this).prop('checked', this.checked);
+                                                });
+                                                </script>
+                                            </th>
                                             <th>Class Name</th>
                                             <th>Class Code</th>
                                         </tr>
@@ -140,8 +140,8 @@
                                                     $row['teacher_class_id']; ?>
                                         <tr id="del<?php echo $id; ?>">
                                             <td width="30">
-                                                <input id="" class="" name="selector[]" type="checkbox"
-                                                    value="<?php echo $id; ?>">
+                                                <input id="checkAll" class="uniform_on" name="selector[]"
+                                                    type="checkbox" value="<?php echo $id; ?>">
                                             </td>
                                             <td><?php echo $row[
                                                     'class_name'
@@ -164,12 +164,11 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     jQuery(document).ready(function($) {
         $("#add_task").submit(function(e) {
             e.preventDefault();
-            $.jGrowl("Uploading File Please Wait......", {
+            alert("Uploading File Please Wait......", {
                 sticky: true
             });
             e.preventDefault();

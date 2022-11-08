@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -94,7 +95,7 @@
                                         <?php if ($is_read == true) {
                                         } else {
                                              ?>
-                                        <input id="checkAll" class="" name="selector[]" type="checkbox"
+                                        <input id="checkAll" class="uniform_on" name="selector[]" type="checkbox"
                                             value="<?php echo $id; ?>">
                                         <?php
                                         } ?>
@@ -103,7 +104,7 @@
                                             ' ' .
                                             $row['lastname']; ?></strong>
 
-                                        <?php echo $row['message']; ?> 
+                                        <?php echo $row['message']; ?>
                                         <a class="btn-link" href="<?php echo $row[
                                             'link'
                                         ]; ?>">
@@ -204,7 +205,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
 
     <script>
     $(function() {

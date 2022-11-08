@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
     <?php $get_id = $_GET['id']; ?>
 </head>
 
@@ -89,9 +90,15 @@
                                             Data</ul>
                                         <thead>
                                             <tr>
-                                                <th></th>
+                                                <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                                    <script>
+                                                    $("#checkAll").click(function() {
+                                                        $('input:checkbox').not(this).prop('checked', this
+                                                            .checked);
+                                                    });
+                                                    </script>
+                                                </th>
                                                 <th>Year And Section</th>
-                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -103,7 +110,7 @@
 
                                             <tr>
                                                 <td width="30">
-                                                    <input id="optionsCheckbox" class="uniform_on" name="selector[]"
+                                                    <input id="checkAll" class="uniform_on" name="selector[]"
                                                         type="checkbox" value="<?php echo $id; ?>">
                                                 </td>
                                                 <td><?php
@@ -129,7 +136,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         $("#example1").DataTable({

@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -61,14 +62,14 @@
                             $count = mysqli_num_rows($query);
 
                             if ($count > 0){ ?>
-                                <script>
-                                alert('Date Already Exist');
-                                </script>
-                            <?php
+                    <script>
+                    alert('Date Already Exist');
+                    </script>
+                    <?php
                             }else{
                             mysqli_query($conn,"insert into tbl_class (class_name) values('$class_name')")or die(mysqli_error());
                             ?>
-                            <?php
+                    <?php
                             }
                             }
                             ?>
@@ -88,7 +89,14 @@
                                             Data</ul>
                                         <thead>
                                             <tr>
-                                                <th></th>
+                                                <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                                    <script>
+                                                    $("#checkAll").click(function() {
+                                                        $('input:checkbox').not(this).prop('checked', this
+                                                            .checked);
+                                                    });
+                                                    </script>
+                                                </th>
                                                 <th>Year And Section</th>
                                                 <th></th>
                                             </tr>
@@ -108,7 +116,7 @@
 
                                             <tr>
                                                 <td width="30">
-                                                    <input id="optionsCheckbox" class="uniform_on" name="selector[]"
+                                                    <input id="checkAll" class="uniform_on" name="selector[]"
                                                         type="checkbox" value="<?php echo $id; ?>">
                                                 </td>
                                                 <td><?php
@@ -138,7 +146,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         $("#example1").DataTable({

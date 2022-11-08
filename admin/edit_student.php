@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
     <?php $get_id = $_GET['id']; ?>
 </head>
 
@@ -70,8 +71,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>ID Number</label>
-                                        <input name="username" value="<?php echo $row['username']; ?>" type="varchar" maxlength="7"
-                                            class="form-control" placeholder="Enter ID Number">
+                                        <input name="username" value="<?php echo $row['username']; ?>" type="varchar"
+                                            maxlength="7" class="form-control" placeholder="Enter ID Number">
                                     </div>
                                     <div class="form-group">
                                         <label>First Name</label>
@@ -93,8 +94,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Age</label>
-                                        <input name="age" type="number" value="<?php echo $row['age']; ?>" maxlength="2" min="10"
-                                            max="50" class="form-control" name="age" placeholder="AGE" required>
+                                        <input name="age" type="number" value="<?php echo $row['age']; ?>" maxlength="2"
+                                            min="10" max="50" class="form-control" name="age" placeholder="AGE"
+                                            required>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>
@@ -102,8 +104,8 @@
                                     <center><button name="update" type="submit" class="btn btn-success"><i
                                                 class="fas fa-edit">
                                                 Edit</i></button>
-                                        <a href="students.php" class="btn btn-info"><i
-                                                class="fas fa-arrow-left"></i> Back </a>
+                                        <a href="students.php" class="btn btn-info"><i class="fas fa-arrow-left"></i>
+                                            Back </a>
                                     </center>
                                 </div>
                             </div>
@@ -135,9 +137,9 @@
                                 <h3 class="card-title">Teacher List</h3>
                             </div>
                             <div class="card-body">
-                                <form action="delete_teacher.php" method="post">
+                                <form action="delete_student.php" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
-                                        <ul data-toggle="modal" href="#teacher_delete" id="delete"
+                                        <ul data-toggle="modal" href="#student_delete" id="delete"
                                             class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <ul data-toggle="modal" href="#teacher_restore" id="delete"
@@ -145,8 +147,14 @@
                                             Data</ul>
                                         <thead>
                                             <tr>
-                                                <th></th>
-
+                                                <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                                    <script>
+                                                    $("#checkAll").click(function() {
+                                                        $('input:checkbox').not(this).prop('checked', this
+                                                            .checked);
+                                                    });
+                                                    </script>
+                                                </th>
                                                 <th>Name</th>
                                                 <th>ID Number</th>
                                                 <th>Gender</th>
@@ -165,7 +173,7 @@
                                             ?>
                                             <tr>
                                                 <td width="30">
-                                                    <input id="optionsCheckbox" class="uniform_on" name="selector[]"
+                                                    <input id="checkAll" class="uniform_on" name="selector[]"
                                                         type="checkbox" value="<?php echo $id; ?>">
                                                 </td>
 
@@ -197,7 +205,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         $("#example1").DataTable({
