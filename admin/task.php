@@ -50,7 +50,7 @@
                     <div class="col-md-3">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Add Activity</h3>
+                                <h3 class="card-title">Create Activity</h3>
                             </div>
                             <form class="" action="assign_save.php<?php echo '?id='.$get_id; ?>" method="post"
                                 enctype="multipart/form-data" name="upload">

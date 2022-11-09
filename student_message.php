@@ -230,7 +230,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Content:</label>
-                                    <textarea name="my_message" class="my_message form-control"
+                                    <textarea name="my_message" rows="3" class="my_message form-control"
                                         required>
                                     </textarea>
                                 </div>

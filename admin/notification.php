@@ -114,7 +114,7 @@
                                         }
                                     } else {
                                          ?>
-                                    <div class="alert alert-info"><strong><i class="fas fa-bell"></i> No
+                                    <div class="alert alert-primary"><strong><i class="fas fa-bell"></i> No
                                             Notifications Found</strong></div>
                                     <?php
                                     }

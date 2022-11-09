@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -35,18 +36,25 @@
                         <h3 class="card-title">Recycle Bin</h3>
                     </div>
                     <div class="card-body">
-                        <form action="delete_student.php" method="post">
+                        <form action="delete_recycle.php" method="post">
                             <table id="example1" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#student_delete" id="delete" class="btn btn-danger"
-                                    name=""><i class="fas fa-trash"></i>Delete Data</ul>
+                                <ul data-toggle="modal" href="#recycle_delete" id="delete" class="btn btn-danger"
+                                    name=""><i class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'modal_delete.php'; ?>
-                                <ul data-toggle="modal" href="#student_restore" id="delete" class="btn btn-primary"
+                                <ul data-toggle="modal" href="#restore_data" id="delete" class="btn btn-primary"
                                     name=""><i class="fas fa-recycle"></i> Restore data
                                 </ul>
+                                <?php include 'restore_data.php'; ?>
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th>User</th>
+                                        <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                            <script>
+                                            $("#checkAll").click(function() {
+                                                $('input:checkbox').not(this).prop('checked', this.checked);
+                                            });
+                                            </script>
+                                        </th>
+                                        <th>Name</th>
                                         <th></th>
                                         <th>Username</th>
                                     </tr>
@@ -54,7 +62,7 @@
                                 <tbody>
                                     <tr>
                                         <td width="30">
-                                            <input id="optionsCheckbox" type="checkbox" value=id="check1"
+                                            <input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
                                                 class="uniform_on" name="selector[]">
                                             <label for="check1"></label>
                                         </td>
@@ -71,7 +79,7 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
+
     <script>
     $(function() {
         $("#example1").DataTable({

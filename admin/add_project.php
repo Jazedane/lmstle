@@ -4,21 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Project</title>
+    <title>LMSTLE | Task</title>
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
     <?php include 'index.php'; ?>
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add Project</h1>
+                        <h1>Create Project</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -32,13 +32,13 @@
                             );
                             $school_year = $school_year_query_row['school_year'];
                             ?>
-                            <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider">/</span></li>
+                            <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
                             <li class="breadcrumb-item"><a href="#">School Year:
                                     <?php echo $school_year_query_row['school_year']; ?></a></li>
                         </ol>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
         <section class="content-header">
             <div class="container-fluid">
@@ -46,9 +46,13 @@
                     <div class="col-md-4">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Add Project</h3>
+                                <h3 class="card-title">Create Project</h3>
                             </div>
-                            <form>
+                            <form class="" id="add_task" method="post" enctype="multipart/form-data" name="upload">
+                                <div class="control-group"></div>
+                                <input type="hidden" name="id" value="<?php echo $session_id ?>" />
+                                <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
+                                <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Project Name</label>
@@ -57,22 +61,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" name="desc" rows="3"
+                                        <textarea id="assigntextare" class="form-control" name="desc" rows="3"
                                             placeholder="Enter description" required></textarea>
                                     </div>
-                                    <!-- Date and time -->
+                                    <div class="form-group">
+                                        <label>Points</label>
+                                        <input type="number" name="total_points" class="form-control"
+                                            placeholder="Enter points" required>
+                                    </div>
                                     <div class="form-group">
                                         <label>Due Date:</label>
                                         <div class="input-group date" id="reservationdatetime"
                                             data-target-input="nearest">
                                             <input type="text" name="end_date" class="form-control datetimepicker-input"
-                                                data-target="#reservationdatetime" value="<?php echo isset(
-                                                    $end_date
-                                                )
-                                                    ? datetime(
-                                                        'Y-m-d h:i:sa',
-                                                        strtotime($end_date)
-                                                    )
+                                                data-target="#reservationdatetime" value="<?php echo isset($end_date)? datetime('Y-m-d h:i:sa',strtotime($end_date))
                                                     : ''; ?>" required>
                                             <div class="input-group-append" data-target="#reservationdatetime"
                                                 data-toggle="datetimepicker">
@@ -80,81 +82,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="card card-default">
-                                            <div id="actions" class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="btn-group w-100">
-                                                        <span class="btn btn-success col fileinput-button">
-                                                            <i class="fas fa-plus"></i>
-                                                            <span>Add files</span>
-                                                        </span>
-                                                        <button type="submit" class="btn btn-primary col start">
-                                                            <i class="fas fa-upload"></i>
-                                                            <span>Start upload</span>
-                                                        </button>
-                                                        <button type="reset" class="btn btn-warning col cancel">
-                                                            <i class="fas fa-times-circle"></i>
-                                                            <span>Cancel upload</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 d-flex align-items-center">
-                                                    <div class="fileupload-process w-100">
-                                                        <div id="total-progress"
-                                                            class="progress progress-striped active" role="progressbar"
-                                                            aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                                                            <div class="progress-bar progress-bar-success"
-                                                                style="width:0%;" data-dz-uploadprogress></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table table-striped files" id="previews">
-                                                <div id="template" class="row mt-2">
-                                                    <div class="col-auto">
-                                                        <span class="preview"><img src="data:," alt=""
-                                                                data-dz-thumbnail /></span>
-                                                    </div>
-                                                    <div class="col d-flex align-items-center">
-                                                        <p class="mb-0">
-                                                            <span class="lead" data-dz-name></span>
-                                                            (<span data-dz-size></span>)
-                                                        </p>
-                                                        <strong class="error text-danger" data-dz-errormessage></strong>
-                                                    </div>
-                                                    <div class="col-4 d-flex align-items-center">
-                                                        <div class="progress progress-striped active w-100"
-                                                            role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                                            aria-valuenow="0">
-                                                            <div class="progress-bar progress-bar-success"
-                                                                style="width:0%;" data-dz-uploadprogress></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto d-flex align-items-center">
-                                                        <div class="btn-group">
-                                                            <button class="btn btn-primary start">
-                                                                <i class="fas fa-upload"></i>
-                                                                <span>Start</span>
-                                                            </button>
-                                                            <button data-dz-remove class="btn btn-warning cancel">
-                                                                <i class="fas fa-times-circle"></i>
-                                                                <span>Cancel</span>
-                                                            </button>
-                                                            <button data-dz-remove class="btn btn-danger delete">
-                                                                <i class="fas fa-trash"></i>
-                                                                <span>Delete</span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer">
-                                                <center><button name="Upload" type="submit" value="Upload"
-                                                        class="btn btn-success">Submit</button>
-                                                </center>
-                                            </div>
-                                        </div>
+                                    <div class="card-footer">
+                                        <center><button name="Upload" type="submit" value="Upload"
+                                                class="btn btn-success">Create</button>
+                                        </center>
                                     </div>
                                 </div>
                             </form>
@@ -163,23 +94,27 @@
                     <div class="col-md-8">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Projects</h3>
+                                <h3 class="card-title">Tasks</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                         title="Collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
                                 </div>
                             </div>
                             <div class="card-body p-0">
+                                <div class="alert alert-primary">Check the Class you want to put this file.</div>
                                 <table class="table table-striped projects">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                                <script>
+                                                $("#checkAll").click(function() {
+                                                    $('input:checkbox').not(this).prop('checked', this.checked);
+                                                });
+                                                </script>
+                                            </th>
                                             <th>Class Name</th>
                                             <th>Class Code</th>
                                         </tr>
@@ -193,7 +128,7 @@
                                                 "select * from tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
 										LEFT JOIN tbl_subject ON tbl_subject.subject_id = tbl_teacher_class.subject_id
-										where teacher_id = '$session_id' and school_year = '$school_year'"
+										where teacher_id = '$session_id' and school_year = '$school_year' and tbl_class.isDeleted='false'"
                                             )) or die(mysqli_error());
                                             $count = mysqli_num_rows($query);
                                             while (
@@ -205,8 +140,8 @@
                                                     $row['teacher_class_id']; ?>
                                         <tr id="del<?php echo $id; ?>">
                                             <td width="30">
-                                                <input id="" class="" name="selector[]" type="checkbox"
-                                                    value="<?php echo $id; ?>">
+                                                <input id="checkAll" class="uniform_on" name="selector[]"
+                                                    type="checkbox" value="<?php echo $id; ?>">
                                             </td>
                                             <td><?php echo $row[
                                                     'class_name'
@@ -229,7 +164,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         //Initialize Select2 Elements
@@ -377,4 +311,4 @@
     </script>
 </body>
 
-</html>Project
+</html>

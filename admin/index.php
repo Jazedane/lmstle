@@ -111,12 +111,21 @@
                                 </p>
                             </a>
                         </li>
+                        <?php
+			                $message_query = mysqli_query($conn,"select * from tbl_message where receiver_id = '$session_id' 
+                            and message_status != 'read' ")or die(mysqli_error());
+			                $count_message = mysqli_num_rows($message_query);
+		                ?>
                         <li class="nav-item">
                             <a href="message.php" class="nav-link">
                                 <i class="nav-icon fas fa-comments"></i>
                                 <p>
                                     Message
                                 </p>
+                                <?php if($count_message == '0'){
+				                    }else{ ?>
+                                <span class="badge bg-primary float-right"><?php echo $count_message; ?></span>
+                                <?php } ?>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -148,20 +157,36 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-header">TASKS</li>
+                        <li class="nav-header">CREATE</li>
                         <li class="nav-item">
                             <a href="add_task.php" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
-                                <p>Add Activity</p>
+                                <p>Activity</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="add_project.php" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
-                                <p>Add Project</p>
+                                <p>Project</p>
                             </a>
                         </li>
                         <li class="nav-header">INFORMATION</li>
+                        <li class="nav-item">
+                            <a href="gallery.php" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Gallery
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="about.php" class="nav-link">
+                                <i class="nav-icon fas fa-info-circle"></i>
+                                <p>
+                                    About
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-history"></i>
@@ -184,31 +209,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="calendar.php" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
-                                <p>
-                                    Calendar
-                                    <span class="badge badge-info right">2</span>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="gallery.php" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
-                                <p>
-                                    Gallery
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="about.php" class="nav-link">
-                                <i class="nav-icon fas fa-info-circle"></i>
-                                <p>
-                                    About
-                                </p>
-                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="recycle.php" class="nav-link">

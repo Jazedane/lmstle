@@ -11,15 +11,15 @@
             <div class="modal-body">
                 Are you sure you want to Remove this Task?
             </div>
-            <div class="modal-footer justify-content-between">
-                <form method="post" action="delete_task.php">
+            <form method="post" action="delete_task.php">
+                <div class="modal-footer justify-content-between">
                     <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><i class="fas fa-times"></i>
                         Close</button>
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <input type="hidden" name="get_id" value="<?php echo $get_id; ?>">
                     <button class="btn btn-success" name="change"><i class="fas fa-check"></i> Yes</button>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
