@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Task</title>
+    <title>LMSTLE | Activity</title>
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
@@ -103,7 +103,7 @@
                                 </div>
                             </div>
                             <div class="card-body p-0">
-                                <div class="alert alert-primary">Check the Class you want to put this file.</div>
+                                <div class="alert alert-primary">Check the Class you want to put the Activity.</div>
                                 <table class="table table-striped projects">
                                     <thead>
                                         <tr>
@@ -135,11 +135,10 @@
                                                     $query
                                                 )
                                             ) {
-                                                $id =
-                                                    $row['teacher_class_id']; ?>
+                                                $id = $row['teacher_class_id']; ?>
                                         <tr id="del<?php echo $id; ?>">
                                             <td width="30">
-                                                <input id="checkAll" class="uniform_on" name="selector[]"
+                                                <input id="checkAll" class="" name="selector[]"
                                                     type="checkbox" value="<?php echo $id; ?>">
                                             </td>
                                             <td><?php echo $row[
@@ -178,10 +177,10 @@
                 url: "add_task_save.php",
                 data: formData,
                 success: function(html) {
-                    //alert("Activity Successfully Added", {
+                    alert("Activity Successfully Added", {
                         header: 'Task Added'
                     });
-                    //window.location = 'add_task.php';
+                    window.location = 'add_task.php';
                 },
                 cache: false,
                 contentType: false,
