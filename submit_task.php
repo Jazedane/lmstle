@@ -82,9 +82,9 @@
                                             placeholder="Enter activity name" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Description</label>
+                                        <label>Description (Optional)</label>
                                         <textarea class="form-control" name="desc" rows="3"
-                                            placeholder="Enter description" required></textarea>
+                                            placeholder="Enter description"></textarea>
                                     </div>
                                     <div class="card-footer">
                                         <center><button name="Upload" type="submit" value="Upload"
@@ -115,7 +115,7 @@
 										$row = mysqli_fetch_array($query);
 									
 									?>
-                                <div class="alert alert-info">Submit Activity in : <?php echo $row['fname']; ?></div>
+                                <div class="alert alert-primary">Submit Activity in : <?php echo $row['fname']; ?></div>
                                 <div id="">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>

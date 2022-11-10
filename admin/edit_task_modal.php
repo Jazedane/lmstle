@@ -88,12 +88,11 @@
                                             ]; ?>" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label for="feedback">Feedback</label>
+                                        <label for="feedback">Feedback (Optional)</label>
                                         <textarea id="assigntextarea" placeholder="Description" name="feedback"
                                             class="form-control" value="<?php echo $result[
                                                 'feedback'
-                                            ]; ?>"
-                                            required><?php echo $result[
+                                            ]; ?>"><?php echo $result[
                                                 'feedback'
                                             ]; ?></textarea>
                                     </div>
@@ -193,6 +192,33 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script>
+    jQuery(document).ready(function($) {
+        $("#edit_task").submit(function(e) {
+            e.preventDefault();
+            alert("Please Wait......", {
+                sticky: true
+            });
+            e.preventDefault();
+            var _this = $(e.target);
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                type: "POST",
+                url: "edit_task_modal.php",
+                data: formData,
+                success: function(html) {
+                    alert("Edited Successfully", {
+                        header: 'Edited'
+                    });
+                    window.location = 'edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>';
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>

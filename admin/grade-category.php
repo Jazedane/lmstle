@@ -58,37 +58,36 @@
                                     </button>
                                 </div>
                             </div>
-
-                            <div class="card-body">
-                                <h4>Grade Categories</h4><br>
-                                <p>Grade categories must add up to 70% for performance task.</p>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Grade Category</label>
-                                            <input type="text" name="name" class="form-control" placeholder="Enter name"
-                                                required>
+                            <form class="" action="category.php" method="post"
+                                enctype="multipart/form-data" name="upload">
+                                <div class="card-body">
+                                    <h4>Grade Categories</h4><br>
+                                    <p>Grade categories must add up to 70% for performance task.</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Grade Category</label>
+                                                <input type="text" name="category_name" class="form-control"
+                                                    placeholder="Enter name" required>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Grade Category</label>
-                                            <input type="text" name="name" class="form-control" placeholder="Enter name"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Percentage</label>
-                                            <input type="number" name="percentage" maxlenth="3" max=""
-                                                class="form-control" placeholder="Enter percentage" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Percentage</label>
-                                            <input type="number" name="percentage" maxlenth="3" max=""
-                                                class="form-control" placeholder="Enter percentage" required>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Percentage</label>
+                                                <input type="number" name="impact_percentage" maxlenth="3" max="100"
+                                                    class="form-control" placeholder="Enter percentage" required>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="card-footer">
+                                    <center>
+                                        <button class="btn btn-success" id="btn_add">Add Grade Category</button>
+                                        <input type="reset" class="btn btn-danger " id="reset" name="reset"
+                                            value="Cancel">
+                                    </center>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

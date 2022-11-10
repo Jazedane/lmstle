@@ -65,7 +65,7 @@
 										$row1 = mysqli_fetch_array($query1);
 									
 									?>
-                                <div class="alert alert-info">Submit Task in : <?php echo $row1['fname']; ?></div>
+                                <div class="alert alert-primary">Submit Task in : <?php echo $row1['fname']; ?></div>
 
                                 <div id="">
                                     <table id="example1" class="table table-bordered table-striped">

@@ -42,120 +42,113 @@
         </section>
         <section class="content-header">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Create Activity</h3>
-                            </div>
-                            <form class="" id="add_task" method="post" enctype="multipart/form-data" name="Upload">
-                                <div class="card-body">
-                                    <div class="form-group">
+                <div class="col-md-12">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Create Activity</h3>
+                        </div>
+                        <form class="" id="add_task" method="post" enctype="multipart/form-data" name="Upload">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
                                         <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Activity Name</label>
-                                        <input type="text" name="name" class="form-control"
-                                            placeholder="Enter task name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea id="assigntextare" class="form-control" name="desc" rows="3"
-                                            placeholder="Enter description" required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Points</label>
-                                        <input type="number" name="total_points" class="form-control"
-                                            placeholder="Enter points" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Due Date:</label>
-                                        <div class="input-group date" id="reservationdatetime"
-                                            data-target-input="nearest">
-                                            <input type="text" name="end_date" class="form-control datetimepicker-input"
-                                                data-target="#reservationdatetime" value="<?php echo isset($end_date)? datetime('Y-m-d h:i:sa',strtotime($end_date))
+                                        <div class="form-group">
+                                            <label>Activity Name</label>
+                                            <input type="text" name="name" class="form-control"
+                                                placeholder="Enter task name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description (Optional)</label>
+                                            <textarea id="assigntextare" class="form-control" name="desc" rows="3"
+                                                placeholder="Enter description"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Points</label>
+                                            <input type="number" name="total_points" maxlength="3" min="1" max="100"
+                                                class="form-control" placeholder="Enter points" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Due Date:</label>
+                                            <div class="input-group date" id="reservationdatetime"
+                                                data-target-input="nearest">
+                                                <input type="text" name="end_date"
+                                                    class="form-control datetimepicker-input"
+                                                    data-target="#reservationdatetime" value="<?php echo isset($end_date)? datetime('Y-m-d h:i:sa',strtotime($end_date))
                                                     : ''; ?>" required>
-                                            <div class="input-group-append" data-target="#reservationdatetime"
-                                                data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                <div class="input-group-append" data-target="#reservationdatetime"
+                                                    data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <center><button name="Upload" type="submit" value="Upload"
-                                                class="btn btn-success">Create</button>
-                                        </center>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Tasks</h3>
+                                    <div class="col-md-8">
+                                        <div class="alert alert-primary">Check the Class you want to put the
+                                            Activity.</div>
+                                        <table class="table table-striped projects">
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox" name="selectAll" id="checkAll" />
+                                                        <script>
+                                                        $("#checkAll").click(function() {
+                                                            $('input:checkbox').not(this).prop(
+                                                                'checked',
+                                                                this.checked);
+                                                        });
+                                                        </script>
+                                                    </th>
+                                                    <th>Class Name</th>
+                                                    <th>Class Code</th>
+                                                </tr>
 
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                        title="Collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="alert alert-primary">Check the Class you want to put the Activity.</div>
-                                <table class="table table-striped projects">
-                                    <thead>
-                                        <tr>
-                                            <th><input type="checkbox" name="selectAll" id="checkAll" />
-                                                <script>
-                                                $("#checkAll").click(function() {
-                                                    $('input:checkbox').not(this).prop('checked', this.checked);
-                                                });
-                                                </script>
-                                            </th>
-                                            <th>Class Name</th>
-                                            <th>Class Code</th>
-                                        </tr>
+                                            </thead>
+                                            <tbody>
 
-                                    </thead>
-                                    <tbody>
+                                                <?php
+                                                    ($query = mysqli_query(
+                                                    $conn,
+                                                    "select * from tbl_teacher_class
+										            LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
+										            LEFT JOIN tbl_subject ON tbl_subject.subject_id = tbl_teacher_class.subject_id
+										            where teacher_id = '$session_id' and school_year = '$school_year' and tbl_class.isDeleted='false'"
+                                                    )) or die(mysqli_error());
+                                                    $count = mysqli_num_rows($query);
+                                                    while (
+                                                        $row = mysqli_fetch_array(
+                                                        $query
+                                                    )
+                                                    ) {
+                                                    $id = $row['teacher_class_id']; ?>
 
-                                        <?php
-                                            ($query = mysqli_query(
-                                                $conn,
-                                                "select * from tbl_teacher_class
-										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
-										LEFT JOIN tbl_subject ON tbl_subject.subject_id = tbl_teacher_class.subject_id
-										where teacher_id = '$session_id' and school_year = '$school_year' and tbl_class.isDeleted='false'"
-                                            )) or die(mysqli_error());
-                                            $count = mysqli_num_rows($query);
-                                            while (
-                                                $row = mysqli_fetch_array(
-                                                    $query
-                                                )
-                                            ) {
-                                                $id = $row['teacher_class_id']; ?>
-                                        <tr id="del<?php echo $id; ?>">
-                                            <td width="30">
-                                                <input id="checkAll" class="" name="selector[]"
-                                                    type="checkbox" value="<?php echo $id; ?>">
-                                            </td>
-                                            <td><?php echo $row[
+                                                <tr>
+                                                    <td width="30">
+                                                        <input id="checkAll" class="" name="selector[]" type="checkbox"
+                                                            value="<?php echo $id; ?>">
+                                                    </td>
+                                                    <td><?php echo $row[
                                                     'class_name'
                                                 ]; ?></td>
-                                            <td><?php echo $row[
+                                                    <td><?php echo $row[
                                                     'class_id'
                                                 ]; ?></td>
-                                        </tr>
+                                                </tr>
 
-                                        <?php
+                                                <?php
                                             }
                                             ?>
-                                    </tbody>
-                                </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card-footer">
+                                            <center><button name="Upload" type="submit" value="Upload"
+                                                    class="btn btn-success">Create</button>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -163,29 +156,26 @@
     </div>
     <?php include 'footer.php'; ?>
     <script>
-    jQuery(document).ready(function($) {
-        $("#add_task").submit(function(e) {
+    jQuery(document).ready(function() {
+        jQuery("#edit_task").submit(function(e) {
             e.preventDefault();
-            alert("Uploading File Please Wait......", {
-                sticky: true
-            });
-            e.preventDefault();
+            var id = $('.edit').attr("id");
             var _this = $(e.target);
-            var formData = new FormData($(this)[0]);
+            var formData = jQuery(this).serialize();
             $.ajax({
                 type: "POST",
-                url: "add_task_save.php",
+                url: "edit.php",
                 data: formData,
                 success: function(html) {
-                    alert("Activity Successfully Added", {
-                        header: 'Task Added'
-                    });
-                    window.location = 'add_task.php';
-                },
-                cache: false,
-                contentType: false,
-                processData: false 
+                    $.jGrowl(
+                        "Edited Task Successfully", {
+                            header: 'Edited'
+                        });
+                    $('#edit_task' + id).modal('hide');
+                }
+
             });
+            return false;
         });
     });
     </script>

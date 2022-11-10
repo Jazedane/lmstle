@@ -37,7 +37,7 @@
                     </div>
                     <div class="card-body">
                         <form action="delete_recycle.php" method="post">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example2" class="table table-bordered table-striped">
                                 <ul data-toggle="modal" href="#recycle_delete" id="delete" class="btn btn-danger"
                                     name=""><i class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'modal_delete.php'; ?>
@@ -64,7 +64,6 @@
                                         <td width="30">
                                             <input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
                                                 class="uniform_on" name="selector[]">
-                                            <label for="check1"></label>
                                         </td>
                                         <td></td>
                                         <td></td>

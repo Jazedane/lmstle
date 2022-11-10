@@ -19,13 +19,13 @@ for ($i = 0; $i < $N; $i++) {
         VALUES ('$filedesc',NOW(),'$name','$total_points','$parse_end_date','$session_id','$id[$i]')"
     ) or die(mysqli_error());
 
-    ($teacher_class_query = mysqli_query(
+    ($query = mysqli_query(
         $conn,
         "SELECT * FROM tbl_teacher_class WHERE teacher_class_id = '$id[$i]'"
     )) or die(mysqli_error());
 
-    $teacher_class_row = mysqli_fetch_array($teacher_class_query, 1);
-    $class_id = $teacher_class_row['class_id'];
+    $row = mysqli_fetch_array($query, 1);
+    $class_id = $row['class_id'];
 
     ($student_query = mysqli_query(
         $conn,

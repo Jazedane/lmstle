@@ -127,7 +127,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="grading.php<?php echo '?id='.$get_id; ?>" class="nav-link">
-                                <i class="nav-icon fas fa-percent"></i>
+                                <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Check Grade
                                 </p>

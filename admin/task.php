@@ -65,9 +65,9 @@
                                             placeholder="Enter activity name" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Description</label>
+                                        <label>Description (Optional)</label>
                                         <textarea class="form-control" name="desc" rows="3"
-                                            placeholder="Enter description" required></textarea>
+                                            placeholder="Enter description"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Points</label>
