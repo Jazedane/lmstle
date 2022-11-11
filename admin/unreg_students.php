@@ -151,15 +151,23 @@
                                             class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore Data
                                         </ul>
                                         <div class="float-right">
-                                            <ul class="nav nav-pills">
-                                                <li class="active">
-                                                    <a href="students.php">All</a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="unreg_students.php">Unregistered</a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="reg_students.php">Registered</a>
+                                            <ul class="navbar-nav">
+                                                <li class="nav-item dropdown">
+                                                    <button class="btn btn-primary" data-toggle="dropdown" href="#">
+                                                        <i class="fas fa-users"> List </i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                        <center>
+                                                        <a href="students.php" class="dropdown-item"> All
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="unreg_students.php" class="dropdown-item active"> Unregistered
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="reg_students.php" class="dropdown-item"> Registered
+                                                        </a>
+                                                        </center>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>

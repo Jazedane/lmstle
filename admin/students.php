@@ -143,7 +143,6 @@
                             </div>
 
                             <div class="card-body">
-                                <?php include 'database.php'; ?>
                                 <form action="delete_student.php" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#student_delete" id="delete"
@@ -153,15 +152,23 @@
                                             class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Recycle Bin
                                         </ul>
                                         <div class="float-right">
-                                            <ul class="nav nav-pills">
-                                                <li class="active">
-                                                    <a href="students.php">All</a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="unreg_students.php">Unregistered</a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="reg_students.php">Registered</a>
+                                            <ul class="navbar-nav">
+                                                <li class="nav-item dropdown">
+                                                    <button class="btn btn-primary" data-toggle="dropdown" href="#">
+                                                        <i class="fas fa-users"> List </i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                        <center>
+                                                        <a href="students.php" class="dropdown-item active"> All
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="unreg_students.php" class="dropdown-item"> Unregistered
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="reg_students.php" class="dropdown-item"> Registered
+                                                        </a>
+                                                        </center>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -202,8 +209,6 @@
                                                         class="uniform_on" name="selector[]">
                                                     <label for="check1"></label>
                                                 </td>
-                                                </td>
-
                                                 <td><?php $firstname = $row['firstname'];
 						                                $lastname = $row['lastname'];
 						                                $firstname = strtoupper ($firstname);

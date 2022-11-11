@@ -211,7 +211,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="recycle.php" class="nav-link">
+                            <a href="recycle-student.php" class="nav-link">
                                 <i class="nav-icon fas fa-recycle"></i>
                                 <p>
                                     Recycle Bin
