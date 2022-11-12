@@ -11,6 +11,9 @@ $errflag = false;
 $task_id = $_POST['id'];
 $name = $_POST['name'];
 $get_id = $_POST['get_id'];
+
+$is_update = isset($_GET['is_update']) ? $_GET['is_update'] : false;
+
 //Function to sanitize values received from the form. Prevents SQL injection
 function clean($str)
 {
@@ -90,9 +93,13 @@ if (
             ) {
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;
-                ($qry2 = "INSERT INTO tbl_student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) 
-                VALUES ('$filedesc','$relative_file_path',NOW(),'$name','$task_id','$session_id')") or
-                    die(mysqli_error());
+                if ($is_update) {
+                    ($qry2 = "UPDATE tbl_student_task SET fdesc='$filedesc',floc='$relative_file_path',task_fdatein=NOW(),fname='$name',task_id='$task_id',student_id='$session_id'") or die(mysqli_error($conn));
+                } else {
+                    ($qry2 = "INSERT INTO tbl_student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) 
+                    VALUES ('$filedesc','$relative_file_path',NOW(),'$name','$task_id','$session_id')") or
+                        die(mysqli_error());
+                }
 
                 ($teacher_class_query = mysqli_query(
                     $conn,

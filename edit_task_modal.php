@@ -66,13 +66,12 @@
                                         <i class="fas fa-arrow-left"></i> Back</a>
                                 </div>
                             </div>
-                            <form class="" id="edit_task" action="edit.php<?php echo '?id='.$get_id; ?>" method="post"
-                                enctype="multipart/form-data" name="upload">
+                            <form class="" id="edit_task" method="post" enctype="multipart/form-data" name="upload">
                                 <input type="hidden" name="student_task_id" value="<?php echo $student_task_id; ?>" />
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="activity_name">Activity Name</label>
-                                        <input type="text" name="fname" id="inputtask" class="form-control"
+                                        <input type="text" name="name" id="inputtask" class="form-control"
                                             value="<?php echo $result['fname']; ?>" readonly>
                                     </div>
                                     <div class="form-group">
@@ -94,7 +93,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="feedback">Feedback</label>
-                                        <textarea id="assigntextarea" placeholder="Description" name="fdesc"
+                                        <textarea id="assigntextarea" placeholder="Description" name="desc"
                                             class="form-control" value="<?php echo $result['fdesc']; ?>"
                                             required><?php echo $result['fdesc']; ?></textarea>
                                     </div>
@@ -122,7 +121,7 @@
             var formData = new FormData($(this)[0]);
             $.ajax({
                 type: "POST",
-                url: "admin/upload_task.php",
+                url: "admin/upload_task.php?is_update=true",
                 data: formData,
                 success: function(html) {
                     alert("Activity Successfully Uploaded", {
