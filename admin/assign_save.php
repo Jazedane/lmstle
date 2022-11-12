@@ -13,6 +13,7 @@ $end_date = $_POST['end_date'];
 $get_id = $_GET['id'];
 $name_notification = 'New Activity Added: <b>' . $name . '</b>';
 $parse_end_date=date('Y-m-d h:i:sa',strtotime($end_date));
+$grade_category_id = $_POST['grade_category_id'];
 
 ($student_query = mysqli_query(
     $conn,
@@ -32,8 +33,8 @@ while ($row = mysqli_fetch_array($student_query)) {
 
 mysqli_query(
     $conn,
-    "INSERT INTO tbl_task (fdesc,fdatein,teacher_id,class_id,fname,total_points,end_date) 
-                VALUES ('$filedesc',NOW(),'$session_id','$teacher_class_id','$name','$total_points','$parse_end_date')"
+    "INSERT INTO tbl_task (fdesc,fdatein,teacher_id,class_id,fname,total_points,end_date,grade_category_id) 
+                VALUES ('$filedesc',NOW(),'$session_id','$teacher_class_id','$name','$total_points','$parse_end_date','$grade_category_id')"
 ) or die(mysqli_error());
 ?>
 <script>

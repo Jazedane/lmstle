@@ -24,20 +24,23 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <?php
-                                ($class_query = mysqli_query(
+                            ($class_query = mysqli_query(
                                 $conn,
                                 "SELECT * FROM tbl_teacher_class
 							    LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
 							    WHERE teacher_class_id = '$get_id'"
-                                )) or die(mysqli_error());
-                                $class_row = mysqli_fetch_array($class_query);
-                                $class_id = $class_row['class_id'];
-                        ?>
+                            )) or die(mysqli_error());
+                            $class_row = mysqli_fetch_array($class_query);
+                            $class_id = $class_row['class_id'];
+                            ?>
 
-                            <li class="breadcrumb-item"><a href="#"><?php echo $class_row['class_name']; ?></a> <span
-                                    class="divider"></span></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo $class_row[
+                                'class_name'
+                            ]; ?></a> <span class="divider"></span></li>
                             <li class="breadcrumb-item"><a href="#">School Year:
-                                    <?php echo $class_row['school_year']; ?></a> <span class="divider"></span></li>
+                                    <?php echo $class_row[
+                                        'school_year'
+                                    ]; ?></a> <span class="divider"></span></li>
                             <li class="breadcrumb-item active"><a href="#"><b>Tasks List</b></a></li>
                         </ol>
                     </div>
@@ -52,10 +55,10 @@
                             <div class="card-header">
                                 <h3 class="card-title">Create Activity</h3>
                             </div>
-                            <form class="" action="assign_save.php<?php echo '?id='.$get_id; ?>" method="post"
-                                enctype="multipart/form-data" name="upload">
+                            <form class="" action="assign_save.php<?php echo '?id=' .
+                                $get_id; ?>" method="post" enctype="multipart/form-data" name="upload">
                                 <div class="control-group"></div>
-                                <input type="hidden" name="id" value="<?php echo $session_id ?>" />
+                                <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
                                 <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
                                 <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                                 <div class="card-body">
@@ -75,13 +78,49 @@
                                             placeholder="Enter points" required>
                                     </div>
                                     <div class="form-group">
+                                        <label>Grade Category</label>
+                                        <select class="form-control" name="grade_category_id" required>
+                                            <option value="">Select Category</option>
+                                            <?php
+                                                ($category_query = mysqli_query(
+                                                    $conn,
+                                                    "SELECT * FROM tbl_grade_category
+                                                    LEFT JOIN tbl_class ON tbl_class.class_id = tbl_grade_category.class_id
+                                                    WHERE tbl_grade_category.class_id = '$class_id'"
+                                                )) or die(mysqli_error());
+                                                while ($category_row = mysqli_fetch_array($category_query)) {
+                                            ?>
+                                            <option value="
+                                                <?php 
+                                                    echo $category_row[
+                                                        'grade_category_id'
+                                                    ]; 
+                                                ?>
+                                            ">
+                                                <?php 
+                                                    echo $category_row[
+                                                        'category_name'
+                                                    ];
+                                                ?>
+                                            </option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="due_date">Due Date:</label>
                                         <div class="input-group date" id="reservationdatetime"
                                             data-target-input="nearest">
                                             <input type="text" name="end_date" class="datetimepicker-input form-control"
-                                                data-target="#reservationdatetime"
-                                                value="<?php echo isset($end_date)? datetime('Y-m-d h:i:sa',strtotime($end_date)): ''; ?>"
-                                                required>
+                                                data-target="#reservationdatetime" value="<?php echo isset(
+                                                    $end_date
+                                                )
+                                                    ? datetime(
+                                                        'Y-m-d h:i:sa',
+                                                        strtotime($end_date)
+                                                    )
+                                                    : ''; ?>" required>
                                             <div class="input-group-append" data-target="#reservationdatetime"
                                                 data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -119,6 +158,7 @@
                                             <th>Date Upload</th>
                                             <th>Activity Name</th>
                                             <th>Description</th>
+                                            <th>Category</th>
                                             <th>Due Date</th>
                                             <th>Time Left</th>
                                             <th></th>
@@ -131,9 +171,10 @@
                                         ($query = mysqli_query(
                                             $conn,
                                             "SELECT * FROM tbl_task 
-                                            WHERE class_id = '$get_id' AND teacher_id = '$session_id' AND isDeleted=false
+                                            LEFT JOIN tbl_grade_category ON tbl_grade_category.grade_category_id = tbl_task.grade_category_id
+                                            WHERE tbl_task.class_id = '$get_id' AND teacher_id = '$session_id' AND isDeleted=false
                                             ORDER BY fdatein DESC "
-                                        )) or die(mysqli_error());
+                                        )) or die(mysqli_error($conn));
                                         while (
                                             $row = mysqli_fetch_array($query)
                                         ) {
@@ -152,15 +193,24 @@
                                                 'fdesc'
                                             ]; ?></td>
                                             <td><?php echo $row[
+                                                'category_name'
+                                            ]; ?></td>
+                                            <td><?php echo $row[
                                                 'end_date'
                                             ]; ?></td>
-                                            <td id="<?php echo $row['task_id'] ?>-running-due">
+                                            <td id="<?php echo $row[
+                                                'task_id'
+                                            ]; ?>-running-due">
                                                 <script>
                                                 $(document).ready(function() {
                                                     setInterval(() => {
                                                         calculateTimeLeft(
-                                                            '<?php echo $row['task_id'] ?>-running-due',
-                                                            '<?php echo $row['end_date'] ?>'
+                                                            '<?php echo $row[
+                                                                'task_id'
+                                                            ]; ?>-running-due',
+                                                            '<?php echo $row[
+                                                                'end_date'
+                                                            ]; ?>'
                                                         );
                                                     }, 1000)
                                                 })
@@ -168,9 +218,10 @@
                                             </td>
                                             <td width="10">
                                                 <form method="post" action="view_submit_task.php<?php echo '?id=' .
-                                                        $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
+                                                    $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
 
-                                                    <button data-placement="bottom" title="View Student Who Submit Activity"
+                                                    <button data-placement="bottom"
+                                                        title="View Student Who Submit Activity"
                                                         id="<?php echo $id; ?>view" class="btn btn-success"><i
                                                             class="fas fa-folder"></i></button>
 
@@ -178,7 +229,7 @@
                                             </td>
                                             <td width="10">
                                                 <form method="post" action="view_notsubmit_task.php<?php echo '?id=' .
-                                                        $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
+                                                    $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
 
                                                     <button data-placement="bottom"
                                                         title="View Student Who Did Not Submit Activity"
@@ -278,7 +329,7 @@
         var seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
         $(`#${targetElement}`).html(days + " days " + hours + " hours " + minutes + " minutes " + seconds +
-        " seconds ");
+            " seconds ");
     }
     </script>
     <script>
@@ -328,7 +379,6 @@
         })
 
     })
-
     </script>
 </body>
 
