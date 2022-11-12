@@ -34,7 +34,7 @@
                     <?php
                         ($query_teacher = mysqli_query(
                         $conn,
-                        'select * from tbl_teacher'
+                        'select * from tbl_teacher where isDeleted=false'
                         )) or die(mysqli_error());
                         $count_teacher = mysqli_num_rows($query_teacher);
                     ?>
@@ -52,7 +52,7 @@
                     <?php
                         ($query_student = mysqli_query(
                         $conn,
-                        'select * from tbl_student'
+                        'select * from tbl_student where isDeleted=false'
                         )) or die(mysqli_error());
                         $count_student = mysqli_num_rows($query_student);
                     ?>
@@ -71,7 +71,7 @@
                         <?php
                                         ($query_student = mysqli_query(
                                         $conn,
-                                        "select * from tbl_student where status='Registered'"
+                                        "select * from tbl_student where status='Registered' and isDeleted=false"
                                         )) or die(mysqli_error());
                                         $count_student = mysqli_num_rows($query_student);
                                         ?>
@@ -90,7 +90,7 @@
                         <?php
                                         ($query_student = mysqli_query(
                                         $conn,
-                                        "select * from tbl_student where status='Unregistered'"
+                                        "select * from tbl_student where status='Unregistered' and isDeleted=false"
                                         )) or die(mysqli_error());
                                         $count_student = mysqli_num_rows($query_student);
                                         ?>
@@ -108,7 +108,7 @@
                     <?php
                         ($query_task = mysqli_query(
                         $conn,
-                        'select * from tbl_task'
+                        'select * from tbl_task where isDeleted=false'
                         )) or die(mysqli_error());
                         $count_task = mysqli_num_rows($query_task);
                     ?>

@@ -148,7 +148,7 @@
                                             }
                                         } else {
                                     ?>
-                                    <div class="alert alert-info"><i class="fas fa-info-circle"></i> No Class
+                                    <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Class
                                         Currently Added</div>
                                     <?php
                                         }

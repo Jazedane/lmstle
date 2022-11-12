@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
     <?php $get_id = $_GET['id']; ?>
     <?php 
 	  $post_id = $_GET['post_id'];
@@ -87,8 +88,8 @@
 
                                             <?php
 										    $query = mysqli_query($conn,"select * FROM tbl_student_task
-										    LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
-										    where task_id = '$post_id'  order by task_fdatein DESC")or die(mysqli_error());
+										    LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id and tbl_student_task.isDeleted=false 
+										    where task_id = '$post_id' order by task_fdatein DESC")or die(mysqli_error());
 										    while($row = mysqli_fetch_array($query)){
 										    $id  = $row['student_task_id'];
                                             $student_id = $row['student_id'];
@@ -173,7 +174,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     $(function() {
         $("#example1").DataTable({

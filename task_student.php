@@ -73,7 +73,7 @@
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 if ($count == '0') { ?>
-                                <div class="alert alert-info">No Activity Currently Uploaded</div>
+                                <div class="alert alert-primary">No Activity Currently Uploaded</div>
                                 <?php } else { ?>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>

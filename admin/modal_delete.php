@@ -68,27 +68,6 @@
 					    </div>
 					</div>
 
-					<div id="recycle_delete" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					    <div class="modal-dialog">
-					        <div class="modal-content bg-danger">
-					            <div class="modal-header">
-					                <h4 id="myModalLabel" class="modal-title">Delete Data Permanently?</h4>
-					                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					                    <span aria-hidden="true">&times;</span>
-					                </button>
-					            </div>
-					            <div class="modal-body">
-					                <p>Are you sure you want to delete the data you check permanently?</p>
-					            </div>
-					            <div class="modal-footer justify-content-between">
-					                <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
-					                    Close</button>
-					                <button name="delete_recycle" class="btn btn-danger"><i class="fas fa-check"></i> Yes</button>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-
 					<!-- Subject delete modal -->
 					<div id="subject_delete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 					    aria-hidden="true">

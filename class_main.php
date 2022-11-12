@@ -78,7 +78,7 @@
                                     }
                                 } else {
                             ?>
-                        <div class="alert alert-info">
+                        <div class="alert alert-primary">
                             <i class="fas fa-info-circle"></i>
                             You are currently not enrolled in a class
                         </div>

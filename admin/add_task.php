@@ -47,7 +47,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Create Activity</h3>
                         </div>
-                        <form class="" id="add_task" method="post" enctype="multipart/form-data" name="Upload">
+                        <form class="" id="add_activity" method="post" enctype="multipart/form-data" name="Upload">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -155,27 +155,30 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <script>
-    jQuery(document).ready(function() {
-        jQuery("#edit_task").submit(function(e) {
+        <script>
+    jQuery(document).ready(function($) {
+        $("#add_activity").submit(function(e) {
             e.preventDefault();
-            var id = $('.edit').attr("id");
+            alert("Uploading File Please Wait......", {
+                sticky: true
+            });
+            e.preventDefault();
             var _this = $(e.target);
-            var formData = jQuery(this).serialize();
+            var formData = new FormData($(this)[0]);
             $.ajax({
                 type: "POST",
-                url: "edit.php",
+                url: "add_task_save.php",
                 data: formData,
                 success: function(html) {
-                    $.jGrowl(
-                        "Edited Task Successfully", {
-                            header: 'Edited'
-                        });
-                    $('#edit_task' + id).modal('hide');
-                }
-
+                    alert("Activity Successfully Added", {
+                        header: 'Activity Added'
+                    });
+                    window.location = 'add_task.php';
+                },
+                cache: false,
+                contentType: false,
+                processData: false
             });
-            return false;
         });
     });
     </script>

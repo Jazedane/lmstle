@@ -36,15 +36,15 @@
                         <h3 class="card-title">Recycle Bin</h3>
                     </div>
                     <div class="card-body">
-                        <form action="delete_recycle.php" method="post">
+                        <form action="restore-data-student.php" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle_delete" id="delete" class="btn btn-danger"
+                                <ul data-toggle="modal" href="#recycle-delete-student" id="delete" class="btn btn-danger"
                                     name=""><i class="fas fa-trash"></i> Delete Data</ul>
-                                <?php include 'modal_delete.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data" id="delete" class="btn btn-primary"
+                                <?php include 'recycle-delete-modal.php'; ?>
+                                <ul data-toggle="modal" href="#restore_data_student" id="delete" class="btn btn-primary"
                                     name=""><i class="fas fa-recycle"></i> Restore data
                                 </ul>
-                                <?php include 'restore_data.php'; ?>
+                                <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
