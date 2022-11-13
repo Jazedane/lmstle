@@ -37,7 +37,7 @@
                         <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-edit"> Edit Student</i></h3>
+                                    <h3 class="card-title"><i class="fas fa-edit"></i> Edit Student</h3>
                                 </div>
                                 <?php
 							$query = mysqli_query($conn,"select * from tbl_student LEFT JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
@@ -103,8 +103,8 @@
                                 <div class="card-footer">
                                     <center><button name="update" type="submit" class="btn btn-success"><i
                                                 class="fas fa-edit">
-                                                Edit</i></button>
-                                        <a href="students.php" class="btn btn-info"><i class="fas fa-arrow-left"></i>
+                                                </i> Edit</button>
+                                        <a href="students.php" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
                                             Back </a>
                                     </center>
                                 </div>
@@ -142,9 +142,6 @@
                                         <ul data-toggle="modal" href="#student_delete" id="delete"
                                             class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
-                                        <ul data-toggle="modal" href="#teacher_restore" id="delete"
-                                            class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore
-                                            Data</ul>
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox" name="selectAll" id="checkAll" />

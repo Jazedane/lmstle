@@ -135,13 +135,8 @@
                                         <center><a href="my_students.php<?php echo '?id=' . $id; ?>">
                                                 <img src="<?php echo $row['thumbnails']; ?>" width="124" height="140"
                                                     class="img-thumbnail" alt="">
-
-                                            </a>
-                                            <p class="class"><?php echo $row['class_name']; ?></p>
-                                            <a href="#<?php echo $class_id; ?>" data-toggle="modal"><i
-                                                    class="fas fa-trash-can"></i> Remove</a>
+                                            <p class="class"><?php echo $row['class_name']; ?></p></a>
                                         </center>
-                                        <?php include 'delete_class_modal.php'; ?>
                                     </div>
 
                                     <?php

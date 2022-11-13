@@ -6,7 +6,7 @@ if (isset($_POST['delete_recycle_teacher']) && isset($_POST['selector'])) {
     for ($i = 0; $i < $N; $i++) {
         $result = mysqli_query(
             $conn,
-            "UPDATE tbl_teacher WHERE teacher_id='$id[$i]'"
+            "DELETE tbl_teacher WHERE teacher_id='$id[$i]'"
         );
     }
     header('location: recycle-teacher.php');

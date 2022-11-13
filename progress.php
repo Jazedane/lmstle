@@ -50,14 +50,14 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Activity Progress</h3>
+                                <h3 class="card-title">Task Progress</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>Date Submitted</th>
-                                            <th>Activity Name</th>
+                                            <th>Task Name</th>
                                             <th>Status</th>
                                             <th>Condition</th>
                                             <th>Feedback</th>

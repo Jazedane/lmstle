@@ -19,10 +19,10 @@
                 <div class="card-body">
                     <p class="login-box-msg">Sign in to start your session</p>
 
-                    <form id="signin_student" class="form-signin" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="signin_student" class="form-signin" method="post">
                         <div class="input-group mb-3">
-                            <input type="username" maxlength="7" class="form-control" id="student_id" name="username"
-                                placeholder="ID Number" required>
+                            <input type="username" maxlength="6" class="form-control" id="student_id" name="username"
+                                placeholder="ID Number" onBlur='addDashes(this)' autocomplete="off" required>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -65,6 +65,14 @@
         </form>
     </div>
     <?php include 'script.php'; ?>
+    <script LANGUAGE="JavaScript">
+        function addDashes(f)
+            {
+                f.value = f.value.replace(/\D/g, '');
+
+                f.value = f.value.slice(0,2)+"-"+f.value.slice(2,8);
+            }
+    </script>
     <script>
     jQuery(document).ready(function() {
         jQuery("#signin_student").submit(function(e) {

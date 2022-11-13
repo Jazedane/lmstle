@@ -68,6 +68,37 @@
                                                 class="form-control" placeholder="Enter points" required>
                                         </div>
                                         <div class="form-group">
+                                        <label>Grade Category</label>
+                                        <select class="form-control" name="grade_category_id" required>
+                                            <option value="">Select Category</option>
+                                            <?php
+                                                ($category_query = mysqli_query(
+                                                    $conn,
+                                                    "SELECT * FROM tbl_grade_category
+                                                    LEFT JOIN tbl_class ON tbl_class.class_id = tbl_grade_category.class_id
+                                                    WHERE tbl_grade_category.class_id = '$class_id'"
+                                                )) or die(mysqli_error());
+                                                while ($category_row = mysqli_fetch_array($category_query)) {
+                                            ?>
+                                            <option value="
+                                                <?php 
+                                                    echo $category_row[
+                                                        'grade_category_id'
+                                                    ]; 
+                                                ?>
+                                            ">
+                                                <?php 
+                                                    echo $category_row[
+                                                        'category_name'
+                                                    ];
+                                                ?>
+                                            </option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                        <div class="form-group">
                                             <label>Due Date:</label>
                                             <div class="input-group date" id="reservationdatetime"
                                                 data-target-input="nearest">

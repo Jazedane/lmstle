@@ -36,7 +36,7 @@
                         <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-plus"> Add Teacher</i></h3>
+                                    <h3 class="card-title"><i class="fas fa-plus"></i> Add Teacher</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
@@ -48,6 +48,14 @@
                                         <label>Last Name</label>
                                         <input type="text" name="lastname" class="form-control"
                                             placeholder="Enter Lastname" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <select name="gender" class="form-control" placeholder="Gender" required>
+                                            <option>Select Gender</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Username</label>
@@ -63,7 +71,7 @@
                                 <div class="card-footer">
                                     <center><button name="save" type="submit" class="btn btn-success"><i
                                                 class="fas fa-plus">
-                                                Add</i></button></center>
+                                                </i> Add</button></center>
                                 </div>
                             </div>
                         </form>
@@ -72,6 +80,7 @@
                         if (isset($_POST['save'])){
                         $firstname = $_POST['firstname'];
                         $lastname = $_POST['lastname'];
+                        $gender = $_POST['gender'];
                         $username = $_POST['username'];
                         $password = $_POST['password'];
                         $hashedPassword = hash('sha256',$password);
@@ -85,8 +94,8 @@
                     </script>
                     <?php
                         }else{
-                        mysqli_query($conn,"insert into tbl_teacher (username,password,firstname,lastname,location,teacher_stat) 
-                        values('$username','$hashedPassword','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg','Activated')")or die(mysqli_error());
+                        mysqli_query($conn,"insert into tbl_teacher (username,password,firstname,lastname,gemder,location,teacher_stat) 
+                        values('$username','$hashedPassword','$firstname','$lastname','$gender','NO-IMAGE-AVAILABLE.jpg','Activated')")or die(mysqli_error());
                         mysqli_query($conn,"insert into tbl_activity_log (date,username,action) 
                         values(NOW(),'$username','Add User $username')")or die(mysqli_error());
                     ?>
@@ -108,9 +117,6 @@
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
                                             class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
-                                        <ul data-toggle="modal" href="#teacher_restore" id="delete"
-                                            class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore
-                                            Data</ul>
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox" name="selectAll" id="checkAll" />
@@ -123,6 +129,7 @@
                                                 </th>
                                                 <th>Name</th>
                                                 <th>Username</th>
+                                                <th>Gender</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -163,6 +170,12 @@
                                                     $username
                                                 );
                                                 echo $username;
+                                                ?></td>
+                                                <td><?php
+                                                $gender = $row['gender'];
+                                                $gender = strtoupper(
+                                                    $gender);
+                                                echo $gender;
                                                 ?></td>
 
                                                 <td width="40">

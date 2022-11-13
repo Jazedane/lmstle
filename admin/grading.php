@@ -132,7 +132,7 @@
                                                         'fname'
                                                     ]; 
                                                 ?> 
-                                                <br> out of
+                                                <br><?php echo $header_row['category_name'];?><br> out of
                                                 <?php
                                                     /**
                                                      * Record the total points of each activity.

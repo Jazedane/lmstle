@@ -53,7 +53,7 @@
                     <div class="col-md-3">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Create Activity</h3>
+                                <h3 class="card-title">Create Task</h3>
                             </div>
                             <form class="" action="assign_save.php<?php echo '?id=' .
                                 $get_id; ?>" method="post" enctype="multipart/form-data" name="upload">
@@ -63,7 +63,7 @@
                                 <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Activity Name</label>
+                                        <label>Task Name</label>
                                         <input type="text" name="name" class="form-control"
                                             placeholder="Enter activity name" required>
                                     </div>
@@ -150,13 +150,10 @@
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
-                                    <a data-toggle="modal" href="#task_restore" id="delete" class="btn btn-primary"
-                                        name=""><i class="fas fa-recycle"></i> Restore
-                                        Data</a>
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
-                                            <th>Activity Name</th>
+                                            <th>Task Name</th>
                                             <th>Description</th>
                                             <th>Category</th>
                                             <th>Due Date</th>

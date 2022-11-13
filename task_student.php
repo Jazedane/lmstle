@@ -54,7 +54,7 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Activity Progress</h3>
+                                <h3 class="card-title">Task Progress</h3>
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,
@@ -73,13 +73,13 @@
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 if ($count == '0') { ?>
-                                <div class="alert alert-primary">No Activity Currently Uploaded</div>
+                                <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Task Currently Uploaded</div>
                                 <?php } else { ?>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
-                                            <th>Activity Name</th>
+                                            <th>Task Name</th>
                                             <th>Description</th>
                                             <th>Due Date</th>
                                             <th>Points</th>

@@ -29,10 +29,6 @@
                             <i class="fas fa-edit"> Change Password</i>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="change-avatar-student.php" class="dropdown-item">
-                            <i class="fas fa-edit"> Change Avatar</i>
-                        </a>
-                        <div class="dropdown-divider"></div>
                         <a href="developer.php" class="dropdown-item">
                             <i class="fas fa-users"></i> Developer
                         </a>
@@ -65,7 +61,7 @@
                         $row = mysqli_fetch_array($query);
                     ?>
                     <div class="image">
-                        <img id="avatar" src="/lmstle/admin/<?php echo $row['location']; ?>"
+                        <img id="avatar" src="/lmstlee4/admin/<?php echo $row['location']; ?>"
                             class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
@@ -89,7 +85,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="class_main.php" class="nav-link active">
+                            <a href="class_main.php" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Class

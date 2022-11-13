@@ -17,7 +17,7 @@ if (isset($_POST['change'])) {
 	?>
 
  <script>
-window.location = "class_main.php";
+window.location = "profile.php";
  </script>
 
  <?php     }  ?>

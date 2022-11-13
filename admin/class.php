@@ -36,7 +36,7 @@
                         <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-plus"> Add Class</i></h3>
+                                    <h3 class="card-title"><i class="fas fa-plus"></i> Add Class</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
@@ -48,7 +48,7 @@
                                 <div class="form-group">
                                     <center><button name="save" type="submit" class="btn btn-success"><i
                                                 class="fas fa-plus">
-                                                Add</i></button></center>
+                                                </i> Add</button></center>
                                 </div>
                             </div>
                         </form>
@@ -84,9 +84,6 @@
                                         <ul data-toggle="modal" href="#class_delete" id="delete" class="btn btn-danger"
                                             name=""><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
-                                        <ul data-toggle="modal" href="#student_restore" id="delete"
-                                            class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore
-                                            Data</ul>
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox" name="selectAll" id="checkAll" />

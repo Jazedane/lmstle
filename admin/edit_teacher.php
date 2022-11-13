@@ -37,7 +37,7 @@
                         <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-edit"> Edit Teacher</i></h3>
+                                    <h3 class="card-title"><i class="fas fa-edit"></i> Edit Teacher</h3>
                                 </div>
                                 <?php
 								$query = mysqli_query($conn,"select * from tbl_teacher where teacher_id = '$get_id'")or die(mysqli_error());
@@ -54,6 +54,14 @@
                                         <input type="text" name="lastname" value="<?php echo $row['lastname']; ?>"
                                             class="form-control" placeholder="Enter Lastname">
                                     </div>
+                                     <div class="form-group">
+                                        <label>Gender</label>
+                                        <select name="gender" class="form-control" placeholder="Gender" required>
+                                            <option>Select Gender</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input type="text" name="username" value="<?php echo $row['username']; ?>"
@@ -63,8 +71,8 @@
                                 <div class="card-footer">
                                     <center><button name="update" type="submit" class="btn btn-success"
                                             href="teacher.php"><i class="fas fa-edit">
-                                                Edit</i></button>
-                                        <a href="teacher.php" class="btn btn-info"><i class="fas fa-arrow-left"></i>
+                                                </i> Edit</button>
+                                        <a href="teacher.php" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
                                             Back </a>
                                     </center>
                                 </div>
@@ -76,9 +84,10 @@
 
                     $firstname = $_POST['firstname'];
                     $lastname = $_POST['lastname'];
+                    $gender = $_POST['gender'];
                     $username = $_POST['username'];
 
-                    mysqli_query($conn,"update tbl_teacher set username = '$username'  , firstname = '$firstname' , lastname = '$lastname' where teacher_id = '$get_id' ")
+                    mysqli_query($conn,"update tbl_teacher set username = '$username'  , firstname = '$firstname' , lastname = '$lastname' , gender = '$gender' where teacher_id = '$get_id' ")
                     or die(mysqli_error());
 
                     mysqli_query($conn,"insert into tbl_activity_log (date,username,action) values(NOW(),'$teacher_username','Edit Teacher $username')")
@@ -101,9 +110,6 @@
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
                                             class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
-                                        <ul data-toggle="modal" href="#teacher_restore" id="delete"
-                                            class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore
-                                            Data</ul>
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox" name="selectAll" id="checkAll" />
@@ -116,6 +122,7 @@
                                                 </th>
                                                 <th>Name</th>
                                                 <th>Username</th>
+                                                <th>Gender</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -148,6 +155,12 @@
                                                     $username
                                                 );
                                                 echo $username;
+                                                ?></td>
+                                                <td><?php
+                                                $gender = $row['gender'];
+                                                $gender = strtoupper(
+                                                    $gender);
+                                                echo $gender;
                                                 ?></td>
 
                                             </tr>

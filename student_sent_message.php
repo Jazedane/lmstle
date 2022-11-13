@@ -137,7 +137,7 @@
                                     </div>
                                 </div>
                                 <?php }}else{ ?>
-                                <div class="alert alert-info"><i class="fas fa-info-circle"></i> No Messages in your
+                                <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Messages in your
                                     Sent Items</div>
                                 <?php } ?>
                                 <script type="text/javascript">

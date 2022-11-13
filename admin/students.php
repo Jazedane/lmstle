@@ -36,7 +36,7 @@
                         <form id="add_student" method="post">
                             <div class="card card-success">
                                 <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-plus"> Add Student</i></h3>
+                                    <h3 class="card-title"><i class="fas fa-plus"></i> Add Student</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
@@ -65,18 +65,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label>ID Number</label>
-                                        <input name="username" type="varchar" maxlength="7" class="form-control"
-                                            placeholder="Enter ID Number">
+                                        <input name="username" type="varchar" maxlength="6" class="form-control"
+                                            placeholder="Enter ID Number" onBlur='addDashes(this)' autocomplete="off"
+                                            required>
                                     </div>
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input name="firstname" type="text" class="form-control"
-                                            placeholder="Enter Firstname">
+                                            placeholder="Enter Firstname" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
                                         <input name="lastname" type="text" class="form-control"
-                                            placeholder="Enter Lastname">
+                                            placeholder="Enter Lastname" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
@@ -96,11 +97,18 @@
                                 <div class="card-footer">
                                     <center><button name="save" type="submit" class="btn btn-success"><i
                                                 class="fas fa-plus">
-                                                Add</i></button></center>
+                                            </i> Add</button></center>
                                 </div>
                             </div>
                         </form>
                     </div>
+                    <SCRIPT LANGUAGE="JavaScript">
+                    function addDashes(f) {
+                        f.value = f.value.replace(/\D/g, '');
+
+                        f.value = f.value.slice(0, 2) + "-" + f.value.slice(2, 8);
+                    }
+                    </SCRIPT>
                     <script>
                     jQuery(document).ready(function($) {
                         $("#add_student").submit(function(e) {
@@ -148,25 +156,23 @@
                                         <ul data-toggle="modal" href="#student_delete" id="delete"
                                             class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
-                                        <ul data-toggle="modal" href="#student_restore" id="delete"
-                                            class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Recycle Bin
-                                        </ul>
                                         <div class="float-right">
                                             <ul class="navbar-nav">
                                                 <li class="nav-item dropdown">
                                                     <button class="btn btn-primary" data-toggle="dropdown" href="#">
-                                                        <i class="fas fa-users"> List </i>
+                                                        <i class="fas fa-users"></i> List
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                         <center>
-                                                        <a href="students.php" class="dropdown-item active"> All
-                                                        </a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a href="unreg_students.php" class="dropdown-item"> Unregistered
-                                                        </a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a href="reg_students.php" class="dropdown-item"> Registered
-                                                        </a>
+                                                            <a href="students.php" class="dropdown-item active"> All
+                                                            </a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a href="unreg_students.php" class="dropdown-item">
+                                                                Unregistered
+                                                            </a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a href="reg_students.php" class="dropdown-item"> Registered
+                                                            </a>
                                                         </center>
                                                     </div>
                                                 </li>

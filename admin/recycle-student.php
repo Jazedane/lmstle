@@ -41,7 +41,7 @@
                                 <ul data-toggle="modal" href="#recycle-delete-student" id="delete" class="btn btn-danger"
                                     name=""><i class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_student" id="delete" class="btn btn-primary"
+                                <ul data-toggle="modal" href="#restore_data_student" id="restore" class="btn btn-primary"
                                     name=""><i class="fas fa-recycle"></i> Restore data
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
@@ -49,7 +49,7 @@
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
                                             <button class="btn btn-primary" data-toggle="dropdown" href="#">
-                                                <i class="fas fa-users"> Recycle List </i>
+                                                <i class="fas fa-users"></i> Recycle List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <center>

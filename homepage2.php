@@ -25,10 +25,6 @@
                             <i class="fas fa-user-circle"></i> Profile
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="change_password_student.php" class="dropdown-item">
-                            <i class="fas fa-edit"> Change Password</i>
-                        </a>
-                        <div class="dropdown-divider"></div>
                         <a href="change-avatar-student.php" class="dropdown-item">
                             <i class="fas fa-edit"> Change Avatar</i>
                         </a>
@@ -113,7 +109,7 @@
                             <a href="task_student.php<?php echo '?id='.$get_id; ?>" class="nav-link">
                                 <i class="nav-icon fas fa-file-upload"></i>
                                 <p>
-                                    Activity Update
+                                    Task Update
                                 </p>
                             </a>
                         </li>

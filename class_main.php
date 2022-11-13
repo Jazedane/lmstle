@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -70,8 +71,7 @@
                             <center><a href="my_classmates.php<?php echo '?id=' . $id; ?>">
                                 <img src="<?php echo $row['thumbnails']; ?>" width="124" height="100"
                                     class="img-thumbnail">
-                            </a>
-                            <p class="class"><?php echo $row['class_name']; ?></p></center>
+                            <p class="class"><?php echo $row['class_name']; ?></p></center></a>
                         </div>
 
                         <?php
@@ -90,7 +90,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
 </body>
 
 </html>

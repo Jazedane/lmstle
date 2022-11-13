@@ -29,10 +29,6 @@
                             <i class="fas fa-edit"> Change Password</i>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="change-avatar-teacher.php" class="dropdown-item">
-                            <i class="fas fa-edit"> Change Avatar</i>
-                        </a>
-                        <div class="dropdown-divider"></div>
                         <a href="developer.php" class="dropdown-item">
                             <i class="fas fa-users"></i> Developer
                         </a>
@@ -88,7 +84,7 @@
                         data-accordion="false">
 
                         <li class="nav-item menu-open">
-                            <a href="dashboard.php" class="nav-link active">
+                            <a href="dashboard.php" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -140,34 +136,34 @@
                                 <li class="nav-item">
                                     <a href="class.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Class</p>
+                                        <p>Class List</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="students.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Students</p>
+                                        <p>Student List</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="teacher.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Teacher</p>
+                                        <p>Teacher List</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-header">CREATE</li>
                         <li class="nav-item">
-                            <a href="add_task.php" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>Activity</p>
+                            <a href="category-grade.php" class="nav-link">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>Grade Category</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="add_project.php" class="nav-link">
+                            <a href="add_task.php" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
-                                <p>Project</p>
+                                <p>Create Task</p>
                             </a>
                         </li>
                         <li class="nav-header">INFORMATION</li>

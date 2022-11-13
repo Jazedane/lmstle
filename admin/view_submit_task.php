@@ -73,7 +73,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Date Submitted</th>
-                                                <th>Activity Name</th>
+                                                <th>Task Name</th>
                                                 <th>Description</th>
                                                 <th>Submitted by:</th>
                                                 <th>Status</th>

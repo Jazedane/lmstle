@@ -9,11 +9,10 @@
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
     <?php include 'script.php'; ?>
-    <?php $get_id = $_GET['id']; ?>
 </head>
 
 <body>
-    <?php include 'homepage2.php'; ?>
+    <?php include 'index.php'; ?>
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -24,23 +23,18 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <?php
-                            ($class_query = mysqli_query(
+                            ($school_year_query = mysqli_query(
                                 $conn,
-                                "SELECT * FROM tbl_teacher_class
-							    LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
-							    WHERE teacher_class_id = '$get_id'"
+                                'select * from tbl_school_year order by school_year DESC'
                             )) or die(mysqli_error());
-                            $class_row = mysqli_fetch_array($class_query);
-                            $class_id = $class_row['class_id'];
+                            $school_year_query_row = mysqli_fetch_array(
+                                $school_year_query
+                            );
+                            $school_year = $school_year_query_row['school_year'];
                             ?>
-
-                            <li class="breadcrumb-item"><a href="#"><?php echo $class_row[
-                                'class_name'
-                            ]; ?></a> <span class="divider"></span></li>
+                            <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
                             <li class="breadcrumb-item"><a href="#">School Year:
-                                    <?php echo $class_row[
-                                        'school_year'
-                                    ]; ?></a> <span class="divider"></span></li>
+                                    <?php echo $school_year_query_row['school_year']; ?></a></li>
                             <li class="breadcrumb-item active"><a href="#"><b>Grade Category</b></a></li>
                         </ol>
                     </div>
@@ -82,8 +76,7 @@
                                 ($grade_category_query = mysqli_query(
                                     $conn,
                                     "SELECT * FROM tbl_grade_category
-                                    LEFT JOIN tbl_class ON tbl_class.class_id = tbl_grade_category.class_id
-                                    WHERE tbl_grade_category.class_id = '$class_id'"
+                                    WHERE grade_category_id = '$session_id'"
                                 )) or die(mysqli_error());
 
                                 while (
@@ -112,10 +105,9 @@
                                 <?php
                                     }
                                 ?>
-                                <form class="mt-5" action="category.php" method="post" enctype="multipart/form-data"
-                                    name="upload">
-                                    <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
-                                    <input type="hidden" name="get_id" value="<?php echo $get_id; ?>">
+                                <form class="mt-5" action="main-category.php" method="post"
+                                    enctype="multipart/form-data" name="upload">
+                                    <input type="hidden" name="id" value="<?php echo $session_id; ?>">
 
                                     <div class="row">
                                         <div class="col-md-6">

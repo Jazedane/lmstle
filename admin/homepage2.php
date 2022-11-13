@@ -29,10 +29,6 @@
                             <i class="fas fa-edit"> Change Password</i>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="change-avatar-teacher.php" class="dropdown-item">
-                            <i class="fas fa-edit"> Change Avatar</i>
-                        </a>
-                        <div class="dropdown-divider"></div>
                         <a href="developer.php" class="dropdown-item">
                             <i class="fas fa-users"></i> Developer
                         </a>
@@ -86,10 +82,10 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="dashboard.php" class="nav-link">
+                            <a href="class_main.php" class="nav-link">
                                 <i class="nav-icon fas fa-arrow-left"></i>
                                 <p>
-                                    Back To Dashboard
+                                    Back To Class
                                 </p>
                             </a>
                         </li>
@@ -113,7 +109,7 @@
                             <a href="task.php<?php echo '?id='.$get_id; ?>" class="nav-link">
                                 <i class="nav-icon fas fa-tasks"></i>
                                 <p>
-                                    Activity
+                                    Task
                                 </p>
                             </a>
                         </li>
@@ -121,7 +117,7 @@
                             <a href="uploaded-task.php<?php echo '?id='.$get_id; ?>" class="nav-link">
                                 <i class="nav-icon fas fa-file-upload"></i>
                                 <p>
-                                    Uploaded Activity
+                                    Uploaded Task
                                 </p>
                             </a>
                         </li>
