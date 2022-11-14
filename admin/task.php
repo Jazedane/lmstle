@@ -160,7 +160,6 @@
                                             <th>Time Left</th>
                                             <th></th>
                                             <th></th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -224,17 +223,6 @@
 
                                                 </form>
                                             </td>
-                                            <td width="10">
-                                                <form method="post" action="view_notsubmit_task.php<?php echo '?id=' .
-                                                    $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
-
-                                                    <button data-placement="bottom"
-                                                        title="View Student Who Did Not Submit Activity"
-                                                        id="<?php echo $id; ?>viewnot" class="btn btn-info"><i
-                                                            class="fas fa-folder"></i></button>
-
-                                                </form>
-                                            </td>
                                             <td>
                                                 <?php if ($floc == '') {
                                                 } else {
@@ -256,12 +244,6 @@
                                             $(document).ready(function() {
                                                 $('#<?php echo $id; ?>view').tooltip('show');
                                                 $('#<?php echo $id; ?>view').tooltip('hide');
-                                            });
-                                            </script>
-                                            <script type="text/javascript">
-                                            $(document).ready(function() {
-                                                $('#<?php echo $id; ?>viewnot').tooltip('show');
-                                                $('#<?php echo $id; ?>viewnot').tooltip('hide');
                                             });
                                             </script>
                                             <?php

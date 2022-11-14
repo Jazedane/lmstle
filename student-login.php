@@ -1,3 +1,13 @@
+<?php 
+
+session_start();
+
+ require_once('./config/confirmation.php');
+ require_once('./config/functions.php');
+
+  
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,9 +63,6 @@
                             </div>
                         </div>
 
-                    <div class="mb-1">
-                        <a href="forgot-password-student.php">I forgot my password</a>
-                    </div>
                     <div class="mb-0">
                         <a href="login-page.php" class="text-center">Back</a>
                     </div>
@@ -64,7 +71,6 @@
             </div>
         </form>
     </div>
-    <?php include 'script.php'; ?>
     <script LANGUAGE="JavaScript">
         function addDashes(f)
             {
@@ -73,46 +79,92 @@
                 f.value = f.value.slice(0,2)+"-"+f.value.slice(2,8);
             }
     </script>
-    <script>
-    jQuery(document).ready(function() {
-        jQuery("#signin_student").submit(function(e) {
-            e.preventDefault();
+    <?php include 'script.php'; 
 
-            var password = jQuery('#password').val();
+              if(isset($_POST['login'])) {
+                        
+                       
+                        $ip_address= getUSerIpAddr();
+                        $time = time() - 30;
 
-            if (password == password) {
-                var formData = jQuery(this).serialize();
-                $.ajax({
-                    type: "POST",
-                    url: "student-data.php",
-                    data: formData,
-                    success: function(html) {
-                        if (html == 'true') {
-                            alert(
-                                "Welcome to Learning Management System for TLE-Agricultural"
-                                )
-                            var delay = 2000;
-                            setTimeout(function() {
-                                window.location = 'class_main.php'
-                            }, delay);
-                        } else if (html == 'false') {
-                            alert("Login Failed")
-                            $.jGrowl(
-                                "Student Not Found, Please Check Your Username and Password ", {
-                                    header: 'Login Failed'
-                                });
+                        $check_attempt = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT count(*) as total_count from attempt_count where time_count > $time and ip_address= '$ip_address'"));
+                        $total_count  = $check_attempt['total_count'];
+
+                        if($total_count == 3){
+                            ?>
+                            <script>
+                                alert("Your account has been blocked. Please try after 30 seconds");
+                            </script>
+                            <?php
                         }
-                    }
-                });
+                        else{
 
-            } else {
-                $.jGrowl("Student Not Found", {
-                    header: 'Login Failed'
-                });
-            }
-        });
-    });
-    </script>
+                        $username = clean($_POST['username']);
+                        $password = clean($_POST['password']);
+                        $hashedPassword = hash('sha256', $password);
+
+                       $query = "SELECT * FROM tbl_student WHERE username='$username' AND password='$hashedPassword'";
+
+                        $result = mysqli_query($db->connection, $query);
+
+                        if(mysqli_num_rows($result) > 0) {
+
+                          $row = mysqli_fetch_assoc($result);
+
+                          $_SESSION['id']=$row['student_id'];
+                          $_SESSION['username'] = $row['username'];
+                          $_SESSION['password'] = $row['password'];
+                          $hashedPassword = hash('sha256', $password);
+
+                          mysqli_query($db->connection, "DELETE from attempt_count where ip_address = '$ip_address'");
+                          ?>
+                          <script>
+                              alert("Welcome to Learning Management System for TLE-Agricultural");
+                              window.location ='class_main.php';
+                          </script>
+                          <?php
+                      }
+                      else{
+                        $total_count++;
+                        $time_remain = 3 - $total_count;
+                        $time= time();
+                        
+                        if($time_remain == 0){
+                             ?>
+                            <script>
+                                alert("Your account has been blocked. Please try after 30 seconds");
+                            </script>
+                            <?php
+                        }
+                        else{
+                            ?>
+                            <script>
+                                alert("Please enter valid login details." . $time_remain. "attempts remaining.");
+                            </script>
+                            <?php
+                        }
+                        mysqli_query($db->connection, "INSERT INTO attempt_count (ip_address, time_count) VALUES ('$ip_address', '$time')");
+
+                       ?>
+                       <script>
+                           alert("Login Failed. Please enter valid login details.");
+                       </script>
+                       <?php
+                              }
+                          }
+                      }
+                          function getUSerIpAddr(){
+                            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                                $ip = $_SERVER['HTTP_CLIENT_IP'];
+                            }elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+                            }else{
+                                $ip = $_SERVER['REMOTE_ADDR'];
+                            }
+                            return $ip;
+                          }
+                    ?>
+
 </body>
 
 </html>

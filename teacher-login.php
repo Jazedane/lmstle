@@ -1,3 +1,13 @@
+<?php 
+
+session_start();
+
+ require_once('./config/confirmation.php');
+ require_once('./config/functions.php');
+
+  
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +29,7 @@
                 <div class="card-body">
                     <p class="login-box-msg">Signin to start your session</p>
 
-                    <form id="login_form" class="form-signin" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="login_form" class="form-signin" method="post">
                         <div class="input-group mb-3">
                             <input type="username" class="form-control" id="username" name="username"
                                 placeholder="Username" required>
@@ -52,10 +62,6 @@
                             </div>
                         </div>
                     </form>
-
-                    <div class="mb-1">
-                        <a href="forgot-password.php">I forgot my password</a>
-                    </div>
                     <div class="mb-0">
                         <a href="register.php" class="text-center">Signup to register</a>
                     </div>
