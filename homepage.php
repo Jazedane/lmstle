@@ -15,27 +15,20 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="fas fa-cog fa-spin"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <div class="dropdown-menu dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">Settings</span>
                         <div class="dropdown-divider"></div>
-                        <a href="profile.php" class="dropdown-item">
-                            <i class="fas fa-user-circle"></i> Profile
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="change_password_student.php" class="dropdown-item">
-                            <i class="fas fa-edit"> Change Password</i>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="developer.php" class="dropdown-item">
-                            <i class="fas fa-users"></i> Developer
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="logout.php" class="dropdown-item">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
+                        <a href="profile.php" class="dropdown-item" type="button"><i
+                                class="fas fa-user-circle"></i> Profile</a>
+                        <a href="change_password_student.php" class="dropdown-item" type="button"><i
+                                class="fas fa-edit"></i> Change Password</a>
+                        <a href="developer.php" class="dropdown-item" type="button"><i class="fas fa-users"></i>
+                            Developer</a>
+                        <a href="logout.php" class="dropdown-item" type="button"><i
+                                class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </li>
                 <li class="nav-item">

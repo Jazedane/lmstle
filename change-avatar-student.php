@@ -58,9 +58,9 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                             <center>
-                                            <div class="mb-3">
+                                            <div class="custom-file">
                                             <label for="formFileMultiple" class="form-label">
-                                                <input name="image" class="form-control" id="formFileMultiple"
+                                                <input name="image" class="custom-file input" id="formFileMultiple"
                                                     type="file" required></input>
                                             </center>
                                     </div>

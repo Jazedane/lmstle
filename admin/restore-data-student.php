@@ -8,7 +8,12 @@ if (isset($_POST['recycle_data_student']) && isset($_POST['selector'])) {
             $conn,
             "UPDATE tbl_student SET isDeleted=false WHERE student_id='$id[$i]'"
         );
+        mysqli_query(
+             $conn,
+             "UPDATE tbl_teacher_class_student SET isDeleted=false WHERE teacher_class_student_id='$id[$i]'"
+         );
     }
+
     header('location: recycle-student.php');
 }
 ?>

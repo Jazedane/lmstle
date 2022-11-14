@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Dashboard</title>
+    <title>LMSTLE | Gallery</title>
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
@@ -60,50 +60,38 @@
     ?>
         <section class="content">
             <div class="container-fluid">
+                <div class="card-body">
+                        <button type="submit" class="btn btn-primary ml-5 float-right" data-toggle="modal"
+                            data-target="#addplant">Add Plant</button>
+                    </div>
                 <div class="row">
-                    <div class="card-body">
-                        <div class="col-md-12">
-                            <div class="card-body">
-                                <button type="submit" class="btn btn-primary ml-5 float-right" data-toggle="modal"
-                                    data-target="#addplant">Add Plant</button>
-                            </div>
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Image</th>
-                                        <th>Plant Name</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-                                <?php
+                    <?php
                                 $query = "SELECT * FROM image ";
                                 $result = mysqli_query($conn, $query);
 
                                 while ($data = mysqli_fetch_assoc($result)) {
                                   $imageURL = './uploads/' . $data["filename"];
                                 ?>
-                                <tbody>
-                                    <tr class="text-center">
-                                        <td><a href="<?php echo $imageURL; ?>"><img style="width: 240px; height:200px"
-                                                    src="<?php echo $imageURL; ?>"></a></td>
-                                        <td>
-                                            <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
-                                        </td>
-                                        <td>
-                                            <p class="text-dark"><?php echo $data['description'];?></p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <?php
+                    <div class="card-deck">
+                        <div class="card" style="width:16rem;border:1px solid black;margin:40px">
+                            <img class="card-img-top" src="<?php echo $imageURL; ?>" alt="Card image cap" height="200">
+                            <div class="card-body">
+                                <div class="card-title"><b>Plant Name:</b>
+                                    <?php echo $data['plant_name'];?>
+                                </div>
+                                <p class="card-text"><b>Plant Information:</b>
+                                    <?php echo $data['description'];?></p>
+                            </div>
+                        </div>
+                        <?php
                                 }
                                 ?>
-                            </table>
-                        </div>
                     </div>
                 </div>
             </div>
+        </section>
     </div>
-    </section>
+
     <div class="modal fade" id="addplant" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content text-center ">
@@ -131,6 +119,43 @@
         </div>
     </div>
     <?php include 'footer.php'; ?>
+    <script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+    </script>
+    <script>
+    $(function() {
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox({
+                alwaysShowClose: true
+            });
+        });
+
+        $('.filter-container').filterizr({
+            gutterPixels: 3
+        });
+        $('.btn[data-filter]').on('click', function() {
+            $('.btn[data-filter]').removeClass('active');
+            $(this).addClass('active');
+        });
+    })
+    </script>
 
 </body>
 

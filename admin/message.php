@@ -214,7 +214,8 @@
                                         <option>Select Student</option>
                                         <?php
 											$query = mysqli_query($conn,"select * from tbl_teacher_class_student
-																  LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id
+																  LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id 
+                                                                  and tbl_teacher_class_student.isDeleted= false
 											 group by tbl_teacher_class_student.student_id order by firstname");
 											while($row = mysqli_fetch_array($query)){
 											

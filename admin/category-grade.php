@@ -76,7 +76,8 @@
                                 ($grade_category_query = mysqli_query(
                                     $conn,
                                     "SELECT * FROM tbl_grade_category
-                                    WHERE grade_category_id = '$session_id'"
+                                    LEFT JOIN tbl_class ON tbl_class.class_id = tbl_grade_category.class_id
+                                    WHERE tbl_grade_category.class_id = '$class_id'"
                                 )) or die(mysqli_error());
 
                                 while (

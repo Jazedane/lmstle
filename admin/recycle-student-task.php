@@ -49,29 +49,21 @@
                                 <div class="float-right">
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
-                                            <button class="btn btn-primary" data-toggle="dropdown" href="#">
+                                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-users"></i> Recycle List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                <center>
-                                                    <a href="recycle-student.php" class="dropdown-item"> Student
-                                                    </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="recycle-teacher.php" class="dropdown-item"> Teacher
-                                                    </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="recycle-class.php" class="dropdown-item"> Class
-                                                    </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="recycle-student-task.php" class="dropdown-item active">
-                                                        Student
-                                                        Task
-                                                    </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="recycle-teacher-task.php" class="dropdown-item"> Teacher
-                                                        Task
-                                                    </a>
-                                                </center>
+                                                <a href="recycle-student.php" class="dropdown-item" type="button">
+                                                    Student</a>
+                                                <a href="recycle-teacher.php" class="dropdown-item" type="button">
+                                                    Teacher</a>
+                                                <a href="recycle-class.php" class="dropdown-item" type="button">
+                                                    Class</a>
+                                                <a href="recycle-student-task.php" class="dropdown-item active" type="button">
+                                                    Student Task</a>
+                                                <a href="recycle-teacher-task.php" class="dropdown-item" type="button">
+                                                    Teacher Task</a>
                                             </div>
                                         </li>
                                     </ul>

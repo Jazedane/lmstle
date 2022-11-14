@@ -95,7 +95,7 @@
                                     <div class="form-group">
                                         <label>Age</label>
                                         <input name="age" type="number" value="<?php echo $row['age']; ?>" maxlength="2"
-                                            min="10" max="50" class="form-control" name="age" placeholder="AGE"
+                                            min="15" max="25" class="form-control" name="age" placeholder="AGE"
                                             required>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
