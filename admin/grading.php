@@ -189,7 +189,7 @@
                                             ?>
 
                                         <tr>
-                                            <td> <img id="avatar" src="/lmstle/admin/<?php echo $row[
+                                            <td> <img id="avatar" src="/lmstlee4/admin/<?php echo $row[
                                                 'location'
                                             ]; ?>" class="img-circle elevation" alt="User Image" height="30"
                                                     width="30">
@@ -357,7 +357,7 @@
                                         ) {
                                             $student_id = $row['student_id']; ?>
                                         <tr>
-                                            <td><img id="avatar" src="/lmstle/admin/<?php echo $row[
+                                            <td><img id="avatar" src="/lmstlee4/admin/<?php echo $row[
                                                 'location'
                                             ]; ?>" class="img-circle elevation" alt="User Image" height="30"
                                                     width="30">

@@ -53,7 +53,7 @@
                                     <div class="col-md-4">
                                         <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
                                         <div class="form-group">
-                                            <label>Activity Name</label>
+                                            <label>Task Name</label>
                                             <input type="text" name="name" class="form-control"
                                                 placeholder="Enter task name" required>
                                         </div>

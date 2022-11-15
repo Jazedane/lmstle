@@ -33,7 +33,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
-                        <form id="add_student" method="post">
+                        <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
                                     <h3 class="card-title"><i class="fas fa-plus"></i> Add Student</h3>
@@ -46,7 +46,7 @@
                                             <?php
                                                 $class_query = mysqli_query(
                                                 $conn,
-                                                'select * from tbl_class order by class_name'
+                                                'select * from tbl_class where tbl_class.isDeleted=false order by class_name'
                                                 );
                                                 while (
                                                     $class_row = mysqli_fetch_array(
@@ -95,13 +95,82 @@
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>
                                 <div class="card-footer">
-                                    <center><button name="save" type="submit" class="btn btn-success"><i
+                                    <center><button name="save" type="button" class="btn btn-success swalDefaultSuccess"><i
                                                 class="fas fa-plus">
                                             </i> Add</button></center>
                                 </div>
                             </div>
                         </form>
                     </div>
+                    <?php
+                            if (isset($_POST['save'])){
+                            $username = $_POST['username'];
+                            $firstname = $_POST['firstname'];
+                            $lastname = $_POST['lastname'];
+
+
+                            $query = mysqli_query($conn,"select * from tbl_student where username  =  '$username' and firstname  =  '$firstname' and lastname  =  '$lastname' ")or die(mysqli_error());
+                            $count = mysqli_num_rows($query);
+
+                            if ($count > 0){ ?>
+                    <script>
+                    alert('Student Already Exist');
+                    </script>
+                    <?php
+                            }else{
+                            $class_id = $_POST['class_id'];
+                            $username = $_POST['username'];
+                            $firstname = $_POST['firstname'];
+                            $lastname = $_POST['lastname'];
+                            $gender = $_POST['gender'];
+                            $age = $_POST['age'];
+                            $teacher_id = $_POST['teacher_id'];
+                            $hashedPassword = hash('sha256', $lastname . $username);
+
+                            $query = "SELECT * FROM tbl_teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
+                            $result = mysqli_query($conn, $query);
+                            $row   = mysqli_fetch_assoc($result);
+                            $teacher_class_id = $row['teacher_class_id'];
+
+                            mysqli_query(
+                                $conn,
+                                "INSERT INTO 
+                                tbl_student 
+                                (username,firstname,lastname,gender,age,location,class_id,status,password) 
+                                VALUES 
+                                ('$username','$firstname','$lastname','$gender','$age','uploads/NO-IMAGE-AVAILABLE.jpg','$class_id','Registered','$hashedPassword');"
+                            ) or die(mysqli_error());
+
+                            $student_id = mysqli_insert_id($conn);
+
+                            mysqli_query(
+                                $conn,
+                                "INSERT INTO 
+                                tbl_teacher_class_student 
+                                (teacher_class_id,student_id,teacher_id) 
+                                VALUES 
+                                ('$teacher_class_id','$student_id','$teacher_id');"
+                            ) or die(mysqli_error());
+                    ?>
+                    <script>
+                        var Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        $('.swalDefaultSuccess').click(function() {
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Student Successfully Added'
+                            })
+                        });
+                    window.location = "students.php";
+                    </script>
+                    <?php
+                        }
+                        }
+                    ?>
                     <SCRIPT LANGUAGE="JavaScript">
                     function addDashes(f) {
                         f.value = f.value.replace(/\D/g, '');
@@ -109,41 +178,6 @@
                         f.value = f.value.slice(0, 2) + "-" + f.value.slice(2, 8);
                     }
                     </SCRIPT>
-                    <script>
-                    jQuery(document).ready(function($) {
-                        $("#add_student").submit(function(e) {
-                            e.preventDefault();
-                            var _this = $(e.target);
-                            var formData = $(this).serialize();
-                            $.ajax({
-                                type: "POST",
-                                url: "save_student.php",
-                                data: formData,
-                                success: function(html) {
-                                    alert("Student Successfully  Added", {
-                                        header: 'Student Added'
-                                    });
-                                    $('#studentTableDiv').load('student_table.php',
-                                        function(response) {
-                                            $("#studentTableDiv").html(response);
-                                            $('#example').dataTable({
-                                                "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-                                                "sPaginationType": "bootstrap",
-                                                "oLanguage": {
-                                                    "sLengthMenu": "_MENU_ records per page"
-                                                }
-                                            });
-                                            $(_this).find(":input").val('');
-                                            $(_this).find('select option').attr(
-                                                'selected', false);
-                                            $(_this).find('select option:first').attr(
-                                                'selected', true);
-                                        });
-                                }
-                            });
-                        });
-                    });
-                    </script>
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
@@ -156,28 +190,6 @@
                                         <ul data-toggle="modal" href="#student_delete" id="delete"
                                             class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
-                                        <div class="float-right">
-                                            <ul class="navbar-nav">
-                                                <li class="nav-item dropdown">
-                                                    <button class="btn btn-primary" data-toggle="dropdown" href="#">
-                                                        <i class="fas fa-users"></i> List
-                                                    </button>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                        <center>
-                                                            <a href="students.php" class="dropdown-item active"> All
-                                                            </a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a href="unreg_students.php" class="dropdown-item">
-                                                                Unregistered
-                                                            </a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a href="reg_students.php" class="dropdown-item"> Registered
-                                                            </a>
-                                                        </center>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox" name="selectAll" id="checkAll" />
@@ -266,19 +278,6 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
-        });
-    });
-    </script>
-    <script>
-    $(function() {
-        var Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000
-        });
-        $('.toastrDefaultSuccess').click(function() {
-            toastr.success('Student Has Been Deleted.')
         });
     });
     </script>

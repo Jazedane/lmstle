@@ -52,7 +52,7 @@
                                             <?php
                                                 $class_query = mysqli_query(
                                                 $conn,
-                                                'select * from tbl_class order by class_name'
+                                                'select * from tbl_class where tbl_class.isDeleted=false order by class_name'
                                                 );
                                                 while (
                                                     $class_row = mysqli_fetch_array(

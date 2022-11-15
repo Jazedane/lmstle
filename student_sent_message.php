@@ -190,7 +190,7 @@
                                         <select name="teacher_id" class="form-control" required>
                                             <option></option>
                                             <?php
-											$query = mysqli_query($conn,"select * from tbl_teacher order by firstname");
+											$query = mysqli_query($conn,"select * from tbl_teacher WHERE tbl_teacher.isDeleted=false order by firstname");
 											while($row = mysqli_fetch_array($query)){
 											?>
                                             <option value="<?php echo $row['teacher_id']; ?>">

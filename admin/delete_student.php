@@ -15,3 +15,16 @@ if (isset($_POST['delete_student']) && isset($_POST['selector'])) {
     header('location: students.php');
 }
 ?>
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
+        $('.toastrDefaultSuccess').click(function() {
+            toastr.success('Student Has Been Deleted.')
+        });
+    });
+</script>
