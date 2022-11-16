@@ -60,84 +60,98 @@
     ?>
         <section class="content">
             <div class="container-fluid">
-                <div class="card-body">
-                        <button type="submit" class="btn btn-primary ml-5 float-right" data-toggle="modal"
-                            data-target="#addplant">Add Plant</button>
-                    </div>
                 <div class="row">
-                    <?php
-                                $query = "SELECT * FROM image ";
-                                $result = mysqli_query($conn, $query);
-
-                                while ($data = mysqli_fetch_assoc($result)) {
-                                  $imageURL = './uploads/' . $data["filename"];
-                                ?>
-                    <div class="card-deck">
-                        <div class="card" style="width:16rem;border:1px solid black;margin:40px">
-                            <img class="card-img-top" src="<?php echo $imageURL; ?>" alt="Card image cap" height="200">
-                            <div class="card-body">
-                                <div class="card-title"><b>Plant Name:</b>
-                                    <?php echo $data['plant_name'];?>
-                                </div>
-                                <p class="card-text"><b>Plant Information:</b>
-                                    <?php echo $data['description'];?></p>
-                            </div>
-                        </div>
-                        <?php
-                                }
-                                ?>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary float-right" data-toggle="modal"
+                            data-target="#addplant">Add
+                            Plant Info</button>
                     </div>
                 </div>
             </div>
         </section>
-    </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <?php
+                        $limit = 4;
+                        $page= $_REQUEST['page'];
+                        $pages = $page-1;
+                        $p = $pages * $limit;
 
-    <div class="modal fade" id="addplant" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content text-center ">
-                <div class="modal-header bg-success">
-                    <h3 class="modal-title text-white "><b>Add Plant</b></h3>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                      $query = "SELECT * FROM image limit  $p, $limit";
+                      $result = mysqli_query($conn, $query);
+                
+                      while ($data = mysqli_fetch_assoc($result)) {
+                        $imageURL = './uploads/' . $data["filename"];
+                      ?>
+                    <div class="col-lg-3 col-12">
+                        <div class="card-deck">
+                            <div class="card mr-5" style="width:15rem; border:1px solid black;">
+                                <a type="submit" data-toggle="modal"
+                                    data-target="#popup_plant<?php echo $data['id'];?>">
+                                    <img class="card-img-top" style="height: 200px" src="<?php echo $imageURL; ?>"></a>
+                                <div class="card-body">
+                                    <label class="text-dark mt-3">Plant Name:</label>
+                                    <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
+                                    <label class="text-dark">Plant Information:</label>
+                                    <p class="text-dark"><?php echo $data['description'];?></p>
+                                    <button type="submit" class="btn btn-danger mb-2 float-right" data-toggle="modal"
+                                        data-target="#delete<?php echo $data['id'];?>"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                        include 'popup_plant.php';
+                        include 'delete_plant.php';
+                      }?>
+                    <div class="m-auto justify-between">
+
+                        <?php
+                                if($pages >= 1){
+                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page - 1)."><i class='fas fa-backward'></i> Prev</a>";
+                             }
+                                if($page + 1 < $limit){
+                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page + 1)."><i class='fas fa-forward'></i> Next</a>";
+                              }
+                            ?>
+
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        <label class="float-left font-15">Name</label>
-                        <input type="text" name="plant_name" class="form-control" placeholder="Enter Plant name"
-                            required=""><br>
-                        <label class="float-left font-15">Description</label>
-                        <textarea placeholder="Enter Plant Description" name="description" class="form-control"
-                            required=""></textarea><br>
-                        <?php echo $statusMsg; ?>
-                        <label class="float-left font-15">Image</label><br>
-                        <input type="file" name="uploadfile" value="" required />
-                        <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
-                    </form>
+            </div>
+        </section>
+
+        <div class="modal hide fade" id="addplant" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 id="myModalLabel" class="modal-title">Add Plant Info</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data">
+                                <label class="float-left font-15">Name</label>
+                                <input type="text" name="plant_name" class="form-control" placeholder="Enter Plant name"
+                                    required=""><br>
+                                <label class="float-left font-15">Description</label>
+                                <textarea placeholder="Enter Plant Description" name="description" class="form-control"
+                                    required=""></textarea><br>
+                                <?php echo $statusMsg; ?>
+                                <label class="float-left font-15">Image</label><br>
+                                <input type="file" name="uploadfile" value="" required="" />
+                                <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <?php include 'footer.php'; ?>
-    <script>
-    $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-    </script>
     <script>
     $(function() {
         $(document).on('click', '[data-toggle="lightbox"]', function(event) {

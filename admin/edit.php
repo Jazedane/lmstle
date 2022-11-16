@@ -11,3 +11,6 @@ $p_condition = $_POST['p_condition'];
 $query = mysqli_query($conn,"UPDATE tbl_student_task SET fname='$fname',feedback='$feedback',grade='$grade',task_status='$task_status',p_condition='$p_condition' WHERE student_task_id='$student_task_id'")or die(mysqli_error());
 
 ?>
+<script>
+ window.location reload();
+</script>

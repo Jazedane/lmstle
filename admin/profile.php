@@ -40,8 +40,9 @@
                             ?>
                             <div class="card-body box-profile">
                                 <div class="text-center">
-                                    <img id="avatar" class="profile-user-img img-fluid img-circle"
-                                        src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>">
+                                    <img id="avatar" class="img-circle  elevation-2"
+                                        src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>" width="80"
+                                        height="80">
                                 </div>
                                 <?php
                                     echo "<h3 class='profile-username text-center'>".$row['firstname']." ".$row['lastname'] . "</h3>";

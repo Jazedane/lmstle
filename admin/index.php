@@ -161,7 +161,7 @@
                         </li>
                         <li class="nav-header">INFORMATION</li>
                         <li class="nav-item">
-                            <a href="gallery.php" class="nav-link">
+                            <a href="gallery.php?page=1" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
                                     Gallery

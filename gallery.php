@@ -33,26 +33,48 @@
             <div class="container-fluid">
                 <div class="row">
                     <?php
-                                $query = "SELECT * FROM image ";
-                                $result = mysqli_query($conn, $query);
+                        $limit = 4;
+                        $page= $_REQUEST['page'];
+                        $pages = $page-1;
+                        $p = $pages * $limit;
 
-                                while ($data = mysqli_fetch_assoc($result)) {
-                                  $imageURL = 'admin/uploads/' . $data["filename"];
-                                ?>
-                    <div class="card-deck">
-                        <div class="card" style="width:16rem; border:1px solid black;margin:40px">
-                            <img class="card-img-top" src="<?php echo $imageURL; ?>" alt="Card image cap" height="200">
-                            <div class="card-body">
-                                <div class="card-title"><b>Plant Name:</b>
-                                    <?php echo $data['plant_name'];?>
+                      $query = "SELECT * FROM image limit $p, $limit";
+                      $result = mysqli_query($conn, $query);
+
+                      while ($data = mysqli_fetch_assoc($result)) {
+                        $imageURL = 'admin/uploads/' . $data["filename"];
+                      ?>
+                    <div class="col-lg-3 col-12">
+                        <div class="card-deck">
+                            <div class="card mr-5" style="width:15rem; border:1px solid black;">
+                                <a type="submit" data-toggle="modal"
+                                    data-target="#popup_plant<?php echo $data['id'];?>">
+                                    <img class="card-img-top" height="200" src="<?php echo $imageURL; ?>"></a>
+                                <div class="card-body">
+                                    <label class="text-dark">Plant Name:</label>
+                                    <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
+                                    <label class="text-dark">Plant Information:</label>
+                                    <p class="text-dark"><?php echo $data['description'];?></p>
                                 </div>
-                                <p class="card-text"><b>Plant Information:</b>
-                                    <?php echo $data['description'];?></p>
                             </div>
                         </div>
+                    </div>
+                    <?php
+
+                        include './popup_plant.php';
+                      }
+                      ?>
+                    <div class="m-auto justify-between">
+
                         <?php
-                                }
-                                ?>
+                                if($pages >= 1){
+                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page - 1)."><i class='fas fa-backward'></i> Prev</a>";
+                             }
+                                if($page + 1 < $limit){
+                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page + 1)."><i class='fas fa-forward'></i> Next</a>";
+                              }
+                            ?>
+
                     </div>
                 </div>
             </div>
