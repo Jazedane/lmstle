@@ -13,3 +13,6 @@ $query = mysqli_query(
 ) or die(mysqli_error($conn));
 
 ?>
+<script>
+window.location = 'category-grade.php';
+</script>

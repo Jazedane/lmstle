@@ -60,7 +60,7 @@
                                         <select name="class_id" class="form-control" required>
                                             <option></option>
                                             <?php
-											$query = mysqli_query($conn,"select * from tbl_class order by class_name");
+											$query = mysqli_query($conn,"select * from tbl_class where isDeleted=false order by class_name ");
 											while($row = mysqli_fetch_array($query)){
 											
 											?>

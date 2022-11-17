@@ -9,7 +9,7 @@
                   <div class="modal-body">
                     <form method="POST" action="del_query.php">
                       <input type="hidden" name="id" value="<?php echo $data['id'];?>">
-                      <img width="80%" style="height: 300px" src="<?php echo $imageURL; ?>"></a>
+                      <img width="90%" style="height: 300px" src="<?php echo $imageURL; ?>"></a>
                       <label class="text-dark mt-3">Plant Name:</label>
                       <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
                       <label class="text-dark">Plant Information:</label>

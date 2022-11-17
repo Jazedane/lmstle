@@ -99,19 +99,27 @@
                                             'impact_percentage'
                                         ];
                                     ?>
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <?php echo $category_name; ?>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <?php echo $impact_percentage; ?>%
                                     </div>
+                                    <div class="col-md-3">
+                                        <a data-toggle="modal" data-target="#delete<?php echo $grade_category_row['grade_category_id'];?>"
+                                            id="delete" name=""><i class="fas fa-trash"></i></a>
+                                        <?php include 'delete-grade-category-modal.php'; ?>
+                                    </div>
                                 </div>
-
                                 <?php
                                     }
                                 ?>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Remaining Percentage: </p>
+                                    </div>
+                                </div>
                                 <form class="mt-5" action="category.php" method="post" enctype="multipart/form-data"
                                     name="upload">
                                     <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">

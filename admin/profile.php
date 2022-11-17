@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body>
@@ -159,22 +160,25 @@
                             <button class="btn btn-primary" type="submit" name="update">UPDATE</button>
                         </form>
                         <?php 
-                    if (isset($_POST['update'])) {
-                        $query = "UPDATE tbl_teacher SET firstname='$_POST[firstname]', lastname='$_POST[lastname]', email='$_POST[email]', birthdate='$_POST[birthdate]', gender='$_POST[gender]', department='$_POST[department]', phone_no='$_POST[phone_no]', address='$_POST[address]', nationality='$_POST[nationality]', education='$_POST[education]', skills='$_POST[skills]' WHERE teacher_id = '$session_id'";
-                        $result = mysqli_query($conn, $query);
-                ?>
+                            if (isset($_POST['update'])) {
+                                $query = "UPDATE tbl_teacher SET firstname='$_POST[firstname]', lastname='$_POST[lastname]', email='$_POST[email]', 
+                                birthdate='$_POST[birthdate]', gender='$_POST[gender]', department='$_POST[department]', phone_no='$_POST[phone_no]', 
+                                address='$_POST[address]', nationality='$_POST[nationality]', education='$_POST[education]', skills='$_POST[skills]' 
+                                WHERE teacher_id = '$session_id'";
+                                $result = mysqli_query($conn, $query);
+                        ?>
                         <script>
                         window.location = "profile.php";
                         </script>
                         <?php 
-                    }
-                ?>
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
-        <?php include 'footer.php'; ?>
-        <?php include 'script.php'; ?>
+    </div>
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>

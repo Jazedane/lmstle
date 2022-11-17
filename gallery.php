@@ -49,9 +49,9 @@
                             <div class="card mr-5" style="width:15rem; border:1px solid black;">
                                 <a type="submit" data-toggle="modal"
                                     data-target="#popup_plant<?php echo $data['id'];?>">
-                                    <img class="card-img-top" height="200" src="<?php echo $imageURL; ?>"></a>
+                                    <img class="card-img-top" style="height: 200px" src="<?php echo $imageURL; ?>"></a>
                                 <div class="card-body">
-                                    <label class="text-dark">Plant Name:</label>
+                                    <label class="text-dark mt-3">Plant Name:</label>
                                     <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
                                     <label class="text-dark">Plant Information:</label>
                                     <p class="text-dark"><?php echo $data['description'];?></p>
@@ -64,7 +64,7 @@
                         include './popup_plant.php';
                       }
                       ?>
-                    <div class="m-auto justify-between">
+                    <div class="m-auto">
 
                         <?php
                                 if($pages >= 1){

@@ -95,8 +95,13 @@
                                     <div class="form-group">
                                         <label>Age</label>
                                         <input name="age" type="number" value="<?php echo $row['age']; ?>" maxlength="2"
-                                            min="15" max="25" class="form-control" name="age" placeholder="AGE"
+                                            min="15" max="25" class="form-control" placeholder="AGE"
                                             required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input name="password" type="password" value="<?php echo $row['password']; ?>"
+                                         class="form-control" readonly>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>

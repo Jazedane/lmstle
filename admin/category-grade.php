@@ -96,8 +96,13 @@
                                     <div class="col-md-6">
                                         <?php echo $category_name; ?>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <?php echo $impact_percentage; ?>%
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a data-toggle="modal" data-target="#delete<?php echo $grade_category_row['grade_category_id'];?>"
+                                            id="delete" name=""><i class="fas fa-trash"></i></a>
+                                        <?php include 'delete-category-modal.php'; ?>
                                     </div>
                                 </div>
 

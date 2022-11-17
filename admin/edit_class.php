@@ -47,7 +47,7 @@
                                     <div class="form-group">
                                         <label>Class Name</label>
                                         <input name="class_name" value="<?php echo $row['class_name']; ?>" type="text"
-                                            class="form-control" placeholder="Enter Section"
+                                            class="form-control" placeholder="Enter Class Name"
                                             style="text-transform: uppercase" required>
                                     </div>
                                 </div>

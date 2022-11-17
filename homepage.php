@@ -55,7 +55,7 @@
                     ?>
                     <div class="image">
                         <img id="avatar" src="/lmstlee4/admin/<?php echo $row['location']; ?>"
-                            class="img-circle elevation-2" alt="User Image">
+                            class="img-circle elevation" alt="User Image" style="height:40px;width:40px;">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></a>
