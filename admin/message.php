@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                             <?php }}else{ ?>
-                            <div class="alert alert-info"><i class="fas fa-info-circle"></i> No Inbox
+                            <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Inbox
                                 Messages</div>
                             <?php } ?>
                             <script type="text/javascript">

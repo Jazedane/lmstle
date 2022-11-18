@@ -98,11 +98,6 @@
                                             min="15" max="25" class="form-control" placeholder="AGE"
                                             required>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input name="password" type="password" value="<?php echo $row['password']; ?>"
-                                         class="form-control" readonly>
-                                    </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>
                                 <div class="card-footer">
@@ -183,7 +178,7 @@
 						                                  $lastname = $row['lastname'];
 						                                  $firstname = strtoupper ($firstname);
 						                                  $lastname = strtoupper($lastname);
-						                                  echo $firstname .' '. $lastname; ?></td>
+						                                  echo $lastname .', '. $firstname; ?></td>
                                                 <td><?php echo $row['username']; ?></td>
                                                 <td><?php $gender = $row['gender'];
 					                                      $gender = strtoupper ($gender);

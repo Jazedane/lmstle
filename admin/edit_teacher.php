@@ -54,12 +54,12 @@
                                         <input type="text" name="lastname" value="<?php echo $row['lastname']; ?>"
                                             class="form-control" placeholder="Enter Lastname">
                                     </div>
-                                     <div class="form-group">
+                                    <div class="form-group">
                                         <label>Gender</label>
                                         <select name="gender" class="form-control" placeholder="Gender" required>
-                                            <option>Select Gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
+                                            <option><?php echo $row['gender']; ?></option>
+                                            <option>MALE</option>
+                                            <option>FEMALE</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -71,7 +71,7 @@
                                 <div class="card-footer">
                                     <center><button name="update" type="submit" class="btn btn-success"
                                             href="teacher.php"><i class="fas fa-edit">
-                                                </i> Edit</button>
+                                            </i> Edit</button>
                                         <a href="teacher.php" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
                                             Back </a>
                                     </center>
@@ -82,15 +82,15 @@
                     <?php		
                     if (isset($_POST['update'])){
 
+                    $username = $_POST['username'];
                     $firstname = $_POST['firstname'];
                     $lastname = $_POST['lastname'];
                     $gender = $_POST['gender'];
-                    $username = $_POST['username'];
-
+                    
                     mysqli_query($conn,"update tbl_teacher set username = '$username'  , firstname = '$firstname' , lastname = '$lastname' , gender = '$gender' where teacher_id = '$get_id' ")
                     or die(mysqli_error());
 
-                    mysqli_query($conn,"insert into tbl_activity_log (date,username,action) values(NOW(),'$teacher_username','Edit Teacher $username')")
+                    mysqli_query($conn,"insert into tbl_activity_log (date,username,action) values(NOW(),'$username','Edit Teacher $username')")
                     or die(mysqli_error());
                     ?>
                     <script>

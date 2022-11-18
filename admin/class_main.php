@@ -8,6 +8,7 @@
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
+    <?php include 'script.php'; ?>
 </head>
 
 <body id="class_div">
@@ -135,7 +136,8 @@
                                         <center><a href="my_students.php<?php echo '?id=' . $id; ?>">
                                                 <img src="<?php echo $row['thumbnails']; ?>" width="124" height="140"
                                                     class="img-thumbnail" alt="">
-                                            <p class="class"><?php echo $row['class_name']; ?></p></a>
+                                                <p class="class"><?php echo $row['class_name']; ?></p>
+                                            </a>
                                         </center>
                                     </div>
 
@@ -157,7 +159,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <?php include 'script.php'; ?>
     <script>
     jQuery(document).ready(function($) {
         $("#add_class").submit(function(e) {
@@ -170,17 +171,17 @@
                 data: formData,
                 success: function(html) {
                     if (html == "true") {
-                        $.jGrowl("Class Already Exist", {
+                        alert ("Class Already Exist", {
                             header: 'Add Class Failed'
                         });
                     } else {
-                        $.jGrowl("Class Successfully  Added", {
+                        alert("Class Successfully  Added", {
                             header: 'Class Added'
                         });
                         var delay = 500;
                         setTimeout(function() {
                             window.location =
-                                'class.php'
+                                'class_main.php'
                         }, delay);
                     }
                 }
@@ -205,7 +206,7 @@
                         $(this).remove();
                     });
                     $('#' + id).modal('hide');
-                    $.jGrowl("Your Class is Successfully Deleted", {
+                    alert("Your Class is Successfully Deleted", {
                         header: 'Class Delete'
                     });
                 }

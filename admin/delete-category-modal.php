@@ -13,10 +13,10 @@
             </div>
             <form method="post" action="delete-category.php">
                 <div class="modal-footer justify-content-between">
-                    <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
+                    <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                         Close</button>
                     <input type="hidden" name="grade_category_id" value="<?php echo $grade_category_row['grade_category_id'];?>">
-                    <button name="delete_category" class="btn btn-danger"><i class="fas fa-check"></i> Yes</button>
+                    <button name="delete_category" class="btn btn-success"><i class="fas fa-check"></i> Yes</button>
                 </div>
             </form>
         </div>

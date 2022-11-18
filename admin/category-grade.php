@@ -109,6 +109,11 @@
                                 <?php
                                     }
                                 ?>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Remaining Percentage: </p>
+                                    </div>
+                                </div>
                                 <form class="mt-5" action="main-category.php" method="post"
                                     enctype="multipart/form-data" name="upload">
                                     <input type="hidden" name="id" value="<?php echo $session_id; ?>">

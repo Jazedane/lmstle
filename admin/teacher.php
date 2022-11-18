@@ -52,9 +52,9 @@
                                     <div class="form-group">
                                         <label>Gender</label>
                                         <select name="gender" class="form-control" placeholder="Gender" required>
-                                            <option>Select Gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
+                                            <option>SELECT GENDER</option>
+                                            <option>MALE</option>
+                                            <option>FEMALE</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
