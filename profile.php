@@ -62,7 +62,7 @@
                                     <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">About
                                             me</a></li>
                                     <li type="submit" class="btn btn-success" data-toggle="modal"
-                                        data-target="#update_profile"><i class="fas fa-user"></i> Update Profile</li>
+                                        data-target="#update_profile-xl"><i class="fas fa-user"></i> Update Profile</li>
                                 </ul>
                             </div>
                             <div class="card-body">
@@ -97,8 +97,8 @@
             </div>
         </section>
     </div>
-    <div class="modal fade" id="update_profile" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog " role="document">
+    <div class="modal fade" id="update_profile-xl" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content text-center ">
                 <div class="modal-header bg-primary">
                     <h3 class="modal-title text-white "><b><i class="fas fa-user"></i> Update Profile</b></h3>
@@ -108,37 +108,45 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST">
-                        <input type="hidden" name="student_id" value="<?php echo $row['student_id'];?>">
-                        <label class="float-left font-15">First name</label>
-                        <input type="text" name="firstname" value="<?php echo $row['firstname'];?>" class="form-control"
-                            required="">
-                        <label class="float-left font-15">Last name</label>
-                        <input type="text" name="lastname" value="<?php echo $row['lastname'];?>" class="form-control">
-                        <label class="float-left font-15">Email</label>
-                        <input type="email" name="email" value="<?php echo $row['email'];?>" class="form-control">
-                        <label class="float-left font-15">Birthday</label>
-                        <input type="date" name="birthdate" value="<?php echo $row['birthdate'];?>" class="form-control"
-                            max="9999-01-01" min="0000-01-01">
-                        <label class="float-left font-15">Gender</label>
-                        <select class="form-control" name="gender">
-                            <option><?php echo $row['gender'];?></option>
-                            <option>Male</option>
-                            <option>Female</option>
-                        </select>
-                        <label class="float-left font-15">Age</label>
-                        <input type="number" name="age" maxlength="2" min="15" max="25"
-                            value="<?php echo $row['age'];?>" class="form-control">
-                        <label class="float-left font-15">Phone number</label>
-                        <input type="number" name="phone_no" maxlength="11" value="<?php echo $row['phone_no'];?>"
-                            class="form-control">
-                        <label class="float-left font-15">Address</label>
-                        <textarea placeholder="Enter Address" name="address"
-                            class="form-control"><?php echo $row['address'];?></textarea>
-                        <label class="float-left font-15">Nationality</label>
-                        <input type="text" name="nationality" value="<?php echo $row['nationality'];?>"
-                            class="form-control">
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit" name="update">UPDATE</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="hidden" name="student_id" value="<?php echo $row['student_id'];?>">
+                                <label class="float-left font-15">First name</label>
+                                <input type="text" name="firstname" value="<?php echo $row['firstname'];?>"
+                                    class="form-control" required="">
+                                <label class="float-left font-15">Last name</label>
+                                <input type="text" name="lastname" value="<?php echo $row['lastname'];?>"
+                                    class="form-control">
+                                <label class="float-left font-15">Email</label>
+                                <input type="email" name="email" value="<?php echo $row['email'];?>"
+                                    class="form-control">
+                                <label class="float-left font-15">Birthday</label>
+                                <input type="date" name="birthdate" value="<?php echo $row['birthdate'];?>"
+                                    class="form-control" max="9999-01-01" min="0000-01-01">
+                                <label class="float-left font-15">Gender</label>
+                                <select class="form-control" name="gender">
+                                    <option><?php echo $row['gender'];?></option>
+                                    <option>MALE</option>
+                                    <option>FEMALE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="float-left font-15">Age</label>
+                                <input type="number" name="age" maxlength="2" min="15" max="25"
+                                    value="<?php echo $row['age'];?>" class="form-control">
+                                <label class="float-left font-15">Phone number</label>
+                                <input type="number" name="phone_no" maxlength="11"
+                                    value="<?php echo $row['phone_no'];?>" class="form-control">
+                                <label class="float-left font-15">Address</label>
+                                <textarea placeholder="Enter Address" name="address"
+                                    class="form-control"><?php echo $row['address'];?></textarea>
+                                <label class="float-left font-15">Nationality</label>
+                                <input type="text" name="nationality" value="<?php echo $row['nationality'];?>"
+                                    class="form-control">
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="submit" name="update">UPDATE</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                     <?php 

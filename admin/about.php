@@ -139,6 +139,48 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card card-info card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-edit"></i>
+                                Toasts Examples <small>built in AdminLTE</small>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <button type="button" class="btn btn-default toastsDefaultDefault">
+                                Launch Default Toast
+                            </button>
+                            <button type="button" class="btn btn-default toastsDefaultFull">
+                                Launch Full Toast (with icon)
+                            </button>
+                            <button type="button" class="btn btn-default toastsDefaultFullImage">
+                                Launch Full Toast (with image)
+                            </button>
+                            <button type="button" class="btn btn-default toastsDefaultAutohide">
+                                Launch Default Toasts with autohide
+                            </button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-success toastsDefaultSuccess">
+                                Launch Success Toast
+                            </button>
+                            <button type="button" class="btn btn-info toastsDefaultInfo">
+                                Launch Info Toast
+                            </button>
+                            <button type="button" class="btn btn-warning toastsDefaultWarning">
+                                Launch Warning Toast
+                            </button>
+                            <button type="button" class="btn btn-danger toastsDefaultDanger">
+                                Launch Danger Toast
+                            </button>
+                            <button type="button" class="btn btn-default bg-maroon toastsDefaultMaroon">
+                                Launch Maroon Toast
+                            </button>
+                            <div class="text-muted mt-3">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -151,6 +193,105 @@
             position: 'top-end',
             showConfirmButton: false,
             timer: 3000
+        });
+        $('.toastsDefaultDefault').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultTopLeft').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                position: 'topLeft',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultBottomRight').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                position: 'bottomRight',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultBottomLeft').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                position: 'bottomLeft',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultAutohide').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                autohide: true,
+                delay: 750,
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultNotFixed').click(function() {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                fixed: false,
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultFull').click(function() {
+            $(document).Toasts('create', {
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                icon: 'fas fa-envelope fa-lg',
+            })
+        });
+        $('.toastsDefaultFullImage').click(function() {
+            $(document).Toasts('create', {
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                image: '../../dist/img/user3-128x128.jpg',
+                imageAlt: 'User Picture',
+            })
+        });
+        $('.toastsDefaultSuccess').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-success',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultInfo').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-info',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultWarning').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-warning',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultDanger').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-danger',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultMaroon').click(function() {
+            $(document).Toasts('create', {
+                class: 'bg-maroon',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
         });
         $('.swalDefaultSuccess').click(function() {
             Toast.fire({
