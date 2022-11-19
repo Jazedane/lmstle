@@ -59,7 +59,18 @@
                                 partially urban Secondary Public School located in Prk. Pag-asa, Brgy Bug-ang,
                                 Toboso, Negros Occidental.
                                 It is a Junior High School with Senior High Department.
-
+                                <button type="button" class="btn btn-success toastrDefaultSuccess">
+                                    Launch Success Toast
+                                </button>
+                                <button type="button" class="btn btn-info toastrDefaultInfo">
+                                    Launch Info Toast
+                                </button>
+                                <button type="button" class="btn btn-danger toastrDefaultError">
+                                    Launch Error Toast
+                                </button>
+                                <button type="button" class="btn btn-warning toastrDefaultWarning">
+                                    Launch Warning Toast
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -81,6 +92,21 @@
                                 and competencies enable them to realize their full potential and contribute meaningfully
                                 to building the nation. As a learner-centered public institution, the Department of
                                 Education continuously improves itself to better serve its stakeholders.
+                                <button type="button" class="btn btn-success swalDefaultSuccess">
+                                    Launch Success Toast
+                                </button>
+                                <button type="button" class="btn btn-info swalDefaultInfo">
+                                    Launch Info Toast
+                                </button>
+                                <button type="button" class="btn btn-danger swalDefaultError">
+                                    Launch Error Toast
+                                </button>
+                                <button type="button" class="btn btn-warning swalDefaultWarning">
+                                    Launch Warning Toast
+                                </button>
+                                <button type="button" class="btn btn-default swalDefaultQuestion">
+                                    Launch Question Toast
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -97,8 +123,9 @@
                             </div>
                             <div class="card-body">
                                 <p><b>MISSION</b></p>
-                                <p>To protect and promote the right of every Filipino to quality, equitable, culture-based,
-                                and complete basic education where:</p>
+                                <p>To protect and promote the right of every Filipino to quality, equitable,
+                                    culture-based,
+                                    and complete basic education where:</p>
                                 <ul>
                                     <li>Students learn in a child-friendly, gender-sensitive, safe and motivating
                                         environment</li>
@@ -117,6 +144,58 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        $('.swalDefaultSuccess').click(function() {
+            Toast.fire({
+                icon: 'success',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultInfo').click(function() {
+            Toast.fire({
+                icon: 'info',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultError').click(function() {
+            Toast.fire({
+                icon: 'error',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultWarning').click(function() {
+            Toast.fire({
+                icon: 'warning',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultQuestion').click(function() {
+            Toast.fire({
+                icon: 'question',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastrDefaultSuccess').click(function() {
+            toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+        $('.toastrDefaultInfo').click(function() {
+            toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+        $('.toastrDefaultError').click(function() {
+            toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+        $('.toastrDefaultWarning').click(function() {
+            toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+    });
+    </script>
 </body>
 
 </html>
