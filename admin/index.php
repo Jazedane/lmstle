@@ -92,12 +92,21 @@
                                 </p>
                             </a>
                         </li>
+                         <?php
+			                $notification_query = mysqli_query($conn,"select * from tbl_notification where receiver_id = '$session_id' 
+                            and is_read=false ")or die(mysqli_error());
+			                $count_notification = mysqli_num_rows($notification_query);
+		                ?>
                         <li class="nav-item">
                             <a href="notification.php" class="nav-link">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>
                                     Notification
                                 </p>
+                                <?php if($count_notification == '0'){
+				                    }else{ ?>
+                                <span class="badge bg-primary float-right"><?php echo $count_notification; ?></span>
+                                <?php } ?>
                             </a>
                         </li>
                         <?php

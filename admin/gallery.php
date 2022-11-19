@@ -73,7 +73,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <?php
-                        $limit = 4;
+                        $limit = 3;
                         $page= $_REQUEST['page'];
                         $pages = $page-1;
                         $p = $pages * $limit;
@@ -106,14 +106,13 @@
                         include 'popup_plant.php';
                         include 'delete_plant.php';
                       }?>
-                    <div class="m-auto justify-between">
-
+                    <div class="m-auto justify-content-between">
                         <?php
                                 if($pages >= 1){
-                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page - 1)."><i class='fas fa-backward'></i> Prev</a>";
+                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page - 1)."><i class='fas fa-arrow-left'></i> Prev</a>";
                              }
                                 if($page + 1 < $limit){
-                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page + 1)."> Next <i class='fas fa-forward'></i></a>";
+                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page + 1)."> Next <i class='fas fa-arrow-right'></i></a>";
                               }
                             ?>
 

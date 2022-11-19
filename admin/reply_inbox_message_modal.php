@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label class="control-label" for="inputPassword">Content:</label>
                         <div class="controls">
-                            <textarea name="my_message" class="form-control"></textarea>
+                            <textarea name="my_message" rows="3" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="form-group">

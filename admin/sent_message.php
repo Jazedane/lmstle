@@ -55,10 +55,19 @@
                             </div>
                             <div class="card-body p-0">
                                 <ul class="nav nav-pills flex-column">
+                                    <?php
+			                        $message_query = mysqli_query($conn,"select * from tbl_message where receiver_id = '$session_id' 
+                                    and message_status != 'read' ")or die(mysqli_error());
+			                        $count_message = mysqli_num_rows($message_query);
+		                            ?>
                                     <li class="nav-item active">
                                         <a href="message.php" class="nav-link">
                                             <i class="fas fa-inbox"></i> Inbox
-                                            <span class="badge bg-primary float-right"></span>
+                                            <?php if($count_message == '0'){
+				                            }else{ ?>
+                                            <span
+                                                class="badge bg-primary float-right"><?php echo $count_message; ?></span>
+                                            <?php } ?>
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -195,8 +204,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Content:</label>
-                                    <textarea name="my_message" rows="3" class="my_message form-control"
-                                        required>
+                                    <textarea name="my_message" rows="3" class="my_message form-control" required>
                                     </textarea>
                                 </div>
                                 <div class="card-footer">

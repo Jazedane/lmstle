@@ -142,34 +142,34 @@
                                 Messages</div>
                             <?php } ?>
                             <script type="text/javascript">
-                            $(document).ready(function() {
-                                $('.remove').click(function() {
+                                $(document).ready(function() {
+                                    $('.remove').click(function() {
 
-                                    var id = $(this).attr("id");
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "remove_inbox_message.php",
-                                        data: ({
-                                            id: id
-                                        }),
-                                        cache: false,
-                                        success: function(html) {
-                                            $("#del" + id).fadeOut('slow',
-                                                function() {
-                                                    $(this).remove();
-                                                });
-                                            $('#' + id).modal('hide');
-                                            alert(
-                                                "Your Sent message is Successfully Deleted", {
-                                                    header: 'Data Delete'
-                                                });
-                                            window.location.reload()
-                                        }
+                                        var id = $(this).attr("id");
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "remove_inbox_message.php",
+                                            data: ({
+                                                id: id
+                                            }),
+                                            cache: false,
+                                            success: function(html) {
+                                                $("#del" + id).fadeOut('slow',
+                                                    function() {
+                                                        $(this).remove();
+                                                    });
+                                                $('#' + id).modal('hide');
+                                                alert(
+                                                    "Your Sent message is Successfully Deleted", {
+                                                        header: 'Data Delete'
+                                                    });
+                                                window.location.reload()
+                                            }
+                                        });
+                                        return false;
                                     });
-                                    return false;
                                 });
-                            });
-                            </script>
+                                </script>
                             <script>
                             jQuery(document).ready(function() {
                                 jQuery("#reply").submit(function(e) {

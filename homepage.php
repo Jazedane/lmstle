@@ -21,14 +21,14 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">Settings</span>
                         <div class="dropdown-divider"></div>
-                        <a href="profile.php" class="dropdown-item" type="button"><i
-                                class="fas fa-user-circle"></i> Profile</a>
+                        <a href="profile.php" class="dropdown-item" type="button"><i class="fas fa-user-circle"></i>
+                            Profile</a>
                         <a href="change_password_student.php" class="dropdown-item" type="button"><i
                                 class="fas fa-edit"></i> Change Password</a>
                         <a href="developer.php" class="dropdown-item" type="button"><i class="fas fa-users"></i>
                             Developer</a>
-                        <a href="logout.php" class="dropdown-item" type="button"><i
-                                class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a href="logout.php" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i>
+                            Logout</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -85,12 +85,21 @@
                                 </p>
                             </a>
                         </li>
+                        <?php
+			                $notification_query = mysqli_query($conn,"select * from tbl_notification where receiver_id = '$session_id' 
+                            and is_read=false ")or die(mysqli_error());
+			                $count_notification = mysqli_num_rows($notification_query);
+		                ?>
                         <li class="nav-item">
                             <a href="notification.php" class="nav-link">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>
                                     Notification
                                 </p>
+                                <?php if($count_notification == '0'){
+				                    }else{ ?>
+                                <span class="badge bg-primary float-right"><?php echo $count_notification; ?></span>
+                                <?php } ?>
                             </a>
                         </li>
                         <?php
@@ -114,7 +123,7 @@
                             <a href="gallery.php?page=1" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
-                                   Plant Gallery
+                                    Plant Gallery
                                 </p>
                             </a>
                         </li>
