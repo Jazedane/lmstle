@@ -132,13 +132,17 @@
                                                 $class_id = $row['class_id'];
                                                 ?>
 
-                                    <div id="<?php echo $id; ?>" style="border:1px solid black;margin-right:10px">
-                                        <center><a href="my_students.php<?php echo '?id=' . $id; ?>">
-                                                <img src="<?php echo $row['thumbnails']; ?>" width="124" height="140"
-                                                    class="img-thumbnail" alt="">
-                                                <p class="class"><?php echo $row['class_name']; ?></p>
+                                    <div class="card-deck">
+                                        <div class="card" id="<?php echo $id; ?>"
+                                            style="max-width:10rem;border:2px solid black;margin-right:20px">
+                                            <a href=" my_students.php<?php echo '?id=' . $id; ?>">
+                                                <img class="card-img-top" src="<?php echo $row['thumbnails']; ?>"
+                                                    alt="Card image cap">
+                                                <div class="card-body">
+                                                    <p class="card-text"><b><?php echo $row['class_name']; ?></b></p>
+                                                </div>
                                             </a>
-                                        </center>
+                                        </div>
                                     </div>
 
                                     <?php
@@ -171,7 +175,7 @@
                 data: formData,
                 success: function(html) {
                     if (html == "true") {
-                        alert ("Class Already Exist", {
+                        alert("Class Already Exist", {
                             header: 'Add Class Failed'
                         });
                     } else {

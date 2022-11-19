@@ -54,7 +54,7 @@
                                     LEFT JOIN tbl_teacher_class ON tbl_teacher_class.teacher_class_id = tbl_teacher_class_student.teacher_class_id 
                                     LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
                                     LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_teacher_class.teacher_id
-                                    WHERE student_id = '$session_id' and school_year = '$school_year' AND tbl_class.isDeleted = false"
+                                    WHERE student_id = '$session_id' and school_year = '$school_year' and tbl_class.isDeleted = false"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 ?>
@@ -67,13 +67,16 @@
                                             $row = mysqli_fetch_array($query)
                                         ) {
                                             $id = $row['teacher_class_id']; ?>
-                        <div style="border:1px solid black;margin-right:10px">
-                            <center><a href="my_classmates.php<?php echo '?id=' . $id; ?>">
-                                <img src="<?php echo $row['thumbnails']; ?>" width="124" height="100"
-                                    class="img-thumbnail">
-                            <p class="class"><?php echo $row['class_name']; ?></p></center></a>
+                        <div class="card-deck">
+                            <div class="card" style="max-width:10rem;border:2px solid black;margin-right:10px">
+                                <a href=" my_classmates.php<?php echo '?id=' . $id; ?>">
+                                <img class="card-img-top" src="<?php echo $row['thumbnails']; ?>" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text"><b><?php echo $row['class_name']; ?></b></p>
+                                </div>
+                                </a>
+                            </div>
                         </div>
-
                         <?php
                                     }
                                 } else {
