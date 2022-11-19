@@ -114,7 +114,7 @@
                             <a href="gallery.php?page=1" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
-                                    Gallery
+                                   Plant Gallery
                                 </p>
                             </a>
                         </li>

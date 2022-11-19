@@ -146,25 +146,12 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-header">CREATE</li>
-                        <li class="nav-item">
-                            <a href="category-grade.php" class="nav-link">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>Grade Category</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="add_task.php" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>Create Task</p>
-                            </a>
-                        </li>
                         <li class="nav-header">INFORMATION</li>
                         <li class="nav-item">
                             <a href="gallery.php?page=1" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
-                                    Gallery
+                                    Plant Gallery
                                 </p>
                             </a>
                         </li>

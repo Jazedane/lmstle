@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LMSTLE | Grade Category</title>
 
-    <?php include 'header.php'; ?>
-    <?php include 'session.php'; ?>
-    <?php include 'script.php'; ?>
-    <?php $get_id = $_GET['id']; ?>
+    <?php include 'header.php'; 
+        include 'session.php';
+        include 'script.php';
+     $get_id = $_GET['id']; 
+     $task_total_percentage = [];
+     $grade_impact = [];
+     ?>
 </head>
 
 <body>
@@ -78,7 +81,7 @@
                                     </div>
                                 </div>
 
-                                <?php
+                                <?php 
                                 ($grade_category_query = mysqli_query(
                                     $conn,
                                     "SELECT * FROM tbl_grade_category
@@ -92,22 +95,45 @@
                                     )
                                 ) {
 
-                                    $category_name =
-                                        $grade_category_row['category_name'];
-                                    $impact_percentage =
-                                        $grade_category_row[
-                                            'impact_percentage'
-                                        ];
-                                    ?>
+                                if (!isset($grade_impact[$grade_category_row['category_name']])) {
+                                                    /**
+                                                     * Null checking. Make sure that the array key is initialized.
+                                                     */
+                                                    $grade_impact[
+                                                        $grade_category_row[
+                                                            'category_name'
+                                                        ]
+                                                    ] = 0;
+                                                }
+
+                                                $grade_impact[$grade_category_row['category_name']] = $grade_category_row['impact_percentage'];
+                                ?>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <?php echo $category_name; ?>
+                                        <?php echo $grade_category_row['category_name'];?>
                                     </div>
                                     <div class="col-md-3">
-                                        <?php echo $impact_percentage; ?>%
+                                        <?php
+                                                    /**
+                                                     * Record the total points of each activity.
+                                                     */
+                                                    if (isset($task_total_percentage[$grade_category_row['category_name']])) {
+                                                        $task_total_percentage[$grade_category_row['category_name']] += $grade_category_row['impact_percentage'];
+                                                    } else {
+                                                        /**
+                                                         * Null checking. Make sure that the array key is initialized.
+                                                         */
+                                                        $task_total_percentage[$grade_category_row['category_name']] = $grade_category_row['impact_percentage'];
+                                                    }
+
+                                                    echo $grade_category_row[
+                                                        'impact_percentage'
+                                                    ]; 
+                                            ?> %
                                     </div>
                                     <div class="col-md-3">
-                                        <a data-toggle="modal" data-target="#delete<?php echo $grade_category_row['grade_category_id'];?>"
+                                        <a data-toggle="modal"
+                                            data-target="#delete<?php echo $grade_category_row['grade_category_id'];?>"
                                             id="delete" name=""><i class="fas fa-trash"></i></a>
                                         <?php include 'delete-grade-category-modal.php'; ?>
                                     </div>
@@ -117,7 +143,32 @@
                                 ?>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <p>Remaining Percentage: </p>
+                                        <p>Remaining Percentage:
+                                            <?php
+                                                    /**
+                                                     * Student's overall grade.
+                                                     */
+                                                    $impact_percentage_total = 0;
+                                                        /**
+                                                         * Get the student's grade for each category.
+                                                         */
+                                                    foreach (
+                                                        $grade_impact
+                                                        as $key => $grade_impact_value
+                                                    ) {
+                                                        
+                                                        $value = 0;
+                                                        if (isset($grade_impact[$key])) {
+                                                            $value = $grade_impact[$key];
+                                                        }
+                                                        
+                                                        /**
+                                                         * Sum up the overall student's grade.
+                                                         */
+                                                        $impact_percentage_total += $value;
+                                                    }
+
+                                                echo 70-$impact_percentage_total . "%"?></p>
                                     </div>
                                 </div>
                                 <form class="mt-5" action="category.php" method="post" enctype="multipart/form-data"
@@ -134,7 +185,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="number" name="impact_percentage" maxlenth="2" max="100"
+                                                <input type="number" name="impact_percentage" maxlength="2" max="<?php echo 70-$impact_percentage_total; ?>"
                                                     class="form-control" placeholder="Enter percentage" required>
                                             </div>
                                         </div>

@@ -71,7 +71,7 @@
                                 echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page - 1)."><i class='fas fa-backward'></i> Prev</a>";
                              }
                                 if($page + 1 < $limit){
-                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page + 1)."><i class='fas fa-forward'></i> Next</a>";
+                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=".($page + 1).">Next <i class='fas fa-forward'></i></a>";
                               }
                             ?>
 

@@ -42,8 +42,7 @@
                             <div class="card-body box-profile">
                                 <div class="text-center">
                                     <img id="avatar" class="img-circle elevation-2"
-                                        src="/lmstlee4/admin/<?php echo $row['location']; ?>" width="80"
-                                                    height="80">
+                                        src="/lmstlee4/admin/<?php echo $row['location']; ?>" width="80" height="80">
                                 </div>
                                 <?php
                                     echo "<h3 class='profile-username text-center'>".$row['firstname']." ".$row['lastname'] . "</h3>";
@@ -57,13 +56,13 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <button type="submit" class="btn btn-primary ml-3 float-right" data-toggle="modal"
-                            data-target="#update_profile">Update Profile</button>
-                        <div class="card">
+                        <div class="card card-primary">
                             <div class="card-header p-2">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item"><a class="nav-link active" href="#activity"
-                                            data-toggle="tab">About me</a></li>
+                                <ul class="nav nav-pills justify-content-between">
+                                    <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">About
+                                            me</a></li>
+                                    <li type="submit" class="btn btn-success" data-toggle="modal"
+                                        data-target="#update_profile"><i class="fas fa-user"></i> Update Profile</li>
                                 </ul>
                             </div>
                             <div class="card-body">
@@ -102,7 +101,7 @@
         <div class="modal-dialog " role="document">
             <div class="modal-content text-center ">
                 <div class="modal-header bg-primary">
-                    <h3 class="modal-title text-white "><b>Update Profile</b></h3>
+                    <h3 class="modal-title text-white "><b><i class="fas fa-user"></i> Update Profile</b></h3>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -138,19 +137,21 @@
                         <label class="float-left font-15">Nationality</label>
                         <input type="text" name="nationality" value="<?php echo $row['nationality'];?>"
                             class="form-control">
-                        <button class="btn btn-primary" type="submit" name="update">UPDATE</button>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit" name="update">UPDATE</button>
+                        </div>
                     </form>
                     <?php 
                     if (isset($_POST['update'])) {
                         $query = "UPDATE tbl_student SET firstname='$_POST[firstname]', lastname='$_POST[lastname]', email='$_POST[email]', birthdate='$_POST[birthdate]', gender='$_POST[gender]', age='$_POST[age]', phone_no='$_POST[phone_no]', address='$_POST[address]', nationality='$_POST[nationality]' WHERE student_id = '$session_id'";
                         $result = mysqli_query($conn, $query);
-                ?>
+                    ?>
                     <script>
                     window.location = "profile.php";
                     </script>
                     <?php 
                     }
-                ?>
+                    ?>
                 </div>
             </div>
         </div>

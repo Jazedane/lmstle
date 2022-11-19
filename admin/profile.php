@@ -79,13 +79,13 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <button type="submit" class="btn btn-primary ml-3 float-right" data-toggle="modal"
-                            data-target="#update_profile">Update Profile</button>
-                        <div class="card">
+                        <div class="card card-primary">
                             <div class="card-header p-2">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item"><a class="nav-link active" href="#activity"
-                                            data-toggle="tab">About me</a></li>
+                                <ul class="nav nav-pills justify-content-between">
+                                    <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">About
+                                            me</a></li>
+                                    <li type="submit" class="btn btn-success" data-toggle="modal"
+                                        data-target="#update_profile"><i class="fas fa-user"></i> Update Profile</li>
                                 </ul>
                             </div>
                             <div class="card-body">
@@ -114,7 +114,7 @@
             <div class="modal-dialog " role="document">
                 <div class="modal-content text-center ">
                     <div class="modal-header bg-primary">
-                        <h3 class="modal-title text-white "><b>Update Profile</b></h3>
+                        <h3 class="modal-title text-white "><b><i class="fas fa-user"></i> Update Profile</b></h3>
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -157,7 +157,9 @@
                             <label class="float-left font-15">Skills</label>
                             <textarea placeholder="Enter Skills" name="skills"
                                 class="form-control"><?php echo $row['skills'];?></textarea>
-                            <button class="btn btn-primary" type="submit" name="update">UPDATE</button>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" name="update">UPDATE</button>
+                            </div>
                         </form>
                         <?php 
                             if (isset($_POST['update'])) {
