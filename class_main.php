@@ -68,7 +68,7 @@
                                         ) {
                                             $id = $row['teacher_class_id']; ?>
                         <div class="card-deck">
-                            <div class="card" style="max-width:10rem;border:2px solid black;margin-right:10px">
+                            <div class="card text-white bg-success mb-3" style="max-width:11rem;border:2px solid black;margin-right:10px">
                                 <a href=" my_classmates.php<?php echo '?id=' . $id; ?>">
                                 <img class="card-img-top" src="<?php echo $row['thumbnails']; ?>" alt="Card image cap">
                                 <div class="card-body">
