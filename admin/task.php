@@ -109,6 +109,37 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label for="quarter">Quarter</label>
+                                        <select name="quarter" class="form-control"
+                                            required>
+                                            <option value="">Select Quarter</option>
+                                            <option value="<?php echo $quarter ==
+                                            1
+                                                ? 'selected'
+                                                : ''; ?>" >
+                                                1st Quarter
+                                            </option>
+                                            <option value="<?php echo $quarter ==
+                                            2
+                                                ? 'selected'
+                                                : ''; ?>" >
+                                                2nd Quarter
+                                            </option>
+                                            <option value="<?php echo $quarter ==
+                                            3
+                                                ? 'selected'
+                                                : ''; ?> ">
+                                                3rd Quarter
+                                            </option>
+                                            <option value="<?php echo $quarter ==
+                                            4
+                                                ? 'selected'
+                                                : ''; ?>" >
+                                                4th Quarter
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="due_date">Due Date:</label>
                                         <div class="input-group date" id="reservationdatetime"
                                             data-target-input="nearest">
