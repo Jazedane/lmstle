@@ -78,8 +78,8 @@
                     </div>
                     <?php
                         if (isset($_POST['save'])){
-                        $firstname = $_POST['firstname'];
-                        $lastname = $_POST['lastname'];
+                        $firstname = strtoupper($_POST['firstname']);
+                        $lastname = strtoupper($_POST['lastname']);
                         $gender = $_POST['gender'];
                         $username = $_POST['username'];
                         $password = $_POST['password'];
@@ -93,10 +93,10 @@
                     alert('Data Already Exist');
                     </script>
                     <?php
-                        }else{
-                        mysqli_query($conn,"insert into tbl_teacher (username,password,firstname,lastname,gemder,location,teacher_stat) 
+                        }else {
+                        mysqli_query($conn,"INSERT INTO tbl_teacher (username,password,firstname,lastname,gemder,location,teacher_stat) 
                         values('$username','$hashedPassword','$firstname','$lastname','$gender','NO-IMAGE-AVAILABLE.jpg','Activated')")or die(mysqli_error());
-                        mysqli_query($conn,"insert into tbl_activity_log (date,username,action) 
+                        mysqli_query($conn,"INSERT INTO tbl_activity_log (date,username,action) 
                         values(NOW(),'$username','Add User $username')")or die(mysqli_error());
                     ?>
                     <script>

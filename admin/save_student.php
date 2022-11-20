@@ -6,8 +6,8 @@ include 'database.php';
  */
 $class_id = $_POST['class_id'];
 $username = $_POST['username'];
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
+$firstname = strtoupper($_POST['firstname']);
+$lastname = strtoupper($_POST['lastname']);
 $gender = $_POST['gender'];
 $age = $_POST['age'];
 $teacher_id = $_POST['teacher_id'];
@@ -30,7 +30,7 @@ mysqli_query(
     tbl_student 
     (username,firstname,lastname,gender,age,location,class_id,status,password) 
     VALUES 
-    ('$username','$firstname','$lastname','$gender','$age','uploads/NO-IMAGE-AVAILABLE.jpg','$class_id','Unregistered','$hashedPassword');"
+    ('$username','$firstname','$lastname','$gender','$age','uploads/NO-IMAGE-AVAILABLE.jpg','$class_id','Registered','$hashedPassword');"
 ) or die(mysqli_error());
 
 /**

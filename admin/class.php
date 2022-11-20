@@ -55,10 +55,10 @@
                     </div>
                     <?php
                             if (isset($_POST['save'])){
-                            $class_name = $_POST['class_name'];
+                            $class_name = strtoupper($_POST['class_name']);
 
 
-                            $query = mysqli_query($conn,"select * from tbl_class where class_name  =  '$class_name' ")or die(mysqli_error());
+                            $query = mysqli_query($conn,"SELECT * FROM tbl_class WHERE class_name  =  '$class_name' ")or die(mysqli_error());
                             $count = mysqli_num_rows($query);
 
                             if ($count > 0){ ?>
@@ -67,7 +67,7 @@
                     </script>
                     <?php
                             }else{
-                            mysqli_query($conn,"insert into tbl_class (class_name) values('$class_name')")or die(mysqli_error());
+                            mysqli_query($conn,"INSERT INTO tbl_class (class_name) VALUES('$class_name')")or die(mysqli_error());
                             ?>
                     <?php
                             }

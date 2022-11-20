@@ -72,7 +72,7 @@
                                     <div class="form-group">
                                         <label>ID Number</label>
                                         <input name="username" value="<?php echo $row['username']; ?>" type="varchar"
-                                            maxlength="7" class="form-control" placeholder="Enter ID Number">
+                                            maxlength="6" class="form-control" placeholder="Enter ID Number">
                                     </div>
                                     <div class="form-group">
                                         <label>First Name</label>
@@ -115,8 +115,8 @@
                         if (isset($_POST['update'])) {
                                
                             $username = $_POST['username'];
-                            $firstname = $_POST['firstname'];
-                            $lastname = $_POST['lastname'];
+                            $firstname = strtoupper($_POST['firstname']);
+                            $lastname = strtoupper($_POST['lastname']);
                             $gender = $_POST['gender'];
                             $age = $_POST['age'];
                             $cys = $_POST['cys'];
@@ -127,6 +127,7 @@
 		                ?>
 
                     <script>
+                        alert("Student Successfully Edited");
                     window.location = "students.php";
                     </script>
 
