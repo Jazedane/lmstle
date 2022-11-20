@@ -82,59 +82,44 @@
                                         <select class="form-control" name="grade_category_id" required>
                                             <option value="">Select Category</option>
                                             <?php
-                                                ($category_query = mysqli_query(
-                                                    $conn,
-                                                    "SELECT * FROM tbl_grade_category
+                                            ($category_query = mysqli_query(
+                                                $conn,
+                                                "SELECT * FROM tbl_grade_category
                                                     LEFT JOIN tbl_class ON tbl_class.class_id = tbl_grade_category.class_id
                                                     WHERE tbl_grade_category.class_id = '$class_id'"
-                                                )) or die(mysqli_error());
-                                                while ($category_row = mysqli_fetch_array($category_query)) {
-                                            ?>
+                                            )) or die(mysqli_error());
+                                            while (
+                                                $category_row = mysqli_fetch_array(
+                                                    $category_query
+                                                )
+                                            ) { ?>
                                             <option value="
-                                                <?php 
-                                                    echo $category_row[
-                                                        'grade_category_id'
-                                                    ]; 
-                                                ?>
+                                                <?php echo $category_row[
+                                                    'grade_category_id'
+                                                ]; ?>
                                             ">
-                                                <?php 
-                                                    echo $category_row[
-                                                        'category_name'
-                                                    ];
-                                                ?>
+                                                <?php echo $category_row[
+                                                    'category_name'
+                                                ]; ?>
                                             </option>
-                                            <?php
-                                            }
+                                            <?php }
                                             ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="quarter">Quarter</label>
-                                        <select name="quarter" class="form-control"
-                                            required>
+                                        <select name="quarter" class="form-control" required>
                                             <option value="">Select Quarter</option>
-                                            <option value="<?php echo $quarter ==
-                                            1
-                                                ? 'selected'
-                                                : ''; ?>" >
+                                            <option value="1" selected="<?php echo $quarter == 1 ? 'true' : 'false'; ?>">
                                                 1st Quarter
                                             </option>
-                                            <option value="<?php echo $quarter ==
-                                            2
-                                                ? 'selected'
-                                                : ''; ?>" >
+                                            <option value="2" selected="<?php echo $quarter == 2 ? 'true' : 'false'; ?>">
                                                 2nd Quarter
                                             </option>
-                                            <option value="<?php echo $quarter ==
-                                            3
-                                                ? 'selected'
-                                                : ''; ?> ">
+                                            <option value="3" selected="<?php echo $quarter == 3 ? 'true' : 'false'; ?>">
                                                 3rd Quarter
                                             </option>
-                                            <option value="<?php echo $quarter ==
-                                            4
-                                                ? 'selected'
-                                                : ''; ?>" >
+                                            <option value="4" selected="<?php echo $quarter == 4 ? 'true' : 'false'; ?>">
                                                 4th Quarter
                                             </option>
                                         </select>
@@ -245,7 +230,8 @@
                                             </td>
                                             <td width="10">
                                                 <form method="post" action="view_submit_task.php<?php echo '?id=' .
-                                                    $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
+                                                    $get_id; ?>&<?php echo 'post_id=' .
+    $id; ?>">
 
                                                     <button data-placement="bottom"
                                                         title="View Student Who Submit Activity"
