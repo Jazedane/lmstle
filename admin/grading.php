@@ -11,8 +11,19 @@
     include 'session.php';
     include 'script.php';
     $get_id = $_GET['id'];
+    $selected_quarter = isset($_GET['quarter']) ? $_GET['quarter'] : '1';
 
-    $quarters = [1, 2, 3, 4];
+    $quarters = [$selected_quarter];
+
+    if (isset($_GET['quarter'])) {
+        if ($_GET['quarter'] == 'all')  {
+            $quarters = [1, 2, 3, 4];
+        } else {
+            $quarter = [$selected_quarter];
+        }
+    } else {
+        $selected_quarter = 0;
+    }
     ?>
 </head>
 
@@ -52,6 +63,18 @@
             </div>
         </section>
         <section class="content-header">
+            <div class="row mb-2 ml-1">
+                <div class="col-sm-3">
+                <select class="form-control" id="quarter-selection">
+                    <option value="0" <?php if ($selected_quarter == "0") { echo "selected"; } else { echo ""; } ?>>Select Quarter</option>
+                    <option value="1" <?php if ($selected_quarter == "1") { echo "selected"; } else { echo ""; } ?>>1st Quarter</option>
+                    <option value="2" <?php if ($selected_quarter == "2") { echo "selected"; } else { echo ""; } ?>>2nd Quarter</option>
+                    <option value="3" <?php if ($selected_quarter == "3") { echo "selected"; } else { echo ""; } ?>>3rd Quarter</option>
+                    <option value="4" <?php if ($selected_quarter == "4") { echo "selected"; } else { echo ""; } ?>>4th Quarter</option>
+                    <option value="all" <?php if ($selected_quarter == "all") { echo "selected"; } else { echo ""; } ?>>All Quarters</option>
+                </select>
+                </div>
+            </div>
             <div class="container-fluid">
                 <?php for (
                     $quarterIndex = 0;
@@ -422,6 +445,17 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
     });
+
+    $(document).ready(() => {
+        $('#quarter-selection').on('change', (evt) => {
+            const url = new URL(window.location.href);
+            const host = url.origin;
+            const path = url.pathname;
+            const id = url.searchParams.get('id');
+            const queryBuilder = `${host}${path}?id=${id}&quarter=${evt.target.value}`;
+            window.location.href = queryBuilder;
+        })
+    })    
     </script>
 </body>
 
