@@ -143,6 +143,12 @@
                                 <?php } ?>
                                 <script type="text/javascript">
                                 $(document).ready(function() {
+                                    var Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000
+                                    });
                                     $('.remove').click(function() {
 
                                         var id = $(this).attr("id");
@@ -159,12 +165,14 @@
                                                         $(this).remove();
                                                     });
                                                 $('#' + id).modal('hide');
-                                                alert(
-                                                    "Your Sent message is Successfully Deleted", {
-                                                        header: 'Data Delete'
-                                                    });
-                                                window.location.reload()
-                                            }
+                                                Toast.fire({
+                                                    icon: 'success',
+                                                    title: 'Your Sent message is Successfully Deleted.'
+                                                })
+                                                setTimeout(function() {
+                                                    window.location.reload();
+                                                }, 2000);
+                                            },
                                         });
                                         return false;
                                     });
@@ -216,6 +224,12 @@
                             </form>
                             <script>
                             jQuery(document).ready(function() {
+                                var Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                });
                                 jQuery("#send_message_student").submit(function(e) {
                                     e.preventDefault();
                                     var formData = jQuery(this).serialize();
@@ -224,14 +238,11 @@
                                         url: "send_message_teacher_to_student.php",
                                         data: formData,
                                         success: function(html) {
-                                            alert("Message Successfully Sended");
-                                            var delay = 1000;
+                                            toastr.success("Message Successfully Sended");
                                             setTimeout(function() {
                                                 window.location =
-                                                    'message.php'
-                                            }, delay);
-
-
+                                                    'sent_message.php';
+                                            }, 2000);
                                         }
 
                                     });

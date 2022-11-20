@@ -51,7 +51,7 @@
                                 <h3 class="card-title">Uploaded Task</h3>
                             </div>
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example2" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
@@ -67,9 +67,10 @@
                                     <tbody>
 
                                         <?php
-										$query = mysqli_query($conn,"select * FROM tbl_task LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_task.teacher_id
-																				  LEFT JOIN tbl_teacher_class ON tbl_teacher_class.teacher_class_id = tbl_task.class_id and tbl_task.isDeleted=false
-																				  INNER JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id  ")or die(mysqli_error());
+										$query = mysqli_query($conn,"SELECT * FROM tbl_task 
+                                                                    LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_task.teacher_id
+																	LEFT JOIN tbl_teacher_class ON tbl_teacher_class.teacher_class_id = tbl_task.class_id and tbl_task.isDeleted=false
+																	INNER JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 									?>
                                         <tr>

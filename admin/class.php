@@ -80,7 +80,7 @@
                             </div>
                             <div class="card-body">
                                 <form action="delete_class.php" method="post">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="example2" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#class_delete" id="delete" class="btn btn-danger"
                                             name=""><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>

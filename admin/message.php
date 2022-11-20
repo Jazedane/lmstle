@@ -142,36 +142,50 @@
                                 Messages</div>
                             <?php } ?>
                             <script type="text/javascript">
-                                $(document).ready(function() {
-                                    $('.remove').click(function() {
-
-                                        var id = $(this).attr("id");
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "remove_inbox_message.php",
-                                            data: ({
-                                                id: id
-                                            }),
-                                            cache: false,
-                                            success: function(html) {
-                                                $("#del" + id).fadeOut('slow',
-                                                    function() {
-                                                        $(this).remove();
-                                                    });
-                                                $('#' + id).modal('hide');
-                                                alert(
-                                                    "Your Sent message is Successfully Deleted", {
-                                                        header: 'Data Delete'
-                                                    });
-                                                window.location.reload()
-                                            }
-                                        });
-                                        return false;
-                                    });
+                            $(document).ready(function() {
+                                var Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000
                                 });
-                                </script>
+                                $('.remove').click(function() {
+
+                                    var id = $(this).attr("id");
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "remove_inbox_message.php",
+                                        data: ({
+                                            id: id
+                                        }),
+                                        cache: false,
+                                        success: function(html) {
+                                            $("#del" + id).fadeOut('slow',
+                                                function() {
+                                                    $(this).remove();
+                                                });
+                                            $('#' + id).modal('hide');
+                                            Toast.fire({
+                                                icon: 'error',
+                                                title: 'Student Message Successfully Deleted.'
+                                            })
+                                            setTimeout(function() {
+                                                window.location.reload();
+                                            }, 2000);
+                                        }
+                                    });
+                                    return false;
+                                });
+                            });
+                            </script>
                             <script>
                             jQuery(document).ready(function() {
+                                var Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                });
                                 jQuery("#reply").submit(function(e) {
                                     e.preventDefault();
                                     var id = $('.reply').attr("id");
@@ -182,80 +196,8 @@
                                         url: "reply.php",
                                         data: formData,
                                         success: function(html) {
-                                            alert("Message Successfully Sent", {
-                                                header: 'Message Sent'
-                                            });
+                                            toastr.success("Message Successfully Sent", {});
                                             $('#reply' + id).modal('hide');
-                                        }
-
-                                    });
-                                    return false;
-                                });
-                            });
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="content">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card card-success">
-                        <div class="card-header">
-                            <h3 class="card-title">Send New Message</h3>
-                        </div>
-                        <div class="card-body">
-                            <form method="post" id="send_message_student">
-                                <div class="form-group">
-                                    <label>To:</label>
-                                    <select name="student_id" class="form-control" required>
-                                        <option>Select Student</option>
-                                        <?php
-											$query = mysqli_query($conn,"select * from tbl_teacher_class_student
-																  LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id WHERE tbl_student.isDeleted=false
-											 group by tbl_teacher_class_student.student_id order by firstname");
-											while($row = mysqli_fetch_array($query)){
-											
-											?>
-                                        <option value="<?php echo $row['student_id']; ?>">
-                                            <?php echo $row['firstname']; ?>
-                                            <?php echo $row['lastname']; ?> </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Content:</label>
-                                    <textarea name="my_message" rows="3" class="my_message form-control"
-                                        required>
-                                    </textarea>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="float-right">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i>
-                                            Send</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <script>
-                            jQuery(document).ready(function() {
-                                jQuery("#send_message_student").submit(function(e) {
-                                    e.preventDefault();
-                                    var formData = jQuery(this).serialize();
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "send_message_teacher_to_student.php",
-                                        data: formData,
-                                        success: function(html) {
-                                            alert("Message Successfully Sended");
-                                            var delay = 1000;
-                                            setTimeout(function() {
-                                                window.location =
-                                                    'message.php'
-                                            }, delay);
-
-
                                         }
 
                                     });

@@ -134,12 +134,12 @@
 
                                     <div class="card-deck">
                                         <div class="card bg-success mb-3" id="<?php echo $id; ?>"
-                                            style="max-width:11rem;border:2px solid black;margin-right:20px">
+                                            style="max-width:12rem;border:2px solid black;margin-right:20px">
                                             <a href=" my_students.php<?php echo '?id=' . $id; ?>">
                                                 <img class="card-img-top" src="<?php echo $row['thumbnails']; ?>"
                                                     alt="Card image cap">
                                                 <div class="card-body">
-                                                    <p class="card-text"><b><?php echo $row['class_name']; ?></b></p>
+                                                    <center><p class="card-text"><b><?php echo $row['class_name']; ?></b></p></center>
                                                 </div>
                                             </a>
                                         </div>
