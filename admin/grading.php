@@ -12,23 +12,7 @@
     include 'script.php';
     $get_id = $_GET['id'];
 
-    /**
-     * Array that dynamically creates the table header.
-     * Records the Task IDs to be used for individual student query later.
-     */
-    $task_column_ids = [];
-
-    /**
-     * Array that dynamically holds the total points for each task.
-     * Example: Task 1 has 10 points in total, Task 2 has 20 points in total, etc.
-     */
-    $task_total_grade = [];
-
-    /**
-     * Array that dynamically holds the impact percentage of each task type.
-     * Example: "Activity" task types has 10% impact, "Exam" task types has 20% impact, etc.
-     */
-    $grade_impact = [];
+    $quarters = [1, 2, 3, 4];
     ?>
 </head>
 
@@ -69,11 +53,37 @@
         </section>
         <section class="content-header">
             <div class="container-fluid">
+                <?php for (
+                    $quarterIndex = 0;
+                    $quarterIndex < count($quarters);
+                    $quarterIndex++
+                ) {
+
+                    $quarter = $quarters[$quarterIndex];
+
+                    /**
+                     * Array that dynamically creates the table header.
+                     * Records the Task IDs to be used for individual student query later.
+                     */
+                    $task_column_ids = [];
+
+                    /**
+                     * Array that dynamically holds the total points for each task.
+                     * Example: Task 1 has 10 points in total, Task 2 has 20 points in total, etc.
+                     */
+                    $task_total_grade = [];
+
+                    /**
+                     * Array that dynamically holds the impact percentage of each task type.
+                     * Example: "Activity" task types has 10% impact, "Exam" task types has 20% impact, etc.
+                     */
+                    $grade_impact = [];
+                    ?>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Grades</h3>
+                                <h3 class="card-title">Grades for Quarter <?php echo $quarter; ?></h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
@@ -90,7 +100,11 @@
                                                 $conn,
                                                 "SELECT * FROM tbl_task 
                                                 LEFT JOIN tbl_grade_category ON tbl_task.grade_category_id = tbl_grade_category.grade_category_id
-                                                WHERE tbl_task.class_id = '$get_id' AND tbl_task.teacher_id = '$session_id' AND isDeleted=false
+                                                WHERE 
+                                                    tbl_task.class_id = '$get_id' 
+                                                    AND tbl_task.teacher_id = '$session_id' 
+                                                    AND isDeleted=false
+                                                    AND tbl_task.quarter = '$quarter'
                                                 ORDER BY tbl_task.fname and tbl_task.total_points DESC "
                                             )) or die(mysqli_error());
                                             while (
@@ -101,7 +115,7 @@
 
                                                 $id = $header_row['task_id'];
                                                 $floc = $header_row['floc'];
-                                                
+
                                                 /**
                                                  * Record the task ID to be used for individual student query later.
                                                  */
@@ -113,7 +127,15 @@
                                                 /**
                                                  * Record the impact percentages of each activity.
                                                  */
-                                                if (!isset($grade_impact[$header_row['category_name']])) {
+                                                if (
+                                                    !isset(
+                                                        $grade_impact[
+                                                            $header_row[
+                                                                'category_name'
+                                                            ]
+                                                        ]
+                                                    )
+                                                ) {
                                                     /**
                                                      * Null checking. Make sure that the array key is initialized.
                                                      */
@@ -124,38 +146,65 @@
                                                     ] = 0;
                                                 }
 
-                                                $grade_impact[$header_row['category_name']] = $header_row['impact_percentage'];
+                                                $grade_impact[
+                                                    $header_row['category_name']
+                                                ] =
+                                                    $header_row[
+                                                        'impact_percentage'
+                                                    ];
                                                 ?>
                                             <th>
-                                                <?php 
-                                                    echo $header_row[
-                                                        'fname'
-                                                    ]; 
-                                                ?> 
-                                                <br><?php echo $header_row['category_name'];?><br> out of
+                                                <?php echo $header_row[
+                                                    'fname'
+                                                ]; ?>
+                                                <br><?php echo $header_row[
+                                                    'category_name'
+                                                ]; ?><br> out of
                                                 <?php
+                                                /**
+                                                 * Record the total points of each activity.
+                                                 */
+                                                if (
+                                                    isset(
+                                                        $task_total_grade[
+                                                            $header_row[
+                                                                'category_name'
+                                                            ]
+                                                        ]
+                                                    )
+                                                ) {
+                                                    $task_total_grade[
+                                                        $header_row[
+                                                            'category_name'
+                                                        ]
+                                                    ] +=
+                                                        $header_row[
+                                                            'total_points'
+                                                        ];
+                                                } else {
                                                     /**
-                                                     * Record the total points of each activity.
+                                                     * Null checking. Make sure that the array key is initialized.
                                                      */
-                                                    if (isset($task_total_grade[$header_row['category_name']])) {
-                                                        $task_total_grade[$header_row['category_name']] += $header_row['total_points'];
-                                                    } else {
-                                                        /**
-                                                         * Null checking. Make sure that the array key is initialized.
-                                                         */
-                                                        $task_total_grade[$header_row['category_name']] = $header_row['total_points'];
-                                                    }
+                                                    $task_total_grade[
+                                                        $header_row[
+                                                            'category_name'
+                                                        ]
+                                                    ] =
+                                                        $header_row[
+                                                            'total_points'
+                                                        ];
+                                                }
 
-                                                    echo $header_row[
-                                                        'total_points'
-                                                    ];
+                                                echo $header_row[
+                                                    'total_points'
+                                                ];
                                                 ?> points
                                             </th>
                                             <?php
-                                                }
+                                            }
                                             ?>
                                             <th>
-                                                Overall Grade
+                                                Weighted Average
                                             </th>
                                         </tr>
 
@@ -214,7 +263,9 @@
                                                     WHERE
                                                         tbl_task.class_id = '$get_id' 
                                                         AND tbl_student_task.task_id = '$task_column_ids[$i]' 
-                                                        AND tbl_student.student_id = '$student_id'"
+                                                        AND tbl_student.student_id = '$student_id'
+                                                        AND tbl_task.quarter = '$quarter'
+                                                        "
                                                 )) or die(mysqli_error());
 
                                                 $grade_row_count = mysqli_num_rows(
@@ -226,8 +277,7 @@
                                             <!-- If there is no grade, default to 0. -->
                                             <td>0</td>
 
-                                            <?php 
-                                                }
+                                            <?php }
 
                                                 while (
                                                     $grade_row = mysqli_fetch_array(
@@ -235,20 +285,37 @@
                                                     )
                                                 ) {
 
-                                                    $grade = $grade_row['grade'];
+                                                    $grade =
+                                                        $grade_row['grade'];
 
-                                                    if (!isset($student_grade[$grade_row['category_name']])) {
+                                                    if (
+                                                        !isset(
+                                                            $student_grade[
+                                                                $grade_row[
+                                                                    'category_name'
+                                                                ]
+                                                            ]
+                                                        )
+                                                    ) {
                                                         /**
                                                          * Null checking. Make sure that the array key is initialized.
                                                          */
-                                                        $student_grade[$grade_row['category_name']] = 0;
+                                                        $student_grade[
+                                                            $grade_row[
+                                                                'category_name'
+                                                            ]
+                                                        ] = 0;
                                                     }
 
                                                     /**
                                                      * Sum up the student grades for each category.
                                                      */
-                                                    $student_grade[$grade_row['category_name']] += $grade;
-                                                ?>
+                                                    $student_grade[
+                                                        $grade_row[
+                                                            'category_name'
+                                                        ]
+                                                    ] += $grade;
+                                                    ?>
                                             <td>
                                                 <?php echo $grade; ?>
                                             </td>
@@ -257,120 +324,70 @@
                                             } ?>
                                             <td>
                                                 <?php
-                                                    /**
-                                                     * Student's overall grade.
-                                                     */
-                                                    $grade_total = 0;
-                                                    /**
-                                                     * Student's overall weighted percentage.
-                                                     */
-                                                    $percentage_total = 0;
+                                                /**
+                                                 * Student's overall grade.
+                                                 */
+                                                $grade_total = 0;
+                                                /**
+                                                 * Student's overall weighted percentage.
+                                                 */
+                                                $percentage_total = 0;
 
-                                                    foreach (
-                                                        $grade_impact
-                                                        as $key => $grade_impact_value
+                                                foreach (
+                                                    $grade_impact
+                                                    as $key =>
+                                                        $grade_impact_value
+                                                ) {
+                                                    /**
+                                                     * Get the student's grade for each category.
+                                                     */
+                                                    $value = 0;
+                                                    if (
+                                                        isset(
+                                                            $student_grade[$key]
+                                                        )
                                                     ) {
-                                                        /**
-                                                         * Get the student's grade for each category.
-                                                         */
-                                                        $value = 0;
-                                                        if (isset($student_grade[$key])) {
-                                                            $value = $student_grade[$key];
-                                                        }
-                                                        
-                                                        /**
-                                                         * Sum up the overall student's grade.
-                                                         */
-                                                        $grade_total += $value;
-
-                                                        /**
-                                                         * Sum up the overall student's percentage for each task.
-                                                         */
-                                                        $per_task_total_grade =
-                                                            ($value / $task_total_grade[$key]) * 100;
-
-                                                        /**
-                                                         * Calculate the weighted percentage.
-                                                         */
-                                                        $percentage_total +=
-                                                            $per_task_total_grade *
-                                                            ($grade_impact_value / 100);
+                                                        $value =
+                                                            $student_grade[
+                                                                $key
+                                                            ];
                                                     }
 
-                                                    echo $grade_total . " (" . round($percentage_total, 2) . "%)";
+                                                    /**
+                                                     * Sum up the overall student's grade.
+                                                     */
+                                                    $grade_total += $value;
+
+                                                    /**
+                                                     * Sum up the overall student's percentage for each task.
+                                                     */
+                                                    $per_task_total_grade =
+                                                        ($value /
+                                                            $task_total_grade[
+                                                                $key
+                                                            ]) *
+                                                        100;
+
+                                                    /**
+                                                     * Calculate the weighted percentage.
+                                                     */
+                                                    $percentage_total +=
+                                                        $per_task_total_grade *
+                                                        ($grade_impact_value /
+                                                            100);
+                                                }
+
+                                                echo $grade_total .
+                                                    ' (' .
+                                                    round(
+                                                        $percentage_total,
+                                                        2
+                                                    ) .
+                                                    '%)';
                                                 ?>
                                             </td>
                                         </tr>
 
-                                        <?php
-                                            }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Overall Grade</h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="example2" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th><?php echo $class_row[
-                                                'class_name'
-                                            ]; ?> Students</th>
-                                            <th>1st Quarter</th>
-                                            <th>2nd Quarter</th>
-                                            <th>3rd Quarter</th>
-                                            <th>4th Quarter</th>
-                                            <th>General Average</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        ($query = mysqli_query(
-                                            $conn,
-                                            "SELECT
-                                                *
-                                                FROM
-                                                    tbl_teacher_class_student
-                                                LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id AND tbl_student.isDeleted = FALSE
-                                                INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id
-                                                WHERE
-                                                    teacher_class_id = '$get_id'
-                                                ORDER BY
-                                                    lastname"
-                                        )) or die(mysqli_error());
-
-                                        while (
-                                            $row = mysqli_fetch_array($query)
-                                        ) {
-                                            $student_id = $row['student_id']; ?>
-                                        <tr>
-                                            <td><img id="avatar" src="/lmstlee4/admin/<?php echo $row[
-                                                'location'
-                                            ]; ?>" class="img-circle elevation" alt="User Image" height="30"
-                                                    width="30">
-                                                <?php echo $row['firstname'] .
-                                                    ' ' .
-                                                    $row['lastname']; ?>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
                                         <?php
                                         }
                                         ?>
@@ -380,6 +397,8 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                } ?>
             </div>
         </section>
     </div>
