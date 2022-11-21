@@ -34,7 +34,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
-                        <form method="post">
+                        <form method="post" id="edit_student">
                             <div class="card card-success">
                                 <div class="card-header">
                                     <h3 class="card-title"><i class="fas fa-edit"></i> Edit Student</h3>
@@ -72,17 +72,17 @@
                                     <div class="form-group">
                                         <label>ID Number</label>
                                         <input name="username" value="<?php echo $row['username']; ?>" type="varchar"
-                                            maxlength="6" class="form-control" placeholder="Enter ID Number">
+                                            maxlength="6" class="form-control" onBlur='addDashes(this)' autocomplete="off" placeholder="ENTER ID NUMBER">
                                     </div>
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input name="firstname" value="<?php echo $row['firstname']; ?>" type="text"
-                                            class="form-control" placeholder="Enter Firstname">
+                                            class="form-control" placeholder="Enter Firstname" style="text-transform: uppercase">
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
                                         <input name="lastname" value="<?php echo $row['lastname']; ?>" type="text"
-                                            class="form-control" placeholder="Enter Lastname">
+                                            class="form-control" placeholder="Enter Lastname" style="text-transform: uppercase">
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
@@ -95,15 +95,14 @@
                                     <div class="form-group">
                                         <label>Age</label>
                                         <input name="age" type="number" value="<?php echo $row['age']; ?>" maxlength="2"
-                                            min="15" max="25" class="form-control" placeholder="AGE"
-                                            required>
+                                            min="15" max="25" class="form-control" placeholder="AGE" required>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>
                                 <div class="card-footer">
                                     <center><button name="update" type="submit" class="btn btn-success"><i
                                                 class="fas fa-edit">
-                                                </i> Edit</button>
+                                            </i> Edit</button>
                                         <a href="students.php" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
                                             Back </a>
                                     </center>
@@ -125,12 +124,40 @@
                             gender = '$gender', age = '$age', class_id = '$cys' where student_id = '$get_id' ") or die(mysqli_error());
 
 		                ?>
+                    <SCRIPT LANGUAGE="JavaScript">
+                    function addDashes(f) {
+                        f.value = f.value.replace(/\D/g, '');
 
+                        f.value = f.value.slice(0, 2) + "-" + f.value.slice(2, 8);
+                    }
+                    </SCRIPT>
                     <script>
-                        alert("Student Successfully Edited");
-                    window.location = "students.php";
-                    </script>
+                    jQuery(document).ready(function() {
+                        var Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                        jQuery("#edit_student").submit(function() {
+                            e.preventDefault();
+                            var formData = jQuery(this).serialize();
+                            $.ajax({
+                                type: "POST",
+                                data: formData,
+                                success: function(html) {
+                                    toastr.success("Students Successfully Edited");
+                                    setTimeout(function() {
+                                        window.location =
+                                            'students.php';
+                                    }, 2000);
+                                }
 
+                            });
+                            return false;
+                        });
+                    });
+                    </script>
                     <?php     }  ?>
                     <div class="col-md-9">
                         <div class="card card-success">

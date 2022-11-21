@@ -165,10 +165,9 @@
                                                     $(this).remove();
                                                 });
                                             $('#' + id).modal('hide');
-                                            Toast.fire({
-                                                icon: 'error',
-                                                title: 'Student Message Successfully Deleted.'
-                                            })
+                                            toastr.error(
+                                                "Student Message Successfully Deleted", {}
+                                            );
                                             setTimeout(function() {
                                                 window.location.reload();
                                             }, 2000);
@@ -178,7 +177,7 @@
                                 });
                             });
                             </script>
-                            <script>
+                            <script type="text/javascript">
                             jQuery(document).ready(function() {
                                 var Toast = Swal.mixin({
                                     toast: true,
@@ -199,7 +198,6 @@
                                             toastr.success("Message Successfully Sent", {});
                                             $('#reply' + id).modal('hide');
                                         }
-
                                     });
                                     return false;
                                 });

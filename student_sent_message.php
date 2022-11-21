@@ -142,6 +142,12 @@
                                 <?php } ?>
                                 <script type="text/javascript">
                                 $(document).ready(function() {
+                                    var Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    });
                                     $('.remove').click(function() {
 
                                         var id = $(this).attr("id");
@@ -158,10 +164,10 @@
                                                         $(this).remove();
                                                     });
                                                 $('#' + id).modal('hide');
-                                                alert(
-                                                    "Your Sent message is Successfully Deleted", {
-                                                    });
-                                                window.location.reload()
+                                                toastr.error("Your Sent Message is Successfully Deleted", {});
+                                                setTimeout(function() {
+                                                    window.location.reload();
+                                                }, 2000);
                                             }
                                         });
                                         return false;
@@ -215,6 +221,12 @@
                                 </form>
                                 <script>
                                 jQuery(document).ready(function() {
+                                    var Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    });
                                     jQuery("#send_message").submit(function(e) {
                                         e.preventDefault();
                                         var formData = jQuery(this).serialize();
@@ -223,12 +235,11 @@
                                             url: "send_message.php",
                                             data: formData,
                                             success: function(html) {
-                                                alert("Message Successfully Sended")
-                                                var delay = 1000;
+                                                toastr.success("Message Successfully Sent");
                                                 setTimeout(function() {
                                                     window.location =
                                                         'student_sent_message.php'
-                                                }, delay);
+                                                }, 2000);
                                             }
                                         });
                                         return false;

@@ -165,10 +165,7 @@
                                                         $(this).remove();
                                                     });
                                                 $('#' + id).modal('hide');
-                                                Toast.fire({
-                                                    icon: 'success',
-                                                    title: 'Your Sent message is Successfully Deleted.'
-                                                })
+                                                toastr.error("Your Sent message is Successfully Deleted.");
                                                 setTimeout(function() {
                                                     window.location.reload();
                                                 }, 2000);
@@ -238,7 +235,7 @@
                                         url: "send_message_teacher_to_student.php",
                                         data: formData,
                                         success: function(html) {
-                                            toastr.success("Message Successfully Sended");
+                                            toastr.success("Message Successfully Sent");
                                             setTimeout(function() {
                                                 window.location =
                                                     'sent_message.php';

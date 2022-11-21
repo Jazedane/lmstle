@@ -66,17 +66,18 @@
                                     <div class="form-group">
                                         <label>ID Number</label>
                                         <input name="username" type="varchar" maxlength="6" class="form-control"
-                                            placeholder="Enter ID Number" onBlur='addDashes(this)' autocomplete="off" required>
+                                            placeholder="ENTER ID NUMBER" onBlur='addDashes(this)' autocomplete="off"
+                                            required>
                                     </div>
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input name="firstname" type="text" class="form-control"
-                                            placeholder="Enter Firstname" required>
+                                            placeholder="Enter Firstname" style="text-transform: uppercase" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
                                         <input name="lastname" type="text" class="form-control"
-                                            placeholder="Enter Lastname" required>
+                                            placeholder="Enter Lastname" style="text-transform: uppercase" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
@@ -110,6 +111,12 @@
                     </SCRIPT>
                     <script>
                     jQuery(document).ready(function($) {
+                        var Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
                         $("#add_student").submit(function(e) {
                             e.preventDefault();
                             var _this = $(e.target);
@@ -119,26 +126,12 @@
                                 url: "save_student.php",
                                 data: formData,
                                 success: function(html) {
-                                    alert("Student Successfully  Added", {
-                                        header: 'Student Added'
-                                    });
-                                    window.location.reload();
-                                    $('#studentTableDiv').load('student_table.php',
-                                        function(response) {
-                                            $("#studentTableDiv").html(response);
-                                            $('#example').dataTable({
-                                                "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-                                                "sPaginationType": "bootstrap",
-                                                "oLanguage": {
-                                                    "sLengthMenu": "_MENU_ records per page"
-                                                }
-                                            });
-                                            $(_this).find(":input").val('');
-                                            $(_this).find('select option').attr(
-                                                'selected', false);
-                                            $(_this).find('select option:first').attr(
-                                                'selected', true);
-                                        });
+                                    toastr.success(
+                                        "New Student Successfully Added", {}
+                                    );
+                                    setTimeout(function() {
+                                        window.location.reload();
+                                    }, 2000);
                                 }
                             });
                         });
@@ -153,8 +146,8 @@
                             <div class="card-body">
                                 <form action="delete_student.php" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
-                                        <ul data-toggle="modal" href="#student_delete" id="delete"
-                                            class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
+                                        <ul data-toggle="modal" href="#student_delete" class="btn btn-danger" name=""><i
+                                                class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <thead>
                                             <tr>

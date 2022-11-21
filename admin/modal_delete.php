@@ -36,7 +36,7 @@
 					            <div class="modal-footer justify-content-between">
 					                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
 					                    Close</button>
-					                <button name="delete_student" class="btn btn-success toastrDefaultSuccess"><i
+					                <button name="delete_student" class="btn btn-success"><i
 					                        class="fas fa-check"></i>
 					                    Yes</button>
 					            </div>

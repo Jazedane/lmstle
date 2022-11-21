@@ -148,6 +148,12 @@
                                 Messages</div>
                             <?php } ?>
                             <script type="text/javascript">
+                            var Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1000
+                            });
                             $(document).ready(function() {
                                 $('.remove').click(function() {
                                     var id = $(this).attr("id");
@@ -164,11 +170,12 @@
                                                     $(this).remove();
                                                 });
                                             $('#' + id).modal('hide');
-                                            alert(
-                                                "Your Sent message is Successfully Deleted", {
-                                                    header: 'Data Delete'
-                                                });
-                                            window.location.reload()
+                                            toastr.error(
+                                                "Your Sent message is Successfully Deleted", {}
+                                            );
+                                            setTimeout(function() {
+                                                window.location.reload();
+                                            }, 1000);
                                         }
                                     });
                                     return false;
@@ -177,6 +184,12 @@
                             </script>
                             <script>
                             jQuery(document).ready(function() {
+                                var Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 1000
+                                });
                                 jQuery("#reply").submit(function(e) {
                                     e.preventDefault();
                                     var id = $('.reply').attr("id");
@@ -187,10 +200,8 @@
                                         url: "reply.php",
                                         data: formData,
                                         success: function(html) {
-                                            alert(
-                                                "Message Successfully Sent", {
-                                                    header: 'Message Sent'
-                                                });
+                                            toastr.success(
+                                                "Message Successfully Sent", {});
                                             $('#reply' + id).modal('hide');
                                         }
 

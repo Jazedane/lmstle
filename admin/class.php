@@ -48,7 +48,7 @@
                                 <div class="form-group">
                                     <center><button name="save" type="submit" class="btn btn-success"><i
                                                 class="fas fa-plus">
-                                                </i> Add</button></center>
+                                            </i> Add</button></center>
                                 </div>
                             </div>
                         </form>
@@ -56,7 +56,6 @@
                     <?php
                             if (isset($_POST['save'])){
                             $class_name = strtoupper($_POST['class_name']);
-
 
                             $query = mysqli_query($conn,"SELECT * FROM tbl_class WHERE class_name  =  '$class_name' ")or die(mysqli_error());
                             $count = mysqli_num_rows($query);
@@ -141,8 +140,106 @@
                 </div>
             </div>
         </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-3">
+                    <form method="post" id="add_class">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Add Classroom</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Class Name</label>
+                                    <input type="hidden" name="session_id" value="<?php echo $session_id; ?>"
+                                        class="form-control" required>
+                                    </input>
+                                    <select name="class_id" class="form-control" required>
+                                        <option></option>
+                                        <?php
+											$query = mysqli_query($conn,"select * from tbl_class where isDeleted=false order by class_name ");
+											while($row = mysqli_fetch_array($query)){
+											
+											?>
+                                        <option value="<?php echo $row['class_id']; ?>">
+                                            <?php echo $row['class_name']; ?>
+                                        </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Subject:</label>
+                                    <select name="subject_id" class="form-control" required>
+                                        <option></option>
+                                        <?php
+											$query = mysqli_query($conn,"select * from tbl_subject order by subject_code");
+											while($row = mysqli_fetch_array($query)){
+											
+											?>
+                                        <option value="<?php echo $row['subject_id']; ?>">
+                                            <?php echo $row['subject_code']; ?>
+                                        </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>School Year:</label>
+                                    <select name="subject_id" class="form-control" required>
+                                        <option></option>
+                                        <?php
+											$query = mysqli_query($conn,"select * from tbl_school_year order by school_year DESC");
+											while($row = mysqli_fetch_array($query)){
+											?>
+                                        <option value="<?php echo $row['school_year_id']; ?>">
+                                            <?php echo $row['school_year']; ?>
+                                        </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
+                                <div class="card-footer">
+                                    <center><button name="save" type="submit" value="Upload"
+                                            class="btn btn-success">Add</button>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script>
+    jQuery(document).ready(function($) {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
+        $("#add_class").submit(function(e) {
+            e.preventDefault();
+            var _this = $(e.target);
+            var formData = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: "add_class_action.php",
+                data: formData,
+                success: function(html) {
+                    if (html == "true") {
+                        toastr.warning("Class Already Exist");
+                    } else {
+                        toastr.success("Class Successfully  Added");
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 2000);
+                    }
+                }
+            });
+        });
+    });
+    </script>
     <script>
     $(function() {
         $("#example1").DataTable({

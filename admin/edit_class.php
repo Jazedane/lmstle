@@ -64,7 +64,7 @@
                     </div>
                     <?php
                         if (isset($_POST['update'])){
-                        $class_name = $_POST['class_name'];
+                        $class_name = strtoupper($_POST['class_name']);
 
                         mysqli_query($conn,"update tbl_class set class_name = '$class_name' where class_id = '$get_id'")or die(mysqli_error());
                     ?>
