@@ -1,5 +1,5 @@
 <?php
-include('database.php');
+include('admin/database.php');
 include('session.php');
 $teacher_id = $_POST['teacher_id'];
 $sender_name = $_POST['sender_name'];

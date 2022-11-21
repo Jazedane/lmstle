@@ -71,41 +71,11 @@
                                 <div class="card-footer">
                                     <center><button name="save" type="submit" class="btn btn-success"><i
                                                 class="fas fa-plus">
-                                                </i> Add</button></center>
+                                            </i> Add</button></center>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <?php
-                        if (isset($_POST['save'])){
-                        $firstname = strtoupper($_POST['firstname']);
-                        $lastname = strtoupper($_POST['lastname']);
-                        $gender = $_POST['gender'];
-                        $username = $_POST['username'];
-                        $password = $_POST['password'];
-                        $hashedPassword = hash('sha256',$password);
-
-                        $query = mysqli_query($conn,"select * from tbl_teacher where username = '$username'")or die(mysqli_error());
-                        $count = mysqli_num_rows($query);
-
-                        if ($count > 0){ ?>
-                    <script>
-                    alert('Data Already Exist');
-                    </script>
-                    <?php
-                        }else {
-                        mysqli_query($conn,"INSERT INTO tbl_teacher (username,password,firstname,lastname,gemder,location,teacher_stat) 
-                        values('$username','$hashedPassword','$firstname','$lastname','$gender','NO-IMAGE-AVAILABLE.jpg','Activated')")or die(mysqli_error());
-                        mysqli_query($conn,"INSERT INTO tbl_activity_log (date,username,action) 
-                        values(NOW(),'$username','Add User $username')")or die(mysqli_error());
-                    ?>
-                    <script>
-                    window.location = "teacher.php";
-                    </script>
-                    <?php
-                    }
-                    }
-                    ?>
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
@@ -197,6 +167,37 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <?php
+                        if (isset($_POST['save'])){
+                        $firstname = strtoupper($_POST['firstname']);
+                        $lastname = strtoupper($_POST['lastname']);
+                        $gender = $_POST['gender'];
+                        $username = $_POST['username'];
+                        $password = $_POST['password'];
+                        $hashedPassword = hash('sha256',$password);
+
+                        $query = mysqli_query($conn,"select * from tbl_teacher where username = '$username'")or die(mysqli_error());
+                        $count = mysqli_num_rows($query);
+
+                        if ($count > 0){ ?>
+    <script>
+    alert('Data Already Exist');
+    </script>
+    <?php
+                        }else {
+                        mysqli_query($conn,"INSERT INTO tbl_teacher (username,password,firstname,lastname,gender,location,teacher_stat) 
+                        values('$username','$hashedPassword','$firstname','$lastname','$gender','NO-IMAGE-AVAILABLE.jpg','Activated')")or die(mysqli_error());
+                        mysqli_query($conn,"INSERT INTO tbl_activity_log (date,username,action) 
+                        values(NOW(),'$username','Add User $username')")or die(mysqli_error());
+                    ?>
+    <script>
+    alert("Teacher Successfully Added!")
+    window.location.reload();
+    </script>
+    <?php
+                    }
+                    }
+                    ?>
     <script>
     $(function() {
         $("#example1").DataTable({

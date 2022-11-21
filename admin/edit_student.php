@@ -47,7 +47,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Class Name</label>
-                                        <select name="cys" class="form-control" required>
+                                        <select name="class_id" class="form-control" required>
                                             <option><?php echo $row['class_name']; ?></option>
                                             <?php
                                                 $class_query = mysqli_query(
@@ -119,7 +119,7 @@
                             $lastname = strtoupper($_POST['lastname']);
                             $gender = $_POST['gender'];
                             $age = $_POST['age'];
-                            $cys = $_POST['cys'];
+                            $cys = $_POST['class_id'];
                     
                             mysqli_query($conn,"update tbl_student set username = '$username' , firstname ='$firstname' , lastname = '$lastname' , 
                             gender = '$gender', age = '$age', class_id = '$cys' where student_id = '$get_id' ") or die(mysqli_error());

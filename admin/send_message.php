@@ -14,7 +14,8 @@ $query1 = mysqli_query($conn,"select * from tbl_teacher where teacher_id = '$ses
 $row1 = mysqli_fetch_array($query1);
 $name1 = $row1['firstname']." ".$row1['lastname'];
 
-
+echo "insert into tbl_message (receiver_id,content,date_sended,sender_id,receiver_name,sender_name) 
+values('$teacher_id','$my_message',NOW(),'$session_id','$name','$name1')";
 mysqli_query($conn,"insert into tbl_message (receiver_id,content,date_sended,sender_id,receiver_name,sender_name) 
 values('$teacher_id','$my_message',NOW(),'$session_id','$name','$name1')")or die(mysqli_error());
 mysqli_query($conn,"insert into tbl_message_sent (receiver_id,content,date_sended,sender_id,receiver_name,sender_name) 

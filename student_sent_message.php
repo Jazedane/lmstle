@@ -160,7 +160,6 @@
                                                 $('#' + id).modal('hide');
                                                 alert(
                                                     "Your Sent message is Successfully Deleted", {
-                                                        header: 'Data Delete'
                                                     });
                                                 window.location.reload()
                                             }
