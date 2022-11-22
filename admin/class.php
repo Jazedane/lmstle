@@ -230,7 +230,7 @@
                     if (html == "true") {
                         toastr.warning("Class Already Exist");
                     } else {
-                        toastr.success("Class Successfully  Added");
+                        toastr.success("Class Successfully Added");
                         setTimeout(function() {
                             window.location.reload();
                         }, 2000);

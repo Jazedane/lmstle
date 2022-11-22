@@ -9,6 +9,9 @@ if (isset($_POST['recycle_data_teacher']) && isset($_POST['selector'])) {
             "UPDATE tbl_teacher SET isDeleted=false WHERE teacher_id='$id[$i]'"
         );
     }
-    header('location: recycle-teacher.php');
 }
 ?>
+<script>
+    alert("Teacher Data Successfully Restored");
+    window.location = 'recycle-teacher.php';
+</script>

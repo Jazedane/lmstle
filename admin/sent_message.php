@@ -60,7 +60,7 @@
                                     and message_status != 'read' ")or die(mysqli_error());
 			                        $count_message = mysqli_num_rows($message_query);
 		                            ?>
-                                    <li class="nav-item active">
+                                    <li class="nav-item">
                                         <a href="message.php" class="nav-link">
                                             <i class="fas fa-inbox"></i> Inbox
                                             <?php if($count_message == '0'){
@@ -70,7 +70,7 @@
                                             <?php } ?>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item active">
                                         <a href="sent_message.php" class="nav-link">
                                             <i class="far fa-envelope"></i> Sent
                                         </a>

@@ -9,5 +9,6 @@ require_once('./config/confirmation.php');
 	}
 ?>
 <script>
+    alert("Grade Category Successfully Deleted");
 	window.location = 'grade-category.php<?php echo '?id=' . $get_id; ?>'
 </script>

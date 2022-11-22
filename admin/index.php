@@ -76,8 +76,8 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
-                        <li class="nav-item menu-open">
-                            <a href="dashboard.php" class="nav-link">
+                        <li class="nav-item">
+                            <a href="page.php?page=dashboard" class="nav-link nav-dashboard tree-item">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -85,20 +85,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="class_main.php" class="nav-link">
+                            <a href="page.php?page=class_main" class="nav-link nav-class_main tree-item">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Class
                                 </p>
                             </a>
                         </li>
-                         <?php
+                        <?php
 			                $notification_query = mysqli_query($conn,"select * from tbl_notification where receiver_id = '$session_id' 
                             and is_read=false ")or die(mysqli_error());
 			                $count_notification = mysqli_num_rows($notification_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="notification.php" class="nav-link">
+                            <a href="page.php?page=notification" class="nav-link nav-notification tree-item">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>
                                     Notification
@@ -115,7 +115,7 @@
 			                $count_message = mysqli_num_rows($message_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="message.php" class="nav-link">
+                            <a href="page.php?page=message" class="nav-link nav-message tree-item">
                                 <i class="nav-icon fas fa-comments"></i>
                                 <p>
                                     Message
@@ -127,7 +127,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link nav-masterlist">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Masterlist
@@ -136,19 +136,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="class.php" class="nav-link">
+                                    <a href="page.php?page=class" class="nav-link nav-class tree-item">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Class List</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="students.php" class="nav-link">
+                                    <a href="page.php?page=students" class="nav-link nav-students tree-item">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Student List</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="teacher.php" class="nav-link">
+                                    <a href="page.php?page=teacher" class="nav-link nav-teacher tree-item">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher List</p>
                                     </a>
@@ -158,14 +158,14 @@
                         <li class="nav-header">INFORMATION</li>
                         <li class="nav-item">
                             <a href="gallery.php?page=1" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
+                                <i class="nav-icon fas fa-image"></i>
                                 <p>
                                     Plant Gallery
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.php" class="nav-link">
+                            <a href="page.php?page=about" class="nav-link nav-about tree-item">
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     About
@@ -173,7 +173,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link nav-log-history">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>
                                     Log History
@@ -182,13 +182,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="teacher_log.php" class="nav-link">
+                                    <a href="page.php?page=teacher_log" class="nav-link nav-teacher_log tree-item">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher Log</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="activity_log.php" class="nav-link">
+                                    <a href="page.php?page=activity_log" class="nav-link nav-activity_log tree-item">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Activity log</p>
                                     </a>
@@ -196,7 +196,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="recycle-student.php" class="nav-link">
+                            <a href="page.php?page=recycle-student" class="nav-link nav-recycle-student tree-item">
                                 <i class="nav-icon fas fa-recycle"></i>
                                 <p>
                                     Recycle Bin
@@ -210,3 +210,23 @@
     </div>
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
+    <script>
+    $(document).ready(function() {
+        var page = '<?php echo isset($_GET['page']) ? $_GET['page'] : 'dashboard' ?>';
+        var s = '<?php echo isset($_GET['s']) ? $_GET['s'] : '' ?>';
+        if (s != '')
+            page = page + '_' + s;
+        if ($('.nav-link.nav-' + page).length > 0) {
+            $('.nav-link.nav-' + page).addClass('active')
+            if ($('.nav-link.nav-' + page).hasClass('tree-item') == true) {
+                $('.nav-link.nav-' + page).closest('.nav-treeview').siblings('a').addClass('active')
+                $('.nav-link.nav-' + page).closest('.nav-treeview').parent().addClass('menu-open')
+            }
+            if ($('.nav-link.nav-' + page).hasClass('nav-is-tree') == true) {
+                $('.nav-link.nav-' + page).parent().addClass('menu-open')
+            }
+
+        }
+
+    })
+    </script>

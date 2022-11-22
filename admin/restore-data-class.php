@@ -9,6 +9,9 @@ if (isset($_POST['recycle_data_class']) && isset($_POST['selector'])) {
             "UPDATE tbl_class SET isDeleted=false WHERE class_id='$id[$i]'"
         );
     }
-    header('location: recycle-class.php');
 }
 ?>
+<script>
+    alert("Class Data Successfully Restored");
+    window.location = 'recycle-class.php';
+</script>

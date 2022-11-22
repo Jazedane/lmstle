@@ -9,6 +9,9 @@ if (isset($_POST['delete_teacher']) && isset($_POST['selector'])) {
             "UPDATE tbl_teacher SET isDeleted=true WHERE teacher_id='$id[$i]'"
         );
     }
-    header('location: teacher.php');
 }
 ?>
+<script>
+    alert("Teacher Successfully Deleted");
+    window.location = 'teacher.php';
+</script>

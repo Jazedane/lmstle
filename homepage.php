@@ -78,7 +78,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="class_main.php" class="nav-link">
+                            <a href="page.php?page=class_main" class="nav-link nav-class_main tree-item">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Class
@@ -91,7 +91,7 @@
 			                $count_notification = mysqli_num_rows($notification_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="notification.php" class="nav-link">
+                            <a href="page.php?page=notification" class="nav-link nav-notification tree-item">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>
                                     Notification
@@ -108,7 +108,7 @@
 			                $count_message = mysqli_num_rows($message_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="student_message.php" class="nav-link">
+                            <a href="page.php?page=student_message" class="nav-link nav-student_message tree-item">
                                 <i class="nav-icon fas fa-comments"></i>
                                 <p>
                                     Message
@@ -120,7 +120,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="gallery.php?page=1" class="nav-link">
+                            <a href="gallery.php?page=1" class="nav-link nav tree-item">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
                                     Plant Gallery
@@ -128,7 +128,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.php" class="nav-link">
+                            <a href="page.php?page=about" class="nav-link nav-about tree-item">
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     About
@@ -142,3 +142,23 @@
     </div>
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
+    <script>
+    $(document).ready(function() {
+        var page = '<?php echo isset($_GET['page']) ? $_GET['page'] : 'class_main' ?>';
+        var s = '<?php echo isset($_GET['s']) ? $_GET['s'] : '' ?>';
+        if (s != '')
+            page = page + '_' + s;
+        if ($('.nav-link.nav-' + page).length > 0) {
+            $('.nav-link.nav-' + page).addClass('active')
+            if ($('.nav-link.nav-' + page).hasClass('tree-item') == true) {
+                $('.nav-link.nav-' + page).closest('.nav-treeview').siblings('a').addClass('active')
+                $('.nav-link.nav-' + page).closest('.nav-treeview').parent().addClass('menu-open')
+            }
+            if ($('.nav-link.nav-' + page).hasClass('nav-is-tree') == true) {
+                $('.nav-link.nav-' + page).parent().addClass('menu-open')
+            }
+
+        }
+
+    })
+    </script>

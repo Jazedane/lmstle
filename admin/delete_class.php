@@ -12,8 +12,6 @@ if (isset($_POST['selector'])) {
             "UPDATE tbl_class SET isDeleted=true WHERE class_id='$id[$i]'"
         );
     }
-
-	header('location: class.php');
 }
 
 if (isset($_POST['id'])) {
@@ -25,3 +23,7 @@ if (isset($_POST['id'])) {
 }
 
 ?>
+<script>
+    alert("Class Successfully Deleted");
+    window.location = 'class.php';
+</script>
