@@ -53,6 +53,7 @@
                                     "SELECT * FROM tbl_teacher_class_student
                                     LEFT JOIN tbl_teacher_class ON tbl_teacher_class.teacher_class_id = tbl_teacher_class_student.teacher_class_id 
                                     LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
+                                    LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
                                     LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_teacher_class.teacher_id
                                     WHERE student_id = '$session_id' and school_year = '$school_year' and tbl_class.isDeleted = false"
                                 )) or die(mysqli_error());

@@ -39,7 +39,7 @@
                         <form action="restore-data-student.php" method="post">
                             <table id="example2" class="table table-bordered table-striped">
                                 <ul data-toggle="modal" href="#recycle-delete-student" id="delete"
-                                    class="btn btn-danger" name=""><i class="fas fa-trash"></i> Delete Data</ul>
+                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash"></i></ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
                                 <ul data-toggle="modal" href="#restore_data_student" id="restore"
                                     class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore data
@@ -135,6 +135,35 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        $('.delete_recycle_student').click(function() {
+            var id = $(this).attr("id");
+            $.ajax({
+                type: "POST",
+                url: "delete-recycle-student.php",
+                data: ({
+                    id: id
+                }),
+                success: function(html) {
+                    toastr.error(
+                        "Student Data Permanently Deleted"
+                    );
+                    setTimeout(function() {
+                        window.location = "recycle-student.php";
+                    }, 1000);
+                }
+            });
+            return false;
+        });
+    });
+    </script>
     <script>
     $(function() {
         $("#example1").DataTable({

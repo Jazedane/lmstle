@@ -57,12 +57,16 @@
                             <form method="post" action="student-avatar.php" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="form-group">
-                                            <center>
+                                        <center>
                                             <div class="custom-file">
-                                            <label for="formFileMultiple" class="form-label">
-                                                <input name="image" class="custom-file input" id="formFileMultiple"
-                                                    type="file" required></input>
-                                            </center>
+                                                <label for="formFileMultiple" class="form-label">
+                                                    <input name="image" class="custom-file input" id="formFileMultiple"
+                                                        type="file" required></input>
+                                        </center>
+                                    </div>
+                                    <div class="form-group d-flex justify-content-center">
+                                        <img src="/lmstlee4/admin/<?php echo $row ['location'];  ?>" alt=""
+                                            id="cimg" class="img-fluid img-thumbnail">
                                     </div>
                                     <div class="card-footer">
                                         <center><button type="submit" name="change"
@@ -78,6 +82,26 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <style>
+    img#cimg {
+        height: 15vh;
+        width: 15vh;
+        object-fit: cover;
+        border-radius: 100% 100%;
+    }
+    </style>
+    <script>
+    function displayImg(input, _this) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#cimg').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    </script>
 </body>
 
 </html>

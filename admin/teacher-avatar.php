@@ -19,5 +19,6 @@ if (isset($_POST['change'])) {
 ?>
 
  <script>
-window.location = "profile.php";
+    alert("Avatar Successfully Change");
+    window.location = "profile.php";
  </script>

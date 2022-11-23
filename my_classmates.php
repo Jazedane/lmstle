@@ -23,6 +23,7 @@
                     <div class="col-sm-6">
                         <?php $query = mysqli_query($conn,"select * from tbl_teacher_class_student
 					LEFT JOIN tbl_teacher_class ON tbl_teacher_class.teacher_class_id = tbl_teacher_class_student.teacher_class_id 
+                    LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
 					JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
 					where student_id = '$session_id'
 					")or die(mysqli_error());

@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>School Year:</label>
-                                    <select name="subject_id" class="form-control" required>
+                                    <select name="school_year_id" class="form-control" required>
                                         <option></option>
                                         <?php
 											$query = mysqli_query($conn,"select * from tbl_school_year order by school_year DESC");

@@ -34,7 +34,7 @@
                             ?>
                             <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
                             <li class="breadcrumb-item"><a href="#">School Year:
-                                    <?php echo $school_year_query_row['school_year']; ?></a></li>
+                                    <?php echo $school_year_query_row['school_year_id']; ?></a></li>
                             <li class="breadcrumb-item active"><a href="#"><b>Class</b></a></li>
 
                         </ol>
@@ -57,9 +57,8 @@
                                         ($query = mysqli_query(
                                         $conn,
                                             "SELECT * FROM tbl_teacher_class 
-                                            LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
+                                            LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id and tbl_teacher_class.school_year_id 
                                             WHERE teacher_id = '$session_id' 
-                                                AND school_year = '$school_year'
                                                 AND tbl_class.isDeleted = false"
                                         )) or die(mysqli_error());
                                         $count = mysqli_num_rows($query);
