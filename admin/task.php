@@ -56,8 +56,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Create Task</h3>
                             </div>
-                            <form class="" action="assign_save.php<?php echo '?id=' .
-                                $get_id; ?>" method="post" enctype="multipart/form-data" name="upload">
+                            <form class="" id ="add_task" method="post" enctype="multipart/form-data" name="upload">
                                 <div class="control-group"></div>
                                 <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
                                 <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
@@ -111,16 +110,20 @@
                                         <label for="quarter">Quarter</label>
                                         <select name="quarter" class="form-control" required>
                                             <option value="">Select Quarter</option>
-                                            <option value="1" selected="<?php echo $quarter == 1 ? 'true' : 'false'; ?>">
+                                            <option value="1"
+                                                selected="<?php echo $quarter == 1 ? 'true' : 'false'; ?>">
                                                 1st Quarter
                                             </option>
-                                            <option value="2" selected="<?php echo $quarter == 2 ? 'true' : 'false'; ?>">
+                                            <option value="2"
+                                                selected="<?php echo $quarter == 2 ? 'true' : 'false'; ?>">
                                                 2nd Quarter
                                             </option>
-                                            <option value="3" selected="<?php echo $quarter == 3 ? 'true' : 'false'; ?>">
+                                            <option value="3"
+                                                selected="<?php echo $quarter == 3 ? 'true' : 'false'; ?>">
                                                 3rd Quarter
                                             </option>
-                                            <option value="4" selected="<?php echo $quarter == 4 ? 'true' : 'false'; ?>">
+                                            <option value="4"
+                                                selected="<?php echo $quarter == 4 ? 'true' : 'false'; ?>">
                                                 4th Quarter
                                             </option>
                                         </select>
@@ -277,7 +280,35 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-
+    <script>
+    jQuery(document).ready(function($) {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
+        $("#add_task").submit(function(e) {
+            e.preventDefault();
+            var _this = $(e.target);
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                type: "POST",
+                url: "assign_save.php",
+                data: formData,
+                success: function(html) {
+                    toastr.success("Task Successfully Added");
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+    });
+    </script>
     <script>
     $(function() {
         $("#example1").DataTable({

@@ -78,7 +78,6 @@
                                                 <th>Description</th>
                                                 <th>Submitted by:</th>
                                                 <th>Status</th>
-                                                <th>Condition</th>
                                                 <th>Attachment</th>
                                                 <th>Points</th>
                                                 <th>Action</th>
@@ -116,19 +115,6 @@
                             					}elseif($row['task_status'] =='5'){
                               						echo "<span class='badge badge-success'>Done</span>";
                             					}
-                                                ?>
-                                                </td>
-                                                <td class="project-state">
-                                                    <?php
-                            					if($row['p_condition'] =='0'){
-                              						echo "<span class='badge badge-secondary'>Pending</span>";
-                            					}elseif($row['p_condition'] =='1'){
-                              						echo "<span class='badge badge-success'>Alive</span>";
-                            					}elseif($row['p_condition'] =='2'){
-                              						echo "<span class='badge badge-danger'>Withered</span>";
-                                                }elseif($row['p_condition'] =='3'){
-                              						echo "<span class='badge badge-warning'>Dead</span>";
-                                                }
                                                 ?>
                                                 </td>
                                                 <td><a href="<?php echo $row['floc']; ?>"><i

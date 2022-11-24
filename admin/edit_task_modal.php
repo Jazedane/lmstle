@@ -23,7 +23,6 @@
 
     $grade = $result['grade'];
     $task_status = $result['task_status'];
-    $p_condition = $result['p_condition'];
     $total_points = $result['total_points'];
     ?>
 
@@ -69,21 +68,17 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Edit Task</h3>
-                                <div id="" class="float-right"><a
-                                        href="./view_submit_task.php<?php echo '?id=' .
+                                <div id="" class="float-right"><a href="./view_submit_task.php<?php echo '?id=' .
                                             $get_id; ?>&<?php echo 'post_id=' .$post_id; ?>">
                                         <i class="fas fa-arrow-left"></i> Back</a>
                                 </div>
                             </div>
-                            <form class="" id="edit_task" action="edit.php<?php echo '?id=' .
-                                $get_id; ?>" method="post"
-                                enctype="multipart/form-data" name="upload">
+                            <form class="" id="edit_task" method="post" enctype="multipart/form-data" name="upload">
                                 <input type="hidden" name="student_task_id" value="<?php echo $student_task_id; ?>" />
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="activity_name">Activity Name</label>
-                                        <input type="text" name="fname" id="inputtask" class="form-control"
-                                            value="<?php echo $result[
+                                        <input type="text" name="fname" id="inputtask" class="form-control" value="<?php echo $result[
                                                 'fname'
                                             ]; ?>" readonly>
                                     </div>
@@ -100,8 +95,7 @@
                                         <label for="grade">Points</label>
                                         <input type="number" name="grade" maxlength="3" min="0" max="<?php echo $result[
                                             'total_points'
-                                        ]; ?>" id="inputtask" class="form-control"
-                                            value="<?php echo $result[
+                                        ]; ?>" id="inputtask" class="form-control" value="<?php echo $result[
                                                 'grade'
                                             ]; ?>" required>
                                     </div>
@@ -147,43 +141,12 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="p_condition">Plants Condition</label>
-                                        <select name="p_condition" class="custom-select custom-select-sm form-control">
-                                            <option value="0" <?php echo $p_condition ==
-                                            0
-                                                ? 'selected'
-                                                : ''; ?>>
-                                                Pending
-                                            </option>
-                                            <option value="1" <?php echo $p_condition ==
-                                            1
-                                                ? 'selected'
-                                                : ''; ?>>
-                                                Alive
-                                            </option>
-                                            <option value="2" <?php echo $p_condition ==
-                                            2
-                                                ? 'selected'
-                                                : ''; ?>>
-                                                Withered
-                                            </option>
-                                            <option value="3" <?php echo $p_condition ==
-                                            3
-                                                ? 'selected'
-                                                : ''; ?>>
-                                                Dead
-                                            </option>
-                                        </select>
+                                    <div class="card-footer">
+                                        <center>
+                                            <button class="btn btn-info" name="Upload" type="submit" value="Upload">Save
+                                                changes</button>
+                                        </center>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <center>
-                                        <button class="btn btn-info" name="Upload" type="submit"
-                                            value="Upload">Save
-                                            changes</button>
-                                    </center>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -194,23 +157,25 @@
     <?php include 'footer.php'; ?>
     <script>
     jQuery(document).ready(function($) {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
         $("#edit_task").submit(function(e) {
-            e.preventDefault();
-            alert("Please Wait......", {
-                sticky: true
-            });
             e.preventDefault();
             var _this = $(e.target);
             var formData = new FormData($(this)[0]);
             $.ajax({
                 type: "POST",
-                url: "edit_task_modal.php",
+                url: "edit.php",
                 data: formData,
                 success: function(html) {
-                    alert("Edited Successfully", {
-                        header: 'Edited'
-                    });
-                    window.location = 'edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>';
+                    toastr.success("Task Edited Successfully");
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
                 },
                 cache: false,
                 contentType: false,

@@ -20,7 +20,6 @@
                 <div class="row mb-2">
                     <?php 
                 	$task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
-                    $p_condition = array("Pending","Alive","Withered","Dead");
 					$class_query = mysqli_query($conn,"select * from tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
                                         LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
@@ -60,7 +59,6 @@
                                             <th>Date Submitted</th>
                                             <th>Task Name</th>
                                             <th>Status</th>
-                                            <th>Condition</th>
                                             <th>Feedback</th>
                                             <th>Points</th>
                                         </tr>
@@ -96,20 +94,6 @@
                               						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
                             					}
                           						?>
-                                            </td>
-                                            
-                                            <td class="project-state">
-                                                <?php
-                            					if($p_condition[$row['p_condition']] =='Pending'){
-                              						echo "<span class='badge badge-secondary'>{$p_condition[$row['p_condition']]}</span>";
-                            					}elseif($p_condition[$row['p_condition']] =='Alive'){
-                              						echo "<span class='badge badge-success'>{$p_condition[$row['p_condition']]}</span>";
-                                                    }elseif($p_condition[$row['p_condition']] =='Withered'){
-                              						echo "<span class='badge badge-primary'>{$p_condition[$row['p_condition']]}</span>";
-                            					}elseif($p_condition[$row['p_condition']] =='Dead'){
-                              						echo "<span class='badge badge-danger'>{$p_condition[$row['p_condition']]}</span>";
-                                                }
-                                                ?>
                                             </td>
                                             <td><?php  echo $row['feedback']; ?></td>
                                             <?php if ($session_id == $student_id){ ?>

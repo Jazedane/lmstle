@@ -210,6 +210,12 @@
     <?php include 'footer.php'; ?>
     <script>
     jQuery(document).ready(function($) {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
         $("#add_task").submit(function(e) {
             e.preventDefault();
             var _this = $(e.target);
@@ -219,10 +225,10 @@
                 url: "admin/upload_task.php",
                 data: formData,
                 success: function(html) {
-                    alert("Activity Successfully Uploaded", {
-                        header: 'Activity Uploaded'
-                    });
-                    window.location.reload()
+                    toastr.success("Activity Successfully Uploaded");
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
                 },
                 cache: false,
                 contentType: false,
