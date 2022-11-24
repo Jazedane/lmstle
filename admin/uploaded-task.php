@@ -75,10 +75,20 @@
 										while($row = mysqli_fetch_array($query)){
 									?>
                                         <tr>
-                                            <td><?php echo $row['fdatein']; ?></td>
+                                            <td><?php $fdatein = date_create($row['fdatein']);
+                                                    echo date_format(
+                                                    $fdatein,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                            </td>
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
-                                            <td><?php echo $row['end_date']; ?></td>
+                                            <td><?php $end_date = date_create($row['end_date']);
+                                                    echo date_format(
+                                                    $end_date,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                            </td>
                                             <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                             <td><?php echo $row['class_name']; ?></td>
 

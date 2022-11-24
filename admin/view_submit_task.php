@@ -96,7 +96,12 @@
                                             $task_name = $row['fname'];
 									        ?>
                                             <tr>
-                                                <td><?php echo $row['task_fdatein']; ?></td>
+                                                <td><?php $task_fdatein = date_create($row['task_fdatein']);
+                                                    echo date_format(
+                                                    $task_fdatein,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                                </td>
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>

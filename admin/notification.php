@@ -63,7 +63,7 @@
                                         "SELECT * FROM tbl_notification 
                                         LEFT JOIN tbl_student ON broadcaster_id=tbl_student.student_id
                                         LEFT JOIN tbl_class ON tbl_class.class_id=tbl_student.class_id
-                                        WHERE receiver_id = '$session_id' AND is_read = false"
+                                        WHERE receiver_id = '$session_id' AND is_read = false ORDER BY date DESC"
                                     )) or die(mysqli_error($conn));
 
                                     $count = mysqli_num_rows($query);

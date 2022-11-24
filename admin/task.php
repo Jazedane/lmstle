@@ -56,7 +56,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Create Task</h3>
                             </div>
-                            <form class="" id ="add_task" method="post" enctype="multipart/form-data" name="upload">
+                            <form class="" id="add_task" method="post" enctype="multipart/form-data" name="upload">
                                 <div class="control-group"></div>
                                 <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
                                 <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
@@ -160,13 +160,6 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Tasks</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                        title="Collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
@@ -199,9 +192,12 @@
                                             $floc = $row['floc'];
                                             ?>
                                         <tr>
-                                            <td><?php echo $row[
-                                                'fdatein'
-                                            ]; ?></td>
+                                            <td><?php $fdatein = date_create($row['fdatein']);
+                                                    echo date_format(
+                                                    $fdatein,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                            </td>
                                             <td><?php echo $row[
                                                 'fname'
                                             ]; ?></td>
@@ -211,9 +207,12 @@
                                             <td><?php echo $row[
                                                 'category_name'
                                             ]; ?></td>
-                                            <td><?php echo $row[
-                                                'end_date'
-                                            ]; ?></td>
+                                            <td><?php $end_date = date_create($row['end_date']);
+                                                    echo date_format(
+                                                    $end_date,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                            </td>
                                             <td id="<?php echo $row[
                                                 'task_id'
                                             ]; ?>-running-due">
@@ -306,6 +305,40 @@
                 contentType: false,
                 processData: false
             });
+        });
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('.delete-task').click(function() {
+
+            var id = $(this).attr("id");
+            $.ajax({
+                type: "POST",
+                url: "delete_task.php",
+                data: ({
+                    id: id
+                }),
+                cache: false,
+                success: function(html) {
+                    $("#del" + id).fadeOut('slow',
+                        function() {
+                            $(this).remove();
+                        });
+                    $('#' + id).modal('hide');
+                    toastr.error("Task Successfully Deleted.");
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                },
+            });
+            return false;
         });
     });
     </script>

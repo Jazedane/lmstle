@@ -74,7 +74,8 @@
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 if ($count == '0') { ?>
-                                <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Task Currently Uploaded</div>
+                                <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Task Currently
+                                    Uploaded</div>
                                 <?php } else { ?>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
@@ -105,10 +106,20 @@
                                             $floc = $row['floc'];
                                             ?>
                                         <tr>
-                                            <td><?php echo $row['fdatein']; ?></td>
+                                            <td><?php $fdatein = date_create($row['fdatein']);
+                                                    echo date_format(
+                                                    $fdatein,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                            </td>
                                             <td><?php echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
-                                            <td><?php echo $row['end_date']; ?></td>
+                                            <td><?php $end_date = date_create($row['end_date']);
+                                                    echo date_format(
+                                                    $end_date,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                            </td>
                                             <td><?php echo $row['total_points']; ?></td>
                                             <td id="<?php echo $row['task_id'] ?>-running-due">
                                                 <script>
