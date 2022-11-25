@@ -144,12 +144,16 @@
             timer: 3000
         });
         $('.delete_recycle_student').click(function() {
-            var id = $(this).attr("id");
+            var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
+                return $(element).val()
+            }).get()
+            
             $.ajax({
                 type: "POST",
                 url: "delete-recycle-student.php",
                 data: ({
-                    id: id
+                    selector: selectedIds,
+                    delete_recycle_student: true
                 }),
                 success: function(html) {
                     toastr.error(

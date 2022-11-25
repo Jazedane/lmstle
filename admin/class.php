@@ -40,10 +40,68 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Class Name</label>
-                                        <input name="class_name" type="text" class="form-control"
+                                        <label>Grade</label>
+                                        <input name="grade" type="text" class="form-control"
                                             placeholder="Enter Class" style="text-transform: uppercase" required>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Section</label>
+                                        <input name="section" type="text" class="form-control"
+                                            placeholder="Enter Class" style="text-transform: uppercase" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Subject:</label>
+                                        <select name="subject_id" class="form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $query = mysqli_query(
+                                                $conn,
+                                                'select * from tbl_subject order by subject_code'
+                                            );
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $query
+                                                )
+                                            ) { ?>
+                                            <option value="<?php echo $row[
+                                                'subject_id'
+                                            ]; ?>">
+                                                <?php echo $row[
+                                                    'subject_code'
+                                                ]; ?>
+                                            </option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>School Year:</label>
+                                        <select name="school_year_id" class="form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $query = mysqli_query(
+                                                $conn,
+                                                'select * from tbl_school_year order by school_year DESC'
+                                            );
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $query
+                                                )
+                                            ) { ?>
+                                            <option value="<?php echo $row[
+                                                'school_year_id'
+                                            ]; ?>">
+                                                <?php echo $row[
+                                                    'school_year'
+                                                ]; ?>
+                                            </option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <input type="hidden" name="session_id" value="<?php echo $session_id; ?>"
+                                        class="form-control" required>
+                                    </input>
                                 </div>
                                 <div class="form-group">
                                     <center><button name="save" type="submit" class="btn btn-success"><i
@@ -53,25 +111,82 @@
                             </div>
                         </form>
                     </div>
-                    <?php
-                            if (isset($_POST['save'])){
-                            $class_name = strtoupper($_POST['class_name']);
+                    <?php if (isset($_POST['save'])) {
+                        $grade = $_POST['grade'];
+                        $section = $_POST['section'];
+                        $class_name = 'GRADE ' . $grade . ' - ' . $section;
 
-                            $query = mysqli_query($conn,"SELECT * FROM tbl_class WHERE class_name  =  '$class_name' ")or die(mysqli_error());
+                        ($query = mysqli_query(
+                            $conn,
+                            "SELECT * FROM tbl_class WHERE class_name  =  '$class_name' "
+                        )) or die(mysqli_error());
+                        $count = mysqli_num_rows($query);
+
+                        if ($count > 0) { ?>
+                    <script>
+                        toastr.error("Class Already Exists!");
+                    </script>
+                    <?php } else {mysqli_query(
+                                $conn,
+                                "INSERT INTO tbl_class (class_name,year,section) VALUES('$class_name','$grade','$section')"
+                            ) or die(mysqli_error());
+
+                            $session_id = $_POST['session_id'];
+                            $subject_id = $_POST['subject_id'];
+                            $school_year_id = $_POST['school_year_id'];
+
+                            ($query_class_id = mysqli_query(
+                                $conn,
+                                "SELECT * FROM tbl_class WHERE class_name = '$class_name'"
+                            )) or die(mysqli_error());
+
+                            $query_class_id_result = mysqli_fetch_array(
+                                $query_class_id
+                            );
+                            $class_id = $query_class_id_result['class_id'];
+
+                            ($query = mysqli_query(
+                                $conn,
+                                "select * from tbl_teacher_class where subject_id = '$subject_id' and class_id = '$class_id' and teacher_id = '$session_id' and school_year_id = '$school_year_id'"
+                            )) or die(mysqli_error());
+
                             $count = mysqli_num_rows($query);
 
-                            if ($count > 0){ ?>
-                    <script>
-                    alert('Class Already Exist');
-                    </script>
-                    <?php
-                            }else{
-                            mysqli_query($conn,"INSERT INTO tbl_class (class_name) VALUES('$class_name')")or die(mysqli_error());
-                            ?>
-                    <?php
-                            }
-                            }
-                            ?>
+                            if ($count > 0) {
+                                echo 'true';
+                            } else {
+                                mysqli_query(
+                                    $conn,
+                                    "insert into tbl_teacher_class (teacher_id,subject_id,class_id,thumbnails,school_year_id) values('$session_id','$subject_id','$class_id','/lmstlee4/admin/uploads/thumbnails.png','$school_year_id')"
+                                ) or die(mysqli_error());
+
+                                ($teacher_class = mysqli_query(
+                                    $conn,
+                                    'select * from tbl_teacher_class order by teacher_class_id DESC'
+                                )) or die(mysqli_error());
+
+                                $teacher_row = mysqli_fetch_array(
+                                    $teacher_class
+                                );
+                                $teacher_id = $teacher_row['teacher_class_id'];
+
+                                ($insert_query = mysqli_query(
+                                    $conn,
+                                    "select * from tbl_student where class_id = '$class_id'"
+                                )) or die(mysqli_error());
+
+                                while (
+                                    $row = mysqli_fetch_array($insert_query)
+                                ) {
+                                    $id = $row['student_id'];
+                                    mysqli_query(
+                                        $conn,
+                                        "insert into tbl_teacher_class_student (teacher_id,student_id,teacher_class_id) value('$session_id','$id','$teacher_id')"
+                                    ) or die(mysqli_error());
+                                    echo 'yes';
+                                }
+                            }}
+                    } ?>
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
@@ -137,74 +252,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-        <section class="content">
-            <div class="row">
-                <div class="col-md-3">
-                    <form method="post" id="add_class">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Add Classroom</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label>Class Name</label>
-                                    <input type="hidden" name="session_id" value="<?php echo $session_id; ?>"
-                                        class="form-control" required>
-                                    </input>
-                                    <select name="class_id" class="form-control" required>
-                                        <option></option>
-                                        <?php
-											$query = mysqli_query($conn,"select * from tbl_class where isDeleted=false order by class_name ");
-											while($row = mysqli_fetch_array($query)){
-											
-											?>
-                                        <option value="<?php echo $row['class_id']; ?>">
-                                            <?php echo $row['class_name']; ?>
-                                        </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Subject:</label>
-                                    <select name="subject_id" class="form-control" required>
-                                        <option></option>
-                                        <?php
-											$query = mysqli_query($conn,"select * from tbl_subject order by subject_code");
-											while($row = mysqli_fetch_array($query)){
-											
-											?>
-                                        <option value="<?php echo $row['subject_id']; ?>">
-                                            <?php echo $row['subject_code']; ?>
-                                        </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>School Year:</label>
-                                    <select name="school_year_id" class="form-control" required>
-                                        <option></option>
-                                        <?php
-											$query = mysqli_query($conn,"select * from tbl_school_year order by school_year DESC");
-											while($row = mysqli_fetch_array($query)){
-											?>
-                                        <option value="<?php echo $row['school_year_id']; ?>">
-                                            <?php echo $row['school_year']; ?>
-                                        </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-
-                                <div class="card-footer">
-                                    <center><button name="save" type="submit" value="Upload"
-                                            class="btn btn-success">Add</button>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </section>

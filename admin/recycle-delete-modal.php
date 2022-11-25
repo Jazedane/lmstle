@@ -14,7 +14,7 @@
                 <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i
                         class="fas fa-times"></i>
                     Close</button>
-                <button id="<?php echo $id; ?>" class="btn btn-success delete_recycle_student"><i class="fas fa-check"></i>
+                <button class="btn btn-success delete_recycle_student"><i class="fas fa-check"></i>
                     Yes</button>
             </div>
         </div>
