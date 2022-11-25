@@ -1,4 +1,5 @@
 <?php include 'database.php'; 
+
 if (isset($_POST['delete_recycle_student']) && isset($_POST['selector'])) {
     $id = $_POST['selector'];
     $N = count($id);
