@@ -122,7 +122,7 @@
                             					}
                                                 ?>
                                                 </td>
-                                                <td><a href="<?php echo $row['floc']; ?>"><i
+                                                <td><a href="<?php echo $row['floc']; ?>" target="_blank"><i
                                                             class="fas fa-paperclip"></i> <i>Attachment</i></a></td>
                                                 <?php
                                             ($query = mysqli_query(
