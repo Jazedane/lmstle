@@ -40,8 +40,13 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Class Name</label>
-                                        <input name="class_name" type="text" class="form-control"
+                                        <label>Grade</label>
+                                        <input name="grade" type="text" class="form-control"
+                                            placeholder="Enter Class" style="text-transform: uppercase" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Section</label>
+                                        <input name="section" type="text" class="form-control"
                                             placeholder="Enter Class" style="text-transform: uppercase" required>
                                     </div>
                                     <div class="form-group">
@@ -107,7 +112,9 @@
                         </form>
                     </div>
                     <?php if (isset($_POST['save'])) {
-                        $class_name = strtoupper($_POST['class_name']);
+                        $grade = $_POST['grade'];
+                        $section = $_POST['section'];
+                        $class_name = 'GRADE ' . $grade . ' - ' . $section;
 
                         ($query = mysqli_query(
                             $conn,
@@ -121,7 +128,7 @@
                     </script>
                     <?php } else {mysqli_query(
                                 $conn,
-                                "INSERT INTO tbl_class (class_name) VALUES('$class_name')"
+                                "INSERT INTO tbl_class (class_name,year,section) VALUES('$class_name','$grade','$section')"
                             ) or die(mysqli_error());
 
                             $session_id = $_POST['session_id'];
