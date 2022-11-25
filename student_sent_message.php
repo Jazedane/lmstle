@@ -193,9 +193,16 @@
                                     <div class="form-group">
                                         <label>To:</label>
                                         <select name="teacher_id" class="form-control" required>
-                                            <option></option>
                                             <?php
-											$query = mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE tbl_teacher.isDeleted=false order by firstname");
+											$query = mysqli_query($conn,"SELECT
+                                                *
+                                            FROM
+                                                `tbl_student`
+                                            LEFT JOIN tbl_teacher_class ON tbl_student.class_id = tbl_teacher_class.class_id
+                                            LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_teacher_class.teacher_id
+                                            WHERE
+                                                tbl_student.student_id = '$session_id'
+                                            ");
 											while($row = mysqli_fetch_array($query)){
 											?>
                                             <option value="<?php echo $row['teacher_id']; ?>">

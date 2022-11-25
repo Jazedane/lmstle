@@ -7,7 +7,7 @@
     <title>LMSTLE | Send Message</title>
 
     <?php include 'header.php'; ?>
-    <?php include('session.php'); ?>
+    <?php include 'session.php'; ?>
     <?php include 'script.php'; ?>
 </head>
 
@@ -21,16 +21,23 @@
                         <h1>Send Message</h1>
                     </div>
                     <?php
-						$school_year_query = mysqli_query($conn,"select * from tbl_school_year order by school_year DESC")or die(mysqli_error());
-						$school_year_query_row = mysqli_fetch_array($school_year_query);
-						$school_year = $school_year_query_row['school_year'];
-								?>
+                    ($school_year_query = mysqli_query(
+                        $conn,
+                        'select * from tbl_school_year order by school_year DESC'
+                    )) or die(mysqli_error());
+                    $school_year_query_row = mysqli_fetch_array(
+                        $school_year_query
+                    );
+                    $school_year = $school_year_query_row['school_year'];
+                    ?>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Send Message</li>
                             <li class="breadcrumb-item active">School Year:
-                                <?php echo $school_year_query_row['school_year']; ?></a></li>
+                                <?php echo $school_year_query_row[
+                                    'school_year'
+                                ]; ?></a></li>
                         </ol>
                     </div>
                 </div>
@@ -56,18 +63,25 @@
                             <div class="card-body p-0">
                                 <ul class="nav nav-pills flex-column">
                                     <?php
-			                        $message_query = mysqli_query($conn,"select * from tbl_message where receiver_id = '$session_id' 
-                                    and message_status != 'read' ")or die(mysqli_error());
-			                        $count_message = mysqli_num_rows($message_query);
-		                            ?>
+                                    ($message_query = mysqli_query(
+                                        $conn,
+                                        "select * from tbl_message where receiver_id = '$session_id' 
+                                    and message_status != 'read' "
+                                    )) or die(mysqli_error());
+                                    $count_message = mysqli_num_rows(
+                                        $message_query
+                                    );
+                                    ?>
                                     <li class="nav-item">
                                         <a href="message.php" class="nav-link">
                                             <i class="fas fa-inbox"></i> Inbox
-                                            <?php if($count_message == '0'){
-				                            }else{ ?>
+                                            <?php if ($count_message == '0') {
+                                            } else {
+                                                 ?>
                                             <span
                                                 class="badge bg-primary float-right"><?php echo $count_message; ?></span>
-                                            <?php } ?>
+                                            <?php
+                                            } ?>
                                         </a>
                                     </li>
                                     <li class="nav-item active">
@@ -93,8 +107,8 @@
                             <div class="card-body">
                                 <?php
                                 ($query_announcement = mysqli_query(
-                                $conn,
-                                "SELECT * FROM tbl_message_sent
+                                    $conn,
+                                    "SELECT * FROM tbl_message_sent
                                 LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_message_sent.sender_id 
                                 WHERE tbl_message_sent.sender_id = '$session_id' 
                                 ORDER BY date_sended DESC"
@@ -104,43 +118,50 @@
                                 );
                                 if ($count_my_message != '0') {
                                     while (
-                                    $row = mysqli_fetch_array(
-                                        $query_announcement
-                                    )
-                                ) {
+                                        $row = mysqli_fetch_array(
+                                            $query_announcement
+                                        )
+                                    ) {
 
-                            $id = $row['message_sent_id'];
-                            $sender_id = $row['sender_id'];
-                            $sender_name =
-                                $row['firstname'] .
-                                ' ' .
-                                $row['lastname'];
-                            $receiver_name =
-                                $row['receiver_name'];
-                            ?>
+                                        $id = $row['message_sent_id'];
+                                        $sender_id = $row['sender_id'];
+                                        $sender_name =
+                                            $row['firstname'] .
+                                            ' ' .
+                                            $row['lastname'];
+                                        $receiver_name = $row['receiver_name'];
+                                        ?>
                                 <div class="direct-chat-msg">
                                     <div class="direct-chat-infos clearfix">
                                         <span class="direct-chat-name float-left">
                                             <strong>Send by: You to Student
-                                                <?php echo $row['receiver_name']; ?></strong></span>
-                                        <span
-                                            class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
+                                                <?php echo $row[
+                                                    'receiver_name'
+                                                ]; ?></strong></span>
+                                        <span class="direct-chat-timestamp float-right"><?php echo $row[
+                                                'date_sended'
+                                            ]; ?></span>
                                     </div>
-                                    <img class="direct-chat-img"
-                                        src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
-                                        alt="Message User Image">
+                                    <img class="direct-chat-img" src="/lmstlee4/admin/uploads/<?php echo $row[
+                                            'location'
+                                        ]; ?>" alt="Message User Image">
                                     <div class="direct-chat-text" style="height:50px;background-color:success">
                                         <?php echo $row['content']; ?>
                                         <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
                                             data-toggle="modal"><i class="fas fa-trash"></i>
                                         </a>
-                                        <?php include("remove_sent_message_modal.php"); ?>
+                                        <?php include 'remove_sent_message_modal.php'; ?>
                                     </div>
                                 </div>
-                                <?php }}else{ ?>
+                                <?php
+                                    }
+                                } else {
+                                     ?>
                                 <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Messages in your
                                     Sent Items</div>
-                                <?php } ?>
+                                <?php
+                                }
+                                ?>
                                 <script type="text/javascript">
                                 $(document).ready(function() {
                                     var Toast = Swal.mixin({
@@ -165,7 +186,9 @@
                                                         $(this).remove();
                                                     });
                                                 $('#' + id).modal('hide');
-                                                toastr.error("Your Sent message is Successfully Deleted.");
+                                                toastr.error(
+                                                    "Your Sent message is Successfully Deleted."
+                                                    );
                                                 setTimeout(function() {
                                                     window.location.reload();
                                                 }, 2000);
@@ -195,16 +218,25 @@
                                     <select name="student_id" class="form-control" required>
                                         <option>Select Student</option>
                                         <?php
-											$query = mysqli_query($conn,"SELECT * FROM tbl_teacher_class_student
-																  LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id WHERE tbl_student.isDeleted=false
-											 group by tbl_teacher_class_student.student_id order by firstname ASC");
-											while($row = mysqli_fetch_array($query)){
-											
-											?>
-                                        <option value="<?php echo $row['student_id']; ?>">
+                                        $query = mysqli_query(
+                                            $conn,
+                                            "SELECT * FROM tbl_teacher_class_student
+                                            LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id 
+                                            WHERE tbl_student.isDeleted=false AND teacher_id = '$session_id'
+                                            GROUP BY tbl_teacher_class_student.student_id order by firstname ASC"
+                                        );
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) { ?>
+                                        <option value="<?php echo $row[
+                                            'student_id'
+                                        ]; ?>">
                                             <?php echo $row['firstname']; ?>
-                                            <?php echo $row['lastname']; ?> </option>
-                                        <?php } ?>
+                                            <?php echo $row[
+                                                'lastname'
+                                            ]; ?> </option>
+                                        <?php }
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
