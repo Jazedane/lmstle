@@ -35,7 +35,7 @@
             <div class="modal-footer justify-content-between">
                 <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button name="delete_recycle_teacher" class="btn btn-danger"><i class="fas fa-check"></i> Yes</button>
+                <button class="btn btn-danger delete_recycle_teacher"><i class="fas fa-check"></i> Yes</button>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <div class="modal-footer justify-content-between">
                 <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button name="delete_recycle_class" class="btn btn-danger"><i class="fas fa-check"></i> Yes</button>
+                <button class="btn btn-danger delete_recycle_class"><i class="fas fa-check"></i> Yes</button>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
             <div class="modal-footer justify-content-between">
                 <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button name="delete_recycle_student_task" class="btn btn-danger"><i class="fas fa-check"></i>
+                <button class="btn btn-danger delete_recycle_student_task"><i class="fas fa-check"></i>
                     Yes</button>
             </div>
         </div>
@@ -98,7 +98,7 @@
             <div class="modal-footer justify-content-between">
                 <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button name="delete_recycle_teacher_task" class="btn btn-danger"><i class="fas fa-check"></i>
+                <button class="btn btn-danger delete_recycle_teacher_task"><i class="fas fa-check"></i>
                     Yes</button>
             </div>
         </div>

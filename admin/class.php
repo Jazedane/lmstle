@@ -41,13 +41,18 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Grade</label>
-                                        <input name="grade" type="text" class="form-control"
-                                            placeholder="Enter Class" style="text-transform: uppercase" required>
+                                        <select name="grade" class="form-control" placeholder="Gender" required>
+                                            <option>SELECT GRADE</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Section</label>
-                                        <input name="section" type="text" class="form-control"
-                                            placeholder="Enter Class" style="text-transform: uppercase" required>
+                                        <input name="section" type="text" class="form-control" placeholder="Enter Class"
+                                            style="text-transform: uppercase" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Subject:</label>
@@ -113,7 +118,7 @@
                     </div>
                     <?php if (isset($_POST['save'])) {
                         $grade = $_POST['grade'];
-                        $section = $_POST['section'];
+                        $section = strtoupper($_POST['section']);
                         $class_name = 'GRADE ' . $grade . ' - ' . $section;
 
                         ($query = mysqli_query(
@@ -124,7 +129,7 @@
 
                         if ($count > 0) { ?>
                     <script>
-                        toastr.error("Class Already Exists!");
+                    toastr.error("Class Already Exists!");
                     </script>
                     <?php } else {mysqli_query(
                                 $conn,

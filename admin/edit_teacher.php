@@ -47,16 +47,16 @@
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input type="text" name="firstname" value="<?php echo $row['firstname']; ?>"
-                                            class="form-control" placeholder="Enter Firstname">
+                                            class="form-control" style="text-transform: uppercase" placeholder="Enter Firstname">
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
                                         <input type="text" name="lastname" value="<?php echo $row['lastname']; ?>"
-                                            class="form-control" placeholder="Enter Lastname">
+                                            class="form-control" style="text-transform: uppercase" placeholder="Enter Lastname">
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
-                                        <select name="gender" class="form-control" placeholder="Gender" required>
+                                        <select name="gender" class="form-control" placeholder="Gender" style="text-transform: uppercase" required>
                                             <option><?php echo $row['gender']; ?></option>
                                             <option>MALE</option>
                                             <option>FEMALE</option>
@@ -65,7 +65,7 @@
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input type="text" name="username" value="<?php echo $row['username']; ?>"
-                                            class="form-control" placeholder="Enter Username">
+                                            class="form-control" placeholder="ENTER USERNAME">
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -83,8 +83,8 @@
                     if (isset($_POST['update'])){
 
                     $username = $_POST['username'];
-                    $firstname = $_POST['firstname'];
-                    $lastname = $_POST['lastname'];
+                    $firstname = strtoupper($_POST['firstname']);
+                    $lastname = strtoupper($_POST['lastname']);
                     $gender = $_POST['gender'];
                     
                     mysqli_query($conn,"update tbl_teacher set username = '$username'  , firstname = '$firstname' , lastname = '$lastname' , gender = '$gender' where teacher_id = '$get_id' ")

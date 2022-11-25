@@ -38,11 +38,12 @@
                     <div class="card-body">
                         <form action="restore-data-teacher.php" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle-delete-teacher" id="delete" class="btn btn-danger"
-                                    name=""><i class="fas fa-trash"></i> Delete Data</ul>
+                                <ul data-toggle="modal" href="#recycle-delete-teacher" id="delete"
+                                    class="btn btn-danger" name="delete_recycle_teacher"><i class="fas fa-trash"></i>
+                                    Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_teacher" id="restore" class="btn btn-primary"
-                                    name=""><i class="fas fa-recycle"></i> Restore data
+                                <ul data-toggle="modal" href="#restore_data_teacher" id="restore"
+                                    class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore data
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
@@ -55,7 +56,8 @@
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <a href="recycle-student.php" class="dropdown-item" type="button">
                                                     Student</a>
-                                                <a href="recycle-teacher.php" class="dropdown-item active" type="button">
+                                                <a href="recycle-teacher.php" class="dropdown-item active"
+                                                    type="button">
                                                     Teacher</a>
                                                 <a href="recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
@@ -132,7 +134,39 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        $('.delete_recycle_teacher').click(function() {
+            var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
+                return $(element).val()
+            }).get()
 
+            $.ajax({
+                type: "POST",
+                url: "delete-recycle-teacher.php",
+                data: ({
+                    selector: selectedIds,
+                    delete_recycle_teacher: true
+                }),
+                success: function(html) {
+                    toastr.error(
+                        "Teacher Data Permanently Deleted"
+                    );
+                    setTimeout(function() {
+                        window.location = "recycle-teacher.php";
+                    }, 1000);
+                }
+            });
+            return false;
+        });
+    });
+    </script>
     <script>
     $(function() {
         $("#example1").DataTable({

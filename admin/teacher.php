@@ -42,12 +42,12 @@
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input type="text" name="firstname" class="form-control"
-                                            placeholder="Enter Firstname" required>
+                                            placeholder="Enter Firstname" style="text-transform: uppercase" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
                                         <input type="text" name="lastname" class="form-control"
-                                            placeholder="Enter Lastname" required>
+                                            placeholder="Enter Lastname" style="text-transform: uppercase" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
@@ -60,12 +60,12 @@
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input type="text" name="username" class="form-control"
-                                            placeholder="Enter Username" required>
+                                            placeholder="ENTER USERNAME" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
                                         <input type="password" name="password" class="form-control"
-                                            placeholder="Enter Password" required>
+                                            placeholder="ENTER PASSWORD" required>
                                     </div>
                                 </div>
                                 <div class="card-footer">

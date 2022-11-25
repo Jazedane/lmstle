@@ -39,7 +39,7 @@
                         <form action="restore-data-teacher-task.php" method="post">
                             <table id="example2" class="table table-bordered table-striped">
                                 <ul data-toggle="modal" href="#recycle-delete-teacher-task" id="delete" class="btn btn-danger"
-                                    name=""><i class="fas fa-trash"></i> Delete Data</ul>
+                                    name="delete_recycle_teacher_task"><i class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
                                 <ul data-toggle="modal" href="#restore_data_teacher_task" id="restore" class="btn btn-primary"
                                     name=""><i class="fas fa-recycle"></i> Restore data
@@ -127,7 +127,39 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        $('.delete_recycle_teacher_task').click(function() {
+            var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
+                return $(element).val()
+            }).get()
 
+            $.ajax({
+                type: "POST",
+                url: "delete-recycle-teacher-task.php",
+                data: ({
+                    selector: selectedIds,
+                    delete_recycle_teacher_task: true
+                }),
+                success: function(html) {
+                    toastr.error(
+                        "Teacher Task Data Permanently Deleted"
+                    );
+                    setTimeout(function() {
+                        window.location = "recycle-teacher-task.php";
+                    }, 1000);
+                }
+            });
+            return false;
+        });
+    });
+    </script>
     <script>
     $(function() {
         $("#example1").DataTable({

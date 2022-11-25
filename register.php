@@ -41,6 +41,16 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
+                        <select name="gender" class="form-control" placeholder="Gender" required>
+                            <option>Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                        <div class="input-group-text">
+                            <span class="fas fa-user-circle"></span>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
                         <input type="Username" class="form-control" id="username" name="username" placeholder="Username"
                             required>
                         <div class="input-group-append">
@@ -82,8 +92,9 @@
         </div>
     </div>
     <?php if (isset($_POST['action'])) {
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
+        $firstname = strtoupper($_POST['firstname']);
+        $lastname = strtoupper($_POST['lastname']);
+        $gender = $_POST['gender'];
         $username = $_POST['username'];
         $password = $_POST['password'];
         $password = $_POST['password'];
@@ -106,8 +117,8 @@
     <?php } else {
             mysqli_query(
                 $conn,
-                "insert into tbl_teacher (username,password,firstname,lastname,location,teacher_stat) 
-                values('$username','$hashedPassword','$firstname','$lastname','NO-IMAGE-AVAILABLE.jpg','Activated')"
+                "insert into tbl_teacher (username,password,firstname,lastname,gender,location,teacher_stat) 
+                values('$username','$hashedPassword','$firstname','$lastname','$gender','NO-IMAGE-AVAILABLE.jpg','Activated')"
             ) or die(mysqli_error());
 
             mysqli_query(
