@@ -50,13 +50,18 @@
                             <tbody>
 
                                 <?php
-										$query = mysqli_query($conn,"select * from tbl_activity_log")or die(mysqli_error());
+										$query = mysqli_query($conn,"SELECT * FROM tbl_activity_log ORDER BY date DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 									?>
 
                                 <tr>
 
-                                    <td><?php  echo $row['date']; ?></td>
+                                    <td><?php $date = date_create($row['date']);
+                                                    echo date_format(
+                                                    $date,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                    </td>
                                     <td><?php echo $row['username']; ?></td>
                                     <td><?php echo $row['action']; ?></td>
                                 </tr>

@@ -38,11 +38,12 @@
                     <div class="card-body">
                         <form action="restore-data-teacher-task.php" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle-delete-teacher-task" id="delete" class="btn btn-danger"
-                                    name="delete_recycle_teacher_task"><i class="fas fa-trash"></i> Delete Data</ul>
+                                <ul data-toggle="modal" href="#recycle-delete-teacher-task" id="delete"
+                                    class="btn btn-danger" name="delete_recycle_teacher_task"><i
+                                        class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_teacher_task" id="restore" class="btn btn-primary"
-                                    name=""><i class="fas fa-recycle"></i> Restore data
+                                <ul data-toggle="modal" href="#restore_data_teacher_task" id="restore"
+                                    class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore data
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
@@ -61,7 +62,8 @@
                                                     Class</a>
                                                 <a href="recycle-student-task.php" class="dropdown-item" type="button">
                                                     Student Task</a>
-                                                <a href="recycle-teacher-task.php" class="dropdown-item active" type="button">
+                                                <a href="recycle-teacher-task.php" class="dropdown-item active"
+                                                    type="button">
                                                     Teacher Task</a>
                                             </div>
                                         </li>
@@ -102,18 +104,24 @@
                                             <input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
                                                 class="uniform_on" name="selector[]">
                                         </td>
-                                        <td><?php echo $row[
-                                                'fdatein'
-                                            ]; ?></td>
+                                        <td><?php $fdatein = date_create($row['fdatein']);
+                                                    echo date_format(
+                                                    $fdatein,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                        </td>
                                         <td><?php echo $row[
                                                 'fname'
                                             ]; ?></td>
                                         <td><?php echo $row[
                                                 'fdesc'
                                             ]; ?></td>
-                                        <td><?php echo $row[
-                                                'end_date'
-                                            ]; ?></td>
+                                        <td><?php $end_date = date_create($row['end_date']);
+                                            echo date_format(
+                                            $end_date,
+                                            'M/d/Y h:i a'
+                                            ); ?>
+                                        </td>
                                     </tr>
                                     <?php
              	                        }

@@ -39,11 +39,12 @@
                     <div class="card-body">
                         <form action="restore-data-student-task.php" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle-delete-student-task" id="delete" class="btn btn-danger"
-                                    name="delete_recycle_student_task"><i class="fas fa-trash"></i> Delete Data</ul>
+                                <ul data-toggle="modal" href="#recycle-delete-student-task" id="delete"
+                                    class="btn btn-danger" name="delete_recycle_student_task"><i
+                                        class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_student_task" id="restore" class="btn btn-primary"
-                                    name=""><i class="fas fa-recycle"></i> Restore data
+                                <ul data-toggle="modal" href="#restore_data_student_task" id="restore"
+                                    class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore data
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
@@ -60,7 +61,8 @@
                                                     Teacher</a>
                                                 <a href="recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
-                                                <a href="recycle-student-task.php" class="dropdown-item active" type="button">
+                                                <a href="recycle-student-task.php" class="dropdown-item active"
+                                                    type="button">
                                                     Student Task</a>
                                                 <a href="recycle-teacher-task.php" class="dropdown-item" type="button">
                                                     Teacher Task</a>
@@ -102,7 +104,12 @@
                                     <tr>
                                         <td><input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
                                                 class="uniform_on" name="selector[]"></td>
-                                        <td><?php echo $row['task_fdatein']; ?></td>
+                                        <td><?php $task_fdatein = date_create($row['task_fdatein']);
+                                                    echo date_format(
+                                                    $task_fdatein,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                        </td>
                                         <td><?php  echo $row['fname']; ?></td>
                                         <td><?php echo $row['fdesc']; ?></td>
                                         <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>

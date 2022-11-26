@@ -40,7 +40,6 @@
                             <thead>
                                 <tr>
                                     <th>Date Login</th>
-                                    <th>Date logout</th>
                                     <th>Username</th>
 
 
@@ -48,14 +47,18 @@
                             </thead>
                             <tbody>
                                 <?php
-									$teacher_query = mysqli_query($conn,"select * from tbl_teacher_log order by teacher_log_id ")or die(mysqli_error());
+									$teacher_query = mysqli_query($conn,"SELECT * FROM tbl_teacher_log ORDER BY login_date DESC ")or die(mysqli_error());
 									while($row = mysqli_fetch_array($teacher_query)){
 									$id = $row['teacher_log_id'];
 								?>
 
                                 <tr>
-                                    <td><?php echo $row['login_date']; ?></td>
-                                    <td><?php echo $row['logout_date']; ?></td>
+                                    <td><?php $login_date = date_create($row['login_date']);
+                                                    echo date_format(
+                                                    $login_date,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
+                                    </td>
                                     <td><?php echo $row['username']; ?></td>
                                 </tr>
                                 <?php } ?>

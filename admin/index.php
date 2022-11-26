@@ -157,7 +157,7 @@
                         </li>
                         <li class="nav-header">INFORMATION</li>
                         <li class="nav-item">
-                            <a href="gallery.php?page=1" class="nav-link">
+                            <a href="page.php?page=gallery&current_page=1" class="nav-link nav-gallery tree-item">
                                 <i class="nav-icon fas fa-image"></i>
                                 <p>
                                     Plant Gallery
