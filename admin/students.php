@@ -5,7 +5,7 @@
     WHERE tbl_student.isDeleted=false
     ORDER BY tbl_student.student_id DESC";
 
-    if (isset($_GET['class_id'])) {
+    if ($class_id_filter) {
         $student_query = "SELECT * FROM tbl_student 
         LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
         WHERE tbl_student.isDeleted=false AND tbl_student.class_id = '$class_id_filter'
