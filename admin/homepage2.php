@@ -1,4 +1,18 @@
-<?php include 'header.php'; ?>
+<?php 
+include 'header.php'; 
+$current_page = $_SERVER['PHP_SELF'];
+
+function determine_active_sidebar_item($pages) {
+    $current_page = $_SERVER['PHP_SELF'];
+    $active = '';
+    foreach ($pages as $page) {
+        if ($current_page == $page) {
+            $active = 'active';
+        }
+    }
+    return $active;
+}
+?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -84,7 +98,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="my_students.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                            <a href="my_students.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item([['/lmstlee4/admin/my_students.php']]); ?>">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     My Students
@@ -92,7 +106,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="grade-category.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                            <a href="grade-category.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/grade-category.php']) ?>">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>
                                     Grade Category
@@ -100,7 +114,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="task.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                            <a href="task.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/task.php', '/lmstlee4/admin/view_submit_task.php']) ?>">
                                 <i class="nav-icon fas fa-tasks"></i>
                                 <p>
                                     Task
@@ -108,7 +122,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="uploaded-task.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                            <a href="uploaded-task.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/uploaded-task.php']) ?>">
                                 <i class="nav-icon fas fa-file-upload"></i>
                                 <p>
                                     Uploaded Task
@@ -116,7 +130,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="grading.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                            <a href="grading.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/grading.php']) ?>">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Check Grade
