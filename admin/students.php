@@ -1,3 +1,18 @@
+<?php
+    $class_id_filter = isset($_GET['class_id']) ? $_GET['class_id'] : '';
+    $student_query = "SELECT * FROM tbl_student 
+    LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
+    WHERE tbl_student.isDeleted=false
+    ORDER BY tbl_student.student_id DESC";
+
+    if (isset($_GET['class_id'])) {
+        $student_query = "SELECT * FROM tbl_student 
+        LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
+        WHERE tbl_student.isDeleted=false AND tbl_student.class_id = '$class_id_filter'
+        ORDER BY tbl_student.student_id DESC";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,6 +159,23 @@
                             </div>
 
                             <div class="card-body">
+                                <span>Class Filter </span>
+                                <select class="mb-3" id="class-filter">
+                                    <option value="">Show All</option>
+                                    <?php
+                                        $query = mysqli_query(
+                                        $conn,
+                                        'select * from tbl_class'
+                                        );
+                                        while ($row = mysqli_fetch_array($query)) {
+                                            $class_id = $row['class_id'];
+                                            $class_name = $row['class_name'];
+                                    ?>
+                                    <option value="<?php echo $class_id; ?>" <?php echo $class_id == $class_id_filter ? 'selected' : ''; ?>>
+                                        <?php echo $class_name; ?>
+                                    </option>
+                                    <?php } ?>
+                                </select>
                                 <form action="delete_student.php" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#student_delete" class="btn btn-danger" name=""><i
@@ -172,10 +204,7 @@
                                             <?php
                                             ($query = mysqli_query(
                                                 $conn,
-                                                "SELECT * FROM tbl_student 
-				                                LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
-				                                WHERE tbl_student.isDeleted=false
-				                                ORDER BY tbl_student.student_id DESC"
+                                                $student_query
                                             )) or die(mysqli_error($conn));
                                             while ($row = mysqli_fetch_array($query)) {
                                                 $id = $row['student_id']; ?>
@@ -237,6 +266,16 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+        });
+    });
+
+    $(document).ready(() => {
+        $('#class-filter').on('change', function() {
+            var class_id = $(this).val();
+            const url = new URL(window.location.href);
+            const search_params = new URLSearchParams(url.search);
+            const page = search_params.get('page');
+            window.location.href = `${window.location.origin}${window.location.pathname}?page=${page}&class_id=${class_id}`;
         });
     });
     </script>
