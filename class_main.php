@@ -25,7 +25,7 @@
                             <?php
                         ($school_year_query = mysqli_query(
                             $conn,
-                            'select * from tbl_school_year order by school_year DESC'
+                            'select * from tbl_school_year order by school_year_id DESC'
                         )) or die(mysqli_error());
                         $school_year_query_row = mysqli_fetch_array(
                             $school_year_query
@@ -33,9 +33,6 @@
                         $school_year = $school_year_query_row['school_year'];
                         ?>
                             <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
-                            <li class="breadcrumb-item">School Year: <?php echo $school_year_query_row[
-                            'school_year'
-                        ]; ?></a></li>
                             <li class="breadcrumb-item active">Class</li>
                         </ol>
                     </div>
@@ -55,7 +52,7 @@
                                     LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
                                     LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
                                     LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_teacher_class.teacher_id
-                                    WHERE student_id = '$session_id' and school_year = '$school_year' and tbl_class.isDeleted = false"
+                                    WHERE student_id = '$session_id' and tbl_class.isDeleted = false"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 ?>

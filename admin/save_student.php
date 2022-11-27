@@ -21,6 +21,11 @@ $result = mysqli_query($conn, $query);
 $row   = mysqli_fetch_assoc($result);
 $teacher_class_id = $row['teacher_class_id'];
 
+echo "INSERT INTO 
+    tbl_student 
+    (username,firstname,lastname,gender,age,location,class_id,status,password) 
+    VALUES 
+    ('$username','$firstname','$lastname','$gender','$age','uploads/NO-IMAGE-AVAILABLE.jpg','$class_id','Registered','$hashedPassword');";
 /**
  * Creat student record.
  */
@@ -42,6 +47,11 @@ $student_id = mysqli_insert_id($conn);
 /**
  * Add foreign key references and entry to 'teacher_class_student' table.
  */
+echo "INSERT INTO 
+    tbl_teacher_class_student 
+    (teacher_class_id,student_id,teacher_id) 
+    VALUES 
+    ('$teacher_class_id','$student_id','$teacher_id');";
 mysqli_query(
     $conn,
     "INSERT INTO 

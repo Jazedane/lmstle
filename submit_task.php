@@ -83,9 +83,9 @@
                                             placeholder="Enter activity name" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Description (Optional)</label>
+                                        <label>Description</label>
                                         <textarea class="form-control" name="desc" rows="3"
-                                            placeholder="Enter description"></textarea>
+                                            placeholder="Enter description" required></textarea>
                                     </div>
                                     <div class="card-footer">
                                         <center><button name="Upload" type="submit" value="Upload"

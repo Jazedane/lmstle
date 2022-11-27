@@ -144,9 +144,6 @@
                                     toastr.success(
                                         "New Student Successfully Added", {}
                                     );
-                                    setTimeout(function() {
-                                        window.location.reload();
-                                    }, 2000);
                                 }
                             });
                         });
