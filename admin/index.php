@@ -1,5 +1,17 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php'; 
+$current_page = $_SERVER['PHP_SELF'];
 
+function determine_active_sidebar_item($pages) {
+    $current_page = $_SERVER['PHP_SELF'];
+    $active = '';
+    foreach ($pages as $page) {
+        if ($current_page == $page) {
+            $active = 'active';
+        }
+    }
+    return $active;
+}
+?>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
@@ -77,7 +89,7 @@
                         data-accordion="false">
 
                         <li class="nav-item">
-                            <a href="page.php?page=dashboard" class="nav-link nav-dashboard tree-item">
+                            <a href="dashboard.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/dashboard.php']) ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -85,7 +97,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="page.php?page=class_main" class="nav-link nav-class_main tree-item">
+                            <a href="class_main.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class_main.php']) ?>">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Class
@@ -98,7 +110,7 @@
 			                $count_notification = mysqli_num_rows($notification_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="page.php?page=notification" class="nav-link nav-notification tree-item">
+                            <a href="notification.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/notification.php']) ?>">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>
                                     Notification
@@ -115,7 +127,7 @@
 			                $count_message = mysqli_num_rows($message_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="page.php?page=message" class="nav-link nav-message tree-item">
+                            <a href="message.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/message.php', '/lmstlee4/admin/sent_message.php']) ?>">
                                 <i class="nav-icon fas fa-comments"></i>
                                 <p>
                                     Message
@@ -127,7 +139,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link nav-masterlist">
+                            <a href="#" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class.php','/lmstlee4/admin/students.php',
+                            '/lmstlee4/admin/teacher.php','/lmstlee4/admin/edit_class.php','/lmstlee4/admin/edit_student.php','/lmstlee4/admin/edit_teacher.php']) ?>">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Masterlist
@@ -136,19 +149,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="page.php?page=class" class="nav-link nav-class tree-item">
+                                    <a href="class.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class.php','/lmstlee4/admin/edit_class.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Class List</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="page.php?page=students" class="nav-link nav-students tree-item">
+                                    <a href="students.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/students.php','/lmstlee4/admin/edit_student.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Student List</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="page.php?page=teacher" class="nav-link nav-teacher tree-item">
+                                    <a href="teacher.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher.php','/lmstlee4/admin/edit_teacher.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher List</p>
                                     </a>
@@ -157,7 +170,7 @@
                         </li>
                         <li class="nav-header">INFORMATION</li>
                         <li class="nav-item">
-                            <a href="page.php?page=gallery&current_page=1" class="nav-link nav-gallery tree-item">
+                            <a href="gallery.php?current_page=1" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/gallery.php']) ?>">
                                 <i class="nav-icon fas fa-image"></i>
                                 <p>
                                     Plant Gallery
@@ -165,7 +178,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="page.php?page=about" class="nav-link nav-about tree-item">
+                            <a href="about.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/about.php']) ?>">
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     About
@@ -173,7 +186,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link nav-log-history">
+                            <a href="#" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher_log.php','/lmstlee4/admin/activity_log.php']) ?>">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>
                                     Log History
@@ -182,13 +195,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="page.php?page=teacher_log" class="nav-link nav-teacher_log tree-item">
+                                    <a href="teacher_log.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher_log.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher Log</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="page.php?page=activity_log" class="nav-link nav-activity_log tree-item">
+                                    <a href="activity_log.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/activity_log.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Activity log</p>
                                     </a>
@@ -196,7 +209,9 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="page.php?page=recycle-student" class="nav-link nav-recycle-student tree-item">
+                            <a href="recycle-student.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/recycle-student.php',
+                            '/lmstlee4/admin/recycle-teacher.php','/lmstlee4/admin/recycle-class.php','/lmstlee4/admin/recycle-student-task.php',
+                            '/lmstlee4/admin/recycle-teacher-task.php']) ?>">
                                 <i class="nav-icon fas fa-recycle"></i>
                                 <p>
                                     Recycle Bin

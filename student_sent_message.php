@@ -78,6 +78,76 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Send New Message</h3>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" id="send_message">
+                                    <div class="form-group">
+                                        <label>To:</label>
+                                        <select name="teacher_id" class="form-control" required>
+                                            <?php
+											$query = mysqli_query($conn,"SELECT
+                                                *
+                                            FROM
+                                                `tbl_student`
+                                            LEFT JOIN tbl_teacher_class ON tbl_student.class_id = tbl_teacher_class.class_id
+                                            LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_teacher_class.teacher_id
+                                            WHERE
+                                                tbl_student.student_id = '$session_id'
+                                            ");
+											while($row = mysqli_fetch_array($query)){
+											?>
+                                            <option value="<?php echo $row['teacher_id']; ?>">
+                                                <?php echo $row['firstname']; ?>
+                                                <?php echo $row['lastname']; ?> </option>
+
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Content:</label>
+                                        <textarea name="my_message" rows="3" class="my_message form-control" required>
+                                    </textarea>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="float-right">
+                                            <button type="submit" class="btn btn-primary"><i
+                                                    class="far fa-envelope"></i>
+                                                Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <script>
+                                jQuery(document).ready(function() {
+                                    var Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    });
+                                    jQuery("#send_message").submit(function(e) {
+                                        e.preventDefault();
+                                        var formData = jQuery(this).serialize();
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "send_message.php",
+                                            data: formData,
+                                            success: function(html) {
+                                                toastr.success("Message Successfully Sent");
+                                                setTimeout(function() {
+                                                    window.location =
+                                                        'student_sent_message.php'
+                                                }, 2000);
+                                            }
+                                        });
+                                        return false;
+                                    });
+                                });
+                                </script>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-8">
                         <div class="card card-success direct-chat direct-chat-success">
@@ -164,88 +234,11 @@
                                                         $(this).remove();
                                                     });
                                                 $('#' + id).modal('hide');
-                                                toastr.error("Your Sent Message is Successfully Deleted", {});
+                                                toastr.error(
+                                                    "Your Sent Message is Successfully Deleted", {}
+                                                    );
                                                 setTimeout(function() {
                                                     window.location.reload();
-                                                }, 2000);
-                                            }
-                                        });
-                                        return false;
-                                    });
-                                });
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Send New Message</h3>
-                            </div>
-                            <div class="card-body">
-                                <form method="post" id="send_message">
-                                    <div class="form-group">
-                                        <label>To:</label>
-                                        <select name="teacher_id" class="form-control" required>
-                                            <?php
-											$query = mysqli_query($conn,"SELECT
-                                                *
-                                            FROM
-                                                `tbl_student`
-                                            LEFT JOIN tbl_teacher_class ON tbl_student.class_id = tbl_teacher_class.class_id
-                                            LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_teacher_class.teacher_id
-                                            WHERE
-                                                tbl_student.student_id = '$session_id'
-                                            ");
-											while($row = mysqli_fetch_array($query)){
-											?>
-                                            <option value="<?php echo $row['teacher_id']; ?>">
-                                                <?php echo $row['firstname']; ?>
-                                                <?php echo $row['lastname']; ?> </option>
-
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Content:</label>
-                                        <textarea name="my_message" rows="3" class="my_message form-control"
-                                            required>
-                                    </textarea>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="float-right">
-                                            <button type="submit" class="btn btn-primary"><i
-                                                    class="far fa-envelope"></i>
-                                                Send</button>
-                                        </div>
-                                    </div>
-                                </form>
-                                <script>
-                                jQuery(document).ready(function() {
-                                    var Toast = Swal.mixin({
-                                        toast: true,
-                                        position: 'top-end',
-                                        showConfirmButton: false,
-                                        timer: 2000
-                                    });
-                                    jQuery("#send_message").submit(function(e) {
-                                        e.preventDefault();
-                                        var formData = jQuery(this).serialize();
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "send_message.php",
-                                            data: formData,
-                                            success: function(html) {
-                                                toastr.success("Message Successfully Sent");
-                                                setTimeout(function() {
-                                                    window.location =
-                                                        'student_sent_message.php'
                                                 }, 2000);
                                             }
                                         });

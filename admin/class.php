@@ -115,7 +115,35 @@
                                 </div>
                             </div>
                         </form>
+                        <form method="post" action="add-school-year.php">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-edit"></i> Add School Year</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>School Year</label>
+                                        <input name="school_year" type="varchar" maxlength="9" onBlur='addDashes1(this)'
+                                            autocomplete="off" class="form-control" placeholder="ENTER SCHOOL YEAR">
+                                    </div>
+                                    <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
+                                </div>
+                                <div class="card-footer">
+                                    <center><button name="save_school_year" type="submit" class="btn btn-success"><i
+                                                class="fas fa-plus">
+                                            </i> Add</button>
+                                    </center>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+                    <SCRIPT LANGUAGE="JavaScript">
+                    function addDashes1(f) {
+                        f.value = f.value.replace(/\D/g, '');
+
+                        f.value = f.value.slice(0, 4) + "-" + f.value.slice(4, 8);
+                    }
+                    </SCRIPT>
                     <?php if (isset($_POST['save'])) {
                         $grade = $_POST['grade'];
                         $section = strtoupper($_POST['section']);

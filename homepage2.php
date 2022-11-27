@@ -1,4 +1,17 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php'; 
+$current_page = $_SERVER['PHP_SELF'];
+
+function determine_active_sidebar_item($pages) {
+    $current_page = $_SERVER['PHP_SELF'];
+    $active = '';
+    foreach ($pages as $page) {
+        if ($current_page == $page) {
+            $active = 'active';
+        }
+    }
+    return $active;
+}
+?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -84,7 +97,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="my_classmates.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                            <a href="my_classmates.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/my_classmates.php']) ?>">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     My Classmates
@@ -92,7 +105,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="progress.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                            <a href="progress.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/progress.php']) ?>">
                                 <i class="nav-icon fas fa-tasks"></i>
                                 <p>
                                     Progress
@@ -100,7 +113,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="task_student.php<?php echo '?id='.$get_id; ?>" class="nav-link">
+                            <a href="task_student.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/task_student.php','/lmstlee4/submit_task.php','/lmstlee4/edit_task_modal.php']) ?>">
                                 <i class="nav-icon fas fa-file-upload"></i>
                                 <p>
                                     Task Update

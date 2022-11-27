@@ -39,7 +39,7 @@
                         <form action="restore-data-student.php" method="post">
                             <table id="example2" class="table table-bordered table-striped">
                                 <ul data-toggle="modal" href="#recycle-delete-student" id="delete"
-                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash"></i></ul>
+                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
                                 <ul data-toggle="modal" href="#restore_data_student" id="restore"
                                     class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore data

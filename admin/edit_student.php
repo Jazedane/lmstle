@@ -72,17 +72,20 @@
                                     <div class="form-group">
                                         <label>ID Number</label>
                                         <input name="username" value="<?php echo $row['username']; ?>" type="varchar"
-                                            maxlength="6" class="form-control" onBlur='addDashes(this)' autocomplete="off" placeholder="ENTER ID NUMBER">
+                                            maxlength="7" class="form-control" onBlur='addDashes(this)'
+                                            autocomplete="off" placeholder="ENTER ID NUMBER">
                                     </div>
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input name="firstname" value="<?php echo $row['firstname']; ?>" type="text"
-                                            class="form-control" placeholder="Enter Firstname" style="text-transform: uppercase">
+                                            class="form-control" placeholder="Enter Firstname"
+                                            style="text-transform: uppercase">
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
                                         <input name="lastname" value="<?php echo $row['lastname']; ?>" type="text"
-                                            class="form-control" placeholder="Enter Lastname" style="text-transform: uppercase">
+                                            class="form-control" placeholder="Enter Lastname"
+                                            style="text-transform: uppercase">
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
@@ -109,7 +112,43 @@
                                 </div>
                             </div>
                         </form>
+                        <form method="post">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-edit"></i> Update Password</h3>
+                                </div>
+                                <?php
+							$query = mysqli_query($conn,"select * from tbl_student LEFT JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
+                            where student_id = '$get_id' and tbl_student.isDeleted=false")or die(mysqli_error());
+							$row = mysqli_fetch_array($query);
+							?>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Update Password</label>
+                                        <input name="password" type="password"
+                                            class="form-control" placeholder="ENTER PASSWORD">
+                                    </div>
+                                    <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
+                                </div>
+                                <div class="card-footer">
+                                    <center><button name="update_password" type="submit" class="btn btn-success"><i
+                                                class="fas fa-edit">
+                                            </i> Update</button>
+                                    </center>
+                                </div>
+                            </div>
+                        </form>
+                        <?php 
+
+                        if (isset($_POST['update_password'])) {
+            
+                        $password = $_POST['password'];
+                        $hashedPassword = hash('sha256', $password);
+                        mysqli_query($conn,"UPDATE tbl_student SET password = '$hashedPassword' WHERE student_id = '$get_id' ") or die(mysqli_error());
+                        }
+                        ?>
                     </div>
+
                     <?php
                         if (isset($_POST['update'])) {
                                
@@ -120,8 +159,8 @@
                             $age = $_POST['age'];
                             $cys = $_POST['class_id'];
                     
-                            mysqli_query($conn,"update tbl_student set username = '$username' , firstname ='$firstname' , lastname = '$lastname' , 
-                            gender = '$gender', age = '$age', class_id = '$cys' where student_id = '$get_id' ") or die(mysqli_error());
+                            mysqli_query($conn,"UPDATE tbl_student SET username = '$username' , firstname ='$firstname' , lastname = '$lastname' , 
+                            gender = '$gender', age = '$age', class_id = '$cys' WHERE student_id = '$get_id' ") or die(mysqli_error());
 
 		                ?>
                     <SCRIPT LANGUAGE="JavaScript">
@@ -139,7 +178,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         });
-                        jQuery("#edit_student").submit(function() {
+                        jQuery("#update").submit(function() {
                             e.preventDefault();
                             var formData = jQuery(this).serialize();
                             $.ajax({
@@ -158,7 +197,7 @@
                         });
                     });
                     </script>
-                    <?php     }  ?>
+                    <?php  }  ?>
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">

@@ -31,7 +31,7 @@ session_start();
 
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="signin_student" class="form-signin" method="post">
                         <div class="input-group mb-3">
-                            <input type="username" maxlength="6" class="form-control" id="student_id" name="username"
+                            <input type="username" maxlength="7" class="form-control" id="student_id" name="username"
                                 placeholder="ID Number" onBlur='addDashes(this)' autocomplete="off" required>
                             <div class="input-group-append">
                                 <div class="input-group-text">

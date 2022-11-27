@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>ID Number</label>
-                                        <input name="username" type="varchar" maxlength="6" class="form-control"
+                                        <input name="username" type="varchar" maxlength="7" class="form-control"
                                             placeholder="ENTER ID NUMBER" onBlur='addDashes(this)' autocomplete="off"
                                             required>
                                     </div>
@@ -165,7 +165,7 @@
                                     <?php
                                         $query = mysqli_query(
                                         $conn,
-                                        'select * from tbl_class'
+                                        'SELECT * FROM tbl_class WHERE isDeleted=false'
                                         );
                                         while ($row = mysqli_fetch_array($query)) {
                                             $class_id = $row['class_id'];
