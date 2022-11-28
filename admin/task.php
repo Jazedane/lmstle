@@ -155,6 +155,86 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Create</h3>
+                            </div>
+                            <form class="" id="add_work" method="post" enctype="multipart/form-data"
+                                name="upload">
+                                <div class="control-group"></div>
+                                <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
+                                <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
+                                <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Student ID</label>
+                                        <select name="student_id" class="form-control" required>
+                                            <option>Select Student</option>
+                                            <?php
+                                        $query = mysqli_query(
+                                            $conn,
+                                            "SELECT * FROM tbl_teacher_class_student
+                                            LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id 
+                                            WHERE tbl_student.isDeleted=false AND teacher_id = '$session_id'
+                                            GROUP BY tbl_teacher_class_student.student_id order by firstname ASC"
+                                        );
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) { ?>
+                                            <option value="<?php echo $row[
+                                            'student_id'
+                                        ]; ?>">
+                                                <?php echo $row['firstname']; ?>
+                                                <?php echo $row[
+                                                'lastname'
+                                            ]; ?> </option>
+                                            <?php }
+                                        ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Task ID</label>
+                                        <select name="task_id" class="form-control" required>
+                                            <option>Select Task</option>
+                                            <?php
+                                        $query = mysqli_query(
+                                            $conn,
+                                            "SELECT * FROM tbl_task 
+                                            LEFT JOIN tbl_grade_category ON tbl_grade_category.grade_category_id = tbl_task.grade_category_id
+                                            WHERE tbl_task.class_id = '$get_id' AND teacher_id = '$session_id' AND isDeleted=false
+                                            ORDER BY fdatein DESC "
+                                        );
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) { ?>
+                                            <option value="<?php echo $row[
+                                            'task_id'
+                                        ]; ?>">
+                                                <?php echo $row[
+                                                'fname'
+                                            ]; ?> </option>
+                                            <?php }
+                                        ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Total Points</label>
+                                        <input type="number" name="total_points" class="form-control"
+                                            placeholder="Enter Total Points" maxlength="3" min="0" max="" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Score</label>
+                                        <input type="number" name="grade" class="form-control" placeholder="Enter Score"
+                                            maxlength="3" min="0" max="" required>
+                                    </div>
+                                    <div class="card-footer">
+                                        <center><button name="Upload" type="submit" value="Upload"
+                                                class="btn btn-success">Submit</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="col-md-9">
                         <div class="card card-success">
@@ -297,6 +377,35 @@
                 data: formData,
                 success: function(html) {
                     toastr.success("Task Successfully Added");
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+    });
+    </script>
+    <script>
+    jQuery(document).ready(function($) {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
+        $("#add_work").submit(function(e) {
+            e.preventDefault();
+            var _this = $(e.target);
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                type: "POST",
+                url: "add-work.php",
+                data: formData,
+                success: function(html) {
+                    toastr.success("Successfully Added");
                     setTimeout(function() {
                         window.location.reload();
                     }, 2000);

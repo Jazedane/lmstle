@@ -29,7 +29,8 @@ session_start();
                 <div class="card-body">
                     <p class="login-box-msg">Signin to start your session</p>
 
-                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="login_form" class="form-signin" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="login_form"
+                        class="form-signin" method="post">
                         <div class="input-group mb-3">
                             <input type="username" class="form-control" id="username" name="username"
                                 placeholder="Username" required>
@@ -79,6 +80,12 @@ session_start();
     }
 
     jQuery(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
         jQuery("#back").click(handleBackNavigation)
 
         jQuery("#login_form").submit(function(e) {
@@ -90,16 +97,14 @@ session_start();
                 data: formData,
                 success: function(html) {
                     if (html == 'true') {
-                        alert("Welcome to Learning Management System for TLE-Agricultural")
+                        toastr.success("Welcome to Learning Management System for TLE-Agricultural")
                         var delay = 2000;
                         setTimeout(function() {
                             window.location = 'admin/dashboard.php'
                         }, delay);
                     } else {
-                        alert("Login Failed")
-                        $.jGrowl("Please Check Your Username and Password", {
-                            header: 'Login Failed'
-                        });
+                        toastr.warning("Login Failed","Please Check Your Username and Password");
+                        var delay = 100;
                     }
                 }
 

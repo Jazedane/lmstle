@@ -67,7 +67,7 @@
                             </div>
                             <div class="card-body">
                                 <h4>Grade Categories</h4><br>
-                                <p>Grade categories must add up to 70% for performance task.</p>
+                                <p>Grade categories must add up to 60% for performance task.</p>
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -169,7 +169,7 @@
                                                         $impact_percentage_total += $value;
                                                     }
 
-                                                echo 70-$impact_percentage_total . "%"?></p>
+                                                echo 100-$impact_percentage_total . "%"?></p>
                                     </div>
                                 </div>
                                 <form class="mt-5" action="category.php" method="post" enctype="multipart/form-data"
@@ -186,7 +186,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="number" name="impact_percentage" maxlength="2" max="<?php echo 70-$impact_percentage_total; ?>"
+                                                <input type="number" name="impact_percentage" maxlength="2" max="<?php echo 100-$impact_percentage_total; ?>"
                                                     class="form-control" placeholder="Enter percentage" required>
                                             </div>
                                         </div>

@@ -11,6 +11,3 @@ $query = mysqli_query($conn,"UPDATE tbl_student_task SET fname='$fname',feedback
 WHERE student_task_id='$student_task_id'")or die(mysqli_error());
 
 ?>
-<script>
- window.location reload();
-</script>

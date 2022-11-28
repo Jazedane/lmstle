@@ -66,14 +66,21 @@
         <section class="content-header">
             <div class="row mb-2 ml-1">
                 <div class="col-sm-3">
-                <select class="form-control" id="quarter-selection">
-                    <option value="0" <?php if ($selected_quarter == "0") { echo "selected"; } else { echo ""; } ?>>Select Quarter</option>
-                    <option value="1" <?php if ($selected_quarter == "1") { echo "selected"; } else { echo ""; } ?>>1st Quarter</option>
-                    <option value="2" <?php if ($selected_quarter == "2") { echo "selected"; } else { echo ""; } ?>>2nd Quarter</option>
-                    <option value="3" <?php if ($selected_quarter == "3") { echo "selected"; } else { echo ""; } ?>>3rd Quarter</option>
-                    <option value="4" <?php if ($selected_quarter == "4") { echo "selected"; } else { echo ""; } ?>>4th Quarter</option>
-                    <option value="all" <?php if ($selected_quarter == "all") { echo "selected"; } else { echo ""; } ?>>All Quarters</option>
-                </select>
+                    <select class="form-control" id="quarter-selection">
+                        <option value="0" <?php if ($selected_quarter == "0") { echo "selected"; } else { echo ""; } ?>>
+                            Select Quarter</option>
+                        <option value="1" <?php if ($selected_quarter == "1") { echo "selected"; } else { echo ""; } ?>>
+                            1st Quarter</option>
+                        <option value="2" <?php if ($selected_quarter == "2") { echo "selected"; } else { echo ""; } ?>>
+                            2nd Quarter</option>
+                        <option value="3" <?php if ($selected_quarter == "3") { echo "selected"; } else { echo ""; } ?>>
+                            3rd Quarter</option>
+                        <option value="4" <?php if ($selected_quarter == "4") { echo "selected"; } else { echo ""; } ?>>
+                            4th Quarter</option>
+                        <option value="all"
+                            <?php if ($selected_quarter == "all") { echo "selected"; } else { echo ""; } ?>>All Quarters
+                        </option>
+                    </select>
                 </div>
             </div>
             <div class="container-fluid">
@@ -113,7 +120,7 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>
+                                            <th width="220">
                                                 <?php echo $class_row[
                                                     'class_name'
                                                 ]; ?> Students
@@ -177,7 +184,7 @@
                                                         'impact_percentage'
                                                     ];
                                                 ?>
-                                            <th>
+                                            <th width="120">
                                                 <?php echo $header_row[
                                                     'fname'
                                                 ]; ?>
@@ -227,7 +234,7 @@
                                             <?php
                                             }
                                             ?>
-                                            <th>
+                                            <th width="120">
                                                 Weighted Average
                                             </th>
                                         </tr>
@@ -456,7 +463,7 @@
             const queryBuilder = `${host}${path}?id=${id}&quarter=${evt.target.value}`;
             window.location.href = queryBuilder;
         })
-    })    
+    })
     </script>
 </body>
 

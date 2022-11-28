@@ -60,7 +60,7 @@ function determine_active_sidebar_item($pages) {
 
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <?php $query= mysqli_query($conn,"select * from tbl_teacher where teacher_id = '$session_id'")or die(mysqli_error());
+                    <?php $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
 								  $row = mysqli_fetch_array($query);
 						?>
                     <div class="image">
@@ -160,12 +160,21 @@ function determine_active_sidebar_item($pages) {
                                         <p>Student List</p>
                                     </a>
                                 </li>
+                                <?php 
+                                $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
+                                $is_superadmin = $row['is_superadmin'];
+
+                                if ($is_superadmin == true) { ?>
                                 <li class="nav-item">
                                     <a href="teacher.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher.php','/lmstlee4/admin/edit_teacher.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher List</p>
                                     </a>
                                 </li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </li>
                         <li class="nav-header">INFORMATION</li>
@@ -225,23 +234,3 @@ function determine_active_sidebar_item($pages) {
     </div>
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
-    <script>
-    $(document).ready(function() {
-        var page = '<?php echo isset($_GET['page']) ? $_GET['page'] : 'dashboard' ?>';
-        var s = '<?php echo isset($_GET['s']) ? $_GET['s'] : '' ?>';
-        if (s != '')
-            page = page + '_' + s;
-        if ($('.nav-link.nav-' + page).length > 0) {
-            $('.nav-link.nav-' + page).addClass('active')
-            if ($('.nav-link.nav-' + page).hasClass('tree-item') == true) {
-                $('.nav-link.nav-' + page).closest('.nav-treeview').siblings('a').addClass('active')
-                $('.nav-link.nav-' + page).closest('.nav-treeview').parent().addClass('menu-open')
-            }
-            if ($('.nav-link.nav-' + page).hasClass('nav-is-tree') == true) {
-                $('.nav-link.nav-' + page).parent().addClass('menu-open')
-            }
-
-        }
-
-    })
-    </script>

@@ -29,7 +29,8 @@ session_start();
                 <div class="card-body">
                     <p class="login-box-msg">Sign in to start your session</p>
 
-                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="signin_student" class="form-signin" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="signin_student"
+                        class="form-signin" method="post">
                         <div class="input-group mb-3">
                             <input type="username" maxlength="7" class="form-control" id="student_id" name="username"
                                 placeholder="ID Number" onBlur='addDashes(this)' autocomplete="off" required>
@@ -63,21 +64,20 @@ session_start();
                             </div>
                         </div>
 
-                    <div class="mb-0">
-                        <a href="login-page.php" class="text-center">Back</a>
-                    </div>
+                        <div class="mb-0">
+                            <a href="login-page.php" class="text-center">Back</a>
+                        </div>
                     </form>
                 </div>
             </div>
         </form>
     </div>
     <script LANGUAGE="JavaScript">
-        function addDashes(f)
-            {
-                f.value = f.value.replace(/\D/g, '');
+    function addDashes(f) {
+        f.value = f.value.replace(/\D/g, '');
 
-                f.value = f.value.slice(0,2)+"-"+f.value.slice(2,8);
-            }
+        f.value = f.value.slice(0, 2) + "-" + f.value.slice(2, 8);
+    }
     </script>
     <?php include 'script.php'; 
 
@@ -92,10 +92,10 @@ session_start();
 
                         if($total_count == 3){
                             ?>
-                            <script>
-                                alert("Your account has been blocked. Please try after 30 seconds");
-                            </script>
-                            <?php
+    <script>
+    alert("Your account has been blocked. Please try after 30 seconds");
+    </script>
+    <?php
                         }
                         else{
 
@@ -118,11 +118,11 @@ session_start();
 
                           mysqli_query($db->connection, "DELETE from attempt_count where ip_address = '$ip_address'");
                           ?>
-                          <script>
-                              alert("Welcome to Learning Management System for TLE-Agricultural");
-                              window.location ='class_main.php';
-                          </script>
-                          <?php
+    <script>
+    alert("Welcome to Learning Management System for TLE-Agricultural");
+    window.location = 'class_main.php';
+    </script>
+    <?php
                       }
                       else{
                         $total_count++;
@@ -131,25 +131,26 @@ session_start();
                         
                         if($time_remain == 0){
                              ?>
-                            <script>
-                                alert("Your account has been blocked. Please try after 30 seconds");
-                            </script>
-                            <?php
+    <script>
+    alert("Your account has been blocked. Please try after 30 seconds");
+    </script>
+    <?php
                         }
                         else{
                             ?>
-                            <script>
-                                alert("Please enter valid login details." . $time_remain. "attempts remaining.");
-                            </script>
-                            <?php
+    <script>
+    alert("Please enter valid login details.".$time_remain.
+        "attempts remaining.");
+    </script>
+    <?php
                         }
                         mysqli_query($db->connection, "INSERT INTO attempt_count (ip_address, time_count) VALUES ('$ip_address', '$time')");
 
                        ?>
-                       <script>
-                           alert("Login Failed. Please enter valid login details.");
-                       </script>
-                       <?php
+    <script>
+    alert("Login Failed. Please enter valid login details.");
+    </script>
+    <?php
                               }
                           }
                       }
