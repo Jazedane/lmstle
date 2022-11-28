@@ -144,6 +144,9 @@
                                     toastr.success(
                                         "New Student Successfully Added", {}
                                     );
+                                    setTimeout(function() {
+                                        window.location.reload();
+                                    }, 1000);
                                 }
                             });
                         });
@@ -168,7 +171,8 @@
                                             $class_id = $row['class_id'];
                                             $class_name = $row['class_name'];
                                     ?>
-                                    <option value="<?php echo $class_id; ?>" <?php echo $class_id == $class_id_filter ? 'selected' : ''; ?>>
+                                    <option value="<?php echo $class_id; ?>"
+                                        <?php echo $class_id == $class_id_filter ? 'selected' : ''; ?>>
                                         <?php echo $class_name; ?>
                                     </option>
                                     <?php } ?>
@@ -272,7 +276,8 @@
             const url = new URL(window.location.href);
             const search_params = new URLSearchParams(url.search);
             const page = search_params.get('page');
-            window.location.href = `${window.location.origin}${window.location.pathname}?page=${page}&class_id=${class_id}`;
+            window.location.href =
+                `${window.location.origin}${window.location.pathname}?page=${page}&class_id=${class_id}`;
         });
     });
     </script>

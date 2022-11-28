@@ -15,5 +15,5 @@ mysqli_query(
 ?>
 <script>
     alert("School Year Successfully Added");
-    window.location = 'students.php';
+    window.location = 'class.php';
 </script>
