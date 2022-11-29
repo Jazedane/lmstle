@@ -167,15 +167,16 @@
                                 <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Student ID</label>
+                                        <label><?php echo $class_row['class_name']; ?> STUDENTS</label>
                                         <select name="student_id" class="form-control" required>
                                             <option>Select Student</option>
                                             <?php
                                         $query = mysqli_query(
                                             $conn,
                                             "SELECT * FROM tbl_teacher_class_student
-                                            LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id 
-                                            WHERE tbl_student.isDeleted=false AND teacher_id = '$session_id'
+                                            LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id AND tbl_student.isDeleted=false
+                                            INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
+                                            WHERE teacher_class_id = '$get_id'
                                             GROUP BY tbl_teacher_class_student.student_id order by firstname ASC"
                                         );
                                         while (
@@ -193,7 +194,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Task ID</label>
+                                        <label>Task Name</label>
                                         <select name="task_id" class="form-control" required>
                                             <option>Select Task</option>
                                             <?php
@@ -216,11 +217,6 @@
                                             <?php }
                                         ?>
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Total Points</label>
-                                        <input type="number" name="total_points" class="form-control"
-                                            placeholder="Enter Total Points" maxlength="3" min="0" max="" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Score</label>
@@ -249,9 +245,9 @@
                                             <th>Task Name</th>
                                             <th>Description</th>
                                             <th>Category</th>
+                                            <th>Points</th>
                                             <th>Due Date</th>
                                             <th>Time Left</th>
-                                            <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -287,6 +283,9 @@
                                             <td><?php echo $row[
                                                 'category_name'
                                             ]; ?></td>
+                                            <td><?php echo $row[
+                                                'total_points'
+                                            ]; ?></td>
                                             <td><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
                                                     $end_date,
@@ -311,7 +310,7 @@
                                                 })
                                                 </script>
                                             </td>
-                                            <td width="10">
+                                            <td width="40">
                                                 <form method="post" action="view_submit_task.php<?php echo '?id=' .
                                                     $get_id; ?>&<?php echo 'post_id=' .$id; ?>">
 
@@ -321,15 +320,13 @@
                                                             class="fas fa-folder"></i></button>
 
                                                 </form>
-                                            </td>
-                                            <td>
                                                 <?php if ($floc == '') {
                                                 } else {
                                                      ?>
                                                 <?php
                                                 } ?>
                                                 <a data-placement="bottom" title="Remove" id="<?php echo $id; ?>remove"
-                                                    class="btn btn-danger" href="#del<?php echo $id; ?>"
+                                                    class="btn btn-danger float-right" href="#del<?php echo $id; ?>"
                                                     data-toggle="modal"><i class="fas fa-trash"></i></a>
                                                 <?php include 'delete_task_modal.php'; ?>
                                             </td>

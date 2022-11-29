@@ -87,7 +87,7 @@
                                         <tbody>
 
                                             <?php
-										    $query = mysqli_query($conn,"select * FROM tbl_student_task
+										    $query = mysqli_query($conn,"SELECT * FROM tbl_student_task
 										    LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id and tbl_student_task.isDeleted=false 
 										    where task_id = '$post_id' order by task_fdatein DESC")or die(mysqli_error());
 										    while($row = mysqli_fetch_array($query)){
@@ -122,37 +122,18 @@
                             					}
                                                 ?>
                                                 </td>
-                                                <td><a href="<?php echo $row['floc']; ?>" target="_blank"><i
-                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></td>
-                                                <?php
-                                            ($query = mysqli_query(
-                                                $conn,
-                                                 "SELECT
-                                                    *
-                                                    FROM
-                                                        tbl_student_task
-                                                    LEFT JOIN tbl_student ON tbl_student.student_id = tbl_student_task.student_id
-                                                    INNER JOIN tbl_task ON tbl_student_task.task_id = tbl_task.task_id
-                                                    WHERE
-                                                        tbl_task.class_id = '$get_id' AND tbl_student_task.task_id = '$post_id' AND tbl_student.student_id = '$student_id'
-                                                    "
-                                                )) or die(mysqli_error());
-                                            while (
-                                                $row = mysqli_fetch_array($query)
-                                            ) {
-                                                $student_id = $row['student_id']; 
-                                            ?>
-                                                <td><span class="badge badge-success"><?php  echo $row['grade']; ?> /
-                                                        <?php  echo $row['total_points']; ?></span></td>
-                                                <td>
+                                                <td><center><a href="<?php echo $row['floc']; ?>" target="_blank"><i
+                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></center></td>
+                                                <td width="40"><center><span class="badge badge-success"><?php  echo $row['grade']; ?></span></center></td>
+                                                <td width="40">
                                                     <a class="btn btn-success"
                                                         href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
-                                                            class="fas fa-edit"></i> Edit</a>
+                                                            class="fas fa-edit"></i></a>
                                                 </td>
                                             </tr>
                                             <?php 
-                                                    }
                                                 }
+                                                
                                             ?>
 
                                         </tbody>

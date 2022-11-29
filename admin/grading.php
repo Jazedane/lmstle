@@ -123,8 +123,9 @@
                                             <th width="220">
                                                 <?php echo $class_row[
                                                     'class_name'
-                                                ]; ?> Students
+                                                ]; ?> STUDENTS
                                             </th>
+                                            <th width="80"> Overall Grade</th>
 
                                             <?php
                                             ($header_query = mysqli_query(
@@ -276,6 +277,8 @@
                                                 <?php echo $row['firstname'] .
                                                     ' ' .
                                                     $row['lastname']; ?>
+                                            </td>
+                                            <td> 
                                             </td>
                                             <?php for (
                                                 $i = 0;
