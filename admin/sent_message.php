@@ -106,7 +106,8 @@
                                         $query = mysqli_query(
                                             $conn,
                                             "SELECT * FROM tbl_teacher_class_student
-                                            LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id 
+                                            LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id
+                                            INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
                                             WHERE tbl_student.isDeleted=false AND teacher_id = '$session_id'
                                             GROUP BY tbl_teacher_class_student.student_id order by firstname ASC"
                                         );

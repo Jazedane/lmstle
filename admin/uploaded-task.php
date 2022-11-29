@@ -56,6 +56,7 @@
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
+                                            <th>Category</th>
                                             <th>Task Name</th>
                                             <th>Description</th>
                                             <th>Due Date</th>
@@ -70,6 +71,7 @@
                                         <?php
 										$query = mysqli_query($conn,"SELECT * FROM tbl_task 
                                                                     LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_task.teacher_id
+                                                                    LEFT JOIN tbl_grade_category ON tbl_grade_category.grade_category_id = tbl_task.grade_category_id
 																	LEFT JOIN tbl_teacher_class ON tbl_teacher_class.teacher_class_id = tbl_task.class_id and tbl_task.isDeleted=false
 																	INNER JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id WHERE tbl_teacher_class.teacher_class_id = $get_id")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
@@ -81,6 +83,7 @@
                                                     'M/d/Y h:i a'
                                                     ); ?>
                                             </td>
+                                            <td><?php echo $row['category_name']; ?></td>
                                             <td><?php  echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
                                             <td><?php $end_date = date_create($row['end_date']);

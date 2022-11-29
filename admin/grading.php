@@ -125,7 +125,6 @@
                                                     'class_name'
                                                 ]; ?> STUDENTS
                                             </th>
-                                            <th width="80"> Overall Grade</th>
 
                                             <?php
                                             ($header_query = mysqli_query(
@@ -238,6 +237,7 @@
                                             <th width="120">
                                                 Weighted Average
                                             </th>
+                                            <th width="80"> Overall Grade</th>
                                         </tr>
 
                                     </thead>
@@ -277,8 +277,6 @@
                                                 <?php echo $row['firstname'] .
                                                     ' ' .
                                                     $row['lastname']; ?>
-                                            </td>
-                                            <td> 
                                             </td>
                                             <?php for (
                                                 $i = 0;
@@ -419,6 +417,13 @@
                                                     ) .
                                                     '%)';
                                                 ?>
+                                            </td>
+                                            <td>
+                                                <center><?php echo 
+                                                    round(
+                                                        $percentage_total
+                                                    );
+                                                ?></center>
                                             </td>
                                         </tr>
 

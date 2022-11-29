@@ -67,7 +67,7 @@
                             </div>
                             <div class="card-body">
                                 <h4>Grade Categories</h4><br>
-                                <p>Grade categories must add up to 60% for performance task.</p>
+                                <p>Grade categories must add up to 100%.</p>
 
                                 <div class="row">
                                     <div class="col-md-6">

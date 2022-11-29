@@ -9,5 +9,5 @@ require_once('./config/confirmation.php');
 ?>
 <script>
     alert("Plant Info Successfully Deleted");
-	window.location = 'gallery.php?page=1';
+	window.location = 'gallery.php?current_page=1';
 </script>
