@@ -55,11 +55,11 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Task Progress</h3>
+                                <h3 class="card-title">Task Update</h3>
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,
-                                    "select * FROM tbl_task where class_id = '$get_id' AND isDeleted = false order by fdatein DESC"
+                                    "SELECT * FROM tbl_task where class_id = '$get_id' AND isDeleted = false order by fdatein DESC"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 ?>
@@ -70,7 +70,7 @@
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,
-                                    "select * FROM tbl_task where class_id = '$get_id' order by fdatein DESC"
+                                    "SELECT * FROM tbl_task WHERE class_id = '$get_id' order by fdatein DESC"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 if ($count == '0') { ?>

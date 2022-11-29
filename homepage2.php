@@ -120,6 +120,14 @@ function determine_active_sidebar_item($pages) {
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="student-grade.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/student-grade.php']) ?>">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    My Grade
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

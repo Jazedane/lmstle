@@ -66,21 +66,21 @@
 											$id = $row['teacher_class_student_id'];
 									?>
                                     <div id="del<?php echo $id; ?>" style="margin:10px">
-                                        <center><a href="#">
+                                        <center><a type="button" data-toggle="modal"
+                                                data-target="#student-info<?php echo $get_id; ?>">
                                                 <img id="student_avatar_class"
                                                     src="/lmstlee4/admin/<?php echo $row['location'] ?>" width="80"
-                                                    height="80" class="img-circle elevation-2">
+                                                    height="80" class="img-circle elevation-2"></a>
                                                 <div>
                                                     <span>
                                                         <p><?php ?></p>
                                                     </span>
                                                 </div>
-                                            </a>
                                             <p class="student">
                                                 <?php echo $row['firstname']." <br> ".$row['lastname']?></p>
                                         </center>
                                     </div>
-                                    <?php } ?>
+                                    <?php include 'student-info-modal.php'; }?>
                                 </ul>
                                 <script type="text/javascript">
                                 $(document).ready(function() {

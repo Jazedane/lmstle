@@ -249,7 +249,7 @@
                                             <?php
                                             ($class_query = mysqli_query(
                                                 $conn,
-                                                'SELECT * FROM tbl_class WHERE isDeleted=false'
+                                                "SELECT * FROM tbl_class WHERE isDeleted=false"
                                             )) or die(mysqli_error());
                                             while (
                                                 $class_row = mysqli_fetch_array(

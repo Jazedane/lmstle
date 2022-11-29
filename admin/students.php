@@ -61,7 +61,7 @@
                                             <?php
                                                 $class_query = mysqli_query(
                                                 $conn,
-                                                'select * from tbl_class where tbl_class.isDeleted=false order by class_name'
+                                                "SELECT * FROM tbl_class WHERE tbl_class.isDeleted=false ORDER BY class_name"
                                                 );
                                                 while (
                                                     $class_row = mysqli_fetch_array(
@@ -165,7 +165,7 @@
                                     <?php
                                         $query = mysqli_query(
                                         $conn,
-                                        'SELECT * FROM tbl_class WHERE isDeleted=false'
+                                        "SELECT * FROM tbl_class WHERE isDeleted=false"
                                         );
                                         while ($row = mysqli_fetch_array($query)) {
                                             $class_id = $row['class_id'];
