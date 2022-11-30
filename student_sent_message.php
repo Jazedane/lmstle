@@ -196,7 +196,7 @@
                                         <span
                                             class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
                                     </div>
-                                    <img class="direct-chat-img" src="/lmstlee4/admin/<?php echo $row['location']; ?>"
+                                    <img class="direct-chat-img" src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
                                         alt="Message User Image">
                                     <div class="direct-chat-text" style="height:50px;background-color:success">
                                         <?php echo $row['content']; ?>
