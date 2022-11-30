@@ -66,10 +66,9 @@
 											$id = $row['teacher_class_student_id'];
 									?>
                                     <div id="del<?php echo $id; ?>" style="margin:10px">
-                                        <center><a type="button" data-toggle="modal"
-                                                data-target="#student-info<?php echo $get_id; ?>">
+                                        <center><a href="#">
                                                 <img id="student_avatar_class"
-                                                    src="/lmstlee4/admin/<?php echo $row['location'] ?>" width="80"
+                                                    src="/lmstlee4/admin/uploads/<?php echo $row['location'] ?>" width="80"
                                                     height="80" class="img-circle elevation-2"></a>
                                                 <div>
                                                     <span>
@@ -82,33 +81,6 @@
                                     </div>
                                     <?php include 'student-info-modal.php'; }?>
                                 </ul>
-                                <script type="text/javascript">
-                                $(document).ready(function() {
-                                    $('.remove').click(function() {
-                                        var id = $(this).attr("id");
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "remove_student.php",
-                                            data: ({
-                                                id: id
-                                            }),
-                                            cache: false,
-                                            success: function(html) {
-                                                $("#del" + id).fadeOut('slow',
-                                                    function() {
-                                                        $(this).remove();
-                                                    });
-                                                $('#' + id).modal('hide');
-                                                $.jGrowl(
-                                                    "Your Student is Successfully Remove", {
-                                                        header: 'Student Remove'
-                                                    });
-                                            }
-                                        });
-                                        return false;
-                                    });
-                                });
-                                </script>
                             </div>
                         </div>
                     </div>

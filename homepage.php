@@ -67,7 +67,7 @@ function determine_active_sidebar_item($pages) {
                         $row = mysqli_fetch_array($query);
                     ?>
                     <div class="image">
-                        <img id="avatar" src="/lmstlee4/admin/<?php echo $row['location']; ?>"
+                        <img id="avatar" src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
                             class="img-circle elevation" alt="User Image" style="height:40px;width:40px;">
                     </div>
                     <div class="info">

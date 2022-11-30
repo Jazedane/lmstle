@@ -159,8 +159,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Create</h3>
                             </div>
-                            <form class="" id="add_work" method="post" enctype="multipart/form-data"
-                                name="upload">
+                            <form class="" id="add_work" method="post" enctype="multipart/form-data" name="upload">
                                 <div class="control-group"></div>
                                 <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
                                 <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">

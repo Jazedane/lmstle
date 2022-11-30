@@ -269,13 +269,13 @@
                                             ?>
 
                                         <tr>
-                                            <td> <img id="avatar" src="/lmstlee4/admin/<?php echo $row[
+                                            <td> <img id="avatar" src="/lmstlee4/admin/uploads/<?php echo $row[
                                                 'location'
                                             ]; ?>" class="img-circle elevation" alt="User Image" height="30"
                                                     width="30">
-                                                <?php echo $row['firstname'] .
-                                                    ' ' .
-                                                    $row['lastname']; ?>
+                                                <?php echo $row['lastname'] .
+                                                    ', ' .
+                                                    $row['firstname']; ?>
                                             </td>
                                             <?php for (
                                                 $i = 0;

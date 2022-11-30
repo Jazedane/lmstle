@@ -61,11 +61,11 @@
                                             <div class="custom-file">
                                                 <label for="formFileMultiple" class="form-label">
                                                     <input name="image" class="custom-file input" id="formFileMultiple"
-                                                        type="file" required></input>
+                                                        type="file" onchange="displayImg(this,$(this))" required></input>
                                         </center>
                                     </div>
                                     <div class="form-group d-flex justify-content-center">
-                                        <img src="/lmstlee4/admin/<?php echo $row ['location'];  ?>" alt=""
+                                        <img src="/lmstlee4/admin/uploads/<?php echo $row ['location']; ?>" alt=""
                                             id="cimg" class="img-fluid img-thumbnail">
                                     </div>
                                     <div class="card-footer">

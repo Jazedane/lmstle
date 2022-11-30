@@ -44,7 +44,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-3">
                         <div class="card card-success">
                             <div class="card-header">
                                 <?php 
@@ -54,13 +54,13 @@
                                 You
                             </div>
                             <div class="card-body">
-                                <img id="student_avatar_class"
-                                    src="admin/<?php echo $my_profile['location'] ?>" width="80" height="80"
-                                    class="img-circle elevation-2"
-                                />
+                                <center><img id="student_avatar_class"
+                                    src="/lmstlee4/admin/uploads/<?php echo $my_profile['location'] ?>" width="80" height="80"
+                                    class="img-circle elevation-2"/>
                                 <div>
                                     <span><?php echo $my_profile['firstname']; ?> <?php echo $my_profile['lastname'] ?> </span>
                                 </div>
+                                </center>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                                     <div id="del<?php echo $id; ?>" style="margin:10px">
                                         <center><a href="#">
                                                 <img id="student_avatar_class"
-                                                    src="admin/<?php echo $row['location'] ?>" width="80" height="80"
+                                                    src="admin/uploads/<?php echo $row['location'] ?>" width="80" height="80"
                                                     class="img-circle elevation-2">
                                             </a>
                                             <p class="class"><?php echo $row['firstname']."<br> ".$row['lastname']?></p>
