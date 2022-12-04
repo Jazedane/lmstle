@@ -73,10 +73,16 @@
             <div class="container-fluid">
                 <div class="row">
                     <?php
-                        $limit = 3;
-                        $page= $_REQUEST['current_page'];
-                        $pages = $page-1;
-                        $p = $pages * $limit;
+
+                    $count_query = "SELECT * FROM image";
+                    $count_result = mysqli_query($conn, $count_query);
+                    $count = mysqli_num_rows($count_result);
+
+                    $limit = 3;
+                    $max_pages = ceil($count / $limit);
+                    $page= $_REQUEST['current_page'];
+                    $pages = $page-1;
+                    $p = $pages * $limit;
 
                       $query = "SELECT * FROM image limit  $p, $limit";
                       $result = mysqli_query($conn, $query);
@@ -111,8 +117,8 @@
                                 if($pages >= 1){
                                 echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=gallery&current_page=".($page - 1)."><i class='fas fa-arrow-left'></i> Prev</a>";
                              }
-                                if($page + 1 < $limit){
-                                echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=gallery&current_page=".($page + 1)."> Next <i class='fas fa-arrow-right'></i></a>";
+                                if($pages < $max_pages-1){
+                                echo "<a class='btn btn-success ml-1' href= ".$_SERVER['PHP_SELF']."?page=gallery&current_page=".($page + 1)."> Next <i class='fas fa-arrow-right'></i></a>";
                               }
                             ?>
 
