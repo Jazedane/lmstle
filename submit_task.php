@@ -65,32 +65,38 @@
                             </div>
                             <form id="add_task" method="post" enctype="multipart/form-data">
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label class="control-label" for="exampleInputFile">Activity</label>
-                                        <div class="custom-file">
-                                            <input name="uploaded_file" type="file" class="custom-file-input"
-                                                id="formFileMultiple" multiple required></input>
-                                            <label for="formFileMultiple" class="custom-file-label">Choose File
-                                            </label>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-                                            <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
-                                            <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="exampleInputFile">Activity</label>
+                                                <div class="custom-file">
+                                                    <input name="uploaded_file" type="file" class="custom-file-input"
+                                                        id="formFileMultiple" multiple required></input>
+                                                    <label for="formFileMultiple" class="custom-file-label">Choose File
+                                                    </label>
+                                                    <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                                                    <input type="hidden" name="id" value="<?php echo $post_id; ?>" />
+                                                    <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Activity Name</label>
+                                                <input type="text" name="name" class="form-control"
+                                                    placeholder="Enter activity name" required>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Activity Name</label>
-                                        <input type="text" name="name" class="form-control"
-                                            placeholder="Enter activity name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea class="form-control" name="desc" rows="3"
-                                            placeholder="Enter description" required></textarea>
-                                    </div>
-                                    <div class="card-footer">
-                                        <center><button name="Upload" type="submit" value="Upload"
-                                                class="btn btn-success">Submit</button>
-                                        </center>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea id="summernote" class="form-control" name="desc" rows="4"
+                                                    placeholder="Enter description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex w-100 justify-content-center align-items-center">
+                                            <center><button name="Upload" type="submit" value="Upload"
+                                                    class="btn btn-success">Submit</button>
+                                            </center>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -116,7 +122,7 @@
 										$row = mysqli_fetch_array($query);
 									
 									?>
-                                <div class="alert alert-primary">Submit Activity in : <?php echo $row['fname']; ?></div>
+                                <div class="alert alert-primary">Submit Activity in : <b><?php echo $row['fname']; ?></b></div>
                                 <div id="">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
@@ -214,6 +220,12 @@
     </div>
     <?php include 'footer.php'; ?>
     <script>
+    $(function() {
+        // Summernote
+        $('#summernote').summernote()
+    })
+    </script>
+    <script>
     jQuery(document).ready(function($) {
         var Toast = Swal.mixin({
             toast: true,
@@ -248,7 +260,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,

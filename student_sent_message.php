@@ -108,7 +108,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Content:</label>
-                                        <textarea name="my_message" rows="3" class="my_message form-control" required>
+                                        <textarea id="summernote" name="my_message" rows="3"
+                                            class="my_message form-control" required>
                                     </textarea>
                                     </div>
                                     <div class="card-footer">
@@ -196,7 +197,8 @@
                                         <span
                                             class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
                                     </div>
-                                    <img class="direct-chat-img" src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
+                                    <img class="direct-chat-img"
+                                        src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
                                         alt="Message User Image">
                                     <div class="direct-chat-text" style="height:50px;background-color:success">
                                         <?php echo $row['content']; ?>
@@ -236,7 +238,7 @@
                                                 $('#' + id).modal('hide');
                                                 toastr.error(
                                                     "Your Sent Message is Successfully Deleted", {}
-                                                    );
+                                                );
                                                 setTimeout(function() {
                                                     window.location.reload();
                                                 }, 2000);
@@ -255,6 +257,12 @@
     </div>
 
     <?php include 'footer.php'; ?>
+    <script>
+    $(function() {
+        // Summernote
+        $('#summernote').summernote()
+    })
+    </script>
     <script>
     $(function() {
         //Enable check and uncheck all functionality

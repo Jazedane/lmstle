@@ -51,37 +51,41 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Create Task</h3>
                             </div>
-                            <form class="" id="add_task" method="post" enctype="multipart/form-data" name="upload">
-                                <div class="control-group"></div>
-                                <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
-                                <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
-                                <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label>Task Name</label>
-                                        <input type="text" name="name" class="form-control"
-                                            placeholder="Enter activity name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Description (Optional)</label>
-                                        <textarea class="form-control" name="desc" rows="3"
-                                            placeholder="Enter description"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Points</label>
-                                        <input type="number" name="total_points" class="form-control"
-                                            placeholder="Enter points" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Grade Category</label>
-                                        <select class="form-control" name="grade_category_id" required>
-                                            <option value="">Select Category</option>
-                                            <?php
+                            <div class="card-body">
+                                <form class="" id="add_task" method="post" enctype="multipart/form-data" name="upload">
+                                    <div class="control-group"></div>
+                                    <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
+                                    <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
+                                    <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Task Name</label>
+                                                <input type="text" name="name" class="form-control"
+                                                    placeholder="Enter activity name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description (Optional)</label>
+                                                <textarea id="summernote" class="summernote form-control" name="desc"
+                                                    rows="4" placeholder="Enter description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Points</label>
+                                                <input type="number" name="total_points" class="form-control"
+                                                    placeholder="Enter points" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Grade Category</label>
+                                                <select class="form-control" name="grade_category_id" required>
+                                                    <option value="">Select Category</option>
+                                                    <?php
                                             ($category_query = mysqli_query(
                                                 $conn,
                                                 "SELECT * FROM tbl_grade_category
@@ -93,47 +97,48 @@
                                                     $category_query
                                                 )
                                             ) { ?>
-                                            <option value="
+                                                    <option value="
                                                 <?php echo $category_row[
                                                     'grade_category_id'
                                                 ]; ?>
                                             ">
-                                                <?php echo $category_row[
+                                                        <?php echo $category_row[
                                                     'category_name'
                                                 ]; ?>
-                                            </option>
-                                            <?php }
+                                                    </option>
+                                                    <?php }
                                             ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="quarter">Quarter</label>
-                                        <select name="quarter" class="form-control" required>
-                                            <option value="">Select Quarter</option>
-                                            <option value="1"
-                                                selected="<?php echo $quarter == 1 ? 'true' : 'false'; ?>">
-                                                1st Quarter
-                                            </option>
-                                            <option value="2"
-                                                selected="<?php echo $quarter == 2 ? 'true' : 'false'; ?>">
-                                                2nd Quarter
-                                            </option>
-                                            <option value="3"
-                                                selected="<?php echo $quarter == 3 ? 'true' : 'false'; ?>">
-                                                3rd Quarter
-                                            </option>
-                                            <option value="4"
-                                                selected="<?php echo $quarter == 4 ? 'true' : 'false'; ?>">
-                                                4th Quarter
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="due_date">Due Date:</label>
-                                        <div class="input-group date" id="reservationdatetime"
-                                            data-target-input="nearest">
-                                            <input type="text" name="end_date" class="datetimepicker-input form-control"
-                                                data-target="#reservationdatetime" value="<?php echo isset(
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="quarter">Quarter</label>
+                                                <select name="quarter" class="form-control" required>
+                                                    <option value="">Select Quarter</option>
+                                                    <option value="1"
+                                                        selected="<?php echo $quarter == 1 ? 'true' : 'false'; ?>">
+                                                        1st Quarter
+                                                    </option>
+                                                    <option value="2"
+                                                        selected="<?php echo $quarter == 2 ? 'true' : 'false'; ?>">
+                                                        2nd Quarter
+                                                    </option>
+                                                    <option value="3"
+                                                        selected="<?php echo $quarter == 3 ? 'true' : 'false'; ?>">
+                                                        3rd Quarter
+                                                    </option>
+                                                    <option value="4"
+                                                        selected="<?php echo $quarter == 4 ? 'true' : 'false'; ?>">
+                                                        4th Quarter
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="due_date">Due Date:</label>
+                                                <div class="input-group date" id="reservationdatetime"
+                                                    data-target-input="nearest">
+                                                    <input type="text" name="end_date"
+                                                        class="datetimepicker-input form-control"
+                                                        data-target="#reservationdatetime" value="<?php echo isset(
                                                     $end_date
                                                 )
                                                     ? datetime(
@@ -141,23 +146,34 @@
                                                         strtotime($end_date)
                                                     )
                                                     : ''; ?>" required>
-                                            <div class="input-group-append" data-target="#reservationdatetime"
-                                                data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    <div class="input-group-append" data-target="#reservationdatetime"
+                                                        data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="card-footer d-flex w-100 justify-content-center align-items-center">
+                                            <center><button name="Upload" type="submit" value="Upload"
+                                                    class="btn btn-flat bg-gradient-success">Submit</button>
+                                            </center>
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <center><button name="Upload" type="submit" value="Upload"
-                                                class="btn btn-success">Submit</button>
-                                        </center>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Create</h3>
+                                <h3 class="card-title">Points For Written Task</h3>
                             </div>
                             <form class="" id="add_work" method="post" enctype="multipart/form-data" name="upload">
                                 <div class="control-group"></div>
@@ -356,6 +372,18 @@
     </div>
     <?php include 'footer.php'; ?>
     <script>
+    $(function() {
+        // Summernote
+        $('#summernote').summernote()
+
+        // CodeMirror
+        CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            mode: "htmlmixed",
+            theme: "monokai"
+        });
+    })
+    </script>
+    <script>
     jQuery(document).ready(function($) {
         var Toast = Swal.mixin({
             toast: true,
@@ -453,7 +481,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
@@ -493,7 +521,8 @@
         var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        $(`#${targetElement}`).html(days + " days " + hours + " hours " + minutes + " minutes " + seconds +
+        $(`#${targetElement}`).html(days + " days " + hours + " hours " + minutes + " minutes " +
+            seconds +
             " seconds ");
     }
     </script>
@@ -524,19 +553,23 @@
         $('#daterange-btn').daterangepicker({
                 ranges: {
                     'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1,
+                        'days')],
                     'Last 7 Days': [moment().subtract(6, 'days'), moment()],
                     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
                     'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
-                        'month').endOf('month')]
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment()
+                        .subtract(1,
+                            'month').endOf('month')
+                    ]
                 },
                 startDate: moment().subtract(29, 'days'),
                 endDate: moment()
             },
             function(start, end) {
-                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
-                    'MMMM D, YYYY'))
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end
+                    .format(
+                        'MMMM D, YYYY'))
             }
         )
         $('#timepicker').datetimepicker({

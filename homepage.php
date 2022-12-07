@@ -133,7 +133,7 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="gallery.php?page=1" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/gallery.php']) ?>">
+                            <a href="gallery.php?current_page=1" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/gallery.php']) ?>">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
                                     Plant Gallery

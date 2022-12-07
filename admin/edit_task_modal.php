@@ -84,10 +84,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="feedback">Feedback (Optional)</label>
-                                        <textarea id="assigntextarea" placeholder="Description" name="feedback"
-                                            class="form-control" value="<?php echo $result[
-                                                'feedback'
-                                            ]; ?>"><?php echo $result[
+                                        <textarea id="summernote" placeholder="Description" name="feedback"
+                                            class="form-control" rows="4" value=""><?php echo $result[
                                                 'feedback'
                                             ]; ?></textarea>
                                     </div>
@@ -143,7 +141,8 @@
                                     </div>
                                     <div class="card-footer">
                                         <center>
-                                            <button class="btn btn-info" name="Upload" type="submit" value="Upload">Save
+                                            <button class="btn btn-flat bg-gradient-primary" name="Upload" type="submit"
+                                                value="Upload">Save
                                                 changes</button>
                                         </center>
                                     </div>
@@ -155,6 +154,12 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script>
+    $(function() {
+        // Summernote
+        $('#summernote').summernote()
+    })
+    </script>
     <script>
     jQuery(document).ready(function($) {
         var Toast = Swal.mixin({

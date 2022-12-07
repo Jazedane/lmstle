@@ -127,7 +127,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Content:</label>
-                                        <textarea name="my_message" rows="3" class="my_message form-control" required>
+                                        <textarea id="summernote" name="my_message" rows="3"
+                                            class="my_message form-control" required>
                                     </textarea>
                                     </div>
                                     <div class="card-footer">
@@ -282,6 +283,12 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script>
+    $(function() {
+        // Summernote
+        $('#summernote').summernote()
+    })
+    </script>
     <script>
     $(function() {
         //Enable check and uncheck all functionality

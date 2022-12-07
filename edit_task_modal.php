@@ -93,9 +93,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="feedback">Feedback</label>
-                                        <textarea id="assigntextarea" placeholder="Description" name="desc"
-                                            class="form-control" value="<?php echo $result['fdesc']; ?>"
-                                            required><?php echo $result['fdesc']; ?></textarea>
+                                        <textarea id="summernote" placeholder="Description" name="desc"
+                                            class="form-control"
+                                            value=""><?php echo $result['fdesc']; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -113,6 +113,12 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script>
+    $(function() {
+        // Summernote
+        $('#summernote').summernote()
+    })
+    </script>
     <script>
     jQuery(document).ready(function($) {
         var Toast = Swal.mixin({
