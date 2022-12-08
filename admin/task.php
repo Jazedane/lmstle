@@ -372,15 +372,17 @@
     </div>
     <?php include 'footer.php'; ?>
     <script>
-    $(function() {
         // Summernote
-        $('#summernote').summernote()
-
-        // CodeMirror
-        CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-            mode: "htmlmixed",
-            theme: "monokai"
-        });
+        $('#summernote').summernote( {
+        toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "height"]],
+            ["view", ["fullscreen", "help"]]
+        ]
     })
     </script>
     <script>
@@ -429,7 +431,7 @@
                 url: "add-work.php",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Successfully Added");
+                    toastr.success("Points Successfully Added");
                     setTimeout(function() {
                         window.location.reload();
                     }, 2000);

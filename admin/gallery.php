@@ -142,8 +142,8 @@
                                 <label class="float-left font-15">Name</label>
                                 <input type="text" name="plant_name" class="form-control" placeholder="Enter Plant name"
                                     required=""><br>
-                                <label class="float-left font-15">Description</label>
-                                <textarea placeholder="Enter Plant Description" name="description" class="form-control"
+                                <label class="">Description</label><br>
+                                <textarea placeholder="Enter Plant Description" id="summernote" name="description" class="form-control"
                                     required=""></textarea><br>
                                 <?php echo $statusMsg; ?>
                                 <label class="float-left font-15">Image</label><br>
@@ -173,6 +173,20 @@
             $('.btn[data-filter]').removeClass('active');
             $(this).addClass('active');
         });
+    })
+    </script>
+        <script>
+        // Summernote
+        $('#summernote').summernote( {
+        toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "height"]],
+            ["view", ["fullscreen", "help"]]
+        ]
     })
     </script>
 

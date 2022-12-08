@@ -258,9 +258,17 @@
 
     <?php include 'footer.php'; ?>
     <script>
-    $(function() {
-        // Summernote
-        $('#summernote').summernote()
+    // Summernote
+    $('#summernote').summernote({
+        toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "height"]],
+            ["view", ["fullscreen", "help"]]
+        ]
     })
     </script>
     <script>

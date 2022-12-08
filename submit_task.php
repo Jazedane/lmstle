@@ -61,14 +61,14 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Add Activity</h3>
+                                <h3 class="card-title">Add Task</h3>
                             </div>
                             <form id="add_task" method="post" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label" for="exampleInputFile">Activity</label>
+                                                <label class="control-label" for="exampleInputFile">Task</label>
                                                 <div class="custom-file">
                                                     <input name="uploaded_file" type="file" class="custom-file-input"
                                                         id="formFileMultiple" multiple required></input>
@@ -80,14 +80,14 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Activity Name</label>
+                                                <label>Task Name</label>
                                                 <input type="text" name="name" class="form-control"
                                                     placeholder="Enter activity name" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Description</label>
+                                                <label>Description (Optional)</label>
                                                 <textarea id="summernote" class="form-control" name="desc" rows="4"
                                                     placeholder="Enter description"></textarea>
                                             </div>
@@ -122,7 +122,8 @@
 										$row = mysqli_fetch_array($query);
 									
 									?>
-                                <div class="alert alert-primary">Submit Activity in : <b><?php echo $row['fname']; ?></b></div>
+                                <div class="alert alert-primary">Submit Activity in :
+                                    <b><?php echo $row['fname']; ?></b></div>
                                 <div id="">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
@@ -220,9 +221,17 @@
     </div>
     <?php include 'footer.php'; ?>
     <script>
-    $(function() {
-        // Summernote
-        $('#summernote').summernote()
+    // Summernote
+    $('#summernote').summernote({
+        toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "height"]],
+            ["view", ["fullscreen", "help"]]
+        ]
     })
     </script>
     <script>

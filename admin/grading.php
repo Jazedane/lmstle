@@ -440,6 +440,144 @@
                 } ?>
             </div>
         </section>
+        <section class="content-header">
+            <div class="container-fluid">
+                <?php for (
+                    $quarterIndex = 0;
+                    $quarterIndex < count($quarters);
+                    $quarterIndex++
+                ) {
+
+                    $quarter = $quarters[$quarterIndex];
+
+                    /**
+                     * Array that dynamically creates the table header.
+                     * Records the Task IDs to be used for individual student query later.
+                     */
+                    $task_column_ids = [];
+
+                    /**
+                     * Array that dynamically holds the total points for each task.
+                     * Example: Task 1 has 10 points in total, Task 2 has 20 points in total, etc.
+                     */
+                    $task_total_grade = [];
+
+                    /**
+                     * Array that dynamically holds the impact percentage of each task type.
+                     * Example: "Activity" task types has 10% impact, "Exam" task types has 20% impact, etc.
+                     */
+                    $grade_impact = [];
+                    ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">General Average for Quarters</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="example2" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th width="220">
+                                                <?php echo $class_row[
+                                                    'class_name'
+                                                ]; ?> STUDENTS
+                                            </th>
+                                            <th width="80"> 1st Quarter</th>
+                                            <th width="80"> 2nd Quarter</th>
+                                            <th width="80"> 3rd Quarter</th>
+                                            <th width="80"> 4th Quarter</th>
+                                            <th width="80"> General Average</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        ($query = mysqli_query(
+                                            $conn,
+                                            "SELECT
+                                            *
+                                            FROM
+                                                tbl_teacher_class_student
+                                            LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id AND tbl_student.isDeleted = FALSE
+                                            INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id
+                                            WHERE
+                                                teacher_class_id = '$get_id'
+                                            ORDER BY
+                                                lastname"
+                                        )) or die(mysqli_error());
+
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) {
+
+                                            $student_id = $row['student_id'];
+
+                                            /**
+                                             * Array that will hold the sum of a student's grade for each activity.
+                                             */
+                                            $student_grade = [];
+                                            ?>
+
+                                        <tr>
+                                            <td> <img id="avatar" src="/lmstlee4/admin/uploads/<?php echo $row[
+                                                'location'
+                                            ]; ?>" class="img-circle elevation" alt="User Image" height="30"
+                                                    width="30"> 
+                                                <?php echo $row['lastname'] .
+                                                    ', ' .
+                                                    $row['firstname']; ?>
+                                            </td>
+                                            <td>
+                                                <center><?php echo 
+                                                    round(
+                                                        $percentage_total
+                                                    );
+                                                ?></center>
+                                            </td>
+                                            <td>
+                                                <center><?php echo 
+                                                    round(
+                                                        $percentage_total
+                                                    );
+                                                ?></center>
+                                            </td>
+                                            <td>
+                                                <center><?php echo 
+                                                    round(
+                                                        $percentage_total
+                                                    );
+                                                ?></center>
+                                            </td>
+                                            <td>
+                                                <center><?php echo 
+                                                    round(
+                                                        $percentage_total
+                                                    );
+                                                ?></center>
+                                            </td>
+                                            <td>
+                                                <center><?php echo 
+                                                    round(
+                                                        $percentage_total
+                                                    );
+                                                ?></center>
+                                            </td>
+                                        </tr>
+
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                } ?>
+            </div>
+        </section>
     </div>
     <?php include 'footer.php'; ?>
     <script>

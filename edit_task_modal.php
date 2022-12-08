@@ -94,8 +94,7 @@
                                     <div class="form-group">
                                         <label for="feedback">Feedback</label>
                                         <textarea id="summernote" placeholder="Description" name="desc"
-                                            class="form-control"
-                                            value=""><?php echo $result['fdesc']; ?></textarea>
+                                            class="form-control" value=""><?php echo $result['fdesc']; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -114,9 +113,17 @@
     </div>
     <?php include 'footer.php'; ?>
     <script>
-    $(function() {
-        // Summernote
-        $('#summernote').summernote()
+    // Summernote
+    $('#summernote').summernote({
+        toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "height"]],
+            ["view", ["fullscreen", "help"]]
+        ]
     })
     </script>
     <script>
