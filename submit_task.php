@@ -87,9 +87,9 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Description (Optional)</label>
+                                                <label>Description</label>
                                                 <textarea id="summernote" class="form-control" name="desc" rows="4"
-                                                    placeholder="Enter description"></textarea>
+                                                    placeholder="Enter description" required></textarea>
                                             </div>
                                         </div>
                                         <div class="card-footer d-flex w-100 justify-content-center align-items-center">

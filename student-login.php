@@ -96,75 +96,75 @@ session_start();
     alert("Your account has been blocked. Please try after 30 seconds");
     </script>
     <?php
-                        }
-                        else{
+        }
+        else{
 
-                        $username = clean($_POST['username']);
-                        $password = clean($_POST['password']);
-                        $hashedPassword = hash('sha256', $password);
+        $username = clean($_POST['username']);
+        $password = clean($_POST['password']);
+        $hashedPassword = hash('sha256', $password);
 
-                       $query = "SELECT * FROM tbl_student WHERE username='$username' AND password='$hashedPassword'";
+        $query = "SELECT * FROM tbl_student WHERE username='$username' AND password='$hashedPassword'";
 
-                        $result = mysqli_query($db->connection, $query);
+        $result = mysqli_query($db->connection, $query);
 
-                        if(mysqli_num_rows($result) > 0) {
+        if(mysqli_num_rows($result) > 0) {
 
-                          $row = mysqli_fetch_assoc($result);
+        $row = mysqli_fetch_assoc($result);
 
-                          $_SESSION['id']=$row['student_id'];
-                          $_SESSION['username'] = $row['username'];
-                          $_SESSION['password'] = $row['password'];
-                          $hashedPassword = hash('sha256', $password);
+        $_SESSION['id']=$row['student_id'];
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['password'] = $row['password'];
+        $hashedPassword = hash('sha256', $password);
 
-                          mysqli_query($db->connection, "DELETE from attempt_count where ip_address = '$ip_address'");
-                          ?>
+        mysqli_query($db->connection, "DELETE from attempt_count where ip_address = '$ip_address'")
+    ?>
     <script>
     alert("Welcome to Learning Management System for TLE-Agricultural");
     window.location = 'class_main.php';
     </script>
     <?php
-                      }
-                      else{
-                        $total_count++;
-                        $time_remain = 3 - $total_count;
-                        $time= time();
+        }
+        else{
+        $total_count++;
+        $time_remain = 3 - $total_count;
+        $time= time();
                         
-                        if($time_remain == 0){
-                             ?>
+        if($time_remain == 0){
+             ?>
     <script>
     alert("Your account has been blocked. Please try after 30 seconds");
     </script>
     <?php
-                        }
-                        else{
-                            ?>
+        }
+        else{
+    ?>
     <script>
     alert("Please enter valid login details.".$time_remain.
         "attempts remaining.");
     </script>
     <?php
-                        }
-                        mysqli_query($db->connection, "INSERT INTO attempt_count (ip_address, time_count) VALUES ('$ip_address', '$time')");
+        }
+        mysqli_query($db->connection, "INSERT INTO attempt_count (ip_address, time_count) VALUES ('$ip_address', '$time')");
 
-                       ?>
+    ?>
     <script>
     alert("Login Failed. Please enter valid login details.");
     </script>
     <?php
-                              }
-                          }
-                      }
-                          function getUSerIpAddr(){
-                            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-                                $ip = $_SERVER['HTTP_CLIENT_IP'];
-                            }elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-                                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-                            }else{
-                                $ip = $_SERVER['REMOTE_ADDR'];
-                            }
-                            return $ip;
-                          }
-                    ?>
+        }
+        }
+      }
+        function getUSerIpAddr(){
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                $ip = $_SERVER['HTTP_CLIENT_IP'];
+            }elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            }else{
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
+            return $ip;
+          }
+    ?>
 
 </body>
 

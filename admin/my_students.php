@@ -66,7 +66,7 @@
 											$id = $row['teacher_class_student_id'];
 									?>
                                     <div id="del<?php echo $id; ?>" style="margin:10px">
-                                        <center><a href="#">
+                                        <center><a href="#student-info<?php echo $get_id; ?>" data-toggle="modal">
                                                 <img id="student_avatar_class"
                                                     src="/lmstlee4/admin/uploads/<?php echo $row['location'] ?>" width="80"
                                                     height="80" class="img-circle elevation-2"></a>
