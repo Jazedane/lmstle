@@ -13,7 +13,7 @@
             <div class="modal-footer justify-content-between">
                 <button class="btn btn-danger" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button name="recycle_data_student" class="btn btn-success"><i class="fas fa-check"></i> Yes</button>
+                <button class="btn btn-success recycle_data_student"><i class="fas fa-check"></i> Yes</button>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
             <div class="modal-footer justify-content-between">
                 <button class="btn btn-danger" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button name="recycle_data_teacher" class="btn btn-success"><i class="fas fa-check"></i> Yes</button>
+                <button class="btn btn-success recycle_data_teacher"><i class="fas fa-check"></i> Yes</button>
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
             <div class="modal-footer justify-content-between">
                 <button class="btn btn-danger" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button name="recycle_data_class" class="btn btn-success"><i class="fas fa-check"></i> Yes</button>
+                <button class="btn btn-success recycle_data_class"><i class="fas fa-check"></i> Yes</button>
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
             <div class="modal-footer justify-content-between">
                 <button class="btn btn-danger" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button name="recycle_data_student_task" class="btn btn-success"><i class="fas fa-check"></i> Yes</button>
+                <button class="btn btn-success recycle_data_student_task"><i class="fas fa-check"></i> Yes</button>
             </div>
         </div>
     </div>
@@ -93,7 +93,7 @@
             <div class="modal-footer justify-content-between">
                 <button class="btn btn-danger" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button name="recycle_data_teacher_task" class="btn btn-success"><i class="fas fa-check"></i> Yes</button>
+                <button class="btn btn-success recycle_data_teacher_task"><i class="fas fa-check"></i> Yes</button>
             </div>
         </div>
     </div>

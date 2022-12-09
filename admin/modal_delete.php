@@ -14,7 +14,7 @@
 					            <div class="modal-footer justify-content-between">
 					                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
 					                    Close</button>
-					                <button name="delete_class" class="btn btn-success"><i class="fas fa-check"></i> Yes</button>
+					                <button class="btn btn-success delete_class"><i class="fas fa-check"></i> Yes</button>
 					            </div>
 					        </div>
 					    </div>
@@ -36,7 +36,7 @@
 					            <div class="modal-footer justify-content-between">
 					                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
 					                    Close</button>
-					                <button name="delete_student" class="btn btn-success"><i
+					                <button class="btn btn-success delete_student"><i
 					                        class="fas fa-check"></i>
 					                    Yes</button>
 					            </div>
@@ -61,7 +61,7 @@
 					            <div class="modal-footer justify-content-between">
 					                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
 					                    Close</button>
-					                <button name="delete_teacher" class="btn btn-success"><i class="fas fa-check"></i>
+					                <button class="btn btn-success delete_teacher"><i class="fas fa-check"></i>
 					                    Yes</button>
 					            </div>
 					        </div>

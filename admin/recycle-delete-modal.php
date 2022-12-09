@@ -33,9 +33,9 @@
                 <p>Are you sure you want to delete the data you check permanently?</p>
             </div>
             <div class="modal-footer justify-content-between">
-                <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
+                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button class="btn btn-danger delete_recycle_teacher"><i class="fas fa-check"></i> Yes</button>
+                <button class="btn btn-success delete_recycle_teacher"><i class="fas fa-check"></i> Yes</button>
             </div>
         </div>
     </div>
@@ -53,9 +53,9 @@
                 <p>Are you sure you want to delete the data you check permanently?</p>
             </div>
             <div class="modal-footer justify-content-between">
-                <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
+                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button class="btn btn-danger delete_recycle_class"><i class="fas fa-check"></i> Yes</button>
+                <button class="btn btn-success delete_recycle_class"><i class="fas fa-check"></i> Yes</button>
             </div>
         </div>
     </div>
@@ -74,9 +74,9 @@
                 <p>Are you sure you want to delete the data you check permanently?</p>
             </div>
             <div class="modal-footer justify-content-between">
-                <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
+                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button class="btn btn-danger delete_recycle_student_task"><i class="fas fa-check"></i>
+                <button class="btn btn-success delete_recycle_student_task"><i class="fas fa-check"></i>
                     Yes</button>
             </div>
         </div>
@@ -96,9 +96,9 @@
                 <p>Are you sure you want to delete the data you check permanently?</p>
             </div>
             <div class="modal-footer justify-content-between">
-                <button class="btn" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
+                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i class="fas fa-times"></i>
                     Close</button>
-                <button class="btn btn-danger delete_recycle_teacher_task"><i class="fas fa-check"></i>
+                <button class="btn btn-success delete_recycle_teacher_task"><i class="fas fa-check"></i>
                     Yes</button>
             </div>
         </div>

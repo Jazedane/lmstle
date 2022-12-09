@@ -36,14 +36,14 @@
                         <h3 class="card-title">Recycle Bin</h3>
                     </div>
                     <div class="card-body">
-                        <form action="restore-data-teacher-task.php" method="post">
+                        <form id="recycle_data_teacher_task" method="post">
                             <table id="example2" class="table table-bordered table-striped">
                                 <ul data-toggle="modal" href="#recycle-delete-teacher-task" id="delete"
                                     class="btn btn-danger" name="delete_recycle_teacher_task"><i
                                         class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
                                 <ul data-toggle="modal" href="#restore_data_teacher_task" id="restore"
-                                    class="btn btn-primary" name=""><i class="fas fa-recycle"></i> Restore data
+                                    class="btn btn-primary" name="recycle_data_teacher_task"><i class="fas fa-recycle"></i> Restore data
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
@@ -135,6 +135,39 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('.recycle_data_teacher_task').click(function() {
+            var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
+                return $(element).val()
+            }).get()
+            
+            $.ajax({
+                type: "POST",
+                url: "restore-data-teacher-task.php",
+                data: ({
+                    selector: selectedIds,
+                    recycle_data_teacher_task: true
+                }),
+                success: function(html) {
+                    toastr.success(
+                        "Teacher Data Successfully Restored"
+                    );
+                    setTimeout(function() {
+                        window.location = "recycle-teacher-task.php";
+                    }, 1000);
+                }
+            });
+            return false;
+        });
+    });
+    </script>
     <script type="text/javascript">
     $(document).ready(function() {
         var Toast = Swal.mixin({

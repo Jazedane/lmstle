@@ -93,7 +93,7 @@ session_start();
                         if($total_count == 3){
                             ?>
     <script>
-    alert("Your account has been blocked. Please try after 30 seconds");
+    toastr.warning("Your account has been blocked! Please try after 30 seconds");
     </script>
     <?php
         }
@@ -118,9 +118,20 @@ session_start();
 
         mysqli_query($db->connection, "DELETE from attempt_count where ip_address = '$ip_address'")
     ?>
-    <script>
-    alert("Welcome to Learning Management System for TLE-Agricultural");
-    window.location = 'class_main.php';
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        toastr.success("Welcome to Learning Management System for TLE-Agricultural")
+        var delay = 1000;
+        setTimeout(function() {
+            window.location = 'class_main.php'
+        }, delay);
+    });
     </script>
     <?php
         }
@@ -132,14 +143,14 @@ session_start();
         if($time_remain == 0){
              ?>
     <script>
-    alert("Your account has been blocked. Please try after 30 seconds");
+    toastr.warning("Your account has been blocked! Please try after 30 seconds");
     </script>
     <?php
         }
         else{
     ?>
     <script>
-    alert("Please enter valid login details.".$time_remain.
+    toastr.info("Please enter valid login details.".$time_remain.
         "attempts remaining.");
     </script>
     <?php
@@ -148,7 +159,7 @@ session_start();
 
     ?>
     <script>
-    alert("Login Failed. Please enter valid login details.");
+    toastr.error("Login Failed! Please enter valid login details!");
     </script>
     <?php
         }

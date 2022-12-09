@@ -130,7 +130,7 @@
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 2000
+                            timer: 1000
                         });
                         $("#add_student").submit(function(e) {
                             e.preventDefault();
@@ -142,8 +142,7 @@
                                 data: formData,
                                 success: function(html) {
                                     toastr.success(
-                                        "New Student Successfully Added", {}
-                                    );
+                                        "New Student Successfully Added");
                                     setTimeout(function() {
                                         window.location.reload();
                                     }, 1000);
@@ -177,10 +176,10 @@
                                     </option>
                                     <?php } ?>
                                 </select>
-                                <form action="delete_student.php" method="post">
+                                <form id="delete_student" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
-                                        <ul data-toggle="modal" href="#student_delete" class="btn btn-danger" name=""><i
-                                                class="fas fa-trash"></i></ul>
+                                        <ul data-toggle="modal" href="#student_delete" class="btn btn-danger"
+                                            name="delete_student"><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <thead>
                                             <tr>
@@ -251,6 +250,40 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('.delete_student').click(function() {
+            var selectedIds = $('[name="selector[]"]:checked').map((_,
+                element) => {
+                return $(element).val()
+            }).get()
+
+            $.ajax({
+                type: "POST",
+                url: "delete_student.php",
+                data: ({
+                    selector: selectedIds,
+                    delete_student: true
+                }),
+                success: function(html) {
+                    toastr.error(
+                        "Student Successfully Deleted"
+                    );
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                }
+            });
+            return false;
+        });
+    });
+    </script>
     <script>
     $(function() {
         $("#example1").DataTable({

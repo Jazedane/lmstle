@@ -15,7 +15,3 @@ if (isset($_POST['recycle_data_student']) && isset($_POST['selector'])) {
     }
 }
 ?>
-<script>
-    alert("Student Data Successfully Restored");
-    window.location = 'recycle-student.php';
-</script>

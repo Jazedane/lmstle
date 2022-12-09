@@ -111,7 +111,7 @@
 
     <div>Username is already taken.</div>
     <script>
-    alert('Username is already taken.');
+    toastr.warning('Username is already taken.');
     </script>
 
     <?php } else {
@@ -127,12 +127,20 @@
             ) or die(mysqli_error());
             ?>
 
-    <script>
-    alert("You Have Been Successfully Signup!")
-    var delay = 1000;
-    setTimeout(function() {
-        window.location = '/lmstlee4/teacher-login.php'
-    }, delay);
+    <script type="text/javascript">
+    $(document).ready(function() {
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                toastr.success("You Have Been Successfully Signup!")
+                var delay = 1000;
+                setTimeout(function() {
+                    window.location = '/lmstlee4/teacher-login.php'
+                }, delay);
+            });
     </script>
 
     <?php }

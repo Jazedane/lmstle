@@ -56,7 +56,6 @@
         echo "<h3>  Failed to upload image!</h3>";
       }
     }
-
     ?>
         <section class="content">
             <div class="container-fluid">
@@ -143,8 +142,8 @@
                                 <input type="text" name="plant_name" class="form-control" placeholder="Enter Plant name"
                                     required=""><br>
                                 <label class="">Description</label><br>
-                                <textarea placeholder="Enter Plant Description" id="summernote" name="description" class="form-control"
-                                    required=""></textarea><br>
+                                <textarea placeholder="Enter Plant Description" id="summernote" name="description"
+                                    class="form-control" required=""></textarea><br>
                                 <?php echo $statusMsg; ?>
                                 <label class="float-left font-15">Image</label><br>
                                 <input type="file" name="uploadfile" value="" required="" />
@@ -175,9 +174,9 @@
         });
     })
     </script>
-        <script>
-        // Summernote
-        $('#summernote').summernote( {
+    <script>
+    // Summernote
+    $('#summernote').summernote({
         toolbar: [
             ["style", ["style"]],
             ["font", ["bold", "underline", "clear"]],

@@ -157,7 +157,7 @@
 
                         if ($count > 0) { ?>
                     <script>
-                    toastr.error("Class Already Exists!");
+                    toastr.warning("Class Already Exists!");
                     </script>
                     <?php } else {mysqli_query(
                                 $conn,
@@ -226,10 +226,10 @@
                                 <h3 class="card-title">Class List</h3>
                             </div>
                             <div class="card-body">
-                                <form action="delete_class.php" method="post">
+                                <form id="delete_class" method="post">
                                     <table id="example2" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#class_delete" id="delete" class="btn btn-danger"
-                                            name=""><i class="fas fa-trash"></i></ul>
+                                            name="delete_class"><i class="fas fa-trash"></i></ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <thead>
                                             <tr>
@@ -317,6 +317,40 @@
                     }
                 }
             });
+        });
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('.delete_class').click(function() {
+            var selectedIds = $('[name="selector[]"]:checked').map((_,
+                element) => {
+                return $(element).val()
+            }).get()
+
+            $.ajax({
+                type: "POST",
+                url: "delete_class.php",
+                data: ({
+                    selector: selectedIds,
+                    delete_class: true
+                }),
+                success: function(html) {
+                    toastr.error(
+                        "Class Successfully Deleted"
+                    );
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                }
+            });
+            return false;
         });
     });
     </script>
