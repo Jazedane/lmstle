@@ -24,6 +24,8 @@
     } else {
         $selected_quarter = 0;
     }
+
+    $student_grade_per_quarter = array();
     ?>
 </head>
 
@@ -409,6 +411,10 @@
                                                             100);
                                                 }
 
+                                                $student_grade_per_quarter[$student_id][$quarter] = round(
+                                                    $percentage_total, 2
+                                                );
+
                                                 echo $grade_total .
                                                     ' (' .
                                                     round(
@@ -421,9 +427,9 @@
                                             <td>
                                                 <center><?php echo 
                                                     round(
-                                                        $percentage_total
+                                                        $percentage_total, 2
                                                     );
-                                                ?></center>
+                                                ?>%</center>
                                             </td>
                                         </tr>
 
@@ -529,39 +535,44 @@
                                                     $row['firstname']; ?>
                                             </td>
                                             <td>
-                                                <center><?php echo 
-                                                    round(
-                                                        $percentage_total
-                                                    );
-                                                ?></center>
+                                                <center>
+                                                    <?php
+                                                        echo isset($student_grade_per_quarter[$student_id][1]) ? $student_grade_per_quarter[$student_id][1] : 0;
+                                                    ?>
+                                                </center>
                                             </td>
                                             <td>
-                                                <center><?php echo 
-                                                    round(
-                                                        $percentage_total
-                                                    );
-                                                ?></center>
+                                            <center>
+                                                    <?php
+                                                        echo isset($student_grade_per_quarter[$student_id][2]) ? $student_grade_per_quarter[$student_id][2] : 0;
+                                                    ?>
+                                                </center>
                                             </td>
                                             <td>
-                                                <center><?php echo 
-                                                    round(
-                                                        $percentage_total
-                                                    );
-                                                ?></center>
+                                            <center>
+                                                    <?php
+                                                        echo isset($student_grade_per_quarter[$student_id][3]) ? $student_grade_per_quarter[$student_id][3] : 0;
+                                                    ?>
+                                                </center>
                                             </td>
                                             <td>
-                                                <center><?php echo 
-                                                    round(
-                                                        $percentage_total
-                                                    );
-                                                ?></center>
+                                                <center>
+                                                    <?php
+                                                        echo isset($student_grade_per_quarter[$student_id][4]) ? $student_grade_per_quarter[$student_id][4] : 0;
+                                                    ?>
+                                                </center>
                                             </td>
                                             <td>
-                                                <center><?php echo 
-                                                    round(
-                                                        $percentage_total
-                                                    );
-                                                ?></center>
+                                                <center>
+                                                    <?php
+                                                        // calculate total average grade per quarter
+                                                        $total_grade = 0;
+                                                        for ($i = 1; $i <= 4; $i++) {
+                                                            $total_grade += isset($student_grade_per_quarter[$student_id][$i]) ? $student_grade_per_quarter[$student_id][$i] : 0;
+                                                        }
+                                                        echo round($total_grade / 4, 2);
+                                                    ?>%
+                                                </center>
                                             </td>
                                         </tr>
 
