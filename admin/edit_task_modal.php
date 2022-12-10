@@ -25,6 +25,7 @@
     $grade = $result['grade'];
     $task_status = $result['task_status'];
     $total_points = $result['total_points'];
+    $student_id = $result['student_id'];
     ?>
 
 </head>
@@ -76,6 +77,7 @@
                             </div>
                             <form class="" action="edit.php" method="post" enctype="multipart/form-data" name="upload">
                                 <input type="hidden" name="student_task_id" value="<?php echo $student_task_id; ?>" />
+                                <input type="hidden" name="student_id" value="<?php echo $student_id; ?>" />
                                 <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" />
                                 <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
                                 <div class="card-body">
