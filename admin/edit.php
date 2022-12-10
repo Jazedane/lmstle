@@ -2,7 +2,6 @@
 include('database.php');
 include('session.php');
 
-$id = $_POST['id'];
 $post_id = $_POST['post_id'];
 $get_id = $_POST['get_id'];
 $student_id = $_POST['student_id'];
