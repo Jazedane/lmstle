@@ -448,7 +448,7 @@
         </section>
         <?php 
          if (
-            $_GET['quarter'] === 'all'
+            isset($_GET['quarter']) && $_GET['quarter'] === 'all'
          ) {
         ?>
         <section class="content-header">
