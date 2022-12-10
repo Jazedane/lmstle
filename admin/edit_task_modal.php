@@ -16,8 +16,9 @@
 
     ($query = mysqli_query(
         $conn,
-        "SELECT * FROM tbl_student_task LEFT JOIN tbl_task ON tbl_task.task_id = tbl_student_task.task_id
-							WHERE student_task_id='$student_task_id'"
+        "SELECT * FROM tbl_student_task 
+        LEFT JOIN tbl_task ON tbl_task.task_id = tbl_student_task.task_id
+		WHERE student_task_id='$student_task_id'"
     )) or die(mysqli_error());
     $result = mysqli_fetch_assoc($query);
 
@@ -76,8 +77,7 @@
                             <form class="" action="edit.php" method="post" enctype="multipart/form-data" name="upload">
                                 <input type="hidden" name="student_task_id" value="<?php echo $student_task_id; ?>" />
                                 <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" />
-                                <input type="hidden" name="id" value="<?php echo $get_id; ?>" />
-                                <input type="hidden" name="student_id" value="<?php echo $student_id; ?>" />
+                                <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="activity_name">Activity Name</label>
