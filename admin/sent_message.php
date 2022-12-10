@@ -145,7 +145,7 @@
                                         toast: true,
                                         position: 'top-end',
                                         showConfirmButton: false,
-                                        timer: 3000
+                                        timer: 1000
                                     });
                                     jQuery("#send_message_student").submit(function(e) {
                                         e.preventDefault();
@@ -155,13 +155,19 @@
                                             url: "send_message_teacher_to_student.php",
                                             data: formData,
                                             success: function(html) {
-                                                toastr.success("Message Successfully Sent");
-                                                setTimeout(function() {
-                                                    window.location =
-                                                        'sent_message.php';
-                                                }, 2000);
+                                                $(document).Toasts('create', {
+                                                class: 'bg-success',
+                                                body: 'Message Successfully Sent!',
+                                                title: 'Message',
+                                                subtitle: 'Success',
+                                                autohide: true,
+                                                delay: 1000,
+                                                icon: 'fas fa-envelope fa-lg',
+                                            })
+                                            setTimeout(function() {
+                                                    window.location.reload();
+                                                }, 1000);
                                             }
-
                                         });
                                         return false;
                                     });

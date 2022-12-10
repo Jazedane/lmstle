@@ -200,11 +200,17 @@
                                         url: "reply.php",
                                         data: formData,
                                         success: function(html) {
-                                            toastr.success(
-                                                "Message Successfully Sent", {});
+                                            $(document).Toasts('create', {
+                                                class: 'bg-success',
+                                                body: 'Message Successfully Sent!',
+                                                title: 'Message',
+                                                subtitle: 'Success',
+                                                autohide: true,
+                                                delay: 1000,
+                                                icon: 'fas fa-envelope fa-lg',
+                                            })
                                             $('#reply' + id).modal('hide');
                                         }
-
                                     });
                                     return false;
                                 });

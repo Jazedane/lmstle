@@ -158,7 +158,7 @@
                             </div>
 
                             <div class="card-body">
-                                <span>Class Filter </span>
+                                <label class="float-right">Class Filter:&nbsp
                                 <select class="mb-3" id="class-filter">
                                     <option value="">Show All</option>
                                     <?php
@@ -176,6 +176,7 @@
                                     </option>
                                     <?php } ?>
                                 </select>
+                                </label>
                                 <form id="delete_student" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#student_delete" class="btn btn-danger"
