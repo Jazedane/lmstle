@@ -545,7 +545,7 @@
                                                         ? $student_grade_per_quarter[
                                                             $student_id
                                                         ][1]
-                                                        : 0; ?>
+                                                        : 0; ?>%
                                                 </center>
                                             </td>
                                             <td>
@@ -558,7 +558,7 @@
                                                         ? $student_grade_per_quarter[
                                                             $student_id
                                                         ][2]
-                                                        : 0; ?>
+                                                        : 0; ?>%
                                                 </center>
                                             </td>
                                             <td>
@@ -571,7 +571,7 @@
                                                         ? $student_grade_per_quarter[
                                                             $student_id
                                                         ][3]
-                                                        : 0; ?>
+                                                        : 0; ?>%
                                                 </center>
                                             </td>
                                             <td>
@@ -584,7 +584,7 @@
                                                         ? $student_grade_per_quarter[
                                                             $student_id
                                                         ][4]
-                                                        : 0; ?>
+                                                        : 0; ?>%
                                                 </center>
                                             </td>
                                             <td>
