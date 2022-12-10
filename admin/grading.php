@@ -446,6 +446,11 @@
                 } ?>
             </div>
         </section>
+        <?php 
+         if (
+            $_GET['quarter'] === 'all'
+         ) {
+        ?>
         <section class="content-header">
             <div class="container-fluid">
                 <?php for (
@@ -589,6 +594,9 @@
                 } ?>
             </div>
         </section>
+        <?php 
+         }
+        ?>
     </div>
     <?php include 'footer.php'; ?>
     <script>
