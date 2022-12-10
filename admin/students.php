@@ -48,7 +48,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
-                        <form id="add_student" method="post">
+                        <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
                                     <h3 class="card-title"><i class="fas fa-plus"></i> Add Student</h3>
@@ -117,6 +117,71 @@
                             </div>
                         </form>
                     </div>
+                    <?php if (isset($_POST['save'])) {
+                        $class_id = $_POST['class_id'];
+                        $username = $_POST['username'];
+                        $firstname = strtoupper($_POST['firstname']);
+                        $lastname = strtoupper($_POST['lastname']);
+                        $gender = $_POST['gender'];
+                        $age = $_POST['age'];
+                        $teacher_id = $_POST['teacher_id'];
+                        $hashedPassword = hash('sha256', $lastname . $username);
+
+                        /**
+                         * Query teacher_class to get the teacher_class_id.
+                         */
+                        $query = "SELECT * FROM tbl_teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
+                        $result = mysqli_query($conn, $query);
+                        $row   = mysqli_fetch_assoc($result);
+                        $teacher_class_id = $row['teacher_class_id'];
+
+                        ($query = mysqli_query(
+                            $conn,
+                            "SELECT * FROM tbl_student WHERE username  =  '$username'"
+                        )) or die(mysqli_error());
+                        $count = mysqli_num_rows($query);
+
+                        if ($count > 0) { ?>
+                    <script>
+                    toastr.warning("Student Already Exists!");
+                    setTimeout(function() {
+                        window.location = "students.php";
+                    }, 1000);
+                    </script>
+                    <?php } else {mysqli_query(
+                    $conn,
+                    "INSERT INTO 
+                    tbl_student 
+                    (username,firstname,lastname,gender,age,location,class_id,status,password) 
+                    VALUES 
+                    ('$username','$firstname','$lastname','$gender','$age','NO-IMAGE-AVAILABLE.jpg','$class_id','Registered','$hashedPassword');"
+                    ) or die(mysqli_error());
+
+                    /**
+                     * Since the student is new, we don't have the student_id, yet.
+                     * This retrieves the last auto-incremented ID on the 'student' table
+                     */
+                    $student_id = mysqli_insert_id($conn);
+
+                    /**
+                     * Add foreign key references and entry to 'teacher_class_student' table.
+                     */
+                    mysqli_query(
+                        $conn,
+                        "INSERT INTO 
+                        tbl_teacher_class_student 
+                        (teacher_class_id,student_id,teacher_id) 
+                        VALUES 
+                        ('$teacher_class_id','$student_id','$teacher_id');"
+                        ) or die(mysqli_error());
+                    ?>
+                    <script>
+                    toastr.success("New Student Successfully Added!");
+                    setTimeout(function() {
+                        window.location = "students.php";
+                    }, 1000);
+                    </script>
+                    <?php } } ?>
                     <SCRIPT LANGUAGE="JavaScript">
                     function addDashes(f) {
                         f.value = f.value.replace(/\D/g, '');
@@ -124,33 +189,6 @@
                         f.value = f.value.slice(0, 2) + "-" + f.value.slice(2, 8);
                     }
                     </SCRIPT>
-                    <script>
-                    jQuery(document).ready(function($) {
-                        var Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 1000
-                        });
-                        $("#add_student").submit(function(e) {
-                            e.preventDefault();
-                            var _this = $(e.target);
-                            var formData = $(this).serialize();
-                            $.ajax({
-                                type: "POST",
-                                url: "save_student.php",
-                                data: formData,
-                                success: function(html) {
-                                    toastr.success(
-                                        "New Student Successfully Added");
-                                    setTimeout(function() {
-                                        window.location.reload();
-                                    }, 1000);
-                                }
-                            });
-                        });
-                    });
-                    </script>
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
@@ -158,10 +196,10 @@
                             </div>
 
                             <div class="card-body">
-                                <span>Class Filter </span>
-                                <select class="mb-3" id="class-filter">
-                                    <option value="">Show All</option>
-                                    <?php
+                                <label class="float-right">Class Filter:&nbsp
+                                    <select class="mb-3" id="class-filter">
+                                        <option value="">Show All</option>
+                                        <?php
                                         $query = mysqli_query(
                                         $conn,
                                         "SELECT * FROM tbl_class WHERE isDeleted=false"
@@ -170,12 +208,13 @@
                                             $class_id = $row['class_id'];
                                             $class_name = $row['class_name'];
                                     ?>
-                                    <option value="<?php echo $class_id; ?>"
-                                        <?php echo $class_id == $class_id_filter ? 'selected' : ''; ?>>
-                                        <?php echo $class_name; ?>
-                                    </option>
-                                    <?php } ?>
-                                </select>
+                                        <option value="<?php echo $class_id; ?>"
+                                            <?php echo $class_id == $class_id_filter ? 'selected' : ''; ?>>
+                                            <?php echo $class_name; ?>
+                                        </option>
+                                        <?php } ?>
+                                    </select>
+                                </label>
                                 <form id="delete_student" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#student_delete" class="btn btn-danger"

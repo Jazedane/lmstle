@@ -126,8 +126,13 @@ session_start();
             showConfirmButton: false,
             timer: 1000
         });
-        toastr.success("Welcome to Learning Management System for TLE-Agricultural")
-        var delay = 1000;
+        $(document).Toasts('create', {
+            class: 'bg-success',
+            title: 'Login Success',
+            subtitle: 'Student',
+            body: 'Welcome to Learning Management System for TLE-Agricultural!'
+        })
+        var delay = 2000;
         setTimeout(function() {
             window.location = 'class_main.php'
         }, delay);

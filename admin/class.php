@@ -158,6 +158,9 @@
                         if ($count > 0) { ?>
                     <script>
                     toastr.warning("Class Already Exists!");
+                    setTimeout(function() {
+                        window.location = "class.php";
+                    }, 1000);
                     </script>
                     <?php } else {mysqli_query(
                                 $conn,
@@ -218,8 +221,15 @@
                                     ) or die(mysqli_error());
                                     echo 'yes';
                                 }
-                            }}
-                    } ?>
+                            }
+                    ?>
+                    <script>
+                    toastr.success("Class Successfully Added!");
+                    setTimeout(function() {
+                        window.location = "class.php";
+                    }, 1000);
+                    </script>
+                    <?php } } ?>
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
@@ -290,36 +300,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <script>
-    jQuery(document).ready(function($) {
-        var Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000
-        });
-        $("#add_class").submit(function(e) {
-            e.preventDefault();
-            var _this = $(e.target);
-            var formData = $(this).serialize();
-            $.ajax({
-                type: "POST",
-                url: "add_class_action.php",
-                data: formData,
-                success: function(html) {
-                    if (html == "true") {
-                        toastr.warning("Class Already Exist");
-                    } else {
-                        toastr.success("Class Successfully Added");
-                        setTimeout(function() {
-                            window.location.reload();
-                        }, 2000);
-                    }
-                }
-            });
-        });
-    });
-    </script>
     <script type="text/javascript">
     $(document).ready(function() {
         var Toast = Swal.mixin({

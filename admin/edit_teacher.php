@@ -47,16 +47,19 @@
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input type="text" name="firstname" value="<?php echo $row['firstname']; ?>"
-                                            class="form-control" style="text-transform: uppercase" placeholder="Enter Firstname">
+                                            class="form-control" style="text-transform: uppercase"
+                                            placeholder="Enter Firstname">
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
                                         <input type="text" name="lastname" value="<?php echo $row['lastname']; ?>"
-                                            class="form-control" style="text-transform: uppercase" placeholder="Enter Lastname">
+                                            class="form-control" style="text-transform: uppercase"
+                                            placeholder="Enter Lastname">
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
-                                        <select name="gender" class="form-control" placeholder="Gender" style="text-transform: uppercase" required>
+                                        <select name="gender" class="form-control" placeholder="Gender"
+                                            style="text-transform: uppercase" required>
                                             <option><?php echo $row['gender']; ?></option>
                                             <option>MALE</option>
                                             <option>FEMALE</option>
@@ -93,8 +96,21 @@
                     mysqli_query($conn,"insert into tbl_activity_log (date,username,action) values(NOW(),'$username','Edit Teacher $username')")
                     or die(mysqli_error());
                     ?>
-                    <script>
-                    window.location = "teacher.php";
+                    <script type="text/javascript">
+                    $(document).ready(function() {
+                        var Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        toastr.success(
+                            "Teacher Data Successfully Updated"
+                        );
+                        setTimeout(function() {
+                            window.location = "teacher.php";
+                        }, 1000);
+                    });
                     </script>
                     <?php
                     }
@@ -106,20 +122,9 @@
                             </div>
                             <div class="card-body">
                                 <form action="delete_teacher.php" method="post">
-                                    <table id="example2" class="table table-bordered table-striped">
-                                        <ul data-toggle="modal" href="#teacher_delete" id="delete"
-                                            class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
-                                        <?php include 'modal_delete.php'; ?>
+                                    <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th><input type="checkbox" name="selectAll" id="checkAll" />
-                                                    <script>
-                                                    $("#checkAll").click(function() {
-                                                        $('input:checkbox').not(this).prop('checked', this
-                                                            .checked);
-                                                    });
-                                                    </script>
-                                                </th>
                                                 <th>Name</th>
                                                 <th>Username</th>
                                                 <th>Gender</th>
@@ -132,10 +137,6 @@
 													$id = $row['teacher_id'];
 													?>
                                             <tr>
-                                                <td width="30">
-                                                    <input id="checkAll" class="uniform_on" name="selector[]"
-                                                        type="checkbox" value="<?php echo $id; ?>">
-                                                </td>
                                                 <td><?php
                                                 $firstname = $row['firstname'];
                                                 $lastname = $row['lastname'];
@@ -184,7 +185,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,

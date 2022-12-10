@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Teacher</title>
+    <title>LMSTLE | Students</title>
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
@@ -112,6 +112,44 @@
                                 </div>
                             </div>
                         </form>
+                        <?php
+                        if (isset($_POST['update'])) {
+                               
+                            $username = $_POST['username'];
+                            $firstname = strtoupper($_POST['firstname']);
+                            $lastname = strtoupper($_POST['lastname']);
+                            $gender = $_POST['gender'];
+                            $age = $_POST['age'];
+                            $cys = $_POST['class_id'];
+                    
+                            mysqli_query($conn,"UPDATE tbl_student SET username = '$username' , firstname ='$firstname' , lastname = '$lastname' , 
+                            gender = '$gender', age = '$age', class_id = '$cys' WHERE student_id = '$get_id' ") or die(mysqli_error());
+
+		                ?>
+                        <SCRIPT LANGUAGE="JavaScript">
+                        function addDashes(f) {
+                            f.value = f.value.replace(/\D/g, '');
+
+                            f.value = f.value.slice(0, 2) + "-" + f.value.slice(2, 8);
+                        }
+                        </SCRIPT>
+                        <script type="text/javascript">
+                        $(document).ready(function() {
+                            var Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1000
+                            });
+                            toastr.success(
+                                "Student Data Successfully Updated"
+                            );
+                            setTimeout(function() {
+                                window.location = "students.php";
+                            }, 1000);
+                        });
+                        </script>
+                        <?php  }  ?>
                         <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
@@ -125,8 +163,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Update Password</label>
-                                        <input name="password" type="password"
-                                            class="form-control" placeholder="ENTER PASSWORD">
+                                        <input name="password" type="password" class="form-control"
+                                            placeholder="ENTER PASSWORD">
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>
@@ -145,80 +183,36 @@
                         $password = $_POST['password'];
                         $hashedPassword = hash('sha256', $password);
                         mysqli_query($conn,"UPDATE tbl_student SET password = '$hashedPassword' WHERE student_id = '$get_id' ") or die(mysqli_error());
-                        }
+                        
                         ?>
-                    </div>
-
-                    <?php
-                        if (isset($_POST['update'])) {
-                               
-                            $username = $_POST['username'];
-                            $firstname = strtoupper($_POST['firstname']);
-                            $lastname = strtoupper($_POST['lastname']);
-                            $gender = $_POST['gender'];
-                            $age = $_POST['age'];
-                            $cys = $_POST['class_id'];
-                    
-                            mysqli_query($conn,"UPDATE tbl_student SET username = '$username' , firstname ='$firstname' , lastname = '$lastname' , 
-                            gender = '$gender', age = '$age', class_id = '$cys' WHERE student_id = '$get_id' ") or die(mysqli_error());
-
-		                ?>
-                    <SCRIPT LANGUAGE="JavaScript">
-                    function addDashes(f) {
-                        f.value = f.value.replace(/\D/g, '');
-
-                        f.value = f.value.slice(0, 2) + "-" + f.value.slice(2, 8);
-                    }
-                    </SCRIPT>
-                    <script>
-                    jQuery(document).ready(function() {
-                        var Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        jQuery("#update").submit(function() {
-                            e.preventDefault();
-                            var formData = jQuery(this).serialize();
-                            $.ajax({
-                                type: "POST",
-                                data: formData,
-                                success: function(html) {
-                                    toastr.success("Students Successfully Edited");
-                                    setTimeout(function() {
-                                        window.location =
-                                            'students.php';
-                                    }, 2000);
-                                }
-
+                        <script type="text/javascript">
+                        $(document).ready(function() {
+                            var Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1000
                             });
-                            return false;
+                            toastr.success(
+                                "Student Password Successfully Updated"
+                            );
+                            setTimeout(function() {
+                                window.location = "students.php";
+                            }, 1000);
                         });
-                    });
-                    </script>
-                    <?php  }  ?>
+                        </script>
+                        <?php  }  ?>
+                    </div>
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Teacher List</h3>
+                                <h3 class="card-title">Student List</h3>
                             </div>
                             <div class="card-body">
                                 <form action="delete_student.php" method="post">
-                                    <table id="example2" class="table table-bordered table-striped">
-                                        <ul data-toggle="modal" href="#student_delete" id="delete"
-                                            class="btn btn-danger" name=""><i class="fas fa-trash"></i></ul>
-                                        <?php include 'modal_delete.php'; ?>
+                                    <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th><input type="checkbox" name="selectAll" id="checkAll" />
-                                                    <script>
-                                                    $("#checkAll").click(function() {
-                                                        $('input:checkbox').not(this).prop('checked', this
-                                                            .checked);
-                                                    });
-                                                    </script>
-                                                </th>
                                                 <th>Name</th>
                                                 <th>ID Number</th>
                                                 <th>Gender</th>
@@ -236,11 +230,6 @@
                                                     $id = $row['student_id'];
                                             ?>
                                             <tr>
-                                                <td width="30">
-                                                    <input id="checkAll" class="uniform_on" name="selector[]"
-                                                        type="checkbox" value="<?php echo $id; ?>">
-                                                </td>
-
                                                 <td><?php $firstname = $row['firstname'];
 						                                  $lastname = $row['lastname'];
 						                                  $firstname = strtoupper ($firstname);
@@ -275,7 +264,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,

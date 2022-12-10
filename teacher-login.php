@@ -97,13 +97,19 @@ session_start();
                 data: formData,
                 success: function(html) {
                     if (html == 'true') {
-                        toastr.success("Welcome to Learning Management System for TLE-Agricultural")
-                        var delay = 2000;
+                        $(document).Toasts('create', {
+                            class: 'bg-success',
+                            title: 'Login Success',
+                            subtitle: 'Teacher',
+                            body: 'Welcome to Learning Management System for TLE-Agricultural!'
+                        })
+                        var delay = 1000;
                         setTimeout(function() {
                             window.location = 'admin/dashboard.php'
                         }, delay);
                     } else {
-                        toastr.warning("Login Failed","Please Check Your Username and Password");
+                        toastr.warning("Login Failed",
+                            "Please Check Your Username and Password");
                         var delay = 100;
                     }
                 }
