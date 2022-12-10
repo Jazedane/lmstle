@@ -68,12 +68,25 @@
 
                         mysqli_query($conn,"update tbl_class set class_name = '$class_name' where class_id = '$get_id'")or die(mysqli_error());
                     ?>
-                    <script>
-                    window.location = "class.php";
+                    <script type="text/javascript">
+                    $(document).ready(function() {
+                        var Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        toastr.success(
+                            "Class Successfully Updated"
+                        );
+                        setTimeout(function() {
+                            window.location = "class.php";
+                        }, 1000);
+                    });
                     </script>
                     <?php
-                            }
-                            ?>
+                    }
+                    ?>
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
@@ -81,20 +94,9 @@
                             </div>
                             <div class="card-body">
                                 <form action="delete_class.php" method="post">
-                                    <table id="example2" class="table table-bordered table-striped">
-                                        <ul data-toggle="modal" href="#class_delete" id="delete" class="btn btn-danger"
-                                            name=""><i class="fas fa-trash"></i></ul>
-                                        <?php include 'modal_delete.php'; ?>
+                                    <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th><input type="checkbox" name="selectAll" id="checkAll" />
-                                                    <script>
-                                                    $("#checkAll").click(function() {
-                                                        $('input:checkbox').not(this).prop('checked', this
-                                                            .checked);
-                                                    });
-                                                    </script>
-                                                </th>
                                                 <th>Year And Section</th>
                                             </tr>
                                         </thead>
@@ -106,10 +108,6 @@
 										?>
 
                                             <tr>
-                                                <td width="30">
-                                                    <input id="checkAll" class="uniform_on" name="selector[]"
-                                                        type="checkbox" value="<?php echo $id; ?>">
-                                                </td>
                                                 <td><?php
                                                 $class_name =
                                                     $class_row['class_name'];
@@ -139,7 +137,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
