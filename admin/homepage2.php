@@ -98,7 +98,7 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="my_students.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/my_students.php']) ?>">
+                            <a href="my_students.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/my_students.php','/lmstlee4/admin/student_profile.php']) ?>">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     My Students

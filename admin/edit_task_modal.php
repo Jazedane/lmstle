@@ -75,7 +75,7 @@
                                         <i class="fas fa-arrow-left"></i> Back</a>
                                 </div>
                             </div>
-                            <form class="" action="edit.php" method="post" enctype="multipart/form-data" name="upload">
+                            <form class="" id="edit_task" method="post" enctype="multipart/form-data" name="upload">
                                 <input type="hidden" name="student_task_id" value="<?php echo $student_task_id; ?>" />
                                 <input type="hidden" name="student_id" value="<?php echo $student_id; ?>" />
                                 <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" />

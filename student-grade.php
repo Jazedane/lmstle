@@ -408,6 +408,13 @@
                                                             100);
                                                 }
 
+                                                $student_grade_per_quarter[
+                                                    $student_id
+                                                ][$quarter] = round(
+                                                    $percentage_total,
+                                                    2
+                                                );
+
                                                 echo $grade_total .
                                                     ' (' .
                                                     round(
@@ -439,6 +446,162 @@
                 } ?>
             </div>
         </section>
+        <?php if (isset($_GET['quarter']) && $_GET['quarter'] === 'all') { ?>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">General Average for Quarters</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="example2" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th width="220">
+                                                <?php echo $class_row[
+                                                    'class_name'
+                                                ]; ?> STUDENTS
+                                            </th>
+                                            <th width="80"> 1st Quarter</th>
+                                            <th width="80"> 2nd Quarter</th>
+                                            <th width="80"> 3rd Quarter</th>
+                                            <th width="80"> 4th Quarter</th>
+                                            <th width="80"> General Average</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        ($query = mysqli_query(
+                                            $conn,
+                                            "SELECT
+                                            *
+                                            FROM
+                                                tbl_teacher_class_student
+                                            LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id AND tbl_student.isDeleted = FALSE
+                                            INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id
+                                            WHERE
+                                                teacher_class_id = '$get_id' AND tbl_teacher_class_student.student_id = '$session_id'
+                                            ORDER BY
+                                                lastname"
+                                        )) or die(mysqli_error());
+
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) {
+
+                                            $student_id = $row['student_id'];
+
+                                            /**
+                                             * Array that will hold the sum of a student's grade for each activity.
+                                             */
+                                            $student_grade = [];
+                                            ?>
+
+                                        <tr>
+                                            <td> <img id="avatar" src="/lmstlee4/admin/uploads/<?php echo $row[
+                                                'location'
+                                            ]; ?>" class="img-circle elevation" alt="User Image" height="30"
+                                                    width="30">
+                                                <?php echo $row['lastname'] .
+                                                    ', ' .
+                                                    $row['firstname']; ?>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <?php echo isset(
+                                                        $student_grade_per_quarter[
+                                                            $student_id
+                                                        ][1]
+                                                    )
+                                                        ? $student_grade_per_quarter[
+                                                            $student_id
+                                                        ][1]
+                                                        : 0; ?>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <?php echo isset(
+                                                        $student_grade_per_quarter[
+                                                            $student_id
+                                                        ][2]
+                                                    )
+                                                        ? $student_grade_per_quarter[
+                                                            $student_id
+                                                        ][2]
+                                                        : 0; ?>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <?php echo isset(
+                                                        $student_grade_per_quarter[
+                                                            $student_id
+                                                        ][3]
+                                                    )
+                                                        ? $student_grade_per_quarter[
+                                                            $student_id
+                                                        ][3]
+                                                        : 0; ?>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <?php echo isset(
+                                                        $student_grade_per_quarter[
+                                                            $student_id
+                                                        ][4]
+                                                    )
+                                                        ? $student_grade_per_quarter[
+                                                            $student_id
+                                                        ][4]
+                                                        : 0; ?>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <?php
+                                                    // calculate total average grade per quarter
+                                                    $total_grade = 0;
+                                                    for (
+                                                        $i = 1;
+                                                        $i <= 4;
+                                                        $i++
+                                                    ) {
+                                                        $total_grade += isset(
+                                                            $student_grade_per_quarter[
+                                                                $student_id
+                                                            ][$i]
+                                                        )
+                                                            ? $student_grade_per_quarter[
+                                                                $student_id
+                                                            ][$i]
+                                                            : 0;
+                                                    }
+                                                    echo round(
+                                                        $total_grade / 4,
+                                                        2
+                                                    );
+                                                    ?>
+                                                </center>
+                                            </td>
+                                        </tr>
+
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <?php } ?>
     </div>
     <?php include 'footer.php'; ?>
     <script>

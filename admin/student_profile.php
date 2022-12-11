@@ -76,9 +76,11 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Student Submissions</h3>
+                                <div id="" class="float-sm-right"><a href="my_students.php<?php echo '?id='.$get_id; ?>"><i
+                                class="fas fa-arrow-left"></i> Back</a></div>
                             </div>
                             <div class="card-body">
-                                <table id="data-table" class="table table-bordered table-striped">
+                                <table id="example2" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th width="80">Date Submitted</th>
@@ -113,10 +115,15 @@
                                         <tr>
                                             <td><?php echo $submission_date; ?></td>
                                             <td><?php echo $task_title; ?></td>
-                                            <td><?php echo $student_task_row['grade']; ?>/<?php echo $student_task_row['total_points'] ?></td>
+                                            <td><?php echo $student_task_row['grade']; ?>/<?php echo $student_task_row['total_points'] ?>
+                                            </td>
                                             <td>
-                                                <a href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>">View Task Summary</a>
-                                                <a class="ml-2" href="http://localhost/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>">Edit Grade</a>
+                                                <a
+                                                    href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>">View
+                                                    Task Summary</a>
+                                                <a class="ml-2"
+                                                    href="http://localhost/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>">Edit
+                                                    Grade</a>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -133,16 +140,23 @@
 </body>
 
 <script>
-$(document).ready(() => {
     $(function() {
-        $("data-table").DataTable({
+        $("#example1").DataTable({
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "excel", "pdf", "print", ]
-        }).buttons().container().appendTo('#data-table-wrapper .col-md-6:eq(0)');
+            "buttons": ["copy", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
     });
-})
-</script>
+    </script>
 
 </html>
