@@ -163,7 +163,7 @@
                                     <textarea placeholder="Enter Skills" name="skills"
                                         class="form-control"><?php echo $row['skills'];?></textarea>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" type="submit" name="update">UPDATE</button>
+                                        <button class="btn btn-primary" type="submit" name="update">Update</button>
                                     </div>
                                 </div>
                             </div>
@@ -176,8 +176,19 @@
                                 WHERE teacher_id = '$session_id'";
                                 $result = mysqli_query($conn, $query);
                         ?>
-                        <script>
-                        window.location = "profile.php";
+                        <script type="text/javascript">
+                        var Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 100
+                        });
+                        toastr.success(
+                            "Teacher Information Successfully Updated"
+                        );
+                        setTimeout(function() {
+                            window.location = 'profile.php';
+                        }, 1000);
                         </script>
                         <?php 
                             }

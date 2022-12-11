@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <?php
+        <?php 
         error_reporting(0);
         $msg = "";
 
@@ -40,8 +40,22 @@
         $targetFilePath = $targetDir . $fileName;
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-    // If upload button is clicked ...
-      if (isset($_POST['upload'])  && !empty($_FILES["uploadfile"]["name"])) {
+        if (isset($_POST['upload'])  && !empty($_FILES["uploadfile"]["name"])) {
+
+        $query = mysqli_query(
+                $conn,
+                "SELECT * FROM image WHERE plant_name  =  '$plant_name' "
+                ) or die(mysqli_error());
+                $count = mysqli_num_rows($query);
+
+        if ($count > 0) { ?>
+        <script>
+        toastr.warning("Plant Already Exists!");
+        setTimeout(function() {
+            window.location = 'gallery.php?current_page=1';
+        }, 1000);
+        </script>
+        <?php } else {
 
       // Get all the submitted data from the form
       $sql = "INSERT INTO image (filename, plant_name, description) VALUES ('$fileName', '$plant_name', '$description')";
@@ -55,8 +69,19 @@
       } else {
         echo "<h3>  Failed to upload image!</h3>";
       }
-    }
-    ?>
+    
+        ?>
+        <script type="text/javascript">
+        toastr.success(
+            "Plant Information Successfully Added"
+        );
+        setTimeout(function() {
+            window.location = 'gallery.php?current_page=1';
+        }, 1000);
+        </script>
+        <?php 
+            } }
+        ?>
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -89,20 +114,23 @@
                       while ($data = mysqli_fetch_assoc($result)) {
                         $imageURL = './uploads/' . $data["filename"];
                       ?>
-                    <div class="col-lg-3 col-12">
-                        <div class="card-deck">
-                            <div class="card mr-5" style="width:15rem; border:1px solid black;">
-                                <a type="submit" data-toggle="modal"
-                                    data-target="#popup_plant<?php echo $data['id'];?>">
-                                    <img class="card-img-top" style="height: 200px" src="<?php echo $imageURL; ?>"></a>
-                                <div class="card-body">
-                                    <label class="text-dark mt-3">Plant Name:</label>
-                                    <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
-                                    <label class="text-dark">Plant Information:</label>
-                                    <p class="text-dark"><?php echo $data['description'];?></p>
-                                    <button type="submit" class="btn btn-danger mb-2 float-right" data-toggle="modal"
-                                        data-target="#delete<?php echo $data['id'];?>"><i
-                                            class="fas fa-trash"></i></button>
+                    <div class="col-lg-4 col-12">
+                        <div class="card-body">
+                            <div class="card-deck">
+                                <div class="card mr-5" style="width:19rem; border:1px solid black;">
+                                    <a type="submit" data-toggle="modal"
+                                        data-target="#popup_plant<?php echo $data['id'];?>">
+                                        <img class="card-img-top" style="height: 200px"
+                                            src="<?php echo $imageURL; ?>"></a>
+                                    <div class="card-body">
+                                        <label class="text-dark mt-3">Plant Name:</label>
+                                        <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
+                                        <label class="text-dark">Plant Information:</label>
+                                        <p class="text-dark"><?php echo $data['description'];?></p>
+                                        <a type="submit" class="btn btn-danger mb-2 float-right" data-toggle="modal"
+                                            data-target="#delete<?php echo $data['id'];?>"><i
+                                                class="fas fa-trash"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,9 +138,18 @@
                     <?php
                         include 'popup_plant.php';
                         include 'delete_plant.php';
-                      }?>
-                    <div class="m-auto justify-content-between">
-                        <?php
+                      }
+                    ?>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-body justify-content-between">
+                            <center>
+                                <?php
                                 if($pages >= 1){
                                 echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=gallery&current_page=".($page - 1)."><i class='fas fa-arrow-left'></i> Prev</a>";
                              }
@@ -120,7 +157,8 @@
                                 echo "<a class='btn btn-success ml-1' href= ".$_SERVER['PHP_SELF']."?page=gallery&current_page=".($page + 1)."> Next <i class='fas fa-arrow-right'></i></a>";
                               }
                             ?>
-
+                            </center>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,7 +185,7 @@
                                 <?php echo $statusMsg; ?>
                                 <label class="float-left font-15">Image</label><br>
                                 <input type="file" name="uploadfile" value="" required="" />
-                                <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
+                                <button class="btn btn-primary" type="submit" name="upload">Upload</button>
                             </form>
                         </div>
                     </div>
@@ -156,6 +194,40 @@
         </div>
     </div>
     <?php include 'footer.php'; ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 100
+        });
+        $('.delete-plant').click(function() {
+
+            var id = $(this).attr("id");
+            $.ajax({
+                type: "POST",
+                url: "del_query.php",
+                data: ({
+                    id: id
+                }),
+                cache: false,
+                success: function(html) {
+                    $("#delete" + id).fadeOut('slow',
+                        function() {
+                            $(this).remove();
+                        });
+                    $('#' + id).modal('hide');
+                    toastr.error("Plants Information Successfully Deleted.");
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                },
+            });
+            return false;
+        });
+    });
+    </script>
     <script>
     $(function() {
         $(document).on('click', '[data-toggle="lightbox"]', function(event) {

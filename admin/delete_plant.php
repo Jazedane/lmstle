@@ -13,13 +13,10 @@
                                 Are you sure you want to Remove this Plant Information?
                             </p>
                         </div>
-                        <form method="POST" action="del_query.php">
                             <div class="modal-footer justify-content-between">
-                                <input type="hidden" name="id" value="<?php echo $data['id'];?>">
                                 <button type="button" data-dismiss="modal" class="btn btn-primary">NO</button>
-                                <button type="submit" name="delete" class="btn btn-success">YES</button>
+                                <button id="<?php echo $data['id'];?>" class="btn btn-success delete-plant">YES</button>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -42,7 +42,8 @@
                             <div class="card-body box-profile">
                                 <div class="text-center">
                                     <img id="avatar" class="img-circle elevation-2"
-                                        src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>" width="80" height="80">
+                                        src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>" width="80"
+                                        height="80">
                                 </div>
                                 <?php
                                     echo "<h3 class='profile-username text-center'>".$row['firstname']." ".$row['lastname'] . "</h3>";
@@ -144,7 +145,7 @@
                                 <input type="text" name="nationality" value="<?php echo $row['nationality'];?>"
                                     class="form-control">
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary" type="submit" name="update">UPDATE</button>
+                                    <button class="btn btn-primary" type="submit" name="update">Update</button>
                                 </div>
                             </div>
                         </div>
@@ -154,8 +155,19 @@
                         $query = "UPDATE tbl_student SET firstname='$_POST[firstname]', lastname='$_POST[lastname]', email='$_POST[email]', birthdate='$_POST[birthdate]', gender='$_POST[gender]', age='$_POST[age]', phone_no='$_POST[phone_no]', address='$_POST[address]', nationality='$_POST[nationality]' WHERE student_id = '$session_id'";
                         $result = mysqli_query($conn, $query);
                     ?>
-                    <script>
-                    window.location = "profile.php";
+                    <script type="text/javascript">
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 100
+                    });
+                    toastr.success(
+                        "Student Information Successfully Updated"
+                    );
+                    setTimeout(function() {
+                        window.location = 'profile.php';
+                    }, 1000);
                     </script>
                     <?php 
                     }

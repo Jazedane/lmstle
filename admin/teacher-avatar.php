@@ -17,8 +17,3 @@ if (isset($_POST['change'])) {
 	mysqli_query($conn,"update tbl_teacher set location = '$location' where teacher_id  = '$session_id' ")or die(mysqli_error());
 }
 ?>
-
- <script>
-    alert("Avatar Successfully Change");
-    window.location = "profile.php";
- </script>

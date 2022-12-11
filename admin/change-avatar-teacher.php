@@ -49,12 +49,15 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Change Profile Picture</h3>
+                                <div id="" class="float-right"><a href="profile.php">
+                                        <i class="fas fa-arrow-left"></i> Back</a>
+                                </div>
                             </div>
                             <?php
 								$query = mysqli_query($conn,"select * from tbl_teacher where teacher_id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 								?>
-                            <form method="post" action="teacher-avatar.php" enctype="multipart/form-data">
+                            <form method="post" id="" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <center>
@@ -76,6 +79,35 @@
                                     </div>
                                 </div>
                             </form>
+                            <?php if (isset($_POST['change'])) {
+                               
+                                $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+                                $image_name = addslashes($_FILES['image']['name']);
+                                $image_size = getimagesize($_FILES['image']['tmp_name']);
+
+                                $filePath = $_SERVER['DOCUMENT_ROOT'] . "/lmstlee4/admin/uploads/";
+
+                                move_uploaded_file($_FILES["image"]["tmp_name"], $filePath . $_FILES["image"]["name"]);
+                                $location = $_FILES["image"]["name"];
+								
+	                            mysqli_query($conn,"update tbl_teacher set location = '$location' where teacher_id  = '$session_id' ")
+                                or die(mysqli_error());
+                            ?>
+                            <script>
+                            jQuery(document).ready(function($) {
+                                var Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 100
+                                });
+                                toastr.success("Teacher Avatar Successfully Change!");
+                                setTimeout(function() {
+                                    window.location = 'profile.php';
+                                }, 1000);
+                            });
+                            </script>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

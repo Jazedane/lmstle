@@ -49,19 +49,23 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Change Profile Picture</h3>
+                                <div id="" class="float-right"><a href="profile.php">
+                                        <i class="fas fa-arrow-left"></i> Back</a>
+                                </div>
                             </div>
                             <?php
 								$query = mysqli_query($conn,"select * from tbl_student where student_id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 								?>
-                            <form method="post" action="student-avatar.php" enctype="multipart/form-data">
+                            <form method="post" id="" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <center>
                                             <div class="custom-file">
                                                 <label for="formFileMultiple" class="form-label">
                                                     <input name="image" class="custom-file input" id="formFileMultiple"
-                                                        type="file" onchange="displayImg(this,$(this))" required></input>
+                                                        type="file" onchange="displayImg(this,$(this))"
+                                                        required></input>
                                         </center>
                                     </div>
                                     <div class="form-group d-flex justify-content-center">
@@ -75,6 +79,33 @@
                                     </div>
                                 </div>
                             </form>
+                            <?php
+                            if (isset($_POST['change'])) {
+                               
+                            $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+                            $image_name = addslashes($_FILES['image']['name']);
+                            $image_size = getimagesize($_FILES['image']['tmp_name']);
+
+                            move_uploaded_file($_FILES["image"]["tmp_name"], __DIR__."/admin/uploads/" . $_FILES["image"]["name"]);
+                            $location = $_FILES["image"]["name"];	
+	                        mysqli_query($conn,"update tbl_student set location = '$location' where student_id  = '$session_id' ")or die(mysqli_error());
+
+                            ?>
+                            <script>
+                            jQuery(document).ready(function($) {
+                                var Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 100
+                                });
+                                toastr.success("Student Avatar Successfully Change!");
+                                setTimeout(function() {
+                                    window.location = 'profile.php';
+                                }, 1000);
+                            });
+                            </script>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

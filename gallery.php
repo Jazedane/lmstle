@@ -50,17 +50,20 @@
                       while ($data = mysqli_fetch_assoc($result)) {
                         $imageURL = 'admin/uploads/' . $data["filename"];
                       ?>
-                    <div class="col-lg-3 col-12">
-                        <div class="card-deck">
-                            <div class="card mr-5" style="width:15rem; border:1px solid black;">
-                                <a type="submit" data-toggle="modal"
-                                    data-target="#popup_plant<?php echo $data['id'];?>">
-                                    <img class="card-img-top" style="height: 200px" src="<?php echo $imageURL; ?>"></a>
-                                <div class="card-body">
-                                    <label class="text-dark mt-3">Plant Name:</label>
-                                    <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
-                                    <label class="text-dark">Plant Information:</label>
-                                    <p class="text-dark"><?php echo $data['description'];?></p>
+                    <div class="col-lg-4 col-12">
+                        <div class="card-body">
+                            <div class="card-deck">
+                                <div class="card mr-5" style="width:19rem; border:1px solid black;">
+                                    <a type="submit" data-toggle="modal"
+                                        data-target="#popup_plant<?php echo $data['id'];?>">
+                                        <img class="card-img-top" style="height: 200px"
+                                            src="<?php echo $imageURL; ?>"></a>
+                                    <div class="card-body">
+                                        <label class="text-dark mt-3">Plant Name:</label>
+                                        <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
+                                        <label class="text-dark">Plant Information:</label>
+                                        <p class="text-dark"><?php echo $data['description'];?></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -70,9 +73,16 @@
                         include './popup_plant.php';
                       }
                       ?>
-                    <div class="m-auto">
-
-                        <?php
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-body justify-content-between">
+                            <center>
+                            <?php
                                 if($pages >= 1){
                                 echo "<a class='btn btn-success' href= ".$_SERVER['PHP_SELF']."?page=gallery&current_page=".($page - 1)."><i class='fas fa-arrow-left'></i> Prev</a>";
                              }
@@ -80,7 +90,8 @@
                                 echo "<a class='btn btn-success ml-1' href= ".$_SERVER['PHP_SELF']."?page=gallery&current_page=".($page + 1)."> Next <i class='fas fa-arrow-right'></i></a>";
                               }
                             ?>
-
+                            </center>
+                        </div>
                     </div>
                 </div>
             </div>
