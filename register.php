@@ -94,7 +94,7 @@
     <?php if (isset($_POST['action'])) {
         $firstname = strtoupper($_POST['firstname']);
         $lastname = strtoupper($_POST['lastname']);
-        $gender = $_POST['gender'];
+        $gender = strtoupper($_POST['gender']);
         $username = $_POST['username'];
         $password = $_POST['password'];
         $password = $_POST['password'];
