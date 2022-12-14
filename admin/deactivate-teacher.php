@@ -82,10 +82,10 @@
                                 <h3 class="card-title">Deactivated Teacher List</h3>
                             </div>
                             <div class="card-body">
-                                <form id="deactivate_teacher" method="post">
+                                <form id="delete_teacher" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
-                                        <ul data-toggle="modal" href="#deactivate" id="delete" class="btn btn-danger"
-                                            name=""><i class="fas fa-trash"></i>
+                                        <ul data-toggle="modal" href="#teacher_delete" id="delete"
+                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash"></i>
                                         </ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <div class="float-right">
@@ -242,7 +242,7 @@
             showConfirmButton: false,
             timer: 1000
         });
-        $('.deactivate_teacher').click(function() {
+        $('.delete_teacher').click(function() {
             var selectedIds = $('[name="selector[]"]:checked').map((_,
                 element) => {
                 return $(element).val()
@@ -250,11 +250,14 @@
 
             $.ajax({
                 type: "POST",
-                url: "deactivate.php",
-                data: formData,
+                url: "delete_teacher.php",
+                data: ({
+                    selector: selectedIds,
+                    delete_teacher: true
+                }),
                 success: function(html) {
                     toastr.error(
-                        "Teacher Successfully Deactivated"
+                        "Teacher Successfully Deleted"
                     );
                     setTimeout(function() {
                         window.location.reload();
