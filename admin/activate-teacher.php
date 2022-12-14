@@ -79,13 +79,13 @@
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Teacher List</h3>
+                                <h3 class="card-title">Activated Teacher List</h3>
                             </div>
                             <div class="card-body">
-                                <form id="delete_teacher" method="post">
+                                <form id="activate_teacher" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
-                                        <ul data-toggle="modal" href="#teacher_delete" id="delete"
-                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash"></i>
+                                        <ul data-toggle="modal" href="#activate-teacher" id="delete"
+                                            class="btn btn-danger" name=""><i class="fas fa-trash"></i>
                                         </ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <div class="float-right">
@@ -119,7 +119,7 @@
                                             <?php
                                             ($teacher_query = mysqli_query(
                                                 $conn,
-                                                'SELECT * FROM tbl_teacher WHERE isDeleted=false'
+                                                "SELECT * FROM tbl_teacher WHERE tbl_teacher.teacher_stat = 'Activated' AND isDeleted=false"
                                             )) or die(mysqli_error());
                                             while (
                                                 $row = mysqli_fetch_array(
@@ -203,7 +203,7 @@
     <?php
         }else {
         mysqli_query($conn,"INSERT INTO tbl_teacher (username,password,firstname,lastname,gender,location,teacher_stat) 
-        values('$username','$hashedPassword','$firstname','$lastname','$gender','NO-IMAGE-AVAILABLE.jpg','ACTIVATED')")or die(mysqli_error());
+        values('$username','$hashedPassword','$firstname','$lastname','$gender','NO-IMAGE-AVAILABLE.jpg','Activated')")or die(mysqli_error());
         mysqli_query($conn,"INSERT INTO tbl_activity_log (date,username,action) 
         values(NOW(),'$username','Add User $username')")or die(mysqli_error());
     ?>
@@ -242,7 +242,7 @@
             showConfirmButton: false,
             timer: 1000
         });
-        $('.delete_teacher').click(function() {
+        $('.activate_teacher').click(function() {
             var selectedIds = $('[name="selector[]"]:checked').map((_,
                 element) => {
                 return $(element).val()
@@ -250,14 +250,11 @@
 
             $.ajax({
                 type: "POST",
-                url: "delete_teacher.php",
-                data: ({
-                    selector: selectedIds,
-                    delete_teacher: true
-                }),
+                url: "activate.php",
+                data: formData,
                 success: function(html) {
                     toastr.error(
-                        "Teacher Successfully Deleted"
+                        "Teacher Successfully Activated"
                     );
                     setTimeout(function() {
                         window.location.reload();

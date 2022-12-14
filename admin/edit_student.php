@@ -47,7 +47,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Class Name</label>
-                                        <select name="class_id" class="form-control" required>
+                                        <select name="class_id" class="form-control">
                                             <option><?php echo $row['class_name']; ?></option>
                                             <?php
                                                 $class_query = mysqli_query(
@@ -191,7 +191,7 @@
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
-                                timer: 1000
+                                timer: 100
                             });
                             toastr.success(
                                 "Student Password Successfully Updated"

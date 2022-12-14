@@ -70,6 +70,15 @@
                                         <input type="text" name="username" value="<?php echo $row['username']; ?>"
                                             class="form-control" placeholder="ENTER USERNAME">
                                     </div>
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select name="teacher_stat" class="form-control" placeholder="Status"
+                                            style="text-transform: uppercase" required>
+                                            <option><?php echo $row['teacher_stat']; ?></option>
+                                            <option>ACTIVATED</option>
+                                            <option>DEACTIVATED</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <center><button name="update" type="submit" class="btn btn-success"
@@ -89,8 +98,10 @@
                     $firstname = strtoupper($_POST['firstname']);
                     $lastname = strtoupper($_POST['lastname']);
                     $gender = $_POST['gender'];
+                    $teacher_stat = $_POST['teacher_stat'];
                     
-                    mysqli_query($conn,"update tbl_teacher set username = '$username'  , firstname = '$firstname' , lastname = '$lastname' , gender = '$gender' where teacher_id = '$get_id' ")
+                    mysqli_query($conn,"update tbl_teacher set username = '$username'  , 
+                    firstname = '$firstname' , lastname = '$lastname' , gender = '$gender', teacher_stat = '$teacher_stat' where teacher_id = '$get_id' ")
                     or die(mysqli_error());
 
                     mysqli_query($conn,"insert into tbl_activity_log (date,username,action) values(NOW(),'$username','Edit Teacher $username')")
@@ -102,7 +113,7 @@
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 1000
+                            timer: 100
                         });
                         toastr.success(
                             "Teacher Data Successfully Updated"
@@ -128,6 +139,7 @@
                                                 <th>Name</th>
                                                 <th>Username</th>
                                                 <th>Gender</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -163,7 +175,12 @@
                                                     $gender);
                                                 echo $gender;
                                                 ?></td>
-
+                                                <td><?php
+                            					if($row['teacher_stat'] =='ACTIVATED') {
+                              						echo "<span class='badge badge-success'>ACTIVATED</span>";
+                            					}elseif($row['teacher_stat'] =='DEACTIVATED'){
+                              						echo "<span class='badge badge-danger'>DEACTIVATED</span>";
+                                                } ?></td>
                                             </tr>
                                             <?php
                                             }

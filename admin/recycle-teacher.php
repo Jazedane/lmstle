@@ -81,6 +81,7 @@
                                         </th>
                                         <th>Name</th>
                                         <th>Username</th>
+                                        <th>Gender</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -121,6 +122,7 @@
                                                 );
                                                 echo $username;
                                                 ?></td>
+                                        <td><?php echo $row['gender']; ?></td>
                                     </tr>
                                     <?php
              	                        }

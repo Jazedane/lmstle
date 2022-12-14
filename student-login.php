@@ -103,7 +103,7 @@ session_start();
         $password = clean($_POST['password']);
         $hashedPassword = hash('sha256', $password);
 
-        $query = "SELECT * FROM tbl_student WHERE username='$username' AND password='$hashedPassword'";
+        $query = "SELECT * FROM tbl_student WHERE username='$username' AND password='$hashedPassword' AND isDeleted = 'false'";
 
         $result = mysqli_query($db->connection, $query);
 

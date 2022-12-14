@@ -108,7 +108,7 @@ session_start();
                             window.location = 'admin/dashboard.php'
                         }, delay);
                     } else {
-                        toastr.warning("Login Failed",
+                        toastr.error("Login Failed",
                             "Please Check Your Username and Password");
                         var delay = 100;
                     }

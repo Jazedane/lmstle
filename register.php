@@ -118,7 +118,7 @@
             mysqli_query(
                 $conn,
                 "insert into tbl_teacher (username,password,firstname,lastname,gender,location,teacher_stat) 
-                values('$username','$hashedPassword','$firstname','$lastname','$gender','NO-IMAGE-AVAILABLE.jpg','Activated')"
+                values('$username','$hashedPassword','$firstname','$lastname','$gender','NO-IMAGE-AVAILABLE.jpg','DEACTIVATED')"
             ) or die(mysqli_error());
 
             mysqli_query(
@@ -133,9 +133,11 @@
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 2000
                 });
-                toastr.success("You Have Been Successfully Signup!")
+                toastr.info("Please Wait for the Confirmation of the Admin for the Activation of Your Account")
+                var delay = 1000;
+                toastr.success("Signup Success","You Have Been Successfully Signup!")
                 var delay = 1000;
                 setTimeout(function() {
                     window.location = '/lmstlee4/teacher-login.php'
