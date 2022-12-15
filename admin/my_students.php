@@ -50,7 +50,7 @@
 								        						LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id 
                                                                 and tbl_student.isDeleted=false
 								        						INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
-                                                                where teacher_class_id = '$get_id' order by lastname ")or die(mysqli_error());
+                                                                where teacher_class_id = '$get_id' order by lastname")or die(mysqli_error());
 								        $count_my_student = mysqli_num_rows($my_student);?>Number of Students: <span
                                     class="badge badge-info"><?php echo $count_my_student; ?></span>
                             </div>

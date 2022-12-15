@@ -40,7 +40,7 @@
                                     <h3 class="card-title"><i class="fas fa-plus"></i> Edit Class</h3>
                                 </div>
                                 <?php
-			                        $query = mysqli_query($conn,"select * from tbl_class where class_id = '$get_id'")or die(mysqli_error());
+			                        $query = mysqli_query($conn,"SELECT * FROM tbl_class where class_id = '$get_id'")or die(mysqli_error());
 			                        $row = mysqli_fetch_array($query);
 			                    ?>
                                 <div class="card-body">
@@ -54,7 +54,7 @@
                                 <div class="form-group">
                                     <center><button name="update" type="submit" class="btn btn-success"><i class="fas fa-edit">
                                             </i> Edit</button>
-                                        <a href="class.php" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
+                                        <a href="new-class.php" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
                                             Back </a>
                                     </center>
                                 </div>
@@ -79,7 +79,7 @@
                             "Class Successfully Updated"
                         );
                         setTimeout(function() {
-                            window.location = "class.php";
+                            window.location = "new-class.php";
                         }, 1000);
                     });
                     </script>

@@ -36,13 +36,14 @@
                         <h3 class="card-title">Recycle Bin</h3>
                     </div>
                     <div class="card-body">
-                        <form id="recycle_data_student" method="post">
+                        <form id="recycle_data_teacher_task" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle-delete-student" id="delete"
-                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash"></i> Delete Data</ul>
+                                <ul data-toggle="modal" href="#recycle-delete-teacher-task" id="delete"
+                                    class="btn btn-danger" name="delete_recycle_teacher_task"><i
+                                        class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_student" id="restore"
-                                    class="btn btn-primary" name="recycle_data_student"><i class="fas fa-recycle"></i> Restore data
+                                <ul data-toggle="modal" href="#restore_data_teacher_task" id="restore"
+                                    class="btn btn-primary" name="recycle_data_teacher_task"><i class="fas fa-recycle"></i> Restore data
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
@@ -53,16 +54,14 @@
                                                 <i class="fas fa-users"></i> Recycle List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                <a href="recycle-student.php" class="dropdown-item active"
-                                                    type="button">
+                                                <a href="new-recycle-student.php" class="dropdown-item" type="button">
                                                     Student</a>
-                                                <a href="recycle-teacher.php" class="dropdown-item" type="button">
-                                                    Teacher</a>
-                                                <a href="recycle-class.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
-                                                <a href="recycle-student-task.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-student-task.php" class="dropdown-item" type="button">
                                                     Student Task</a>
-                                                <a href="recycle-teacher-task.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-teacher-task.php" class="dropdown-item active"
+                                                    type="button">
                                                     Teacher Task</a>
                                             </div>
                                         </li>
@@ -77,51 +76,50 @@
                                             });
                                             </script>
                                         </th>
-                                        <th>Student Name</th>
-                                        <th>ID Number</th>
-                                        <th>Gender</th>
-                                        <th>Age</th>
-                                        <th>Class Name</th>
+                                        <th>Date Upload</th>
+                                        <th>Activity Name</th>
+                                        <th>Description</th>
+                                        <th>Due Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                            ($query = mysqli_query(
-                                                $conn,
-                                                "SELECT * FROM tbl_student 
-				                                LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
-				                                WHERE tbl_student.isDeleted=true
-				                                ORDER BY lastname ASC"
-                                            )) or die(mysqli_error($conn));
-                                            while ($row = mysqli_fetch_array($query)) {
-                                                $id = $row['student_id']; ?>
+                                        ($query = mysqli_query(
+                                            $conn,
+                                            "SELECT * FROM tbl_task 
+                                            WHERE teacher_id = '$session_id' AND isDeleted=true
+                                            ORDER BY fdatein DESC "
+                                        )) or die(mysqli_error());
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) {
+
+                                            $id = $row['task_id'];
+                                            $floc = $row['floc'];
+                                            ?>
                                     <tr>
                                         <td width="30">
                                             <input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
                                                 class="uniform_on" name="selector[]">
                                         </td>
-                                        <td><?php
-                                                $firstname = $row['firstname'];
-                                                $lastname = $row['lastname'];
-                                                $firstname = strtoupper(
-                                                    $firstname
-                                                );
-                                                $lastname = strtoupper(
-                                                    $lastname
-                                                );
-                                                echo $lastname .
-                                                    ', ' .
-                                                    $firstname;
-                                                ?>
+                                        <td><?php $fdatein = date_create($row['fdatein']);
+                                                    echo date_format(
+                                                    $fdatein,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
                                         </td>
-                                        <td><?php echo $row['username']; ?></td>
-                                        <td><?php $gender = $row['gender'];
-					                                $gender = strtoupper ($gender);
-					                                echo $gender ?></td>
-                                        <td><?php echo $row['age']; ?></td>
-                                        <td><?php $class_name = $row['class_name'];
-					                                $class_name = strtoupper ($class_name);
-					                                echo $class_name ?></td>
+                                        <td><?php echo $row[
+                                                'fname'
+                                            ]; ?></td>
+                                        <td><?php echo $row[
+                                                'fdesc'
+                                            ]; ?></td>
+                                        <td><?php $end_date = date_create($row['end_date']);
+                                            echo date_format(
+                                            $end_date,
+                                            'M/d/Y h:i a'
+                                            ); ?>
+                                        </td>
                                     </tr>
                                     <?php
              	                        }
@@ -143,24 +141,24 @@
             showConfirmButton: false,
             timer: 1000
         });
-        $('.recycle_data_student').click(function() {
+        $('.recycle_data_teacher_task').click(function() {
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
             
             $.ajax({
                 type: "POST",
-                url: "restore-data-student.php",
+                url: "restore-data-teacher-task.php",
                 data: ({
                     selector: selectedIds,
-                    recycle_data_student: true
+                    recycle_data_teacher_task: true
                 }),
                 success: function(html) {
                     toastr.success(
-                        "Student Data Successfully Restored"
+                        "Teacher Data Successfully Restored"
                     );
                     setTimeout(function() {
-                        window.location = "recycle-student.php";
+                        window.location = "new-recycle-teacher-task.php";
                     }, 1000);
                 }
             });
@@ -174,26 +172,26 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 1000
+            timer: 3000
         });
-        $('.delete_recycle_student').click(function() {
+        $('.delete_recycle_teacher_task').click(function() {
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
-            
+
             $.ajax({
                 type: "POST",
-                url: "delete-recycle-student.php",
+                url: "delete-recycle-teacher-task.php",
                 data: ({
                     selector: selectedIds,
-                    delete_recycle_student: true
+                    delete_recycle_teacher_task: true
                 }),
                 success: function(html) {
                     toastr.error(
-                        "Student Data Permanently Deleted"
+                        "Teacher Task Data Permanently Deleted"
                     );
                     setTimeout(function() {
-                        window.location = "recycle-student.php";
+                        window.location = "new-recycle-teacher-task.php";
                     }, 1000);
                 }
             });

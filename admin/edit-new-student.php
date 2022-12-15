@@ -40,11 +40,11 @@
                                     <h3 class="card-title"><i class="fas fa-edit"></i> Edit Student</h3>
                                 </div>
                                 <?php
-							$query = mysqli_query($conn,"select * from tbl_student 
-                            LEFT JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
-                            where student_id = '$get_id' and tbl_student.isDeleted=false")or die(mysqli_error());
-							$row = mysqli_fetch_array($query);
-							?>
+							        $query = mysqli_query($conn,"SELECT * FROM tbl_student 
+                                    LEFT JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
+                                    where student_id = '$get_id' and tbl_student.isDeleted=false")or die(mysqli_error());
+							        $row = mysqli_fetch_array($query);
+							    ?>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Class Name</label>
@@ -53,7 +53,10 @@
                                             <?php
                                                 $class_query = mysqli_query(
                                                 $conn,
-                                                'select * from tbl_class where tbl_class.isDeleted=false order by class_name'
+                                                "SELECT * FROM tbl_teacher_class 
+                                                LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id and tbl_teacher_class.school_year_id 
+                                                WHERE teacher_id = '$session_id' 
+                                                AND tbl_class.isDeleted = false order by class_name"
                                                 );
                                                 while (
                                                     $class_row = mysqli_fetch_array(
@@ -107,7 +110,8 @@
                                     <center><button name="update" type="submit" class="btn btn-success"><i
                                                 class="fas fa-edit">
                                             </i> Edit</button>
-                                        <a href="students.php" class="btn btn-primary"><i class="fas fa-arrow-left"></i>
+                                        <a href="new-students.php" class="btn btn-primary"><i
+                                                class="fas fa-arrow-left"></i>
                                             Back </a>
                                     </center>
                                 </div>
@@ -146,7 +150,7 @@
                                 "Student Data Successfully Updated"
                             );
                             setTimeout(function() {
-                                window.location = "students.php";
+                                window.location = "new-students.php";
                             }, 1000);
                         });
                         </script>
@@ -159,10 +163,11 @@
                                     <h3 class="card-title"><i class="fas fa-edit"></i> Update Student Password</h3>
                                 </div>
                                 <?php
-							$query = mysqli_query($conn,"select * from tbl_student LEFT JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
-                            where student_id = '$get_id' and tbl_student.isDeleted=false")or die(mysqli_error());
-							$row = mysqli_fetch_array($query);
-							?>
+							    $query = mysqli_query($conn,"SELECT * FROM tbl_student 
+                                LEFT JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
+                                where student_id = '$get_id' and tbl_student.isDeleted=false")or die(mysqli_error());
+							    $row = mysqli_fetch_array($query);
+							    ?>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Update Student Password</label>
@@ -200,7 +205,7 @@
                                 "Student Password Successfully Updated"
                             );
                             setTimeout(function() {
-                                window.location = "students.php";
+                                window.location = "new-students.php";
                             }, 1000);
                         });
                         </script>

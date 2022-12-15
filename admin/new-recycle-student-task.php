@@ -9,6 +9,7 @@
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
     <?php include 'script.php'; ?>
+
 </head>
 
 <body>
@@ -36,13 +37,14 @@
                         <h3 class="card-title">Recycle Bin</h3>
                     </div>
                     <div class="card-body">
-                        <form id="recycle_data_student" method="post">
+                        <form id="recycle_data_student_task" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle-delete-student" id="delete"
-                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash"></i> Delete Data</ul>
+                                <ul data-toggle="modal" href="#recycle-delete-student-task" id="delete"
+                                    class="btn btn-danger" name="delete_recycle_student_task"><i
+                                        class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_student" id="restore"
-                                    class="btn btn-primary" name="recycle_data_student"><i class="fas fa-recycle"></i> Restore data
+                                <ul data-toggle="modal" href="#restore_data_student_task" id="restore"
+                                    class="btn btn-primary" name="recycle_data_student_task"><i class="fas fa-recycle"></i> Restore data
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
@@ -53,16 +55,14 @@
                                                 <i class="fas fa-users"></i> Recycle List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                <a href="recycle-student.php" class="dropdown-item active"
-                                                    type="button">
+                                                <a href="new-recycle-student.php" class="dropdown-item" type="button">
                                                     Student</a>
-                                                <a href="recycle-teacher.php" class="dropdown-item" type="button">
-                                                    Teacher</a>
-                                                <a href="recycle-class.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
-                                                <a href="recycle-student-task.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-student-task.php" class="dropdown-item active"
+                                                    type="button">
                                                     Student Task</a>
-                                                <a href="recycle-teacher-task.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-teacher-task.php" class="dropdown-item" type="button">
                                                     Teacher Task</a>
                                             </div>
                                         </li>
@@ -77,51 +77,73 @@
                                             });
                                             </script>
                                         </th>
-                                        <th>Student Name</th>
-                                        <th>ID Number</th>
-                                        <th>Gender</th>
-                                        <th>Age</th>
-                                        <th>Class Name</th>
+                                        <th>Date Submitted</th>
+                                        <th>Activity Name</th>
+                                        <th>Description</th>
+                                        <th>Submitted by:</th>
+                                        <th>Status</th>
+                                        <th>Condition</th>
+                                        <th>Attachment</th>
+                                        <th>Points</th>
                                     </tr>
+
                                 </thead>
                                 <tbody>
+
                                     <?php
-                                            ($query = mysqli_query(
-                                                $conn,
-                                                "SELECT * FROM tbl_student 
-				                                LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
-				                                WHERE tbl_student.isDeleted=true
-				                                ORDER BY lastname ASC"
-                                            )) or die(mysqli_error($conn));
-                                            while ($row = mysqli_fetch_array($query)) {
-                                                $id = $row['student_id']; ?>
+										    $query = mysqli_query($conn,"select * FROM tbl_student_task
+										    LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
+										    where tbl_student_task.isDeleted=true order by task_fdatein DESC")or die(mysqli_error());
+										    while($row = mysqli_fetch_array($query)){
+										    $id  = $row['student_task_id'];
+                                            $student_id = $row['student_id'];
+                                            $task_name = $row['fname'];
+									        ?>
                                     <tr>
-                                        <td width="30">
-                                            <input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
-                                                class="uniform_on" name="selector[]">
+                                        <td><input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
+                                                class="uniform_on" name="selector[]"></td>
+                                        <td><?php $task_fdatein = date_create($row['task_fdatein']);
+                                                    echo date_format(
+                                                    $task_fdatein,
+                                                    'M/d/Y h:i a'
+                                                    ); ?>
                                         </td>
-                                        <td><?php
-                                                $firstname = $row['firstname'];
-                                                $lastname = $row['lastname'];
-                                                $firstname = strtoupper(
-                                                    $firstname
-                                                );
-                                                $lastname = strtoupper(
-                                                    $lastname
-                                                );
-                                                echo $lastname .
-                                                    ', ' .
-                                                    $firstname;
+                                        <td><?php  echo $row['fname']; ?></td>
+                                        <td><?php echo $row['fdesc']; ?></td>
+                                        <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
+                                        <td class="project-state">
+                                            <?php
+                            					if($row['task_status'] =='0') {
+                              						echo "<span class='badge badge-secondary'>Pending</span>";
+                            					}elseif($row['task_status'] =='1'){
+                              						echo "<span class='badge badge-primary'>Started</span>";
+                            					}elseif($row['task_status'] =='2'){
+                              						echo "<span class='badge badge-info'>On-Progress</span>";
+                            					}elseif($row['task_status'] =='3'){
+                              						echo "<span class='badge badge-warning'>On-Hold</span>";
+                            					}elseif($row['task_status'] =='4'){
+                              						echo "<span class='badge badge-danger'>Overdue</span>";
+                            					}elseif($row['task_status'] =='5'){
+                              						echo "<span class='badge badge-success'>Done</span>";
+                            					}
                                                 ?>
                                         </td>
-                                        <td><?php echo $row['username']; ?></td>
-                                        <td><?php $gender = $row['gender'];
-					                                $gender = strtoupper ($gender);
-					                                echo $gender ?></td>
-                                        <td><?php echo $row['age']; ?></td>
-                                        <td><?php $class_name = $row['class_name'];
-					                                $class_name = strtoupper ($class_name);
-					                                echo $class_name ?></td>
+                                        <td class="project-state">
+                                            <?php
+                            					if($row['p_condition'] =='0'){
+                              						echo "<span class='badge badge-secondary'>Pending</span>";
+                            					}elseif($row['p_condition'] =='1'){
+                              						echo "<span class='badge badge-success'>Alive</span>";
+                            					}elseif($row['p_condition'] =='2'){
+                              						echo "<span class='badge badge-danger'>Withered</span>";
+                                                }elseif($row['p_condition'] =='3'){
+                              						echo "<span class='badge badge-warning'>Dead</span>";
+                                                }
+                                                ?>
+                                        </td>
+                                        <td><a href="<?php echo $row['floc']; ?>"><i class="fas fa-paperclip"></i>
+                                                <i>Attachment</i></a></td>
+                                        <td><span class="badge badge-success"><?php  echo $row['grade']; ?></span></td>
                                     </tr>
                                     <?php
              	                        }
@@ -143,24 +165,24 @@
             showConfirmButton: false,
             timer: 1000
         });
-        $('.recycle_data_student').click(function() {
+        $('.recycle_data_student_task').click(function() {
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
             
             $.ajax({
                 type: "POST",
-                url: "restore-data-student.php",
+                url: "restore-data-student-task.php",
                 data: ({
                     selector: selectedIds,
-                    recycle_data_student: true
+                    recycle_data_student_task: true
                 }),
                 success: function(html) {
                     toastr.success(
                         "Student Data Successfully Restored"
                     );
                     setTimeout(function() {
-                        window.location = "recycle-student.php";
+                        window.location = "new-recycle-student-task.php";
                     }, 1000);
                 }
             });
@@ -174,26 +196,26 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 1000
+            timer: 3000
         });
-        $('.delete_recycle_student').click(function() {
+        $('.delete_recycle_student_task').click(function() {
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
-            
+
             $.ajax({
                 type: "POST",
-                url: "delete-recycle-student.php",
+                url: "delete-recycle-student-task.php",
                 data: ({
                     selector: selectedIds,
-                    delete_recycle_student: true
+                    delete_recycle_student_task: true
                 }),
                 success: function(html) {
                     toastr.error(
-                        "Student Data Permanently Deleted"
+                        "Student Task Data Permanently Deleted"
                     );
                     setTimeout(function() {
-                        window.location = "recycle-student.php";
+                        window.location = "new-recycle-student-task.php";
                     }, 1000);
                 }
             });

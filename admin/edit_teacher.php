@@ -33,7 +33,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3" id="adduser">
+                    <div class="col-md-6" id="adduser">
                         <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
@@ -126,71 +126,6 @@
                     <?php
                     }
                     ?>
-                    <div class="col-md-9">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Teacher List</h3>
-                            </div>
-                            <div class="card-body">
-                                <form action="delete_teacher.php" method="post">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Username</th>
-                                                <th>Gender</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-													$teacher_query = mysqli_query($conn,"select * from tbl_teacher where tbl_teacher.isDeleted=false")or die(mysqli_error());
-													while($row = mysqli_fetch_array($teacher_query)){
-													$id = $row['teacher_id'];
-													?>
-                                            <tr>
-                                                <td><?php
-                                                $firstname = $row['firstname'];
-                                                $lastname = $row['lastname'];
-                                                $firstname = strtoupper(
-                                                    $firstname
-                                                );
-                                                $lastname = strtoupper(
-                                                    $lastname
-                                                );
-                                                echo $lastname .
-                                                    ', ' .
-                                                    $firstname;
-                                                ?></td>
-                                                <td><?php
-                                                $username = $row['username'];
-                                                $username = strtoupper(
-                                                    $username
-                                                );
-                                                echo $username;
-                                                ?></td>
-                                                <td><?php
-                                                $gender = $row['gender'];
-                                                $gender = strtoupper(
-                                                    $gender);
-                                                echo $gender;
-                                                ?></td>
-                                                <td><?php
-                            					if($row['teacher_stat'] =='ACTIVATED') {
-                              						echo "<span class='badge badge-success'>ACTIVATED</span>";
-                            					}elseif($row['teacher_stat'] =='DEACTIVATED'){
-                              						echo "<span class='badge badge-danger'>DEACTIVATED</span>";
-                                                } ?></td>
-                                            </tr>
-                                            <?php
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

@@ -61,7 +61,10 @@
                                             <?php
                                                 $class_query = mysqli_query(
                                                 $conn,
-                                                "SELECT * FROM tbl_class WHERE tbl_class.isDeleted=false ORDER BY class_name"
+                                                "SELECT * FROM tbl_teacher_class 
+                                                LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
+                                                WHERE teacher_id = '$session_id' 
+                                                AND tbl_class.isDeleted = false"
                                                 );
                                                 while (
                                                     $class_row = mysqli_fetch_array(
@@ -137,7 +140,7 @@
 
                         ($query = mysqli_query(
                             $conn,
-                            "SELECT * FROM tbl_student WHERE username  =  '$username'"
+                            "SELECT * FROM tbl_student WHERE username  =  '$username' AND firstname  =  '$firstname' AND lastname  =  '$lastname'"
                         )) or die(mysqli_error());
                         $count = mysqli_num_rows($query);
 
@@ -145,7 +148,7 @@
                     <script>
                     toastr.warning("Student Already Exists!");
                     setTimeout(function() {
-                        window.location = "students.php";
+                        window.location = "new-students.php";
                     }, 1000);
                     </script>
                     <?php } else {mysqli_query(
@@ -178,7 +181,7 @@
                     <script>
                     toastr.success("New Student Successfully Added!");
                     setTimeout(function() {
-                        window.location = "students.php";
+                        window.location = "new-students.php";
                     }, 1000);
                     </script>
                     <?php } } ?>
@@ -202,7 +205,10 @@
                                         <?php
                                         $query = mysqli_query(
                                         $conn,
-                                        "SELECT * FROM tbl_class WHERE isDeleted=false"
+                                        "SELECT * FROM tbl_teacher_class 
+                                        LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id and tbl_teacher_class.school_year_id 
+                                        WHERE teacher_id = '$session_id' 
+                                        AND tbl_class.isDeleted = false"
                                         );
                                         while ($row = mysqli_fetch_array($query)) {
                                             $class_id = $row['class_id'];
@@ -242,8 +248,11 @@
 
                                             <?php
                                             ($query = mysqli_query(
-                                                $conn,
-                                                $student_query,
+                                                $conn,"SELECT * FROM tbl_teacher_class_student
+								        						LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id 
+								        						INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
+                                                                WHERE teacher_id = '$session_id' 
+                                                                and tbl_student.isDeleted=false ORDER BY lastname"
                                             )) or die(mysqli_error($conn));
                                             while ($row = mysqli_fetch_array($query)) {
                                                 $id = $row['student_id']; ?>
@@ -270,7 +279,7 @@
 					                                $class_name = strtoupper ($class_name);
 					                                echo $class_name ?></td>
 
-                                                <td width="30"><a href="edit_student.php<?php echo '?id=' .
+                                                <td width="30"><a href="edit-new-student.php<?php echo '?id=' .
                                                     $id; ?>" class="btn btn-success"><i class="fas fa-edit"></i> </a>
                                                 </td>
 

@@ -53,16 +53,14 @@
                                                 <i class="fas fa-users"></i> Recycle List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                <a href="recycle-student.php" class="dropdown-item active"
+                                                <a href="new-recycle-student.php" class="dropdown-item active"
                                                     type="button">
                                                     Student</a>
-                                                <a href="recycle-teacher.php" class="dropdown-item" type="button">
-                                                    Teacher</a>
-                                                <a href="recycle-class.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
-                                                <a href="recycle-student-task.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-student-task.php" class="dropdown-item" type="button">
                                                     Student Task</a>
-                                                <a href="recycle-teacher-task.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-teacher-task.php" class="dropdown-item" type="button">
                                                     Teacher Task</a>
                                             </div>
                                         </li>
@@ -86,15 +84,15 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                            ($query = mysqli_query(
-                                                $conn,
-                                                "SELECT * FROM tbl_student 
-				                                LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
-				                                WHERE tbl_student.isDeleted=true
-				                                ORDER BY lastname ASC"
+                                        ($query = mysqli_query(
+                                            $conn,
+                                            "SELECT * FROM tbl_teacher_class_student
+                                            LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id
+                                            INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
+                                            WHERE tbl_student.isDeleted=true AND teacher_id = '$session_id' ORDER BY lastname ASC"
                                             )) or die(mysqli_error($conn));
                                             while ($row = mysqli_fetch_array($query)) {
-                                                $id = $row['student_id']; ?>
+                                            $id = $row['student_id']; ?>
                                     <tr>
                                         <td width="30">
                                             <input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
@@ -160,7 +158,7 @@
                         "Student Data Successfully Restored"
                     );
                     setTimeout(function() {
-                        window.location = "recycle-student.php";
+                        window.location = "new-recycle-student.php";
                     }, 1000);
                 }
             });
@@ -193,7 +191,7 @@
                         "Student Data Permanently Deleted"
                     );
                     setTimeout(function() {
-                        window.location = "recycle-student.php";
+                        window.location = "new-recycle-student.php";
                     }, 1000);
                 }
             });

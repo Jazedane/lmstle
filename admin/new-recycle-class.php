@@ -36,13 +36,13 @@
                         <h3 class="card-title">Recycle Bin</h3>
                     </div>
                     <div class="card-body">
-                        <form id="recycle_data_student" method="post">
+                        <form id="recycle_data_class" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle-delete-student" id="delete"
-                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash"></i> Delete Data</ul>
+                                <ul data-toggle="modal" href="#recycle-delete-class" id="delete" class="btn btn-danger"
+                                    name="delete_recycle_class"><i class="fas fa-trash"></i> Delete Data</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_student" id="restore"
-                                    class="btn btn-primary" name="recycle_data_student"><i class="fas fa-recycle"></i> Restore data
+                                <ul data-toggle="modal" href="#restore_data_class" id="restore" class="btn btn-primary"
+                                    name="recycle_data_class"><i class="fas fa-recycle"></i> Restore data
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
@@ -53,16 +53,13 @@
                                                 <i class="fas fa-users"></i> Recycle List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                <a href="recycle-student.php" class="dropdown-item active"
-                                                    type="button">
+                                                <a href="new-recycle-student.php" class="dropdown-item" type="button">
                                                     Student</a>
-                                                <a href="recycle-teacher.php" class="dropdown-item" type="button">
-                                                    Teacher</a>
-                                                <a href="recycle-class.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-class.php" class="dropdown-item active" type="button">
                                                     Class</a>
-                                                <a href="recycle-student-task.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-student-task.php" class="dropdown-item" type="button">
                                                     Student Task</a>
-                                                <a href="recycle-teacher-task.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-teacher-task.php" class="dropdown-item" type="button">
                                                     Teacher Task</a>
                                             </div>
                                         </li>
@@ -73,55 +70,40 @@
                                         <th><input type="checkbox" name="selectAll" id="checkAll" />
                                             <script>
                                             $("#checkAll").click(function() {
-                                                $('input:checkbox').not(this).prop('checked', this.checked);
+                                                $('input:checkbox').not(this).prop('checked', this
+                                                    .checked);
                                             });
                                             </script>
                                         </th>
-                                        <th>Student Name</th>
-                                        <th>ID Number</th>
-                                        <th>Gender</th>
-                                        <th>Age</th>
-                                        <th>Class Name</th>
+                                        <th>Year And Section</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                            ($query = mysqli_query(
+                                            ($class_query = mysqli_query(
                                                 $conn,
-                                                "SELECT * FROM tbl_student 
-				                                LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
-				                                WHERE tbl_student.isDeleted=true
-				                                ORDER BY lastname ASC"
-                                            )) or die(mysqli_error($conn));
-                                            while ($row = mysqli_fetch_array($query)) {
-                                                $id = $row['student_id']; ?>
+                                                'SELECT * FROM tbl_class WHERE isDeleted=true'
+                                            )) or die(mysqli_error());
+                                            while (
+                                                $class_row = mysqli_fetch_array(
+                                                    $class_query
+                                                )
+                                            ) {
+                                                $id = $class_row['class_id']; ?>
+
                                     <tr>
                                         <td width="30">
-                                            <input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
-                                                class="uniform_on" name="selector[]">
+                                            <input id="checkAll" class="uniform_on" name="selector[]" type="checkbox"
+                                                value="<?php echo $id; ?>">
                                         </td>
                                         <td><?php
-                                                $firstname = $row['firstname'];
-                                                $lastname = $row['lastname'];
-                                                $firstname = strtoupper(
-                                                    $firstname
+                                                $class_name =
+                                                    $class_row['class_name'];
+                                                $class_name = strtoupper(
+                                                    $class_name
                                                 );
-                                                $lastname = strtoupper(
-                                                    $lastname
-                                                );
-                                                echo $lastname .
-                                                    ', ' .
-                                                    $firstname;
-                                                ?>
-                                        </td>
-                                        <td><?php echo $row['username']; ?></td>
-                                        <td><?php $gender = $row['gender'];
-					                                $gender = strtoupper ($gender);
-					                                echo $gender ?></td>
-                                        <td><?php echo $row['age']; ?></td>
-                                        <td><?php $class_name = $row['class_name'];
-					                                $class_name = strtoupper ($class_name);
-					                                echo $class_name ?></td>
+                                                echo $class_name;
+                                                ?></td>
                                     </tr>
                                     <?php
              	                        }
@@ -143,57 +125,57 @@
             showConfirmButton: false,
             timer: 1000
         });
-        $('.recycle_data_student').click(function() {
+        $('.recycle_data_class').click(function() {
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
             
             $.ajax({
                 type: "POST",
-                url: "restore-data-student.php",
+                url: "restore-data-class.php",
                 data: ({
                     selector: selectedIds,
-                    recycle_data_student: true
+                    recycle_data_class: true
                 }),
                 success: function(html) {
                     toastr.success(
-                        "Student Data Successfully Restored"
+                        "Class Data Successfully Restored"
                     );
                     setTimeout(function() {
-                        window.location = "recycle-student.php";
+                        window.location = "new-recycle-class.php";
                     }, 1000);
                 }
             });
             return false;
         });
     });
-    </script>
+    </script>class
     <script type="text/javascript">
     $(document).ready(function() {
         var Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 1000
+            timer: 3000
         });
-        $('.delete_recycle_student').click(function() {
+        $('.delete_recycle_class').click(function() {
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
             
             $.ajax({
                 type: "POST",
-                url: "delete-recycle-student.php",
+                url: "delete-recycle-class.php",
                 data: ({
                     selector: selectedIds,
-                    delete_recycle_student: true
+                    delete_recycle_class: true
                 }),
                 success: function(html) {
                     toastr.error(
-                        "Student Data Permanently Deleted"
+                        "Class Data Permanently Deleted"
                     );
                     setTimeout(function() {
-                        window.location = "recycle-student.php";
+                        window.location = "new-recycle-class.php";
                     }, 1000);
                 }
             });

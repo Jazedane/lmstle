@@ -12,6 +12,7 @@ function determine_active_sidebar_item($pages) {
     return $active;
 }
 ?>
+
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
@@ -89,7 +90,8 @@ function determine_active_sidebar_item($pages) {
                         data-accordion="false">
 
                         <li class="nav-item">
-                            <a href="dashboard.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/dashboard.php']) ?>">
+                            <a href="dashboard.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/dashboard.php']) ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -97,7 +99,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="class_main.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class_main.php']) ?>">
+                            <a href="class_main.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class_main.php']) ?>">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Class
@@ -110,7 +113,8 @@ function determine_active_sidebar_item($pages) {
 			                $count_notification = mysqli_num_rows($notification_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="notification.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/notification.php']) ?>">
+                            <a href="notification.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/notification.php']) ?>">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>
                                     Notification
@@ -127,7 +131,8 @@ function determine_active_sidebar_item($pages) {
 			                $count_message = mysqli_num_rows($message_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="message.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/message.php', '/lmstlee4/admin/sent_message.php']) ?>">
+                            <a href="message.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/message.php', '/lmstlee4/admin/sent_message.php']) ?>">
                                 <i class="nav-icon fas fa-comments"></i>
                                 <p>
                                     Message
@@ -139,8 +144,11 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class.php','/lmstlee4/admin/students.php',
-                            '/lmstlee4/admin/teacher.php','/lmstlee4/admin/edit_class.php','/lmstlee4/admin/edit_student.php','/lmstlee4/admin/edit_teacher.php']) ?>">
+                            <a href="#"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class.php','/lmstlee4/admin/students.php',
+                            '/lmstlee4/admin/teacher.php','/lmstlee4/admin/edit_class.php','/lmstlee4/admin/edit_student.php','/lmstlee4/admin/edit_teacher.php',
+                            '/lmstlee4/admin/activate-student.php','/lmstlee4/admin/deactivate-student.php','/lmstlee4/admin/new-class.php','/lmstlee4/admin/new-students.php'
+                            ,'/lmstlee4/admin/edit-new-class.php','/lmstlee4/admin/edit-new-student.php']) ?>">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Masterlist
@@ -148,18 +156,29 @@ function determine_active_sidebar_item($pages) {
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <?php 
+                                $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
+                                $is_superadmin = $row['is_superadmin'];
+
+                                if ($is_superadmin == false) { ?>
                                 <li class="nav-item">
-                                    <a href="class.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class.php','/lmstlee4/admin/edit_class.php']) ?>">
+                                    <a href="new-class.php"
+                                        class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/new-class.php','/lmstlee4/admin/edit-new-class.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Class List</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="students.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/students.php','/lmstlee4/admin/edit_student.php']) ?>">
+                                    <a href="new-students.php"
+                                        class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/new-students.php','/lmstlee4/admin/edit-new-student.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Student List</p>
                                     </a>
                                 </li>
+                                <?php
+                                    }
+                                ?>
                                 <?php 
                                 $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
@@ -167,7 +186,23 @@ function determine_active_sidebar_item($pages) {
 
                                 if ($is_superadmin == true) { ?>
                                 <li class="nav-item">
-                                    <a href="teacher.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher.php','/lmstlee4/admin/edit_teacher.php']) ?>">
+                                    <a href="class.php"
+                                        class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class.php','/lmstlee4/admin/edit_class.php']) ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Class List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="students.php"
+                                        class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/students.php','/lmstlee4/admin/edit_student.php']) ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Student List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="teacher.php"
+                                        class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher.php', 
+                                    '/lmstlee4/admin/activate-teacher.php', '/lmstlee4/admin/deactivate-teacher.php', '/lmstlee4/admin/edit_teacher.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher List</p>
                                     </a>
@@ -179,7 +214,8 @@ function determine_active_sidebar_item($pages) {
                         </li>
                         <li class="nav-header">INFORMATION</li>
                         <li class="nav-item">
-                            <a href="gallery.php?current_page=1" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/gallery.php']) ?>">
+                            <a href="gallery.php?current_page=1"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/gallery.php']) ?>">
                                 <i class="nav-icon fas fa-image"></i>
                                 <p>
                                     Plant Gallery
@@ -187,7 +223,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/about.php']) ?>">
+                            <a href="about.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/about.php']) ?>">
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     About
@@ -195,7 +232,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher_log.php','/lmstlee4/admin/activity_log.php']) ?>">
+                            <a href="#"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher_log.php','/lmstlee4/admin/activity_log.php']) ?>">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>
                                     Log History
@@ -204,13 +242,15 @@ function determine_active_sidebar_item($pages) {
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="teacher_log.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher_log.php']) ?>">
+                                    <a href="teacher_log.php"
+                                        class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher_log.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Teacher Log</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="activity_log.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/activity_log.php']) ?>">
+                                    <a href="activity_log.php"
+                                        class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/activity_log.php']) ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Activity log</p>
                                     </a>
@@ -218,6 +258,28 @@ function determine_active_sidebar_item($pages) {
                             </ul>
                         </li>
                         <li class="nav-item">
+                            <?php 
+                                $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
+                                $is_superadmin = $row['is_superadmin'];
+
+                            if ($is_superadmin == false) { ?>
+                            <a href="new-recycle-student.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/new-recycle-student.php',
+                            '/lmstlee4/admin/new-recycle-class.php','/lmstlee4/admin/new-recycle-student-task.php', '/lmstlee4/admin/new-recycle-teacher-task.php']) ?>">
+                            <i class="nav-icon fas fa-recycle"></i>
+                                <p>
+                                    Recycle Bin
+                                </p>
+                            </a>
+                            <?php
+                                }
+                            ?>
+                            <?php 
+                                $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
+                                $is_superadmin = $row['is_superadmin'];
+
+                            if ($is_superadmin == true) { ?>
                             <a href="recycle-student.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/recycle-student.php',
                             '/lmstlee4/admin/recycle-teacher.php','/lmstlee4/admin/recycle-class.php','/lmstlee4/admin/recycle-student-task.php',
                             '/lmstlee4/admin/recycle-teacher-task.php']) ?>">
@@ -226,6 +288,9 @@ function determine_active_sidebar_item($pages) {
                                     Recycle Bin
                                 </p>
                             </a>
+                            <?php
+                                }
+                            ?>
                         </li>
                     </ul>
                 </nav>
