@@ -33,8 +33,6 @@
                             $school_year = $school_year_query_row['school_year'];
                             ?>
                             <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
-                            <li class="breadcrumb-item"><a href="#">School Year:
-                                    <?php echo $school_year_query_row['school_year']; ?></a></li>
                             <li class="breadcrumb-item active"><a href="#"><b>Class</b></a></li>
 
                         </ol>

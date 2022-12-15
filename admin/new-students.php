@@ -1,18 +1,3 @@
-<?php
-    $class_id_filter = isset($_GET['class_id']) ? $_GET['class_id'] : '';
-    $student_query = "SELECT * FROM tbl_student 
-    LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
-    WHERE tbl_student.isDeleted=false
-    ORDER BY lastname ASC";
-
-    if ($class_id_filter) {
-        $student_query = "SELECT * FROM tbl_student 
-        LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
-        WHERE tbl_student.isDeleted=false AND tbl_student.class_id = '$class_id_filter'
-        ORDER BY lastname ASC";
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +9,21 @@
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
     <?php include 'script.php'; ?>
+    <?php
+    $class_id_filter = isset($_GET['class_id']) ? $_GET['class_id'] : '';
+    $student_query = "SELECT * FROM tbl_teacher_class_student
+    LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id
+    INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
+    WHERE teacher_id = '$session_id' 
+    and tbl_student.isDeleted=false ORDER BY lastname";
+
+    if ($class_id_filter) {
+        $student_query = "SELECT * FROM tbl_student 
+        LEFT JOIN tbl_class ON tbl_student.class_id = tbl_class.class_id 
+        WHERE tbl_student.isDeleted=false AND tbl_student.class_id = '$class_id_filter'
+        ORDER BY lastname ASC";
+    }
+?>
 </head>
 
 <body>
@@ -248,11 +248,7 @@
 
                                             <?php
                                             ($query = mysqli_query(
-                                                $conn,"SELECT * FROM tbl_teacher_class_student
-								        						LEFT JOIN tbl_student ON tbl_student.student_id = tbl_teacher_class_student.student_id 
-								        						INNER JOIN tbl_class ON tbl_class.class_id = tbl_student.class_id 
-                                                                WHERE teacher_id = '$session_id' 
-                                                                and tbl_student.isDeleted=false ORDER BY lastname"
+                                                $conn,$student_query
                                             )) or die(mysqli_error($conn));
                                             while ($row = mysqli_fetch_array($query)) {
                                                 $id = $row['student_id']; ?>
