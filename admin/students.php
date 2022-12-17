@@ -57,7 +57,7 @@
                                     <div class="form-group">
                                         <label>Select Section</label>
                                         <select name="class_id" class="form-control" required>
-                                            <option>SELECT SECTION</option>
+                                            <option selected disabled hidden>SELECT SECTION</option>
                                             <?php
                                                 $class_query = mysqli_query(
                                                 $conn,
@@ -97,7 +97,7 @@
                                     <div class="form-group">
                                         <label>Gender</label>
                                         <select name="gender" class="form-control" placeholder="Gender" required>
-                                            <option>SELECT GENDER</option>
+                                            <option selected disabled hidden>SELECT GENDER</option>
                                             <option>MALE</option>
                                             <option>FEMALE</option>
                                         </select>

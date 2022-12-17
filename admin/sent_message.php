@@ -101,7 +101,7 @@
                                     <div class="form-group">
                                         <label>To:</label>
                                         <select name="student_id" class="form-control" required>
-                                            <option>Select Student</option>
+                                            <option selected disabled hidden>Select Student</option>
                                             <?php
                                         $query = mysqli_query(
                                             $conn,

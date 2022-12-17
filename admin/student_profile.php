@@ -17,6 +17,7 @@
         $student_query = mysqli_query($conn, "select * from tbl_student where student_id = '$student_id'") or die(mysqli_error());
         $student_row = mysqli_fetch_array($student_query);
         $student_name = $student_row['firstname'] . " " . $student_row['lastname'];
+        $student_profile = $student_row['location'];
     ?>
 </head>
 
@@ -56,11 +57,16 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-3">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title"><?php echo $student_name; ?></h3>
-                                <div class="card-body">
+                                <h5 class="text-center"><?php echo $student_name; ?></h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img id="avatar" class="img-circle elevation-2"
+                                        src="/lmstlee4/admin/uploads/<?php echo $student_profile; ?>" width="80"
+                                        height="80">
                                 </div>
                             </div>
                         </div>
@@ -76,8 +82,9 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Student Submissions</h3>
-                                <div id="" class="float-sm-right"><a href="my_students.php<?php echo '?id='.$get_id; ?>"><i
-                                class="fas fa-arrow-left"></i> Back</a></div>
+                                <div id="" class="float-sm-right"><a
+                                        href="my_students.php<?php echo '?id='.$get_id; ?>"><i
+                                            class="fas fa-arrow-left"></i> Back</a></div>
                             </div>
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-striped">
@@ -117,13 +124,12 @@
                                             <td><?php echo $task_title; ?></td>
                                             <td><?php echo $student_task_row['grade']; ?>/<?php echo $student_task_row['total_points'] ?>
                                             </td>
-                                            <td>
-                                                <a
-                                                    href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>">View
+                                            <td><div class="justify content-between">
+                                                <a class="btn btn-success" href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>">View
                                                     Task Summary</a>
-                                                <a class="ml-2"
+                                                <a class="btn btn-success"
                                                     href="http://localhost/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>">Edit
-                                                    Grade</a>
+                                                    Grade</a></div>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -140,23 +146,23 @@
 </body>
 
 <script>
-    $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "excel", "pdf", "print"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
+$(function() {
+    $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "excel", "pdf", "print"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
     });
-    </script>
+});
+</script>
 
 </html>

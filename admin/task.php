@@ -70,7 +70,7 @@
                                                     placeholder="Enter activity name" required>
                                             </div>
                                             <div class="form-group">
-                                                <label>Description (Optional)</label>
+                                                <label>Instruction (Optional)</label>
                                                 <textarea id="summernote" class="summernote form-control" name="desc"
                                                     rows="4" placeholder="Enter description"></textarea>
                                             </div>
@@ -84,7 +84,7 @@
                                             <div class="form-group">
                                                 <label>Grade Category</label>
                                                 <select class="form-control" name="grade_category_id" required>
-                                                    <option value="">Select Category</option>
+                                                    <option value="" selected disabled hidden>Select Category</option>
                                                     <?php
                                             ($category_query = mysqli_query(
                                                 $conn,
@@ -113,7 +113,7 @@
                                             <div class="form-group">
                                                 <label for="quarter">Quarter</label>
                                                 <select name="quarter" class="form-control" required>
-                                                    <option value="">Select Quarter</option>
+
                                                     <option value="1"
                                                         selected="<?php echo $quarter == 1 ? 'true' : 'false'; ?>">
                                                         1st Quarter
@@ -130,6 +130,7 @@
                                                         selected="<?php echo $quarter == 4 ? 'true' : 'false'; ?>">
                                                         4th Quarter
                                                     </option>
+                                                    <option value="0" selected disabled hidden>Select Quarter</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -175,7 +176,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Points For Written Task</h3>
                             </div>
-                            <form class="" id="add_work" method="post" enctype="multipart/form-data" name="upload">
+                            <form class="" id="" method="post" enctype="multipart/form-data" name="upload">
                                 <div class="control-group"></div>
                                 <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
                                 <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
@@ -184,7 +185,7 @@
                                     <div class="form-group">
                                         <label><?php echo $class_row['class_name']; ?> STUDENTS</label>
                                         <select name="student_id" class="form-control" required>
-                                            <option>Select Student</option>
+                                            <option selected disabled hidden>Select Student</option>
                                             <?php
                                         $query = mysqli_query(
                                             $conn,
@@ -211,26 +212,26 @@
                                     <div class="form-group">
                                         <label>Task Name</label>
                                         <select name="task_id" class="form-control" required>
-                                            <option>Select Task</option>
+                                            <option selected disabled hidden>Select Task</option>
                                             <?php
-                                        $query = mysqli_query(
+                                            $query = mysqli_query(
                                             $conn,
                                             "SELECT * FROM tbl_task 
                                             LEFT JOIN tbl_grade_category ON tbl_grade_category.grade_category_id = tbl_task.grade_category_id
                                             WHERE tbl_task.class_id = '$get_id' AND teacher_id = '$session_id' AND isDeleted=false
-                                            ORDER BY fdatein DESC "
-                                        );
-                                        while (
-                                            $row = mysqli_fetch_array($query)
-                                        ) { ?>
+                                            ORDER BY fdatein ASC"
+                                            );
+                                            while (
+                                                $row = mysqli_fetch_array($query)
+                                            ) { ?>
                                             <option value="<?php echo $row[
-                                            'task_id'
-                                        ]; ?>">
+                                                'task_id'
+                                            ]; ?>">
                                                 <?php echo $row[
                                                 'fname'
                                             ]; ?> </option>
                                             <?php }
-                                        ?>
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -239,12 +240,42 @@
                                             maxlength="3" min="0" max="" required>
                                     </div>
                                     <div class="card-footer">
-                                        <center><button name="Upload" type="submit" value="Upload"
+                                        <center><button name="add" type="submit" value="Upload"
                                                 class="btn btn-success">Submit</button>
                                         </center>
                                     </div>
                                 </div>
                             </form>
+                            <?php if (isset($_POST['add'])) {
+                            $student_id = $_POST['student_id'];
+                            $task_id = $_POST['task_id'];
+                            $grade = $_POST['grade'];
+
+
+                            $query = mysqli_query(
+                            $conn,
+                            "SELECT * FROM tbl_student_task WHERE student_id  =  '$student_id' AND task_id  =  '$task_id' "
+                            ) or die(mysqli_error());
+                            $count = mysqli_num_rows($query);
+
+                            if ($count > 0) { ?>
+                            <script>
+                            toastr.warning("Student Task Already Exists!");
+                            setTimeout(function() {
+                                window.location = "task.php<?php echo '?id='.$get_id ?>";
+                            }, 1000);
+                            </script>
+                            <?php } else {mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_fdatein = NOW(), 
+                            task_id ='$task_id', grade='$grade'")
+                            or die(mysqli_error($conn));
+                            ?>
+                            <script>
+                            toastr.warning("Points Successfully Added!");
+                            setTimeout(function() {
+                                window.location = "task.php<?php echo '?id='.$get_id ?>";
+                            }, 1000);
+                            </script>
+                            <?php } } ?>
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -258,7 +289,7 @@
                                         <tr>
                                             <th>Date Upload</th>
                                             <th>Task Name</th>
-                                            <th>Description</th>
+                                            <th>Quarter</th>
                                             <th>Category</th>
                                             <th>Points</th>
                                             <th>Due Date</th>
@@ -292,15 +323,19 @@
                                             <td><?php echo $row[
                                                 'fname'
                                             ]; ?></td>
-                                            <td><?php echo $row[
-                                                'fdesc'
-                                            ]; ?></td>
+                                            <td>
+                                                <center><?php echo $row[
+                                                'quarter'
+                                            ]; ?></center>
+                                            </td>
                                             <td><?php echo $row[
                                                 'category_name'
                                             ]; ?></td>
-                                            <td><?php echo $row[
+                                            <td>
+                                                <center><?php echo $row[
                                                 'total_points'
-                                            ]; ?></td>
+                                            ]; ?></center>
+                                            </td>
                                             <td><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
                                                     $end_date,
@@ -326,24 +361,27 @@
                                                 </script>
                                             </td>
                                             <td width="40">
-                                                <form method="post" action="view_submit_task.php<?php echo '?id=' .
+                                                <div class="justify content-between">
+                                                    <form method="post" action="view_submit_task.php<?php echo '?id=' .
                                                     $get_id; ?>&<?php echo 'post_id=' .$id; ?>">
 
-                                                    <button data-placement="bottom"
-                                                        title="View Student Who Submit Activity"
-                                                        id="<?php echo $id; ?>view" class="btn btn-success"><i
-                                                            class="fas fa-folder"></i></button>
-
+                                                        <button data-placement="bottom"
+                                                            title="View Student Who Submit Activity"
+                                                            id="<?php echo $id; ?>view" class="btn btn-success"><i
+                                                                class="fas fa-folder"></i></button>
+                                                        <a data-placement="bottom" title="Remove"
+                                                            id="<?php echo $id; ?>remove"
+                                                            class="btn btn-danger float-left"
+                                                            href="#del<?php echo $id; ?>" data-toggle="modal"><i
+                                                                class="fas fa-trash"></i></a>
+                                                        <?php include 'delete_task_modal.php'; ?>
+                                                </div>
                                                 </form>
                                                 <?php if ($floc == '') {
                                                 } else {
                                                      ?>
                                                 <?php
                                                 } ?>
-                                                <a data-placement="bottom" title="Remove" id="<?php echo $id; ?>remove"
-                                                    class="btn btn-danger float-right" href="#del<?php echo $id; ?>"
-                                                    data-toggle="modal"><i class="fas fa-trash"></i></a>
-                                                <?php include 'delete_task_modal.php'; ?>
                                             </td>
                                             <script type="text/javascript">
                                             $(document).ready(function() {
@@ -372,8 +410,8 @@
     </div>
     <?php include 'footer.php'; ?>
     <script>
-        // Summernote
-        $('#summernote').summernote( {
+    // Summernote
+    $('#summernote').summernote({
         toolbar: [
             ["style", ["style"]],
             ["font", ["bold", "underline", "clear"]],
@@ -391,7 +429,7 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 2000
+            timer: 1000
         });
         $("#add_task").submit(function(e) {
             e.preventDefault();
@@ -420,7 +458,7 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 2000
+            timer: 1000
         });
         $("#add_work").submit(function(e) {
             e.preventDefault();
@@ -509,12 +547,12 @@
         var diff = dueDate.getTime() - now.getTime();
 
         if (isNaN(diff)) {
-            $(`#${targetElement}`).html('Invalid Date');
+            $(`#${targetElement}`).html('<span class="badge badge-danger">Invalid Date</span>');
             return;
         }
 
         if (diff <= 0) {
-            $(`#${targetElement}`).html('Deadline has Passed');
+            $(`#${targetElement}`).html('<span class="badge badge-danger">Deadline has Passed</span>');
             return;
         }
 

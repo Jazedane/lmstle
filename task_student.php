@@ -83,6 +83,7 @@
                                             <th>Date Upload</th>
                                             <th>Task Name</th>
                                             <th>Description</th>
+                                            <th>Quarter</th>
                                             <th>Due Date</th>
                                             <th>Points</th>
                                             <th>Time Left</th>
@@ -114,13 +115,16 @@
                                             </td>
                                             <td><?php echo $row['fname']; ?></td>
                                             <td><?php echo $row['fdesc']; ?></td>
+                                            <td><center><?php echo $row[
+                                                'quarter'
+                                            ]; ?></center></td>
                                             <td><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
                                                     $end_date,
                                                     'M/d/Y h:i a'
                                                     ); ?>
                                             </td>
-                                            <td><?php echo $row['total_points']; ?></td>
+                                            <td><center><?php echo $row['total_points']; ?></center></td>
                                             <td id="<?php echo $row['task_id'] ?>-running-due">
                                                 <script>
                                                 $(document).ready(function() {
@@ -210,12 +214,12 @@
         var diff = dueDate.getTime() - now.getTime();
 
         if (isNaN(diff)) {
-            $(`#${targetElement}`).html('Invalid Date');
+            $(`#${targetElement}`).html('<span class="badge badge-danger">Invalid Date</span>');
             return;
         }
 
         if (diff <= 0) {
-            $(`#${targetElement}`).html('Deadline has Passed');
+            $(`#${targetElement}`).html('<span class="badge badge-danger">Deadline has Passed</span>');
             return;
         }
 

@@ -73,7 +73,7 @@
                             echo 'selected';
                         } else {
                             echo '';
-                        } ?>>
+                        } ?> selected disabled hidden>
                             Select Quarter</option>
                         <option value="1" <?php if ($selected_quarter == '1') {
                             echo 'selected';
