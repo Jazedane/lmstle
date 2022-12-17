@@ -211,7 +211,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Task Name</label>
-                                        <select name="task_id" class="form-control" required>
+                                        <select name="task_id" class="form-control" required id="task_selection">
                                             <option selected disabled hidden>Select Task</option>
                                             <?php
                                             $query = mysqli_query(
@@ -224,7 +224,7 @@
                                             while (
                                                 $row = mysqli_fetch_array($query)
                                             ) { ?>
-                                            <option value="<?php echo $row[
+                                            <option data-maxpoints="<?php echo $row['total_points'] ?>" value="<?php echo $row[
                                                 'task_id'
                                             ]; ?>">
                                                 <?php echo $row[
@@ -236,8 +236,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Score</label>
-                                        <input type="number" name="grade" class="form-control" placeholder="Enter Score"
-                                            maxlength="3" min="0" max="" required>
+                                        <input id="task_grade" type="number" name="grade" class="form-control" placeholder="Enter Score"
+                                            maxlength="3" min="0" required>
+                                        <p id="task_grade_helper_text"></p>
                                     </div>
                                     <div class="card-footer">
                                         <center><button name="add" type="submit" value="Upload"
@@ -425,6 +426,18 @@
     </script>
     <script>
     jQuery(document).ready(function($) {
+        $("#task_selection").change(function() {
+            const maxPoints = $(this).find(':selected').attr('data-maxpoints')
+            if (maxPoints) {
+                $("#task_grade_helper_text").html(`out of ${maxPoints}`)
+                $("#task_grade").attr('max', `${maxPoints}`)
+            } else {
+                // clear limits
+                $("#task_grade_helper_text").html(``)
+                $("#task_grade").removeAttr('max')
+            }
+        })
+
         var Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
