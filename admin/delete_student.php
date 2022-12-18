@@ -14,7 +14,3 @@ if (isset($_POST['delete_student']) && isset($_POST['selector'])) {
     }
 }
 ?>
-<script>
-    alert("Student Successfully Deleted");
-    window.location = 'students.php';
-</script>

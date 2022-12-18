@@ -38,6 +38,3 @@ mysqli_query(
                 VALUES ('$filedesc',NOW(),'$session_id','$teacher_class_id','$name','$total_points','$parse_end_date','$grade_category_id','$quarter')"
 ) or die(mysqli_error());
 ?>
-<script>
-window.location = 'task.php<?php echo '?id=' . $get_id; ?>';
-</script>

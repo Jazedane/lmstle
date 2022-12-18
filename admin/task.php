@@ -290,6 +290,7 @@
                                         <tr>
                                             <th>Date Upload</th>
                                             <th>Task Name</th>
+                                            <th>Instruction</th>
                                             <th>Quarter</th>
                                             <th>Category</th>
                                             <th>Points</th>
@@ -323,6 +324,9 @@
                                             </td>
                                             <td><?php echo $row[
                                                 'fname'
+                                            ]; ?></td>
+                                            <td><?php echo $row[
+                                                'fdesc'
                                             ]; ?></td>
                                             <td width="60"><?php echo $row[
                                                 'quarter'

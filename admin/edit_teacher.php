@@ -126,11 +126,85 @@
                     <?php
                     }
                     ?>
+                    <div class="col-md-6">
+                        <form method="post">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-edit"></i> Update Teacher Password</h3>
+                                </div>
+                                <?php
+							$query = mysqli_query($conn,"SELECT * from tbl_teacher 
+                            where teacher_id = '$get_id' and tbl_teacher.isDeleted=false")or die(mysqli_error());
+							$row = mysqli_fetch_array($query);
+							?>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <div class="input-group mb-12">
+                                            <input name="password" type="password" id="password-field"
+                                                class="form-control" placeholder="ENTER PASSWORD">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-eye toggle-password float-right"
+                                                        toggle="#password-field"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
+                                </div>
+                                <div class="card-footer">
+                                    <center><button name="update_password" type="submit" class="btn btn-success"><i
+                                                class="fas fa-edit">
+                                            </i> Update</button>
+                                    </center>
+                                </div>
+                            </div>
+                        </form>
+                        <?php 
+
+                        if (isset($_POST['update_password'])) {
+            
+                        $password = $_POST['password'];
+                        $hashedPassword = hash('sha256', $password);
+                        mysqli_query($conn,"UPDATE tbl_teacher SET password = '$hashedPassword' WHERE teacher_id = '$get_id' ") or die(mysqli_error());
+                        
+                        ?>
+                        <script type="text/javascript">
+                        $(document).ready(function() {
+                            var Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 100
+                            });
+                            toastr.success(
+                                "Teacher Password Successfully Updated"
+                            );
+                            setTimeout(function() {
+                                window.location = "teacher.php";
+                            }, 1000);
+                        });
+                        </script>
+                        <?php  }  ?>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script>
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("far fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    </script>
     <script>
     $(function() {
         $("#example1").DataTable({

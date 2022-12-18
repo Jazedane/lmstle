@@ -165,9 +165,17 @@
 							?>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Update Student Password</label>
-                                        <input name="password" type="password" class="form-control"
-                                            placeholder="ENTER PASSWORD">
+                                        <label>Password</label>
+                                        <div class="input-group mb-12">
+                                            <input name="password" type="password" id="password-field" class="form-control"
+                                                placeholder="ENTER PASSWORD">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-eye toggle-password float-right"
+                                                        toggle="#password-field"></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>
@@ -211,6 +219,18 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script>
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("far fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    </script>
     <script>
     $(function() {
         $("#example1").DataTable({

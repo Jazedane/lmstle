@@ -14,25 +14,8 @@ $get_id = $_POST['get_id'];
 
 $is_update = isset($_GET['is_update']) ? $_GET['is_update'] : false;
 $student_task_id = $_POST['student_task_id'];
-
+$fdesc = $_POST['fdesc'];
 //Function to sanitize values received from the form. Prevents SQL injection
-function clean($str)
-{
-    global $conn;
-    $str = @trim($str);
-    $str = stripslashes($str);
-    return mysqli_real_escape_string($conn, $str);
-}
-
-//Sanitize the POST values
-$processed_desc = isset($_POST['desc']) ? $_POST['desc'] : 'no description';
-$filedesc = clean($processed_desc);
-//$subject= clean($_POST['upname']);
-
-if ($filedesc == '') {
-    $errmsg_arr[] = ' file description is missing';
-    $errflag = true;
-}
 
 if (
     isset($_FILES['uploaded_file']['size']) &&
@@ -49,9 +32,6 @@ if ($errflag) {
     session_write_close();
     ?>
 
-<script>
-window.location = 'downloadable.php<?php echo '?id=' . $get_id; ?>';
-</script>
 <?php exit();
 }
 //upload random name/number
@@ -96,10 +76,10 @@ if (
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;
                 if ($is_update) {
-                    ($qry2 = "UPDATE tbl_student_task SET fdesc='$filedesc',floc='$relative_file_path',task_fdatein=NOW(),fname='$name',task_id='$task_id',student_id='$session_id' WHERE student_task_id='$student_task_id'") or die(mysqli_error($conn));
+                    ($qry2 = "UPDATE tbl_student_task SET fdesc='$fdesc',floc='$relative_file_path',task_fdatein=NOW(),fname='$name',task_id='$task_id',student_id='$session_id' WHERE student_task_id='$student_task_id'") or die(mysqli_error($conn));
                 } else {
                     ($qry2 = "INSERT INTO tbl_student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) 
-                    VALUES ('$filedesc','$relative_file_path',NOW(),'$name','$task_id','$session_id')") or
+                    VALUES ('$fdesc','$relative_file_path',NOW(),'$name','$task_id','$session_id')") or
                         die(mysqli_error());
                 }
 
@@ -138,84 +118,15 @@ if (
 
                         $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
                         session_write_close();
+                        }
+    }
+    }
                         ?>
-<script>
-window.location = 'downloadable.php<?php echo '?id=' . $get_id; ?>';
-</script>
-<?php exit();
-                    }
-                }
-            } else {
-                //unsuccessful upload
-                //echo "Error: A problem occurred during file upload!";
-                $errmsg_arr[] =
-                    'upload of file ' . $filename . ' was unsuccessful';
-                $errflag = true;
-                if ($errflag) {
 
-                    $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-                    session_write_close();
-                    ?>
-<script>
-window.location = 'downloadable.php<?php echo '?id=' . $get_id; ?>';
-</script>
-
-
-<?php exit();
-                }
-            }
-        } else {
-            //existing upload
-            // echo "Error: File ".$_FILES["uploaded_file"]["name"]." already exists";
-            $errmsg_arr[] =
-                'Error: File >>' .
-                $_FILES['uploaded_file']['name'] .
-                '<< already exists';
-            $errflag = true;
-            if ($errflag) {
-
-                $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-                session_write_close();
-                ?>
-<script>
-window.location = 'downloadable.php<?php echo '?id=' . $get_id; ?>';
-</script>
-<?php exit();
-            }
-        }
-    } else {
-        //wrong file upload
-        //echo "Error: Only .jpg images under 350Kb are accepted for upload";
-        $errmsg_arr[] =
-            'Error: All file types except .exe file under 5 Mb are not accepted for upload';
-        $errflag = true;
-        if ($errflag) {
-
-            $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-            session_write_close();
-            ?>
-<script>
-window.location = 'downloadable.php<?php echo '?id=' . $get_id; ?>';
-</script>
-<?php exit();
-        }
-    }
-} else {
-    //no file to upload
-    //echo "Error: No file uploaded";
-    $errmsg_arr[] = 'Error: No file uploaded';
-    $errflag = true;
-    if ($errflag) {
-
-        $_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-        session_write_close();
-        ?>
-<script>
-window.location = 'downloadable.php<?php echo '?id=' . $get_id; ?>';
-</script>
 <?php exit();
     }
-}
+    }
+    }
 
 mysqli_close();
 ?>

@@ -87,14 +87,26 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Description</label>
+                                                <label>Description (Optional)</label>
                                                 <textarea id="summernote" class="form-control" name="desc" rows="4"
                                                     placeholder="Enter description"></textarea>
                                             </div>
                                         </div>
                                         <div class="card-footer d-flex w-100 justify-content-center align-items-center">
+                                            <?php 
+                                            $query = mysqli_query(
+                                            $conn,
+                                            "SELECT * FROM tbl_student_task WHERE student_id  =  '$session_id' AND task_id  =  '$post_id' "
+                                            ) or die(mysqli_error());
+                                            $count = mysqli_num_rows($query);
+
+                                            if ($count > 0) {  
+                                                
+                                               } else { 
+                                                ?>
                                             <center><button name="upload" type="submit" value="Upload"
                                                     class="btn btn-success">Submit</button></center>
+                                            <?php }  ?>
                                         </div>
                                     </div>
                                 </div>
@@ -294,10 +306,10 @@
                 url: "admin/upload_task.php",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Success", "Activity Successfully Uploaded");
+                    toastr.success("Success","Activity Successfully Uploaded");
                     setTimeout(function() {
                         window.location.reload();
-                    }, 2000);
+                    }, 1000);
                 },
                 cache: false,
                 contentType: false,

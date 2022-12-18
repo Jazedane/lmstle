@@ -92,8 +92,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="feedback">Feedback</label>
-                                        <textarea id="summernote" placeholder="Description" name="desc"
+                                        <label for="feedback">Description (Optional)</label>
+                                        <textarea id="summernote" placeholder="Description" name="fdesc"
                                             class="form-control" value=""><?php echo $result['fdesc']; ?></textarea>
                                     </div>
                                 </div>

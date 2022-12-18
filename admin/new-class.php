@@ -42,7 +42,7 @@
                                     <div class="form-group">
                                         <label>Grade</label>
                                         <select name="grade" class="form-control" placeholder="Gender" required>
-                                            <option>SELECT GRADE</option>
+                                            <option selected disabled hidden>SELECT GRADE</option>
                                             <option>7</option>
                                             <option>8</option>
                                             <option>9</option>
@@ -57,7 +57,7 @@
                                     <div class="form-group">
                                         <label>Subject:</label>
                                         <select name="subject_id" class="form-control" required>
-                                            <option></option>
+                                            <option selected disabled hidden>SELECT SUBJECT</option>
                                             <?php
                                             $query = mysqli_query(
                                                 $conn,
@@ -82,7 +82,7 @@
                                     <div class="form-group">
                                         <label>School Year:</label>
                                         <select name="school_year_id" class="form-control" required>
-                                            <option></option>
+                                            <option selected disabled hidden>SELECT SCHOOL YEAR</option>
                                             <?php
                                             $query = mysqli_query(
                                                 $conn,
