@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-sm-6">
                         <?php 
-                        $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                        $task_status = array("Pending","On-Progress","Over Due","Done");
                         $p_condition = array("Alive","Withered","Dead");
                         $class_query = mysqli_query($conn,"select * from tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
@@ -96,35 +96,31 @@
                                             $task_name = $row['fname'];
 									        ?>
                                             <tr>
-                                                <td><?php $task_fdatein = date_create($row['task_fdatein']);
+                                                <td width="220"><?php $task_fdatein = date_create($row['task_fdatein']);
                                                     echo date_format(
                                                     $task_fdatein,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                                 </td>
                                                 <td><?php  echo $row['fname']; ?></td>
                                                 <td><?php echo $row['fdesc']; ?></td>
                                                 <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
-                                                <td class="project-state">
+                                                <td class="project-state" width="60">
                                                     <?php
                             					if($row['task_status'] =='0') {
                               						echo "<span class='badge badge-secondary'>Pending</span>";
                             					}elseif($row['task_status'] =='1'){
-                              						echo "<span class='badge badge-primary'>Started</span>";
-                            					}elseif($row['task_status'] =='2'){
                               						echo "<span class='badge badge-info'>On-Progress</span>";
-                            					}elseif($row['task_status'] =='3'){
-                              						echo "<span class='badge badge-warning'>On-Hold</span>";
-                            					}elseif($row['task_status'] =='4'){
+                            					}elseif($row['task_status'] =='2'){
                               						echo "<span class='badge badge-danger'>Overdue</span>";
-                            					}elseif($row['task_status'] =='5'){
+                            					}elseif($row['task_status'] =='3'){
                               						echo "<span class='badge badge-success'>Done</span>";
                             					}
                                                 ?>
                                                 </td>
-                                                <td><center><a href="<?php echo $row['floc']; ?>" target="_blank"><i
-                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></center></td>
-                                                <td width="40"><center><span class="badge badge-success"><?php  echo $row['grade']; ?></span></center></td>
+                                                <td width="100"><a href="<?php echo $row['floc']; ?>" target="_blank"><i
+                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></td>
+                                                <td width="40"><span class="badge badge-success"><?php  echo $row['grade']; ?></span></td>
                                                 <td width="40">
                                                     <a class="btn btn-success"
                                                         href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i

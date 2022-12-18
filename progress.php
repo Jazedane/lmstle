@@ -19,7 +19,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <?php 
-                	$task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                	$task_status = array("Pending","On-Progress","Over Due","Done");
 					$class_query = mysqli_query($conn,"select * from tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
                                         LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
@@ -57,9 +57,9 @@
                                     <thead>
                                         <tr>
                                             <th>Date Submitted</th>
-                                            <th>Task Name</th>
+                                            <th><center>Task Name<center></th>
                                             <th>Status</th>
-                                            <th>Feedback</th>
+                                            <th><center>Feedback<center></th>
                                             <th>Points</th>
                                         </tr>
 
@@ -76,34 +76,36 @@
 										$student_id = $row['student_id'];
 									?>
                                         <tr>
-                                            <td><?php $task_fdatein = date_create($row['task_fdatein']);
+                                            <td width="220"><?php $task_fdatein = date_create($row['task_fdatein']);
                                                     echo date_format(
                                                     $task_fdatein,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                             </td>
-                                            <td><?php  echo $row['fname']; ?></td>
-                                            <td class="project-state">
-                                                <?php
+                                            <td>
+                                                <center><?php  echo $row['fname']; ?></center>
+                                            </td>
+                                            <td class="project-state" width="40">
+                                                <center>
+                                                    <?php
                             					if($task_status[$row['task_status']] =='Pending'){
                               						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['task_status']] =='Started'){
-                              						echo "<span class='badge badge-primary'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='On-Progress'){
-                              						echo "<span class='badge badge-info'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['task_status']] =='On-Hold'){
-                              						echo "<span class='badge badge-warning'>{$task_status[$row['task_status']]}</span>";
+                              						echo "<span class='badge badge-primary'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='Over Due'){
                               						echo "<span class='badge badge-danger'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='Done'){
                               						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
                             					}
-                          						?>
+                          						?></center>
                                             </td>
-                                            <td><?php  echo $row['feedback']; ?></td>
+                                            <td><center><?php  echo $row['feedback']; ?><center></td>
                                             <?php if ($session_id == $student_id){ ?>
-                                            <td>
-                                                <span class="badge badge-success"><?php echo $row['grade']; ?></span>
+                                            <td width="40">
+                                                <center>
+                                                    <span
+                                                        class="badge badge-success"><?php echo $row['grade']; ?></span>
+                                                </center>
                                             </td>
                                             <?php }else{ ?>
                                             <td></td>

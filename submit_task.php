@@ -36,7 +36,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <?php 
-                            $task_status = array("Pending","Started","On-Progress","On-Hold","Over Due","Done");
+                            $task_status = array("Pending","On-Progress","Over Due","Done");
                             $class_query = mysqli_query($conn,"SELECT * FROM tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
                                         LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
@@ -58,10 +58,10 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Add Task</h3>
+                                <h3 class="card-title">Submit Task</h3>
                             </div>
                             <form id="add_task" method="post" enctype="multipart/form-data">
                                 <div class="card-body">
@@ -89,17 +89,65 @@
                                             <div class="form-group">
                                                 <label>Description</label>
                                                 <textarea id="summernote" class="form-control" name="desc" rows="4"
-                                                    placeholder="Enter description" auto-complete="off"></textarea>
+                                                    placeholder="Enter description"></textarea>
                                             </div>
                                         </div>
                                         <div class="card-footer d-flex w-100 justify-content-center align-items-center">
-                                            <center><button name="Upload" type="submit" value="Upload"
-                                                    class="btn btn-success">Submit</button>
-                                            </center>
+                                            <center><button name="upload" type="submit" value="Upload"
+                                                    class="btn btn-success">Submit</button></center>
                                         </div>
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <?php
+							$query = mysqli_query($conn,"SELECT * FROM tbl_task where task_id = '$post_id' ")or die(mysqli_error());
+							$row = mysqli_fetch_array($query);		
+						?>
+                        <div class="callout callout-success">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <dl>
+                                            <dt><b class="border-bottom border-success">Task Name</b></dt>
+                                            <dd><?php  echo $row['fname']; ?></dd>
+                                            <dt><b class="border-bottom border-success">Instruction</b></dt>
+                                            <dd><?php  echo $row['fdesc']; ?></dd>
+                                            <dt><b class="border-bottom border-success">Points</b></dt>
+                                            <dd><span
+                                                    class="badge badge-success"><?php  echo $row['total_points']; ?></span>
+                                            </dd>
+                                            <dt><b class="border-bottom border-success">Due Date</b></dt>
+                                            <dd><?php $end_date = date_create($row['end_date']);
+                                                    echo date_format(
+                                                    $end_date,
+                                                    'F d, Y h:i A'
+                                                    ); ?></dd>
+                                            <dt><b class="border-bottom border-success">Time Left</b></dt>
+                                            <dd id="<?php echo $row[
+                                                'task_id'
+                                                ]; ?>-running-due">
+                                                <script>
+                                                $(document).ready(function() {
+                                                    setInterval(() => {
+                                                        calculateTimeLeft(
+                                                            '<?php echo $row[
+                                                                'task_id'
+                                                            ]; ?>-running-due',
+                                                            '<?php echo $row[
+                                                                'end_date'
+                                                            ]; ?>'
+                                                        );
+                                                    }, 1000)
+                                                })
+                                                </script>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -123,7 +171,8 @@
 									
 									?>
                                 <div class="alert alert-primary">Submit Activity in :
-                                    <b><?php echo $row['fname']; ?></b></div>
+                                    <b><?php echo $row['fname']; ?></b>
+                                </div>
                                 <div id="">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
@@ -132,7 +181,6 @@
                                                 <th>Activity Name</th>
                                                 <th>Description</th>
                                                 <th>Status</th>
-                                                <th>Submitted by:</th>
                                                 <th>Feedback</th>
                                                 <th>Points</th>
                                                 <th>Action</th>
@@ -150,10 +198,10 @@
 										$student_id = $row['student_id'];
 									    ?>
                                             <tr>
-                                                <td><?php $task_fdatein = date_create($row['task_fdatein']);
+                                                <td width="220"><?php $task_fdatein = date_create($row['task_fdatein']);
                                                     echo date_format(
                                                     $task_fdatein,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                                 </td>
                                                 <td><?php  echo $row['fname']; ?></td>
@@ -162,12 +210,8 @@
                                                     <?php
                             					if($task_status[$row['task_status']] =='Pending'){
                               						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['task_status']] =='Started'){
-                              						echo "<span class='badge badge-primary'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='On-Progress'){
-                              						echo "<span class='badge badge-info'>{$task_status[$row['task_status']]}</span>";
-                            					}elseif($task_status[$row['task_status']] =='On-Hold'){
-                              						echo "<span class='badge badge-warning'>{$task_status[$row['task_status']]}</span>";
+                              						echo "<span class='badge badge-primary'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='Over Due'){
                               						echo "<span class='badge badge-danger'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='Done'){
@@ -175,7 +219,6 @@
                             					}
                           						?>
                                                 </td>
-                                                <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                 <td><?php echo $row['feedback']; ?></td>
                                                 <?php if ($session_id == $student_id){ ?>
                                                 <?php
@@ -251,7 +294,7 @@
                 url: "admin/upload_task.php",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Activity Successfully Uploaded");
+                    toastr.success("Success", "Activity Successfully Uploaded");
                     setTimeout(function() {
                         window.location.reload();
                     }, 2000);
@@ -281,6 +324,38 @@
             "responsive": true,
         });
     });
+    </script>
+    <script>
+    /**
+     * Calculates the time left for a task
+     * 
+     * @param {string} elementId - The id of the element to update
+     * @param {string} dueDate - The due date of the task
+     */
+    function calculateTimeLeft(targetElement, _dueDate) {
+        var now = new Date();
+        var dueDate = new Date(_dueDate);
+        var diff = dueDate.getTime() - now.getTime();
+
+        if (isNaN(diff)) {
+            $(`#${targetElement}`).html('<span class="badge badge-warning">Invalid Date</span>');
+            return;
+        }
+
+        if (diff <= 0) {
+            $(`#${targetElement}`).html('<span class="badge badge-danger">Deadline has Passed</span>');
+            return;
+        }
+
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        $(`#${targetElement}`).html(days + " days " + hours + " hours " + minutes + " minutes " +
+            seconds +
+            " seconds ");
+    }
     </script>
 </body>
 

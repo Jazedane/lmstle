@@ -25,7 +25,8 @@ function clean($str)
 }
 
 //Sanitize the POST values
-$filedesc = clean($_POST['desc']);
+$processed_desc = isset($_POST['desc']) ? $_POST['desc'] : 'no description';
+$filedesc = clean($processed_desc);
 //$subject= clean($_POST['upname']);
 
 if ($filedesc == '') {

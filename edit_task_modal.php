@@ -145,7 +145,7 @@
                 success: function(html) {
                     toastr.success("Activity Successfully Uploaded");
                     setTimeout(function() {
-                        window.location.reload();
+                        window.location = 'submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$post_id ?>';
                     }, 2000);
                 },
                 cache: false,

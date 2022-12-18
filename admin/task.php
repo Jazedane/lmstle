@@ -51,7 +51,7 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Create Task</h3>
@@ -165,12 +165,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row">
                     <div class="col-md-3">
                         <div class="card card-success">
                             <div class="card-header">
@@ -235,10 +229,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Score</label>
-                                        <input id="task_grade" type="number" name="grade" class="form-control" placeholder="Enter Score"
-                                            maxlength="3" min="0" required>
-                                        <p id="task_grade_helper_text"></p>
+                                        <label>Score <a id="task_grade_helper_text"></a></label>
+                                        <input id="task_grade" type="number" name="grade" class="form-control"
+                                            placeholder="Enter Score" maxlength="3" min="1" max="100" required>
+
                                     </div>
                                     <div class="card-footer">
                                         <center><button name="add" type="submit" value="Upload"
@@ -252,7 +246,6 @@
                             $task_id = $_POST['task_id'];
                             $grade = $_POST['grade'];
 
-
                             $query = mysqli_query(
                             $conn,
                             "SELECT * FROM tbl_student_task WHERE student_id  =  '$student_id' AND task_id  =  '$task_id' "
@@ -261,17 +254,17 @@
 
                             if ($count > 0) { ?>
                             <script>
-                            toastr.warning("Student Task Already Exists!");
+                            toastr.warning("Student Points Already Exists!");
                             setTimeout(function() {
                                 window.location = "task.php<?php echo '?id='.$get_id ?>";
                             }, 1000);
                             </script>
                             <?php } else {mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_fdatein = NOW(), 
-                            task_id ='$task_id', grade='$grade'")
+                            task_id ='$task_id', grade='$grade', task_status= '3'")
                             or die(mysqli_error($conn));
                             ?>
                             <script>
-                            toastr.warning("Points Successfully Added!");
+                            toastr.success("Success","Points Successfully Added!");
                             setTimeout(function() {
                                 window.location = "task.php<?php echo '?id='.$get_id ?>";
                             }, 1000);
@@ -279,7 +272,14 @@
                             <?php } } ?>
                         </div>
                     </div>
-                    <div class="col-md-9">
+                </div>
+            </div>
+        </section>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Tasks</h3>
@@ -305,7 +305,7 @@
                                             "SELECT * FROM tbl_task 
                                             LEFT JOIN tbl_grade_category ON tbl_grade_category.grade_category_id = tbl_task.grade_category_id
                                             WHERE tbl_task.class_id = '$get_id' AND teacher_id = '$session_id' AND isDeleted=false
-                                            ORDER BY fdatein DESC "
+                                            ORDER BY fdatein DESC"
                                         )) or die(mysqli_error($conn));
                                         while (
                                             $row = mysqli_fetch_array($query)
@@ -315,32 +315,30 @@
                                             $floc = $row['floc'];
                                             ?>
                                         <tr>
-                                            <td><?php $fdatein = date_create($row['fdatein']);
+                                            <td width="220"><?php $fdatein = date_create($row['fdatein']);
                                                     echo date_format(
                                                     $fdatein,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                             </td>
                                             <td><?php echo $row[
                                                 'fname'
                                             ]; ?></td>
-                                            <td>
-                                                <center><?php echo $row[
+                                            <td width="60"><?php echo $row[
                                                 'quarter'
-                                            ]; ?></center>
+                                            ]; ?>
                                             </td>
                                             <td><?php echo $row[
                                                 'category_name'
                                             ]; ?></td>
-                                            <td>
-                                                <center><?php echo $row[
+                                            <td width="40"><?php echo $row[
                                                 'total_points'
-                                            ]; ?></center>
+                                            ]; ?>
                                             </td>
-                                            <td><?php $end_date = date_create($row['end_date']);
+                                            <td width="220"><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
                                                     $end_date,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                             </td>
                                             <td id="<?php echo $row[
@@ -361,23 +359,25 @@
                                                 })
                                                 </script>
                                             </td>
-                                            <td width="40">
+                                            <td width="100">
                                                 <div class="justify content-between">
                                                     <form method="post" action="view_submit_task.php<?php echo '?id=' .
                                                     $get_id; ?>&<?php echo 'post_id=' .$id; ?>">
 
                                                         <button data-placement="bottom"
                                                             title="View Student Who Submit Activity"
-                                                            id="<?php echo $id; ?>view" class="btn btn-success"><i
+                                                            id="<?php echo $id; ?>view"
+                                                            class="btn btn-success float-left"><i
                                                                 class="fas fa-folder"></i></button>
+
                                                         <a data-placement="bottom" title="Remove"
                                                             id="<?php echo $id; ?>remove"
-                                                            class="btn btn-danger float-left"
+                                                            class="btn btn-danger float-right"
                                                             href="#del<?php echo $id; ?>" data-toggle="modal"><i
                                                                 class="fas fa-trash"></i></a>
                                                         <?php include 'delete_task_modal.php'; ?>
+                                                    </form>
                                                 </div>
-                                                </form>
                                                 <?php if ($floc == '') {
                                                 } else {
                                                      ?>
@@ -560,7 +560,7 @@
         var diff = dueDate.getTime() - now.getTime();
 
         if (isNaN(diff)) {
-            $(`#${targetElement}`).html('<span class="badge badge-danger">Invalid Date</span>');
+            $(`#${targetElement}`).html('<span class="badge badge-warning">Invalid Date</span>');
             return;
         }
 

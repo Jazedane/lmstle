@@ -116,28 +116,16 @@
                                             1
                                                 ? 'selected'
                                                 : ''; ?>>
-                                                Started
+                                                On-Progress
                                             </option>
                                             <option value="2" <?php echo $task_status ==
                                             2
                                                 ? 'selected'
                                                 : ''; ?>>
-                                                On-Progress
+                                                Overdue
                                             </option>
                                             <option value="3" <?php echo $task_status ==
                                             3
-                                                ? 'selected'
-                                                : ''; ?>>
-                                                On-Hold
-                                            </option>
-                                            <option value="4" <?php echo $task_status ==
-                                            4
-                                                ? 'selected'
-                                                : ''; ?>>
-                                                Overdue
-                                            </option>
-                                            <option value="5" <?php echo $task_status ==
-                                            5
                                                 ? 'selected'
                                                 : ''; ?>>
                                                 Done
@@ -192,7 +180,7 @@
                 success: function(html) {
                     toastr.success("Task Edited Successfully");
                     setTimeout(function() {
-                        window.location.reload();
+                        window.location = 'view_submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$post_id ?>';
                     }, 2000);
                 },
                 cache: false,

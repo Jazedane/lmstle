@@ -55,7 +55,8 @@
                                         ($query = mysqli_query(
                                         $conn,
                                             "SELECT * FROM tbl_teacher_class 
-                                            LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id and tbl_teacher_class.school_year_id 
+                                            LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
+                                            LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
                                             WHERE teacher_id = '$session_id' 
                                                 AND tbl_class.isDeleted = false"
                                         )) or die(mysqli_error());
@@ -74,7 +75,14 @@
                                                 <img class="card-img-top" src="<?php echo $row['thumbnails']; ?>"
                                                     alt="Card image cap">
                                                 <div class="card-body">
-                                                    <center><p class="card-text"><b><?php echo $row['class_name']; ?></b></p></center>
+                                                    <center>
+                                                        <p class="card-text"><b><?php echo $row['class_name']; ?></b>
+                                                        </p>
+                                                    </center><br>
+                                                    <center>
+                                                        <p class="card-text"><b><?php echo $row['school_year']; ?></b>
+                                                        </p>
+                                                    </center>
                                                 </div>
                                             </a>
                                         </div>

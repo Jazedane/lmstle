@@ -12,7 +12,7 @@ $total_points = $_POST['total_points'];
 $end_date = $_POST['end_date'];
 $quarter = $_POST['quarter'];
 $get_id = $_GET['id'];
-$name_notification = 'New Activity Added: <b>' . $name . '</b>';
+$name_notification = 'New Task Added: <b>' . $name . '</b>';
 $parse_end_date=date('Y-m-d h:i:sa',strtotime($end_date));
 $grade_category_id = $_POST['grade_category_id'];
 

@@ -70,7 +70,9 @@
                                 <a href=" my_classmates.php<?php echo '?id=' . $id; ?>">
                                 <img class="card-img-top" src="<?php echo $row['thumbnails']; ?>" alt="Card image cap">
                                 <div class="card-body">
-                                    <center><p class="card-text"><b><?php echo $row['class_name']; ?></b></p></center>
+                                    <center><p class="card-text"><b><?php echo $row['class_name']; ?></b></p></center><br>
+                                    <center><p class="card-text"><b><?php echo $row['firstname']." ".$row['lastname']; ?></b></p></center>
+                                    <center><p class="card-text"><b><?php echo $row['school_year']; ?></b></p></center>
                                 </div>
                                 </a>
                             </div>

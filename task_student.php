@@ -82,7 +82,6 @@
                                         <tr>
                                             <th>Date Upload</th>
                                             <th>Task Name</th>
-                                            <th>Description</th>
                                             <th>Quarter</th>
                                             <th>Due Date</th>
                                             <th>Points</th>
@@ -107,24 +106,23 @@
                                             $floc = $row['floc'];
                                             ?>
                                         <tr>
-                                            <td><?php $fdatein = date_create($row['fdatein']);
+                                            <td width="220"><?php $fdatein = date_create($row['fdatein']);
                                                     echo date_format(
                                                     $fdatein,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                             </td>
                                             <td><?php echo $row['fname']; ?></td>
-                                            <td><?php echo $row['fdesc']; ?></td>
-                                            <td><center><?php echo $row[
+                                            <td width="40"><center><?php echo $row[
                                                 'quarter'
                                             ]; ?></center></td>
-                                            <td><?php $end_date = date_create($row['end_date']);
+                                            <td width="220"><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
                                                     $end_date,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                             </td>
-                                            <td><center><?php echo $row['total_points']; ?></center></td>
+                                            <td width="40"><center><?php echo $row['total_points']; ?></center></td>
                                             <td id="<?php echo $row['task_id'] ?>-running-due">
                                                 <script>
                                                 $(document).ready(function() {
@@ -137,7 +135,7 @@
                                                 })
                                                 </script>
                                             </td>
-                                            <td width="140">
+                                            <td width="100">
                                                 <form id="assign_save" method="post" action="submit_task.php<?php echo '?id=' .
                                                     $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
                                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -214,7 +212,7 @@
         var diff = dueDate.getTime() - now.getTime();
 
         if (isNaN(diff)) {
-            $(`#${targetElement}`).html('<span class="badge badge-danger">Invalid Date</span>');
+            $(`#${targetElement}`).html('<span class="badge badge-warning">Invalid Date</span>');
             return;
         }
 
