@@ -101,16 +101,18 @@
                                         <?php
                                         $student_task_query = mysqli_query(
                                             $conn,
-                                            "select * from tbl_student_task left join tbl_task on tbl_task.task_id = tbl_student_task.task_id where student_id = '$student_id' AND tbl_task.class_id='$get_id';"
+                                            "select * from tbl_student_task 
+                                            left join tbl_task on tbl_task.task_id = tbl_student_task.task_id where student_id = '$student_id' 
+                                            AND tbl_task.class_id='$get_id' order by task_date_upload;"
                                         ) or die(mysqli_error());
                                         while ($student_task_row = mysqli_fetch_array(
                                             $student_task_query
                                         )) {
-                                            $submission_date = $student_task_row[
-                                                'task_fdatein'
+                                            $submission_date =  $student_task_row[
+                                                'task_date_upload'
                                             ];
                                             $task_title = $student_task_row[
-                                                'fname'
+                                                'task_name'
                                             ];
                                             $task_id = $student_task_row[
                                                 'task_id'
@@ -120,16 +122,24 @@
                                             ];
                                         ?>
                                         <tr>
-                                            <td><?php echo $submission_date; ?></td>
+                                            <td><?php $submission_date =  date_create($student_task_row[
+                                                'task_date_upload']);
+                                                    echo date_format(
+                                                    $submission_date,
+                                                    'F d, Y h:i A'
+                                                    );  ?></td>
                                             <td><?php echo $task_title; ?></td>
                                             <td><?php echo $student_task_row['grade']; ?>/<?php echo $student_task_row['total_points'] ?>
                                             </td>
-                                            <td><div class="justify content-between">
-                                                <a class="btn btn-success" href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>">View
-                                                    Task Summary</a>
-                                                <a class="btn btn-success"
-                                                    href="http://localhost/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>">Edit
-                                                    Grade</a></div>
+                                            <td>
+                                                <div class="justify content-between">
+                                                    <a class="btn btn-success"
+                                                        href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>">View
+                                                        Task Summary</a>
+                                                    <a class="btn btn-success"
+                                                        href="http://localhost/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>">Edit
+                                                        Grade</a>
+                                                </div>
                                             </td>
                                         </tr>
                                         <?php } ?>

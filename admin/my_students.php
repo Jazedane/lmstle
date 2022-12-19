@@ -79,7 +79,7 @@
                                                 <?php echo $row['firstname']." <br> ".$row['lastname']?></p>
                                         </center>
                                     </div>
-                                    <?php include 'student-info-modal.php'; }?>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </div>

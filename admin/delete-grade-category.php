@@ -1,14 +1,8 @@
 <?php
-require_once('./config/confirmation.php');
-	if (isset($_POST['delete_category'])) {
-		 $grade_category_id = $_POST['grade_category_id'];
-         $get_id = $_POST['get_id'];
+include 'database.php';
 
-		 $sql = "DELETE FROM `tbl_grade_category` WHERE grade_category_id = $grade_category_id ";
-          $result = mysqli_query($db->connection,$sql);
-	}
+$id = $_POST['id'];
+
+$query= mysqli_query($conn, "DELETE FROM `tbl_grade_category` WHERE grade_category_id = $id ") or die(mysqli_error());
+
 ?>
-<script>
-    alert("Grade Category Successfully Deleted");
-	window.location = 'grade-category.php<?php echo '?id=' . $get_id; ?>'
-</script>

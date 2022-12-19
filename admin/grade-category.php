@@ -129,7 +129,7 @@
                                     <div class="col-md-3">
                                         <a data-toggle="modal"
                                             data-target="#delete<?php echo $grade_category_row['grade_category_id'];?>"
-                                            id="delete" name=""><i class="fas fa-trash"></i></a>
+                                            id="delete" name="delete_category"><i class="fas fa-trash"></i></a>
                                         <?php include 'delete-grade-category-modal.php'; ?>
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@
                                                 echo 100-$impact_percentage_total . "%"?></p>
                                     </div>
                                 </div>
-                                <form class="mt-5" action="category.php" method="post" enctype="multipart/form-data"
+                                <form class="mt-5" id="" method="post" enctype="multipart/form-data"
                                     name="upload">
                                     <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                                     <input type="hidden" name="get_id" value="<?php echo $get_id; ?>">
@@ -180,19 +180,53 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="number" name="impact_percentage" maxlength="2" max="<?php echo 100-$impact_percentage_total; ?>"
+                                                <input type="number" name="impact_percentage" maxlength="2" min="1"
+                                                    max="<?php echo 100-$impact_percentage_total; ?>"
                                                     class="form-control" placeholder="Enter percentage" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
                                         <center>
-                                            <button class="btn btn-success" type="submit">Add Grade Category</button>
+                                            <button class="btn btn-success" name="add" type="submit">Add Grade
+                                                Category</button>
                                             <input type="reset" class="btn btn-danger " id="reset" name="reset"
                                                 value="Cancel">
                                         </center>
                                     </div>
                                 </form>
+                                <?php if (isset($_POST['add'])) {
+                                $category_name = $_POST['category_name'];
+                                $impact_percentage = $_POST['impact_percentage'];
+                                $class_id = $_POST['class_id'];
+
+                                $query = mysqli_query(
+                                    $conn,
+                                    "SELECT * FROM tbl_grade_category WHERE category_name  =  '$category_name' "
+                                    ) or die(mysqli_error());
+                                    $count = mysqli_num_rows($query);
+
+                                if ($count > 0) { ?>
+                                <script>
+                                toastr.warning("Warning","Category Name Already Exists!");
+                                setTimeout(function() {
+                                    window.location = "grade-category.php<?php echo '?id='.$get_id ?>";
+                                }, 1000);
+                                </script>
+                                <?php } else {mysqli_query(
+                                    $conn,
+                                    "INSERT INTO tbl_grade_category (category_name,class_id,impact_percentage) 
+                                                VALUES ('$category_name','$class_id','$impact_percentage')"
+                                ) or die(mysqli_error($conn));
+
+                                ?>
+                                <script>
+                                toastr.success("Success","Grade Category Added!");
+                                setTimeout(function() {
+                                    window.location = "grade-category.php<?php echo '?id='.$get_id ?>";
+                                }, 1000);
+                                </script>
+                                <?php } } ?>
                             </div>
                         </div>
                     </div>
@@ -200,6 +234,42 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 100
+        });
+        $('.delete_category').click(function() {
+
+            var id = $(this).attr("id");
+            $.ajax({
+                type: "POST",
+                url: "delete-grade-category.php",
+                data: ({
+                    id: id
+                }),
+                cache: false,
+                success: function(html) {
+                    $("#delete" + id).fadeOut('slow',
+                        function() {
+                            $(this).remove();
+                        });
+                    $('#' + id).modal('hide');
+                    toastr.error("Deleted",
+                        "Grade Category Successfully Deleted."
+                    );
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                },
+            });
+            return false;
+        });
+    });
+    </script>
 </body>
 
 </html>
