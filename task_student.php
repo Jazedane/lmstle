@@ -59,7 +59,7 @@
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,
-                                    "SELECT * FROM tbl_task where class_id = '$get_id' AND isDeleted = false order by fdatein DESC"
+                                    "SELECT * FROM tbl_task where class_id = '$get_id' AND isDeleted = false order by date_upload DESC"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 ?>
@@ -70,7 +70,7 @@
                                 <?php
                                 ($query = mysqli_query(
                                     $conn,
-                                    "SELECT * FROM tbl_task WHERE class_id = '$get_id' order by fdatein DESC"
+                                    "SELECT * FROM tbl_task WHERE class_id = '$get_id' order by date_upload DESC"
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 if ($count == '0') { ?>
@@ -96,23 +96,23 @@
                                             $conn,
                                             "SELECT * FROM tbl_task 
                                             WHERE class_id = '$get_id' AND isDeleted = false
-                                            ORDER BY fdatein DESC"
+                                            ORDER BY date_upload DESC"
                                         )) or die(mysqli_error());
                                         while (
                                             $row = mysqli_fetch_array($query)
                                         ) {
 
                                             $id = $row['task_id'];
-                                            $floc = $row['floc'];
+                                            $task_file = $row['task_file'];
                                             ?>
                                         <tr>
-                                            <td width="220"><?php $fdatein = date_create($row['fdatein']);
+                                            <td width="220"><?php $date_upload = date_create($row['date_upload']);
                                                     echo date_format(
-                                                    $fdatein,
+                                                    $date_upload,
                                                     'F d, Y h:i A'
                                                     ); ?>
                                             </td>
-                                            <td><?php echo $row['fname']; ?></td>
+                                            <td><?php echo $row['task_name']; ?></td>
                                             <td width="40"><center><?php echo $row[
                                                 'quarter'
                                             ]; ?></center></td>
@@ -139,7 +139,7 @@
                                                 <form id="assign_save" method="post" action="submit_task.php<?php echo '?id=' .
                                                     $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
                                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                                    <?php if ($floc == '') {
+                                                    <?php if ($task_file == '') {
                                                     } else {
                                                          ?>
                                                     <?php

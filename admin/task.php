@@ -213,7 +213,7 @@
                                             "SELECT * FROM tbl_task 
                                             LEFT JOIN tbl_grade_category ON tbl_grade_category.grade_category_id = tbl_task.grade_category_id
                                             WHERE tbl_task.class_id = '$get_id' AND teacher_id = '$session_id' AND isDeleted=false
-                                            ORDER BY fdatein ASC"
+                                            ORDER BY date_upload ASC"
                                             );
                                             while (
                                                 $row = mysqli_fetch_array($query)
@@ -222,7 +222,7 @@
                                                 'task_id'
                                             ]; ?>">
                                                 <?php echo $row[
-                                                'fname'
+                                                'task_name'
                                             ]; ?> </option>
                                             <?php }
                                             ?>
@@ -306,27 +306,27 @@
                                             "SELECT * FROM tbl_task 
                                             LEFT JOIN tbl_grade_category ON tbl_grade_category.grade_category_id = tbl_task.grade_category_id
                                             WHERE tbl_task.class_id = '$get_id' AND teacher_id = '$session_id' AND isDeleted=false
-                                            ORDER BY fdatein DESC"
+                                            ORDER BY date_upload DESC"
                                         )) or die(mysqli_error($conn));
                                         while (
                                             $row = mysqli_fetch_array($query)
                                         ) {
 
                                             $id = $row['task_id'];
-                                            $floc = $row['floc'];
+                                            $task_file = $row['task_file'];
                                             ?>
                                         <tr>
-                                            <td width="220"><?php $fdatein = date_create($row['fdatein']);
+                                            <td width="220"><?php $date_upload = date_create($row['date_upload']);
                                                     echo date_format(
-                                                    $fdatein,
+                                                    $date_upload,
                                                     'F d, Y h:i A'
                                                     ); ?>
                                             </td>
                                             <td><?php echo $row[
-                                                'fname'
+                                                'task_name'
                                             ]; ?></td>
                                             <td><?php echo $row[
-                                                'fdesc'
+                                                'task_desc'
                                             ]; ?></td>
                                             <td width="60"><?php echo $row[
                                                 'quarter'
@@ -382,7 +382,7 @@
                                                         <?php include 'delete_task_modal.php'; ?>
                                                     </form>
                                                 </div>
-                                                <?php if ($floc == '') {
+                                                <?php if ($task_file == '') {
                                                 } else {
                                                      ?>
                                                 <?php

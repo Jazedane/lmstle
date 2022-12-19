@@ -34,7 +34,7 @@ while ($row = mysqli_fetch_array($student_query)) {
 
 mysqli_query(
     $conn,
-    "INSERT INTO tbl_task (fdesc,fdatein,teacher_id,class_id,fname,total_points,end_date,grade_category_id, quarter) 
+    "INSERT INTO tbl_task (task_desc,date_upload,teacher_id,class_id,task_name,total_points,end_date,grade_category_id, quarter) 
                 VALUES ('$filedesc',NOW(),'$session_id','$teacher_class_id','$name','$total_points','$parse_end_date','$grade_category_id','$quarter')"
 ) or die(mysqli_error());
 ?>

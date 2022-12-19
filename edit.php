@@ -2,9 +2,9 @@
 include('database.php');
 include('session.php');
 $student_task_id = $_POST['student_task_id'];
-$fname = $_POST['fname'];
-$fdesc = $_POST['fdesc'];
-$floc = $_POST['floc'];
+$task_name = $_POST['task_name'];
+$task_description = $_POST['task_description'];
+$task_file = $_POST['task_file'];
 
-$query = mysqli_query($conn,"UPDATE tbl_student_task SET fname='$fname',fdesc='$fdesc',floc='$floc' WHERE student_task_id='$student_task_id'")or die(mysqli_error());
+$query = mysqli_query($conn,"UPDATE tbl_student_task SET task_name='$task_name',task_description='$task_description',task_file='$task_file' WHERE student_task_id='$student_task_id'")or die(mysqli_error());
 ?>

@@ -18,8 +18,8 @@
 							WHERE student_task_id='$student_task_id'")or die(mysqli_error());
     $result = mysqli_fetch_assoc($query);
 
-    $fdesc = $result['fdesc'];
-    $floc = $result['floc'];
+    $task_description = $result['task_description'];
+    $task_file = $result['task_file'];
     ?>
 
 </head>
@@ -72,17 +72,17 @@
                                     <div class="form-group">
                                         <label for="activity_name">Activity Name</label>
                                         <input type="text" name="name" id="inputtask" class="form-control"
-                                            value="<?php echo $result['fname']; ?>" readonly>
+                                            value="<?php echo $result['task_name']; ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label" for="exampleInputFile">Activity</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <label for="formFileMultiple" class="custom-file-label"
-                                                    value="<?php echo $result['floc']; ?>">
+                                                    value="<?php echo $result['task_file']; ?>">
                                                 </label>
                                                 <input name="uploaded_file" class="custom-file-input" type="file"
-                                                    id="exampleInputFile" value="<?php echo $result['floc']; ?>"
+                                                    id="exampleInputFile" value="<?php echo $result['task_file']; ?>"
                                                     multiple required>
                                                 </input>
                                                 <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
@@ -93,8 +93,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="feedback">Description (Optional)</label>
-                                        <textarea id="summernote" placeholder="Description" name="fdesc"
-                                            class="form-control" value=""><?php echo $result['fdesc']; ?></textarea>
+                                        <textarea id="summernote" placeholder="Description" name="task_description"
+                                            class="form-control" value=""><?php echo $result['task_description']; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="card-footer">

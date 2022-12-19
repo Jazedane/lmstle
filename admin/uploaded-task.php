@@ -77,15 +77,15 @@
 										while($row = mysqli_fetch_array($query)){
 									?>
                                         <tr>
-                                            <td><?php $fdatein = date_create($row['fdatein']);
+                                            <td><?php $date_upload = date_create($row['date_upload']);
                                                     echo date_format(
-                                                    $fdatein,
+                                                    $date_upload,
                                                     'M/d/Y h:i a'
                                                     ); ?>
                                             </td>
                                             <td><?php echo $row['category_name']; ?></td>
-                                            <td><?php  echo $row['fname']; ?></td>
-                                            <td><?php echo $row['fdesc']; ?></td>
+                                            <td><?php  echo $row['task_name']; ?></td>
+                                            <td><?php echo $row['task_desc']; ?></td>
                                             <td><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
                                                     $end_date,

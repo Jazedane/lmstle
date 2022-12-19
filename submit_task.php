@@ -124,9 +124,9 @@
                                     <div class="col-sm-12">
                                         <dl>
                                             <dt><b class="border-bottom border-success">Task Name</b></dt>
-                                            <dd><?php  echo $row['fname']; ?></dd>
+                                            <dd><?php  echo $row['task_name']; ?></dd>
                                             <dt><b class="border-bottom border-success">Instruction</b></dt>
-                                            <dd><?php  echo $row['fdesc']; ?></dd>
+                                            <dd><?php  echo $row['task_desc']; ?></dd>
                                             <dt><b class="border-bottom border-success">Points</b></dt>
                                             <dd><span
                                                     class="badge badge-success"><?php  echo $row['total_points']; ?></span>
@@ -183,7 +183,7 @@
 									
 									?>
                                 <div class="alert alert-primary">Submit Activity in :
-                                    <b><?php echo $row['fname']; ?></b>
+                                    <b><?php echo $row['task_name']; ?></b>
                                 </div>
                                 <div id="">
                                     <table id="example1" class="table table-bordered table-striped">
@@ -202,22 +202,22 @@
                                         <tbody>
 
                                             <?php
-										$query = mysqli_query($conn,"select * FROM tbl_student_task
+										$query = mysqli_query($conn,"SELECT * FROM tbl_student_task
 										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
-										where task_id = '$post_id' order by task_fdatein DESC")or die(mysqli_error());
+										where task_id = '$post_id' order by task_date_upload DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];
 									    ?>
                                             <tr>
-                                                <td width="220"><?php $task_fdatein = date_create($row['task_fdatein']);
+                                                <td width="220"><?php $task_date_upload = date_create($row['task_date_upload']);
                                                     echo date_format(
-                                                    $task_fdatein,
+                                                    $task_date_upload,
                                                     'F d, Y h:i A'
                                                     ); ?>
                                                 </td>
-                                                <td><?php  echo $row['fname']; ?></td>
-                                                <td><?php echo $row['fdesc']; ?></td>
+                                                <td><?php  echo $row['task_name']; ?></td>
+                                                <td><?php echo $row['task_description']; ?></td>
                                                 <td class="project-state">
                                                     <?php
                             					if($task_status[$row['task_status']] =='Pending'){

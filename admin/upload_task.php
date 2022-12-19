@@ -14,7 +14,7 @@ $get_id = $_POST['get_id'];
 
 $is_update = isset($_GET['is_update']) ? $_GET['is_update'] : false;
 $student_task_id = $_POST['student_task_id'];
-$fdesc = $_POST['fdesc'];
+$task_description = $_POST['task_description'];
 //Function to sanitize values received from the form. Prevents SQL injection
 
 if (
@@ -76,10 +76,10 @@ if (
                 //successful upload
                 // echo "It's done! The file has been saved as: ".$newname;
                 if ($is_update) {
-                    ($qry2 = "UPDATE tbl_student_task SET fdesc='$fdesc',floc='$relative_file_path',task_fdatein=NOW(),fname='$name',task_id='$task_id',student_id='$session_id' WHERE student_task_id='$student_task_id'") or die(mysqli_error($conn));
+                    ($qry2 = "UPDATE tbl_student_task SET task_description='$task_description',task_file='$relative_file_path',task_date_upload=NOW(),task_name='$name',task_id='$task_id',student_id='$session_id' WHERE student_task_id='$student_task_id'") or die(mysqli_error($conn));
                 } else {
-                    ($qry2 = "INSERT INTO tbl_student_task (fdesc,floc,task_fdatein,fname,task_id,student_id) 
-                    VALUES ('$fdesc','$relative_file_path',NOW(),'$name','$task_id','$session_id')") or
+                    ($qry2 = "INSERT INTO tbl_student_task (task_description,task_file,task_date_upload,task_name,task_id,student_id) 
+                    VALUES ('$task_description','$relative_file_path',NOW(),'$name','$task_id','$session_id')") or
                         die(mysqli_error());
                 }
 

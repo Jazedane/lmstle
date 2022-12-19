@@ -162,7 +162,7 @@
                                                     AND tbl_task.teacher_id = '$session_id' 
                                                     AND isDeleted=false
                                                     AND tbl_task.quarter = '$quarter'
-                                                ORDER BY tbl_task.fname and tbl_task.total_points DESC "
+                                                ORDER BY tbl_task.task_name and tbl_task.total_points DESC "
                                             )) or die(mysqli_error());
                                             while (
                                                 $header_row = mysqli_fetch_array(
@@ -171,7 +171,7 @@
                                             ) {
 
                                                 $id = $header_row['task_id'];
-                                                $floc = $header_row['floc'];
+                                                $task_file = $header_row['task_file'];
 
                                                 /**
                                                  * Record the task ID to be used for individual student query later.
@@ -212,7 +212,7 @@
                                                 ?>
                                             <th width="120">
                                                 <?php echo $header_row[
-                                                    'fname'
+                                                    'task_name'
                                                 ]; ?>
                                                 <br><?php echo $header_row[
                                                     'category_name'

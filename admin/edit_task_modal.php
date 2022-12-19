@@ -83,13 +83,13 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="activity_name">Activity Name</label>
-                                        <input type="text" name="fname" id="inputtask" class="form-control" value="<?php echo $result[
-                                                'fname'
+                                        <input type="text" name="task_name" id="inputtask" class="form-control" value="<?php echo $result[
+                                                'task_name'
                                             ]; ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="feedback">Feedback (Optional)</label>
-                                        <textarea id="summernote" placeholder="Description" name="feedback"
+                                        <textarea id="summernote" placeholder="Feedback" name="feedback"
                                             class="form-control" rows="4" value=""><?php echo $result[
                                                 'feedback'
                                             ]; ?></textarea>

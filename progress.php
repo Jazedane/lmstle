@@ -20,7 +20,7 @@
                 <div class="row mb-2">
                     <?php 
                 	$task_status = array("Pending","On-Progress","Over Due","Done");
-					$class_query = mysqli_query($conn,"select * from tbl_teacher_class
+					$class_query = mysqli_query($conn,"SELECT * FROM tbl_teacher_class
 										LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
                                         LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
 										where teacher_class_id = '$get_id'")or die(mysqli_error());
@@ -70,20 +70,20 @@
 										$query = mysqli_query($conn,"SELECT * FROM tbl_student_task 
 										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
 										WHERE tbl_student_task.student_id = '$session_id' and tbl_student_task.isDeleted='false'
-										order by task_fdatein DESC")or die(mysqli_error());
+										order by task_date_upload DESC")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];
 									?>
                                         <tr>
-                                            <td width="220"><?php $task_fdatein = date_create($row['task_fdatein']);
+                                            <td width="220"><?php $task_date_upload = date_create($row['task_date_upload']);
                                                     echo date_format(
-                                                    $task_fdatein,
+                                                    $task_date_upload,
                                                     'F d, Y h:i A'
                                                     ); ?>
                                             </td>
                                             <td>
-                                                <center><?php  echo $row['fname']; ?></center>
+                                                <center><?php  echo $row['task_name']; ?></center>
                                             </td>
                                             <td class="project-state" width="40">
                                                 <center>
