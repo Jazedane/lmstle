@@ -59,7 +59,7 @@
                                         <button id="delete" class="btn btn-success" name="read"><i
                                                 class="fas fa-check"></i> Mark as Read</button>
 
-                                        <div style="margin-bottom: 10px;">
+                                        <div style="margin-bottom: 10px;margin-top: 10px;">
                                             <input type="checkbox" name="selectAll" id="checkAll" /> Select All
                                         </div>
 
@@ -142,20 +142,32 @@
                             </div>
 
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Notification</th>
-                                            <th>Notification Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                                <form id="delete_notif" method="post">
+                                    <table id="example2" class="table table-bordered table-striped">
+                                        <ul data-toggle="modal" href="#notif_delete" id="delete" class="btn btn-danger"
+                                            name="delete_notif"><i class="fas fa-trash"></i> Delete Notification</ul>
+                                        <?php include 'admin/modal_delete.php'; ?>
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" name="selectAll" id="checkAll1" />
+                                                    <script>
+                                                    $("#checkAll1").click(function() {
+                                                        $('input:checkbox').not(this).prop('checked', this
+                                                            .checked);
+                                                    });
+                                                    </script>
+                                                </th>
+                                                <th>Notification</th>
+                                                <th>Notification Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
                                          ($query = mysqli_query(
                                             $conn,
-                                        "SELECT * FROM tbl_notification 
+                                            "SELECT * FROM tbl_notification 
                                             LEFT JOIN tbl_teacher ON broadcaster_id=tbl_teacher.teacher_id
-                                            WHERE receiver_id = '$session_id' AND is_read = true ORDER by date DESC"
+                                            WHERE receiver_id = '$session_id' AND is_read = true ORDER BY date DESC"
                                         )) or die(mysqli_error());
                                         $count = mysqli_num_rows($query);
                                             if ($count > 0) {
@@ -166,37 +178,42 @@
                                             $is_read = $row['is_read'];
                                         ?>
 
-                                        <tr>
-                                            <td><strong><?php echo $row['firstname'] .
+                                            <tr>
+                                                <td width="30">
+                                                    <input id="checkAll1" class="uniform_on" name="selector[]"
+                                                        type="checkbox" value="<?php echo $id; ?>">
+                                                </td>
+                                                <td><strong><?php echo $row['firstname'] .
                                                 ' ' .
                                                 $row['lastname']; ?></strong>
 
-                                                <a class="btn-link" href="<?php echo $row[
+                                                    <a class="btn-link" href="<?php echo $row[
                                                 'link'
                                                 ]; ?>">
-                                                    <?php echo $row['message']; ?>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <?php
+                                                        <?php echo $row['message']; ?>
+                                                    </a>
+                                                </td>
+                                                <td width="160">
+                                                    <?php
                                                 $date = date_create($row['date']);
                                                 echo date_format(
                                                 $date,
-                                                'M/d/Y h:i:s a'
+                                                'F d, Y h:i: A'
                                                 );
                                                 ?>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
 
-                                        <?php
+                                            <?php
                                         }
                                         } else {
                                         ?>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -205,7 +222,40 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('.delete_notif').click(function() {
+            var selectedIds = $('[name="selector[]"]:checked').map((_,
+                element) => {
+                return $(element).val()
+            }).get()
 
+            $.ajax({
+                type: "POST",
+                url: "admin/delete_notification.php",
+                data: ({
+                    selector: selectedIds,
+                    delete_notif: true
+                }),
+                success: function(html) {
+                    toastr.error(
+                        "Notification Successfully Deleted"
+                    );
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                }
+            });
+            return false;
+        });
+    });
+    </script>
     <script>
     $(function() {
         $("#example1").DataTable({

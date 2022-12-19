@@ -23,7 +23,3 @@ if (isset($_POST['id'])) {
 }
 
 ?>
-<script>
-    alert("Class Successfully Deleted");
-    window.location = 'class.php';
-</script>
