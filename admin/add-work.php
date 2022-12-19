@@ -7,7 +7,7 @@ $grade = $_POST['grade'];
 $total_points = $_POST['total_points'];
 $impact = $_POST['impact'];
 
-$query = mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_fdatein = NOW(), 
+$query = mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_date_upload = NOW(), 
 task_id ='$task_id', grade='$grade',total_points='$total_points',impact='$impact'")
 or die(mysqli_error($conn));
 

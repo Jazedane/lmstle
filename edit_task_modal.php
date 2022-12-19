@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <center>
-                                        <button class="btn btn-success toastrDefaultSuccess" name="Upload" type="submit"
+                                        <button class="btn btn-success" name="Upload" type="submit"
                                             value="Upload">Save
                                             Changes</button>
                                     </center>

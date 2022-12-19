@@ -73,7 +73,8 @@
                                         <p class="text-muted"><?php echo $row['gender'];?></p>
                                         <hr>
                                         <strong><i class="fas fa-flag mr-1"></i>Birthday</strong>
-                                        <p class="text-muted"><?php echo $row['birthdate'];?></p>
+                                        <p class="text-muted"><?php $birthdate = date_create($row['birthdate']); 
+                                            echo date_format($birthdate,'F d, Y'); ?></p>
                                         <hr>
                                         <strong><i class="fas fa-book-open mr-1"></i>Address</strong>
                                         <p class="text-muted"><?php echo $row['address'];?></p>
@@ -136,7 +137,7 @@
                                 <input type="number" name="age" maxlength="2" min="15" max="25"
                                     value="<?php echo $row['age'];?>" class="form-control">
                                 <label class="float-left font-15">Phone number</label>
-                                <input type="number" name="phone_no" maxlength="11"
+                                <input type="number" name="phone_no" min="9000000000" maxlength="11" max="10000000000"
                                     value="<?php echo $row['phone_no'];?>" class="form-control">
                                 <label class="float-left font-15">Address</label>
                                 <textarea placeholder="Enter Address" name="address"

@@ -57,9 +57,10 @@
                                     <thead>
                                         <tr>
                                             <th>Date Submitted</th>
-                                            <th><center>Task Name<center></th>
+                                            <th><center>Task Name</center></th>
+                                            <th><center>File Uploaded</center></th>
                                             <th>Status</th>
-                                            <th><center>Feedback<center></th>
+                                            <th><center>Feedback</center></th>
                                             <th>Points</th>
                                         </tr>
 
@@ -85,6 +86,8 @@
                                             <td>
                                                 <center><?php  echo $row['task_name']; ?></center>
                                             </td>
+                                            <td width="160"><center><a href="<?php echo $row['task_file']; ?>" target="_blank"><i
+                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></td></center>
                                             <td class="project-state" width="40">
                                                 <center>
                                                     <?php

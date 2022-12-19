@@ -192,6 +192,7 @@
                                                 <th>Date Upload</th>
                                                 <th>Activity Name</th>
                                                 <th>Description</th>
+                                                <th>File Uploaded</th>
                                                 <th>Status</th>
                                                 <th>Feedback</th>
                                                 <th>Points</th>
@@ -218,6 +219,8 @@
                                                 </td>
                                                 <td><?php  echo $row['task_name']; ?></td>
                                                 <td><?php echo $row['task_description']; ?></td>
+                                                <td width="160"><center><a href="<?php echo $row['task_file']; ?>" target="_blank"><i
+                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></td></center>
                                                 <td class="project-state">
                                                     <?php
                             					if($task_status[$row['task_status']] =='Pending'){

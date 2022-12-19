@@ -259,7 +259,7 @@
                                 window.location = "task.php<?php echo '?id='.$get_id ?>";
                             }, 1000);
                             </script>
-                            <?php } else {mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_fdatein = NOW(), 
+                            <?php } else {mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_date_upload = NOW(), 
                             task_id ='$task_id', grade='$grade', task_status= '3'")
                             or die(mysqli_error($conn));
                             ?>

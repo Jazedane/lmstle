@@ -82,7 +82,7 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Student Submissions</h3>
-                                <div id="" class="float-sm-right"><a
+                                <div id="" class="float-right"><a
                                         href="my_students.php<?php echo '?id='.$get_id; ?>"><i
                                             class="fas fa-arrow-left"></i> Back</a></div>
                             </div>
