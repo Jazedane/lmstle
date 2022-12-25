@@ -202,7 +202,7 @@
 
                                 $query = mysqli_query(
                                     $conn,
-                                    "SELECT * FROM tbl_grade_category WHERE category_name  =  '$category_name' "
+                                    "SELECT * FROM tbl_grade_category WHERE category_name  =  '$category_name' AND class_id = '$class_id' "
                                     ) or die(mysqli_error());
                                     $count = mysqli_num_rows($query);
 

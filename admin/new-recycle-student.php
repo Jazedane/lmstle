@@ -58,8 +58,6 @@
                                                     Student</a>
                                                 <a href="new-recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
-                                                <a href="new-recycle-student-task.php" class="dropdown-item" type="button">
-                                                    Student Task</a>
                                                 <a href="new-recycle-teacher-task.php" class="dropdown-item" type="button">
                                                     Teacher Task</a>
                                             </div>

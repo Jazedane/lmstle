@@ -60,8 +60,6 @@
                                                     Teacher</a>
                                                 <a href="recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
-                                                <a href="recycle-student-task.php" class="dropdown-item" type="button">
-                                                    Student Task</a>
                                                 <a href="recycle-teacher-task.php" class="dropdown-item active"
                                                     type="button">
                                                     Teacher Task</a>
@@ -90,36 +88,36 @@
                                             $conn,
                                             "SELECT * FROM tbl_task 
                                             WHERE teacher_id = '$session_id' AND isDeleted=true
-                                            ORDER BY fdatein DESC "
+                                            ORDER BY date_upload DESC "
                                         )) or die(mysqli_error());
                                         while (
                                             $row = mysqli_fetch_array($query)
                                         ) {
 
                                             $id = $row['task_id'];
-                                            $floc = $row['floc'];
+                                            $task_file = $row['task_file'];
                                             ?>
                                     <tr>
                                         <td width="30">
                                             <input id="checkAll" type="checkbox" value="<?php echo $id; ?>"
                                                 class="uniform_on" name="selector[]">
                                         </td>
-                                        <td><?php $fdatein = date_create($row['fdatein']);
+                                        <td><?php $date_upload = date_create($row['date_upload']);
                                                     echo date_format(
-                                                    $fdatein,
-                                                    'M/d/Y h:i a'
+                                                    $date_upload,
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                         </td>
                                         <td><?php echo $row[
-                                                'fname'
+                                                'task_name'
                                             ]; ?></td>
                                         <td><?php echo $row[
-                                                'fdesc'
+                                                'task_desc'
                                             ]; ?></td>
                                         <td><?php $end_date = date_create($row['end_date']);
                                             echo date_format(
                                             $end_date,
-                                            'M/d/Y h:i a'
+                                            'F d, Y h:i A'
                                             ); ?>
                                         </td>
                                     </tr>
