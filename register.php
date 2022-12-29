@@ -11,84 +11,107 @@
 </head>
 
 <body class="hold-transition register-page" id="signup">
-    <div class="register-box">
-        <div class="card card-outline" style="border:2px solid black">
-            <div class="card-header text-center" style="background:green">
-                <p class="h1"><b>Teacher</b></p>
+    <div class="container1">
+        <div class="cover">
+            <div class="front">
+                <img src="dist/img/index1.jpg" alt="">
+                <div class="text">
+                    <span class="text-1">Vision</span>
+                    <span class="text-2">
+                        <h6>We dream of Filipinos who passionately love their country and whose values
+                            and competencies enable them to realize their full potential and contribute meaningfully
+                            to building the nation. As a learner-centered public institution, the Department of
+                            Education continuously improves itself to better serve its stakeholders.</h6>
+                    </span>
+                    <span class="text-1">Mission</span>
+                    <ul class="text-2">
+                        <h6>
+                            <p>To protect and promote the right of every Filipino to quality, equitable, culture-based,
+                                and complete basic education where:</p>
+                            <ul>
+                                <li>Students learn in a child-friendly, gender-sensitive, safe and motivating
+                                    environment.</li>
+                                <li>Teachers facilitate learning and constantly nurture every learner.</li></br>
+                                <li>Administrators and staff, as stewards of the institution, ensure an enabling and
+                                    supportive environment for effective learning to happen.</li></br>
+                                <li>Family, community and other stakeholders are actively engaged and share
+                                    responsibility
+                                    for developing life-long learners.</li>
+                            </ul>
+                        </h6>
+                    </ul>
+                </div>
             </div>
-            <div class="card-body">
-                <p class="login-box-msg">Signup to register</p>
+        </div>
+        <div class="register-box">
+            <div class="text-center h1"><b>Register</b></div>
+            <p class="login-box-msg">Signup to register</p>
 
-                <form id="login_form" class="form-signin" method="post" action="/lmstlee4/register.php">
-                    <input type="hidden" name="action" value="signup" />
-
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname"
-                            required>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
+            <form id="login_form" class="form-signin" method="post" action="/lmstlee4/register.php">
+                <input type="hidden" name="action" value="signup" />
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname"
+                        required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname"
-                            required>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname"
+                        required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <select name="gender" class="form-control" placeholder="Gender" required>
-                            <option>Select Gender</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                        </select>
+                </div>
+                <div class="input-group mb-3">
+                    <select name="gender" class="form-control" placeholder="Gender" required>
+                        <option selected disabled hidden>Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="Username" class="form-control" id="username" name="username" placeholder="Username"
+                        required>
+                    <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user-circle"></span>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="Username" class="form-control" id="username" name="username" placeholder="Username"
-                            required>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user-circle"></span>
-                            </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                        required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-eye toggle-password" toggle="#password"></span>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
-                            required>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                </div>
+                <div class="input-group mb-4">
+                    <input type="password" class="form-control" id="cpassword" name="cpassword"
+                        placeholder="Retype password" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-eye toggle-password1" toggle="#cpassword"></span>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="cpassword" name="cpassword"
-                            placeholder="Retype password" required>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="">
+                            <a href="teacher-login.php" class="signup-text"><label>I already signup</label></a>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="">
-                                <a href="teacher-login.php" class="text-center">I already signup</a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <button id="signup" type="submit" class="btn btn-primary btn-block">Signup</button>
-                        </div>
+                    <div class="col-4">
+                        <button id="signup" type="submit" class="btn btn-primary btn-block">Signup</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
     <?php if (isset($_POST['action'])) {
@@ -108,10 +131,8 @@
         if ($count > 0) { 
             
             ?>
-
-    <div>Username is already taken.</div>
     <script>
-    toastr.warning('Username is already taken.');
+    toastr.warning("Warning","Username is already taken.");
     </script>
 
     <?php } else {
@@ -129,20 +150,20 @@
 
     <script type="text/javascript">
     $(document).ready(function() {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-                toastr.info("Please Wait for the Confirmation of the Admin for the Activation of Your Account")
-                var delay = 1000;
-                toastr.success("Signup Success","You Have Been Successfully Signup!")
-                var delay = 1000;
-                setTimeout(function() {
-                    window.location = '/lmstlee4/teacher-login.php'
-                }, delay);
-            });
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
+        toastr.info("Please Wait for the Confirmation of the Admin for the Activation of Your Account")
+        var delay = 1000;
+        toastr.success("Signup Success", "You Have Been Successfully Signup!")
+        var delay = 1000;
+        setTimeout(function() {
+            window.location = '/lmstlee4/teacher-login.php'
+        }, delay);
+    });
     </script>
 
     <?php }
@@ -154,6 +175,30 @@
 
     jQuery(document).ready(function() {
         jQuery("#back").click(handleBackNavigation)
+    });
+    </script>
+    <script>
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("far fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    </script>
+    <script>
+    $(".toggle-password1").click(function() {
+
+        $(this).toggleClass("far fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
     });
     </script>
 </body>

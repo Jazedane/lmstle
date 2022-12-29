@@ -39,37 +39,35 @@
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
                             <div class="card bg-light d-flex flex-fill">
                                 <div class="card-header text-muted border-bottom-0">
-                                    Digital Strategist
+                                    Project Manager
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
+                                            <h2 class="lead"><b>MA. LUZ SARTORIO</b></h2>
+                                            <p class="text-muted text-sm"><b>About: </b> College Student / Installing
+                                                Softwares / Photoshop
+                                                / Proficient in Microsoft Office, Microsoft Excel, MS Power Point </p>
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                    Street 123, Demo City 04312, NJ</li>
+                                                            class="fas fa-lg fa-building"></i></span> Address: Purok
+                                                    Hitalon,
+                                                    Baranagay Zone 4, Cadiz City 6121, Negros Occidental, Philippines
+                                                </li>
                                                 <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12
-                                                    12 23 52</li>
+                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 69 - 46
+                                                    62 61 502</li>
                                             </ul>
                                         </div>
                                         <div class="col-5 text-center">
-                                            <img src="dist/img/user1-128x128.jpg" alt="user-avatar"
+                                            <img src="/lmstlee4/admin/dist/img/e-luz.jpg" alt="user-avatar"
                                                 class="img-circle img-fluid">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> View Profile
-                                        </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -77,37 +75,35 @@
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
                             <div class="card bg-light d-flex flex-fill">
                                 <div class="card-header text-muted border-bottom-0">
-                                    Digital Strategist
+                                    Programmer
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
+                                            <h2 class="lead"><b>JUZZTINE MAÑAPAO</b></h2>
+                                            <p class="text-muted text-sm"><b>About: </b> College Student / Experience
+                                                using WordPress/ Coding
+                                                PHP, JavaScript, Java / Proficient in Microsoft Office </p>
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                    Street 123, Demo City 04312, NJ</li>
+                                                            class="fas fa-lg fa-building"></i></span> Address: Sitio
+                                                    Mantabaco,
+                                                    Barangay Caduha-an, Cadiz City 6121, Negros Occidental, Philippines
+                                                </li>
                                                 <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12
-                                                    12 23 52</li>
+                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 69 - 47
+                                                    13 69 476</li>
                                             </ul>
                                         </div>
                                         <div class="col-5 text-center">
-                                            <img src="dist/img/user2-160x160.jpg" alt="user-avatar"
+                                            <img src="/lmstlee4/admin/dist/img/e-juz.jpg" alt="user-avatar"
                                                 class="img-circle img-fluid">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> View Profile
-                                        </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -115,280 +111,70 @@
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
                             <div class="card bg-light d-flex flex-fill">
                                 <div class="card-header text-muted border-bottom-0">
-                                    Digital Strategist
+                                    Capstone Documenter
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
+                                            <h2 class="lead"><b>EVELYN ESCALICAS</b></h2>
+                                            <p class="text-muted text-sm"><b>About: </b> College Student / Photoshop /
+                                                HTML
+                                                Designer/ Microsoft Word and Power Point literate. </p>
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                    Street 123, Demo City 04312, NJ</li>
+                                                            class="fas fa-lg fa-building"></i></span> Address: Purok
+                                                    Bonito
+                                                    Barangay Zone 6, Cadiz City 6121, Negros Occidental, Philippines
+                                                </li>
                                                 <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12
-                                                    12 23 52</li>
+                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 69 - 30
+                                                    10 21 080</li>
                                             </ul>
                                         </div>
                                         <div class="col-5 text-center">
-                                            <img src="dist/img/user1-128x128.jpg" alt="user-avatar"
+                                            <img src="/lmstlee4/admin/dist/img/e-eve.jpg" alt="user-avatar"
                                                 class="img-circle img-fluid">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> View Profile
-                                        </a>
-                                    </div>
+                                <div class="text-right">
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
                             <div class="card bg-light d-flex flex-fill">
                                 <div class="card-header text-muted border-bottom-0">
-                                    Digital Strategist
+                                    Capstone Documenter
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
+                                            <h2 class="lead"><b>RENA MAE MANLANGIT</b></h2>
+                                            <p class="text-muted text-sm"><b>About: </b> College Student / Photoshop /
+                                                Computer
+                                                literate / Proficient in Microsoft Office, Microsoft Excel, MS Power
+                                                Point </p>
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                    Street 123, Demo City 04312, NJ</li>
+                                                            class="fas fa-lg fa-building"></i></span> Address: Barangay
+                                                    Bug-ang
+                                                    Toboso 6125, Negros Occidental, Philippines</li>
                                                 <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12
-                                                    12 23 52</li>
+                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 69 - 65
+                                                    33 75 344</li>
                                             </ul>
                                         </div>
                                         <div class="col-5 text-center">
-                                            <img src="dist/img/user2-160x160.jpg" alt="user-avatar"
+                                            <img src="/lmstlee4/admin/dist/img/e-ren.jpg" alt="user-avatar"
                                                 class="img-circle img-fluid">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Digital Strategist
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12
-                                                    12 23 52</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Digital Strategist
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                    Street 123, Demo City 04312, NJ</li>
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12
-                                                    12 23 52</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Digital Strategist
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                    Street 123, Demo City 04312, NJ</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Digital Strategist
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                    Street 123, Demo City 04312, NJ</li>
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12
-                                                    12 23 52</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Digital Strategist
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                            <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                    Street 123, Demo City 04312, NJ</li>
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12
-                                                    12 23 52</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="dist/img/user2-160x160.jpg" alt="user-avatar"
-                                                class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> View Profile
-                                        </a>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <nav aria-label="Contacts Page Navigation">
-                        <ul class="pagination justify-content-center m-0">
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">6</a></li>
-                            <li class="page-item"><a class="page-link" href="#">7</a></li>
-                            <li class="page-item"><a class="page-link" href="#">8</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
         </section>
     </div>
 

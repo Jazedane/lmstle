@@ -20,57 +20,89 @@ session_start();
 </head>
 
 <body class="hold-transition login-page" id="login">
-    <div class="login-box">
-        <form method="post" id="signin_student">
-            <div class="card card-outline" style="border:2px solid black">
-                <div class="card-header text-center" style="background:green">
-                    <p class="h1"><b>Student</b></p>
+    <div class="container">
+        <div class="cover">
+            <div class="front">
+                <img src="dist/img/index1.jpg" alt="">
+                <div class="text">
+                    <span class="text-1">Vision</span>
+                    <span class="text-2">
+                        <h6>We dream of Filipinos who passionately love their country and whose values
+                            and competencies enable them to realize their full potential and contribute meaningfully
+                            to building the nation. As a learner-centered public institution, the Department of
+                            Education continuously improves itself to better serve its stakeholders.</h6>
+                    </span>
+                    <span class="text-1">Mission</span>
+                    <ul class="text-2">
+                        <h6>
+                            <p>To protect and promote the right of every Filipino to quality, equitable, culture-based,
+                                and complete basic education where:</p>
+                            <ul>
+                                <li>Students learn in a child-friendly, gender-sensitive, safe and motivating
+                                    environment.</li>
+                                <li>Teachers facilitate learning and constantly nurture every learner.</li></br>
+                                <li>Administrators and staff, as stewards of the institution, ensure an enabling and
+                                    supportive environment for effective learning to happen.</li></br>
+                                <li>Family, community and other stakeholders are actively engaged and share
+                                    responsibility
+                                    for developing life-long learners.</li>
+                            </ul>
+                        </h6>
+                    </ul>
                 </div>
-                <div class="card-body">
-                    <p class="login-box-msg">Sign in to start your session</p>
-
-                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="signin_student"
-                        class="form-signin" method="post">
-                        <div class="input-group mb-3">
+            </div>
+        </div>
+        <div class="login-box">
+            <form method="post" id="signin_student">
+                <div class="text-center h1"><strong>Student</strong></div>
+                <p class="login-box-msg">Sign in to start your session</p>
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="signin_student"
+                    class="form-signin" method="post">
+                    <div class="form-group">
+                        <label for="inputIDnumber">ID Number</label>
+                        <div class="input-group mb-4">
                             <input type="username" maxlength="7" class="form-control" id="student_id" name="username"
-                                placeholder="ID Number" onBlur='addDashes(this)' autocomplete="off" required>
+                                placeholder="Enter ID Number" onBlur='addDashes(this)' autocomplete="off" required>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <div class="input-group mb-4">
                             <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Password" required>
+                                placeholder="Enter Password" required>
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
+                                    <span class="fas fa-eye toggle-password" toggle="#password"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="icheck-primary">
-                                    <input type="checkbox" id="remember">
-                                    <label for="remember">
-                                        Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <button id="signin" name="login" type="submit" class="btn btn-primary btn-block">Sign
-                                    In</button>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
                             </div>
                         </div>
+                        <div class="col-4">
+                            <button id="signin" name="login" type="submit" class="btn btn-primary btn-block">Sign
+                                In</button>
+                        </div>
+                    </div>
 
-                        <div class="mb-0">
-                            <a href="login-page.php" class="text-center">Back</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </form>
+                    <div class="row">
+                        <a href="login-page.php" class="text-center"><i class="fas fa-arrow-left"></i><b> Back</b></a>
+                    </div>
+                </form>
+            </form>
+        </div>
     </div>
     <script LANGUAGE="JavaScript">
     function addDashes(f) {
@@ -81,17 +113,16 @@ session_start();
     </script>
     <?php include 'script.php'; 
 
-              if(isset($_POST['login'])) {
-                        
-                       
-                        $ip_address= getUSerIpAddr();
-                        $time = time() - 30;
+        if(isset($_POST['login'])) {
+                                
+          $ip_address= getUSerIpAddr();
+          $time = time() - 30;
 
-                        $check_attempt = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT count(*) as total_count from attempt_count where time_count > $time and ip_address= '$ip_address'"));
-                        $total_count  = $check_attempt['total_count'];
+          $check_attempt = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT count(*) as total_count from attempt_count where time_count > $time and ip_address= '$ip_address'"));
+          $total_count  = $check_attempt['total_count'];
 
-                        if($total_count == 3){
-                            ?>
+          if($total_count == 3){
+    ?>
     <script>
     toastr.warning("Your account has been blocked! Please try after 30 seconds");
     </script>
@@ -181,7 +212,18 @@ session_start();
             return $ip;
           }
     ?>
+    <script>
+    $(".toggle-password").click(function() {
 
+        $(this).toggleClass("far fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    </script>
 </body>
 
 </html>

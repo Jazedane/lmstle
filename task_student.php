@@ -135,7 +135,7 @@
                                                 })
                                                 </script>
                                             </td>
-                                            <td width="100">
+                                            <td width="120">
                                                 <form id="assign_save" method="post" action="submit_task.php<?php echo '?id=' .
                                                     $get_id; ?>&<?php echo 'post_id=' . $id; ?>">
                                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
