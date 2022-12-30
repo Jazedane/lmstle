@@ -183,9 +183,9 @@
                                 <textarea placeholder="Enter Plant Description" id="summernote" name="description"
                                     class="form-control" required=""></textarea><br>
                                 <?php echo $statusMsg; ?>
-                                <label class="float-left font-15">Image</label><br>
+                                <label class="font-15">Image</label><br>
                                 <input type="file" name="uploadfile" value="" required="" />
-                                <button class="btn btn-primary" type="submit" name="upload">Upload</button>
+                                <button class="btn btn-primary float-right" type="submit" name="upload">Upload</button>
                             </form>
                         </div>
                     </div>
