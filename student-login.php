@@ -98,7 +98,7 @@ session_start();
                     </div>
 
                     <div class="row">
-                        <a href="login-page.php" class="text-center"><i class="fas fa-arrow-left"></i><b> Back</b></a>
+                        <a href="index.php" class="text-center"><i class="fas fa-arrow-left"></i><b> Back</b></a>
                     </div>
                 </form>
             </form>

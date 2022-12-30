@@ -100,7 +100,7 @@ session_start();
                 </form>
                 <div class="text-center mb-1">Don't have an account? <a href="register.php"><b> Signup now<b></a></div>
                 <div class="mb-0">
-                    <a href="login-page.php" class="text-center"><i class="fas fa-arrow-left"></i> Back</a>
+                    <a href="index.php" class="text-center"><i class="fas fa-arrow-left"></i> Back</a>
                 </div>
             </form>
         </div>

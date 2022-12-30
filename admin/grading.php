@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Activity Grade</title>
+    <title>LMSTLE | Students Grade</title>
 
     <?php
     include 'header.php';
