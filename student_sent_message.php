@@ -20,17 +20,10 @@
                     <div class="col-sm-6">
                         <h1>Send Message</h1>
                     </div>
-                    <?php
-						$school_year_query = mysqli_query($conn,"select * from tbl_school_year order by school_year DESC")or die(mysqli_error());
-						$school_year_query_row = mysqli_fetch_array($school_year_query);
-						$school_year = $school_year_query_row['school_year'];
-								?>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Send Message</li>
-                            <li class="breadcrumb-item active">School Year:
-                                <?php echo $school_year_query_row['school_year']; ?></a></li>
                         </ol>
                     </div>
                 </div>
@@ -126,7 +119,7 @@
                                         toast: true,
                                         position: 'top-end',
                                         showConfirmButton: false,
-                                        timer: 2000
+                                        timer: 1000
                                     });
                                     jQuery("#send_message").submit(function(e) {
                                         e.preventDefault();
@@ -201,8 +194,12 @@
                                         <span class="direct-chat-name float-left">
                                             <strong>Send by: You to Teacher
                                                 <?php echo $row['receiver_name']; ?></strong></span>
-                                        <span
-                                            class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
+                                        <span class="direct-chat-timestamp float-right"><?php $date_sended = date_create($row['date_sended']);
+                                                    echo date_format(
+                                                    $date_sended,
+                                                    'F d, Y h:i A'
+                                                    ); ?>
+                                        </span>
                                     </div>
                                     <img class="direct-chat-img"
                                         src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
@@ -225,7 +222,7 @@
                                         toast: true,
                                         position: 'top-end',
                                         showConfirmButton: false,
-                                        timer: 2000
+                                        timer: 1000
                                     });
                                     $('.remove').click(function() {
 
@@ -248,7 +245,7 @@
                                                 );
                                                 setTimeout(function() {
                                                     window.location.reload();
-                                                }, 2000);
+                                                }, 1000);
                                             }
                                         });
                                         return false;

@@ -144,8 +144,7 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#"
-                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class.php','/lmstlee4/admin/students.php',
+                            <a href="#" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class.php','/lmstlee4/admin/students.php',
                             '/lmstlee4/admin/teacher.php','/lmstlee4/admin/edit_class.php','/lmstlee4/admin/edit_student.php','/lmstlee4/admin/edit_teacher.php',
                             '/lmstlee4/admin/activate-student.php','/lmstlee4/admin/deactivate-student.php','/lmstlee4/admin/new-class.php','/lmstlee4/admin/new-students.php'
                             ,'/lmstlee4/admin/edit-new-class.php','/lmstlee4/admin/edit-new-student.php']) ?>">
@@ -223,15 +222,6 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.php"
-                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/about.php']) ?>">
-                                <i class="nav-icon fas fa-info-circle"></i>
-                                <p>
-                                    About
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="#"
                                 class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/teacher_log.php','/lmstlee4/admin/activity_log.php']) ?>">
                                 <i class="nav-icon fas fa-history"></i>
@@ -264,9 +254,10 @@ function determine_active_sidebar_item($pages) {
                                 $is_superadmin = $row['is_superadmin'];
 
                             if ($is_superadmin == false) { ?>
-                            <a href="new-recycle-student.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/new-recycle-student.php',
+                            <a href="new-recycle-student.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/new-recycle-student.php',
                             '/lmstlee4/admin/new-recycle-class.php','/lmstlee4/admin/new-recycle-student-task.php', '/lmstlee4/admin/new-recycle-teacher-task.php']) ?>">
-                            <i class="nav-icon fas fa-recycle"></i>
+                                <i class="nav-icon fas fa-recycle"></i>
                                 <p>
                                     Recycle Bin
                                 </p>

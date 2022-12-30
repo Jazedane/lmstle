@@ -171,58 +171,51 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <div id="" class="float-sm-left"><a
-                                        href="task_student.php<?php echo '?id='.$get_id; ?>">
-                                        <i class="fas fa-arrow-left"></i> Back</a>
-                                </div>
+                                <a href="task_student.php<?php echo '?id='.$get_id; ?>">
+                                    <i class="fas fa-arrow-left"></i> Back</a>
                             </div>
                             <div class="card-body">
                                 <?php
-										$query = mysqli_query($conn,"select * FROM tbl_task where task_id = '$post_id' ")or die(mysqli_error());
-										$row = mysqli_fetch_array($query);
+								$query = mysqli_query($conn,"select * FROM tbl_task where task_id = '$post_id' ")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
 									
-									?>
+							?>
                                 <div class="alert alert-primary">Submit Activity in :
                                     <b><?php echo $row['task_name']; ?></b>
                                 </div>
-                                <div id="">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Date Upload</th>
-                                                <th>Activity Name</th>
-                                                <th>Description</th>
-                                                <th>File Uploaded</th>
-                                                <th>Status</th>
-                                                <th>Feedback</th>
-                                                <th>Points</th>
-                                                <th>Action</th>
-                                            </tr>
-
-                                        </thead>
-                                        <tbody>
-
-                                            <?php
-										$query = mysqli_query($conn,"SELECT * FROM tbl_student_task
-										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
-										where task_id = '$post_id' order by task_date_upload DESC")or die(mysqli_error());
-										while($row = mysqli_fetch_array($query)){
-										$id  = $row['student_task_id'];
-										$student_id = $row['student_id'];
-									    ?>
-                                            <tr>
-                                                <td width="220"><?php $task_date_upload = date_create($row['task_date_upload']);
+                                <?php
+							$query = mysqli_query($conn,"SELECT * FROM tbl_student_task
+							LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id 
+							where task_id = '$post_id' and tbl_student.student_id = '$session_id' order by task_date_upload DESC")or die(mysqli_error());
+							while($row = mysqli_fetch_array($query)){
+							$id  = $row['student_task_id'];
+							$student_id = $row['student_id'];
+						    ?>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <dl>
+                                                <dt><b class="border-bottom border-success">Date Submitted</b></dt>
+                                                <dd><?php $task_date_upload = date_create($row['task_date_upload']);
                                                     echo date_format(
                                                     $task_date_upload,
                                                     'F d, Y h:i A'
-                                                    ); ?>
-                                                </td>
-                                                <td><?php  echo $row['task_name']; ?></td>
-                                                <td><?php echo $row['task_description']; ?></td>
-                                                <td width="160"><center><a href="<?php echo $row['task_file']; ?>" target="_blank"><i
-                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></td></center>
-                                                <td class="project-state">
-                                                    <?php
+                                                    ); ?></dd>
+                                                <dt><b class="border-bottom border-success">Task Name</b></dt>
+                                                <dd><?php  echo $row['task_name']; ?></dd>
+                                                <dt><b class="border-bottom border-success">Description</b></dt>
+                                                <dd><?php  echo $row['task_description']; ?></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dl>
+                                                <dt><b class="border-bottom border-success">File Uploaded</b></dt>
+                                                <dd><a href="<?php echo $row['task_file']; ?>" target="_blank"><i
+                                                            class="fas fa-paperclip"></i>
+                                                        <i>Attachment</i></a>
+                                                </dd>
+                                                <dt><b class="border-bottom border-success">Status</b></dt>
+                                                <dd><?php
                             					if($task_status[$row['task_status']] =='Pending'){
                               						echo "<span class='badge badge-secondary'>{$task_status[$row['task_status']]}</span>";
                             					}elseif($task_status[$row['task_status']] =='On-Progress'){
@@ -233,11 +226,13 @@
                               						echo "<span class='badge badge-success'>{$task_status[$row['task_status']]}</span>";
                             					}
                           						?>
-                                                </td>
-                                                <td><?php echo $row['feedback']; ?></td>
+                                                </dd>
+                                                <dt><b class="border-bottom border-success">Feedback</b></dt>
+                                                <dd><?php echo $row['feedback']; ?></dd>
+                                                <dt><b class="border-bottom border-success">Points</b></dt>
                                                 <?php if ($session_id == $student_id){ ?>
                                                 <?php
-                                            ($query = mysqli_query(
+                                                $query = mysqli_query(
                                                 $conn,
                                                  "SELECT
                                                     *
@@ -248,27 +243,31 @@
                                                     WHERE
                                                         tbl_task.class_id = '$get_id' AND tbl_student_task.task_id = '$post_id' AND tbl_student.student_id = '$student_id'
                                                     "
-                                                )) or die(mysqli_error());
-                                            while (
+                                                ) or die(mysqli_error());
+                                                while (
                                                 $row = mysqli_fetch_array($query)
-                                            ) {
+                                                ) {
                                                 $student_id = $row['student_id']; 
-                                            ?>
-                                                <td><span class="badge badge-success"><?php  echo $row['grade']; ?> /
-                                                        <?php  echo $row['total_points']; ?></span></td>
+                                                ?>
+                                                <dd><span class="badge badge-success"><?php  echo $row['grade']; ?> /
+                                                        <?php  echo $row['total_points']; ?></span></dd>
                                                 <?php 
                                                     }
                                                 }
-                                            ?>
-                                                <td>
-                                                    <a class="btn btn-success"
-                                                        href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
-                                                            class="fas fa-edit"></i> Edit</a>
-                                                </td>
-                                            </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
+                                                ?>
+                                            </dl>
+                                            <div class="card-footer float-right">
+                                                <a class="btn btn-success"
+                                                    href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
+                                                        class="fas fa-edit"></i> Edit</a>
+                                                <a class="btn btn-danger float-right"
+                                                    data-target="#delete<?php echo $id; ?>" data-toggle="modal"><i
+                                                        class=" fas fa-trash"></i> Delete</a>
+                                                <?php include 'delete-task-modal.php'; ?>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -309,7 +308,7 @@
                 url: "admin/upload_task.php",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Success","Activity Successfully Uploaded");
+                    toastr.success("Success", "Activity Successfully Uploaded");
                     setTimeout(function() {
                         window.location.reload();
                     }, 1000);
@@ -318,6 +317,40 @@
                 contentType: false,
                 processData: false
             });
+        });
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 100
+        });
+        $('.delete-task').click(function() {
+
+            var id = $(this).attr("id");
+            $.ajax({
+                type: "POST",
+                url: "delete-task.php",
+                data: ({
+                    id: id
+                }),
+                cache: false,
+                success: function(html) {
+                    $("#delete" + id).fadeOut('slow',
+                        function() {
+                            $(this).remove();
+                        });
+                    $('#' + id).modal('hide');
+                    toastr.error("Deleted", "Task Successfully Deleted.");
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                },
+            });
+            return false;
         });
     });
     </script>

@@ -91,7 +91,8 @@ function determine_active_sidebar_item($pages) {
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="class_main.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/class_main.php']) ?>">
+                            <a href="class_main.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/class_main.php']) ?>">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Class
@@ -104,7 +105,8 @@ function determine_active_sidebar_item($pages) {
 			                $count_notification = mysqli_num_rows($notification_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="notification.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/notification.php']) ?>">
+                            <a href="notification.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/notification.php']) ?>">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>
                                     Notification
@@ -121,7 +123,8 @@ function determine_active_sidebar_item($pages) {
 			                $count_message = mysqli_num_rows($message_query);
 		                ?>
                         <li class="nav-item">
-                            <a href="student_message.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/student_message.php', '/lmstlee4/student_sent_message.php']) ?>">
+                            <a href="student_message.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/student_message.php', '/lmstlee4/student_sent_message.php']) ?>">
                                 <i class="nav-icon fas fa-comments"></i>
                                 <p>
                                     Message
@@ -133,18 +136,11 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="gallery.php?current_page=1" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/gallery.php']) ?>">
+                            <a href="gallery.php?current_page=1"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/gallery.php']) ?>">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
                                     Plant Gallery
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="about.php" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/about.php']) ?>">
-                                <i class="nav-icon fas fa-info-circle"></i>
-                                <p>
-                                    About
                                 </p>
                             </a>
                         </li>

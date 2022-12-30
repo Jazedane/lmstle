@@ -70,16 +70,16 @@
                                 <input type="hidden" name="student_task_id" value="<?php echo $student_task_id; ?>" />
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="activity_name">Activity Name</label>
+                                        <label for="activity_name">Task Name</label>
                                         <input type="text" name="name" id="inputtask" class="form-control"
                                             value="<?php echo $result['task_name']; ?>" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label" for="exampleInputFile">Activity</label>
+                                        <label class="control-label" for="exampleInputFile">Task</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <label for="formFileMultiple" class="custom-file-label"
-                                                    value="<?php echo $result['task_file']; ?>">
+                                                    value="<?php echo $result['task_file']; ?>">Choose File
                                                 </label>
                                                 <input name="uploaded_file" class="custom-file-input" type="file"
                                                     id="exampleInputFile" value="<?php echo $result['task_file']; ?>"

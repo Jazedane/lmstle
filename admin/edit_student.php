@@ -48,27 +48,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Class Name</label>
-                                        <select name="class_id" class="form-control">
-                                            <option selected><?php echo $row['class_name']; ?></option>
-                                            <?php
-                                                $class_query = mysqli_query(
-                                                $conn,
-                                                'select * from tbl_class where tbl_class.isDeleted=false order by class_name'
-                                                );
-                                                while (
-                                                    $class_row = mysqli_fetch_array(
-                                                    $class_query
-                                                )
-                                                ) { ?>
-                                            <option value="<?php echo $class_row[
-                                                'class_id'
-                                                ]; ?>">
-                                                <?php echo $class_row[
-                                                    'class_name'
-                                                ]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
+                                        <input type="varchar" class="form-control" name="class_id" value="<?php echo $row['class_name']; ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>ID Number</label>
@@ -121,10 +101,9 @@
                             $lastname = strtoupper($_POST['lastname']);
                             $gender = $_POST['gender'];
                             $age = $_POST['age'];
-                            $cys = $_POST['class_id'];
                     
                             mysqli_query($conn,"UPDATE tbl_student SET username = '$username' , firstname ='$firstname' , lastname = '$lastname' , 
-                            gender = '$gender', age = '$age', class_id = '$cys' WHERE student_id = '$get_id' ") or die(mysqli_error());
+                            gender = '$gender', age = '$age' WHERE student_id = '$get_id' ") or die(mysqli_error());
 
 		                ?>
                         <SCRIPT LANGUAGE="JavaScript">

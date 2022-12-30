@@ -21,21 +21,9 @@
                         <h1>Inbox</h1>
                     </div>
                     <div class="col-sm-6">
-                        <?php
-                        ($school_year_query = mysqli_query(
-                            $conn,
-                            'select * from tbl_school_year order by school_year DESC'
-                        )) or die(mysqli_error());
-                        $school_year_query_row = mysqli_fetch_array(
-                            $school_year_query
-                        );
-                        $school_year = $school_year_query_row['school_year'];
-                        ?>
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Inbox</li>
-                            <li class="breadcrumb-item">School Year:
-                                <?php echo $school_year_query_row['school_year']; ?></a></li>
                         </ol>
                     </div>
                 </div>
@@ -122,8 +110,12 @@
                                 <div class="direct-chat-infos clearfix">
                                     <span class="direct-chat-name float-left">
                                         <strong>Send by: Student <?php echo $sender_name; ?> </strong></span>
-                                    <span
-                                        class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
+                                    <span class="direct-chat-timestamp float-right"><?php $date_sended = date_create($row['date_sended']);
+                                                    echo date_format(
+                                                    $date_sended,
+                                                    'F d, Y h:i A'
+                                                    ); ?>
+                                    </span>
                                 </div>
                                 <img class="direct-chat-img" src="uploads/<?php echo $row['location']; ?>"
                                     alt="Message User Image">
@@ -147,7 +139,7 @@
                                     toast: true,
                                     position: 'top-end',
                                     showConfirmButton: false,
-                                    timer: 3000
+                                    timer: 1000
                                 });
                                 $('.remove').click(function() {
 
@@ -170,7 +162,7 @@
                                             );
                                             setTimeout(function() {
                                                 window.location.reload();
-                                            }, 2000);
+                                            }, 1000);
                                         }
                                     });
                                     return false;
@@ -183,7 +175,7 @@
                                     toast: true,
                                     position: 'top-end',
                                     showConfirmButton: false,
-                                    timer: 3000
+                                    timer: 1000
                                 });
                                 jQuery("#reply").submit(function(e) {
                                     e.preventDefault();

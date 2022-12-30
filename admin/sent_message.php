@@ -20,25 +20,10 @@
                     <div class="col-sm-6">
                         <h1>Send Message</h1>
                     </div>
-                    <?php
-                    ($school_year_query = mysqli_query(
-                        $conn,
-                        'select * from tbl_school_year order by school_year DESC'
-                    )) or die(mysqli_error());
-                    $school_year_query_row = mysqli_fetch_array(
-                        $school_year_query
-                    );
-                    $school_year = $school_year_query_row['school_year'];
-                    ?>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Send Message</li>
-                            <li class="breadcrumb-item active">School Year:
-                                <?php echo $school_year_query_row[
-                                    'school_year'
-                                ]; ?></a></li>
-                        </ol>
                     </div>
                 </div>
             </div>
@@ -120,15 +105,15 @@
                                                 <?php echo $row['firstname']; ?>
                                                 <?php echo $row[
                                                 'lastname'
-                                            ]; ?> </option>
+                                            ]; ?> <?php echo $row['year']; ?> - <?php echo $row['section']; ?></option>
                                             <?php }
                                         ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Content:</label>
+                                        <label>Message:</label>
                                         <textarea id="summernote" name="my_message" rows="3"
-                                            class="my_message form-control" required>
+                                            class="my_message form-control" placeholder="Type message..." required>
                                     </textarea>
                                     </div>
                                     <div class="card-footer">
@@ -156,15 +141,15 @@
                                             data: formData,
                                             success: function(html) {
                                                 $(document).Toasts('create', {
-                                                class: 'bg-success',
-                                                body: 'Message Successfully Sent!',
-                                                title: 'Message',
-                                                subtitle: 'Success',
-                                                autohide: true,
-                                                delay: 1000,
-                                                icon: 'fas fa-envelope fa-lg',
-                                            })
-                                            setTimeout(function() {
+                                                    class: 'bg-success',
+                                                    body: 'Message Successfully Sent!',
+                                                    title: 'Message',
+                                                    subtitle: 'Success',
+                                                    autohide: true,
+                                                    delay: 1000,
+                                                    icon: 'fas fa-envelope fa-lg',
+                                                })
+                                                setTimeout(function() {
                                                     window.location.reload();
                                                 }, 1000);
                                             }
@@ -221,9 +206,12 @@
                                                 <?php echo $row[
                                                     'receiver_name'
                                                 ]; ?></strong></span>
-                                        <span class="direct-chat-timestamp float-right"><?php echo $row[
-                                                'date_sended'
-                                            ]; ?></span>
+                                        <span class="direct-chat-timestamp float-right"><?php $date_sended = date_create($row['date_sended']);
+                                                    echo date_format(
+                                                    $date_sended,
+                                                    'F d, Y h:i A'
+                                                    ); ?>
+                                        </span>
                                     </div>
                                     <img class="direct-chat-img" src="/lmstlee4/admin/uploads/<?php echo $row[
                                             'location'

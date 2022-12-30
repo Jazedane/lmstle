@@ -88,7 +88,7 @@
 
                                             <?php
 										    $query = mysqli_query($conn,"SELECT * FROM tbl_student_task
-										    LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id and tbl_student_task.isDeleted=false 
+										    LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id 
 										    where task_id = '$post_id' order by task_date_upload DESC")or die(mysqli_error());
 										    while($row = mysqli_fetch_array($query)){
 										    $id  = $row['student_task_id'];

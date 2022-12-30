@@ -82,8 +82,7 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Student Submissions</h3>
-                                <div id="" class="float-right"><a
-                                        href="my_students.php<?php echo '?id='.$get_id; ?>"><i
+                                <div id="" class="float-right"><a href="my_students.php<?php echo '?id='.$get_id; ?>"><i
                                             class="fas fa-arrow-left"></i> Back</a></div>
                             </div>
                             <div class="card-body">
@@ -93,7 +92,7 @@
                                             <th width="80">Date Submitted</th>
                                             <th width="80">Title</th>
                                             <th width="80">Points</th>
-                                            <th width="80"></th>
+                                            <th width="100"></th>
                                         </tr>
 
                                     </thead>
@@ -133,12 +132,14 @@
                                             </td>
                                             <td>
                                                 <div class="justify content-between">
+                                                    <a class="btn btn-primary"
+                                                        href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>"
+                                                        title="View Task Summary" id="<?php echo $id; ?>view">
+                                                        <i class="fas fa-envelope"></i> Task Summary</a>
                                                     <a class="btn btn-success"
-                                                        href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>">View
-                                                        Task Summary</a>
-                                                    <a class="btn btn-success"
-                                                        href="http://localhost/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>">Edit
-                                                        Grade</a>
+                                                        href="http://localhost/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>"
+                                                        title="Edit Grade" id="<?php echo $id; ?>edit">
+                                                        <i class="fas fa-edit"></i> Edit Grade</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -154,7 +155,18 @@
     </div>
     <?php include 'footer.php'; ?>
 </body>
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#<?php echo $id; ?>view').tooltip('show');
+    $('#<?php echo $id; ?>view').tooltip('hide');
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#<?php echo $id; ?>edit').tooltip('show');
+    $('#<?php echo $id; ?>edit').tooltip('hide');
+});
+</script>
 <script>
 $(function() {
     $("#example1").DataTable({

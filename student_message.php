@@ -22,20 +22,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <?php
-                        ($school_year_query = mysqli_query(
-                            $conn,
-                            'select * from tbl_school_year order by school_year DESC'
-                        )) or die(mysqli_error());
-                        $school_year_query_row = mysqli_fetch_array(
-                            $school_year_query
-                        );
-                        $school_year = $school_year_query_row['school_year'];
-                        ?>
-                            <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
-                            <li class="breadcrumb-item active">School Year: <?php echo $school_year_query_row[
-                            'school_year'
-                        ]; ?></a></li>
+                            <li class="breadcrumb-item"><a href="#">Home</a><span class="divider"></span></li>
                             <li class="breadcrumb-item active">Message</li>
                         </ol>
                     </div>
@@ -127,8 +114,12 @@
                                 <div class="direct-chat-infos clearfix">
                                     <span class="direct-chat-name float-left">
                                         <strong>Send by: Teacher <?php echo $sender_name; ?> </strong></span>
-                                    <span
-                                        class="direct-chat-timestamp float-right"><?php echo $row['date_sended']; ?></span>
+                                    <span class="direct-chat-timestamp float-right"><?php $date_sended = date_create($row['date_sended']);
+                                                    echo date_format(
+                                                    $date_sended,
+                                                    'F d, Y h:i A'
+                                                    ); ?>
+                                    </span>
                                 </div>
                                 <img class="direct-chat-img"
                                     src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
