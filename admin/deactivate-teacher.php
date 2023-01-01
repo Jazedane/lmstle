@@ -35,7 +35,7 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Deactivated Teacher List</h3>
+                                <h3 class="card-title" style="margin-top:10px">Deactivated Teacher List</h3>
                                 <a data-toggle="modal" href="#teacher_add" class="btn btn-success float-right"
                                     name="add_student"><i class="fas fa-user-plus lg"></i> Add</a>
                             </div>
@@ -43,7 +43,8 @@
                                 <form id="delete_teacher" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
-                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash"></i> Remove
+                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash"></i>
+                                            Remove
                                         </ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <div class="float-right">
@@ -151,6 +152,47 @@
                 </div>
             </div>
         </section>
+        <div class="modal hide fade" id="teacher_add" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-user-plus"></i> Add Teacher</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data">
+                                <label>First Name</label>
+                                <input type="text" name="firstname" class="form-control" placeholder="Enter Firstname"
+                                    style="text-transform: uppercase" required>
+                                <label>Last Name</label>
+                                <input type="text" name="lastname" class="form-control" placeholder="Enter Lastname"
+                                    style="text-transform: uppercase" required>
+                                <label>Gender</label>
+                                <select name="gender" class="form-control" placeholder="Gender" required>
+                                    <option selected disabled hidden>SELECT GENDER</option>
+                                    <option>MALE</option>
+                                    <option>FEMALE</option>
+                                </select>
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" placeholder="ENTER USERNAME"
+                                    required>
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="ENTER PASSWORD"
+                                    required>
+                                <div class="modal-footer">
+                                    <center><button name="save" type="submit" class="btn btn-success"><i
+                                                class="fas fa-plus">
+                                            </i> Add</button></center>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php include 'footer.php'; ?>
     <?php
@@ -167,7 +209,7 @@
 
         if ($count > 0){ ?>
     <script>
-    toastr.warning("Warning","Teacher Already Exist");
+    toastr.warning("Warning", "Teacher Already Exist");
     </script>
     <?php
         }else {
@@ -177,7 +219,7 @@
         values(NOW(),'$username','Add User $username')")or die(mysqli_error());
     ?>
     <script>
-    toastr.success("Success","Teacher Successfully Added!")
+    toastr.success("Success", "Teacher Successfully Added!")
     window.location.reload();
     </script>
     <?php
