@@ -44,11 +44,11 @@
             <form action="index.php" method="post">
                 <div class="row" style="margin-left: 40px">
                     <div class="col-5">
-                        <a href="student-login.php" id="signin_student" type="submit"
+                        <a href="student-login.php" id="signin_student" type="submit" data-placement="bottom" title="Login as Student"
                             class="btn btn-primary btn-block">Student</a>
                     </div>
                     <div class="col-5">
-                        <a href="teacher-login.php" id="signin_teacher" type="submit"
+                        <a href="teacher-login.php" id="signin_teacher" type="submit" data-placement="bottom" title="Login as Teacher"
                             class="btn btn-primary btn-block">Teacher</a>
                     </div>
                 </div>
