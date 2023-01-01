@@ -108,32 +108,7 @@ function determine_active_sidebar_item($pages) {
                 </div>
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <?php 
-                            $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
-							$row = mysqli_fetch_array($query);
-                            $is_superadmin = $row['is_superadmin'];
-
-                        if ($is_superadmin == false) { ?>
-                        <li class="nav-item">
-                            <a href="new-dashboard.php"
-                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/new-dashboard.php']) ?>">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <?php
-                            }
-                        ?>
-                        <?php 
-                            $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
-							$row = mysqli_fetch_array($query);
-                            $is_superadmin = $row['is_superadmin'];
-
-                        if ($is_superadmin == true) { ?>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                         <li class="nav-item">
                             <a href="dashboard.php"
                                 class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/dashboard.php']) ?>">
@@ -143,9 +118,6 @@ function determine_active_sidebar_item($pages) {
                                 </p>
                             </a>
                         </li>
-                        <?php
-                            }
-                        ?>
                         <li class="nav-item">
                             <a href="class_main.php"
                                 class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class_main.php']) ?>">

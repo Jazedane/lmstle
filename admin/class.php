@@ -115,16 +115,21 @@
                                 </div>
                             </div>
                         </form>
-                        <form method="post" action="add-school-year.php">
+                        <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
                                     <h3 class="card-title"><i class="fas fa-edit"></i> Add School Year</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>School Year</label>
-                                        <input name="school_year" type="varchar" maxlength="9" onBlur='addDashes1(this)'
-                                            autocomplete="off" class="form-control" placeholder="ENTER SCHOOL YEAR">
+                                        <label>Start Year</label>
+                                        <input name="start_year" type="number" maxlength="4" autocomplete="off"
+                                            class="form-control" placeholder="ENTER START YEAR" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>End Year</label>
+                                        <input name="end_year" type="number" maxlength="4" autocomplete="off"
+                                            class="form-control" placeholder="ENTER END YEAR" required>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>
@@ -137,6 +142,36 @@
                             </div>
                         </form>
                     </div>
+                    <?php if (isset($_POST['save_school_year'])) {
+                        $start_year = $_POST['start_year'];
+                        $end_year = strtoupper($_POST['end_year']);
+                        $school_year = $start_year . '-' . $end_year;
+
+                        $query = mysqli_query(
+                            $conn,
+                            "SELECT * FROM tbl_school_year WHERE school_year  =  '$school_year' "
+                        ) or die(mysqli_error());
+                        $count = mysqli_num_rows($query);
+
+                    if ($count > 0) { ?>
+                    <script>
+                    toastr.warning("Warning", "School Year Already Exists!");
+                    setTimeout(function() {
+                        window.location = "class.php";
+                    }, 1000);
+                    </script>
+                    <?php } else {mysqli_query(
+                                $conn,
+                                "INSERT INTO tbl_school_year (school_year) VALUES('$school_year')"
+                            ) or die(mysqli_error());
+                    ?>
+                    <script>
+                    toastr.success("Success", "School Year Successfully Added!");
+                    setTimeout(function() {
+                        window.location = "class.php";
+                    }, 1000);
+                    </script>
+                    <?php } } ?>
                     <SCRIPT LANGUAGE="JavaScript">
                     function addDashes1(f) {
                         f.value = f.value.replace(/\D/g, '');

@@ -87,7 +87,7 @@
                                 $conn,
                                 "SELECT * FROM tbl_message 
                                 LEFT JOIN tbl_student ON tbl_student.student_id = tbl_message.sender_id 
-                                WHERE tbl_message.receiver_id = '$session_id' 
+                                WHERE tbl_message.receiver_id = '$session_id'
                                 ORDER BY date_sended DESC"
                                 )) or die();
                                 $count_my_message = mysqli_num_rows(
@@ -105,7 +105,8 @@
                                 $sender_name =
                                 $row['firstname'] .' ' . $row['lastname'];
                                 $receiver_name = $row['receiver_name'];
-                            ?>
+                                $message_status = $row['message_status'];
+                                ?>
                             <div class="direct-chat-msg">
                                 <div class="direct-chat-infos clearfix">
                                     <span class="direct-chat-name float-left">
@@ -121,6 +122,7 @@
                                     alt="Message User Image">
                                 <div class="direct-chat-text" style="height:50px;background-color:success">
                                     <?php echo $row['content']; ?>
+
                                     <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
                                         data-toggle="modal"><i class="fas fa-trash"></i></a>
                                     <a class="btn btn-success float-sm-right" href="#reply<?php echo $id; ?>"

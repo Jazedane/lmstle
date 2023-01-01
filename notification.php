@@ -22,20 +22,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <?php
-                        ($school_year_query = mysqli_query(
-                            $conn,
-                            'select * from tbl_school_year order by school_year DESC'
-                        )) or die(mysqli_error());
-                        $school_year_query_row = mysqli_fetch_array(
-                            $school_year_query
-                        );
-                        $school_year = $school_year_query_row['school_year'];
-                        ?>
                             <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
-                            <li class="breadcrumb-item active">School Year: <?php echo $school_year_query_row[
-                            'school_year'
-                        ]; ?></a></li>
                             <li class="breadcrumb-item active">Notification</li>
                         </ol>
                     </div>
@@ -53,13 +40,11 @@
                             </div>
 
                             <div class="card-body">
-                                <form action="read.php" method="post">
-
+                                <form method="post">
                                     <div>
-                                        <button id="delete" class="btn btn-success" name="read"><i
+                                        <button id="delete" class="btn btn-success float-right" name="read"><i
                                                 class="fas fa-check"></i> Mark as Read</button>
-
-                                        <div style="margin-bottom: 10px;margin-top: 10px;">
+                                        <div>
                                             <input type="checkbox" name="selectAll" id="checkAll" /> Select All
                                         </div>
 
@@ -69,7 +54,22 @@
                                         });
                                         </script>
                                     </div>
-
+                                    <?php if (isset($_POST['read'])) {
+                                        $id = $_POST['selector'];
+                                        $N = count($id);
+                                        for ($i = 0; $i < $N; $i++) {
+                                            mysqli_query(
+                                                $conn,
+                                                "UPDATE tbl_notification SET is_read=true WHERE notification_id='$id[$i]'"
+                                            ) or die(mysqli_error());
+                                        }
+                                        ?>
+                                    <script>
+                                    window.location = 'notification.php';
+                                    </script>
+                                    <?php
+                                    }
+                                    ?>
                                     <?php
                                     ($query = mysqli_query(
                                         $conn,
@@ -96,7 +96,7 @@
                                         } else {
                                              ?>
                                         <input id="checkAll" class="uniform_on" name="selector[]" type="checkbox"
-                                            value="<?php echo $id; ?>">
+                                            value="<?php echo $id; ?>" required>
                                         <?php
                                         } ?>
 
@@ -126,7 +126,7 @@
                                         }
                                     } else {
                                          ?>
-                                    <div class="alert alert-primary"><strong><i class="fas fa-bell"></i> No
+                                    <div class="alert alert-primary" style="margin-top:20px"><strong><i class="fas fa-bell"></i> No
                                             Notifications Found</strong></div>
                                     <?php
                                     }
