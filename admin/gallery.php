@@ -169,7 +169,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-success">
-                            <h4 id="myModalLabel" class="modal-title">Add Plant Info</h4>
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-image"></i> Add Plant Info</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

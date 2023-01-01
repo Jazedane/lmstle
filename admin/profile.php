@@ -81,13 +81,10 @@
                     </div>
                     <div class="col-md-9">
                         <div class="card card-primary">
-                            <div class="card-header p-2">
-                                <ul class="nav nav-pills justify-content-between">
-                                    <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">About
-                                            me</a></li>
-                                    <li type="submit" class="btn btn-success" data-toggle="modal"
-                                        data-target="#update_profile-xl"><i class="fas fa-user"></i> Update Profile</li>
-                                </ul>
+                            <div class="card-header">
+                                <h3 class="card-title" style="margin-top:10px">About Me</h3>
+                                <a type="submit" class="btn btn-success float-right" data-toggle="modal"
+                                    data-target="#update_profile-xl"><i class="fas fa-user"></i> Update Profile</a>
                             </div>
                             <div class="card-body">
                                 <div class="tab-content">
@@ -149,8 +146,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="float-left font-15">Phone number</label>
-                                    <input type="number" name="phone_no" min="9000000000" maxlength="11" max="10000000000"
-                                        value="<?php echo $row['phone_no'];?>" class="form-control">
+                                    <input type="number" name="phone_no" min="9000000000" maxlength="11"
+                                        max="10000000000" value="<?php echo $row['phone_no'];?>" class="form-control">
                                     <label class="float-left font-15">Address</label>
                                     <textarea placeholder="Enter Address" name="address"
                                         class="form-control"><?php echo $row['address'];?></textarea>

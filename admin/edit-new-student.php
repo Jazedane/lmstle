@@ -48,30 +48,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Class Name</label>
-                                        <select name="class_id" class="form-control">
-                                            <option selected><?php echo $row['class_name']; ?></option>
-                                            <?php
-                                                $class_query = mysqli_query(
-                                                $conn,
-                                                "SELECT * FROM tbl_teacher_class 
-                                                LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id and tbl_teacher_class.school_year_id 
-                                                WHERE teacher_id = '$session_id' 
-                                                AND tbl_class.isDeleted = false order by class_name"
-                                                );
-                                                while (
-                                                    $class_row = mysqli_fetch_array(
-                                                    $class_query
-                                                )
-                                                ) { ?>
-                                            <option value="<?php echo $class_row[
-                                                'class_id'
-                                                ]; ?>">
-                                                <?php echo $class_row[
-                                                    'class_name'
-                                                ]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
+                                        <input type="varchar" class="form-control" name="class_id"
+                                            value="<?php echo $row['class_name']; ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>ID Number</label>
@@ -146,7 +124,7 @@
                                 showConfirmButton: false,
                                 timer: 1000
                             });
-                            toastr.success(
+                            toastr.success("Success",
                                 "Student Data Successfully Updated"
                             );
                             setTimeout(function() {
@@ -209,7 +187,7 @@
                                 showConfirmButton: false,
                                 timer: 100
                             });
-                            toastr.success(
+                            toastr.success("Success",
                                 "Student Password Successfully Updated"
                             );
                             setTimeout(function() {

@@ -32,71 +32,40 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
-                        <form method="post">
-                            <div class="card card-success">
-                                <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-plus"></i> Add Teacher</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label>First Name</label>
-                                        <input type="text" name="firstname" class="form-control"
-                                            placeholder="Enter Firstname" style="text-transform: uppercase" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" name="lastname" class="form-control"
-                                            placeholder="Enter Lastname" style="text-transform: uppercase" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Gender</label>
-                                        <select name="gender" class="form-control" placeholder="Gender" required>
-                                            <option selected disabled hidden>SELECT GENDER</option>
-                                            <option>MALE</option>
-                                            <option>FEMALE</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" name="username" class="form-control"
-                                            placeholder="ENTER USERNAME" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" name="password" class="form-control"
-                                            placeholder="ENTER PASSWORD" required>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <center><button name="save" type="submit" class="btn btn-success"><i
-                                                class="fas fa-plus">
-                                            </i> Add</button></center>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Teacher List</h3>
+                                <h3 class="card-title" style="margin-top:10px">Teacher List</h3>
+                                <a data-toggle="modal" href="#teacher_add" class="btn btn-success float-right"
+                                    name="add_student"><i class="fas fa-user-plus lg"></i> Add</a>
                             </div>
                             <div class="card-body">
                                 <form id="delete_teacher" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
-                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash"></i>
+                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash"></i> Remove
                                         </ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <div class="float-right">
-                                            <a type="button" href="teacher.php" class="btn btn-secondary"> All
-                                            </a>
-                                            <a type="button" href="activate-teacher.php" class="btn btn-success">
-                                                Activated
-                                            </a>
-                                            <a type="button" href="deactivate-teacher.php" class="btn btn-primary">
-                                                Deactivated
-                                            </a>
+                                            <ul class="navbar-nav">
+                                                <li class="nav-item dropdown">
+                                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-users"></i> Show All
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                        <a href="teacher.php" class="dropdown-item active" type="button">
+                                                            Show All</a>
+                                                        <a href="activate-teacher.php" class="dropdown-item"
+                                                            type="button">
+                                                            Activated</a>
+                                                        <a href="deactivate-teacher.php" class="dropdown-item"
+                                                            type="button">
+                                                            Deactivated</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
                                         <thead>
                                             <tr>
@@ -112,7 +81,7 @@
                                                 <th>Username</th>
                                                 <th>Gender</th>
                                                 <th>Status</th>
-                                                <th></th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -165,7 +134,7 @@
                             					}elseif($row['teacher_stat'] =='DEACTIVATED'){
                               						echo "<span class='badge badge-danger'>DEACTIVATED</span>";
                                                 } ?></td>
-                                                <td width="40">
+                                                <td width="60">
                                                     <a href="edit_teacher.php<?php echo '?id=' .$id; ?>"
                                                         class="btn btn-success"><i class="fas fa-edit"></i></a>
                                                 </td>
@@ -182,6 +151,47 @@
                 </div>
             </div>
         </section>
+        <div class="modal hide fade" id="teacher_add" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-user-plus"></i> Add Teacher</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data">
+                                <label>First Name</label>
+                                <input type="text" name="firstname" class="form-control" placeholder="Enter Firstname"
+                                    style="text-transform: uppercase" required>
+                                <label>Last Name</label>
+                                <input type="text" name="lastname" class="form-control" placeholder="Enter Lastname"
+                                    style="text-transform: uppercase" required>
+                                <label>Gender</label>
+                                <select name="gender" class="form-control" placeholder="Gender" required>
+                                    <option selected disabled hidden>SELECT GENDER</option>
+                                    <option>MALE</option>
+                                    <option>FEMALE</option>
+                                </select>
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" placeholder="ENTER USERNAME"
+                                    required>
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="ENTER PASSWORD"
+                                    required>
+                                <div class="modal-footer">
+                                    <center><button name="save" type="submit" class="btn btn-success"><i
+                                                class="fas fa-plus">
+                                            </i> Add</button></center>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php include 'footer.php'; ?>
     <?php
@@ -198,7 +208,8 @@
 
         if ($count > 0){ ?>
     <script>
-    toastr.warning('Teacher Already Exist');
+    toastr.warning("Warning", "Teacher Already Exist!");
+    window.location = "teacher.php";
     </script>
     <?php
         }else {
@@ -208,7 +219,7 @@
         values(NOW(),'$username','Add User $username')")or die(mysqli_error());
     ?>
     <script>
-    toastr.success("Teacher Successfully Added!")
+    toastr.success("Success", "Teacher Successfully Added!")
     window.location.reload();
     </script>
     <?php
@@ -256,7 +267,7 @@
                     delete_teacher: true
                 }),
                 success: function(html) {
-                    toastr.error(
+                    toastr.error("Deleted",
                         "Teacher Successfully Deleted"
                     );
                     setTimeout(function() {

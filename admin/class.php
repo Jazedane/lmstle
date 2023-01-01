@@ -36,89 +36,7 @@
                         <form method="post">
                             <div class="card card-success">
                                 <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-plus"></i> Add Class</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label>Grade</label>
-                                        <select name="grade" class="form-control" placeholder="Gender" required>
-                                            <option selected disabled hidden>SELECT GRADE</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Section</label>
-                                        <input name="section" type="text" class="form-control" placeholder="Enter Class"
-                                            style="text-transform: uppercase" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Subject:</label>
-                                        <select name="subject_id" class="form-control" required>
-                                            <option selected disabled hidden>SELECT SUBJECT</option>
-                                            <?php
-                                            $query = mysqli_query(
-                                                $conn,
-                                                'select * from tbl_subject order by subject_code'
-                                            );
-                                            while (
-                                                $row = mysqli_fetch_array(
-                                                    $query
-                                                )
-                                            ) { ?>
-                                            <option value="<?php echo $row[
-                                                'subject_id'
-                                            ]; ?>">
-                                                <?php echo $row[
-                                                    'subject_code'
-                                                ]; ?>
-                                            </option>
-                                            <?php }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>School Year:</label>
-                                        <select name="school_year_id" class="form-control" required>
-                                            <option selected disabled hidden>SELECT SCHOOL YEAR</option>
-                                            <?php
-                                            $query = mysqli_query(
-                                                $conn,
-                                                'select * from tbl_school_year order by school_year DESC'
-                                            );
-                                            while (
-                                                $row = mysqli_fetch_array(
-                                                    $query
-                                                )
-                                            ) { ?>
-                                            <option value="<?php echo $row[
-                                                'school_year_id'
-                                            ]; ?>">
-                                                <?php echo $row[
-                                                    'school_year'
-                                                ]; ?>
-                                            </option>
-                                            <?php }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <input type="hidden" name="session_id" value="<?php echo $session_id; ?>"
-                                        class="form-control" required>
-                                    </input>
-                                </div>
-                                <div class="form-group">
-                                    <center><button name="save" type="submit" class="btn btn-success"><i
-                                                class="fas fa-plus">
-                                            </i> Add</button></center>
-                                </div>
-                            </div>
-                        </form>
-                        <form method="post">
-                            <div class="card card-success">
-                                <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-edit"></i> Add School Year</h3>
+                                    <h3 class="card-title"><i class="fas fa-user-plus"></i> Add School Year</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
@@ -192,7 +110,7 @@
 
                         if ($count > 0) { ?>
                     <script>
-                    toastr.warning("Class Already Exists!");
+                    toastr.warning("Warning", "Class Already Exists!");
                     setTimeout(function() {
                         window.location = "class.php";
                     }, 1000);
@@ -259,7 +177,7 @@
                             }
                     ?>
                     <script>
-                    toastr.success("Class Successfully Added!");
+                    toastr.success("Success", "Class Successfully Added!");
                     setTimeout(function() {
                         window.location = "class.php";
                     }, 1000);
@@ -268,7 +186,9 @@
                     <div class="col-md-9">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Class List</h3>
+                                <h3 class="card-title" style="margin-top:10px">Class List</h3>
+                                <a data-toggle="modal" href="#class_add" class="btn btn-success float-right"
+                                    name="add_class"><i class="fas fa-user-plus lg"></i> Add</a>
                             </div>
                             <div class="card-body">
                                 <form id="delete_class" method="post">
@@ -333,6 +253,89 @@
                 </div>
             </div>
         </section>
+        <div class="modal hide fade" id="class_add" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-user-plus"></i> Add Class</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data">
+                                <label>Grade</label>
+                                <select name="grade" class="form-control" placeholder="Gender" required>
+                                    <option selected disabled hidden required>SELECT GRADE</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                                <label>Section</label>
+                                <input name="section" type="text" class="form-control" placeholder="Enter Class"
+                                    style="text-transform: uppercase" required>
+                                <label>Subject:</label>
+                                <select name="subject_id" class="form-control" required>
+                                    <option selected disabled hidden>SELECT SUBJECT</option>
+                                    <?php
+                                        $query = mysqli_query(
+                                            $conn,
+                                            'select * from tbl_subject order by subject_code'
+                                        );
+                                        while (
+                                            $row = mysqli_fetch_array(
+                                                $query
+                                            )
+                                        ) { ?>
+                                    <option value="<?php echo $row[
+                                                'subject_id'
+                                            ]; ?>" required>
+                                        <?php echo $row[
+                                                    'subject_code'
+                                                ]; ?>
+                                    </option>
+                                    <?php }
+                                    ?>
+                                </select>
+                                <label>School Year:</label>
+                                <select name="school_year_id" class="form-control" required>
+                                    <option selected disabled hidden>SELECT SCHOOL YEAR</option>
+                                    <?php
+                                            $query = mysqli_query(
+                                                $conn,
+                                                'select * from tbl_school_year order by school_year DESC'
+                                            );
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $query
+                                                )
+                                            ) { ?>
+                                    <option value="<?php echo $row[
+                                                'school_year_id'
+                                            ]; ?>" required>
+                                        <?php echo $row[
+                                                    'school_year'
+                                                ]; ?>
+                                    </option>
+                                    <?php }
+                                            ?>
+                                </select>
+                                <input type="hidden" name="session_id" value="<?php echo $session_id; ?>"
+                                    class="form-control" required>
+                                </input>
+                                <div class="modal-footer">
+                                    <center><button name="save" type="submit" class="btn btn-success"><i
+                                                class="fas fa-plus">
+                                            </i> Add</button></center>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php include 'footer.php'; ?>
     <script type="text/javascript">
@@ -358,7 +361,7 @@
                 }),
                 success: function(html) {
                     toastr.error(
-                        "Class Successfully Deleted"
+                        "Deleted", "Class Successfully Deleted"
                     );
                     setTimeout(function() {
                         window.location.reload();

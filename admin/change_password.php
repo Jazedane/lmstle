@@ -22,22 +22,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <?php
-                            ($school_year_query = mysqli_query(
-                                $conn,
-                                'select * from tbl_school_year order by school_year DESC'
-                            )) or die(mysqli_error());
-                            $school_year_query_row = mysqli_fetch_array(
-                                $school_year_query
-                            );
-                            $school_year =
-                                $school_year_query_row['school_year'];
-                            ?>
-                            <li class="breadcrumb-item"><a href="#"><b>Home</b></a><span class="divider"></span></li>
-                            <li class="breadcrumb-item"><a href="#">School Year:
-                                    <?php echo $school_year_query_row[
-                                        'school_year'
-                                    ]; ?></a></li>
+                            <li class="breadcrumb-item"><a href="#">Home</a><span class="divider"></span></li>
                             <li class="breadcrumb-item active"><a href="#"><b>Change Password</b></a></li>
                         </ol>
                     </div>

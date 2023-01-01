@@ -47,155 +47,12 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
-                        <form method="post">
-                            <div class="card card-success">
-                                <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-plus"></i> Add Student</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label>Select Section</label>
-                                        <select name="class_id" class="form-control" required>
-                                            <option selected disabled hidden>SELECT SECTION</option>
-                                            <?php
-                                                $class_query = mysqli_query(
-                                                $conn,
-                                                "SELECT * FROM tbl_teacher_class 
-                                                LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
-                                                WHERE teacher_id = '$session_id' 
-                                                AND tbl_class.isDeleted = false"
-                                                );
-                                                while (
-                                                    $class_row = mysqli_fetch_array(
-                                                    $class_query
-                                                )
-                                                ) { ?>
-                                            <option value="<?php echo $class_row[
-                                                'class_id'
-                                                ]; ?>">
-                                                <?php echo $class_row[
-                                                    'class_name'
-                                                ]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>ID Number</label>
-                                        <input name="username" type="varchar" maxlength="7" class="form-control"
-                                            placeholder="ENTER ID NUMBER" onBlur='addDashes(this)' autocomplete="off"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>First Name</label>
-                                        <input name="firstname" type="text" class="form-control"
-                                            placeholder="Enter Firstname" style="text-transform: uppercase" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Last Name</label>
-                                        <input name="lastname" type="text" class="form-control"
-                                            placeholder="Enter Lastname" style="text-transform: uppercase" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Gender</label>
-                                        <select name="gender" class="form-control" placeholder="Gender" required>
-                                            <option selected disabled hidden>SELECT GENDER</option>
-                                            <option>MALE</option>
-                                            <option>FEMALE</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Age</label>
-                                        <input type="number" maxlength="2" min="15" max="25" class="form-control"
-                                            name="age" placeholder="AGE" required>
-                                    </div>
-                                    <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
-                                </div>
-                                <div class="card-footer">
-                                    <center><button name="save" type="submit" class="btn btn-success"><i
-                                                class="fas fa-plus">
-                                            </i> Add</button></center>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <?php if (isset($_POST['save'])) {
-                        $class_id = $_POST['class_id'];
-                        $username = $_POST['username'];
-                        $firstname = strtoupper($_POST['firstname']);
-                        $lastname = strtoupper($_POST['lastname']);
-                        $gender = $_POST['gender'];
-                        $age = $_POST['age'];
-                        $teacher_id = $_POST['teacher_id'];
-                        $hashedPassword = hash('sha256', $lastname . $username);
-
-                        /**
-                         * Query teacher_class to get the teacher_class_id.
-                         */
-                        $query = "SELECT * FROM tbl_teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
-                        $result = mysqli_query($conn, $query);
-                        $row   = mysqli_fetch_assoc($result);
-                        $teacher_class_id = $row['teacher_class_id'];
-
-                        ($query = mysqli_query(
-                            $conn,
-                            "SELECT * FROM tbl_student WHERE username  =  '$username' AND firstname  =  '$firstname' AND lastname  =  '$lastname'"
-                        )) or die(mysqli_error());
-                        $count = mysqli_num_rows($query);
-
-                        if ($count > 0) { ?>
-                    <script>
-                    toastr.warning("Student Already Exists!");
-                    setTimeout(function() {
-                        window.location = "new-students.php";
-                    }, 1000);
-                    </script>
-                    <?php } else {mysqli_query(
-                    $conn,
-                    "INSERT INTO 
-                    tbl_student 
-                    (username,firstname,lastname,gender,age,location,class_id,status,password) 
-                    VALUES 
-                    ('$username','$firstname','$lastname','$gender','$age','NO-IMAGE-AVAILABLE.jpg','$class_id','Registered','$hashedPassword');"
-                    ) or die(mysqli_error());
-
-                    /**
-                     * Since the student is new, we don't have the student_id, yet.
-                     * This retrieves the last auto-incremented ID on the 'student' table
-                     */
-                    $student_id = mysqli_insert_id($conn);
-
-                    /**
-                     * Add foreign key references and entry to 'teacher_class_student' table.
-                     */
-                    mysqli_query(
-                        $conn,
-                        "INSERT INTO 
-                        tbl_teacher_class_student 
-                        (teacher_class_id,student_id,teacher_id) 
-                        VALUES 
-                        ('$teacher_class_id','$student_id','$teacher_id');"
-                        ) or die(mysqli_error());
-                    ?>
-                    <script>
-                    toastr.success("New Student Successfully Added!");
-                    setTimeout(function() {
-                        window.location = "new-students.php";
-                    }, 1000);
-                    </script>
-                    <?php } } ?>
-                    <SCRIPT LANGUAGE="JavaScript">
-                    function addDashes(f) {
-                        f.value = f.value.replace(/\D/g, '');
-
-                        f.value = f.value.slice(0, 2) + "-" + f.value.slice(2, 8);
-                    }
-                    </SCRIPT>
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Student List</h3>
+                                <h3 class="card-title" style="margin-top:10px">Student List</h3>
+                                <a data-toggle="modal" href="#student_add" class="btn btn-success float-right"
+                                    name="add_student"><i class="fas fa-user-plus lg"></i> Add</a>
                             </div>
 
                             <div class="card-body">
@@ -292,8 +149,148 @@
                 </div>
             </div>
         </section>
+        <div class="modal hide fade" id="student_add" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-user-plus"></i> Add Student</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data">
+                                <label>Select Section</label>
+                                <select name="class_id" class="form-control" required>
+                                    <option selected disabled hidden>SELECT SECTION</option>
+                                    <?php
+                                        $class_query = mysqli_query(
+                                        $conn,
+                                        "SELECT * FROM tbl_teacher_class 
+                                        LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
+                                        WHERE teacher_id = '$session_id' 
+                                        AND tbl_class.isDeleted = false"
+                                        );
+                                        while (
+                                            $class_row = mysqli_fetch_array(
+                                            $class_query
+                                        )
+                                        ) { ?>
+                                    <option value="<?php echo $class_row[
+                                                'class_id'
+                                                ]; ?>">
+                                        <?php echo $class_row[
+                                                    'class_name'
+                                                ]; ?></option>
+                                    <?php }
+                                    ?>
+                                </select>
+                                </select>
+                                <label>ID Number</label>
+                                <input name="username" type="varchar" maxlength="7" class="form-control"
+                                    placeholder="ENTER ID NUMBER" onBlur='addDashes(this)' autocomplete="off" required>
+                                <label>First Name</label>
+                                <input name="firstname" type="text" class="form-control" placeholder="Enter Firstname"
+                                    style="text-transform: uppercase" required>
+                                <label>Last Name</label>
+                                <input name="lastname" type="text" class="form-control" placeholder="Enter Lastname"
+                                    style="text-transform: uppercase" required>
+                                <label>Gender</label>
+                                <select name="gender" class="form-control" placeholder="Gender" required>
+                                    <option selected disabled hidden>SELECT GENDER</option>
+                                    <option>MALE</option>
+                                    <option>FEMALE</option>
+                                </select>
+                                <label>Age</label>
+                                <input type="number" maxlength="2" min="15" max="25" class="form-control" name="age"
+                                    placeholder="AGE" required>
+                                <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
+                                <div class="modal-footer">
+                                    <center><button name="save" type="submit" class="btn btn-success"><i
+                                                class="fas fa-plus">
+                                            </i> Add</button></center>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php include 'footer.php'; ?>
+    <?php if (isset($_POST['save'])) {
+            $class_id = $_POST['class_id'];
+            $username = $_POST['username'];
+            $firstname = strtoupper($_POST['firstname']);
+            $lastname = strtoupper($_POST['lastname']);
+            $gender = $_POST['gender'];
+            $age = $_POST['age'];
+            $teacher_id = $_POST['teacher_id'];
+            $hashedPassword = hash('sha256', $lastname . $username);
+
+            /**
+             * Query teacher_class to get the teacher_class_id.
+             */
+            $query = "SELECT * FROM tbl_teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
+            $result = mysqli_query($conn, $query);
+            $row   = mysqli_fetch_assoc($result);
+            $teacher_class_id = $row['teacher_class_id'];
+
+            ($query = mysqli_query(
+                $conn,
+                "SELECT * FROM tbl_student WHERE username  =  '$username' AND firstname  =  '$firstname' AND lastname  =  '$lastname'"
+            )) or die(mysqli_error());
+            $count = mysqli_num_rows($query);
+
+    if ($count > 0) { ?>
+    <script>
+    toastr.warning("Warning","Student Already Exists!");
+    setTimeout(function() {
+        window.location = "new-students.php";
+    }, 1000);
+    </script>
+    <?php } else {mysqli_query(
+            $conn,
+            "INSERT INTO 
+            tbl_student 
+            (username,firstname,lastname,gender,age,location,class_id,status,password) 
+            VALUES 
+            ('$username','$firstname','$lastname','$gender','$age','NO-IMAGE-AVAILABLE.jpg','$class_id','Registered','$hashedPassword');"
+            ) or die(mysqli_error());
+
+            /**
+             * Since the student is new, we don't have the student_id, yet.
+             * This retrieves the last auto-incremented ID on the 'student' table
+             */
+            $student_id = mysqli_insert_id($conn);
+
+            /**
+             * Add foreign key references and entry to 'teacher_class_student' table.
+             */
+            mysqli_query(
+                $conn,
+                "INSERT INTO 
+                tbl_teacher_class_student 
+                (teacher_class_id,student_id,teacher_id) 
+                VALUES 
+                ('$teacher_class_id','$student_id','$teacher_id');"
+                ) or die(mysqli_error());
+    ?>
+    <script>
+    toastr.success("Success","New Student Successfully Added!");
+    setTimeout(function() {
+        window.location = "new-students.php";
+    }, 1000);
+    </script>
+    <?php } } ?>
+    <SCRIPT LANGUAGE="JavaScript">
+    function addDashes(f) {
+        f.value = f.value.replace(/\D/g, '');
+
+        f.value = f.value.slice(0, 2) + "-" + f.value.slice(2, 8);
+    }
+    </SCRIPT>
     <script type="text/javascript">
     $(document).ready(function() {
         var Toast = Swal.mixin({
@@ -316,7 +313,7 @@
                     delete_student: true
                 }),
                 success: function(html) {
-                    toastr.error(
+                    toastr.error("Deleted",
                         "Student Successfully Deleted"
                     );
                     setTimeout(function() {
