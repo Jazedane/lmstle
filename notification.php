@@ -126,7 +126,8 @@
                                         }
                                     } else {
                                          ?>
-                                    <div class="alert alert-primary" style="margin-top:20px"><strong><i class="fas fa-bell"></i> No
+                                    <div class="alert alert-primary" style="margin-top:20px"><strong><i
+                                                class="fas fa-bell"></i> No
                                             Notifications Found</strong></div>
                                     <?php
                                     }
@@ -144,21 +145,11 @@
                             <div class="card-body">
                                 <form id="delete_notif" method="post">
                                     <table id="example2" class="table table-bordered table-striped">
-                                        <ul data-toggle="modal" href="#notif_delete" id="delete" class="btn btn-danger"
-                                            name="delete_notif"><i class="fas fa-trash"></i> Delete Notification</ul>
-                                        <?php include 'admin/modal_delete.php'; ?>
                                         <thead>
                                             <tr>
-                                                <th><input type="checkbox" name="selectAll" id="checkAll1" />
-                                                    <script>
-                                                    $("#checkAll1").click(function() {
-                                                        $('input:checkbox').not(this).prop('checked', this
-                                                            .checked);
-                                                    });
-                                                    </script>
-                                                </th>
                                                 <th>Notification</th>
                                                 <th>Notification Date</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -179,10 +170,6 @@
                                         ?>
 
                                             <tr>
-                                                <td width="30">
-                                                    <input id="checkAll1" class="uniform_on" name="selector[]"
-                                                        type="checkbox" value="<?php echo $id; ?>">
-                                                </td>
                                                 <td><strong><?php echo $row['firstname'] .
                                                 ' ' .
                                                 $row['lastname']; ?></strong>
@@ -201,6 +188,11 @@
                                                 'F d, Y h:i: A'
                                                 );
                                                 ?>
+                                                </td>
+                                                <td><a data-toggle="modal" href="#notif_delete<?php echo $id; ?>"
+                                                        id="delete" class="btn btn-danger" name="delete_notif"><i
+                                                            class="fas fa-trash"></i></a>
+                                                    <?php include 'admin/modal_delete.php'; ?>
                                                 </td>
                                             </tr>
 
@@ -228,29 +220,29 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 1000
+            timer: 100
         });
         $('.delete_notif').click(function() {
-            var selectedIds = $('[name="selector[]"]:checked').map((_,
-                element) => {
-                return $(element).val()
-            }).get()
 
+            var id = $(this).attr("id");
             $.ajax({
                 type: "POST",
                 url: "admin/delete_notification.php",
                 data: ({
-                    selector: selectedIds,
-                    delete_notif: true
+                    id: id
                 }),
+                cache: false,
                 success: function(html) {
-                    toastr.error(
-                        "Notification Successfully Deleted"
-                    );
+                    $("#notif_delete" + id).fadeOut('slow',
+                        function() {
+                            $(this).remove();
+                        });
+                    $('#' + id).modal('hide');
+                    toastr.error("Deleted", "Notification Successfully Deleted!");
                     setTimeout(function() {
                         window.location.reload();
                     }, 1000);
-                }
+                },
             });
             return false;
         });

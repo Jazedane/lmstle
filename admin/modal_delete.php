@@ -89,7 +89,7 @@
 					    </div>
 					</div>
 
-					<div id="notif_delete" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div id="notif_delete<?php echo $id; ?>" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					    <div class="modal-dialog">
 					        <div class="modal-content bg-danger">
 					            <div class="modal-header">
@@ -105,7 +105,7 @@
 					                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i
 					                        class="fas fa-times"></i>
 					                    Close</button>
-					                <button class="btn btn-success delete_notif"><i class="fas fa-check"></i> Yes</button>
+					                <button id="<?php echo $id; ?>" class="btn btn-success delete_notif"><i class="fas fa-check"></i> Yes</button>
 					            </div>
 					        </div>
 					    </div>

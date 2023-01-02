@@ -134,11 +134,11 @@
                                                 <div class="justify content-between">
                                                     <a class="btn btn-primary"
                                                         href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>"
-                                                        title="View Task Summary" id="<?php echo $id; ?>view">
+                                                        title="View Task Summary" data-placement="bottom" id="view">
                                                         <i class="fas fa-envelope"></i> Task Summary</a>
                                                     <a class="btn btn-success"
                                                         href="http://localhost/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>"
-                                                        title="Edit Grade" id="<?php echo $id; ?>edit">
+                                                        title="Edit Grade" data-placement="bottom" id="edit">
                                                         <i class="fas fa-edit"></i> Edit Grade</a>
                                                 </div>
                                             </td>
@@ -154,37 +154,38 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-</body>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#<?php echo $id; ?>view').tooltip('show');
-    $('#<?php echo $id; ?>view').tooltip('hide');
-});
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#<?php echo $id; ?>edit').tooltip('show');
-    $('#<?php echo $id; ?>edit').tooltip('hide');
-});
-</script>
-<script>
-$(function() {
-    $("#example1").DataTable({
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-        "buttons": ["copy", "excel", "pdf", "print"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#view').tooltip('show');
+        $('#view').tooltip('hide');
     });
-});
-</script>
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#edit').tooltip('show');
+        $('#edit').tooltip('hide');
+    });
+    </script>
+    <script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+    </script>
+</body>
 
 </html>

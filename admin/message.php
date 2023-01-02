@@ -82,7 +82,37 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <?php
+                            <form method="post">
+                                <div style="margin-top:10px;margin-bottom:20px">
+                                    <button class="btn btn-success float-right" name="read"><i class="fas fa-check"></i>
+                                        Mark as Read</button>
+                                    <div>
+                                        &nbsp Select All <input type="checkbox" name="selectAll" id="checkAll" />
+                                    </div>
+                                    <script>
+                                    $("#checkAll").click(function() {
+                                        $('input:checkbox').not(this).prop('checked', this.checked);
+                                    });
+                                    </script>
+                                    <?php if (isset($_POST['read'])) {
+                                        $id = $_POST['selector'];
+                                        $N = count($id);
+                                        for ($i = 0; $i < $N; $i++) {
+                                            mysqli_query(
+                                                $conn,
+                                                "UPDATE tbl_message SET message_status='read' WHERE message_id='$id[$i]'"
+                                            ) or die(mysqli_error());
+                                        }
+                                    ?>
+                                    <script>
+                                    window.location.reload();
+                                    </script>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+
+                                <?php
                                 ($query_announcement = mysqli_query(
                                 $conn,
                                 "SELECT * FROM tbl_message 
@@ -107,104 +137,111 @@
                                 $receiver_name = $row['receiver_name'];
                                 $message_status = $row['message_status'];
                                 ?>
-                            <div class="direct-chat-msg">
-                                <div class="direct-chat-infos clearfix">
-                                    <span class="direct-chat-name float-left">
-                                        <strong>Send by: Student <?php echo $sender_name; ?> </strong></span>
-                                    <span class="direct-chat-timestamp float-right"><?php $date_sended = date_create($row['date_sended']);
+                                <div class="direct-chat-msg">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-left">
+                                            <strong>Send by: Student <?php echo $sender_name; ?> </strong></span>
+                                        <span class="direct-chat-timestamp float-right"><?php $date_sended = date_create($row['date_sended']);
                                                     echo date_format(
                                                     $date_sended,
                                                     'F d, Y h:i A'
                                                     ); ?>
-                                    </span>
+                                        </span>
+                                    </div>
+                                    <img class="direct-chat-img" src="uploads/<?php echo $row['location']; ?>"
+                                        alt="Message User Image">
+                                    <div class="direct-chat-text" style="height:50px;background-color:success">
+                                        <?php echo $row['content']; ?>
+                                        <?php if ($message_status == 'read') {
+                                        } else {
+                                             ?>
+                                        <input id="checkAll" class="uniform_on" name="selector[]" type="checkbox"
+                                            value="<?php echo $id; ?>" required>
+                                        <?php
+                                        } ?>
+                                        <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
+                                            data-toggle="modal"><i class="fas fa-trash"></i></a>
+                                        <a class="btn btn-success float-sm-right" href="#reply<?php echo $id; ?>"
+                                            data-toggle="modal"><i class="fas fa-reply"></i></a>
+                                        <?php include("remove_inbox_message_modal.php"); ?>
+                                        <?php include 'reply_inbox_message_modal.php'; ?>
+                                    </div>
                                 </div>
-                                <img class="direct-chat-img" src="uploads/<?php echo $row['location']; ?>"
-                                    alt="Message User Image">
-                                <div class="direct-chat-text" style="height:50px;background-color:success">
-                                    <?php echo $row['content']; ?>
-
-                                    <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
-                                        data-toggle="modal"><i class="fas fa-trash"></i></a>
-                                    <a class="btn btn-success float-sm-right" href="#reply<?php echo $id; ?>"
-                                        data-toggle="modal"><i class="fas fa-reply"></i></a>
-                                    <?php include("remove_inbox_message_modal.php"); ?>
-                                    <?php include 'reply_inbox_message_modal.php'; ?>
-                                </div>
-                            </div>
-                            <?php }}else{ ?>
-                            <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Inbox
-                                Messages</div>
-                            <?php } ?>
-                            <script type="text/javascript">
-                            $(document).ready(function() {
-                                var Toast = Swal.mixin({
-                                    toast: true,
-                                    position: 'top-end',
-                                    showConfirmButton: false,
-                                    timer: 1000
-                                });
-                                $('.remove').click(function() {
-
-                                    var id = $(this).attr("id");
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "remove_inbox_message.php",
-                                        data: ({
-                                            id: id
-                                        }),
-                                        cache: false,
-                                        success: function(html) {
-                                            $("#del" + id).fadeOut('slow',
-                                                function() {
-                                                    $(this).remove();
-                                                });
-                                            $('#' + id).modal('hide');
-                                            toastr.error(
-                                                "Student Message Successfully Deleted", {}
-                                            );
-                                            setTimeout(function() {
-                                                window.location.reload();
-                                            }, 1000);
-                                        }
+                                <?php }}else{ ?>
+                                <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Inbox
+                                    Messages</div>
+                                <?php } ?>
+                                <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 1000
                                     });
-                                    return false;
-                                });
-                            });
-                            </script>
-                            <script type="text/javascript">
-                            jQuery(document).ready(function() {
-                                var Toast = Swal.mixin({
-                                    toast: true,
-                                    position: 'top-end',
-                                    showConfirmButton: false,
-                                    timer: 1000
-                                });
-                                jQuery("#reply").submit(function(e) {
-                                    e.preventDefault();
-                                    var id = $('.reply').attr("id");
-                                    var _this = $(e.target);
-                                    var formData = jQuery(this).serialize();
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "reply.php",
-                                        data: formData,
-                                        success: function(html) {
-                                            $(document).Toasts('create', {
-                                                class: 'bg-success',
-                                                body: 'Message Successfully Sent!',
-                                                title: 'Message',
-                                                subtitle: 'Success',
-                                                autohide: true,
-                                                delay: 1000,
-                                                icon: 'fas fa-envelope fa-lg',
-                                            })
-                                            $('#reply' + id).modal('hide');
-                                        }
+                                    $('.remove').click(function() {
+
+                                        var id = $(this).attr("id");
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "remove_inbox_message.php",
+                                            data: ({
+                                                id: id
+                                            }),
+                                            cache: false,
+                                            success: function(html) {
+                                                $("#del" + id).fadeOut('slow',
+                                                    function() {
+                                                        $(this).remove();
+                                                    });
+                                                $('#' + id).modal('hide');
+                                                toastr.error(
+                                                    "Student Message Successfully Deleted", {}
+                                                );
+                                                setTimeout(function() {
+                                                    window.location.reload();
+                                                }, 1000);
+                                            }
+                                        });
+                                        return false;
                                     });
-                                    return false;
                                 });
-                            });
-                            </script>
+                                </script>
+                                <script type="text/javascript">
+                                jQuery(document).ready(function() {
+                                    var Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 1000
+                                    });
+                                    jQuery("#reply").submit(function(e) {
+                                        e.preventDefault();
+                                        var id = $('.reply').attr("id");
+                                        var _this = $(e.target);
+                                        var formData = jQuery(this).serialize();
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "reply.php",
+                                            data: formData,
+                                            success: function(html) {
+                                                $(document).Toasts('create', {
+                                                    class: 'bg-success',
+                                                    body: 'Message Successfully Sent!',
+                                                    title: 'Message',
+                                                    subtitle: 'Success',
+                                                    autohide: true,
+                                                    delay: 1000,
+                                                    icon: 'fas fa-envelope fa-lg',
+                                                })
+                                                $('#reply' + id).modal('hide');
+                                            }
+                                        });
+                                        return false;
+                                    });
+                                });
+                                </script>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -212,39 +249,6 @@
         </section>
     </div>
     <?php include 'footer.php'; ?>
-    <script>
-    $(function() {
-        $('.checkbox-toggle').click(function() {
-            var clicks = $(this).data('clicks')
-            if (clicks) {
-                //Uncheck all checkboxes
-                $('.mailbox-messages input[type=\'checkbox\']').prop('checked', false)
-                $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass(
-                    'fa-square')
-            } else {
-                //Check all checkboxes
-                $('.mailbox-messages input[type=\'checkbox\']').prop('checked', true)
-                $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass(
-                    'fa-check-square')
-            }
-            $(this).data('clicks', !clicks)
-        })
-
-        //Handle starring for font awesome
-        $('.mailbox-star').click(function(e) {
-            e.preventDefault()
-            //detect type
-            var $this = $(this).find('a > i')
-            var fa = $this.hasClass('fa')
-
-            //Switch states
-            if (fa) {
-                $this.toggleClass('fa-star')
-                $this.toggleClass('fa-star-o')
-            }
-        })
-    })
-    </script>
     <script>
     $(function() {
         $('#my_message').summernote()

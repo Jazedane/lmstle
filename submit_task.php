@@ -101,9 +101,10 @@
                                             $count = mysqli_num_rows($query);
 
                                             if ($count > 0) {  
-                                                
+                                                echo "<center><button type='submit'
+                                                    class='btn btn-secondary' disabled>Submitted</button></center>";
                                                } else { 
-                                                ?>
+                                            ?>
                                             <center><button name="upload" type="submit" value="Upload"
                                                     class="btn btn-success">Submit</button></center>
                                             <?php }  ?>

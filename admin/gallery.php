@@ -50,7 +50,7 @@
 
         if ($count > 0) { ?>
         <script>
-        toastr.warning("Plant Already Exists!");
+        toastr.warning("Warning","Plant Already Exists!");
         setTimeout(function() {
             window.location = 'gallery.php?current_page=1';
         }, 1000);
@@ -72,7 +72,7 @@
     
         ?>
         <script type="text/javascript">
-        toastr.success(
+        toastr.success("Success",
             "Plant Information Successfully Added"
         );
         setTimeout(function() {
@@ -218,7 +218,7 @@
                             $(this).remove();
                         });
                     $('#' + id).modal('hide');
-                    toastr.error("Plants Information Successfully Deleted.");
+                    toastr.error("Deleted","Plants Information Successfully Deleted!");
                     setTimeout(function() {
                         window.location.reload();
                     }, 1000);
