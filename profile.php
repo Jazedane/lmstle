@@ -50,9 +50,8 @@
                                     } 
                                     
                                 ?>
-                                <a href="change-avatar-student.php"><input type="submit" name="change"
-                                        class="btn btn-outline-success btn-sm float-right mt-3"
-                                        value="Edit Profile"></a>
+                                <a data-toggle="modal" href="#change-avatar-student" class="btn btn-success float-right"
+                                    name="change"><i class="fas fa-user lg"></i> Edit Profile</a>
                             </div>
                         </div>
                     </div>
@@ -98,86 +97,172 @@
                 </div>
             </div>
         </section>
-    </div>
-    <div class="modal fade" id="update_profile-xl" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content text-center ">
-                <div class="modal-header bg-primary">
-                    <h3 class="modal-title text-white "><b><i class="fas fa-user"></i> Update Profile</b></h3>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="hidden" name="student_id" value="<?php echo $row['student_id'];?>">
-                                <label class="float-left font-15">First name</label>
-                                <input type="text" name="firstname" value="<?php echo $row['firstname'];?>"
-                                    class="form-control" required="">
-                                <label class="float-left font-15">Last name</label>
-                                <input type="text" name="lastname" value="<?php echo $row['lastname'];?>"
-                                    class="form-control">
-                                <label class="float-left font-15">Email</label>
-                                <input type="email" name="email" value="<?php echo $row['email'];?>"
-                                    class="form-control">
-                                <label class="float-left font-15">Birthday</label>
-                                <input type="date" name="birthdate" value="<?php echo $row['birthdate'];?>"
-                                    class="form-control" max="9999-01-01" min="0000-01-01">
-                                <label class="float-left font-15">Gender</label>
-                                <select class="form-control" name="gender">
-                                    <option><?php echo $row['gender'];?></option>
-                                    <option>MALE</option>
-                                    <option>FEMALE</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="float-left font-15">Age</label>
-                                <input type="number" name="age" maxlength="2" min="15" max="25"
-                                    value="<?php echo $row['age'];?>" class="form-control">
-                                <label class="float-left font-15">Phone number</label>
-                                <input type="number" name="phone_no" min="9000000000" maxlength="11" max="10000000000"
-                                    value="<?php echo $row['phone_no'];?>" class="form-control">
-                                <label class="float-left font-15">Address</label>
-                                <textarea placeholder="Enter Address" name="address"
-                                    class="form-control"><?php echo $row['address'];?></textarea>
-                                <label class="float-left font-15">Nationality</label>
-                                <input type="text" name="nationality" value="<?php echo $row['nationality'];?>"
-                                    class="form-control">
-                                <div class="modal-footer">
-                                    <button class="btn btn-primary" type="submit" name="update">Update</button>
+        <div class="modal fade" id="update_profile-xl" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content text-center ">
+                    <div class="modal-header bg-primary">
+                        <h3 class="modal-title text-white "><b><i class="fas fa-user"></i> Update Profile</b></h3>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="hidden" name="student_id" value="<?php echo $row['student_id'];?>">
+                                    <label class="float-left font-15">First name</label>
+                                    <input type="text" name="firstname" value="<?php echo $row['firstname'];?>"
+                                        class="form-control" required="">
+                                    <label class="float-left font-15">Last name</label>
+                                    <input type="text" name="lastname" value="<?php echo $row['lastname'];?>"
+                                        class="form-control">
+                                    <label class="float-left font-15">Email</label>
+                                    <input type="email" name="email" value="<?php echo $row['email'];?>"
+                                        class="form-control">
+                                    <label class="float-left font-15">Birthday</label>
+                                    <input type="date" name="birthdate" value="<?php echo $row['birthdate'];?>"
+                                        class="form-control" max="9999-01-01" min="0000-01-01">
+                                    <label class="float-left font-15">Gender</label>
+                                    <select class="form-control" name="gender">
+                                        <option><?php echo $row['gender'];?></option>
+                                        <option>MALE</option>
+                                        <option>FEMALE</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="float-left font-15">Age</label>
+                                    <input type="number" name="age" maxlength="2" min="15" max="25"
+                                        value="<?php echo $row['age'];?>" class="form-control">
+                                    <label class="float-left font-15">Phone number</label>
+                                    <input type="number" name="phone_no" min="9000000000" maxlength="11"
+                                        max="10000000000" value="<?php echo $row['phone_no'];?>" class="form-control">
+                                    <label class="float-left font-15">Address</label>
+                                    <textarea placeholder="Enter Address" name="address"
+                                        class="form-control"><?php echo $row['address'];?></textarea>
+                                    <label class="float-left font-15">Nationality</label>
+                                    <input type="text" name="nationality" value="<?php echo $row['nationality'];?>"
+                                        class="form-control">
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="submit" name="update">Update</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                    <?php 
+                        </form>
+                        <?php 
                     if (isset($_POST['update'])) {
                         $query = "UPDATE tbl_student SET firstname='$_POST[firstname]', lastname='$_POST[lastname]', email='$_POST[email]', birthdate='$_POST[birthdate]', gender='$_POST[gender]', age='$_POST[age]', phone_no='$_POST[phone_no]', address='$_POST[address]', nationality='$_POST[nationality]' WHERE student_id = '$session_id'";
                         $result = mysqli_query($conn, $query);
                     ?>
-                    <script type="text/javascript">
-                    var Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 100
-                    });
-                    toastr.success(
-                        "Student Information Successfully Updated"
-                    );
-                    setTimeout(function() {
-                        window.location = 'profile.php';
-                    }, 1000);
-                    </script>
-                    <?php 
+                        <script type="text/javascript">
+                        var Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 100
+                        });
+                        toastr.success("Success",
+                            "Student Information Successfully Updated"
+                        );
+                        setTimeout(function() {
+                            window.location = 'profile.php';
+                        }, 1000);
+                        </script>
+                        <?php 
                     }
                     ?>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="change-avatar-student" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-user"></i> Change Profile
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" id="" enctype="multipart/form-data">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <center>
+                                            <div class="custom-file">
+                                                <label for="formFileMultiple" class="form-label">
+                                                    <input name="image" class="custom-file input" id="formFileMultiple"
+                                                        type="file" onchange="displayImg(this,$(this))"
+                                                        required></input>
+                                        </center>
+                                    </div>
+                                    <div class="form-group d-flex justify-content-center">
+                                        <img src="/lmstlee4/admin/uploads/<?php echo $row ['location'];  ?>" alt=""
+                                            id="cimg" class="img-fluid img-thumbnail">
+                                    </div>
+                                    <div class="card-footer">
+                                        <center><button type="submit" name="change"
+                                                class="btn btn-success">Change</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+            if (isset($_POST['change'])) {
+                               
+            $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+            $image_name = addslashes($_FILES['image']['name']);
+            $image_size = getimagesize($_FILES['image']['tmp_name']);
+
+            move_uploaded_file($_FILES["image"]["tmp_name"], __DIR__."/admin/uploads/" . $_FILES["image"]["name"]);
+            $location = $_FILES["image"]["name"];	
+	        mysqli_query($conn,"update tbl_student set location = '$location' where student_id  = '$session_id' ")or die(mysqli_error());
+
+            ?>
+        <script>
+        jQuery(document).ready(function($) {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 100
+            });
+            toastr.success("Success", "Student Avatar Successfully Change!");
+            setTimeout(function() {
+                window.location = 'profile.php';
+            }, 1000);
+        });
+        </script>
+        <?php } ?>
     </div>
     <?php include 'footer.php'; ?>
+    <style>
+    img#cimg {
+        height: 15vh;
+        width: 15vh;
+        object-fit: cover;
+        border-radius: 100% 100%;
+    }
+    </style>
+    <script>
+    function displayImg(input, _this) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#cimg').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    </script>
 </body>
 
 </html>

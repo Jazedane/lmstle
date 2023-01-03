@@ -50,9 +50,8 @@
                                     } 
                                     
                                 ?>
-                                <a href="change-avatar-teacher.php"><input type="submit" name="change"
-                                        class="btn btn-outline-success btn-sm float-right mt-3"
-                                        value="Edit Profile"></a>
+                                <a data-toggle="modal" href="#change-avatar" class="btn btn-success float-right"
+                                    name="change"><i class="fas fa-user lg"></i> Edit Profile</a>
                             </div>
                         </div>
 
@@ -181,7 +180,7 @@
                             showConfirmButton: false,
                             timer: 100
                         });
-                        toastr.success(
+                        toastr.success("Success",
                             "Teacher Information Successfully Updated"
                         );
                         setTimeout(function() {
@@ -195,8 +194,96 @@
                 </div>
             </div>
         </div>
+        <div class="modal hide fade" id="change-avatar" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-user"></i> Change Profile
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" id="" enctype="multipart/form-data">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <center>
+                                            <div class="custom-file">
+                                                <label for="formFileMultiple" class="form-label">
+                                                    <input name="image" class="custom-file input" id="formFileMultiple"
+                                                        type="file" onchange="displayImg(this,$(this))"
+                                                        required></input>
+                                        </center>
+                                    </div>
+                                    <div class="form-group d-flex justify-content-center">
+                                        <img src="/lmstlee4/admin/uploads/<?php echo $row ['location'];  ?>" alt=""
+                                            id="cimg" class="img-fluid img-thumbnail">
+                                    </div>
+                                    <div class="card-footer">
+                                        <center><button type="submit" name="change"
+                                                class="btn btn-success">Change</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php if (isset($_POST['change'])) {
+                               
+            $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+            $image_name = addslashes($_FILES['image']['name']);
+            $image_size = getimagesize($_FILES['image']['tmp_name']);
+
+            $filePath = $_SERVER['DOCUMENT_ROOT'] . "/lmstlee4/admin/uploads/";
+
+            move_uploaded_file($_FILES["image"]["tmp_name"], $filePath . $_FILES["image"]["name"]);
+            $location = $_FILES["image"]["name"];
+								
+	        mysqli_query($conn,"update tbl_teacher set location = '$location' where teacher_id  = '$session_id' ")
+            or die(mysqli_error());
+        ?>
+        <script>
+        jQuery(document).ready(function($) {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 100
+            });
+            toastr.success("Success", "Teacher Avatar Successfully Change!");
+            setTimeout(function() {
+                window.location = 'profile.php';
+            }, 1000);
+        });
+        </script>
+        <?php } ?>
     </div>
     <?php include 'footer.php'; ?>
+    <style>
+    img#cimg {
+        height: 15vh;
+        width: 15vh;
+        object-fit: cover;
+        border-radius: 100% 100%;
+    }
+    </style>
+    <script>
+    function displayImg(input, _this) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#cimg').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    </script>
 </body>
 
 </html>
