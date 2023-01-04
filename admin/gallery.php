@@ -129,7 +129,7 @@
                                         <p class="text-dark"><?php echo $data['description'];?></p>
                                         <a type="submit" class="btn btn-danger mb-2 float-right" data-toggle="modal"
                                             data-target="#delete<?php echo $data['id'];?>"><i
-                                                class="fas fa-trash"></i></a>
+                                                class="fas fa-trash-alt"></i></a>
                                     </div>
                                 </div>
                             </div>

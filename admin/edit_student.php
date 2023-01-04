@@ -48,7 +48,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Class Name</label>
-                                        <input type="varchar" class="form-control" name="class_id" value="<?php echo $row['class_name']; ?>" readonly>
+                                        <input type="varchar" class="form-control" name="class_id"
+                                            value="<?php echo $row['class_name']; ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>ID Number</label>
@@ -121,7 +122,7 @@
                                 showConfirmButton: false,
                                 timer: 1000
                             });
-                            toastr.success(
+                            toastr.success("Success",
                                 "Student Data Successfully Updated"
                             );
                             setTimeout(function() {
@@ -146,12 +147,25 @@
                                     <div class="form-group">
                                         <label>Password</label>
                                         <div class="input-group mb-12">
-                                            <input name="password" type="password" id="password-field" class="form-control"
-                                                placeholder="ENTER PASSWORD">
+                                            <input name="password" type="password" id="password" class="form-control"
+                                                placeholder="Enter Password">
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     <span class="fas fa-eye toggle-password float-right"
-                                                        toggle="#password-field"></span>
+                                                        toggle="#password"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="inputPassword">Re-type Password</label>
+                                        <div class="input-group mb-12">
+                                            <input type="password" class="form-control" id="retype_password"
+                                                name="retype_password" placeholder="Re-type Password" required>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-eye toggle-password1 float-right"
+                                                        toggle="#retype_password"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,6 +185,7 @@
                         if (isset($_POST['update_password'])) {
             
                         $password = $_POST['password'];
+                        $password = $_POST['retype_password'];
                         $hashedPassword = hash('sha256', $password);
                         mysqli_query($conn,"UPDATE tbl_student SET password = '$hashedPassword' WHERE student_id = '$get_id' ") or die(mysqli_error());
                         
@@ -183,7 +198,7 @@
                                 showConfirmButton: false,
                                 timer: 100
                             });
-                            toastr.success(
+                            toastr.success("Success",
                                 "Student Password Successfully Updated"
                             );
                             setTimeout(function() {
@@ -200,6 +215,18 @@
     <?php include 'footer.php'; ?>
     <script>
     $(".toggle-password").click(function() {
+
+        $(this).toggleClass("far fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    </script>
+    <script>
+    $(".toggle-password1").click(function() {
 
         $(this).toggleClass("far fa-eye-slash");
         var input = $($(this).attr("toggle"));

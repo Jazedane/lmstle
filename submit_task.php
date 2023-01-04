@@ -211,9 +211,23 @@
                                         <div class="col-md-6">
                                             <dl>
                                                 <dt><b class="border-bottom border-success">File Uploaded</b></dt>
-                                                <dd><a href="<?php echo $row['task_file']; ?>" target="_blank"><i
-                                                            class="fas fa-paperclip"></i>
-                                                        <i>Attachment</i></a>
+                                                <dd>
+                                                    <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+                                                        <li>
+                                                            <span class="mailbox-attachment-icon has-img"><img
+                                                                    src="<?php echo $row['task_file']; ?>"
+                                                                    alt="Attachment" style="height:100px;width:200px">
+                                                                <div class="mailbox-attachment-info">
+                                                                    <a href="<?php echo $row['task_file']; ?>"
+                                                                        class="mailbox-attachment-name" target="_blank">
+                                                                        <h6><i
+                                                                                class="fas fa-paperclip"></i><?php echo $row['task_name']; ?>
+                                                                        </h6>
+                                                                    </a>
+                                                                </div>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
                                                 </dd>
                                                 <dt><b class="border-bottom border-success">Status</b></dt>
                                                 <dd><?php

@@ -48,16 +48,16 @@
                         <div class="card-body p-0">
                             <ul class="nav nav-pills flex-column">
                                 <?php
-			                        $message_query = mysqli_query($conn,"select * from tbl_message where receiver_id = '$session_id' 
+			                        $query = mysqli_query($conn,"select * from tbl_message where receiver_id = '$session_id' 
                                     and message_status != 'read' ")or die(mysqli_error());
-			                        $count_message = mysqli_num_rows($message_query);
+			                        $count = mysqli_num_rows($query);
 		                        ?>
                                 <li class="nav-item active">
                                     <a href="message.php" class="nav-link">
                                         <i class="fas fa-inbox"></i> Inbox
-                                        <?php if($count_message == '0'){
+                                        <?php if($count == '0'){
 				                        }else{ ?>
-                                        <span class="badge bg-primary float-right"><?php echo $count_message; ?></span>
+                                        <span class="badge bg-primary float-right"><?php echo $count; ?></span>
                                         <?php } ?>
                                     </a>
                                 </li>
@@ -82,52 +82,20 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="read_message.php" method="post">
-                                <div style="margin-top:10px;margin-bottom:20px">
-                                    <button type="submit" class="btn btn-success float-right" name="read"
-                                        value="Submit"><i class="fas fa-check"></i>
-                                        Mark as Read</button>
-                                    <div>
-                                        &nbsp Select All <input type="checkbox" name="selectAll" id="checkAll" />
-                                    </div>
-                                </div>
-                                <script>
-                                $("#checkAll").click(function() {
-                                    $('input:checkbox').not(this).prop('checked', this.checked);
-                                });
-                                </script>
-                                <?php if (isset($_POST['read'])){
-	                                $id=$_POST['selector'];
-	                                $N = count($id);
-	                                for ($i = 0; $i < $N; $i++) {
-                                        mysqli_query(
-                                            $conn,
-                                            "UPDATE tbl_message SET message_status = 'read' WHERE message_id='$id[$i]'"
-                                        ) or die(mysqli_error());
-                                    }
-                                ?>
-                                <script>
-                                window.location = 'message.php';
-                                </script>
-                                <?php
-                                    }
-                                ?>
-                                
-                                <?php
-                                ($query_announcement = mysqli_query(
+
+                            <?php
+                                ($query = mysqli_query(
                                 $conn,
                                 "SELECT * FROM tbl_message 
                                 LEFT JOIN tbl_student ON tbl_student.student_id = tbl_message.sender_id 
                                 WHERE tbl_message.receiver_id = '$session_id'
                                 ORDER BY date_sended DESC"
                                 )) or die();
-                                $count_my_message = mysqli_num_rows(
-                                $query_announcement
+                                $count = mysqli_num_rows($query
                                 );
-                                if ($count_my_message != '0') {
+                                if ($count != '0') {
                                 while (
-                                    $row = mysqli_fetch_array(
-                                            $query_announcement
+                                    $row = mysqli_fetch_array($query
                                             )
                                 ) {
 
@@ -138,41 +106,66 @@
                                 $receiver_name = $row['receiver_name'];
                                 $message_status = $row['message_status'];
                                 ?>
-                                <div class="direct-chat-msg">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-left">
-                                            <strong>Send by: Student <?php echo $sender_name; ?> </strong></span>
-                                        <span class="direct-chat-timestamp float-right"><?php $date_sended = date_create($row['date_sended']);
+
+                            <div class="direct-chat-msg">
+                                <div class="direct-chat-infos clearfix">
+                                    <span class="direct-chat-name float-left">
+                                        <strong>Send by: Student <?php echo $sender_name; ?> </strong></span>
+                                    <span class="direct-chat-timestamp float-right"><?php $date_sended = date_create($row['date_sended']);
                                                     echo date_format(
                                                     $date_sended,
                                                     'F d, Y h:i A'
                                                     ); ?>
-                                        </span>
-                                    </div>
+                                    </span>
+                                </div>
+                                <form method="post" enctype="multipart/form-data">
                                     <img class="direct-chat-img" src="uploads/<?php echo $row['location']; ?>"
                                         alt="Message User Image">
-                                    <div class="direct-chat-text" style="height:50px;background-color:success">
-                                        <?php echo $row['content']; ?>
+
+                                    <div class="direct-chat-text">
+                                        <a class="btn btn-danger float-right btn-sm" href="#del<?php echo $id; ?>"
+                                            data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
+                                        <a class="btn btn-success float-right btn-sm" height="10"
+                                            href="#reply<?php echo $id; ?>" data-toggle="modal"
+                                            style="margin-right:10px"><i class="fas fa-reply"></i></a>
                                         <?php if ($message_status == 'read') {
                                         } else {
                                              ?>
-                                        <input id="checkAll" class="uniform_on" name="selector[]" type="checkbox"
-                                            value="<?php echo $id; ?>" required>
+                                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                        <input type="hidden" name="message_id" value="<?php echo $message_id; ?>">
+                                        <button type=submit" class="btn btn-success float-right btn-sm" name="read"
+                                            style="margin-right:10px"><i class="fas fa-check"></i>
+                                            Read</button>
                                         <?php
                                         } ?>
-                                        <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
-                                            data-toggle="modal"><i class="fas fa-trash"></i></a>
-                                        <a class="btn btn-success float-sm-right" href="#reply<?php echo $id; ?>"
-                                            data-toggle="modal"><i class="fas fa-reply"></i></a>
-                                        <?php include("remove_inbox_message_modal.php"); ?>
-                                        <?php include 'reply_inbox_message_modal.php'; ?>
+                                        <?php if (isset($_POST['read'])) {
+                                        $id = $_POST['id'];
+                                        $message_id = $_POST['message_id'];
+
+                                        $query = mysqli_query(
+                                            $conn,
+                                            "UPDATE tbl_message SET message_status = 'read' WHERE message_id='$id'"
+                                        ) or die(mysqli_error());
+                                        
+                                        ?>
+                                        <script>
+                                        window.location = 'message.php';
+                                        </script>
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php echo $row['content']; ?>
                                     </div>
-                                </div>
-                                <?php }}else{ ?>
-                                <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Inbox
-                                    Messages</div>
-                                <?php } ?>
-                            </form>
+                                </form>
+                                <?php include("remove_inbox_message_modal.php"); ?>
+                                <?php include 'reply_inbox_message_modal.php'; ?>
+                            </div>
+
+                            <?php }}else{ ?>
+                            <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Inbox
+                                Messages</div>
+                            <?php } ?>
+
                             <script type="text/javascript">
                             $(document).ready(function() {
                                 var Toast = Swal.mixin({
@@ -197,7 +190,7 @@
                                                     $(this).remove();
                                                 });
                                             $('#' + id).modal('hide');
-                                            toastr.error(
+                                            toastr.error("Deleted",
                                                 "Student Message Successfully Deleted", {}
                                             );
                                             setTimeout(function() {

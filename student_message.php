@@ -109,6 +109,7 @@
                                 $row['lastname'];
                             $receiver_name =
                                 $row['receiver_name'];
+                            $message_status = $row['message_status'];
                             ?>
                             <div class="direct-chat-msg">
                                 <div class="direct-chat-infos clearfix">
@@ -121,18 +122,46 @@
                                                     ); ?>
                                     </span>
                                 </div>
-                                <img class="direct-chat-img"
-                                    src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
-                                    alt="Message User Image">
-                                <div class="direct-chat-text" style="height:50px">
-                                    <?php echo $row['content']; ?>
-                                    <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
-                                        data-toggle="modal"><i class="fas fa-trash"></i></a>
-                                    <a class="btn btn-success float-sm-right" href="#reply<?php echo $id; ?>"
-                                        data-toggle="modal"><i class="fas fa-reply"></i></a>
-                                    <?php include 'reply_inbox_message_modal_student.php'; ?>
-                                    <?php include("remove_inbox_message_modal.php"); ?>
-                                </div>
+                                <form method="post" enctype="multipart/form-data">
+                                    <img class="direct-chat-img"
+                                        src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>"
+                                        alt="Message User Image">
+                                    <div class="direct-chat-text">
+                                        <a class="btn btn-danger float-right btn-sm" href="#del<?php echo $id; ?>"
+                                            data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
+                                        <a class="btn btn-success float-right btn-sm" href="#reply<?php echo $id; ?>"
+                                            data-toggle="modal"><i class="fas fa-reply"></i></a>
+                                        <?php if ($message_status == 'read') {
+                                        } else {
+                                             ?>
+                                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                        <input type="hidden" name="message_id" value="<?php echo $message_id; ?>">
+                                        <button type=submit" class="btn btn-success float-right btn-sm" name="read"
+                                            style="margin-right:10px"><i class="fas fa-check"></i>
+                                            Read</button>
+                                        <?php
+                                        } ?>
+                                        <?php if (isset($_POST['read'])) {
+                                        $id = $_POST['id'];
+                                        $message_id = $_POST['message_id'];
+
+                                        $query = mysqli_query(
+                                            $conn,
+                                            "UPDATE tbl_message SET message_status = 'read' WHERE message_id='$id'"
+                                        ) or die(mysqli_error());
+                                        
+                                        ?>
+                                        <script>
+                                        window.location = 'student_message.php';
+                                        </script>
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php echo $row['content']; ?>
+                                    </div>
+                                </form>
+                                <?php include 'reply_inbox_message_modal_student.php'; ?>
+                                <?php include("remove_inbox_message_modal.php"); ?>
                             </div>
                             <?php }}else{ ?>
                             <div class="alert alert-primary"><i class="fas fa-info-circle"></i> No Inbox
@@ -161,7 +190,7 @@
                                                     $(this).remove();
                                                 });
                                             $('#' + id).modal('hide');
-                                            toastr.error(
+                                            toastr.error("Deleted",
                                                 "Your Sent message is Successfully Deleted", {}
                                             );
                                             setTimeout(function() {

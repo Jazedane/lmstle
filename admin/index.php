@@ -146,9 +146,9 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <?php
-			                $message_query = mysqli_query($conn,"select * from tbl_message where receiver_id = '$session_id' 
+			                $query = mysqli_query($conn,"select * from tbl_message where receiver_id = '$session_id' 
                             and message_status != 'read' ")or die(mysqli_error());
-			                $count_message = mysqli_num_rows($message_query);
+			                $count = mysqli_num_rows($query);
 		                ?>
                         <li class="nav-item">
                             <a href="message.php"
@@ -157,9 +157,9 @@ function determine_active_sidebar_item($pages) {
                                 <p>
                                     Message
                                 </p>
-                                <?php if($count_message == '0'){
+                                <?php if($count == '0'){
 				                    }else{ ?>
-                                <span class="badge bg-primary float-right"><?php echo $count_message; ?></span>
+                                <span class="badge bg-primary float-right"><?php echo $count; ?></span>
                                 <?php } ?>
                             </a>
                         </li>

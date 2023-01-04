@@ -21,7 +21,7 @@
                     <?php
                     ($class_query = mysqli_query(
                         $conn,
-                        "select * from tbl_teacher_class
+                        "SELECT * from tbl_teacher_class
 							LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
                             LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
 						    where teacher_class_id = '$get_id'"

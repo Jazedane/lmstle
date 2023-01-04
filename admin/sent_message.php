@@ -101,7 +101,7 @@
                                         ) { ?>
                                             <option value="<?php echo $row[
                                             'student_id'
-                                        ]; ?>">
+                                        ]; ?>" required>
                                                 <?php echo $row['firstname']; ?>
                                                 <?php echo $row[
                                                 'lastname'
@@ -113,7 +113,7 @@
                                     <div class="form-group">
                                         <label>Message:</label>
                                         <textarea id="summernote" name="my_message" rows="3"
-                                            class="my_message form-control" placeholder="Type message..." required>
+                                            class="my_message form-control" placeholder="Type message..." autocomplete="off" required>
                                     </textarea>
                                     </div>
                                     <div class="card-footer">
@@ -216,12 +216,12 @@
                                     <img class="direct-chat-img" src="/lmstlee4/admin/uploads/<?php echo $row[
                                             'location'
                                         ]; ?>" alt="Message User Image">
-                                    <div class="direct-chat-text" style="height:50px;background-color:success">
-                                        <?php echo $row['content']; ?>
-                                        <a class="btn btn-danger float-sm-right" href="#del<?php echo $id; ?>"
-                                            data-toggle="modal"><i class="fas fa-trash"></i>
+                                    <div class="direct-chat-text bg-primary">
+                                        <a class="btn btn-danger float-right btn-sm" href="#del<?php echo $id; ?>"
+                                            data-toggle="modal"><i class="fas fa-trash-alt"></i>
                                         </a>
                                         <?php include 'remove_sent_message_modal.php'; ?>
+                                        <?php echo $row['content']; ?>
                                     </div>
                                 </div>
                                 <?php
@@ -257,7 +257,7 @@
                                                         $(this).remove();
                                                     });
                                                 $('#' + id).modal('hide');
-                                                toastr.error(
+                                                toastr.error("Deleted",
                                                     "Your Sent message is Successfully Deleted."
                                                 );
                                                 setTimeout(function() {
