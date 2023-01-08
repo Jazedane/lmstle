@@ -38,31 +38,33 @@
                     <div class="card-body">
                         <form id="recycle_data_class" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle-delete-class" id="delete" class="btn btn-danger"
-                                    name="delete_recycle_class"><i class="fas fa-trash"></i> Delete Data</ul>
-                                <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_class" id="restore" class="btn btn-primary"
-                                    name="recycle_data_class"><i class="fas fa-recycle"></i> Restore data
-                                </ul>
-                                <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
                                             <button type="button" class="btn btn-primary dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-users"></i> Recycle List
+                                                <i class="fas fa-users"></i> Class List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <a href="new-recycle-student.php" class="dropdown-item" type="button">
                                                     Student</a>
-                                                <a href="new-recycle-class.php" class="dropdown-item active" type="button">
+                                                <a href="new-recycle-class.php" class="dropdown-item active"
+                                                    type="button">
                                                     Class</a>
-                                                <a href="new-recycle-teacher-task.php" class="dropdown-item" type="button">
-                                                    Teacher Task</a>
+                                                <a href="new-recycle-teacher-task.php" class="dropdown-item"
+                                                    type="button">
+                                                    Task</a>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
+                                <li data-toggle="modal" href="#recycle-delete-class" id="delete" class="btn btn-danger"
+                                    name="delete_recycle_class"><i class="fas fa-trash-alt"></i> Delete</li>
+                                <?php include 'recycle-delete-modal.php'; ?>
+                                <li data-toggle="modal" href="#restore_data_class" id="restore" class="btn btn-primary"
+                                    name="recycle_data_class"><i class="fas fa-recycle"></i> Restore
+                                </li>
+                                <?php include 'restore_data_modal.php'; ?>
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" name="selectAll" id="checkAll" />
@@ -127,7 +129,7 @@
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
-            
+
             $.ajax({
                 type: "POST",
                 url: "restore-data-class.php",
@@ -160,7 +162,7 @@
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
-            
+
             $.ajax({
                 type: "POST",
                 url: "delete-recycle-class.php",

@@ -105,7 +105,6 @@ session_start();
             </form>
         </div>
     </div>
-    <?php include 'script.php'; ?>
     <script>
     $(".toggle-password").click(function() {
 
@@ -118,51 +117,110 @@ session_start();
         }
     });
     </script>
-    <script>
-    function handleBackNavigation() {
-        window.location.href = '/lmstlee4/login-page.php'
-    }
+    <?php include 'script.php'; 
 
-    jQuery(document).ready(function() {
+        if(isset($_POST['login'])) {
+                                
+          $ip_address= getUSerIpAddr();
+          $time = time() - 30;
+
+          $check_attempt = mysqli_fetch_assoc(mysqli_query($db->connection, "SELECT count(*) as total_count from attempt_count where time_count > $time and ip_address= '$ip_address'"));
+          $total_count  = $check_attempt['total_count'];
+
+          if($total_count == 3){
+    ?>
+    <script>
+    toastr.warning("Your account has been blocked! Please try after 30 seconds");
+    </script>
+    <?php
+        }
+        else{
+
+        $username = clean($_POST['username']);
+        $password = clean($_POST['password']);
+        $hashedPassword = hash('sha256', $password);
+
+        $query = "SELECT * FROM tbl_teacher WHERE username='$username' AND password='$hashedPassword' AND teacher_stat = 'ACTIVATED' AND isDeleted = 'false'";
+
+        $result = mysqli_query($db->connection, $query);
+
+        if(mysqli_num_rows($result) > 0) {
+
+        $row = mysqli_fetch_assoc($result);
+
+        $_SESSION['id']=$row['teacher_id'];
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['password'] = $row['password'];
+        $hashedPassword = hash('sha256', $password);
+
+        mysqli_query($conn,"INSERT INTO tbl_teacher_log (username,login_date,teacher_id) values('$username',NOW(),".$row['teacher_id'].")");
+
+        mysqli_query($db->connection, "DELETE from attempt_count where ip_address = '$ip_address'")
+        
+    ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
         var Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 2000
+            timer: 1000
         });
-        jQuery("#back").click(handleBackNavigation)
-
-        jQuery("#login_form").submit(function(e) {
-            e.preventDefault();
-            var formData = jQuery(this).serialize();
-            $.ajax({
-                type: "POST",
-                url: "/lmstlee4/admin/login.php",
-                data: formData,
-                success: function(html) {
-                    if (html == 'true') {
-                        $(document).Toasts('create', {
-                            class: 'bg-success',
-                            title: 'Login Success',
-                            subtitle: 'Teacher',
-                            body: 'Welcome to Learning Management System for TLE-Agricultural!'
-                        })
-                        var delay = 1000;
-                        setTimeout(function() {
-                            window.location = 'admin/dashboard.php'
-                        }, delay);
-                    } else {
-                        toastr.error("Login Failed",
-                            "Please Check Your Username and Password");
-                        var delay = 100;
-                    }
-                }
-
-            });
-            return false;
-        });
+        $(document).Toasts('create', {
+            class: 'bg-success',
+            title: 'Login Success',
+            subtitle: 'Teacher',
+            body: 'Welcome to Learning Management System for TLE-Agricultural!'
+        })
+        var delay = 1000;
+        setTimeout(function() {
+            window.location = 'admin/dashboard.php'
+        }, delay);
     });
     </script>
+    <?php
+        }
+        else{
+        $total_count++;
+        $time_remain = 3 - $total_count;
+        $time= time();
+                        
+        if($time_remain == 0){
+             ?>
+    <script>
+    toastr.warning("Your account has been blocked! Please try after 30 seconds");
+    </script>
+    <?php
+        }
+        else{
+    ?>
+    <script>
+    toastr.info("Please enter valid login details.".$time_remain.
+        "attempts remaining.");
+    </script>
+    <?php
+        }
+        mysqli_query($db->connection, "INSERT INTO attempt_count (ip_address, time_count) VALUES ('$ip_address', '$time')");
+
+    ?>
+    <script>
+    toastr.error("Login Failed! Please enter valid login details!");
+    </script>
+    <?php
+        }
+        }
+      }
+        function getUSerIpAddr(){
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                $ip = $_SERVER['HTTP_CLIENT_IP'];
+            }elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            }else{
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
+            return $ip;
+          }
+    ?>
 </body>
 
 </html>

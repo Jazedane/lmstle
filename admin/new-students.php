@@ -128,7 +128,7 @@
 					                                $gender = strtoupper ($gender);
 					                                echo $gender ?></td>
                                                 <td><?php echo $row['age']; ?></td>
-                                                <td width="100"><?php $class_name = $row['class_name'];
+                                                <td><?php $class_name = $row['class_name'];
 					                                $class_name = strtoupper ($class_name);
 					                                echo $class_name ?></td>
 

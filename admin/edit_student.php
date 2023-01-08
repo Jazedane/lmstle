@@ -148,7 +148,7 @@
                                         <label>Password</label>
                                         <div class="input-group mb-12">
                                             <input name="password" type="password" id="password" class="form-control"
-                                                placeholder="Enter Password">
+                                                placeholder="Enter New Password" required>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     <span class="fas fa-eye toggle-password float-right"
@@ -180,33 +180,40 @@
                                 </div>
                             </div>
                         </form>
-                        <?php 
+                        <?php if (isset($_POST['update_password'])) {
 
-                        if (isset($_POST['update_password'])) {
-            
                         $password = $_POST['password'];
-                        $password = $_POST['retype_password'];
+                        $vpassword = $_POST['retype_password'];
                         $hashedPassword = hash('sha256', $password);
-                        mysqli_query($conn,"UPDATE tbl_student SET password = '$hashedPassword' WHERE student_id = '$get_id' ") or die(mysqli_error());
-                        
+
+                        if ($password != $vpassword) { ?>
+                        <script>
+                        toastr.warning("Change Password Failed",
+                            "New Password does not match with your retyped password");
+                        </script>
+                        <?php } else {
+    
+                        mysqli_query($conn,"UPDATE tbl_student SET password = '$hashedPassword' 
+                        WHERE student_id = '$get_id'") or die(mysqli_error());
                         ?>
-                        <script type="text/javascript">
+                        <script>
                         $(document).ready(function() {
                             var Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
-                                timer: 100
+                                timer: 1000
                             });
-                            toastr.success("Success",
-                                "Student Password Successfully Updated"
+                            toastr.success(
+                                "Change Password Success",
+                                "Student Password is Successfully Change"
                             );
                             setTimeout(function() {
-                                window.location = "students.php";
+                                window.location = "new-students.php";
                             }, 1000);
                         });
                         </script>
-                        <?php  }  ?>
+                        <?php } } ?>
                     </div>
                 </div>
             </div>

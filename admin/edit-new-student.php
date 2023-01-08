@@ -150,12 +150,25 @@
                                     <div class="form-group">
                                         <label>Password</label>
                                         <div class="input-group mb-12">
-                                            <input name="password" type="password" id="password-field"
-                                                class="form-control" placeholder="ENTER PASSWORD">
+                                            <input name="password" type="password" id="password" class="form-control"
+                                                placeholder="Enter New Password" required>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     <span class="fas fa-eye toggle-password float-right"
-                                                        toggle="#password-field"></span>
+                                                        toggle="#password"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="inputPassword">Re-type Password</label>
+                                        <div class="input-group mb-12">
+                                            <input type="password" class="form-control" id="retype_password"
+                                                name="retype_password" placeholder="Re-type Password" required>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-eye toggle-password1 float-right"
+                                                        toggle="#retype_password"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -170,32 +183,40 @@
                                 </div>
                             </div>
                         </form>
-                        <?php 
+                        <?php if (isset($_POST['update_password'])) {
 
-                        if (isset($_POST['update_password'])) {
-            
                         $password = $_POST['password'];
+                        $vpassword = $_POST['retype_password'];
                         $hashedPassword = hash('sha256', $password);
-                        mysqli_query($conn,"UPDATE tbl_student SET password = '$hashedPassword' WHERE student_id = '$get_id' ") or die(mysqli_error());
-                        
+
+                        if ($password != $vpassword) { ?>
+                        <script>
+                        toastr.warning("Change Password Failed",
+                            "New Password does not match with your retyped password");
+                        </script>
+                        <?php } else {
+        
+                        mysqli_query($conn,"UPDATE tbl_student SET password = '$hashedPassword' 
+                        WHERE student_id = '$get_id'") or die(mysqli_error());
                         ?>
-                        <script type="text/javascript">
+                        <script>
                         $(document).ready(function() {
                             var Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
-                                timer: 100
+                                timer: 1000
                             });
-                            toastr.success("Success",
-                                "Student Password Successfully Updated"
+                            toastr.success(
+                                "Change Password Success",
+                                "Student Password is Successfully Change"
                             );
                             setTimeout(function() {
                                 window.location = "new-students.php";
                             }, 1000);
                         });
                         </script>
-                        <?php  }  ?>
+                        <?php } } ?>
                     </div>
                 </div>
             </div>
@@ -204,6 +225,18 @@
     <?php include 'footer.php'; ?>
     <script>
     $(".toggle-password").click(function() {
+
+        $(this).toggleClass("far fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    </script>
+    <script>
+    $(".toggle-password1").click(function() {
 
         $(this).toggleClass("far fa-eye-slash");
         var input = $($(this).attr("toggle"));

@@ -38,19 +38,12 @@
                     <div class="card-body">
                         <form id="recycle_data_student" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle-delete-student" id="delete"
-                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash"></i> Delete Data</ul>
-                                <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_student" id="restore"
-                                    class="btn btn-primary" name="recycle_data_student"><i class="fas fa-recycle"></i> Restore data
-                                </ul>
-                                <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
                                             <button type="button" class="btn btn-primary dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-users"></i> Recycle List
+                                                <i class="fas fa-users"></i> Student List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <a href="new-recycle-student.php" class="dropdown-item active"
@@ -59,11 +52,19 @@
                                                 <a href="new-recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
                                                 <a href="new-recycle-teacher-task.php" class="dropdown-item" type="button">
-                                                    Teacher Task</a>
+                                                    Task</a>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
+                                <li data-toggle="modal" href="#recycle-delete-student" id="delete"
+                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash-alt"></i> Delete</li>
+                                <?php include 'recycle-delete-modal.php'; ?>
+                                <li data-toggle="modal" href="#restore_data_student" id="restore"
+                                    class="btn btn-primary" name="recycle_data_student"><i class="fas fa-recycle"></i> Restore
+                                </li>
+                                <?php include 'restore_data_modal.php'; ?>
+                                
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" name="selectAll" id="checkAll" />

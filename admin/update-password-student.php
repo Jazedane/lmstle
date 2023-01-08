@@ -6,6 +6,6 @@ include 'database.php';
         $password = $_POST['password'];
         $hashedPassword = hash('sha256', $password);
         
-        mysqli_query($conn,"UPDATE tbl_student SET password = '$hashedPassword' WHERE student_id = '$get_id' ") or die(mysqli_error());
+        mysqli_query($conn,"UPDATE tbl_student SET password = '$hashedPassword' WHERE student_id = '$get_id'") or die(mysqli_error());
         }
 ?>
