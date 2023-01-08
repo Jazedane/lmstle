@@ -38,15 +38,6 @@
                     <div class="card-body">
                         <form id="recycle_data_student" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <li data-toggle="modal" href="#recycle-delete-student" id="delete"
-                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash"></i>
-                                    Delete</li>
-                                <?php include 'recycle-delete-modal.php'; ?>
-                                <li data-toggle="modal" href="#restore_data_student" id="restore"
-                                    class="btn btn-primary" name="recycle_data_student"><i class="fas fa-recycle"></i>
-                                    Restore
-                                </li>
-                                <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
@@ -63,11 +54,21 @@
                                                 <a href="recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
                                                 <a href="recycle-teacher-task.php" class="dropdown-item" type="button">
-                                                    Teacher Task</a>
+                                                    Task</a>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
+                                <li data-toggle="modal" href="#recycle-delete-student" id="delete"
+                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash-alt"></i>
+                                    Delete</li>
+                                <?php include 'recycle-delete-modal.php'; ?>
+                                <li data-toggle="modal" href="#restore_data_student" id="restore"
+                                    class="btn btn-primary" name="recycle_data_student"><i class="fas fa-recycle"></i>
+                                    Restore
+                                </li>
+                                <?php include 'restore_data_modal.php'; ?>
+                                
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" name="selectAll" id="checkAll" />

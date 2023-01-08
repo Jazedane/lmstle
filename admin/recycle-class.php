@@ -38,13 +38,6 @@
                     <div class="card-body">
                         <form id="recycle_data_class" method="post">
                             <table id="example2" class="table table-bordered table-striped">
-                                <ul data-toggle="modal" href="#recycle-delete-class" id="delete" class="btn btn-danger"
-                                    name="delete_recycle_class"><i class="fas fa-trash-alt"></i> Delete</ul>
-                                <?php include 'recycle-delete-modal.php'; ?>
-                                <ul data-toggle="modal" href="#restore_data_class" id="restore" class="btn btn-primary"
-                                    name="recycle_data_class"><i class="fas fa-recycle"></i> Restore
-                                </ul>
-                                <?php include 'restore_data_modal.php'; ?>
                                 <ul class="navbar-nav float-right">
                                     <li class="nav-item dropdown">
                                         <button type="button" class="btn btn-primary dropdown-toggle"
@@ -59,10 +52,18 @@
                                             <a href="recycle-class.php" class="dropdown-item active" type="button">
                                                 Class</a>
                                             <a href="recycle-teacher-task.php" class="dropdown-item" type="button">
-                                                Teacher Task</a>
+                                                Task</a>
                                         </div>
                                     </li>
                                 </ul>
+                                <li data-toggle="modal" href="#recycle-delete-class" id="delete" class="btn btn-danger"
+                                    name="delete_recycle_class"><i class="fas fa-trash-alt"></i> Delete</li>
+                                <?php include 'recycle-delete-modal.php'; ?>
+                                <li data-toggle="modal" href="#restore_data_class" id="restore" class="btn btn-primary"
+                                    name="recycle_data_class"><i class="fas fa-recycle"></i> Restore
+                                </li>
+                                <?php include 'restore_data_modal.php'; ?>
+                                
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" name="selectAll" id="checkAll" />

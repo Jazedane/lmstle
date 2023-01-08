@@ -51,8 +51,8 @@
                                         ) {
                                             $id = $row['teacher_class_id']; ?>
                             <div class="inner">
-                                <h3><b><?php echo $row['class_name']; ?></b></p>
-                                <p><b><?php echo $row['school_year']; ?></b></p>
+                                <h5><b><?php echo $row['class_name']; ?></b></h5><br>
+                                <h5><b><?php echo $row['school_year']; ?></b></h5>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-school"></i>
