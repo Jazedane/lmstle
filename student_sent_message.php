@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Message:</label>
-                                        <textarea id="summernote" name="my_message" rows="3"
+                                        <textarea type="varchar" id="summernote" name="my_message" rows="3"
                                             class="my_message form-control" required>
                                     </textarea>
                                     </div>

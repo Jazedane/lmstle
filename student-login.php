@@ -165,7 +165,7 @@ session_start();
         })
         var delay = 2000;
         setTimeout(function() {
-            window.location = 'class_main.php'
+            window.location = 'dashboard.php'
         }, delay);
     });
     </script>

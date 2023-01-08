@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label class="control-label" for="inputPassword">Message:</label>
                         <div class="controls">
-                            <textarea name="my_message" rows="3" placeholder="Type message..." class="form-control" required></textarea>
+                            <textarea name="my_message" type="varchar" rows="3" placeholder="Type message..." class="form-control" required></textarea>
                         </div>
                     </div>
                     <div class="form-group">

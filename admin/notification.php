@@ -41,29 +41,6 @@
 
                             <div class="card-body">
                                 <form method="post">
-                                    <?php
-                                    ($query = mysqli_query(
-                                        $conn,
-                                        "SELECT * FROM tbl_notification 
-                                        LEFT JOIN tbl_student ON broadcaster_id=tbl_student.student_id
-                                        LEFT JOIN tbl_class ON tbl_class.class_id=tbl_student.class_id
-                                        WHERE receiver_id = '$session_id' AND is_read = false ORDER BY date DESC"
-                                    )) or die(mysqli_error($conn));
-
-                                    $count = mysqli_num_rows($query);
-                                    if ($count > 0) {
-                                        while (
-                                            $row = mysqli_fetch_array($query)
-                                        ) {
-
-                                            $get_id = $row['broadcaster_id'];
-                                            $id = $row['notification_id'];
-                                            $is_read = $row['is_read'];
-
-                                    ?>
-                                    <?php if ($is_read == true) {
-                                        } else {
-                                             ?>
                                     <div style="margin-bottom:20px">
                                         <button id="delete" class="btn btn-success float-right" name="read"><i
                                                 class="fas fa-check"></i> Mark as Read</button>
@@ -77,11 +54,6 @@
                                         });
                                         </script>
                                     </div>
-                                    <?php
-                                        }
-                                        }
-                                        }
-                                    ?>
                                     <?php if (isset($_POST['read'])) {
                                         $id = $_POST['selector'];
                                         $N = count($id);

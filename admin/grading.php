@@ -69,12 +69,6 @@
             <div class="row mb-2 ml-1">
                 <div class="col-sm-3">
                     <select class="form-control" id="quarter-selection">
-                        <option value="0" <?php if ($selected_quarter == '0') {
-                            echo 'selected';
-                        } else {
-                            echo '';
-                        } ?> selected disabled hidden>
-                            Select Quarter</option>
                         <option value="1" <?php if ($selected_quarter == '1') {
                             echo 'selected';
                         } else {
@@ -106,6 +100,12 @@
                                 echo '';
                             } ?>>All Quarters
                         </option>
+                        <option value="0" <?php if ($selected_quarter == '0') {
+                            echo 'selected';
+                        } else {
+                            echo '';
+                        } ?> selected disabled hidden>
+                            Select Quarter</option>
                     </select>
                 </div>
             </div>

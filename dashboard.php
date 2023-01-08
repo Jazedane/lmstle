@@ -32,167 +32,62 @@
             <div class="container-fluid">
                 <div class="row">
                     <?php
-                        ($query_teacher = mysqli_query(
-                        $conn,
-                        'select * from tbl_teacher'
-                        )) or die(mysqli_error());
-                        $count_teacher = mysqli_num_rows($query_teacher);
-                    ?>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-primary">
-                            <div class="inner">
-                                <h3><?php echo $count_teacher; ?></h3>
-                                <p>Teachers</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                        ($query_student = mysqli_query(
-                        $conn,
-                        'select * from tbl_student'
-                        )) or die(mysqli_error());
-                        $count_student = mysqli_num_rows($query_student);
-                    ?>
-                    <div class="col-lg-3 col-6">
+                                ($query = mysqli_query(
+                                    $conn,
+                                    "SELECT * FROM tbl_teacher_class_student
+                                    LEFT JOIN tbl_teacher_class ON tbl_teacher_class.teacher_class_id = tbl_teacher_class_student.teacher_class_id 
+                                    LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id 
+                                    LEFT JOIN tbl_school_year ON tbl_school_year.school_year_id = tbl_teacher_class.school_year_id
+                                    LEFT JOIN tbl_teacher ON tbl_teacher.teacher_id = tbl_teacher_class.teacher_id
+                                    WHERE student_id = '$session_id' and tbl_class.isDeleted = false"
+                                )) or die(mysqli_error());
+                                $count = mysqli_num_rows($query);
+                                ?>
+                    <div class="col-lg-6 col-6">
                         <div class="small-box bg-success">
+                            <?php if ($count != '0') {
+                                        while (
+                                            $row = mysqli_fetch_array($query)
+                                        ) {
+                                            $id = $row['teacher_class_id']; ?>
                             <div class="inner">
-                                <h3><?php echo $count_student; ?></h3>
-                                <p>Students</p>
+                                <h3><b><?php echo $row['class_name']; ?></b></p>
+                                <p><b><?php echo $row['school_year']; ?></b></p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-add"></i>
+                                <i class="fas fa-school"></i>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <?php
-                                        ($query_student = mysqli_query(
-                                        $conn,
-                                        "select * from tbl_student where status='Registered'"
-                                        )) or die(mysqli_error());
-                                        $count_student = mysqli_num_rows($query_student);
-                                        ?>
-                        <div class="small-box bg-info">
+                            <?php
+                                    }
+                                } else {
+                            ?>
                             <div class="inner">
-                                <h3><?php echo $count_student; ?></h3>
-
-                                <p>Registered Students</p>
+                                <h3><?php echo $count; ?></h3>
+                                <p>You are currently not enrolled in a class</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-add"></i>
+                                <i class="fas fa-user"></i>
                             </div>
+                            <?php
+                            } ?>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-6">
-                        <?php
-                                        ($query_student = mysqli_query(
-                                        $conn,
-                                        "select * from tbl_student where status='Unregistered'"
-                                        )) or die(mysqli_error());
-                                        $count_student = mysqli_num_rows($query_student);
-                                        ?>
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3><?php echo $count_student; ?></h3>
-
-                                <p>Unregistered Students</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <?php
-                        ($query_task = mysqli_query(
+                    ($query = mysqli_query(
                         $conn,
-                        'select * from tbl_task'
+                        'select * from tbl_task where isDeleted=false'
                         )) or die(mysqli_error());
-                        $count_task = mysqli_num_rows($query_task);
+                        $count = mysqli_num_rows($query);
                     ?>
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-6 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3><?php echo $count_task; ?></h3>
+                                <h3><?php echo $count; ?></h3>
                                 <p>Tasks</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">
-                                    <i class="far fa-chart-bar"></i>
-                                    Datatable
-                                </h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <?php
-                                        ($query_student = mysqli_query(
-                                        $conn,
-                                        'select * from tbl_student'
-                                        )) or die(mysqli_error());
-                                        $count_student = mysqli_num_rows($query_student);
-                                    ?>
-                                    <div class="col-6 col-md-3 text-center">
-                                        <div type="text" class="knob" value="30"
-                                            data-percent="<?php echo $count_student; ?>" data-min="0" data-max="100"
-                                            data-width="150" data-height="150" data-fgColor="#3c8dbc">
-                                            <?php echo $count_student; ?></div>
-
-                                        <div class="knob-label">Students</div>
-                                    </div>
-
-                                    <?php
-                                        ($query_student = mysqli_query(
-                                        $conn,
-                                        "select * from tbl_student where status='Registered'"
-                                        )) or die(mysqli_error());
-                                        $count_student = mysqli_num_rows($query_student);
-                                    ?>
-                                    <div class="col-6 col-md-3 text-center">
-                                        <div type="text" class="knob" value="70"
-                                            data-percent="<?php echo $count_student; ?> data-min=" 0" data-max="100"
-                                            data-width="150" data-height="150" data-fgColor="#f56954">
-                                            <?php echo $count_student; ?></div>
-
-                                        <div class="knob-label">Registered Students</div>
-                                    </div>
-                                    <?php
-                                        ($query_class = mysqli_query($conn, 'select * from tbl_class')) or
-                                        die(mysqli_error());
-                                        $count_class = mysqli_num_rows($query_class);
-                                    ?>
-                                    <div class="col-6 col-md-3 text-center">
-                                        <div type="text" class="knob" value="1"
-                                            data-percent="<?php echo $count_class; ?> data-min=" 0" data-max="100"
-                                            data-width="150" data-height="150" data-fgColor="#00a65a">
-                                            <?php echo $count_class; ?></div>
-
-                                        <div class="knob-label">Unregistered Students</div>
-                                    </div>
-                                </div>
+                                <i class="fas fa-list"></i>
                             </div>
                         </div>
                     </div>

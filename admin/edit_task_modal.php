@@ -37,7 +37,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Task</h1>
+                        <h1>Edit Grade</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -69,7 +69,7 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Edit Task</h3>
+                                <h3 class="card-title">Edit Grade</h3>
                                 <div id="" class="float-right"><a href="./view_submit_task.php<?php echo '?id=' .
                                             $get_id; ?>&<?php echo 'post_id=' .$post_id; ?>">
                                         <i class="fas fa-arrow-left"></i> Back</a>
@@ -82,7 +82,7 @@
                                 <input type="hidden" name="get_id" value="<?php echo $get_id; ?>" />
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="activity_name">Activity Name</label>
+                                        <label for="activity_name">Task Name</label>
                                         <input type="text" name="task_name" id="inputtask" class="form-control" value="<?php echo $result[
                                                 'task_name'
                                             ]; ?>" readonly>
@@ -134,9 +134,8 @@
                                     </div>
                                     <div class="card-footer">
                                         <center>
-                                            <button class="btn btn-flat bg-gradient-primary" name="Upload" type="submit"
-                                                value="Upload">Save
-                                                changes</button>
+                                            <button class="btn btn-flat bg-gradient-success" name="Upload" type="submit"
+                                                value="Upload">Save changes</button>
                                         </center>
                                     </div>
                             </form>

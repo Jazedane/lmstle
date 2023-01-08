@@ -52,13 +52,12 @@
                                 <h3 class="card-title">Uploaded Task</h3>
                             </div>
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-striped">
+                                <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
                                             <th>Category</th>
                                             <th>Task Name</th>
-                                            <th>Description</th>
                                             <th>Due Date</th>
                                             <th>Upload By</th>
                                             <th>Class</th>
@@ -86,7 +85,6 @@
                                             </td>
                                             <td><?php echo $row['category_name']; ?></td>
                                             <td><?php  echo $row['task_name']; ?></td>
-                                            <td><?php echo $row['task_desc']; ?></td>
                                             <td><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
                                                     $end_date,
@@ -119,7 +117,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,

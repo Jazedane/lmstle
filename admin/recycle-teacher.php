@@ -39,11 +39,11 @@
                         <form id="recycle_data_teacher" method="post">
                             <table id="example2" class="table table-bordered table-striped">
                                 <ul data-toggle="modal" href="#recycle-delete-teacher" id="delete"
-                                    class="btn btn-danger" name="delete_recycle_teacher"><i class="fas fa-trash"></i>
-                                    Delete Data</ul>
+                                    class="btn btn-danger" name="delete_recycle_teacher"><i class="fas fa-trash-alt"></i>
+                                    Delete</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
                                 <ul data-toggle="modal" href="#restore_data_teacher" id="restore"
-                                    class="btn btn-primary" name="recycle_data_teacher"><i class="fas fa-recycle"></i> Restore data
+                                    class="btn btn-primary" name="recycle_data_teacher"><i class="fas fa-recycle"></i> Restore
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
@@ -51,7 +51,7 @@
                                         <li class="nav-item dropdown">
                                             <button type="button" class="btn btn-primary dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-users"></i> Recycle List
+                                                <i class="fas fa-users"></i> Teacher List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <a href="recycle-student.php" class="dropdown-item" type="button">

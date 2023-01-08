@@ -40,10 +40,10 @@
                             <table id="example2" class="table table-bordered table-striped">
                                 <ul data-toggle="modal" href="#recycle-delete-teacher-task" id="delete"
                                     class="btn btn-danger" name="delete_recycle_teacher_task"><i
-                                        class="fas fa-trash"></i> Delete Data</ul>
+                                        class="fas fa-trash-alt"></i> Delete</ul>
                                 <?php include 'recycle-delete-modal.php'; ?>
                                 <ul data-toggle="modal" href="#restore_data_teacher_task" id="restore"
-                                    class="btn btn-primary" name="recycle_data_teacher_task"><i class="fas fa-recycle"></i> Restore data
+                                    class="btn btn-primary" name="recycle_data_teacher_task"><i class="fas fa-recycle"></i> Restore
                                 </ul>
                                 <?php include 'restore_data_modal.php'; ?>
                                 <div class="float-right">
@@ -51,7 +51,7 @@
                                         <li class="nav-item dropdown">
                                             <button type="button" class="btn btn-primary dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-users"></i> Recycle List
+                                                <i class="fas fa-users"></i> Task List
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <a href="recycle-student.php" class="dropdown-item" type="button">
@@ -62,7 +62,7 @@
                                                     Class</a>
                                                 <a href="recycle-teacher-task.php" class="dropdown-item active"
                                                     type="button">
-                                                    Teacher Task</a>
+                                                    Task</a>
                                             </div>
                                         </li>
                                     </ul>

@@ -91,6 +91,15 @@ function determine_active_sidebar_item($pages) {
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
+                            <a href="dashboard.php"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/dashboard.php']) ?>">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="class_main.php"
                                 class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/class_main.php']) ?>">
                                 <i class="nav-icon fas fa-book"></i>
