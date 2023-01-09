@@ -40,6 +40,8 @@ function determine_active_sidebar_item($pages) {
                             Change Password</a>
                         <a href="developer.php" class="dropdown-item" type="button"><i class="fas fa-users"></i>
                             Developer</a>
+                        <a href="backupdb.php" class="dropdown-item" type="button"><i class="fas fa-upload"></i>
+                            Backup and Restore</a>
                         <a href="logout.php" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i>
                             Logout</a>
                     </div>
