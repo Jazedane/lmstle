@@ -52,7 +52,7 @@
                                 <h3 class="card-title">Uploaded Task</h3>
                             </div>
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example2" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>Date Upload</th>
@@ -121,8 +121,8 @@
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
-            "lengthChange": false,
-            "searching": false,
+            "lengthChange": true,
+            "searching": true,
             "ordering": true,
             "info": true,
             "autoWidth": false,

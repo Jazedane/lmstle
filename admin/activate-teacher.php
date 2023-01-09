@@ -35,13 +35,11 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title" style="margin-top:10px">Activated Teacher List</h3>
-                                <a data-toggle="modal" href="#teacher_add" class="btn btn-success float-right"
-                                    name="add_student"><i class="fas fa-user-plus lg"></i> Add</a>
+                                <h3 class="card-title">Activated Teacher List</h3>
                             </div>
                             <div class="card-body">
                                 <form id="delete_teacher" method="post">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="example2" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
                                             class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash"></i>
                                             Remove
@@ -230,14 +228,14 @@
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
-            "lengthChange": false,
-            "searching": false,
+            "lengthChange": true,
+            "searching": true,
             "ordering": true,
             "info": true,
             "autoWidth": false,

@@ -105,18 +105,6 @@ session_start();
             </form>
         </div>
     </div>
-    <script>
-    $(".toggle-password").click(function() {
-
-        $(this).toggleClass("far fa-eye-slash");
-        var input = $($(this).attr("toggle"));
-        if (input.attr("type") == "password") {
-            input.attr("type", "text");
-        } else {
-            input.attr("type", "password");
-        }
-    });
-    </script>
     <?php include 'script.php'; 
 
         if(isset($_POST['login'])) {
@@ -130,7 +118,7 @@ session_start();
           if($total_count == 3){
     ?>
     <script>
-    toastr.warning("Your account has been blocked! Please try after 30 seconds");
+    toastr.warning("Warning","Your account has been blocked! Please try after 30 seconds");
     </script>
     <?php
         }
@@ -188,7 +176,7 @@ session_start();
         if($time_remain == 0){
              ?>
     <script>
-    toastr.warning("Your account has been blocked! Please try after 30 seconds");
+    toastr.warning("Warning","Your account has been blocked! Please try after 30 seconds");
     </script>
     <?php
         }
@@ -221,6 +209,18 @@ session_start();
             return $ip;
           }
     ?>
+    <script>
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("far fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    </script>
 </body>
 
 </html>

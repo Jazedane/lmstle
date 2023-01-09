@@ -58,7 +58,6 @@
                                         <tr>
                                             <th>Date Submitted</th>
                                             <th><center>Task Name</center></th>
-                                            <th><center>File Uploaded</center></th>
                                             <th>Status</th>
                                             <th><center>Feedback</center></th>
                                             <th>Points</th>
@@ -71,7 +70,7 @@
 										$query = mysqli_query($conn,"SELECT * FROM tbl_student_task 
 										LEFT JOIN tbl_student on tbl_student.student_id  = tbl_student_task.student_id
 										WHERE tbl_student_task.student_id = '$session_id'
-										order by task_date_upload DESC")or die(mysqli_error());
+										order by task_date_upload")or die(mysqli_error());
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_task_id'];
 										$student_id = $row['student_id'];
@@ -86,8 +85,6 @@
                                             <td>
                                                 <center><?php  echo $row['task_name']; ?></center>
                                             </td>
-                                            <td width="160"><center><a href="<?php echo $row['task_file']; ?>" target="_blank"><i
-                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></td></center>
                                             <td class="project-state" width="40">
                                                 <center>
                                                     <?php
@@ -132,7 +129,7 @@
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');

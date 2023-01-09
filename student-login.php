@@ -53,54 +53,52 @@ session_start();
             </div>
         </div>
         <div class="login-box">
-            <form method="post" id="signin_student">
-                <div class="text-center h1"><strong>Student</strong></div>
-                <p class="login-box-msg">Sign in to start your session</p>
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="signin_student"
-                    class="form-signin" method="post">
-                    <div class="form-group">
-                        <label for="inputIDnumber">ID Number</label>
-                        <div class="input-group mb-4">
-                            <input type="username" maxlength="7" class="form-control" id="student_id" name="username"
-                                placeholder="Enter ID Number" onBlur='addDashes(this)' autocomplete="off" required>
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-user"></span>
-                                </div>
+            <div class="text-center h1"><strong>Student</strong></div>
+            <p class="login-box-msg">Sign in to start your session</p>
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="signin_student" class="form-signin"
+                method="post">
+                <div class="form-group">
+                    <label for="inputIDnumber">ID Number</label>
+                    <div class="input-group mb-4">
+                        <input type="username" maxlength="7" class="form-control" id="student_id" name="username"
+                            placeholder="Enter ID Number" onBlur='addDashes(this)' autocomplete="off" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <div class="input-group mb-4">
-                            <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Enter Password" required>
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-eye toggle-password" toggle="#password"></span>
-                                </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <div class="input-group mb-4">
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Enter Password" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-eye toggle-password" toggle="#password"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <button id="signin" name="login" type="submit" class="btn btn-primary btn-block">Sign
-                                In</button>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">
+                                Remember Me
+                            </label>
                         </div>
                     </div>
+                    <div class="col-4">
+                        <button id="signin" name="login" type="submit" class="btn btn-primary btn-block">Sign
+                            In</button>
+                    </div>
+                </div>
 
-                    <div class="row">
-                        <a href="index.php" class="text-center"><i class="fas fa-arrow-left"></i><b> Back</b></a>
-                    </div>
-                </form>
+                <div class="row">
+                    <a href="index.php" class="text-center"><i class="fas fa-arrow-left"></i><b> Back</b></a>
+                </div>
             </form>
         </div>
     </div>
@@ -124,7 +122,7 @@ session_start();
           if($total_count == 3){
     ?>
     <script>
-    toastr.warning("Your account has been blocked! Please try after 30 seconds");
+    toastr.warning("Warning", "Your account has been blocked! Please try after 30 seconds");
     </script>
     <?php
         }
@@ -179,7 +177,7 @@ session_start();
         if($time_remain == 0){
              ?>
     <script>
-    toastr.warning("Your account has been blocked! Please try after 30 seconds");
+    toastr.warning("Warning", "Your account has been blocked! Please try after 30 seconds");
     </script>
     <?php
         }

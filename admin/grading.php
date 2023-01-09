@@ -448,14 +448,14 @@
                                                         $percentage_total,
                                                         2
                                                     ) .
-                                                    '%)';
+                                                    ')';
                                                 ?>
                                             </td>
                                             <td>
                                                 <center><?php echo round(
                                                     $percentage_total,
                                                     2
-                                                ); ?>%</center>
+                                                ); ?></center>
                                             </td>
                                         </tr>
 
@@ -634,7 +634,7 @@
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
@@ -644,7 +644,7 @@
     $(function() {
         $("#example2").DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
             "buttons": ["copy", "excel", "pdf", "print", ]
         }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');

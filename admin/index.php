@@ -38,10 +38,19 @@ function determine_active_sidebar_item($pages) {
                             Profile</a>
                         <a href="change_password.php" class="dropdown-item" type="button"><i class="fas fa-edit"></i>
                             Change Password</a>
+                        <?php 
+                        $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
+				        $row = mysqli_fetch_array($query);
+                        $is_superadmin = $row['is_superadmin'];
+
+                        if ($is_superadmin == true) { ?>
+                        <a href="backupdb.php" class="dropdown-item" type="button"><i class="fas fa-download"></i>
+                            Backup and Restore</a>
+                        <?php
+                            }
+                        ?>
                         <a href="developer.php" class="dropdown-item" type="button"><i class="fas fa-users"></i>
                             Developer</a>
-                        <a href="backupdb.php" class="dropdown-item" type="button"><i class="fas fa-upload"></i>
-                            Backup and Restore</a>
                         <a href="logout.php" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i>
                             Logout</a>
                     </div>

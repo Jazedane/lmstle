@@ -9,6 +9,7 @@ body {
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
     background-size: cover !important;
+    font-family: "Poppins" !important;
 }
 </style>
 
@@ -58,7 +59,6 @@ body {
     <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
-    <link rel="stylesheet" href="dist/css/style.css">
 </head>
 
 <?php include 'database.php'; ?>

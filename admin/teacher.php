@@ -35,9 +35,7 @@
                     <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title" style="margin-top:10px">Teacher List</h3>
-                                <a data-toggle="modal" href="#teacher_add" class="btn btn-success float-right"
-                                    name="add_student"><i class="fas fa-user-plus lg"></i> Add</a>
+                                <h3 class="card-title">Teacher List</h3>
                             </div>
                             <div class="card-body">
                                 <form id="delete_teacher" method="post">
@@ -230,7 +228,7 @@
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');

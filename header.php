@@ -9,6 +9,7 @@ body {
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
     background-size: cover !important;
+    font-family: "Poppins" !important;
 }
 </style>
 
