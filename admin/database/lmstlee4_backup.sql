@@ -5,7 +5,7 @@ CREATE TABLE `attempt_count` (
   `ip_address` varchar(30) NOT NULL,
   `time_count` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8mb4;
 
 
 
@@ -704,7 +704,7 @@ CREATE TABLE `tbl_teacher_log` (
   `login_date` datetime NOT NULL,
   `teacher_id` int(11) NOT NULL,
   PRIMARY KEY (`teacher_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_teacher_log VALUES("1","Admin","2022-11-27 00:52:20","1234");
 INSERT INTO tbl_teacher_log VALUES("2","Admin","2022-11-27 01:09:30","1234");
@@ -804,4 +804,7 @@ INSERT INTO tbl_teacher_log VALUES("95","Admin","2023-01-08 21:35:33","1234");
 INSERT INTO tbl_teacher_log VALUES("96","Admin","2023-01-09 15:21:25","1234");
 INSERT INTO tbl_teacher_log VALUES("97","Admin","2023-01-09 19:34:48","1234");
 INSERT INTO tbl_teacher_log VALUES("98","Admin","2023-01-09 20:56:47","1234");
+INSERT INTO tbl_teacher_log VALUES("99","Jazedane","2023-01-09 21:17:55","1242");
+INSERT INTO tbl_teacher_log VALUES("100","Admin","2023-01-12 13:33:53","1234");
+INSERT INTO tbl_teacher_log VALUES("101","Admin","2023-01-12 20:59:05","1234");
 

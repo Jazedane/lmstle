@@ -19,7 +19,7 @@ session_start();
     <?php include 'header.php'; ?>
 </head>
 
-<body class="hold-transition login-page" id="login">
+<body class="login-page" id="login">
     <div class="container">
         <div class="cover">
             <div class="front">
@@ -37,16 +37,14 @@ session_start();
                         <h6>
                             <p>To protect and promote the right of every Filipino to quality, equitable, culture-based,
                                 and complete basic education where:</p>
-                            <ul>
-                                <li>Students learn in a child-friendly, gender-sensitive, safe and motivating
-                                    environment.</li>
-                                <li>Teachers facilitate learning and constantly nurture every learner.</li></br>
-                                <li>Administrators and staff, as stewards of the institution, ensure an enabling and
-                                    supportive environment for effective learning to happen.</li></br>
-                                <li>Family, community and other stakeholders are actively engaged and share
-                                    responsibility
-                                    for developing life-long learners.</li>
-                            </ul>
+                            <p>Students learn in a child-friendly, gender-sensitive, safe and motivating
+                                environment.</p>
+                            <p>Teachers facilitate learning and constantly nurture every learner.</p>
+                            <p>Administrators and staff, as stewards of the institution, ensure an enabling and
+                                supportive environment for effective learning to happen.</p>
+                            <p>Family, community and other stakeholders are actively engaged and share
+                                responsibility
+                                for developing life-long learners.</p>
                         </h6>
                     </ul>
                 </div>
@@ -95,9 +93,8 @@ session_start();
                             In</button>
                     </div>
                 </div>
-
-                <div class="row">
-                    <a href="index.php" class="text-center"><i class="fas fa-arrow-left"></i><b> Back</b></a>
+                <div class="row mb-4">
+                    <b><a href="index.php" class="text-center"><i class="fas fa-arrow-left"></i> Back</a></b>
                 </div>
             </form>
         </div>

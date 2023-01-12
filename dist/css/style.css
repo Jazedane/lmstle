@@ -8,12 +8,18 @@
 .container {
     position: relative;
     max-width: 850px;
+    display: flex;
     width: 90%;
     height: 75%;
     background: whitesmoke;
     padding: 30px 0px 0px 30px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    overflow: auto;
     perspective: 2700px;
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 200px;
 }
 
 .container .cover {
@@ -52,8 +58,9 @@
     height: 100%;
     width: 100%;
     display: flex;
+    color: white;
     flex-direction: column;
-    align-items: center;
+    text-align: center;
     justify-content: center;
 }
 
@@ -69,15 +76,82 @@
     justify-content: space-between;
 }
 
-.forms .form-content .title {
+.container1 {
+    position: relative;
+    max-width: 850px;
+    display: flex;
+    width: 90%;
+    height: 80%;
+    background: whitesmoke;
+    padding: 30px 0px 0px 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    overflow: scroll;
+    perspective: 2700px;
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 300px;
+}
+
+.container1 .cover {
     position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 50%;
+    z-index: 98;
+    transition: all 1s ease;
+    transform-style: preserve-3d;
+}
+
+.container1 .cover::before,
+.container1 .cover::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: black;
+    opacity: 0.5;
+    z-index: 12;
+}
+
+.container1 .cover img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 10;
+}
+
+.container1 .cover .text {
+    position: absolute;
+    z-index: 130;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.register-box b {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.register-box b:hover {
+    text-decoration: underline;
+}
+
+.forms .form-content .title {
+    position: relative;
     font-size: 24px;
     font-weight: 500;
     color: #333;
 }
 
 .forms .form-content .title:before {
-    content: '';
     position: absolute;
     left: 0;
     bottom: 0;
@@ -99,7 +173,7 @@
     height: 50px;
     width: 100%;
     margin: 10px 0;
-    position: absolute;
+    position: relative;
 }
 
 .form-content .input-box input {
@@ -128,24 +202,6 @@
     text-decoration: underline;
 }
 
-.forms .form-content .button {
-    color: #fff;
-    margin-top: 40px;
-}
-
-.forms .form-content .button input {
-    color: #fff;
-    background: green;
-    border-radius: 6px;
-    padding: 0;
-    cursor: pointer;
-    transition: all 0.4s ease;
-}
-
-.forms .form-content .button input:hover {
-    background: blue;
-}
-
 .login-box b {
     color: #007bff;
     cursor: pointer;
@@ -165,21 +221,22 @@
     display: none;
 }
 
-@media (max-width: 730px) {
+@media (max-width: 850px) {
     .container .cover {
         display: none;
     }
-    .form-content .login-form,
-    .form-content .signup-form {
-        width: 100%;
+    .login-box {
+        width: 90%;
+        min-height: max-content;
     }
-    .form-content .signup-form {
+    .signup-form {
         display: none;
     }
-    .container #flip:checked~.forms .signup-form {
-        display: block;
-    }
-    .container #flip:checked~.forms .login-form {
+    .container1 .cover {
         display: none;
+    }
+    .register-box {
+        width: 90%;
+        max-height: 100%;
     }
 }

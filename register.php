@@ -28,23 +28,21 @@
                         <h6>
                             <p>To protect and promote the right of every Filipino to quality, equitable, culture-based,
                                 and complete basic education where:</p>
-                            <ul>
-                                <li>Students learn in a child-friendly, gender-sensitive, safe and motivating
-                                    environment.</li>
-                                <li>Teachers facilitate learning and constantly nurture every learner.</li></br>
-                                <li>Administrators and staff, as stewards of the institution, ensure an enabling and
-                                    supportive environment for effective learning to happen.</li></br>
-                                <li>Family, community and other stakeholders are actively engaged and share
-                                    responsibility
-                                    for developing life-long learners.</li>
-                            </ul>
+                            <p>Students learn in a child-friendly, gender-sensitive, safe and motivating
+                                environment.</p>
+                            <p>Teachers facilitate learning and constantly nurture every learner.</p>
+                            <p>Administrators and staff, as stewards of the institution, ensure an enabling and
+                                supportive environment for effective learning to happen.</p>
+                            <p>Family, community and other stakeholders are actively engaged and share
+                                responsibility
+                                for developing life-long learners.</p>
                         </h6>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="register-box">
-            <div class="text-center h1"><b>Register</b></div>
+            <div class="text-center h1"><strong>Register</strong></div>
             <p class="login-box-msg">Signup to register</p>
 
             <form id="login_form" class="form-signin" method="post" action="/lmstlee4/register.php">
@@ -104,7 +102,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="">
-                            <a href="teacher-login.php" class="signup-text"><label>I already signup</label></a>
+                            <a href="teacher-login.php" class="signup-text"><b>I already signup</b></a>
                         </div>
                     </div>
                     <div class="col-4">
@@ -132,7 +130,7 @@
             
             ?>
     <script>
-    toastr.warning("Warning","Username is already taken.");
+    toastr.warning("Warning", "Username is already taken.");
     </script>
 
     <?php } else {

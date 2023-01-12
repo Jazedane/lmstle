@@ -2,14 +2,14 @@
 <html class="no-js">
 <style>
 body {
-    background-image: url("/lmstlee4/dist/img/index4.jpg");
-    height: 100%;
-    background-repeat: no-repeat;
+    background: url("/lmstlee4/dist/img/index4.jpg") no-repeat center center fixed;
     -webkit-background-size: cover !important;
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
     background-size: cover !important;
     font-family: "Poppins" !important;
+    display: ms flexbox;
+    min-height: 100vh;
 }
 </style>
 
@@ -58,7 +58,6 @@ body {
     <!-- Toastr -->
     <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
     <link rel="stylesheet" href="dist/css/style.css">
-    <link rel="stylesheet" href="dist/css/style1.css">
 
 </head>
 
