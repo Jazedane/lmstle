@@ -74,9 +74,6 @@
                     if ($count > 0) { ?>
                     <script>
                     toastr.warning("Warning", "School Year Already Exists!");
-                    setTimeout(function() {
-                        window.location = "class.php";
-                    }, 1000);
                     </script>
                     <?php } else {mysqli_query(
                                 $conn,
@@ -85,9 +82,6 @@
                     ?>
                     <script>
                     toastr.success("Success", "School Year Successfully Added!");
-                    setTimeout(function() {
-                        window.location = "class.php";
-                    }, 1000);
                     </script>
                     <?php } } ?>
                     <SCRIPT LANGUAGE="JavaScript">
@@ -178,9 +172,6 @@
                     ?>
                     <script>
                     toastr.success("Success", "Class Successfully Added!");
-                    setTimeout(function() {
-                        window.location = "class.php";
-                    }, 1000);
                     </script>
                     <?php } } ?>
                     <div class="col-md-9">
@@ -194,7 +185,7 @@
                                 <form id="delete_class" method="post">
                                     <table id="example2" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#class_delete" id="delete" class="btn btn-danger"
-                                            name="delete_class"><i class="fas fa-trash"></i> Remove</ul>
+                                            name="delete_class"><i class="fas fa-trash-alt"></i> Remove</ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <thead>
                                             <tr>
@@ -237,7 +228,7 @@
                                                 echo $class_name;
                                                 ?></td>
                                                 <td width="40"><a href="edit_class.php<?php echo '?id=' .
-                                                    $id; ?>" class="btn btn-success"><i class="fas fa-edit"></i>
+                                                    $id; ?>" class="btn btn-success" id="edit" data-placement="bottom" title="Edit Class"><i class="fas fa-edit"></i>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -389,6 +380,12 @@
             "autoWidth": false,
             "responsive": true,
         });
+    });
+    </script>
+     <script type="text/javascript">
+    $(document).ready(function() {
+        $('#edit').tooltip('show');
+        $('#edit').tooltip('hide');
     });
     </script>
 </body>

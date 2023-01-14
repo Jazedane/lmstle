@@ -152,12 +152,10 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 2000
+            timer: 3000
         });
-        toastr.info("Please Wait for the Confirmation of the Admin for the Activation of Your Account")
-        var delay = 1000;
-        toastr.success("Signup Success", "You Have Been Successfully Signup!")
-        var delay = 1000;
+        toastr.success("Signup Success", "You Have Been Successfully Signup! Please Wait for the Confirmation of the Admin for the Activation of Your Account.")
+        var delay = 2000;
         setTimeout(function() {
             window.location = '/lmstlee4/teacher-login.php'
         }, delay);

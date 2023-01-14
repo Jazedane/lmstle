@@ -41,7 +41,7 @@
                                 <form id="delete_teacher" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
-                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash"></i> Remove
+                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash-alt"></i> Remove
                                         </ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <div class="float-right">

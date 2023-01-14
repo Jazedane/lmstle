@@ -40,7 +40,7 @@
                 <button class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="fas fa-times"></i>
                     Close</button>
                 <button id="<?php echo $id; ?>" class="btn btn-danger remove" data-dismiss="modal" aria-hidden="true"><i
-                        class="fas fa-check"></i> Yes </button>
+                        class="fas fa-check"></i> Delete </button>
             </div>
         </div>
     </div>

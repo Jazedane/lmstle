@@ -177,7 +177,7 @@ function determine_active_sidebar_item($pages) {
                         <li class="nav-item">
                             <a href="#" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/class.php','/lmstlee4/admin/students.php',
                             '/lmstlee4/admin/teacher.php','/lmstlee4/admin/edit_class.php','/lmstlee4/admin/edit_student.php','/lmstlee4/admin/edit_teacher.php',
-                            '/lmstlee4/admin/activate-student.php','/lmstlee4/admin/deactivate-student.php','/lmstlee4/admin/new-class.php','/lmstlee4/admin/new-students.php'
+                            '/lmstlee4/admin/activate-teacher.php','/lmstlee4/admin/deactivate-teacher.php','/lmstlee4/admin/new-class.php','/lmstlee4/admin/new-students.php'
                             ,'/lmstlee4/admin/edit-new-class.php','/lmstlee4/admin/edit-new-student.php']) ?>">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>

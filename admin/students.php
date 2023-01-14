@@ -78,7 +78,7 @@
                                 <form id="delete_student" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#student_delete" class="btn btn-danger"
-                                            name="delete_student"><i class="fas fa-trash"></i> Remove</ul>
+                                            name="delete_student"><i class="fas fa-trash-alt"></i> Remove</ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <thead>
                                             <tr>
