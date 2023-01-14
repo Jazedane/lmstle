@@ -197,7 +197,7 @@
                                             <option value="<?php echo $row[
                                             'student_id'
                                         ]; ?>">
-                                                <?php echo $row['firstname']; ?>
+                                                <?php echo $row['firstname']; ?> <?php $middlename = $row['middlename']; echo $middlename = mb_substr($middlename, 0, 1); ?>.
                                                 <?php echo $row[
                                                 'lastname'
                                             ]; ?> </option>

@@ -64,6 +64,12 @@
                                             style="text-transform: uppercase">
                                     </div>
                                     <div class="form-group">
+                                        <label>Middle Name</label>
+                                        <input name="middlename" value="<?php echo $row['middlename']; ?>" type="text"
+                                            class="form-control" placeholder="Enter Middlename"
+                                            style="text-transform: uppercase">
+                                    </div>
+                                    <div class="form-group">
                                         <label>Last Name</label>
                                         <input name="lastname" value="<?php echo $row['lastname']; ?>" type="text"
                                             class="form-control" placeholder="Enter Lastname"
@@ -102,12 +108,13 @@
                                
                             $username = $_POST['username'];
                             $firstname = strtoupper($_POST['firstname']);
+                            $middlename = strtoupper($_POST['middlename']);
                             $lastname = strtoupper($_POST['lastname']);
                             $gender = $_POST['gender'];
                             $age = $_POST['age'];
                             $cys = $_POST['class_id'];
                     
-                            mysqli_query($conn,"UPDATE tbl_student SET username = '$username' , firstname ='$firstname' , lastname = '$lastname' , 
+                            mysqli_query($conn,"UPDATE tbl_student SET username = '$username' , firstname ='$firstname' , middlename ='$middlename' , lastname = '$lastname' , 
                             gender = '$gender', age = '$age', class_id = '$cys' WHERE student_id = '$get_id' ") or die(mysqli_error());
 
 		                ?>

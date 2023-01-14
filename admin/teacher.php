@@ -103,6 +103,7 @@
                                                 <td><?php
                                                 $firstname = $row['firstname'];
                                                 $lastname = $row['lastname'];
+                                                $middlename = $row['middlename'];
                                                 $firstname = strtoupper(
                                                     $firstname
                                                 );
@@ -111,7 +112,7 @@
                                                 );
                                                 echo $lastname .
                                                     ', ' .
-                                                    $firstname;
+                                                    $firstname . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.';;
                                                 ?></td>
                                                 <td><?php
                                                 $username = $row['username'];

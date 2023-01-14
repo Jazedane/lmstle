@@ -51,6 +51,12 @@
                                             placeholder="Enter Firstname">
                                     </div>
                                     <div class="form-group">
+                                        <label>Middle Name</label>
+                                        <input name="middlename" value="<?php echo $row['middlename']; ?>" type="text"
+                                            class="form-control" placeholder="Enter Middlename"
+                                            style="text-transform: uppercase">
+                                    </div>
+                                    <div class="form-group">
                                         <label>Last Name</label>
                                         <input type="text" name="lastname" value="<?php echo $row['lastname']; ?>"
                                             class="form-control" style="text-transform: uppercase"
@@ -60,7 +66,7 @@
                                         <label>Gender</label>
                                         <select name="gender" class="form-control" placeholder="Gender"
                                             style="text-transform: uppercase" required>
-                                            <option><?php echo $row['gender']; ?></option>
+                                            <option selected hidden><?php echo $row['gender']; ?></option>
                                             <option>MALE</option>
                                             <option>FEMALE</option>
                                         </select>
@@ -74,7 +80,7 @@
                                         <label>Status</label>
                                         <select name="teacher_stat" class="form-control" placeholder="Status"
                                             style="text-transform: uppercase" required>
-                                            <option><?php echo $row['teacher_stat']; ?></option>
+                                            <option selected hidden><?php echo $row['teacher_stat']; ?></option>
                                             <option>ACTIVATED</option>
                                             <option>DEACTIVATED</option>
                                         </select>
@@ -96,12 +102,13 @@
 
                     $username = $_POST['username'];
                     $firstname = strtoupper($_POST['firstname']);
+                    $middlename = strtoupper($_POST['middlename']);
                     $lastname = strtoupper($_POST['lastname']);
                     $gender = $_POST['gender'];
                     $teacher_stat = $_POST['teacher_stat'];
                     
                     mysqli_query($conn,"update tbl_teacher set username = '$username'  , 
-                    firstname = '$firstname' , lastname = '$lastname' , gender = '$gender', teacher_stat = '$teacher_stat' where teacher_id = '$get_id' ")
+                    firstname = '$firstname' , middlename = '$middlename' , lastname = '$lastname' , gender = '$gender', teacher_stat = '$teacher_stat' where teacher_id = '$get_id' ")
                     or die(mysqli_error());
 
                     mysqli_query($conn,"insert into tbl_activity_log (date,username,action) values(NOW(),'$username','Edit Teacher $username')")

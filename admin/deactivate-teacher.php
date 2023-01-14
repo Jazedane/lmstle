@@ -41,7 +41,8 @@
                                 <form id="delete_teacher" method="post">
                                     <table id="example2" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
-                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash-alt"></i>
+                                            class="btn btn-danger" name="delete_teacher"><i
+                                                class="fas fa-trash-alt"></i>
                                             Remove
                                         </ul>
                                         <?php include 'modal_delete.php'; ?>
@@ -104,6 +105,7 @@
                                                 <td><?php
                                                 $firstname = $row['firstname'];
                                                 $lastname = $row['lastname'];
+                                                $middlename = $row['middlename'];
                                                 $firstname = strtoupper(
                                                     $firstname
                                                 );
@@ -112,7 +114,7 @@
                                                 );
                                                 echo $lastname .
                                                     ', ' .
-                                                    $firstname;
+                                                    $firstname . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.';;
                                                 ?></td>
                                                 <td><?php
                                                 $username = $row['username'];

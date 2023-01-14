@@ -76,7 +76,7 @@
                                                 </span>
                                             </div>
                                             <p class="student">
-                                                <?php echo $row['firstname']." <br> ".$row['lastname']?></p>
+                                                <?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .".<br>". $row['lastname'];?></p>
                                         </center>
                                     </div>
                                     <?php } ?>

@@ -118,11 +118,13 @@
                                                 </td>
                                                 <td><?php $firstname = $row['firstname'];
 						                                $lastname = $row['lastname'];
+                                                        $middlename = $row['middlename'];
 						                                $firstname = strtoupper ($firstname);
 						                                $lastname = strtoupper($lastname);
-						                                echo $lastname .', '. $firstname; 
+                                                        $middlename = strtoupper($middlename);
+						                                echo $lastname .', '. $firstname .' '. $middlename = mb_substr($middlename, 0, 1).'.'; 
 						                                $firstname = array($firstname);
-						                                sort($firstname); ?></td>
+						                                sort($firstname); ?>
                                                 <td><?php echo $row['username']; ?></td>
                                                 <td><?php $gender = $row['gender'];
 					                                $gender = strtoupper ($gender);
@@ -193,6 +195,9 @@
                                 <label>First Name</label>
                                 <input name="firstname" type="text" class="form-control" placeholder="Enter Firstname"
                                     style="text-transform: uppercase" required>
+                                <label>Middle Name</label>
+                                <input name="middlename" type="text" class="form-control" placeholder="Enter Middlename"
+                                    style="text-transform: uppercase" required>
                                 <label>Last Name</label>
                                 <input name="lastname" type="text" class="form-control" placeholder="Enter Lastname"
                                     style="text-transform: uppercase" required>
@@ -224,6 +229,7 @@
             $class_id = $_POST['class_id'];
             $username = $_POST['username'];
             $firstname = strtoupper($_POST['firstname']);
+            $middlename = strtoupper($_POST['middlename']);
             $lastname = strtoupper($_POST['lastname']);
             $gender = $_POST['gender'];
             $age = $_POST['age'];
@@ -240,7 +246,7 @@
 
             ($query = mysqli_query(
                 $conn,
-                "SELECT * FROM tbl_student WHERE username  =  '$username' AND firstname  =  '$firstname' AND lastname  =  '$lastname'"
+                "SELECT * FROM tbl_student WHERE username  =  '$username' AND firstname  =  '$firstname' AND middlename  =  '$middlename' AND lastname  =  '$lastname'"
             )) or die(mysqli_error());
             $count = mysqli_num_rows($query);
 
@@ -255,9 +261,9 @@
             $conn,
             "INSERT INTO 
             tbl_student 
-            (username,firstname,lastname,gender,age,location,class_id,status,password) 
+            (username,firstname,middlename,lastname,gender,age,location,class_id,status,password) 
             VALUES 
-            ('$username','$firstname','$lastname','$gender','$age','NO-IMAGE-AVAILABLE.jpg','$class_id','Registered','$hashedPassword');"
+            ('$username','$firstname','$middlename','$lastname','$gender','$age','NO-IMAGE-AVAILABLE.jpg','$class_id','Registered','$hashedPassword');"
             ) or die(mysqli_error());
 
             /**

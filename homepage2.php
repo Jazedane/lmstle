@@ -65,11 +65,12 @@ function determine_active_sidebar_item($pages) {
 								  $row = mysqli_fetch_array($query);
 						?>
                     <div class="image">
-                        <img id="avatar" src="admin/uploads/<?php echo $row['location']; ?>" class="img-circle elevation-2"
-                            alt="User Image" style="height:40px;width:40px;">
+                        <img id="avatar" src="admin/uploads/<?php echo $row['location']; ?>"
+                            class="img-circle elevation-2" alt="User Image" style="height:40px;width:40px;">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"><?php echo $row['firstname']." ".$row['lastname'];  ?> </a>
+                        <a href="#" class="d-block"><?php echo $row['lastname'] . ','; ?></a>
+                        <a><?php $middlename = $row['middlename']; echo $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?></a>
                     </div>
                 </div>
 
@@ -97,7 +98,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="my_classmates.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/my_classmates.php']) ?>">
+                            <a href="my_classmates.php<?php echo '?id='.$get_id; ?>"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/my_classmates.php']) ?>">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     My Classmates
@@ -105,7 +107,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="progress.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/progress.php']) ?>">
+                            <a href="progress.php<?php echo '?id='.$get_id; ?>"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/progress.php']) ?>">
                                 <i class="nav-icon fas fa-tasks"></i>
                                 <p>
                                     Progress
@@ -113,7 +116,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="task_student.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/task_student.php','/lmstlee4/submit_task.php','/lmstlee4/edit_task_modal.php']) ?>">
+                            <a href="task_student.php<?php echo '?id='.$get_id; ?>"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/task_student.php','/lmstlee4/submit_task.php','/lmstlee4/edit_task_modal.php']) ?>">
                                 <i class="nav-icon fas fa-file-upload"></i>
                                 <p>
                                     Task Update
@@ -121,7 +125,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="student-grade.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/student-grade.php']) ?>">
+                            <a href="student-grade.php<?php echo '?id='.$get_id; ?>"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/student-grade.php']) ?>">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     My Grade

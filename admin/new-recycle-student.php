@@ -51,20 +51,23 @@
                                                     Student</a>
                                                 <a href="new-recycle-class.php" class="dropdown-item" type="button">
                                                     Class</a>
-                                                <a href="new-recycle-teacher-task.php" class="dropdown-item" type="button">
+                                                <a href="new-recycle-teacher-task.php" class="dropdown-item"
+                                                    type="button">
                                                     Task</a>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                                 <li data-toggle="modal" href="#recycle-delete-student" id="delete"
-                                    class="btn btn-danger" name="delete_recycle_student"><i class="fas fa-trash-alt"></i> Delete</li>
+                                    class="btn btn-danger" name="delete_recycle_student"><i
+                                        class="fas fa-trash-alt"></i> Delete</li>
                                 <?php include 'recycle-delete-modal.php'; ?>
                                 <li data-toggle="modal" href="#restore_data_student" id="restore"
-                                    class="btn btn-primary" name="recycle_data_student"><i class="fas fa-recycle"></i> Restore
+                                    class="btn btn-primary" name="recycle_data_student"><i class="fas fa-recycle"></i>
+                                    Restore
                                 </li>
                                 <?php include 'restore_data_modal.php'; ?>
-                                
+
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" name="selectAll" id="checkAll" />
@@ -100,6 +103,7 @@
                                         <td><?php
                                                 $firstname = $row['firstname'];
                                                 $lastname = $row['lastname'];
+                                                $middlename = $row['middlename']; 
                                                 $firstname = strtoupper(
                                                     $firstname
                                                 );
@@ -108,7 +112,7 @@
                                                 );
                                                 echo $lastname .
                                                     ', ' .
-                                                    $firstname;
+                                                    $firstname . ' ' . $middlename = mb_substr($middlename, 0, 1) . '.';
                                                 ?>
                                         </td>
                                         <td><?php echo $row['username']; ?></td>
@@ -144,7 +148,7 @@
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
-            
+
             $.ajax({
                 type: "POST",
                 url: "restore-data-student.php",
@@ -177,7 +181,7 @@
             var selectedIds = $('[name="selector[]"]:checked').map((_, element) => {
                 return $(element).val()
             }).get()
-            
+
             $.ajax({
                 type: "POST",
                 url: "delete-recycle-student.php",

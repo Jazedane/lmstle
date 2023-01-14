@@ -71,7 +71,7 @@ function determine_active_sidebar_item($pages) {
                             class="img-circle elevation" alt="User Image" style="height:40px;width:40px;">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></a>
+                        <a href="#" class="d-block"><?php $middlename = $row['middlename']; echo $row['lastname'] . ', <br>' . $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?></a>
                     </div>
                 </div>
 

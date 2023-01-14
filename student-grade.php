@@ -67,7 +67,8 @@
             <div class="row mb-2 ml-1">
                 <div class="col-sm-3">
                     <select class="form-control" id="quarter-selection">
-                        <option value="0" <?php if ($selected_quarter == "0") { echo "selected"; } else { echo ""; } ?> selected disabled hidden>
+                        <option value="0" <?php if ($selected_quarter == "0") { echo "selected"; } else { echo ""; } ?>
+                            selected disabled hidden>
                             Select Quarter</option>
                         <option value="1" <?php if ($selected_quarter == "1") { echo "selected"; } else { echo ""; } ?>>
                             1st Quarter</option>
@@ -273,9 +274,10 @@
                                                 'location'
                                             ]; ?>" class="img-circle elevation" alt="User Image" height="30"
                                                     width="30">
-                                                <?php echo $row['lastname'] .
+                                                <?php $middlename = $row['middlename']; 
+                                                echo $row['lastname'] .
                                                     ', ' .
-                                                    $row['firstname']; ?>
+                                                    $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?>
                                             </td>
                                             <?php for (
                                                 $i = 0;
@@ -421,7 +423,7 @@
                                                         $percentage_total,
                                                         2
                                                     ) .
-                                                    '%)';
+                                                    ')';
                                                 ?>
                                             </td>
                                             <td>
@@ -505,9 +507,10 @@
                                                 'location'
                                             ]; ?>" class="img-circle elevation" alt="User Image" height="30"
                                                     width="30">
-                                                <?php echo $row['lastname'] .
+                                                <?php $middlename = $row['middlename']; 
+                                                    echo $row['lastname'] .
                                                     ', ' .
-                                                    $row['firstname']; ?>
+                                                    $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?>
                                             </td>
                                             <td>
                                                 <center>

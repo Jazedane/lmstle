@@ -45,8 +45,8 @@
                                         src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>" width="80"
                                         height="80">
                                 </div>
-                                <?php
-                                    echo "<h3 class='profile-username text-center'>".$row['firstname']." ".$row['lastname'] . "</h3>";
+                                <?php $middlename = $row['middlename'];
+                                    echo "<h3 class='profile-username text-center'>".$row['firstname']. ' ' . $middlename = mb_substr($middlename, 0, 1) . '.' ." ".$row['lastname'] . "</h3>";
                                     } 
                                     
                                 ?>
@@ -124,6 +124,9 @@
                                     <label class="float-left font-15">First name</label>
                                     <input type="text" name="firstname" value="<?php echo $row['firstname'];?>"
                                         class="form-control" required="">
+                                    <label class="float-left font-15">Middle name</label>
+                                    <input type="text" name="middlename" value="<?php echo $row['middlename'];?>"
+                                        class="form-control" required="">
                                     <label class="float-left font-15">Last name</label>
                                     <input type="text" name="lastname" value="<?php echo $row['lastname'];?>"
                                         class="form-control">
@@ -135,7 +138,7 @@
                                         class="form-control" max="9999-01-01" min="0000-01-01">
                                     <label class="float-left font-15">Gender</label>
                                     <select class="form-control" name="gender">
-                                        <option><?php echo $row['gender'];?></option>
+                                        <option selected hidden><?php echo $row['gender'];?></option>
                                         <option>MALE</option>
                                         <option>FEMALE</option>
                                     </select>
@@ -157,10 +160,10 @@
                                         class="form-control">
                                     <label class="float-left font-15">Educational Background</label>
                                     <textarea placeholder="Enter Educational Background" name="education"
-                                        class="form-control"><?php echo $row['education'];?></textarea>
+                                        class="form-control" rows="4"><?php echo $row['education'];?></textarea>
                                     <label class="float-left font-15">Skills</label>
                                     <textarea placeholder="Enter Skills" name="skills"
-                                        class="form-control"><?php echo $row['skills'];?></textarea>
+                                        class="form-control" rows="3"><?php echo $row['skills'];?></textarea>
                                     <div class="modal-footer">
                                         <button class="btn btn-primary" type="submit" name="update">Update</button>
                                     </div>
@@ -169,7 +172,7 @@
                         </form>
                         <?php 
                             if (isset($_POST['update'])) {
-                                $query = "UPDATE tbl_teacher SET firstname='$_POST[firstname]', lastname='$_POST[lastname]', email='$_POST[email]', 
+                                $query = "UPDATE tbl_teacher SET firstname='$_POST[firstname]', middlename='$_POST[middlename]', lastname='$_POST[lastname]', email='$_POST[email]', 
                                 birthdate='$_POST[birthdate]', gender='$_POST[gender]', department='$_POST[department]', phone_no='$_POST[phone_no]', 
                                 address='$_POST[address]', nationality='$_POST[nationality]', education='$_POST[education]', skills='$_POST[skills]' 
                                 WHERE teacher_id = '$session_id'";

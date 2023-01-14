@@ -45,8 +45,8 @@
                                         src="/lmstlee4/admin/uploads/<?php echo $row['location']; ?>" width="80"
                                         height="80">
                                 </div>
-                                <?php
-                                    echo "<h3 class='profile-username text-center'>".$row['firstname']." ".$row['lastname'] . "</h3>";
+                                <?php $middlename = $row['middlename'];
+                                    echo "<h3 class='profile-username text-center'>".$row['firstname']. ' ' . $middlename = mb_substr($middlename, 0, 1) . '.' ." ".$row['lastname'] . "</h3>";
                                     } 
                                     
                                 ?>
@@ -114,6 +114,9 @@
                                     <label class="float-left font-15">First name</label>
                                     <input type="text" name="firstname" value="<?php echo $row['firstname'];?>"
                                         class="form-control" required="">
+                                    <label class="float-left font-15">Middle name</label>
+                                    <input type="text" name="middlename" value="<?php echo $row['middlename'];?>"
+                                        class="form-control" required="">
                                     <label class="float-left font-15">Last name</label>
                                     <input type="text" name="lastname" value="<?php echo $row['lastname'];?>"
                                         class="form-control">
@@ -123,16 +126,16 @@
                                     <label class="float-left font-15">Birthday</label>
                                     <input type="date" name="birthdate" value="<?php echo $row['birthdate'];?>"
                                         class="form-control" max="9999-01-01" min="0000-01-01">
+                                </div>
+                                <div class="col-md-6">
                                     <label class="float-left font-15">Gender</label>
                                     <select class="form-control" name="gender">
-                                        <option><?php echo $row['gender'];?></option>
+                                        <option selected hidden><?php echo $row['gender'];?></option>
                                         <option>MALE</option>
                                         <option>FEMALE</option>
                                     </select>
-                                </div>
-                                <div class="col-md-6">
                                     <label class="float-left font-15">Age</label>
-                                    <input type="number" name="age" maxlength="2" min="15" max="25"
+                                    <input type="number" name="age" oninput="this.value = this.value.slice(0, this.dataset.maxlength);" data-maxlength="2" min="15" max="25"
                                         value="<?php echo $row['age'];?>" class="form-control">
                                     <label class="float-left font-15">Phone number</label>
                                     <input type="number"
@@ -153,7 +156,7 @@
                         </form>
                         <?php 
                     if (isset($_POST['update'])) {
-                        $query = "UPDATE tbl_student SET firstname='$_POST[firstname]', lastname='$_POST[lastname]', email='$_POST[email]', birthdate='$_POST[birthdate]', gender='$_POST[gender]', age='$_POST[age]', phone_no='$_POST[phone_no]', address='$_POST[address]', nationality='$_POST[nationality]' WHERE student_id = '$session_id'";
+                        $query = "UPDATE tbl_student SET firstname='$_POST[firstname]', middlename='$_POST[middlename]', lastname='$_POST[lastname]', email='$_POST[email]', birthdate='$_POST[birthdate]', gender='$_POST[gender]', age='$_POST[age]', phone_no='$_POST[phone_no]', address='$_POST[address]', nationality='$_POST[nationality]' WHERE student_id = '$session_id'";
                         $result = mysqli_query($conn, $query);
                     ?>
                         <script type="text/javascript">

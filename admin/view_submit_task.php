@@ -104,7 +104,7 @@
                                                 </td>
                                                 <td><?php  echo $row['task_name']; ?></td>
                                                 <td><?php echo $row['task_description']; ?></td>
-                                                <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
+                                                <td><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?></td>
                                                 <td class="project-state" width="60">
                                                     <?php
                             					if($row['task_status'] =='0') {

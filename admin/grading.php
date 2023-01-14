@@ -300,9 +300,10 @@
                                                 'location'
                                             ]; ?>" class="img-circle elevation" alt="User Image" height="30"
                                                     width="30">
-                                                <?php echo $row['lastname'] .
+                                                <?php $middlename = $row['middlename']; 
+                                                    echo $row['lastname'] .
                                                     ', ' .
-                                                    $row['firstname']; ?>
+                                                    $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?>
                                             </td>
                                             <?php for (
                                                 $i = 0;
@@ -531,9 +532,10 @@
                                                 'location'
                                             ]; ?>" class="img-circle elevation" alt="User Image" height="30"
                                                     width="30">
-                                                <?php echo $row['lastname'] .
+                                                <?php $middlename = $row['middlename']; 
+                                                    echo $row['lastname'] .
                                                     ', ' .
-                                                    $row['firstname']; ?>
+                                                    $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?>
                                             </td>
                                             <td>
                                                 <center>

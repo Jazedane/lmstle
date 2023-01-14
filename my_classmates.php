@@ -58,7 +58,8 @@
                                     src="/lmstlee4/admin/uploads/<?php echo $my_profile['location'] ?>" width="80" height="80"
                                     class="img-circle elevation-2"/>
                                 <div>
-                                    <span><?php echo $my_profile['firstname']; ?> <?php echo $my_profile['lastname'] ?> </span>
+                                    <span><?php echo $my_profile['firstname']; ?> <?php $middlename = $my_profile['middlename']; echo $middlename = mb_substr($middlename, 0, 1); ?>.
+                                    <?php echo $my_profile['lastname'] ?> </span>
                                 </div>
                                 </center>
                             </div>
@@ -102,7 +103,7 @@
                                                     src="admin/uploads/<?php echo $row['location'] ?>" width="80" height="80"
                                                     class="img-circle elevation-2">
                                             </a>
-                                            <p class="class"><?php echo $row['firstname']."<br> ".$row['lastname']?></p>
+                                            <p class="class"><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .".<br>". $row['lastname'];?></p>
                                         </center>
                                     </div>
                                     <?php } ?>
