@@ -79,8 +79,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Age</label>
-                                        <input name="age" type="number" value="<?php echo $row['age']; ?>" maxlength="2"
-                                            min="15" max="25" class="form-control" placeholder="AGE" required>
+                                        <input name="age"
+                                            oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
+                                            type="number" value="<?php echo $row['age']; ?>" data-maxlength="2" min="15"
+                                            max="25" class="form-control" placeholder="AGE" required>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>

@@ -78,8 +78,10 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Points</label>
-                                                <input type="number" name="total_points" class="form-control"
-                                                    placeholder="Enter points" required>
+                                                <input type="number"
+                                                    oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
+                                                    data-maxlength="3" name="total_points" min="1" max="100"
+                                                    class="form-control" placeholder="Enter points" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Grade Category</label>
@@ -230,8 +232,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Score <a id="task_grade_helper_text"></a></label>
-                                        <input id="task_grade" type="number" name="grade" class="form-control"
-                                            placeholder="Enter Score" maxlength="3" min="1" max="100" required>
+                                        <input id="task_grade"
+                                            oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
+                                            type="number" name="grade" class="form-control" placeholder="Enter Score"
+                                            data-maxlength="3" min="1" max="100" required>
 
                                     </div>
                                     <div class="card-footer">
@@ -264,7 +268,7 @@
                             or die(mysqli_error($conn));
                             ?>
                             <script>
-                            toastr.success("Success","Points Successfully Added!");
+                            toastr.success("Success", "Points Successfully Added!");
                             setTimeout(function() {
                                 window.location = "task.php<?php echo '?id='.$get_id ?>";
                             }, 1000);

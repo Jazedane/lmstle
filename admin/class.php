@@ -41,13 +41,17 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Start Year</label>
-                                        <input name="start_year" type="number" maxlength="4" autocomplete="off"
+                                        <input name="start_year"
+                                            oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
+                                            type="number" data-maxlength="4" min="2022" autocomplete="off"
                                             class="form-control" placeholder="ENTER START YEAR" required>
                                     </div>
                                     <div class="form-group">
                                         <label>End Year</label>
-                                        <input name="end_year" type="number" maxlength="4" autocomplete="off"
-                                            class="form-control" placeholder="ENTER END YEAR" required>
+                                        <input name="end_year" type="number"
+                                            oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
+                                            data-maxlength="4" min="2023" autocomplete="off" class="form-control"
+                                            placeholder="ENTER END YEAR" required>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 </div>
@@ -228,7 +232,8 @@
                                                 echo $class_name;
                                                 ?></td>
                                                 <td width="40"><a href="edit_class.php<?php echo '?id=' .
-                                                    $id; ?>" class="btn btn-success" id="edit" data-placement="bottom" title="Edit Class"><i class="fas fa-edit"></i>
+                                                    $id; ?>" class="btn btn-success" id="edit" data-placement="bottom"
+                                                        title="Edit Class"><i class="fas fa-edit"></i>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -382,7 +387,7 @@
         });
     });
     </script>
-     <script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function() {
         $('#edit').tooltip('show');
         $('#edit').tooltip('hide');

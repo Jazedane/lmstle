@@ -96,7 +96,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="grade">Points</label>
-                                        <input type="number" name="grade" maxlength="3" min="0" max="<?php echo $result[
+                                        <input type="number" name="grade"
+                                            oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
+                                            data-maxlength="3" min="1" max="<?php echo $result[
                                             'total_points'
                                         ]; ?>" id="inputtask" class="form-control" value="<?php echo $result[
                                                 'grade'
@@ -147,8 +149,8 @@
     </div>
     <?php include 'footer.php'; ?>
     <script>
-        // Summernote
-        $('#summernote').summernote( {
+    // Summernote
+    $('#summernote').summernote({
         toolbar: [
             ["style", ["style"]],
             ["font", ["bold", "underline", "clear"]],
@@ -179,7 +181,8 @@
                 success: function(html) {
                     toastr.success("Task Edited Successfully");
                     setTimeout(function() {
-                        window.location = 'view_submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$post_id ?>';
+                        window.location =
+                            'view_submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$post_id ?>';
                     }, 2000);
                 },
                 cache: false,

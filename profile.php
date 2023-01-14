@@ -135,8 +135,10 @@
                                     <input type="number" name="age" maxlength="2" min="15" max="25"
                                         value="<?php echo $row['age'];?>" class="form-control">
                                     <label class="float-left font-15">Phone number</label>
-                                    <input type="number" name="phone_no" min="9000000000" maxlength="11"
-                                        max="10000000000" value="<?php echo $row['phone_no'];?>" class="form-control">
+                                    <input type="number"
+                                        oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
+                                        name="phone_no" min="9000000000" data-maxlength="11" max="10000000000"
+                                        value="<?php echo $row['phone_no'];?>" class="form-control">
                                     <label class="float-left font-15">Address</label>
                                     <textarea placeholder="Enter Address" name="address"
                                         class="form-control"><?php echo $row['address'];?></textarea>

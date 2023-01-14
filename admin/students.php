@@ -197,7 +197,7 @@
                                     <option>FEMALE</option>
                                 </select>
                                 <label>Age</label>
-                                <input type="number" maxlength="2" min="15" max="25" class="form-control" name="age"
+                                <input type="number" oninput="this.value = this.value.slice(0, this.dataset.maxlength);" data-maxlength="2" min="15" max="25" class="form-control" name="age"
                                     placeholder="AGE" required>
                                 <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
                                 <div class="modal-footer">

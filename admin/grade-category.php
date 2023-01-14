@@ -166,8 +166,7 @@
                                                 echo 100-$impact_percentage_total . "%"?></p>
                                     </div>
                                 </div>
-                                <form class="mt-5" id="" method="post" enctype="multipart/form-data"
-                                    name="upload">
+                                <form class="mt-5" id="" method="post" enctype="multipart/form-data" name="upload">
                                     <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                                     <input type="hidden" name="get_id" value="<?php echo $get_id; ?>">
 
@@ -180,7 +179,9 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="number" name="impact_percentage" maxlength="2" min="1"
+                                                <input type="number" name="impact_percentage"
+                                                    oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
+                                                    data-maxlength="2" min="1"
                                                     max="<?php echo 100-$impact_percentage_total; ?>"
                                                     class="form-control" placeholder="Enter percentage" required>
                                             </div>
@@ -208,7 +209,7 @@
 
                                 if ($count > 0) { ?>
                                 <script>
-                                toastr.warning("Warning","Category Name Already Exists!");
+                                toastr.warning("Warning", "Category Name Already Exists!");
                                 setTimeout(function() {
                                     window.location = "grade-category.php<?php echo '?id='.$get_id ?>";
                                 }, 1000);
@@ -221,7 +222,7 @@
 
                                 ?>
                                 <script>
-                                toastr.success("Success","Grade Category Added!");
+                                toastr.success("Success", "Grade Category Added!");
                                 setTimeout(function() {
                                     window.location = "grade-category.php<?php echo '?id='.$get_id ?>";
                                 }, 1000);
