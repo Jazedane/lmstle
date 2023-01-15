@@ -118,7 +118,7 @@
                                 <h3 class="card-title">Grades for Quarter <?php echo $quarter; ?></h3>
                             </div>
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="<?php echo 'grade_section_'.$quarterIndex; ?>" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th width="220">
@@ -458,7 +458,7 @@
                                 <h3 class="card-title">General Average for Quarters</h3>
                             </div>
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-striped">
+                                <table id="grade_section_overall" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th width="220">
@@ -609,22 +609,43 @@
     <?php include 'footer.php'; ?>
     <script>
     $(function() {
-        $("#example1").DataTable({
+        $("#grade_section_0").DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
             "buttons": ["copy", "excel", "pdf", "print"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#grade_section_0_wrapper .col-md-6:eq(0)');
+
+        $("#grade_section_1").DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
+            "buttons": ["copy", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#grade_section_1_wrapper .col-md-6:eq(0)');
+
+        $("#grade_section_2").DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
+            "buttons": ["copy", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#grade_section_2_wrapper .col-md-6:eq(0)');
+
+        $("#grade_section_3").DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
+            "buttons": ["copy", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#grade_section_3_wrapper .col-md-6:eq(0)');
     });
     </script>
     <script>
     $(function() {
-        $("#example2").DataTable({
+        $("#grade_section_overall").DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
-            "buttons": ["copy", "excel", "pdf", "print"]
-        }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+            "buttons": ["copy", "excel", "pdf", "print", ]
+        }).buttons().container().appendTo('#grade_section_overall_wrapper .col-md-6:eq(0)');
     });
 
     $(document).ready(() => {
