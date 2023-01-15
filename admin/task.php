@@ -265,7 +265,7 @@
                             }, 1000);
                             </script>
                             <?php } else {mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_date_upload = NOW(), 
-                            task_id ='$task_id', grade='$grade', task_status= '3'")
+                            task_id ='$task_id', grade='$grade', task_file = '/lmstlee4/dist/img/no-attachment.jpg', task_status= '3'")
                             or die(mysqli_error($conn));
                             ?>
                             <script>
@@ -553,7 +553,7 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            order: [
+            "order": [
                 [8,'desc']
             ],
         });

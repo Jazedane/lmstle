@@ -106,7 +106,7 @@
                                             $task_file = $row['task_file'];
                                             ?>
                                         <tr>
-                                            <td width="220"><?php $date_upload = date_create($row['date_upload']);
+                                            <td width="220" data-order=<fmt:formatDate pattern = "F d, Y h:i A"><?php $date_upload = date_create($row['date_upload']);
                                                     echo date_format(
                                                     $date_upload,
                                                     'F d, Y h:i A'
@@ -194,9 +194,6 @@
             "ordering": true,
             "info": true,
             "autoWidth": false,
-            order: [
-                [6,'desc']
-            ],
             "responsive": true,
         });
     });

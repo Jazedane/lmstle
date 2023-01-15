@@ -86,7 +86,7 @@
                                             <?php
                                             ($teacher_query = mysqli_query(
                                                 $conn,
-                                                'SELECT * FROM tbl_teacher WHERE isDeleted=false'
+                                                'SELECT * FROM tbl_teacher WHERE isDeleted=false ORDER BY lastname'
                                             )) or die(mysqli_error());
                                             while (
                                                 $row = mysqli_fetch_array(

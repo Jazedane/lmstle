@@ -280,7 +280,7 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            order: [
+            "order": [
                 [2,'desc']
             ],
         });

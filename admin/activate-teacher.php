@@ -41,7 +41,8 @@
                                 <form id="delete_teacher" method="post">
                                     <table id="example2" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
-                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash-alt"></i>
+                                            class="btn btn-danger" name="delete_teacher"><i
+                                                class="fas fa-trash-alt"></i>
                                             Remove
                                         </ul>
                                         <?php include 'modal_delete.php'; ?>
@@ -87,7 +88,7 @@
                                             <?php
                                             ($teacher_query = mysqli_query(
                                                 $conn,
-                                                "SELECT * FROM tbl_teacher WHERE tbl_teacher.teacher_stat = 'Activated' AND isDeleted=false"
+                                                "SELECT * FROM tbl_teacher WHERE tbl_teacher.teacher_stat = 'Activated' AND isDeleted=false ORDER BY lastname"
                                             )) or die(mysqli_error());
                                             while (
                                                 $row = mysqli_fetch_array(

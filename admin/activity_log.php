@@ -36,7 +36,7 @@
                         <h3 class="card-title">Activity Log</h3>
                     </div>
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-striped">
+                        <table id="example2" class="display table table-bordered table-striped">
                             <thead>
                                 <tr>
 
@@ -56,10 +56,10 @@
 
                                 <tr>
 
-                                    <td><?php $date = date_create($row['date']);
+                                    <td data-order=<fmt:formatDate pattern="F d, Y h:i A"><?php $date = date_create($row['date']);
                                                     echo date_format(
                                                     $date,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                     </td>
                                     <td><?php echo $row['username']; ?></td>
@@ -80,14 +80,14 @@
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
-            "lengthChange": false,
+            "lengthChange": true,
             "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
-            "lengthChange": false,
-            "searching": false,
+            "lengthChange": true,
+            "searching": true,
             "ordering": true,
             "info": true,
             "autoWidth": false,

@@ -77,10 +77,10 @@
 										while($row = mysqli_fetch_array($query)){
 									?>
                                         <tr>
-                                            <td><?php $date_upload = date_create($row['date_upload']);
+                                            <td data-order=<fmt:formatDate pattern = "F d, Y h:i A"><?php $date_upload = date_create($row['date_upload']);
                                                     echo date_format(
                                                     $date_upload,
-                                                    'M/d/Y h:i a'
+                                                    'F d,Y h:i A'
                                                     ); ?>
                                             </td>
                                             <td><?php echo $row['category_name']; ?></td>
@@ -117,9 +117,6 @@
             "responsive": true,
             "lengthChange": true,
             "autoWidth": false,
-            order: [
-                [4, 'desc']
-            ],
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({

@@ -53,10 +53,10 @@
 								?>
 
                                 <tr>
-                                    <td><?php $login_date = date_create($row['login_date']);
+                                    <td data-order=<fmt:formatDate pattern = "F d, Y h:i A"><?php $login_date = date_create($row['login_date']);
                                                     echo date_format(
                                                     $login_date,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                     </td>
                                     <td><?php echo $row['username']; ?></td>
@@ -76,12 +76,12 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
-            "lengthChange": false,
-            "searching": false,
+            "lengthChange": true,
+            "searching": true,
             "ordering": true,
             "info": true,
             "autoWidth": false,

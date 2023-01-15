@@ -137,7 +137,7 @@
             "responsive": true,
             "lengthChange": true,
             "autoWidth": false,
-            order: [
+            "order": [
                 [0,'desc']
             ],
             "buttons": ["copy", "excel", "pdf", "print"]
