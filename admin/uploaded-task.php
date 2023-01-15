@@ -117,6 +117,9 @@
             "responsive": true,
             "lengthChange": true,
             "autoWidth": false,
+            order: [
+                [4, 'desc']
+            ],
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({

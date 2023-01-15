@@ -194,6 +194,9 @@
             "ordering": true,
             "info": true,
             "autoWidth": false,
+            order: [
+                [6,'desc']
+            ],
             "responsive": true,
         });
     });

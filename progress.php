@@ -57,9 +57,13 @@
                                     <thead>
                                         <tr>
                                             <th>Date Submitted</th>
-                                            <th><center>Task Name</center></th>
+                                            <th>
+                                                <center>Task Name</center>
+                                            </th>
                                             <th>Status</th>
-                                            <th><center>Feedback</center></th>
+                                            <th>
+                                                <center>Feedback</center>
+                                            </th>
                                             <th>Points</th>
                                         </tr>
 
@@ -99,7 +103,9 @@
                             					}
                           						?></center>
                                             </td>
-                                            <td><center><?php  echo $row['feedback']; ?><center></td>
+                                            <td>
+                                                <center><?php  echo $row['feedback']; ?><center>
+                                            </td>
                                             <?php if ($session_id == $student_id){ ?>
                                             <td width="40">
                                                 <center>
@@ -131,6 +137,9 @@
             "responsive": true,
             "lengthChange": true,
             "autoWidth": false,
+            order: [
+                [0,'desc']
+            ],
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
