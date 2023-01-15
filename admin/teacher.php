@@ -112,7 +112,7 @@
                                                 );
                                                 echo $lastname .
                                                     ', ' .
-                                                    $firstname . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.';;
+                                                    $firstname . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.';
                                                 ?></td>
                                                 <td><?php
                                                 $username = $row['username'];

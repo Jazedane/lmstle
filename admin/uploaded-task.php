@@ -58,8 +58,8 @@
                                             <th>Date Upload</th>
                                             <th>Category</th>
                                             <th>Task Name</th>
+                                            <th>Quarter</th>
                                             <th>Due Date</th>
-                                            <th>Upload By</th>
                                             <th>Class</th>
 
                                         </tr>
@@ -77,21 +77,25 @@
 										while($row = mysqli_fetch_array($query)){
 									?>
                                         <tr>
-                                            <td data-order=<fmt:formatDate pattern = "F d, Y h:i A"><?php $date_upload = date_create($row['date_upload']);
+                                            <td data-order=<fmt:formatDate pattern="F d, Y h:i A"><?php $date_upload = date_create($row['date_upload']);
                                                     echo date_format(
                                                     $date_upload,
-                                                    'F d,Y h:i A'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                             </td>
                                             <td><?php echo $row['category_name']; ?></td>
                                             <td><?php  echo $row['task_name']; ?></td>
+                                            <td width="60">
+                                                <center><?php echo $row[
+                                                'quarter'
+                                            ]; ?></center>
+                                            </td>
                                             <td><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
                                                     $end_date,
-                                                    'M/d/Y h:i a'
+                                                    'F d, Y h:i A'
                                                     ); ?>
                                             </td>
-                                            <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                             <td><?php echo $row['class_name']; ?></td>
 
 

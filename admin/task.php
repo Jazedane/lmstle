@@ -333,16 +333,16 @@
                                             <td><?php echo $row[
                                                 'task_desc'
                                             ]; ?></td>
-                                            <td width="60"><?php echo $row[
+                                            <td width="60"><center><?php echo $row[
                                                 'quarter'
-                                            ]; ?>
+                                            ]; ?></center>
                                             </td>
                                             <td><?php echo $row[
                                                 'category_name'
                                             ]; ?></td>
-                                            <td width="40"><?php echo $row[
+                                            <td width="40"><center><?php echo $row[
                                                 'total_points'
-                                            ]; ?>
+                                            ]; ?></center>
                                             </td>
                                             <td width="220"><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
