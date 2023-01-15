@@ -183,6 +183,9 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            order: [
+                [0,'desc']
+            ],
         });
     });
     </script>
