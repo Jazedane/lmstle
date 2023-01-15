@@ -99,7 +99,7 @@
 					                </button>
 					            </div>
 					            <div class="modal-body">
-					                <p>Are you sure you want to delete the notification/s you check?</p>
+					                <p>Are you sure you want to delete this notification?</p>
 					            </div>
 					            <div class="modal-footer justify-content-between">
 					                <button class="btn btn-primary" data-dismiss="modal" class="btn btn-outline-light"><i

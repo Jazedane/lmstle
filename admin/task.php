@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LMSTLE | Activity</title>
+    <title>LMSTLE | Task</title>
 
     <?php include 'header.php'; ?>
     <?php include 'session.php'; ?>
@@ -333,14 +333,16 @@
                                             <td><?php echo $row[
                                                 'task_desc'
                                             ]; ?></td>
-                                            <td width="60"><center><?php echo $row[
+                                            <td width="60">
+                                                <center><?php echo $row[
                                                 'quarter'
                                             ]; ?></center>
                                             </td>
                                             <td><?php echo $row[
                                                 'category_name'
                                             ]; ?></td>
-                                            <td width="40"><center><?php echo $row[
+                                            <td width="40">
+                                                <center><?php echo $row[
                                                 'total_points'
                                             ]; ?></center>
                                             </td>
@@ -383,7 +385,7 @@
                                                             id="<?php echo $id; ?>remove"
                                                             class="btn btn-danger float-right"
                                                             href="#del<?php echo $id; ?>" data-toggle="modal"><i
-                                                                class="fas fa-trash"></i></a>
+                                                                class="fas fa-trash-alt"></i></a>
                                                         <?php include 'delete_task_modal.php'; ?>
                                                     </form>
                                                 </div>
@@ -417,6 +419,26 @@
                 </div>
             </div>
         </section>
+        <div class="modal fade" id="viewtask<?php echo $id; ?>" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="task_id" value="<?php echo $id; ?>">
+                        <img width="90%" style="height: 300px" src="<?php echo $imageURL; ?>"></a>
+                        <label class="text-dark mt-3">Plant Name:</label>
+                        <p class="text-dark font-20"><i><?php echo $data['plant_name'];?></i></p>
+                        <label class="text-dark">Plant Information:</label>
+                        <p class="text-dark"><?php echo $data['description'];?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php include 'footer.php'; ?>
     <script>
@@ -554,7 +576,7 @@
             "autoWidth": false,
             "responsive": true,
             "order": [
-                [8,'desc']
+                [8, 'desc']
             ],
         });
     });

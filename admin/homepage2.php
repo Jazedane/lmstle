@@ -65,11 +65,34 @@ function determine_active_sidebar_item($pages) {
         </nav>
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a class="brand-link">
+            <?php 
+                $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
+				$row = mysqli_fetch_array($query);
+                $is_superadmin = $row['is_superadmin'];
+
+            if ($is_superadmin == false) { ?>
+            <a class="brand-link elevation-4">
                 <img src="dist/img/logo.png" alt="BNHS Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light">Admin/Teacher</span>
             </a>
+            <?php
+                }
+            ?>
+            <?php 
+                $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
+				$row = mysqli_fetch_array($query);
+                $is_superadmin = $row['is_superadmin'];
+
+            if ($is_superadmin == true) { ?>
+            <a class="brand-link elevation-4">
+                <img src="dist/img/logo.png" alt="BNHS Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
+                <span class="brand-text font-weight-light">Super Admin</span>
+            </a>
+            <?php
+                }
+            ?>
 
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -81,7 +104,9 @@ function determine_active_sidebar_item($pages) {
                             class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"><?php $middlename = $row['middlename']; echo $row['lastname'] . ', <br>' . $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?> </a>
+                        <a href="#"
+                            class="d-block"><?php $middlename = $row['middlename']; echo $row['lastname'] . ', ' . $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?>
+                        </a>
                     </div>
                 </div>
 
@@ -109,7 +134,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="my_students.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/my_students.php','/lmstlee4/admin/student_profile.php']) ?>">
+                            <a href="my_students.php<?php echo '?id='.$get_id; ?>"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/my_students.php','/lmstlee4/admin/student_profile.php']) ?>">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     My Students
@@ -117,7 +143,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="grade-category.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/grade-category.php']) ?>">
+                            <a href="grade-category.php<?php echo '?id='.$get_id; ?>"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/grade-category.php']) ?>">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>
                                     Grade Category
@@ -125,7 +152,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="task.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/task.php', '/lmstlee4/admin/view_submit_task.php', '/lmstlee4/admin/edit_task_modal.php']) ?>">
+                            <a href="task.php<?php echo '?id='.$get_id; ?>"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/task.php', '/lmstlee4/admin/view_submit_task.php', '/lmstlee4/admin/edit_task_modal.php']) ?>">
                                 <i class="nav-icon fas fa-tasks"></i>
                                 <p>
                                     Task
@@ -133,7 +161,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="uploaded-task.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/uploaded-task.php']) ?>">
+                            <a href="uploaded-task.php<?php echo '?id='.$get_id; ?>"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/uploaded-task.php']) ?>">
                                 <i class="nav-icon fas fa-file-upload"></i>
                                 <p>
                                     Uploaded Task
@@ -141,7 +170,8 @@ function determine_active_sidebar_item($pages) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="grading.php<?php echo '?id='.$get_id; ?>" class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/grading.php']) ?>">
+                            <a href="grading.php<?php echo '?id='.$get_id; ?>"
+                                class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/grading.php']) ?>">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Check Grade

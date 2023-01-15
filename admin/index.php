@@ -70,7 +70,7 @@ function determine_active_sidebar_item($pages) {
                 $is_superadmin = $row['is_superadmin'];
 
             if ($is_superadmin == false) { ?>
-            <a class="brand-link">
+            <a class="brand-link elevation-4">
                 <img src="dist/img/logo.png" alt="BNHS Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light">Admin/Teacher</span>
@@ -84,7 +84,7 @@ function determine_active_sidebar_item($pages) {
                 $is_superadmin = $row['is_superadmin'];
 
             if ($is_superadmin == true) { ?>
-            <a class="brand-link">
+            <a class="brand-link elevation-4">
                 <img src="dist/img/logo.png" alt="BNHS Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light">Super Admin</span>
@@ -102,7 +102,9 @@ function determine_active_sidebar_item($pages) {
                             class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"><?php $middlename = $row['middlename']; echo $row['lastname'] . ', <br>' . $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?> </a>
+                        <a href="#"
+                            class="d-block"><?php $middlename = $row['middlename']; echo $row['lastname'] . ', ' . $row['firstname'] . ' ' . $middlename = mb_substr($middlename, 0, 1) .'.'; ?>
+                        </a>
                     </div>
                 </div>
 
@@ -242,7 +244,6 @@ function determine_active_sidebar_item($pages) {
                                 ?>
                             </ul>
                         </li>
-                        <li class="nav-header">INFORMATION</li>
                         <li class="nav-item">
                             <a href="gallery.php?current_page=1"
                                 class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/gallery.php']) ?>">

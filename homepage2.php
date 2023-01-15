@@ -53,7 +53,7 @@ function determine_active_sidebar_item($pages) {
         </nav>
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a class="brand-link">
+            <a class="brand-link elevation-4">
                 <img src="dist/img/logo.png" alt="BNHS Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light">Student</span>

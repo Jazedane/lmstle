@@ -63,7 +63,7 @@
                                 )) or die(mysqli_error());
                                 $count = mysqli_num_rows($query);
                                 ?>
-                                <div id="" class="float-sm-right">Number of Task: <span
+                                <div class="float-right">Number of Task: <span
                                         class="badge badge-info"><?php echo $count; ?></span></div>
                             </div>
                             <div class="card-body">
