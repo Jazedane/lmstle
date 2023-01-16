@@ -93,8 +93,7 @@
                             echo '';
                         } ?>>
                             4th Quarter</option>
-                        <option value="all"
-                            <?php if ($selected_quarter == 'all') {
+                        <option value="all" <?php if ($selected_quarter == 'all') {
                                 echo 'selected';
                             } else {
                                 echo '';
@@ -143,7 +142,8 @@
                                 <h3 class="card-title">Grades for Quarter <?php echo $quarter; ?></h3>
                             </div>
                             <div class="card-body">
-                                <table id="<?php echo 'grade_section_'.$quarterIndex; ?>" class="table table-bordered table-striped">
+                                <table id="<?php echo 'grade_section_'.$quarterIndex; ?>"
+                                    class="table table-bordered table-hover table-striped">
                                     <thead>
                                         <tr>
                                             <th width="220">
@@ -637,28 +637,40 @@
         $("#grade_section_0").DataTable({
             "responsive": true,
             "lengthChange": true,
-            "autoWidth": false,
+            "fixedColumns": true,
+            "autoWidth": true,
+            "scrollX": true,
+            "scrollCollapse": true,
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#grade_section_0_wrapper .col-md-6:eq(0)');
 
         $("#grade_section_1").DataTable({
             "responsive": true,
             "lengthChange": true,
-            "autoWidth": false,
+            "fixedColumns": true,
+            "autoWidth": true,
+            "scrollX": true,
+            "scrollCollapse": true,
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#grade_section_1_wrapper .col-md-6:eq(0)');
 
         $("#grade_section_2").DataTable({
             "responsive": true,
             "lengthChange": true,
-            "autoWidth": false,
+            "fixedColumns": true,
+            "autoWidth": true,
+            "scrollX": true,
+            "scrollCollapse": true,
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#grade_section_2_wrapper .col-md-6:eq(0)');
 
         $("#grade_section_3").DataTable({
             "responsive": true,
             "lengthChange": true,
-            "autoWidth": false,
+            "fixedColumns": true,
+            "autoWidth": true,
+            "scrollX": true,
+            "scrollCollapse": true,
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#grade_section_3_wrapper .col-md-6:eq(0)');
     });
