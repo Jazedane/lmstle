@@ -161,6 +161,12 @@
             "responsive": true,
         });
     });
+    $(document).ready(function() {
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '220px',
+            'display': 'inline-block'
+        });
+    });
     </script>
 </body>
 

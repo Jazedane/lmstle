@@ -41,7 +41,8 @@
                                 <form id="delete_teacher" method="post">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
-                                            class="btn btn-danger" name="delete_teacher"><i class="fas fa-trash-alt"></i> Remove
+                                            class="btn btn-danger" name="delete_teacher"><i
+                                                class="fas fa-trash-alt"></i> Remove
                                         </ul>
                                         <?php include 'modal_delete.php'; ?>
                                         <div class="float-right">
@@ -53,7 +54,8 @@
                                                         <i class="fas fa-users"></i> Show All
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                        <a href="teacher.php" class="dropdown-item active" type="button">
+                                                        <a href="teacher.php" class="dropdown-item active"
+                                                            type="button">
                                                             Show All</a>
                                                         <a href="activate-teacher.php" class="dropdown-item"
                                                             type="button">
@@ -241,6 +243,12 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+        });
+    });
+    $(document).ready(function() {
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '220px',
+            'display': 'inline-block'
         });
     });
     </script>

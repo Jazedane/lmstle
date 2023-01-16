@@ -662,6 +662,12 @@
             "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#grade_section_3_wrapper .col-md-6:eq(0)');
     });
+    $(document).ready(function() {
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '220px',
+            'display': 'inline-block'
+        });
+    });
     </script>
     <script>
     $(function() {
@@ -669,8 +675,14 @@
             "responsive": true,
             "lengthChange": true,
             "autoWidth": false,
-            "buttons": ["copy", "excel", "pdf", "print", ]
+            "buttons": ["copy", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#grade_section_overall_wrapper .col-md-6:eq(0)');
+    });
+    $(document).ready(function() {
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '220px',
+            'display': 'inline-block'
+        });
     });
 
     $(document).ready(() => {
