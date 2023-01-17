@@ -174,7 +174,10 @@
                             </div>
                             <form class="" id="" method="post" enctype="multipart/form-data" name="upload">
                                 <div class="control-group"></div>
+                                <input type="hidden" name="student_task_id" value="<?php echo $student_task_id; ?>" />
+                                <input type="hidden" name="student_id" value="<?php echo $student_id; ?>" />
                                 <input type="hidden" name="id" value="<?php echo $session_id; ?>" />
+                                <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" />
                                 <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
                                 <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
                                 <div class="card-body">
@@ -247,9 +250,12 @@
                                 </div>
                             </form>
                             <?php if (isset($_POST['add'])) {
+                            $teacher_class_id = $_POST['teacher_class_id'];
                             $student_id = $_POST['student_id'];
+                            $post_id = $_POST['post_id'];
                             $task_id = $_POST['task_id'];
                             $grade = $_POST['grade'];
+                            $name_notification = 'The Writtem Task has been graded. You received a grade of <b>' . $grade . '</b>.';
 
                             $query = mysqli_query(
                             $conn,
@@ -265,8 +271,14 @@
                             }, 1000);
                             </script>
                             <?php } else {mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_date_upload = NOW(), 
-                            task_id ='$task_id', grade='$grade', task_file = '/lmstlee4/dist/img/no-attachment.jpg', task_status= '3'")
+                            task_id ='$task_id', task_name ='Written Task', grade='$grade', task_file = '/lmstlee4/dist/img/no-attachment.jpg', task_status= '3'")
                             or die(mysqli_error($conn));
+                            
+                            mysqli_query(
+                            $conn,
+                            "INSERT INTO tbl_notification (broadcaster_id,receiver_id,message,link) 
+                            VALUES ('$session_id','$student_id','$name_notification','submit_task.php?id=".$get_id."&post_id=".$post_id."')"
+                            ) or die(mysqli_error());
                             ?>
                             <script>
                             toastr.success("Success", "Points Successfully Added!");

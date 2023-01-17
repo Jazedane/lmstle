@@ -112,10 +112,12 @@
                             $lastname = strtoupper($_POST['lastname']);
                             $gender = $_POST['gender'];
                             $age = $_POST['age'];
-                            $cys = $_POST['class_id'];
                     
                             mysqli_query($conn,"UPDATE tbl_student SET username = '$username' , firstname ='$firstname' , middlename ='$middlename' , lastname = '$lastname' , 
-                            gender = '$gender', age = '$age', class_id = '$cys' WHERE student_id = '$get_id' ") or die(mysqli_error());
+                            gender = '$gender', age = '$age' WHERE student_id = '$get_id' ") or die(mysqli_error());
+
+                            mysqli_query($conn,"INSERT into tbl_activity_log (date,username,action,teacher_id) values(NOW(),'$username','Edit Student $firstname $lastname','$teacher_id')")
+                            or die(mysqli_error());
 
 		                ?>
                         <SCRIPT LANGUAGE="JavaScript">

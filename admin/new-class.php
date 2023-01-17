@@ -178,9 +178,6 @@
                     ?>
                     <script>
                     toastr.success("Success", "Class Successfully Added!");
-                    setTimeout(function() {
-                        window.location = "new-class.php";
-                    }, 1000);
                     </script>
                     <?php } } ?>
                     <div class="col-md-9">

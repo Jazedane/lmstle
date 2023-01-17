@@ -5,7 +5,7 @@ CREATE TABLE `attempt_count` (
   `ip_address` varchar(30) NOT NULL,
   `time_count` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8mb4;
 
 
 
@@ -31,7 +31,7 @@ CREATE TABLE `tbl_activity_log` (
   `date` datetime NOT NULL,
   `action` varchar(100) NOT NULL,
   PRIMARY KEY (`activity_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_activity_log VALUES("1","D","2022-11-29 00:54:23","Add User D");
 INSERT INTO tbl_activity_log VALUES("2","Ten","2022-11-29 00:56:46","Add User Ten");
@@ -67,6 +67,12 @@ INSERT INTO tbl_activity_log VALUES("31","Jazedane","2022-12-15 14:24:28","Edit 
 INSERT INTO tbl_activity_log VALUES("32","Jazedane","2022-12-15 14:24:52","Edit Teacher Jazedane");
 INSERT INTO tbl_activity_log VALUES("33","Jazedane","2022-12-15 14:25:19","Edit Teacher Jazedane");
 INSERT INTO tbl_activity_log VALUES("34","Hapon","2023-01-01 21:20:33","Add User Hapon");
+INSERT INTO tbl_activity_log VALUES("35","Kilat","2023-01-14 15:02:47","Add User Kilat");
+INSERT INTO tbl_activity_log VALUES("36","Kilat","2023-01-14 15:05:43","Add User Kilat");
+INSERT INTO tbl_activity_log VALUES("37","ADMIN","2023-01-14 21:12:43","Edit Teacher ADMIN");
+INSERT INTO tbl_activity_log VALUES("38","Ten","2023-01-14 21:12:50","Edit Teacher Ten");
+INSERT INTO tbl_activity_log VALUES("39","Pon","2023-01-14 21:58:44","Add User Pon");
+INSERT INTO tbl_activity_log VALUES("40","ADMIN","2023-01-14 22:10:39","Edit Teacher ADMIN");
 
 
 
@@ -77,7 +83,7 @@ CREATE TABLE `tbl_class` (
   `section` varchar(50) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2272 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2274 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_class VALUES("2230","GRADE 10 - LOVE","10","LOVE","0");
 INSERT INTO tbl_class VALUES("2232","GRADE 10 - HOPE","10","HOPE","0");
@@ -138,7 +144,7 @@ INSERT INTO tbl_message VALUES("351","58","Hi                               ","2
 INSERT INTO tbl_message VALUES("359","58","Hey","2022-11-27 23:52:18","1234","TIN TIN","ROSALIE JAENA","");
 INSERT INTO tbl_message VALUES("360","58","Hey student                              ","2022-11-27 23:55:39","1234","TIN TIN"," ","");
 INSERT INTO tbl_message VALUES("361","92","Hello                                  ","2022-11-28 00:19:07","1234","B B"," ","");
-INSERT INTO tbl_message VALUES("363","97","hello","2022-11-28 12:44:57","1234","RENA MAE MANLANGIT","ROSALIE JAENA","");
+INSERT INTO tbl_message VALUES("363","97","hello","2022-11-28 12:44:57","1234","RENA MAE MANLANGIT","ROSALIE JAENA","read");
 INSERT INTO tbl_message VALUES("364","1234","Hi","2022-11-30 02:31:49","97","ROSALIE JAENA","RENA MAE MANLANGIT","read");
 INSERT INTO tbl_message VALUES("390","92","hi","2022-12-30 18:23:08","1234","B BEN"," ","");
 INSERT INTO tbl_message VALUES("391","91","hi","2022-12-30 18:26:55","1234","MARIA LUZ SARTORIO"," ","read");
@@ -149,7 +155,6 @@ INSERT INTO tbl_message VALUES("404","0","hi --=12","2023-01-04 21:10:05","1234"
 INSERT INTO tbl_message VALUES("405","0","                                    ","2023-01-04 21:11:20","1234"," "," ","");
 INSERT INTO tbl_message VALUES("406","0","                                    ","2023-01-04 21:11:50","1234"," "," ","");
 INSERT INTO tbl_message VALUES("407","0","ADQWDQW","2023-01-04 21:11:58","1234"," "," ","");
-INSERT INTO tbl_message VALUES("411","1234","hello, maam","2023-01-08 15:30:40","91","ROSALIE JAENA"," ","read");
 
 
 
@@ -193,7 +198,7 @@ CREATE TABLE `tbl_notification` (
   `receiver_id` int(11) NOT NULL,
   `is_read` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=856 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=858 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_notification VALUES("563","New Activity Added: <b>Test</b>","task_student.php?id=29","2022-11-24 21:36:29","1234","64","0");
 INSERT INTO tbl_notification VALUES("564","New Activity Added: <b>Test</b>","task_student.php?id=29","2022-11-24 21:36:29","1234","65","0");
@@ -432,15 +437,14 @@ INSERT INTO tbl_notification VALUES("838","New Task Added: <b>Project 3</b>","ta
 INSERT INTO tbl_notification VALUES("839","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","96","0");
 INSERT INTO tbl_notification VALUES("840","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","97","0");
 INSERT INTO tbl_notification VALUES("841","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","98","0");
-INSERT INTO tbl_notification VALUES("845","submit task name <b>Project 3</b>","view_submit_task.php?id=60&post_id=213","2022-12-19 14:30:22","91","1234","1");
-INSERT INTO tbl_notification VALUES("847","submit task name <b>Activity 2</b>","view_submit_task.php?id=60&post_id=210","2022-12-30 20:00:09","91","1234","1");
 INSERT INTO tbl_notification VALUES("848","submit task name <b>Project 3</b>","view_submit_task.php?id=60&post_id=213","2023-01-01 16:34:31","91","1234","1");
 INSERT INTO tbl_notification VALUES("850","submit task name <b>Project 2</b>","view_submit_task.php?id=60&post_id=212","2023-01-02 21:59:26","91","1234","1");
-INSERT INTO tbl_notification VALUES("851","submit task name <b>Activity 2</b>","view_submit_task.php?id=60&post_id=210","2023-01-04 14:53:25","91","1234","1");
 INSERT INTO tbl_notification VALUES("852","submit task name <b>Activity 2</b>","view_submit_task.php?id=60&post_id=210","2023-01-04 21:52:33","91","1234","1");
 INSERT INTO tbl_notification VALUES("853","submit task name <b>Activity 3</b>","view_submit_task.php?id=60&post_id=211","2023-01-04 22:30:37","91","1234","1");
-INSERT INTO tbl_notification VALUES("854","The Task <b>Project 2</b> has been graded. You received a grade of <b>20</b>.","submit_task.php?id=60&post_id=212","2023-01-08 15:18:45","1234","91","0");
-INSERT INTO tbl_notification VALUES("855","The Task <b>Project 3</b> has been graded. You received a grade of <b>15</b>.","submit_task.php?id=60&post_id=213","2023-01-08 15:19:26","1234","91","0");
+INSERT INTO tbl_notification VALUES("854","The Task <b>Project 2</b> has been graded. You received a grade of <b>20</b>.","submit_task.php?id=60&post_id=212","2023-01-08 15:18:45","1234","91","1");
+INSERT INTO tbl_notification VALUES("855","The Task <b>Project 3</b> has been graded. You received a grade of <b>15</b>.","submit_task.php?id=60&post_id=213","2023-01-08 15:19:26","1234","91","1");
+INSERT INTO tbl_notification VALUES("856","submit task name <b>Sample</b>","view_submit_task.php?id=60&post_id=196","2023-01-15 15:17:30","91","1234","1");
+INSERT INTO tbl_notification VALUES("857","submit task name <b>Exam</b>","view_submit_task.php?id=60&post_id=198","2023-01-15 15:18:19","91","1234","1");
 
 
 
@@ -458,6 +462,7 @@ INSERT INTO tbl_school_year VALUES("10","2023-2024");
 CREATE TABLE `tbl_student` (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(100) NOT NULL,
+  `middlename` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `age` int(11) NOT NULL,
@@ -473,25 +478,24 @@ CREATE TABLE `tbl_student` (
   `status` varchar(100) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`student_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=114 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=119 DEFAULT CHARSET=latin1;
 
-INSERT INTO tbl_student VALUES("47","JADE RICK","CASUYON","MALE","17","0000-00-00","","0","","","2230","22-0039","c9f7f85910ab95a7e4970db249426b6a2bd927605885858f21c2c454bee94c7e","NO-IMAGE-AVAILABLE.jpg","Unregistered","0");
-INSERT INTO tbl_student VALUES("45","JEFFREY","ALINDAJAO","MALE","17","0000-00-00","","0","","","2230","22-0037","6901de3b7598c8a38f72a564e074bdbbb03cad1d3744587af1e8497898f58f6d","NO-IMAGE-AVAILABLE.jpg","Unregistered","1");
-INSERT INTO tbl_student VALUES("46","ARNEL","AMION","MALE","16","0000-00-00","","0","","","2230","22-0038","024944d08fd86b5fda0026172dfc62303d104b46321f0c9985ac205213b39f96","NO-IMAGE-AVAILABLE.jpg","Registered","1");
-INSERT INTO tbl_student VALUES("48","JOHN FERNAND","DADA","MALE","17","0000-00-00","","0","","","2230","22-0040","7d9627c5913cc68090580a239b531f518f6ad086936d96013d3682aa3f6c6136","NO-IMAGE-AVAILABLE.jpg","Unregistered","0");
-INSERT INTO tbl_student VALUES("110","MARRY","ME","MALE","20","0000-00-00","","0","","","2261","44-4444","4d84f13234092bdc60e2e87f889336302ba66920f6364523803f2fb0b63de205","NO-IMAGE-AVAILABLE.jpg","Registered","1");
-INSERT INTO tbl_student VALUES("113","JAY","JAY","MALE","20","0000-00-00","","0","","","2232","22-1","92ddc502d22881a4e9f6b7a9347430b12eec2881c3aad0a274ba8edafc34af20","NO-IMAGE-AVAILABLE.jpg","Registered","1");
-INSERT INTO tbl_student VALUES("109","BIN","BIN","MALE","18","0000-00-00","","0","","","2232","24-4444","fe82e4b48aeac39907bb11317e1480c2e39e41987c7fb621d886ac0a7dc32a76","NO-IMAGE-AVAILABLE.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("107","HAPON T.","HAPON","MALE","20","0000-00-00","","0","","","2261","23-4444","21b8e134bab5d86102379698f70a703860fabcb88c03a3aa21cf1284aacfce53","NO-IMAGE-AVAILABLE.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("104","TIN","TIN","MALE","18","0000-00-00","","0","","","2261","23-3334","ab547757da37eb600011051fb0e9fe0c9ea49d220086a939c76369d29bfa1542","NO-IMAGE-AVAILABLE.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("91","MARIA LUZ","SARTORIO","FEMALE","23","1999-11-25","","9123456789","","","2260","22-1111","51609286fb7f6089e0a0a418355949c791e84870ae2523093ba00bb3ecff7f8e","7787_File_IMG_20220823_114206.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("92","B","BEN","MALE","18","0000-00-00","","0","","","2260","12-3456","6700869c8ff7480e34a70a708b028700dbaa3a033b5652b903afe89f49a31456","NO-IMAGE-AVAILABLE.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("87","MIC","MIC","MALE","18","0000-00-00","","0","","","2230","55-5555","c947b6a42f0a5b2ad781f60bc50af20bc77514b0e52ae4d0e95f5d8145ff1cc2","NO-IMAGE-AVAILABLE.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("102","HAPON","HAPON","MALE","20","0000-00-00","","0","","","2260","23-4555","129fefb1b5333f1bd76b2cbafbae5929ed4f424fd4105de4315a12b13018d83e","NO-IMAGE-AVAILABLE.jpg","Registered","1");
-INSERT INTO tbl_student VALUES("94","KKK","KKK","FEMALE","20","0000-00-00","","0","","","2260","22-0000","8254c329a92850f6d539dd376f4816ee2764517da5e0235514af433164480d7a","NO-IMAGE-AVAILABLE.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("96","JAN","JAN","MALE","17","0000-00-00","","0","","","2260","34-5678","82717b14ffa62b3aa4f94e43bd3db1560f5dce3af061d285d8661e202526226f","NO-IMAGE-AVAILABLE.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("97","RENA MAE","MANLANGIT","FEMALE","22","0000-00-00","","0","","","2260","22-9999","85e1621705ac0c863c2459d18e056bca2f001e2966d4ddef456c8e8b1ecab346","NO-IMAGE-AVAILABLE.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("98","EVELYN","ESCALICAS","FEMALE","22","0000-00-00","","0","","","2260","22-1000","5dcd11b40da180f3974ce441cd8e1c64a9137d29e12655a2dc896b4abc991843","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("47","JADE RICK","CASU","CASUYON","MALE","17","0000-00-00","","0","","","2230","22-0039","c9f7f85910ab95a7e4970db249426b6a2bd927605885858f21c2c454bee94c7e","NO-IMAGE-AVAILABLE.jpg","Unregistered","0");
+INSERT INTO tbl_student VALUES("45","JEFFREY","ALIJA","ALINDAJAO","MALE","17","0000-00-00","","0","","","2230","22-0037","6901de3b7598c8a38f72a564e074bdbbb03cad1d3744587af1e8497898f58f6d","NO-IMAGE-AVAILABLE.jpg","Unregistered","1");
+INSERT INTO tbl_student VALUES("46","ARNEL","AMION","AMION","MALE","16","0000-00-00","","0","","","2230","22-0038","024944d08fd86b5fda0026172dfc62303d104b46321f0c9985ac205213b39f96","NO-IMAGE-AVAILABLE.jpg","Registered","1");
+INSERT INTO tbl_student VALUES("48","JOHN FERNAND","DADA","DADA","MALE","17","0000-00-00","","0","","","2230","22-0040","7d9627c5913cc68090580a239b531f518f6ad086936d96013d3682aa3f6c6136","NO-IMAGE-AVAILABLE.jpg","Unregistered","0");
+INSERT INTO tbl_student VALUES("110","MARRY","ME","ME","MALE","20","0000-00-00","","0","","","2261","44-4444","4d84f13234092bdc60e2e87f889336302ba66920f6364523803f2fb0b63de205","NO-IMAGE-AVAILABLE.jpg","Registered","1");
+INSERT INTO tbl_student VALUES("113","JAY","JAY","JAY","MALE","20","0000-00-00","","0","","","2232","22-1","92ddc502d22881a4e9f6b7a9347430b12eec2881c3aad0a274ba8edafc34af20","NO-IMAGE-AVAILABLE.jpg","Registered","1");
+INSERT INTO tbl_student VALUES("109","BIN","BIN","BIN","MALE","18","0000-00-00","","0","","","2232","24-4444","fe82e4b48aeac39907bb11317e1480c2e39e41987c7fb621d886ac0a7dc32a76","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("107","HAPON","HAPON","HAPON","MALE","20","0000-00-00","","0","","","2261","23-4444","21b8e134bab5d86102379698f70a703860fabcb88c03a3aa21cf1284aacfce53","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("104","TIN","TIN","TIN","MALE","18","0000-00-00","","0","","","2261","23-3334","ab547757da37eb600011051fb0e9fe0c9ea49d220086a939c76369d29bfa1542","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("91","MARIA LUZ","BACONGON","SARTORIO","FEMALE","23","1999-11-25","","9123456788","","","2260","22-2222","51609286fb7f6089e0a0a418355949c791e84870ae2523093ba00bb3ecff7f8e","7787_File_IMG_20220823_114206.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("92","B","TEN","BEN","MALE","18","0000-00-00","","0","","","2260","12-3456","6700869c8ff7480e34a70a708b028700dbaa3a033b5652b903afe89f49a31456","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("87","MIC","MIC","MIC","MALE","18","0000-00-00","","0","","","2230","55-5555","c947b6a42f0a5b2ad781f60bc50af20bc77514b0e52ae4d0e95f5d8145ff1cc2","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("94","KKK","KAY","KKK","FEMALE","20","0000-00-00","","0","","","2260","22-0000","8254c329a92850f6d539dd376f4816ee2764517da5e0235514af433164480d7a","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("96","JAN","JAN","JAN","MALE","17","0000-00-00","","0","","","2260","34-5678","82717b14ffa62b3aa4f94e43bd3db1560f5dce3af061d285d8661e202526226f","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("97","RENA MAE","MAE","MANLANGIT","FEMALE","22","0000-00-00","","9375555453","","","2260","22-9999","2658e71049c5dce8bf013249aca7cc5aace0f71774fff6136d23bac0baea39c5","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("98","EVELYN","EVE","ESCALICAS","FEMALE","22","0000-00-00","","0","","","2260","22-1000","5dcd11b40da180f3974ce441cd8e1c64a9137d29e12655a2dc896b4abc991843","NO-IMAGE-AVAILABLE.jpg","Registered","0");
 
 
 
@@ -510,15 +514,15 @@ CREATE TABLE `tbl_student_task` (
   `total_points` int(11) NOT NULL,
   `impact` int(11) NOT NULL,
   PRIMARY KEY (`student_task_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_student_task VALUES("49","186","/lmstlee4/admin/uploads/8944_File_2830_File_FB_IMG_15752135345599416.jpg","2022-11-24 09:59:29","This is my sample","Sample","5","2022-11-20 23:54:29","","58","20","0","0");
 INSERT INTO tbl_student_task VALUES("50","189","/lmstlee4/admin/uploads/3022_File_2830_File_FB_IMG_15752135345599416.jpg","2022-11-24 10:04:01","This is activity 1","Activity 1","0","2022-11-24 10:04:01","","58","0","0","0");
 INSERT INTO tbl_student_task VALUES("51","194","/lmstlee4/admin/uploads/1437_File_Tree1.png","2022-12-18 13:38:56","<span style="font-family: Impact;">This is my activity</span>","Activity 1","3","2022-11-28 01:36:01","<p><b><span style="font-family: "Times New Roman";" times="" new="" roman";"="">Well Done</span></b></p>","91","30","0","0");
-INSERT INTO tbl_student_task VALUES("53","196","/lmstlee4/admin/uploads/7534_File_2937_File_FB_IMG_15752133842884300.jpg","2022-11-28 14:36:28","Sample student","Sample","3","2022-11-28 14:36:28","<b>Try Send Again</b>","91","35","0","0");
+INSERT INTO tbl_student_task VALUES("53","196","/lmstlee4/admin/uploads/2151_File_2377_File_received_784964352798660.jpeg","2023-01-15 15:17:30","Sample student","Sample","3","2022-11-28 14:36:28","<b>Try Send Again</b>","91","35","0","0");
 INSERT INTO tbl_student_task VALUES("70","199","/lmstlee4/admin/uploads/7872_File_Eggplant-Month-640x514.jpg","2022-12-07 21:55:04","<p><br></p>","Project","3","2022-12-07 21:55:04","<p><b style="background-color: rgb(0, 255, 0);">Excellent</b></p>","91","50","0","0");
 INSERT INTO tbl_student_task VALUES("71","197","","2022-12-08 20:14:45","","Quiz 1","3","2022-12-08 20:14:45","<p><span style="background-color: rgb(0, 255, 0); font-family: Impact;"><b>Done</b></span></p>","91","30","0","0");
-INSERT INTO tbl_student_task VALUES("72","198","","2022-12-09 15:15:10","","Exam","3","2022-12-09 15:15:10","<font color="#0000ff"><b>Perfect</b></font>","91","40","0","0");
+INSERT INTO tbl_student_task VALUES("72","198","/lmstlee4/admin/uploads/1444_File_3243_File_Eggplant-Month-640x514.jpg","2023-01-15 15:18:19","","Exam","3","2022-12-09 15:15:10","<font color="#0000ff"><b>Perfect</b></font>","91","40","0","0");
 INSERT INTO tbl_student_task VALUES("73","210","/lmstlee4/admin/uploads/1847_File_1651_File_received_606176561189139.jpeg","2023-01-04 21:52:33","","Activity 2","3","2022-12-17 21:09:12","","91","10","0","0");
 INSERT INTO tbl_student_task VALUES("79","200","/lmstlee4/admin/uploads/3947_File_Tree1.png","2022-12-18 13:00:59","<p>Test</p>","Summative Test","3","2022-12-18 13:00:59","","91","100","0","0");
 INSERT INTO tbl_student_task VALUES("93","211","/lmstlee4/admin/uploads/7956_File_2377_File_received_784964352798660.jpeg","2023-01-04 22:30:37","<p><b>This is my Activity 3</b></p>","Activity 3","3","2022-12-18 20:37:01","","91","30","0","0");
@@ -527,6 +531,7 @@ INSERT INTO tbl_student_task VALUES("96","198","","2022-12-30 21:31:28","","","3
 INSERT INTO tbl_student_task VALUES("97","212","/lmstlee4/admin/uploads/3243_File_Eggplant-Month-640x514.jpg","2023-01-02 21:59:26","","Project 2","3","2023-01-02 21:55:43","","91","20","0","0");
 INSERT INTO tbl_student_task VALUES("98","198","","2023-01-08 15:04:44","","","3","2023-01-08 15:04:44","","96","30","0","0");
 INSERT INTO tbl_student_task VALUES("99","198","","2023-01-08 15:09:33","","","3","2023-01-08 15:09:33","","94","10","0","0");
+INSERT INTO tbl_student_task VALUES("100","200","/lmstlee4/dist/img/no-attachment.jpg","2023-01-15 17:19:31","","","3","2023-01-15 17:19:31","","94","90","0","0");
 
 
 
@@ -583,6 +588,7 @@ CREATE TABLE `tbl_teacher` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `firstname` varchar(100) NOT NULL,
+  `middlename` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `education` varchar(300) NOT NULL,
@@ -599,14 +605,15 @@ CREATE TABLE `tbl_teacher` (
   `isDeleted` tinyint(1) NOT NULL,
   `is_superadmin` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`teacher_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1271 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1274 DEFAULT CHARSET=latin1;
 
-INSERT INTO tbl_teacher VALUES("1234","ADMIN","23908401df1c879155ba712ab94b383e6db1d25c064ae5e1b285928e7792f8da","ROSALIE","JAENA","admin@admin.com","","","Bug-Ang, Toboso","2022-10-12","FEMALE","9123456788","TLE","Filipino","received_472195831476549.webp","","ACTIVATED","0","1");
-INSERT INTO tbl_teacher VALUES("1242","Jazedane","20bff4e3daba64b0c151ff275496b79a129db808edd1446362bc124de66b9dbb","JAZE","DANE","","","","","2022-11-13","MALE","0","","","haikyu.jpg","","ACTIVATED","0","0");
-INSERT INTO tbl_teacher VALUES("1252","Tin","ab547757da37eb600011051fb0e9fe0c9ea49d220086a939c76369d29bfa1542","TIN","TIN","","","","","2022-11-13","Male","0","","","NO-IMAGE-AVAILABLE.jpg","","ACTIVATED","0","0");
-INSERT INTO tbl_teacher VALUES("1255","Maria","94aec9fbed989ece189a7e172c9cf41669050495152bc4c1dbf2a38d7fd85627","MARIA","SARTORIO","","","","","2022-11-13","Female","0","","","NO-IMAGE-AVAILABLE.jpg","","ACTIVATED","0","0");
-INSERT INTO tbl_teacher VALUES("1267","Ten","e4432baa90819aaef51d2a7f8e148bf7e679610f3173752fabb4dcb2d0f418d3","TEN","TEN","","","","","0000-00-00","Female","0","","","NO-IMAGE-AVAILABLE.jpg","","DEACTIVATED","0","0");
-INSERT INTO tbl_teacher VALUES("1270","Hapon","21b8e134bab5d86102379698f70a703860fabcb88c03a3aa21cf1284aacfce53","HAPON","DANE","","","","","0000-00-00","MALE","0","","","NO-IMAGE-AVAILABLE.jpg","","ACTIVATED","1","0");
+INSERT INTO tbl_teacher VALUES("1234","ADMIN","23908401df1c879155ba712ab94b383e6db1d25c064ae5e1b285928e7792f8da","ROSALIE","PIOQUINTO","JAENA","admin@admin.com","","","Bug-Ang, Toboso","2022-10-12","FEMALE","9123456788","TLE","Filipino","received_472195831476549.webp","","ACTIVATED","0","1");
+INSERT INTO tbl_teacher VALUES("1242","Jazedane","20bff4e3daba64b0c151ff275496b79a129db808edd1446362bc124de66b9dbb","JAZE","DANE","DANE","","","","","2022-11-13","MALE","0","","","haikyu.jpg","","ACTIVATED","0","0");
+INSERT INTO tbl_teacher VALUES("1252","Tin","ab547757da37eb600011051fb0e9fe0c9ea49d220086a939c76369d29bfa1542","TIN","TIN","TIN","","","","","2022-11-13","Male","0","","","NO-IMAGE-AVAILABLE.jpg","","ACTIVATED","0","0");
+INSERT INTO tbl_teacher VALUES("1255","Maria","94aec9fbed989ece189a7e172c9cf41669050495152bc4c1dbf2a38d7fd85627","MARIA","BACONGON","SARTORIO","","","","","2022-11-13","Female","0","","","NO-IMAGE-AVAILABLE.jpg","","ACTIVATED","0","0");
+INSERT INTO tbl_teacher VALUES("1267","Ten","e4432baa90819aaef51d2a7f8e148bf7e679610f3173752fabb4dcb2d0f418d3","TEN","TEN","TEN","","","","","0000-00-00","Female","0","","","NO-IMAGE-AVAILABLE.jpg","","DEACTIVATED","0","0");
+INSERT INTO tbl_teacher VALUES("1272","Kilat","f834e0687cfb128c59f7470608363369fc17f3ee8228c2cdfe2848712d15474b","RENA MAE","MAE","MANLANGIT","","","","","0000-00-00","FEMALE","0","","","NO-IMAGE-AVAILABLE.jpg","","DEACTIVATED","0","0");
+INSERT INTO tbl_teacher VALUES("1273","Pon","7857afe20170f373cee227e461a46a5d9df448d196c8dd32bdf7fc61afa3155c","HAPON","PON","TEN","","","","","0000-00-00","MALE","0","","","NO-IMAGE-AVAILABLE.jpg","","DEACTIVATED","0","0");
 
 
 
@@ -619,7 +626,7 @@ CREATE TABLE `tbl_teacher_class` (
   `school_year_id` int(11) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`teacher_class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_teacher_class VALUES("28","1234","2230","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
 INSERT INTO tbl_teacher_class VALUES("29","1234","2232","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
@@ -642,6 +649,8 @@ INSERT INTO tbl_teacher_class VALUES("68","1234","2268","0","/lmstlee4/admin/upl
 INSERT INTO tbl_teacher_class VALUES("69","1234","2269","0","/lmstlee4/admin/uploads/thumbnails.png","0","0");
 INSERT INTO tbl_teacher_class VALUES("70","1234","2270","0","/lmstlee4/admin/uploads/thumbnails.png","0","0");
 INSERT INTO tbl_teacher_class VALUES("71","1234","2271","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
+INSERT INTO tbl_teacher_class VALUES("72","1234","2272","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
+INSERT INTO tbl_teacher_class VALUES("73","1234","2273","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
 
 
 
@@ -652,7 +661,7 @@ CREATE TABLE `tbl_teacher_class_student` (
   `teacher_id` int(11) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`teacher_class_student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_teacher_class_student VALUES("43","23","36","1242","0");
 INSERT INTO tbl_teacher_class_student VALUES("46","28","45","1234","1");
@@ -667,11 +676,6 @@ INSERT INTO tbl_teacher_class_student VALUES("104","28","84","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("107","28","87","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("109","29","89","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("110","56","36","1242","1");
-INSERT INTO tbl_teacher_class_student VALUES("113","56","65","1242","1");
-INSERT INTO tbl_teacher_class_student VALUES("114","56","66","1242","0");
-INSERT INTO tbl_teacher_class_student VALUES("115","56","88","1242","0");
-INSERT INTO tbl_teacher_class_student VALUES("116","56","89","1242","0");
-INSERT INTO tbl_teacher_class_student VALUES("117","57","90","1242","0");
 INSERT INTO tbl_teacher_class_student VALUES("118","60","91","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("119","60","92","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("120","60","93","1234","0");
@@ -695,6 +699,11 @@ INSERT INTO tbl_teacher_class_student VALUES("137","61","110","1242","0");
 INSERT INTO tbl_teacher_class_student VALUES("138","61","111","1242","0");
 INSERT INTO tbl_teacher_class_student VALUES("139","67","112","1242","0");
 INSERT INTO tbl_teacher_class_student VALUES("140","29","113","1234","0");
+INSERT INTO tbl_teacher_class_student VALUES("141","60","114","1234","0");
+INSERT INTO tbl_teacher_class_student VALUES("142","60","115","1234","0");
+INSERT INTO tbl_teacher_class_student VALUES("143","60","116","1234","0");
+INSERT INTO tbl_teacher_class_student VALUES("144","60","117","1234","0");
+INSERT INTO tbl_teacher_class_student VALUES("145","60","118","1234","0");
 
 
 
@@ -704,7 +713,7 @@ CREATE TABLE `tbl_teacher_log` (
   `login_date` datetime NOT NULL,
   `teacher_id` int(11) NOT NULL,
   PRIMARY KEY (`teacher_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_teacher_log VALUES("1","Admin","2022-11-27 00:52:20","1234");
 INSERT INTO tbl_teacher_log VALUES("2","Admin","2022-11-27 01:09:30","1234");
@@ -807,4 +816,17 @@ INSERT INTO tbl_teacher_log VALUES("98","Admin","2023-01-09 20:56:47","1234");
 INSERT INTO tbl_teacher_log VALUES("99","Jazedane","2023-01-09 21:17:55","1242");
 INSERT INTO tbl_teacher_log VALUES("100","Admin","2023-01-12 13:33:53","1234");
 INSERT INTO tbl_teacher_log VALUES("101","Admin","2023-01-12 20:59:05","1234");
+INSERT INTO tbl_teacher_log VALUES("102","Admin","2023-01-14 15:01:21","1234");
+INSERT INTO tbl_teacher_log VALUES("103","Admin","2023-01-14 15:47:45","1234");
+INSERT INTO tbl_teacher_log VALUES("104","Admin","2023-01-14 16:54:17","1234");
+INSERT INTO tbl_teacher_log VALUES("105","Admin","2023-01-14 16:58:47","1234");
+INSERT INTO tbl_teacher_log VALUES("106","Admin","2023-01-14 17:00:36","1234");
+INSERT INTO tbl_teacher_log VALUES("107","Admin","2023-01-14 17:13:14","1234");
+INSERT INTO tbl_teacher_log VALUES("108","Admin","2023-01-15 13:05:35","1234");
+INSERT INTO tbl_teacher_log VALUES("109","Admin","2023-01-15 20:49:24","1234");
+INSERT INTO tbl_teacher_log VALUES("110","Admin","2023-01-16 10:25:09","1234");
+INSERT INTO tbl_teacher_log VALUES("111","Admin","2023-01-16 10:29:51","1234");
+INSERT INTO tbl_teacher_log VALUES("112","Admin","2023-01-16 11:22:34","1234");
+INSERT INTO tbl_teacher_log VALUES("113","Admin","2023-01-16 11:27:02","1234");
+INSERT INTO tbl_teacher_log VALUES("114","Admin","2023-01-16 15:50:26","1234");
 

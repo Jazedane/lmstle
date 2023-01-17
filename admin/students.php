@@ -278,6 +278,8 @@
                 VALUES 
                 ('$teacher_class_id','$student_id','$teacher_id');"
                         ) or die(mysqli_error());
+                mysqli_query($conn,"INSERT into tbl_activity_log (date,username,action,teacher_id) values(NOW(),'$username','Add Student $firstname $lastname','$teacher_id')")
+                    or die(mysqli_error());
     ?>
     <script>
     toastr.success("Success", "New Student Successfully Added!");

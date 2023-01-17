@@ -20,7 +20,7 @@ $query = mysqli_query(
 ) or die(mysqli_error());
 
 
-mysqli_query($conn,"UPDATE tbl_student_task SET task_name='$task_name',feedback='$feedback',grade='$grade',task_status='$task_status' 
+mysqli_query($conn,"UPDATE tbl_student_task SET feedback='$feedback',grade='$grade',task_status='$task_status' 
 WHERE student_task_id='$student_task_id'")or die(mysqli_error());
 
 ?>

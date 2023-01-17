@@ -111,7 +111,7 @@
                     firstname = '$firstname' , middlename = '$middlename' , lastname = '$lastname' , gender = '$gender', teacher_stat = '$teacher_stat' where teacher_id = '$get_id' ")
                     or die(mysqli_error());
 
-                    mysqli_query($conn,"insert into tbl_activity_log (date,username,action) values(NOW(),'$username','Edit Teacher $username')")
+                    mysqli_query($conn,"insert into tbl_activity_log (date,username,action,teacher_id) values(NOW(),'$username','Edit Teacher $username','$teacher_id')")
                     or die(mysqli_error());
                     ?>
                     <script type="text/javascript">

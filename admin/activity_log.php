@@ -37,11 +37,17 @@
                     </div>
                     <div class="card-body">
                         <table id="example2" class="display table table-bordered table-striped">
+                            <?php 
+                            $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
+				            $row = mysqli_fetch_array($query);
+                            $is_superadmin = $row['is_superadmin'];
+
+                            if ($is_superadmin == true) { ?>
                             <thead>
                                 <tr>
 
                                     <th>Date</th>
-                                    <th>User</th>
+                                    <th>Username</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -69,6 +75,50 @@
                                 <?php } ?>
 
                             </tbody>
+                            <?php
+                            }
+                            ?>
+                            <?php 
+                            $query= mysqli_query($conn,"SELECT * FROM tbl_teacher WHERE teacher_id = '$session_id'")or die(mysqli_error());
+				            $row = mysqli_fetch_array($query);
+                            $is_superadmin = $row['is_superadmin'];
+
+                            if ($is_superadmin == false) { ?>
+                            <thead>
+                                <tr>
+
+                                    <th>Date</th>
+                                    <th>ID Number</th>
+                                    <th>Action</th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+
+                                <?php
+										$query = mysqli_query($conn,"SELECT * FROM tbl_activity_log WHERE teacher_id = '$session_id' ORDER BY date DESC")or die(mysqli_error());
+										while($row = mysqli_fetch_array($query)){
+									?>
+
+                                <tr>
+
+                                    <td data-order=<fmt:formatDate pattern="F d, Y h:i A"><?php $date = date_create($row['date']);
+                                                    echo date_format(
+                                                    $date,
+                                                    'F d, Y h:i A'
+                                                    ); ?>
+                                    </td>
+                                    <td><?php echo $row['username']; ?></td>
+                                    <td><?php echo $row['action']; ?></td>
+                                </tr>
+
+                                <?php } ?>
+
+                            </tbody>
+                            <?php
+                            }
+                            ?>
                         </table>
                     </div>
                 </div>
