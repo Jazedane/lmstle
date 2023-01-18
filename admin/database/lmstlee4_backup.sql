@@ -5,7 +5,7 @@ CREATE TABLE `attempt_count` (
   `ip_address` varchar(30) NOT NULL,
   `time_count` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8mb4;
 
 
 
@@ -30,49 +30,32 @@ CREATE TABLE `tbl_activity_log` (
   `username` varchar(100) NOT NULL,
   `date` datetime NOT NULL,
   `action` varchar(100) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
   PRIMARY KEY (`activity_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
-INSERT INTO tbl_activity_log VALUES("1","D","2022-11-29 00:54:23","Add User D");
-INSERT INTO tbl_activity_log VALUES("2","Ten","2022-11-29 00:56:46","Add User Ten");
-INSERT INTO tbl_activity_log VALUES("3","B","2022-11-29 01:00:08","Add User B");
-INSERT INTO tbl_activity_log VALUES("4","Ten","2022-12-09 23:41:46","Add User Ten");
-INSERT INTO tbl_activity_log VALUES("5","Tin","2022-12-10 21:13:04","Edit Teacher Tin");
-INSERT INTO tbl_activity_log VALUES("6","Tin","2022-12-10 21:13:19","Edit Teacher Tin");
-INSERT INTO tbl_activity_log VALUES("7","Tin","2022-12-10 21:14:04","Edit Teacher Tin");
-INSERT INTO tbl_activity_log VALUES("8","Tin","2022-12-10 21:15:53","Edit Teacher Tin");
-INSERT INTO tbl_activity_log VALUES("9","Tin","2022-12-10 21:18:45","Edit Teacher Tin");
-INSERT INTO tbl_activity_log VALUES("10","Tin","2022-12-10 21:19:33","Edit Teacher Tin");
-INSERT INTO tbl_activity_log VALUES("11","Jazedane","2022-12-14 21:20:00","Edit Teacher Jazedane");
-INSERT INTO tbl_activity_log VALUES("12","ADMIN","2022-12-14 21:20:13","Edit Teacher ADMIN");
-INSERT INTO tbl_activity_log VALUES("13","Tin","2022-12-14 21:20:19","Edit Teacher Tin");
-INSERT INTO tbl_activity_log VALUES("14","Maria","2022-12-14 21:20:26","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("15","Ten","2022-12-14 21:20:30","Edit Teacher Ten");
-INSERT INTO tbl_activity_log VALUES("16","Ten","2022-12-14 21:20:38","Edit Teacher Ten");
-INSERT INTO tbl_activity_log VALUES("17","Maria","2022-12-14 21:21:51","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("18","Maria","2022-12-14 21:21:59","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("19","Maria","2022-12-14 21:22:11","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("20","Tin","2022-12-14 21:22:44","Edit Teacher Tin");
-INSERT INTO tbl_activity_log VALUES("21","Maria","2022-12-14 21:24:00","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("22","Maria","2022-12-14 21:24:33","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("23","Maria","2022-12-14 21:26:03","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("24","Maria","2022-12-14 21:26:46","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("25","Maria","2022-12-14 21:50:03","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("26","Maria","2022-12-14 21:55:27","Edit Teacher Maria");
-INSERT INTO tbl_activity_log VALUES("27","Tine","2022-12-14 21:56:59","Add User Tine");
-INSERT INTO tbl_activity_log VALUES("28","Tine","2022-12-14 21:57:40","Edit Teacher Tine");
-INSERT INTO tbl_activity_log VALUES("29","Evelyn","2022-12-14 21:59:55","Add User Evelyn");
-INSERT INTO tbl_activity_log VALUES("30","Jazedane","2022-12-15 14:23:41","Edit Teacher Jazedane");
-INSERT INTO tbl_activity_log VALUES("31","Jazedane","2022-12-15 14:24:28","Edit Teacher Jazedane");
-INSERT INTO tbl_activity_log VALUES("32","Jazedane","2022-12-15 14:24:52","Edit Teacher Jazedane");
-INSERT INTO tbl_activity_log VALUES("33","Jazedane","2022-12-15 14:25:19","Edit Teacher Jazedane");
-INSERT INTO tbl_activity_log VALUES("34","Hapon","2023-01-01 21:20:33","Add User Hapon");
-INSERT INTO tbl_activity_log VALUES("35","Kilat","2023-01-14 15:02:47","Add User Kilat");
-INSERT INTO tbl_activity_log VALUES("36","Kilat","2023-01-14 15:05:43","Add User Kilat");
-INSERT INTO tbl_activity_log VALUES("37","ADMIN","2023-01-14 21:12:43","Edit Teacher ADMIN");
-INSERT INTO tbl_activity_log VALUES("38","Ten","2023-01-14 21:12:50","Edit Teacher Ten");
-INSERT INTO tbl_activity_log VALUES("39","Pon","2023-01-14 21:58:44","Add User Pon");
-INSERT INTO tbl_activity_log VALUES("40","ADMIN","2023-01-14 22:10:39","Edit Teacher ADMIN");
+INSERT INTO tbl_activity_log VALUES("26","Maria","2022-12-14 21:55:27","Edit Teacher Maria","1234");
+INSERT INTO tbl_activity_log VALUES("27","Tine","2022-12-14 21:56:59","Add User Tine","1234");
+INSERT INTO tbl_activity_log VALUES("28","Tine","2022-12-14 21:57:40","Edit Teacher Tine","1234");
+INSERT INTO tbl_activity_log VALUES("29","Evelyn","2022-12-14 21:59:55","Add User Evelyn","1234");
+INSERT INTO tbl_activity_log VALUES("30","Jazedane","2022-12-15 14:23:41","Edit Teacher Jazedane","1234");
+INSERT INTO tbl_activity_log VALUES("31","Jazedane","2022-12-15 14:24:28","Edit Teacher Jazedane","1234");
+INSERT INTO tbl_activity_log VALUES("32","Jazedane","2022-12-15 14:24:52","Edit Teacher Jazedane","1234");
+INSERT INTO tbl_activity_log VALUES("33","Jazedane","2022-12-15 14:25:19","Edit Teacher Jazedane","1234");
+INSERT INTO tbl_activity_log VALUES("34","Hapon","2023-01-01 21:20:33","Add User Hapon","1234");
+INSERT INTO tbl_activity_log VALUES("35","Kilat","2023-01-14 15:02:47","Add User Kilat","1234");
+INSERT INTO tbl_activity_log VALUES("36","Kilat","2023-01-14 15:05:43","Add User Kilat","1234");
+INSERT INTO tbl_activity_log VALUES("37","ADMIN","2023-01-14 21:12:43","Edit Teacher ADMIN","1234");
+INSERT INTO tbl_activity_log VALUES("38","Ten","2023-01-14 21:12:50","Edit Teacher Ten","1234");
+INSERT INTO tbl_activity_log VALUES("39","Pon","2023-01-14 21:58:44","Add User Pon","1234");
+INSERT INTO tbl_activity_log VALUES("40","ADMIN","2023-01-14 22:10:39","Edit Teacher ADMIN","1234");
+INSERT INTO tbl_activity_log VALUES("41","Maria","2023-01-17 20:15:41","Edit Teacher Maria","1234");
+INSERT INTO tbl_activity_log VALUES("42","22-2222","2023-01-17 20:27:39","Add Student KEY KEY","1255");
+INSERT INTO tbl_activity_log VALUES("43","22-2222","2023-01-17 20:46:15","Edit Student KEY KEY","1255");
+INSERT INTO tbl_activity_log VALUES("44","12-3","2023-01-17 20:47:28","Add Student MAR MAR","1255");
+INSERT INTO tbl_activity_log VALUES("45","12-3","2023-01-17 20:48:59","Edit Student MAR MAR","1255");
+INSERT INTO tbl_activity_log VALUES("46","12-3","2023-01-17 20:49:28","Edit Student MAR MAR","1255");
+INSERT INTO tbl_activity_log VALUES("47","22-2222","2023-01-17 20:54:10","Edit Student KEY KEY","1255");
 
 
 
@@ -83,13 +66,14 @@ CREATE TABLE `tbl_class` (
   `section` varchar(50) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2274 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2275 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_class VALUES("2230","GRADE 10 - LOVE","10","LOVE","0");
 INSERT INTO tbl_class VALUES("2232","GRADE 10 - HOPE","10","HOPE","0");
 INSERT INTO tbl_class VALUES("2260","GRADE 10 - TECHNOLOGY","10","TECHNOLOGY","0");
 INSERT INTO tbl_class VALUES("2261","GRADE 8 - EINSTEIN","8","SAME","0");
 INSERT INTO tbl_class VALUES("2267","GRADE 9 - NIGHT","9","NIGHT","0");
+INSERT INTO tbl_class VALUES("2274","GRADE 10 - SAMPLE","10","SAMPLE","0");
 
 
 
@@ -198,7 +182,7 @@ CREATE TABLE `tbl_notification` (
   `receiver_id` int(11) NOT NULL,
   `is_read` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=858 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=883 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_notification VALUES("563","New Activity Added: <b>Test</b>","task_student.php?id=29","2022-11-24 21:36:29","1234","64","0");
 INSERT INTO tbl_notification VALUES("564","New Activity Added: <b>Test</b>","task_student.php?id=29","2022-11-24 21:36:29","1234","65","0");
@@ -226,14 +210,14 @@ INSERT INTO tbl_notification VALUES("591","New Activity Added: <b>Sample</b>","t
 INSERT INTO tbl_notification VALUES("592","New Activity Added: <b>Sample</b>","task_student.php?id=60","2022-11-28 14:34:55","1234","94","0");
 INSERT INTO tbl_notification VALUES("593","New Activity Added: <b>Sample</b>","task_student.php?id=60","2022-11-28 14:34:55","1234","95","0");
 INSERT INTO tbl_notification VALUES("594","New Activity Added: <b>Sample</b>","task_student.php?id=60","2022-11-28 14:34:55","1234","96","0");
-INSERT INTO tbl_notification VALUES("595","New Activity Added: <b>Sample</b>","task_student.php?id=60","2022-11-28 14:34:55","1234","97","0");
+INSERT INTO tbl_notification VALUES("595","New Activity Added: <b>Sample</b>","task_student.php?id=60","2022-11-28 14:34:55","1234","97","1");
 INSERT INTO tbl_notification VALUES("596","New Activity Added: <b>Sample</b>","task_student.php?id=60","2022-11-28 14:34:55","1234","98","0");
 INSERT INTO tbl_notification VALUES("599","New Activity Added: <b>Quiz 1</b>","task_student.php?id=60","2022-11-29 03:12:39","1234","93","0");
 INSERT INTO tbl_notification VALUES("601","New Activity Added: <b>Quiz 1</b>","task_student.php?id=60","2022-11-29 03:12:39","1234","92","1");
 INSERT INTO tbl_notification VALUES("602","New Activity Added: <b>Quiz 1</b>","task_student.php?id=60","2022-11-29 03:12:39","1234","94","0");
 INSERT INTO tbl_notification VALUES("603","New Activity Added: <b>Quiz 1</b>","task_student.php?id=60","2022-11-29 03:12:39","1234","95","0");
 INSERT INTO tbl_notification VALUES("604","New Activity Added: <b>Quiz 1</b>","task_student.php?id=60","2022-11-29 03:12:39","1234","96","0");
-INSERT INTO tbl_notification VALUES("605","New Activity Added: <b>Quiz 1</b>","task_student.php?id=60","2022-11-29 03:12:39","1234","97","0");
+INSERT INTO tbl_notification VALUES("605","New Activity Added: <b>Quiz 1</b>","task_student.php?id=60","2022-11-29 03:12:39","1234","97","1");
 INSERT INTO tbl_notification VALUES("606","New Activity Added: <b>Quiz 1</b>","task_student.php?id=60","2022-11-29 03:12:39","1234","98","0");
 INSERT INTO tbl_notification VALUES("607","submit activity name <b>Activity 1</b>","view_submit_task.php?id=60&post_id=194","2022-11-29 04:18:34","97","1234","1");
 INSERT INTO tbl_notification VALUES("608","New Activity Added: <b>Exam</b>","task_student.php?id=60","2022-11-29 15:08:39","1234","93","0");
@@ -242,7 +226,7 @@ INSERT INTO tbl_notification VALUES("610","New Activity Added: <b>Exam</b>","tas
 INSERT INTO tbl_notification VALUES("611","New Activity Added: <b>Exam</b>","task_student.php?id=60","2022-11-29 15:08:39","1234","94","0");
 INSERT INTO tbl_notification VALUES("612","New Activity Added: <b>Exam</b>","task_student.php?id=60","2022-11-29 15:08:39","1234","95","0");
 INSERT INTO tbl_notification VALUES("613","New Activity Added: <b>Exam</b>","task_student.php?id=60","2022-11-29 15:08:39","1234","96","0");
-INSERT INTO tbl_notification VALUES("614","New Activity Added: <b>Exam</b>","task_student.php?id=60","2022-11-29 15:08:39","1234","97","0");
+INSERT INTO tbl_notification VALUES("614","New Activity Added: <b>Exam</b>","task_student.php?id=60","2022-11-29 15:08:39","1234","97","1");
 INSERT INTO tbl_notification VALUES("615","New Activity Added: <b>Exam</b>","task_student.php?id=60","2022-11-29 15:08:39","1234","98","0");
 INSERT INTO tbl_notification VALUES("616","New Activity Added: <b>Project</b>","task_student.php?id=60","2022-11-29 15:08:59","1234","93","0");
 INSERT INTO tbl_notification VALUES("617","New Activity Added: <b>Project</b>","task_student.php?id=60","2022-11-29 15:09:00","1234","91","1");
@@ -250,7 +234,7 @@ INSERT INTO tbl_notification VALUES("618","New Activity Added: <b>Project</b>","
 INSERT INTO tbl_notification VALUES("619","New Activity Added: <b>Project</b>","task_student.php?id=60","2022-11-29 15:09:00","1234","94","0");
 INSERT INTO tbl_notification VALUES("620","New Activity Added: <b>Project</b>","task_student.php?id=60","2022-11-29 15:09:00","1234","95","0");
 INSERT INTO tbl_notification VALUES("621","New Activity Added: <b>Project</b>","task_student.php?id=60","2022-11-29 15:09:00","1234","96","0");
-INSERT INTO tbl_notification VALUES("622","New Activity Added: <b>Project</b>","task_student.php?id=60","2022-11-29 15:09:00","1234","97","0");
+INSERT INTO tbl_notification VALUES("622","New Activity Added: <b>Project</b>","task_student.php?id=60","2022-11-29 15:09:00","1234","97","1");
 INSERT INTO tbl_notification VALUES("623","New Activity Added: <b>Project</b>","task_student.php?id=60","2022-11-29 15:09:00","1234","98","0");
 INSERT INTO tbl_notification VALUES("624","New Activity Added: <b>Summative Test</b>","task_student.php?id=60","2022-11-29 15:09:31","1234","93","0");
 INSERT INTO tbl_notification VALUES("625","New Activity Added: <b>Summative Test</b>","task_student.php?id=60","2022-11-29 15:09:31","1234","91","1");
@@ -258,21 +242,21 @@ INSERT INTO tbl_notification VALUES("626","New Activity Added: <b>Summative Test
 INSERT INTO tbl_notification VALUES("627","New Activity Added: <b>Summative Test</b>","task_student.php?id=60","2022-11-29 15:09:32","1234","94","0");
 INSERT INTO tbl_notification VALUES("628","New Activity Added: <b>Summative Test</b>","task_student.php?id=60","2022-11-29 15:09:32","1234","95","0");
 INSERT INTO tbl_notification VALUES("629","New Activity Added: <b>Summative Test</b>","task_student.php?id=60","2022-11-29 15:09:32","1234","96","0");
-INSERT INTO tbl_notification VALUES("630","New Activity Added: <b>Summative Test</b>","task_student.php?id=60","2022-11-29 15:09:32","1234","97","0");
+INSERT INTO tbl_notification VALUES("630","New Activity Added: <b>Summative Test</b>","task_student.php?id=60","2022-11-29 15:09:32","1234","97","1");
 INSERT INTO tbl_notification VALUES("631","New Activity Added: <b>Summative Test</b>","task_student.php?id=60","2022-11-29 15:09:32","1234","98","0");
 INSERT INTO tbl_notification VALUES("632","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-11-29 15:21:26","1234","93","0");
 INSERT INTO tbl_notification VALUES("634","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-11-29 15:21:26","1234","92","1");
 INSERT INTO tbl_notification VALUES("635","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-11-29 15:21:26","1234","94","0");
 INSERT INTO tbl_notification VALUES("636","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-11-29 15:21:26","1234","95","0");
 INSERT INTO tbl_notification VALUES("637","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-11-29 15:21:26","1234","96","0");
-INSERT INTO tbl_notification VALUES("638","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-11-29 15:21:26","1234","97","0");
+INSERT INTO tbl_notification VALUES("638","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-11-29 15:21:26","1234","97","1");
 INSERT INTO tbl_notification VALUES("639","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-11-29 15:21:27","1234","98","0");
 INSERT INTO tbl_notification VALUES("640","New Activity Added: <b>Test</b>","task_student.php?id=60","2022-11-29 15:22:23","1234","93","0");
 INSERT INTO tbl_notification VALUES("642","New Activity Added: <b>Test</b>","task_student.php?id=60","2022-11-29 15:22:24","1234","92","1");
 INSERT INTO tbl_notification VALUES("643","New Activity Added: <b>Test</b>","task_student.php?id=60","2022-11-29 15:22:24","1234","94","0");
 INSERT INTO tbl_notification VALUES("644","New Activity Added: <b>Test</b>","task_student.php?id=60","2022-11-29 15:22:24","1234","95","0");
 INSERT INTO tbl_notification VALUES("645","New Activity Added: <b>Test</b>","task_student.php?id=60","2022-11-29 15:22:24","1234","96","0");
-INSERT INTO tbl_notification VALUES("646","New Activity Added: <b>Test</b>","task_student.php?id=60","2022-11-29 15:22:24","1234","97","0");
+INSERT INTO tbl_notification VALUES("646","New Activity Added: <b>Test</b>","task_student.php?id=60","2022-11-29 15:22:24","1234","97","1");
 INSERT INTO tbl_notification VALUES("647","New Activity Added: <b>Test</b>","task_student.php?id=60","2022-11-29 15:22:24","1234","98","0");
 INSERT INTO tbl_notification VALUES("648","New Activity Added: <b>Quiz 3</b>","task_student.php?id=60","2022-11-29 15:22:53","1234","93","0");
 INSERT INTO tbl_notification VALUES("649","New Activity Added: <b>Quiz 3</b>","task_student.php?id=60","2022-11-29 15:22:54","1234","91","1");
@@ -280,14 +264,14 @@ INSERT INTO tbl_notification VALUES("650","New Activity Added: <b>Quiz 3</b>","t
 INSERT INTO tbl_notification VALUES("651","New Activity Added: <b>Quiz 3</b>","task_student.php?id=60","2022-11-29 15:22:54","1234","94","0");
 INSERT INTO tbl_notification VALUES("652","New Activity Added: <b>Quiz 3</b>","task_student.php?id=60","2022-11-29 15:22:54","1234","95","0");
 INSERT INTO tbl_notification VALUES("653","New Activity Added: <b>Quiz 3</b>","task_student.php?id=60","2022-11-29 15:22:54","1234","96","0");
-INSERT INTO tbl_notification VALUES("654","New Activity Added: <b>Quiz 3</b>","task_student.php?id=60","2022-11-29 15:22:54","1234","97","0");
+INSERT INTO tbl_notification VALUES("654","New Activity Added: <b>Quiz 3</b>","task_student.php?id=60","2022-11-29 15:22:54","1234","97","1");
 INSERT INTO tbl_notification VALUES("655","New Activity Added: <b>Quiz 3</b>","task_student.php?id=60","2022-11-29 15:22:54","1234","98","0");
 INSERT INTO tbl_notification VALUES("659","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:47:09","1234","93","0");
 INSERT INTO tbl_notification VALUES("661","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:47:10","1234","92","1");
 INSERT INTO tbl_notification VALUES("662","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:47:10","1234","94","0");
 INSERT INTO tbl_notification VALUES("663","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:47:10","1234","95","0");
 INSERT INTO tbl_notification VALUES("664","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:47:10","1234","96","0");
-INSERT INTO tbl_notification VALUES("665","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:47:10","1234","97","0");
+INSERT INTO tbl_notification VALUES("665","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:47:10","1234","97","1");
 INSERT INTO tbl_notification VALUES("666","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:47:10","1234","98","0");
 INSERT INTO tbl_notification VALUES("667","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:49:28","1234","93","0");
 INSERT INTO tbl_notification VALUES("668","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:49:28","1234","91","1");
@@ -295,7 +279,7 @@ INSERT INTO tbl_notification VALUES("669","New Activity Added: <b>Quiz 2</b>","t
 INSERT INTO tbl_notification VALUES("670","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:49:28","1234","94","0");
 INSERT INTO tbl_notification VALUES("671","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:49:28","1234","95","0");
 INSERT INTO tbl_notification VALUES("672","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:49:28","1234","96","0");
-INSERT INTO tbl_notification VALUES("673","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:49:28","1234","97","0");
+INSERT INTO tbl_notification VALUES("673","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:49:28","1234","97","1");
 INSERT INTO tbl_notification VALUES("674","New Activity Added: <b>Quiz 2</b>","task_student.php?id=60","2022-12-07 20:49:28","1234","98","0");
 INSERT INTO tbl_notification VALUES("676","The Task <b></b> has been graded. You received a grade of <b>30</b>.","submit_task.php?id=&post_id=","2022-12-08 20:47:39","1234","0","0");
 INSERT INTO tbl_notification VALUES("678","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:00:35","1234","93","0");
@@ -303,21 +287,21 @@ INSERT INTO tbl_notification VALUES("680","New Activity Added: <b>Sample 4</b>",
 INSERT INTO tbl_notification VALUES("681","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:00:36","1234","94","0");
 INSERT INTO tbl_notification VALUES("682","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:00:36","1234","95","0");
 INSERT INTO tbl_notification VALUES("683","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:00:36","1234","96","0");
-INSERT INTO tbl_notification VALUES("684","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:00:36","1234","97","0");
+INSERT INTO tbl_notification VALUES("684","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:00:36","1234","97","1");
 INSERT INTO tbl_notification VALUES("685","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:00:36","1234","98","0");
 INSERT INTO tbl_notification VALUES("686","New Activity Added: <b>Sample 5</b>","task_student.php?id=60","2022-12-08 23:02:46","1234","93","0");
 INSERT INTO tbl_notification VALUES("688","New Activity Added: <b>Sample 5</b>","task_student.php?id=60","2022-12-08 23:02:46","1234","92","1");
 INSERT INTO tbl_notification VALUES("689","New Activity Added: <b>Sample 5</b>","task_student.php?id=60","2022-12-08 23:02:46","1234","94","0");
 INSERT INTO tbl_notification VALUES("690","New Activity Added: <b>Sample 5</b>","task_student.php?id=60","2022-12-08 23:02:47","1234","95","0");
 INSERT INTO tbl_notification VALUES("691","New Activity Added: <b>Sample 5</b>","task_student.php?id=60","2022-12-08 23:02:47","1234","96","0");
-INSERT INTO tbl_notification VALUES("692","New Activity Added: <b>Sample 5</b>","task_student.php?id=60","2022-12-08 23:02:47","1234","97","0");
+INSERT INTO tbl_notification VALUES("692","New Activity Added: <b>Sample 5</b>","task_student.php?id=60","2022-12-08 23:02:47","1234","97","1");
 INSERT INTO tbl_notification VALUES("693","New Activity Added: <b>Sample 5</b>","task_student.php?id=60","2022-12-08 23:02:47","1234","98","0");
 INSERT INTO tbl_notification VALUES("694","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:05:06","1234","93","0");
 INSERT INTO tbl_notification VALUES("696","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:05:06","1234","92","1");
 INSERT INTO tbl_notification VALUES("697","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:05:06","1234","94","0");
 INSERT INTO tbl_notification VALUES("698","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:05:06","1234","95","0");
 INSERT INTO tbl_notification VALUES("699","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:05:06","1234","96","0");
-INSERT INTO tbl_notification VALUES("700","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:05:06","1234","97","0");
+INSERT INTO tbl_notification VALUES("700","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:05:06","1234","97","1");
 INSERT INTO tbl_notification VALUES("701","New Activity Added: <b>Sample 4</b>","task_student.php?id=60","2022-12-08 23:05:06","1234","98","0");
 INSERT INTO tbl_notification VALUES("702","The Task <b></b> has been graded. You received a grade of <b>40</b>.","submit_task.php?id=&post_id=","2022-12-10 22:46:27","1234","0","0");
 INSERT INTO tbl_notification VALUES("703","The Task <b></b> has been graded. You received a grade of <b>50</b>.","submit_task.php?id=&post_id=","2022-12-10 22:47:59","1234","0","0");
@@ -405,7 +389,7 @@ INSERT INTO tbl_notification VALUES("783","New Activity Added: <b>Activity 2</b>
 INSERT INTO tbl_notification VALUES("784","New Activity Added: <b>Activity 2</b>","task_student.php?id=60","2022-12-17 20:11:31","1234","92","1");
 INSERT INTO tbl_notification VALUES("785","New Activity Added: <b>Activity 2</b>","task_student.php?id=60","2022-12-17 20:11:31","1234","94","0");
 INSERT INTO tbl_notification VALUES("786","New Activity Added: <b>Activity 2</b>","task_student.php?id=60","2022-12-17 20:11:31","1234","96","0");
-INSERT INTO tbl_notification VALUES("787","New Activity Added: <b>Activity 2</b>","task_student.php?id=60","2022-12-17 20:11:31","1234","97","0");
+INSERT INTO tbl_notification VALUES("787","New Activity Added: <b>Activity 2</b>","task_student.php?id=60","2022-12-17 20:11:31","1234","97","1");
 INSERT INTO tbl_notification VALUES("788","New Activity Added: <b>Activity 2</b>","task_student.php?id=60","2022-12-17 20:11:31","1234","98","0");
 INSERT INTO tbl_notification VALUES("790","submit task name <b>Summative Test 1</b>","view_submit_task.php?id=60&post_id=200","2022-12-18 12:48:15","91","1234","1");
 INSERT INTO tbl_notification VALUES("800","The Task <b>Activity 1</b> has been graded. You received a grade of <b>30</b>.","submit_task.php?id=60&post_id=194","2022-12-18 13:27:02","1234","91","1");
@@ -420,7 +404,7 @@ INSERT INTO tbl_notification VALUES("810","New Activity Added: <b>Activity 3</b>
 INSERT INTO tbl_notification VALUES("811","New Activity Added: <b>Activity 3</b>","task_student.php?id=60","2022-12-18 15:17:39","1234","92","1");
 INSERT INTO tbl_notification VALUES("812","New Activity Added: <b>Activity 3</b>","task_student.php?id=60","2022-12-18 15:17:40","1234","94","0");
 INSERT INTO tbl_notification VALUES("813","New Activity Added: <b>Activity 3</b>","task_student.php?id=60","2022-12-18 15:17:40","1234","96","0");
-INSERT INTO tbl_notification VALUES("814","New Activity Added: <b>Activity 3</b>","task_student.php?id=60","2022-12-18 15:17:40","1234","97","0");
+INSERT INTO tbl_notification VALUES("814","New Activity Added: <b>Activity 3</b>","task_student.php?id=60","2022-12-18 15:17:40","1234","97","1");
 INSERT INTO tbl_notification VALUES("815","New Activity Added: <b>Activity 3</b>","task_student.php?id=60","2022-12-18 15:17:40","1234","98","0");
 INSERT INTO tbl_notification VALUES("827","The Task <b>Activity 3</b> has been graded. You received a grade of <b>30</b>.","submit_task.php?id=60&post_id=211","2022-12-18 20:55:40","1234","91","1");
 INSERT INTO tbl_notification VALUES("828","New Task Added: <b>Project 2</b>","task_student.php?id=60","2022-12-18 21:00:16","1234","102","0");
@@ -428,14 +412,14 @@ INSERT INTO tbl_notification VALUES("829","New Task Added: <b>Project 2</b>","ta
 INSERT INTO tbl_notification VALUES("830","New Task Added: <b>Project 2</b>","task_student.php?id=60","2022-12-18 21:00:16","1234","92","1");
 INSERT INTO tbl_notification VALUES("831","New Task Added: <b>Project 2</b>","task_student.php?id=60","2022-12-18 21:00:16","1234","94","0");
 INSERT INTO tbl_notification VALUES("832","New Task Added: <b>Project 2</b>","task_student.php?id=60","2022-12-18 21:00:16","1234","96","0");
-INSERT INTO tbl_notification VALUES("833","New Task Added: <b>Project 2</b>","task_student.php?id=60","2022-12-18 21:00:16","1234","97","0");
+INSERT INTO tbl_notification VALUES("833","New Task Added: <b>Project 2</b>","task_student.php?id=60","2022-12-18 21:00:16","1234","97","1");
 INSERT INTO tbl_notification VALUES("834","New Task Added: <b>Project 2</b>","task_student.php?id=60","2022-12-18 21:00:16","1234","98","0");
 INSERT INTO tbl_notification VALUES("835","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:06","1234","102","0");
 INSERT INTO tbl_notification VALUES("836","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","91","1");
 INSERT INTO tbl_notification VALUES("837","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","92","1");
 INSERT INTO tbl_notification VALUES("838","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","94","0");
 INSERT INTO tbl_notification VALUES("839","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","96","0");
-INSERT INTO tbl_notification VALUES("840","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","97","0");
+INSERT INTO tbl_notification VALUES("840","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","97","1");
 INSERT INTO tbl_notification VALUES("841","New Task Added: <b>Project 3</b>","task_student.php?id=60","2022-12-19 14:14:07","1234","98","0");
 INSERT INTO tbl_notification VALUES("848","submit task name <b>Project 3</b>","view_submit_task.php?id=60&post_id=213","2023-01-01 16:34:31","91","1234","1");
 INSERT INTO tbl_notification VALUES("850","submit task name <b>Project 2</b>","view_submit_task.php?id=60&post_id=212","2023-01-02 21:59:26","91","1234","1");
@@ -445,6 +429,19 @@ INSERT INTO tbl_notification VALUES("854","The Task <b>Project 2</b> has been gr
 INSERT INTO tbl_notification VALUES("855","The Task <b>Project 3</b> has been graded. You received a grade of <b>15</b>.","submit_task.php?id=60&post_id=213","2023-01-08 15:19:26","1234","91","1");
 INSERT INTO tbl_notification VALUES("856","submit task name <b>Sample</b>","view_submit_task.php?id=60&post_id=196","2023-01-15 15:17:30","91","1234","1");
 INSERT INTO tbl_notification VALUES("857","submit task name <b>Exam</b>","view_submit_task.php?id=60&post_id=198","2023-01-15 15:18:19","91","1234","1");
+INSERT INTO tbl_notification VALUES("859","The <b>200</b> has been graded. You received a grade of <b>90</b>.","submit_task.php?id=60&post_id=","2023-01-17 21:26:49","1234","96","0");
+INSERT INTO tbl_notification VALUES("873","The Written Task has been graded. You received a grade of <b>30</b>.","submit_task.php?id=60&post_id=<br />
+<b>Warning</b>:  Undefined variable $post_id in <b>C:Phphtdocs","2023-01-17 22:29:21","1234","97","1");
+INSERT INTO tbl_notification VALUES("874","The Written Task has been graded. You received a grade of <b>30</b>.","submit_task.php?id=&post_id=<br />
+<b>Warning</b>:  Undefined variable $post_id in <b>C:Phphtdocslm","2023-01-17 22:31:36","1234","97","1");
+INSERT INTO tbl_notification VALUES("875","The Task <b>Quiz 1</b> has been graded. You received a grade of <b>25</b>.","submit_task.php?id=60&post_id=197","2023-01-17 22:33:33","1234","97","1");
+INSERT INTO tbl_notification VALUES("876","submit task name <b>Kilat</b>","view_submit_task.php?id=60&post_id=194","2023-01-17 22:38:52","97","1234","1");
+INSERT INTO tbl_notification VALUES("877","The Task <b>Activity 1</b> has been graded. You received a grade of <b>25</b>.","submit_task.php?id=60&post_id=194","2023-01-17 22:39:41","1234","97","1");
+INSERT INTO tbl_notification VALUES("878","submit task name <b>Kilat</b>","view_submit_task.php?id=60&post_id=210","2023-01-17 22:40:35","97","1234","0");
+INSERT INTO tbl_notification VALUES("879","The Task <b>Activity 2</b> has been graded. You received a grade of <b>20</b>.","submit_task.php?id=60&post_id=210","2023-01-17 22:41:04","1234","97","1");
+INSERT INTO tbl_notification VALUES("881","The Writtem Task has been graded. You received a grade of <b>30</b>.","submit_task.php?id=60&post_id=<br />
+<b>Warning</b>:  Undefined variable $post_id in <b>C:Phphtdocs","2023-01-17 22:55:25","1234","97","1");
+INSERT INTO tbl_notification VALUES("882","The Task <b>Project 2</b> has been graded. You received a grade of <b>30</b>.","submit_task.php?id=60&post_id=212","2023-01-17 22:55:41","1234","97","1");
 
 
 
@@ -478,7 +475,7 @@ CREATE TABLE `tbl_student` (
   `status` varchar(100) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`student_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=119 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=124 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_student VALUES("47","JADE RICK","CASU","CASUYON","MALE","17","0000-00-00","","0","","","2230","22-0039","c9f7f85910ab95a7e4970db249426b6a2bd927605885858f21c2c454bee94c7e","NO-IMAGE-AVAILABLE.jpg","Unregistered","0");
 INSERT INTO tbl_student VALUES("45","JEFFREY","ALIJA","ALINDAJAO","MALE","17","0000-00-00","","0","","","2230","22-0037","6901de3b7598c8a38f72a564e074bdbbb03cad1d3744587af1e8497898f58f6d","NO-IMAGE-AVAILABLE.jpg","Unregistered","1");
@@ -490,12 +487,14 @@ INSERT INTO tbl_student VALUES("109","BIN","BIN","BIN","MALE","18","0000-00-00",
 INSERT INTO tbl_student VALUES("107","HAPON","HAPON","HAPON","MALE","20","0000-00-00","","0","","","2261","23-4444","21b8e134bab5d86102379698f70a703860fabcb88c03a3aa21cf1284aacfce53","NO-IMAGE-AVAILABLE.jpg","Registered","0");
 INSERT INTO tbl_student VALUES("104","TIN","TIN","TIN","MALE","18","0000-00-00","","0","","","2261","23-3334","ab547757da37eb600011051fb0e9fe0c9ea49d220086a939c76369d29bfa1542","NO-IMAGE-AVAILABLE.jpg","Registered","0");
 INSERT INTO tbl_student VALUES("91","MARIA LUZ","BACONGON","SARTORIO","FEMALE","23","1999-11-25","","9123456788","","","2260","22-2222","51609286fb7f6089e0a0a418355949c791e84870ae2523093ba00bb3ecff7f8e","7787_File_IMG_20220823_114206.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("92","B","TEN","BEN","MALE","18","0000-00-00","","0","","","2260","12-3456","6700869c8ff7480e34a70a708b028700dbaa3a033b5652b903afe89f49a31456","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("92","B","TEN","BEN","MALE","18","0000-00-00","","0","","","2260","12-3456","6700869c8ff7480e34a70a708b028700dbaa3a033b5652b903afe89f49a31456","NO-IMAGE-AVAILABLE.jpg","Registered","1");
 INSERT INTO tbl_student VALUES("87","MIC","MIC","MIC","MALE","18","0000-00-00","","0","","","2230","55-5555","c947b6a42f0a5b2ad781f60bc50af20bc77514b0e52ae4d0e95f5d8145ff1cc2","NO-IMAGE-AVAILABLE.jpg","Registered","0");
-INSERT INTO tbl_student VALUES("94","KKK","KAY","KKK","FEMALE","20","0000-00-00","","0","","","2260","22-0000","8254c329a92850f6d539dd376f4816ee2764517da5e0235514af433164480d7a","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("94","KKK","KAY","KKK","FEMALE","20","0000-00-00","","0","","","2260","22-0000","8254c329a92850f6d539dd376f4816ee2764517da5e0235514af433164480d7a","NO-IMAGE-AVAILABLE.jpg","Registered","1");
 INSERT INTO tbl_student VALUES("96","JAN","JAN","JAN","MALE","17","0000-00-00","","0","","","2260","34-5678","82717b14ffa62b3aa4f94e43bd3db1560f5dce3af061d285d8661e202526226f","NO-IMAGE-AVAILABLE.jpg","Registered","0");
 INSERT INTO tbl_student VALUES("97","RENA MAE","MAE","MANLANGIT","FEMALE","22","0000-00-00","","9375555453","","","2260","22-9999","2658e71049c5dce8bf013249aca7cc5aace0f71774fff6136d23bac0baea39c5","NO-IMAGE-AVAILABLE.jpg","Registered","0");
 INSERT INTO tbl_student VALUES("98","EVELYN","EVE","ESCALICAS","FEMALE","22","0000-00-00","","0","","","2260","22-1000","5dcd11b40da180f3974ce441cd8e1c64a9137d29e12655a2dc896b4abc991843","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("123","MAR","MAR","MAR","MALE","20","0000-00-00","","0","","","2274","12-3","0fd4f1bb53c18bd6f310a3b2d358d71bb54d7670e86798936490125ce9d56a71","NO-IMAGE-AVAILABLE.jpg","Registered","0");
+INSERT INTO tbl_student VALUES("122","KEY","KEY","KEY","FEMALE","18","0000-00-00","","0","","","2274","22-2222","1bc2a73b1b4d90aa926e042ad9a70d28aa39b6bc4764167f04b8c69faf27c880","NO-IMAGE-AVAILABLE.jpg","Registered","0");
 
 
 
@@ -514,7 +513,7 @@ CREATE TABLE `tbl_student_task` (
   `total_points` int(11) NOT NULL,
   `impact` int(11) NOT NULL,
   PRIMARY KEY (`student_task_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_student_task VALUES("49","186","/lmstlee4/admin/uploads/8944_File_2830_File_FB_IMG_15752135345599416.jpg","2022-11-24 09:59:29","This is my sample","Sample","5","2022-11-20 23:54:29","","58","20","0","0");
 INSERT INTO tbl_student_task VALUES("50","189","/lmstlee4/admin/uploads/3022_File_2830_File_FB_IMG_15752135345599416.jpg","2022-11-24 10:04:01","This is activity 1","Activity 1","0","2022-11-24 10:04:01","","58","0","0","0");
@@ -531,7 +530,10 @@ INSERT INTO tbl_student_task VALUES("96","198","","2022-12-30 21:31:28","","","3
 INSERT INTO tbl_student_task VALUES("97","212","/lmstlee4/admin/uploads/3243_File_Eggplant-Month-640x514.jpg","2023-01-02 21:59:26","","Project 2","3","2023-01-02 21:55:43","","91","20","0","0");
 INSERT INTO tbl_student_task VALUES("98","198","","2023-01-08 15:04:44","","","3","2023-01-08 15:04:44","","96","30","0","0");
 INSERT INTO tbl_student_task VALUES("99","198","","2023-01-08 15:09:33","","","3","2023-01-08 15:09:33","","94","10","0","0");
-INSERT INTO tbl_student_task VALUES("100","200","/lmstlee4/dist/img/no-attachment.jpg","2023-01-15 17:19:31","","","3","2023-01-15 17:19:31","","94","90","0","0");
+INSERT INTO tbl_student_task VALUES("117","197","/lmstlee4/dist/img/no-attachment.jpg","2023-01-17 22:31:36","","Quiz 1","3","2023-01-17 22:31:36","","97","25","0","0");
+INSERT INTO tbl_student_task VALUES("118","194","/lmstlee4/admin/uploads/8046_File_2021_File_IMG20221127175357.jpg","2023-01-17 22:38:52","","Activity 1","3","2023-01-17 22:38:52","","97","25","0","0");
+INSERT INTO tbl_student_task VALUES("119","210","/lmstlee4/admin/uploads/2969_File_1847_File_1651_File_received_606176561189139.jpeg","2023-01-17 22:40:35","","Kilat","3","2023-01-17 22:40:35","","97","20","0","0");
+INSERT INTO tbl_student_task VALUES("121","212","/lmstlee4/dist/img/no-attachment.jpg","2023-01-17 22:55:25","","Written Task","3","2023-01-17 22:55:25","","97","30","0","0");
 
 
 
@@ -626,7 +628,7 @@ CREATE TABLE `tbl_teacher_class` (
   `school_year_id` int(11) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`teacher_class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_teacher_class VALUES("28","1234","2230","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
 INSERT INTO tbl_teacher_class VALUES("29","1234","2232","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
@@ -651,6 +653,7 @@ INSERT INTO tbl_teacher_class VALUES("70","1234","2270","0","/lmstlee4/admin/upl
 INSERT INTO tbl_teacher_class VALUES("71","1234","2271","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
 INSERT INTO tbl_teacher_class VALUES("72","1234","2272","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
 INSERT INTO tbl_teacher_class VALUES("73","1234","2273","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
+INSERT INTO tbl_teacher_class VALUES("74","1255","2274","123","/lmstlee4/admin/uploads/thumbnails.png","1","0");
 
 
 
@@ -661,7 +664,7 @@ CREATE TABLE `tbl_teacher_class_student` (
   `teacher_id` int(11) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`teacher_class_student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_teacher_class_student VALUES("43","23","36","1242","0");
 INSERT INTO tbl_teacher_class_student VALUES("46","28","45","1234","1");
@@ -677,9 +680,6 @@ INSERT INTO tbl_teacher_class_student VALUES("107","28","87","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("109","29","89","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("110","56","36","1242","1");
 INSERT INTO tbl_teacher_class_student VALUES("118","60","91","1234","0");
-INSERT INTO tbl_teacher_class_student VALUES("119","60","92","1234","0");
-INSERT INTO tbl_teacher_class_student VALUES("120","60","93","1234","0");
-INSERT INTO tbl_teacher_class_student VALUES("121","60","94","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("122","60","95","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("123","60","96","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("124","60","97","1234","0");
@@ -704,6 +704,11 @@ INSERT INTO tbl_teacher_class_student VALUES("142","60","115","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("143","60","116","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("144","60","117","1234","0");
 INSERT INTO tbl_teacher_class_student VALUES("145","60","118","1234","0");
+INSERT INTO tbl_teacher_class_student VALUES("146","74","119","1255","0");
+INSERT INTO tbl_teacher_class_student VALUES("147","74","120","1255","0");
+INSERT INTO tbl_teacher_class_student VALUES("148","74","121","1255","0");
+INSERT INTO tbl_teacher_class_student VALUES("149","74","122","1255","0");
+INSERT INTO tbl_teacher_class_student VALUES("150","74","123","1255","0");
 
 
 
@@ -713,7 +718,7 @@ CREATE TABLE `tbl_teacher_log` (
   `login_date` datetime NOT NULL,
   `teacher_id` int(11) NOT NULL,
   PRIMARY KEY (`teacher_log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_teacher_log VALUES("1","Admin","2022-11-27 00:52:20","1234");
 INSERT INTO tbl_teacher_log VALUES("2","Admin","2022-11-27 01:09:30","1234");
@@ -829,4 +834,8 @@ INSERT INTO tbl_teacher_log VALUES("111","Admin","2023-01-16 10:29:51","1234");
 INSERT INTO tbl_teacher_log VALUES("112","Admin","2023-01-16 11:22:34","1234");
 INSERT INTO tbl_teacher_log VALUES("113","Admin","2023-01-16 11:27:02","1234");
 INSERT INTO tbl_teacher_log VALUES("114","Admin","2023-01-16 15:50:26","1234");
+INSERT INTO tbl_teacher_log VALUES("115","Maria","2023-01-17 19:46:47","1255");
+INSERT INTO tbl_teacher_log VALUES("116","Admin","2023-01-17 19:57:12","1234");
+INSERT INTO tbl_teacher_log VALUES("117","Admin","2023-01-17 21:23:15","1234");
+INSERT INTO tbl_teacher_log VALUES("118","Admin","2023-01-18 08:52:18","1234");
 

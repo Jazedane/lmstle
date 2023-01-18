@@ -133,11 +133,11 @@
                                             <td>
                                                 <div class="justify content-between">
                                                     <a class="btn btn-primary"
-                                                        href="http://localhost/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>"
+                                                        href="/lmstlee4/admin/view_submit_task.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>"
                                                         title="View Task Summary" data-placement="bottom" id="view">
                                                         <i class="fas fa-envelope"></i> Task Summary</a>
                                                     <a class="btn btn-success"
-                                                        href="http://localhost/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>"
+                                                        href="/lmstlee4/admin/edit_task_modal.php?id=<?php echo $get_id; ?>&post_id=<?php echo $task_id; ?>&student_task_id=<?php echo $student_task_id; ?>"
                                                         title="Edit Grade" data-placement="bottom" id="edit">
                                                         <i class="fas fa-edit"></i> Edit Grade</a>
                                                 </div>

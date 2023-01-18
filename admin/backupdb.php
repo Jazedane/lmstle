@@ -37,14 +37,15 @@
                             <div class="card-header">
                                 <h3 class="card-title">Backup Database</h3>
                             </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <h5>Download Backup File</h5>
-                                    <a href="backup.php" class="btn btn-success"><i class="fas fa-download"></i> Download
-                                        Backup</a>
-                                </div>
-                            </div>
                             <form method="post" action="" enctype="multipart/form-data" id="frm-restore">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>Download Backup File</h5>
+                                        <a href="/lmstlee4/admin/backup.php" class="btn btn-success"><i class="fas fa-download"></i>
+                                            Download
+                                            Backup</a>
+                                    </div>
+                                </div>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <h5>Choose Backup File</h5>
