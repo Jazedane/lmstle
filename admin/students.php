@@ -333,9 +333,39 @@
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
-            "lengthChange": true,
+            "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "excel", "pdf", "print"]
+            "dom": 'Bfrtilp',
+            "buttons": [{
+                    "extend": 'copyHtml5',
+                    "titleAttr": 'Copy',
+                    "exportOptions": {
+                        "columns": [1, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    "extend": 'excelHtml5',
+                    "titleAttr": 'Export to Excel',
+                    "exportOptions": {
+                        "columns": [1, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    "extend": 'pdfHtml5',
+                    "titleAttr": 'Export to PDF',
+                    "exportOptions": {
+                        "columns": [1, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    "extend": 'print',
+                    "titleAttr": 'Print',
+                    "messageTop": 'Student List',
+                    "exportOptions": {
+                        "columns": [1, 2, 3, 4, 5]
+                    }
+                },
+            ],
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,

@@ -67,10 +67,12 @@
 										$row1 = mysqli_fetch_array($query1);
 									
 									?>
-                                <div class="alert alert-primary">Submit Task in : <b><?php echo $row1['task_name']; ?></b></div>
+                                <div class="alert alert-primary">Submit Task in :
+                                    <b><?php echo $row1['task_name']; ?></b>
+                                </div>
 
                                 <div id="">
-                                    <table id="example2" class="table table-bordered table-striped">
+                                    <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Date Submitted</th>
@@ -104,7 +106,8 @@
                                                 </td>
                                                 <td><?php  echo $row['task_name']; ?></td>
                                                 <td><?php echo $row['task_description']; ?></td>
-                                                <td><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?></td>
+                                                <td><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?>
+                                                </td>
                                                 <td class="project-state" width="60">
                                                     <?php
                             					if($row['task_status'] =='0') {
@@ -118,9 +121,12 @@
                             					}
                                                 ?>
                                                 </td>
-                                                <td width="100"><a href="<?php echo $row['task_file']; ?>" target="_blank"><i
-                                                            class="fas fa-paperclip"></i> <i>Attachment</i></a></td>
-                                                <td width="40"><span class="badge badge-success"><?php  echo $row['grade']; ?></span></td>
+                                                <td width="100"><a href="<?php echo $row['task_file']; ?>"
+                                                        target="_blank"><i class="fas fa-paperclip"></i>
+                                                        <i>Attachment</i></a></td>
+                                                <td width="40"><span
+                                                        class="badge badge-success"><?php  echo $row['grade']; ?></span>
+                                                </td>
                                                 <td width="40">
                                                     <a class="btn btn-success"
                                                         href="edit_task_modal.php<?php echo '?student_task_id='.$id.'&id='.$get_id.'&post_id='.$post_id ?>"><i
@@ -147,9 +153,39 @@
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
-            "lengthChange": true,
+            "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "excel", "pdf", "print"]
+            "dom": 'Bfrtilp',
+            "buttons": [{
+                    extend: 'copyHtml5',
+                    titleAttr: 'Copy',
+                    exportOptions: {
+                        columns: [0, 1, 3, 4, 6]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    titleAttr: 'Export to Excel',
+                    exportOptions: {
+                        columns: [0, 1, 3, 4, 6]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    titleAttr: 'Export to PDF',
+                    exportOptions: {
+                        columns: [0, 1, 3, 4, 6]
+                    }
+                },
+                {
+                    extend: 'print',
+                    titleAttr: 'Print',
+                    messageTop: 'Student Task',
+                    exportOptions: {
+                        columns: [0, 1, 3, 4, 6]
+                    }
+                },
+            ],
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,

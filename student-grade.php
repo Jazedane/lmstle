@@ -611,7 +611,7 @@
     $(function() {
         $("#grade_section_0").DataTable({
             "responsive": true,
-            "lengthChange": true,
+            "lengthChange": false,
             "fixedColumns": true,
             "autoWidth": true,
             "scrollX": true,
@@ -621,7 +621,7 @@
 
         $("#grade_section_1").DataTable({
             "responsive": true,
-            "lengthChange": true,
+            "lengthChange": false,
             "fixedColumns": true,
             "autoWidth": true,
             "scrollX": true,
@@ -631,7 +631,7 @@
 
         $("#grade_section_2").DataTable({
             "responsive": true,
-            "lengthChange": true,
+            "lengthChange": false,
             "fixedColumns": true,
             "autoWidth": true,
             "scrollX": true,
@@ -641,7 +641,7 @@
 
         $("#grade_section_3").DataTable({
             "responsive": true,
-            "lengthChange": true,
+            "lengthChange": false,
             "fixedColumns": true,
             "autoWidth": true,
             "scrollX": true,
@@ -660,7 +660,7 @@
     $(function() {
         $("#grade_section_overall").DataTable({
             "responsive": true,
-            "lengthChange": true,
+            "lengthChange": false,
             "autoWidth": false,
             "buttons": ["copy", "excel", "pdf", "print", ]
         }).buttons().container().appendTo('#grade_section_overall_wrapper .col-md-6:eq(0)');

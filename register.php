@@ -164,8 +164,8 @@
             showConfirmButton: false,
             timer: 3000
         });
-        toastr.success("Signup Success", "You Have Been Successfully Signup! Please Wait for the Confirmation of the Admin for the Activation of Your Account.")
-        var delay = 2000;
+        toastr.success("Signup Success", "You Have Been Successfully Signup! Please Wait for the Confirmation of the Superadmin for the Activation of Your Account.")
+        var delay = 4000;
         setTimeout(function() {
             window.location = '/lmstlee4/teacher-login.php'
         }, delay);

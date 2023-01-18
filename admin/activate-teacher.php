@@ -39,7 +39,7 @@
                             </div>
                             <div class="card-body">
                                 <form id="delete_teacher" method="post">
-                                    <table id="example2" class="table table-bordered table-striped">
+                                    <table id="example1" class="table table-bordered table-striped">
                                         <ul data-toggle="modal" href="#teacher_delete" id="delete"
                                             class="btn btn-danger" name="delete_teacher"><i
                                                 class="fas fa-trash-alt"></i>
@@ -230,9 +230,39 @@
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
-            "lengthChange": true,
+            "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "excel", "pdf", "print"]
+            "dom": 'Bfrtilp',
+            "buttons": [{
+                    "extend": 'copyHtml5',
+                    "titleAttr": 'Copy',
+                    "exportOptions": {
+                        "columns": [1, 2, 3, 4]
+                    }
+                },
+                {
+                    "extend": 'excelHtml5',
+                    "titleAttr": 'Export to Excel',
+                    "exportOptions": {
+                        "columns": [1, 2, 3, 4]
+                    }
+                },
+                {
+                    "extend": 'pdfHtml5',
+                    "titleAttr": 'Export to PDF',
+                    "exportOptions": {
+                        "columns": [1, 2, 3, 4]
+                    }
+                },
+                {
+                    "extend": 'print',
+                    "titleAttr": 'Print',
+                    "messageTop": 'Activated Teacher List',
+                    "exportOptions": {
+                        "columns": [1, 2, 3, 4]
+                    }
+                },
+            ]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
@@ -242,6 +272,12 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+        });
+    });
+    $(document).ready(function() {
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '220px',
+            'display': 'inline-block'
         });
     });
     </script>

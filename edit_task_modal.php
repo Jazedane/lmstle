@@ -143,7 +143,7 @@
                 url: "admin/upload_task.php?is_update=true",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Activity Successfully Uploaded");
+                    toastr.success("Success","Activity Successfully Uploaded");
                     setTimeout(function() {
                         window.location = 'submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$post_id ?>';
                     }, 2000);
