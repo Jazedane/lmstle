@@ -180,6 +180,8 @@
                                 <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" />
                                 <input type="hidden" name="teacher_class_id" value="<?php echo $get_id; ?>">
                                 <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
+                                <input type="hidden" name="task_name" value="<?php echo $task_name; ?>">
+                                <input type="hidden" name="task_description" value="<?php echo $task_description; ?>">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label><?php echo $class_row['class_name']; ?> STUDENTS</label>
@@ -254,8 +256,9 @@
                             $student_id = $_POST['student_id'];
                             $post_id = $_POST['post_id'];
                             $task_id = $_POST['task_id'];
+                            $task_name = $_POST['task_name'];
                             $grade = $_POST['grade'];
-                            $name_notification = 'The Writtem Task has been graded. You received a grade of <b>' . $grade . '</b>.';
+                            $name_notification = 'The Task has been graded. You received a grade of <b>' . $grade . '</b>.';
 
                             $query = mysqli_query(
                             $conn,
@@ -265,13 +268,14 @@
 
                             if ($count > 0) { ?>
                             <script>
-                            toastr.warning("Student Points Already Exists!");
+                            toastr.warning("Warning","Student Points Already Exists!");
                             setTimeout(function() {
                                 window.location = "task.php<?php echo '?id='.$get_id ?>";
                             }, 1000);
                             </script>
-                            <?php } else {mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_date_upload = NOW(), 
-                            task_id ='$task_id', task_name ='Written Task', grade='$grade', task_file = '/lmstlee4/dist/img/no-attachment.jpg', task_status= '3'")
+                            <?php } else {
+                            mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_date_upload = NOW(), 
+                            task_id ='$task_id', task_name ='Task', task_description = '', grade='$grade', task_file = '/lmstlee4/dist/img/no-attachment.jpg', task_status= '3'")
                             or die(mysqli_error($conn));
                             
                             mysqli_query(
@@ -496,7 +500,7 @@
                 url: "assign_save.php",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Task Successfully Added");
+                    toastr.success("Success","Task Successfully Added");
                     setTimeout(function() {
                         window.location.reload();
                     }, 2000);
@@ -525,10 +529,10 @@
                 url: "add-work.php",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Points Successfully Added");
+                    toastr.success("Success","Points Successfully Added!");
                     setTimeout(function() {
                         window.location.reload();
-                    }, 2000);
+                    }, 1000);
                 },
                 cache: false,
                 contentType: false,
@@ -561,7 +565,7 @@
                             $(this).remove();
                         });
                     $('#' + id).modal('hide');
-                    toastr.error("Task Successfully Deleted.");
+                    toastr.error("Deleted","Task Successfully Deleted");
                     setTimeout(function() {
                         window.location.reload();
                     }, 1000);

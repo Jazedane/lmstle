@@ -140,6 +140,7 @@
                                                 value="Upload">Save changes</button>
                                         </center>
                                     </div>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -43,14 +43,14 @@
                                         <label>Start Year</label>
                                         <input name="start_year"
                                             oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
-                                            type="number" data-maxlength="4" min="2022" autocomplete="off"
+                                            type="number" data-maxlength="4" min="2022" max="2100" autocomplete="off"
                                             class="form-control" placeholder="ENTER START YEAR" required>
                                     </div>
                                     <div class="form-group">
                                         <label>End Year</label>
                                         <input name="end_year" type="number"
                                             oninput="this.value = this.value.slice(0, this.dataset.maxlength);"
-                                            data-maxlength="4" min="2023" autocomplete="off" class="form-control"
+                                            data-maxlength="4" min="2023" max="2100" autocomplete="off" class="form-control"
                                             placeholder="ENTER END YEAR" required>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
@@ -86,6 +86,9 @@
                     ?>
                     <script>
                     toastr.success("Success", "School Year Successfully Added!");
+                    setTimeout(function() {
+                        window.location = "class.php";
+                    }, 1000);
                     </script>
                     <?php } } ?>
                     <SCRIPT LANGUAGE="JavaScript">
@@ -176,6 +179,9 @@
                     ?>
                     <script>
                     toastr.success("Success", "Class Successfully Added!");
+                    setTimeout(function() {
+                        window.location = "class.php";
+                    }, 1000);
                     </script>
                     <?php } } ?>
                     <div class="col-md-9">

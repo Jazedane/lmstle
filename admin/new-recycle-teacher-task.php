@@ -77,7 +77,7 @@
                                             </script>
                                         </th>
                                         <th>Date Upload</th>
-                                        <th>Activity Name</th>
+                                        <th>Task Name</th>
                                         <th>Description</th>
                                         <th>Due Date</th>
                                     </tr>
