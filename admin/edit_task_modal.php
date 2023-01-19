@@ -180,7 +180,7 @@
                 url: "edit.php",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Task Edited Successfully");
+                    toastr.success("Success","Task Edited Successfully!");
                     setTimeout(function() {
                         window.location =
                             'view_submit_task.php<?php echo '?id='.$get_id ?>&<?php echo 'post_id='.$post_id ?>';

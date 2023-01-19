@@ -254,6 +254,7 @@
                             <?php if (isset($_POST['add'])) {
                             $teacher_class_id = $_POST['teacher_class_id'];
                             $student_id = $_POST['student_id'];
+                            $student_task_id = $_POST['student_task_id'];
                             $post_id = $_POST['post_id'];
                             $task_id = $_POST['task_id'];
                             $task_name = $_POST['task_name'];
@@ -268,14 +269,21 @@
 
                             if ($count > 0) { ?>
                             <script>
-                            toastr.warning("Warning","Student Points Already Exists!");
+                            toastr.warning("Warning", "Student Points Already Exists!");
                             setTimeout(function() {
                                 window.location = "task.php<?php echo '?id='.$get_id ?>";
                             }, 1000);
                             </script>
                             <?php } else {
+                            $query = mysqli_query(
+                            $conn,
+                            "SELECT * FROM tbl_task WHERE task_id  =  '$task_id'"
+                            ) or die(mysqli_error());
+                            $result = mysqli_fetch_assoc($query);
+                            $task_name = $result['task_name'];
+
                             mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_date_upload = NOW(), 
-                            task_id ='$task_id', task_name ='Task', task_description = '', grade='$grade', task_file = '/lmstlee4/dist/img/no-attachment.jpg', task_status= '3'")
+                            task_id ='$task_id', task_name ='$task_name', task_description = '', grade='$grade', task_file = '/lmstlee4/dist/img/no-attachment.jpg', task_status= '3'")
                             or die(mysqli_error($conn));
                             
                             mysqli_query(
@@ -283,6 +291,7 @@
                             "INSERT INTO tbl_notification (broadcaster_id,receiver_id,message,link) 
                             VALUES ('$session_id','$student_id','$name_notification','submit_task.php?id=".$get_id."&post_id=".$post_id."')"
                             ) or die(mysqli_error());
+
                             ?>
                             <script>
                             toastr.success("Success", "Points Successfully Added!");
@@ -337,7 +346,7 @@
                                             $task_file = $row['task_file'];
                                             ?>
                                         <tr>
-                                            <td width="220"><?php $date_upload = date_create($row['date_upload']);
+                                            <td width="180"><?php $date_upload = date_create($row['date_upload']);
                                                     echo date_format(
                                                     $date_upload,
                                                     'F d, Y h:i A'
@@ -362,7 +371,7 @@
                                                 'total_points'
                                             ]; ?></center>
                                             </td>
-                                            <td width="220"><?php $end_date = date_create($row['end_date']);
+                                            <td width="180"><?php $end_date = date_create($row['end_date']);
                                                     echo date_format(
                                                     $end_date,
                                                     'F d, Y h:i A'
@@ -500,7 +509,7 @@
                 url: "assign_save.php",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Success","Task Successfully Added");
+                    toastr.success("Success", "Task Successfully Added");
                     setTimeout(function() {
                         window.location.reload();
                     }, 2000);
@@ -529,7 +538,7 @@
                 url: "add-work.php",
                 data: formData,
                 success: function(html) {
-                    toastr.success("Success","Points Successfully Added!");
+                    toastr.success("Success", "Points Successfully Added!");
                     setTimeout(function() {
                         window.location.reload();
                     }, 1000);
@@ -565,7 +574,7 @@
                             $(this).remove();
                         });
                     $('#' + id).modal('hide');
-                    toastr.error("Deleted","Task Successfully Deleted");
+                    toastr.error("Deleted", "Task Successfully Deleted");
                     setTimeout(function() {
                         window.location.reload();
                     }, 1000);
