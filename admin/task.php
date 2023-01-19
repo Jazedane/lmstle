@@ -259,7 +259,6 @@
                             $task_id = $_POST['task_id'];
                             $task_name = $_POST['task_name'];
                             $grade = $_POST['grade'];
-                            $name_notification = 'The Task has been graded. You received a grade of <b>' . $grade . '</b>.';
 
                             $query = mysqli_query(
                             $conn,
@@ -281,6 +280,7 @@
                             ) or die(mysqli_error());
                             $result = mysqli_fetch_assoc($query);
                             $task_name = $result['task_name'];
+                            $name_notification = 'The ' . $task_name . ' has been graded. You received a grade of ' . $grade . '.';
 
                             mysqli_query($conn,"INSERT tbl_student_task SET student_id='$student_id', task_date_upload = NOW(), 
                             task_id ='$task_id', task_name ='$task_name', task_description = '', grade='$grade', task_file = '/lmstlee4/dist/img/no-attachment.jpg', task_status= '3'")
