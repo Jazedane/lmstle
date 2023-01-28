@@ -641,7 +641,33 @@
             "autoWidth": true,
             "scrollX": true,
             "scrollCollapse": true,
-            "buttons": ["copy", "excel", "pdf", "print"]
+            "buttons": ["copy", "excel", "pdf", {
+                    extend: 'print',
+                    messageBottom: '<br><div class="float-right"><u><b><?php
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                "SELECT * FROM tbl_teacher WHERE isDeleted=false AND teacher_id=$session_id ORDER BY lastname"
+                                            )) or die(mysqli_error());
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $query
+                                                )
+                                            ) {
+                                                $id = $row['teacher_id']; ?><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?><?php } ?></b></u><p class="text-center">Teacher</p></div></br>',
+                    title: '<center><h5><b>Student Grade List</b></h5></center>',
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt')
+                            .prepend(
+                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>Bug-Ang National High School</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
+                            );
+                        $(win.document.body).find(
+                                'table')
+                            .addClass('compact')
+                            .css('font-size',
+                                'inherit');
+                    }
+                }]
         }).buttons().container().appendTo('#grade_section_0_wrapper .col-md-6:eq(0)');
 
         $("#grade_section_1").DataTable({
@@ -651,7 +677,33 @@
             "autoWidth": true,
             "scrollX": true,
             "scrollCollapse": true,
-            "buttons": ["copy", "excel", "pdf", "print"]
+            "buttons": ["copy", "excel", "pdf", {
+                    extend: 'print',
+                    messageBottom: '<br><div class="float-right"><u><b><?php
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                "SELECT * FROM tbl_teacher WHERE isDeleted=false AND teacher_id=$session_id ORDER BY lastname"
+                                            )) or die(mysqli_error());
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $query
+                                                )
+                                            ) {
+                                                $id = $row['teacher_id']; ?><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?><?php } ?></b></u><p class="text-center">Teacher</p></div></br>',
+                    title: '<center><h5><b>Student Grade List</b></h5></center>',
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt')
+                            .prepend(
+                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>Bug-Ang National High School</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
+                            );
+                        $(win.document.body).find(
+                                'table')
+                            .addClass('compact')
+                            .css('font-size',
+                                'inherit');
+                    }
+                }]
         }).buttons().container().appendTo('#grade_section_1_wrapper .col-md-6:eq(0)');
 
         $("#grade_section_2").DataTable({
@@ -661,7 +713,33 @@
             "autoWidth": true,
             "scrollX": true,
             "scrollCollapse": true,
-            "buttons": ["copy", "excel", "pdf", "print"]
+            "buttons": ["copy", "excel", "pdf", {
+                    extend: 'print',
+                    messageBottom: '<br><div class="float-right"><u><b><?php
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                "SELECT * FROM tbl_teacher WHERE isDeleted=false AND teacher_id=$session_id ORDER BY lastname"
+                                            )) or die(mysqli_error());
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $query
+                                                )
+                                            ) {
+                                                $id = $row['teacher_id']; ?><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?><?php } ?></b></u><p class="text-center">Teacher</p></div></br>',
+                    title: '<center><h5><b>Student Grade List</b></h5></center>',
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt')
+                            .prepend(
+                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>Bug-Ang National High School</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
+                            );
+                        $(win.document.body).find(
+                                'table')
+                            .addClass('compact')
+                            .css('font-size',
+                                'inherit');
+                    }
+                }]
         }).buttons().container().appendTo('#grade_section_2_wrapper .col-md-6:eq(0)');
 
         $("#grade_section_3").DataTable({
@@ -671,7 +749,33 @@
             "autoWidth": true,
             "scrollX": true,
             "scrollCollapse": true,
-            "buttons": ["copy", "excel", "pdf", "print"]
+            "buttons": ["copy", "excel", "pdf", {
+                    extend: 'print',
+                    messageBottom: '<br><div class="float-right"><u><b><?php
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                "SELECT * FROM tbl_teacher WHERE isDeleted=false AND teacher_id=$session_id ORDER BY lastname"
+                                            )) or die(mysqli_error());
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $query
+                                                )
+                                            ) {
+                                                $id = $row['teacher_id']; ?><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?><?php } ?></b></u><p class="text-center">Teacher</p></div></br>',
+                    title: '<center><h5><b>Student Grade List</b></h5></center>',
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt')
+                            .prepend(
+                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>Bug-Ang National High School</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
+                            );
+                        $(win.document.body).find(
+                                'table')
+                            .addClass('compact')
+                            .css('font-size',
+                                'inherit');
+                    }
+                }]
         }).buttons().container().appendTo('#grade_section_3_wrapper .col-md-6:eq(0)');
     });
     $(document).ready(function() {
@@ -687,7 +791,33 @@
             "responsive": true,
             "lengthChange": true,
             "autoWidth": false,
-            "buttons": ["copy", "excel", "pdf", "print"]
+            "buttons": ["copy", "excel", "pdf", {
+                    extend: 'print',
+                    messageBottom: '<br><div class="float-right"><u><b><?php
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                "SELECT * FROM tbl_teacher WHERE isDeleted=false AND teacher_id=$session_id ORDER BY lastname"
+                                            )) or die(mysqli_error());
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $query
+                                                )
+                                            ) {
+                                                $id = $row['teacher_id']; ?><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?><?php } ?></b></u><p class="text-center">Teacher</p></div></br>',
+                    title: '<center><h5><b>Student Overall Grade List</b></h5></center>',
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt')
+                            .prepend(
+                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>Bug-Ang National High School</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
+                            );
+                        $(win.document.body).find(
+                                'table')
+                            .addClass('compact')
+                            .css('font-size',
+                                'inherit');
+                    }
+                }]
         }).buttons().container().appendTo('#grade_section_overall_wrapper .col-md-6:eq(0)');
     });
     $(document).ready(function() {

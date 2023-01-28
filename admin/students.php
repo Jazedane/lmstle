@@ -51,6 +51,8 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title" style="margin-top:10px">Student List</h3>
+                                <a data-toggle="modal" href="#import_students" class="btn btn-success float-right"
+                                    name="add_student"><i class="fas fa-upload"></i> Import</a>
                                 <a data-toggle="modal" href="#student_add" class="btn btn-success float-right"
                                     name="add_student"><i class="fas fa-user-plus lg"></i> Add</a>
                             </div>
@@ -106,7 +108,7 @@
                                                 $student_query,
                                             )) or die(mysqli_error($conn));
                                             while ($row = mysqli_fetch_array($query)) {
-                                                $id = $row['student_id']; ?>
+                                            $id = $row['student_id']; ?>
 
                                             <tr>
                                                 <td width="30">
@@ -217,6 +219,65 @@
                 </div>
             </div>
         </div>
+        <div class="modal hide fade" id="import_students" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-upload"></i> Import Excel</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="import.php" enctype="multipart/form-data">
+                                <label>Select Section</label>
+                                <select name="class_id" class="form-control" required>
+                                    <option selected disabled hidden>SELECT SECTION</option>
+                                    <?php
+                                                $class_query = mysqli_query(
+                                                $conn,
+                                                "SELECT * FROM tbl_class WHERE tbl_class.isDeleted=false ORDER BY class_name"
+                                                );
+                                                while (
+                                                    $class_row = mysqli_fetch_array(
+                                                    $class_query
+                                                )
+                                                ) { ?>
+                                    <option value="<?php echo $class_row[
+                                                'class_id'
+                                                ]; ?>">
+                                        <?php echo $class_row[
+                                                    'class_name'
+                                                ]; ?></option>
+                                    <?php }
+                                            ?>
+                                </select>
+                                <fieldset>
+                                    <legend>Import Excel file</legend>
+                                    <div class="form-group">
+                                        <div class="control-label">
+                                            <label>Excel File:</label>
+                                        </div>
+                                        <div class="controls">
+                                            <input type="file" name="file" id="file" class="input-large">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
+                                    <div class="form-group">
+                                        <div class="modal-footer">
+                                            <button type="submit" id="submit" name="import"
+                                                class="btn btn-primary button-loading"
+                                                data-loading-text="Loading...">Upload</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php include 'footer.php'; ?>
 
@@ -288,6 +349,83 @@
     }, 1000);
     </script>
     <?php } } ?>
+    <?php if(isset($_POST["import"])){
+
+		$filename=$_FILES["file"]["tmp_name"];
+        $class_id = $_POST['class_id'];
+        $teacher_id = $_POST['teacher_id'];
+
+        $query = "SELECT * FROM tbl_teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
+        $result = mysqli_query($conn, $query);
+        $row   = mysqli_fetch_assoc($result);
+        $teacher_class_id = $row['teacher_class_id'];
+        
+		 if($_FILES["file"]["size"] > 0)
+		 {
+		  	$file = fopen($filename, "r");
+	         while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
+	         {
+                $username = $emapData[1];
+                $firstname = $emapData[2];
+                $middlename = $emapData[3];
+                $lastname = $emapData[4];
+                $gender = $emapData[5];
+                $age = $emapData[6];
+                $hashedPassword = hash('sha256', $lastname. $username);
+	    
+	          //It wiil insert a row to our subject table from our csv file`
+	           $sql = "INSERT into tbl_student ( `class_id`,`username`,`firstname`, `middlename`, `lastname`, `gender`, `age`, `location`, `status`, `password`) 
+	            	values('$class_id','$username','$firstname','$middlename','$lastname','$gender','$age', 'NO-IMAGE-AVAILABLE.jpg','Registered','$hashedPassword')";
+	         //we are using mysql_query function. it returns a resource on true else False on error
+	          $result = mysqli_query( $conn, $sql );
+				if(! $result )
+				{
+					echo "<script type=\"text/javascript\">
+							$(document).ready(function() {
+                            var Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+						toastr.error(\"Invalid File:Please Upload Excel File.\");
+							window.location = \"students.php\"
+                        });
+						</script>";
+				
+				}
+
+	         }
+	         fclose($file);
+	         //throws a message if data successfully imported to mysql database from excel file
+	         echo "<script type=\"text/javascript\">
+                    $(document).ready(function() {
+                        var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 1000
+                        });
+						toastr.success(\"CSV File has been successfully Imported.\");
+						window.location = \"students.php\"
+                        });
+					</script>";
+	        
+			 mysqli_query(
+                $conn,
+                "INSERT INTO 
+                tbl_teacher_class_student 
+                (teacher_class_id,student_id,teacher_id) 
+                VALUES 
+                ('$teacher_class_id','$student_id','$teacher_id');"
+                        ) or die(mysqli_error());
+
+			 //close of connection
+			mysqli_close($conn); 
+			
+		 }
+	}	 
+?>
     <SCRIPT LANGUAGE="JavaScript">
     function addDashes(f) {
         f.value = f.value.replace(/\D/g, '');
@@ -358,11 +496,33 @@
                     }
                 },
                 {
-                    "extend": 'print',
-                    "titleAttr": 'Print',
-                    "messageTop": 'Student List',
-                    "exportOptions": {
-                        "columns": [1, 2, 3, 4, 5]
+                    extend: 'print',
+                    messageBottom: '<br><div class="float-right"><u><b><?php
+                                            ($query = mysqli_query(
+                                                $conn,
+                                                "SELECT * FROM tbl_teacher WHERE isDeleted=false AND teacher_id=$session_id ORDER BY lastname"
+                                            )) or die(mysqli_error());
+                                            while (
+                                                $row = mysqli_fetch_array(
+                                                    $query
+                                                )
+                                            ) {
+                                                $id = $row['teacher_id']; ?><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?><?php } ?></b></u><p class="text-center">Teacher</p></div></br>',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5]
+                    },
+                    title: '<center><h5><b>Student Masterlist</b></h5></center>',
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt')
+                            .prepend(
+                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>Bug-Ang National High School</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
+                            );
+                        $(win.document.body).find(
+                                'table')
+                            .addClass('compact')
+                            .css('font-size',
+                                'inherit');
                     }
                 },
             ],
