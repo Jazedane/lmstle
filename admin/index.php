@@ -249,7 +249,7 @@ function determine_active_sidebar_item($pages) {
                                 class="nav-link <?php echo determine_active_sidebar_item(['/lmstlee4/admin/gallery.php']) ?>">
                                 <i class="nav-icon fas fa-image"></i>
                                 <p>
-                                    Plant Gallery
+                                    Gallery
                                 </p>
                             </a>
                         </li>
