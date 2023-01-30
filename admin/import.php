@@ -1,15 +1,7 @@
 <?php
-// Load the database configuration file
-include_once 'database.php';
+$connect = mysqli_connect("localhost", "root", "", "lmstlee4");
 
 if(isset($_POST['import'])){
-    $class_id = $_POST['class_id'];
-    $teacher_id = $_POST['teacher_id'];
-
-    $query = "SELECT * FROM tbl_teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
-    $result = mysqli_query($conn, $query);
-    $row   = mysqli_fetch_assoc($result);
-    $teacher_class_id = $row['teacher_class_id'];
     // Allowed mime types
     $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
     
@@ -21,6 +13,13 @@ if(isset($_POST['import'])){
             
             // Open uploaded CSV file with read-only mode
             $csvFile = fopen($_FILES['file']['tmp_name'], 'r');
+                $class_id = $_POST['class_id'];
+    $teacher_id = $_POST['teacher_id'];
+
+    $query = "SELECT * FROM tbl_teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
+    $result = mysqli_query($conn, $query);
+    $row   = mysqli_fetch_assoc($result);
+    $teacher_class_id = $row['teacher_class_id'];
             
             // Skip the first line
             fgetcsv($csvFile);

@@ -224,13 +224,13 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-success">
-                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-upload"></i> Import Excel</h4>
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-upload"></i> Import Excel/CSV</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="import.php" enctype="multipart/form-data">
+                            <form method="POST" action="" enctype="multipart/form-data">
                                 <label>Select Section</label>
                                 <select name="class_id" class="form-control" required>
                                     <option selected disabled hidden>SELECT SECTION</option>
@@ -254,13 +254,13 @@
                                             ?>
                                 </select>
                                 <fieldset>
-                                    <legend>Import Excel file</legend>
+                                    <legend>Import Excel/CSV file</legend>
                                     <div class="form-group">
                                         <div class="control-label">
-                                            <label>Excel File:</label>
+                                            <label>Excel/CSV File:</label>
                                         </div>
                                         <div class="controls">
-                                            <input type="file" name="file" id="file" class="input-large">
+                                            <input type="file" name="file" id="file" class="input-large" style="text-transform: uppercase" required>
                                         </div>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
@@ -349,7 +349,10 @@
     }, 1000);
     </script>
     <?php } } ?>
-    <?php if(isset($_POST["import"])){
+    <?php 
+    $conn=mysqli_connect("localhost","root","","lmstlee4") or die("Could not connect");
+    
+    if(isset($_POST["import"])){
 
 		$filename=$_FILES["file"]["tmp_name"];
         $class_id = $_POST['class_id'];
@@ -365,32 +368,24 @@
 		  	$file = fopen($filename, "r");
 	         while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
 	         {
-                $username = $emapData[1];
-                $firstname = $emapData[2];
-                $middlename = $emapData[3];
-                $lastname = $emapData[4];
-                $gender = $emapData[5];
-                $age = $emapData[6];
+                $username = $emapData[0];
+                $firstname = strtoupper($emapData[1]);
+                $middlename = strtoupper($emapData[2]);
+                $lastname = strtoupper($emapData[3]);
+                $gender = strtoupper($emapData[4]);
+                $age = $emapData[5];
                 $hashedPassword = hash('sha256', $lastname. $username);
 	    
 	          //It wiil insert a row to our subject table from our csv file`
 	           $sql = "INSERT into tbl_student ( `class_id`,`username`,`firstname`, `middlename`, `lastname`, `gender`, `age`, `location`, `status`, `password`) 
-	            	values('$class_id','$username','$firstname','$middlename','$lastname','$gender','$age', 'NO-IMAGE-AVAILABLE.jpg','Registered','$hashedPassword')";
+	            	values('$class_id','$emapData[0]','$emapData[1]','$emapData[2]','$emapData[3]','$emapData[4]','$emapData[5]', 'NO-IMAGE-AVAILABLE.jpg','Registered','$hashedPassword')";
 	         //we are using mysql_query function. it returns a resource on true else False on error
 	          $result = mysqli_query( $conn, $sql );
 				if(! $result )
 				{
 					echo "<script type=\"text/javascript\">
-							$(document).ready(function() {
-                            var Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 1000
-                        });
-						toastr.error(\"Invalid File:Please Upload Excel File.\");
-							window.location = \"students.php\"
-                        });
+						alert(\"Invalid File:Please Upload Excel File.\");
+							window.location = \"students.php\";
 						</script>";
 				
 				}
@@ -399,16 +394,8 @@
 	         fclose($file);
 	         //throws a message if data successfully imported to mysql database from excel file
 	         echo "<script type=\"text/javascript\">
-                    $(document).ready(function() {
-                        var Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 1000
-                        });
-						toastr.success(\"CSV File has been successfully Imported.\");
-						window.location = \"students.php\"
-                        });
+						alert(\"CSV File has been successfully Imported.\");
+						window.location = \"students.php\";
 					</script>";
 	        
 			 mysqli_query(
