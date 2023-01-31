@@ -154,7 +154,7 @@
                                                     $query
                                                 )
                                             ) {
-                                                $id = $row['student_id']; ?><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?></b> <p class="float-right">Year And Section : <b><?php echo $class_row['class_name']?></b></p></h6></div><div><h6>ID Number : <b><?php echo $row['username']?></b></h6></div><?php } ?>',
+                                                $id = $row['student_id']; ?><?php $middlename = $row['middlename']; echo $row['firstname'] ." ". $middlename = mb_substr($middlename, 0, 1) .". ". $row['lastname'];?></b> <p class="float-right">Year And Section : <b><?php echo $class_row['class_name']?></b></p></h6></div><div><h6>ID Number : <b><?php echo $row['username']?></b><p align="right">Date: <b><?php date_default_timezone_set('Singapore'); echo $date= date('F d, Y');?></b></p></h6></div><?php } ?>',
                 customize: function(win) {
                     $(win.document.body)
                         .css('font-size', '10pt')
