@@ -643,6 +643,7 @@
             "scrollCollapse": true,
             "buttons": ["copy", "excel", "pdf", {
                     extend: 'print',
+                    messageTop: '<p align="right">Date: <b><?php date_default_timezone_set('Singapore'); echo $date= date('F d, Y');?></b></p>',
                     messageBottom: '<br><div class="float-right"><u><b><?php
                                             ($query = mysqli_query(
                                                 $conn,
@@ -679,6 +680,7 @@
             "scrollCollapse": true,
             "buttons": ["copy", "excel", "pdf", {
                     extend: 'print',
+                    messageTop: '<p align="right">Date: <b><?php date_default_timezone_set('Singapore'); echo $date= date('F d, Y');?></b></p>',
                     messageBottom: '<br><div class="float-right"><u><b><?php
                                             ($query = mysqli_query(
                                                 $conn,
@@ -715,6 +717,7 @@
             "scrollCollapse": true,
             "buttons": ["copy", "excel", "pdf", {
                     extend: 'print',
+                    messageTop: '<p align="right">Date: <b><?php date_default_timezone_set('Singapore'); echo $date= date('F d, Y');?></b></p>',
                     messageBottom: '<br><div class="float-right"><u><b><?php
                                             ($query = mysqli_query(
                                                 $conn,
@@ -751,6 +754,7 @@
             "scrollCollapse": true,
             "buttons": ["copy", "excel", "pdf", {
                     extend: 'print',
+                    messageTop: '<p align="right">Date: <b><?php date_default_timezone_set('Singapore'); echo $date= date('F d, Y');?></b></p>',
                     messageBottom: '<br><div class="float-right"><u><b><?php
                                             ($query = mysqli_query(
                                                 $conn,
@@ -793,6 +797,7 @@
             "autoWidth": false,
             "buttons": ["copy", "excel", "pdf", {
                     extend: 'print',
+                    messageTop: '<p align="right">Date: <b><?php date_default_timezone_set('Singapore'); echo $date= date('F d, Y');?></b></p>',
                     messageBottom: '<br><div class="float-right"><u><b><?php
                                             ($query = mysqli_query(
                                                 $conn,
