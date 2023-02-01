@@ -224,7 +224,8 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-success">
-                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-upload"></i> Import Excel/CSV</h4>
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-upload"></i> Import Excel/CSV
+                            </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -260,7 +261,8 @@
                                             <label>Excel/CSV File:</label>
                                         </div>
                                         <div class="controls">
-                                            <input type="file" name="file" id="file" class="input-large" style="text-transform: uppercase" required>
+                                            <input type="file" name="file" id="file" class="input-large" accept=".xls,.xlsx"
+                                                style="text-transform: uppercase" required>
                                         </div>
                                     </div>
                                     <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
@@ -350,11 +352,14 @@
     </script>
     <?php } } ?>
     <?php 
+    require('library/php-excel-reader/excel_reader2.php');
+    require('library/SpreadsheetReader.php');
+    
     $conn=mysqli_connect("localhost","root","","lmstlee4") or die("Could not connect");
     
     if(isset($_POST["import"])){
 
-		$filename=$_FILES["file"]["tmp_name"];
+		$filename = $_FILES["file"]["tmp_name"];
         $class_id = $_POST['class_id'];
         $teacher_id = $_POST['teacher_id'];
 
@@ -398,7 +403,9 @@
 						window.location = \"students.php\";
 					</script>";
 	        
-			 mysqli_query(
+			$student_id = mysqli_insert_id($conn);
+                
+                mysqli_query(
                 $conn,
                 "INSERT INTO 
                 tbl_teacher_class_student 
@@ -406,6 +413,8 @@
                 VALUES 
                 ('$teacher_class_id','$student_id','$teacher_id');"
                         ) or die(mysqli_error());
+                mysqli_query($conn,"INSERT into tbl_activity_log (date,username,action,teacher_id) values(NOW(),'$username','Add Students','$teacher_id')")
+                    or die(mysqli_error());
 
 			 //close of connection
 			mysqli_close($conn); 
