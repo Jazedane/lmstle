@@ -261,7 +261,7 @@
                                             <label>Excel/CSV File:</label>
                                         </div>
                                         <div class="controls">
-                                            <input type="file" name="file" id="file" class="input-large" accept=".xls,.xlsx"
+                                            <input type="file" name="file" id="file" class="input-large" accept=".csv"
                                                 style="text-transform: uppercase" required>
                                         </div>
                                     </div>
@@ -352,9 +352,6 @@
     </script>
     <?php } } ?>
     <?php 
-    require('library/php-excel-reader/excel_reader2.php');
-    require('library/SpreadsheetReader.php');
-    
     $conn=mysqli_connect("localhost","root","","lmstlee4") or die("Could not connect");
     
     if(isset($_POST["import"])){
@@ -367,7 +364,8 @@
         $result = mysqli_query($conn, $query);
         $row   = mysqli_fetch_assoc($result);
         $teacher_class_id = $row['teacher_class_id'];
-        
+        $count = "0";
+
 		 if($_FILES["file"]["size"] > 0)
 		 {
 		  	$file = fopen($filename, "r");
@@ -383,16 +381,16 @@
 	    
 	          //It wiil insert a row to our subject table from our csv file`
 	           $sql = "INSERT into tbl_student ( `class_id`,`username`,`firstname`, `middlename`, `lastname`, `gender`, `age`, `location`, `status`, `password`) 
-	            	values('$class_id','$emapData[0]','$emapData[1]','$emapData[2]','$emapData[3]','$emapData[4]','$emapData[5]', 'NO-IMAGE-AVAILABLE.jpg','Registered','$hashedPassword')";
+	            	values('$class_id','$username','$firstname','$middlename','$lastname','$gender','$age', 'NO-IMAGE-AVAILABLE.jpg','Registered','$hashedPassword')";
 	         //we are using mysql_query function. it returns a resource on true else False on error
 	          $result = mysqli_query( $conn, $sql );
+              
 				if(! $result )
-				{
-					echo "<script type=\"text/javascript\">
-						alert(\"Invalid File:Please Upload Excel File.\");
-							window.location = \"students.php\";
-						</script>";
-				
+				{ 
+                echo "<script type=\"text/javascript\">
+						alert(\"File not Imported.\");
+						window.location = \"students.php\";
+					</script>";
 				}
 
 	         }
@@ -508,12 +506,12 @@
                     exportOptions: {
                         columns: [1, 2, 3, 4, 5]
                     },
-                    title: '<center><h5><b>Student Masterlist</b></h5></center>',
+                    title: '<center><h5><b>STUDENT MASTERLIST</b></h5></center>',
                     customize: function(win) {
                         $(win.document.body)
                             .css('font-size', '10pt')
                             .prepend(
-                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>Bug-Ang National High School</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
+                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>BUG-ANG NATIONAL HIGH SCHOOL</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
                             );
                         $(win.document.body).find(
                                 'table')

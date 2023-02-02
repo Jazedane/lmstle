@@ -138,12 +138,12 @@
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5]
                     },
-                    title: '<center><h5><b>Uploaded Task List</b></h5></center>',
+                    title: '<center><h5><b>UPLOADED TASK LIST</b></h5></center>',
                     customize: function(win) {
                         $(win.document.body)
                             .css('font-size', '10pt')
                             .prepend(
-                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>Bug-Ang National High School</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
+                                '<div class="text-center"><img src="http://localhost/lmstlee4/admin/dist/img/logo.png" style="width: 80px; height: 70px;position:absolute; top:0; left:240px;" alt="logo"/><h4><b>BUG-ANG NATIONAL HIGH SCHOOL</b></h4><p><h6>Brgy. Bug-Ang, Toboso, Negros Occidental </h6></p></div><div><hr style="border-bottom: 3px solid black"></hr></div>'
                             );
                         $(win.document.body).find(
                                 'table')
