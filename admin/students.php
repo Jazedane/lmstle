@@ -364,13 +364,16 @@
         $result = mysqli_query($conn, $query);
         $row   = mysqli_fetch_assoc($result);
         $teacher_class_id = $row['teacher_class_id'];
-        $count = "0";
 
 		 if($_FILES["file"]["size"] > 0)
 		 {
 		  	$file = fopen($filename, "r");
+            $count = "0";
 	         while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
 	         {
+                if($count > 0)
+                {
+
                 $username = $emapData[0];
                 $firstname = strtoupper($emapData[1]);
                 $middlename = strtoupper($emapData[2]);
@@ -384,7 +387,24 @@
 	            	values('$class_id','$username','$firstname','$middlename','$lastname','$gender','$age', 'NO-IMAGE-AVAILABLE.jpg','Registered','$hashedPassword')";
 	         //we are using mysql_query function. it returns a resource on true else False on error
 	          $result = mysqli_query( $conn, $sql );
-              
+
+              $student_id = mysqli_insert_id($conn);
+                
+                mysqli_query(
+                $conn,
+                "INSERT INTO 
+                tbl_teacher_class_student 
+                (teacher_class_id,student_id,teacher_id) 
+                VALUES 
+                ('$teacher_class_id','$student_id','$teacher_id');"
+                        ) or die(mysqli_error());
+                mysqli_query($conn,"INSERT into tbl_activity_log (date,username,action,teacher_id) values(NOW(),'$username','Add Students','$teacher_id')")
+                    or die(mysqli_error());
+              }
+            else
+            {
+            $count = "1";
+            }
 				if(! $result )
 				{ 
                 echo "<script type=\"text/javascript\">
@@ -400,19 +420,6 @@
 						alert(\"CSV File has been successfully Imported.\");
 						window.location = \"students.php\";
 					</script>";
-	        
-			$student_id = mysqli_insert_id($conn);
-                
-                mysqli_query(
-                $conn,
-                "INSERT INTO 
-                tbl_teacher_class_student 
-                (teacher_class_id,student_id,teacher_id) 
-                VALUES 
-                ('$teacher_class_id','$student_id','$teacher_id');"
-                        ) or die(mysqli_error());
-                mysqli_query($conn,"INSERT into tbl_activity_log (date,username,action,teacher_id) values(NOW(),'$username','Add Students','$teacher_id')")
-                    or die(mysqli_error());
 
 			 //close of connection
 			mysqli_close($conn); 
