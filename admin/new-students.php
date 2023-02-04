@@ -51,6 +51,8 @@
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title" style="margin-top:10px">Student List</h3>
+                                <a data-toggle="modal" href="#import_students" class="btn btn-success float-right"
+                                    name="add_student"><i class="fas fa-upload"></i> Import</a>
                                 <a data-toggle="modal" href="#student_add" class="btn btn-success float-right"
                                     name="add_student"><i class="fas fa-user-plus lg"></i> Add</a>
                             </div>
@@ -223,6 +225,70 @@
                 </div>
             </div>
         </div>
+        <div class="modal hide fade" id="import_students" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 id="myModalLabel" class="modal-title"><i class="fas fa-upload"></i> Import Excel/CSV
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="" enctype="multipart/form-data">
+                                <label>Select Section</label>
+                                <select name="class_id" class="form-control" required>
+                                    <option selected disabled hidden>SELECT SECTION</option>
+                                    <?php
+                                        $class_query = mysqli_query(
+                                        $conn,
+                                        "SELECT * FROM tbl_teacher_class 
+                                        LEFT JOIN tbl_class ON tbl_class.class_id = tbl_teacher_class.class_id
+                                        WHERE teacher_id = '$session_id' 
+                                        AND tbl_class.isDeleted = false"
+                                        );
+                                        while (
+                                            $class_row = mysqli_fetch_array(
+                                            $class_query
+                                        )
+                                        ) { ?>
+                                    <option value="<?php echo $class_row[
+                                                'class_id'
+                                                ]; ?>">
+                                        <?php echo $class_row[
+                                                    'class_name'
+                                                ]; ?></option>
+                                    <?php }
+                                    ?>
+                                </select>
+                                <fieldset>
+                                    <legend>Import Excel/CSV file</legend>
+                                    <div class="form-group">
+                                        <div class="control-label">
+                                            <label>Excel/CSV File:</label>
+                                        </div>
+                                        <div class="controls">
+                                            <input type="file" name="file" id="file" class="input-large" accept=".csv"
+                                                style="text-transform: uppercase" required>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="teacher_id" value="<?php echo $_SESSION['id'] ?>" />
+                                    <div class="form-group">
+                                        <div class="modal-footer">
+                                            <button type="submit" id="submit" name="import"
+                                                class="btn btn-primary button-loading"
+                                                data-loading-text="Loading...">Upload</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php include 'footer.php'; ?>
     <?php if (isset($_POST['save'])) {
@@ -295,6 +361,82 @@
     }, 1000);
     </script>
     <?php } } ?>
+    <?php 
+    $conn=mysqli_connect("localhost","root","","lmstlee4") or die("Could not connect");
+    
+    if(isset($_POST["import"])){
+
+		$filename = $_FILES["file"]["tmp_name"];
+        $class_id = $_POST['class_id'];
+        $teacher_id = $_POST['teacher_id'];
+
+        $query = "SELECT * FROM tbl_teacher_class WHERE teacher_id = '$teacher_id' AND class_id='$class_id';";
+        $result = mysqli_query($conn, $query);
+        $row   = mysqli_fetch_assoc($result);
+        $teacher_class_id = $row['teacher_class_id'];
+
+		 if($_FILES["file"]["size"] > 0)
+		 {
+		  	$file = fopen($filename, "r");
+            $count = "0";
+	         while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE)
+	         {
+                if($count > 0)
+                {
+
+                $username = $emapData[0];
+                $firstname = strtoupper($emapData[1]);
+                $middlename = strtoupper($emapData[2]);
+                $lastname = strtoupper($emapData[3]);
+                $gender = strtoupper($emapData[4]);
+                $age = $emapData[5];
+                $hashedPassword = hash('sha256', $lastname. $username);
+	    
+	          //It wiil insert a row to our subject table from our csv file`
+	           $sql = "INSERT into tbl_student ( `class_id`,`username`,`firstname`, `middlename`, `lastname`, `gender`, `age`, `location`, `status`, `password`) 
+	            	values('$class_id','$username','$firstname','$middlename','$lastname','$gender','$age', 'NO-IMAGE-AVAILABLE.jpg','Registered','$hashedPassword')";
+	         //we are using mysql_query function. it returns a resource on true else False on error
+	          $result = mysqli_query( $conn, $sql );
+
+              $student_id = mysqli_insert_id($conn);
+                
+                mysqli_query(
+                $conn,
+                "INSERT INTO 
+                tbl_teacher_class_student 
+                (teacher_class_id,student_id,teacher_id) 
+                VALUES 
+                ('$teacher_class_id','$student_id','$teacher_id');"
+                        ) or die(mysqli_error());
+                mysqli_query($conn,"INSERT into tbl_activity_log (date,username,action,teacher_id) values(NOW(),'$username','Add Students','$teacher_id')")
+                    or die(mysqli_error());
+              }
+            else
+            {
+            $count = "1";
+            }
+				if(! $result )
+				{ 
+                echo "<script type=\"text/javascript\">
+						alert(\"CSV File not Imported.\");
+						window.location = \"students.php\";
+					</script>";
+				}
+
+	         }
+	         fclose($file);
+	         //throws a message if data successfully imported to mysql database from excel file
+	         echo "<script type=\"text/javascript\">
+						alert(\"CSV File has been successfully Imported.\");
+						window.location = \"students.php\";
+					</script>";
+
+			 //close of connection
+			mysqli_close($conn); 
+			
+		 }
+	}	 
+?>
     <SCRIPT LANGUAGE="JavaScript">
     function addDashes(f) {
         f.value = f.value.replace(/\D/g, '');

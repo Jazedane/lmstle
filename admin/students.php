@@ -408,7 +408,7 @@
 				if(! $result )
 				{ 
                 echo "<script type=\"text/javascript\">
-						alert(\"File not Imported.\");
+						alert(\"CSV File not Imported.\");
 						window.location = \"students.php\";
 					</script>";
 				}
